@@ -1,0 +1,75 @@
+[tool.poetry]
+name = "wom.py"
+version = "0.1.0"
+description = "An asynchronous wrapper for the Wise Old Man API."
+authors = ["Jonxslays"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "wom" },
+    { include = "wom/py.typed" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[tool.poetry.scripts]
+wise-old-man = "wom._cli:info"
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+
+[tool.poetry.group.dev.dependencies]
+black = "==23.1.0"
+coverage = "==7.1.0"
+flake8 = { version = "==6.0.0", python = ">=3.8.1" }
+isort = { version = "==5.12.0", python = ">=3.8.0" }
+len8 = { version = "==0.7.3.post0", python = ">=3.6.0,<3.12" }
+mypy = "==1.0.0"
+nox = "==2022.11.21"
+pyright = "==1.1.293"
+pytest = "==7.2.1"
+pytest-asyncio = "==0.20.3"
+pytest-testdox = "==3.0.1"
+types-toml = "==0.10.8.3"
+toml = "==0.10.2"
+
+[tool.black]
+line-length = 99
+
+[tool.isort]
+profile = "black"
+
+[tool.len8]
+include = ["noxfile.py", "tests", "wom"]
+code-length = 99
+docs-length = 72
+strict = true
+
+[tool.mypy]
+packages = ["wom"]
+strict = true
+
+[tool.pyright]
+include = ["wom", "tests"]
+typeCheckingMode = "strict"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
