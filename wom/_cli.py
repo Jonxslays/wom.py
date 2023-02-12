@@ -36,7 +36,7 @@ def info() -> None:
     py_c = platform.python_compiler()
     p = platform.uname()
 
-    print(f"wise-old-man v{__version__} from {__git_sha__}")
+    print(f"wom.py v{__version__} from {__git_sha__}")
     print(f"@ {path}")
     print(f"{py_impl} {py_ver} {py_c}")
     print(f"{p.system} {p.node} {p.release} {p.machine}")
