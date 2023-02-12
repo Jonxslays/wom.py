@@ -6,6 +6,6 @@ INIT_VERS=$(sed -rn 's/__version__: Final\[str\] = "(.*)"/v\1/p' wom/__init__.py
 if [ ! "$INIT_VERS" = "$PROJECT_VERS" ]; then
     echo "Project $PROJECT_VERS doesn't match init $INIT_VERS";
     exit 1;
-else
-    echo $PROJECT_VERS;
 fi
+
+echo $PROJECT_VERS;
