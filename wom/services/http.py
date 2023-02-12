@@ -21,9 +21,12 @@
 
 from __future__ import annotations
 
+import typing as t
+
 import aiohttp
 
 from wom import constants
+from wom import routes
 
 __all__ = ("HttpService",)
 
@@ -60,3 +63,47 @@ class HttpService:
 
     def set_base_url(self, base_url: str) -> None:
         self._base_url = base_url
+
+    async def get(
+        self,
+        route: routes.CompiledRoute,
+        *,
+        params: dict[str, str | int] = {},
+    ) -> dict[str, t.Any]:
+        ...
+
+    async def post(
+        self,
+        route: routes.CompiledRoute,
+        *,
+        payload: dict[str, t.Any] = {},
+        params: dict[str, str | int] = {},
+    ) -> dict[str, t.Any]:
+        ...
+
+    async def put(
+        self,
+        route: routes.CompiledRoute,
+        *,
+        payload: dict[str, t.Any] = {},
+        params: dict[str, str | int] = {},
+    ) -> dict[str, t.Any]:
+        ...
+
+    async def delete(
+        self,
+        route: routes.CompiledRoute,
+        *,
+        payload: dict[str, t.Any] = {},
+        params: dict[str, str | int] = {},
+    ) -> dict[str, t.Any]:
+        ...
+
+    async def patch(
+        self,
+        route: routes.CompiledRoute,
+        *,
+        payload: dict[str, t.Any] = {},
+        params: dict[str, str | int] = {},
+    ) -> dict[str, t.Any]:
+        ...
