@@ -22,7 +22,6 @@
 from __future__ import annotations
 
 import aiohttp
-import orjson
 
 from wom import constants
 
@@ -39,10 +38,6 @@ class HttpService:
         user_agent: str | None,
         api_base_url: str | None,
     ) -> None:
-        self._session = aiohttp.ClientSession(
-            json_serialize=lambda x: orjson.dumps(x).decode(),
-        )
-
         self._headers = {
             "x-user-agent": (
                 f"{constants.USER_AGENT_BASE} {user_agent}"
@@ -55,6 +50,7 @@ class HttpService:
             self._headers["x-api-key"] = api_key
 
         self._base_url = api_base_url or constants.WOM_BASE_URL
+        self._session = aiohttp.ClientSession()
 
     def set_api_key(self, api_key: str) -> None:
         self._headers["x-api-key"] = api_key

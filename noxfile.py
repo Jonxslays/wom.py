@@ -89,7 +89,7 @@ def coverage(session: nox.Session) -> None:
 
 
 @nox.session(reuse_venv=True)
-@install("pyright", "mypy", "aiohttp", "orjson")
+@install("pyright", "mypy", "aiohttp")
 def types(session: nox.Session) -> None:
     session.run("mypy")
     session.run("pyright")
