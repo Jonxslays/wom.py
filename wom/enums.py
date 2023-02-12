@@ -27,7 +27,7 @@ from enum import Enum
 class BaseEnum(Enum):
     """The base enum all library enums inherit from."""
 
-    value: str  # type: ignore
+    value: str  # pyright: ignore
     """The value of the enum member."""
 
 

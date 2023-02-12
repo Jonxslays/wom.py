@@ -25,8 +25,7 @@ import typing as t
 
 import aiohttp
 
-from wom import constants
-from wom import routes
+from wom import constants, routes
 
 __all__ = ("HttpService",)
 
