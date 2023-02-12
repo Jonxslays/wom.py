@@ -31,6 +31,17 @@ class BaseEnum(Enum):
     """The value of the enum member."""
 
 
+class Metric(BaseEnum):
+    """Represents a metric, this enum has no attributes itself.
+
+    Will be one of:
+        - `Activity`
+        - `Boss`
+        - `ComputedMetric`
+        - `Skill`
+    """
+
+
 class Period(BaseEnum):
     FiveMins = "five_min"
     Day = "day"
@@ -39,7 +50,7 @@ class Period(BaseEnum):
     Year = "year"
 
 
-class Skill(BaseEnum):
+class Skill(Metric):
     Overall = "overall"
     Attack = "attack"
     Defence = "defence"
@@ -66,7 +77,7 @@ class Skill(BaseEnum):
     Construction = "construction"
 
 
-class Activity(BaseEnum):
+class Activity(Metric):
     LeaguePoints = "league_points"
     BountyHunterHunter = "bounty_hunter_hunter"
     BountyHunterRogue = "bounty_hunter_rogue"
@@ -83,7 +94,7 @@ class Activity(BaseEnum):
     GuardiansOfTheRift = "guardians_of_the_rift"
 
 
-class Boss(BaseEnum):
+class Boss(Metric):
     AbyssalSire = "abyssal_sire"
     AlchemicalHydra = "alchemical_hydra"
     BarrowsChests = "barrows_chests"
@@ -137,9 +148,10 @@ class Boss(BaseEnum):
     Zulrah = "zulrah"
 
 
-class ComputedMetric(BaseEnum):
+class ComputedMetric(Metric):
+    """A metric that is computed."""
+
     Ehp = "ehp"
+    """Efficient hours played."""
     Ehb = "ehb"
-
-
-Metric = Skill | Activity | Boss | ComputedMetric
+    """Efficient hours bossed."""
