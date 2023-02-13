@@ -23,6 +23,8 @@ from __future__ import annotations
 
 from wom import services
 
+__all__ = ("Client",)
+
 
 class Client:
     __slots__ = ("_http",)
@@ -30,8 +32,8 @@ class Client:
     def __init__(
         self,
         api_key: str | None = None,
-        user_agent: str | None = None,
         *,
+        user_agent: str | None = None,
         api_base_url: str | None = None,
     ) -> None:
         self._http = services.HttpService(
@@ -46,3 +48,6 @@ class Client:
 
     def set_api_base_url(self, api_base_url: str) -> None:
         self._http.set_base_url(api_base_url)
+
+    async def close(self) -> None:
+        await self._http.close()

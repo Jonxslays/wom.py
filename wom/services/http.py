@@ -63,6 +63,10 @@ class HttpService:
     def set_base_url(self, base_url: str) -> None:
         self._base_url = base_url
 
+    async def close(self) -> None:
+        if not self._session.closed:
+            await self._session.close()
+
     async def get(
         self,
         route: routes.CompiledRoute,
