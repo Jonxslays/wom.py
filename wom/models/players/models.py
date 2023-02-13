@@ -22,14 +22,25 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
 
+from .enums import AchievementMeasure
+from .enums import Country
+from .enums import PlayerBuild
+from .enums import PlayerType
 from wom import enums
 
 __all__ = (
+    "AchievementModel",
     "ActivityModel",
     "BossModel",
     "ComputedMetricModel",
+    "PlayerAchievementProgressModel",
+    "PlayerModel",
+    "PlayerDetailModel",
     "SkillModel",
+    "SnapshotDataModel",
+    "SnapshotModel",
 )
 
 
@@ -63,3 +74,63 @@ class ComputedMetricModel:
     metric: enums.ComputedMetric
     rank: int
     value: int
+
+
+@dataclass(slots=True, init=False)
+class SnapshotDataModel:
+    skills: list[SkillModel]
+    bosses: list[BossModel]
+    activities: list[ActivityModel]
+    computed: list[ComputedMetricModel]
+
+
+@dataclass(slots=True, init=False)
+class SnapshotModel:
+    id: int
+    player_id: int
+    created_at: datetime
+    imported_at: datetime | None
+    data: SnapshotDataModel
+
+
+@dataclass(slots=True, init=False)
+class PlayerModel:
+    id: int
+    username: str
+    display_name: str
+    type: PlayerType
+    build: PlayerBuild
+    country: Country
+    flagged: bool
+    exp: int
+    ehp: float
+    ehb: float
+    ttm: float
+    ttm200m: float
+    registered_at: datetime
+    updated_at: datetime
+    last_changed_at: datetime | None
+    last_imported_at: datetime | None
+
+
+@dataclass(slots=True, init=False)
+class PlayerDetailModel(PlayerModel):
+    combat_level: int
+    latest_snapshot: SnapshotModel | None
+
+
+@dataclass(slots=True, init=False)
+class AchievementModel:
+    player_id: int
+    name: str
+    metric: enums.Metric
+    measure: AchievementMeasure
+    threshold: int
+    created_at: datetime
+
+
+@dataclass(slots=True, init=False)
+class PlayerAchievementProgressModel:
+    current_value: int
+    absolute_progress: float
+    relative_progress: float

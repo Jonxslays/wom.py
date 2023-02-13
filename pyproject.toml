@@ -70,6 +70,7 @@ strict = true
 [tool.pyright]
 include = ["wom", "tests"]
 typeCheckingMode = "strict"
+reportImportCycles = false
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

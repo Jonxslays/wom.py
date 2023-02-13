@@ -21,9 +21,10 @@
 
 from __future__ import annotations
 
+import typing as t
 from dataclasses import dataclass
 
-__all__ = ("CompiledRoute", "Route")
+__all__ = ("CompiledRoute", "Route", "SEARCH_PLAYERS")
 
 
 @dataclass(slots=True)
@@ -51,3 +52,6 @@ class Route:
             compiled.uri = compiled.uri.replace(r"{}", str(arg), 1)
 
         return compiled
+
+
+SEARCH_PLAYERS: t.Final[Route] = Route("/players/search")
