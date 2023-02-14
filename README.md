@@ -4,7 +4,7 @@ An asynchronous wrapper for the [Wise Old Man API](https://docs.wiseoldman.net/)
 
 ## Disclaimer
 
-The libaray is in early development, and as such features or exposed interfaces
+The library is in early development, and as such features or exposed interfaces
 may change at any time.
 
 Thanks for following the progress!
