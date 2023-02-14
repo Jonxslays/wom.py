@@ -32,16 +32,10 @@ T = t.TypeVar("T")
 E = t.TypeVar("E")
 
 
-class Result(t.Generic[T, E]):
+class Result(t.Generic[T, E], abc.ABC):
     """Represents a potential `Ok` or `Err` result.
     This class cannot be instantiated, only its children can be.
     """
-
-    def __new__(cls, *_args: t.Any, **_kwargs: t.Any) -> Result[T, E]:
-        if cls is Result:
-            raise TypeError("Only Result subclasses can be instantiated.")
-
-        return object.__new__(cls)
 
     def __init__(self, value: T | None, error: E | None) -> None:
         self._value = value
@@ -64,8 +58,10 @@ class Result(t.Generic[T, E]):
     @abc.abstractmethod
     def unwrap(self) -> T:
         """Unwraps the result to produce the value.
+
         Returns:
             `T`: The unwrapped value.
+
         Raises:
             `errors.UnwrapError`: If the result was an `Err`, and not `Ok`.
         """
@@ -73,8 +69,10 @@ class Result(t.Generic[T, E]):
     @abc.abstractmethod
     def unwrap_err(self) -> E:
         """Unwraps the result to produce the error.
+
         Returns:
             `E`: The unwrapped error.
+
         Raises:
             `errors.UnwrapError`: If the result was an `Ok`, and not an `Err`.
         """
