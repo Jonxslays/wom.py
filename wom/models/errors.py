@@ -21,44 +21,11 @@
 
 from __future__ import annotations
 
-from typing import Final
+from dataclasses import dataclass
 
-__all__ = (
-    "constants",
-    "enums",
-    "errors",
-    "models",
-    "result",
-    "routes",
-    "serializer",
-    "services",
-    "Client",
-    "Err",
-    "Ok",
-    "Result",
-    "UnwrapError",
-    "WomError",
-)
+__all__ = ("HttpErrorResponse",)
 
-from . import constants
-from . import enums
-from . import errors
-from . import models
-from . import result
-from . import routes
-from . import serializer
-from . import services
-from .client import *
-from .errors import *
-from .result import *
 
-__packagename__: Final[str] = "wom.py"
-__version__: Final[str] = "0.1.0"
-__author__: Final[str] = "Jonxslays"
-__copyright__: Final[str] = "2023-present Jonxslays"
-__description__: Final[str] = "An asynchronous wrapper for the Wise Old Man API."
-__url__: Final[str] = "https://github.com/Jonxslays/wise-old-man"
-__docs__: Final[str] = "https://jonxslays.github.io/wise-old-man"
-__repository__: Final[str] = __url__
-__license__: Final[str] = "MIT"
-__git_sha__: Final[str] = "[HEAD]"
+@dataclass(slots=True)
+class HttpErrorResponse:
+    message: str

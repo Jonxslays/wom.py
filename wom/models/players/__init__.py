@@ -25,6 +25,7 @@ __all__ = (
     "AchievementMeasure",
     "AchievementModel",
     "ActivityModel",
+    "AssertPlayerTypeModel",
     "BossModel",
     "Country",
     "ComputedMetricModel",

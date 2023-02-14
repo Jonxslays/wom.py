@@ -25,6 +25,7 @@ import typing as t
 
 from wom import models
 from wom import routes
+from wom import result
 from wom import serializer
 
 from . import BaseService
@@ -42,8 +43,34 @@ class PlayerService(BaseService):
 
     async def search_players(
         self, username: str, *, limit: int | None = None, offset: int | None = None
-    ) -> list[models.PlayerModel]:
+    ) -> result.Result[list[models.PlayerModel], models.HttpErrorResponse]:
         params = self._generate_params(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
         data = await self._http.get(route, list[dict[str, t.Any]])
-        return [self._serializer.deserialize_player(player) for player in data]
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_player(player) for player in data])
+
+    async def update_player(
+        self, username: str
+    ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
+        route = routes.UPDATE_PLAYER.compile(username)
+        data = await self._http.post(route, dict[str, t.Any])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_player_details(data))
+
+    async def assert_player_type(
+        self, username: str
+    ) -> result.Result[models.AssertPlayerTypeModel, models.HttpErrorResponse]:
+        route = routes.ASSERT_PLAYER_TYPE.compile(username)
+        data = await self._http.post(route, dict[str, t.Any])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_asserted_player_type(data))

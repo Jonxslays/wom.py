@@ -26,6 +26,7 @@ import typing as t
 import aiohttp
 
 from wom import constants
+from wom import models
 from wom import routes
 
 __all__ = ("HttpService",)
@@ -56,6 +57,30 @@ class HttpService:
         self._base_url = api_base_url or constants.WOM_BASE_URL
         self._session = aiohttp.ClientSession()
 
+    async def _try_get_json(self, response: aiohttp.ClientResponse) -> t.Any:
+        try:
+            return await response.json()
+        except Exception:
+            return models.HttpErrorResponse(
+                "Unable to deserialize response, the api is likely down."
+            )
+
+    async def _request(
+        self, req: t.Callable[..., t.Awaitable[t.Any]], url: str, **kwargs: t.Any
+    ) -> t.Any:
+        response = await req(url, **kwargs)
+        data = await self._try_get_json(response)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return data
+
+        if "message" in data or not response.ok:
+            return models.HttpErrorResponse(
+                data.get("message", "An unexpected error occurred while making the request.")
+            )
+
+        return data
+
     def set_api_key(self, api_key: str) -> None:
         self._headers["x-api-key"] = api_key
 
@@ -69,47 +94,70 @@ class HttpService:
         if not self._session.closed:
             await self._session.close()
 
-    async def get(self, route: routes.CompiledRoute, _: t.Type[T]) -> T:
-        data = await self._session.get(
+    async def get(self, route: routes.CompiledRoute, _: t.Type[T]) -> T | models.HttpErrorResponse:
+        return await self._request(
+            self._session.get,
             self._base_url + route.uri,
             headers=self._headers,
             params=route.params,
         )
-
-        return t.cast(T, await data.json())
 
     async def post(
         self,
         route: routes.CompiledRoute,
         _: t.Type[T],
         *,
-        payload: dict[str, t.Any] = {},
-    ) -> T:
-        ...
+        payload: dict[str, t.Any] | None = None,
+    ) -> T | models.HttpErrorResponse:
+        return await self._request(
+            self._session.post,
+            self._base_url + route.uri,
+            headers=self._headers,
+            params=route.params,
+            data=payload or None,
+        )
 
     async def put(
         self,
         route: routes.CompiledRoute,
         _: t.Type[T],
         *,
-        payload: dict[str, t.Any] = {},
-    ) -> T:
-        ...
+        payload: dict[str, t.Any] | None = None,
+    ) -> T | models.HttpErrorResponse:
+        return await self._request(
+            self._session.put,
+            self._base_url + route.uri,
+            headers=self._headers,
+            params=route.params,
+            data=payload or None,
+        )
 
     async def delete(
         self,
         route: routes.CompiledRoute,
         _: t.Type[T],
         *,
-        payload: dict[str, t.Any] = {},
-    ) -> T:
-        ...
+        payload: dict[str, t.Any] | None = None,
+    ) -> T | models.HttpErrorResponse:
+        return await self._request(
+            self._session.delete,
+            self._base_url + route.uri,
+            headers=self._headers,
+            params=route.params,
+            data=payload or None,
+        )
 
     async def patch(
         self,
         route: routes.CompiledRoute,
         _: t.Type[T],
         *,
-        payload: dict[str, t.Any] = {},
-    ) -> T:
-        ...
+        payload: dict[str, t.Any] | None = None,
+    ) -> T | models.HttpErrorResponse:
+        return await self._request(
+            self._session.patch,
+            self._base_url + route.uri,
+            headers=self._headers,
+            params=route.params,
+            data=payload or None,
+        )

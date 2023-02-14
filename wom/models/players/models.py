@@ -34,6 +34,7 @@ from .enums import PlayerType
 __all__ = (
     "AchievementModel",
     "ActivityModel",
+    "AssertPlayerTypeModel",
     "BossModel",
     "ComputedMetricModel",
     "PlayerAchievementProgressModel",
@@ -59,7 +60,6 @@ class BossModel:
     metric: enums.Boss
     ehb: int
     rank: int
-    ranks: int
     kills: int
 
 
@@ -115,9 +115,16 @@ class PlayerModel:
 
 
 @dataclass(slots=True, init=False)
-class PlayerDetailModel(PlayerModel):
+class PlayerDetailModel:
+    player: PlayerModel
     combat_level: int
     latest_snapshot: SnapshotModel | None
+
+
+@dataclass(slots=True, init=False)
+class AssertPlayerTypeModel:
+    player: PlayerModel
+    changed: bool
 
 
 @dataclass(slots=True, init=False)

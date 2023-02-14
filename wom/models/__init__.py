@@ -28,6 +28,7 @@ __all__ = (
     "BossModel",
     "Country",
     "ComputedMetricModel",
+    "HttpErrorResponse",
     "PlayerAchievementProgressModel",
     "PlayerBuild",
     "PlayerModel",
@@ -38,4 +39,5 @@ __all__ = (
     "SnapshotModel",
 )
 
+from .errors import *
 from .players import *

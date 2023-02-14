@@ -24,7 +24,7 @@ from __future__ import annotations
 import typing as t
 from dataclasses import dataclass
 
-__all__ = ("CompiledRoute", "Route", "SEARCH_PLAYERS")
+__all__ = ("CompiledRoute", "Route", "ASSERT_PLAYER_TYPE", "SEARCH_PLAYERS", "UPDATE_PLAYER")
 
 
 @dataclass(slots=True)
@@ -57,3 +57,5 @@ class Route:
 
 
 SEARCH_PLAYERS: t.Final[Route] = Route("/players/search")
+UPDATE_PLAYER: t.Final[Route] = Route("/players/{}")
+ASSERT_PLAYER_TYPE: t.Final[Route] = Route("/players/{}/assert-type")
