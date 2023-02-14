@@ -24,17 +24,37 @@ from __future__ import annotations
 import typing as t
 from dataclasses import dataclass
 
-__all__ = ("CompiledRoute", "Route", "ASSERT_PLAYER_TYPE", "SEARCH_PLAYERS", "UPDATE_PLAYER")
+__all__ = (
+    "CompiledRoute",
+    "Route",
+    "ASSERT_PLAYER_TYPE",
+    "GET_PLAYER_DETAILS",
+    "GET_PLAYER_DETAILS_BY_ID",
+    "SEARCH_PLAYERS",
+    "UPDATE_PLAYER",
+)
 
 
 @dataclass(slots=True)
 class CompiledRoute:
-    uri: str
     params: dict[str, str | int]
+    route: Route
 
     def __init__(self, route: Route) -> None:
-        self.uri = route.uri
+        self.route = route
         self.params = {}
+
+    @property
+    def uri(self) -> str:
+        return self.route.uri
+
+    @uri.setter
+    def uri(self, uri: str) -> None:
+        self.route.uri = uri
+
+    @property
+    def method(self) -> str:
+        return self.route.method
 
     def with_params(self, params: dict[str, str | int]) -> CompiledRoute:
         if params:
@@ -45,6 +65,7 @@ class CompiledRoute:
 
 @dataclass(slots=True)
 class Route:
+    method: str
     uri: str
 
     def compile(self, *args: str | int) -> CompiledRoute:
@@ -56,6 +77,8 @@ class Route:
         return compiled
 
 
-SEARCH_PLAYERS: t.Final[Route] = Route("/players/search")
-UPDATE_PLAYER: t.Final[Route] = Route("/players/{}")
-ASSERT_PLAYER_TYPE: t.Final[Route] = Route("/players/{}/assert-type")
+SEARCH_PLAYERS: t.Final[Route] = Route("GET", "/players/search")
+UPDATE_PLAYER: t.Final[Route] = Route("POST", "/players/{}")
+ASSERT_PLAYER_TYPE: t.Final[Route] = Route("POST", "/players/{}/assert-type")
+GET_PLAYER_DETAILS: t.Final[Route] = Route("GET", "/players/{}")
+GET_PLAYER_DETAILS_BY_ID: t.Final[Route] = Route("GET", "/players/id/{}")

@@ -74,3 +74,25 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_asserted_player_type(data))
+
+    async def get_player_details(
+        self, username: str
+    ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
+        route = routes.GET_PLAYER_DETAILS.compile(username)
+        data = await self._http.fetch(route, dict[str, t.Any])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_player_details(data))
+
+    async def get_player_details_by_id(
+        self, player_id: int
+    ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
+        route = routes.GET_PLAYER_DETAILS_BY_ID.compile(player_id)
+        data = await self._http.fetch(route, dict[str, t.Any])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_player_details(data))

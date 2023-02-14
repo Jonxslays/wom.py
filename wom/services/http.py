@@ -111,11 +111,10 @@ class HttpService:
         *,
         payload: dict[str, t.Any] | None = None,
     ) -> T | models.HttpErrorResponse:
-        kwargs = {"headers": self._headers, "params": route.params}
-
-        if payload:
-            kwargs["data"] = payload
-
         return await self._request(
-            self._get_request_func(route.method), self._base_url + route.uri, **kwargs
+            self._get_request_func(route.method),
+            self._base_url + route.uri,
+            headers=self._headers,
+            params=route.params,
+            data=payload or None,
         )
