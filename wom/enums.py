@@ -34,19 +34,15 @@ class BaseEnum(Enum):
     """The value of the enum member."""
 
     @classmethod
-    def _filter_on_value(cls: t.Type[T], value: str) -> set[T]:
-        return set(filter(lambda x: x.value == value, t.cast(t.Iterable[T], cls)))
-
-    @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
-        if maybe := cls._filter_on_value(value):
-            return maybe.pop()
-
-        raise RuntimeError(f"No {cls} variant for {value!r}.")
+        return cls(value)
 
     @classmethod
     def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
-        return maybe.pop() if (maybe := cls._filter_on_value(value)) else None
+        try:
+            return cls(value)
+        except ValueError:
+            return None
 
 
 class Metric(BaseEnum):
@@ -60,28 +56,36 @@ class Metric(BaseEnum):
     """
 
     @classmethod
+    def _filter_on_value(cls: t.Type[T], value: str) -> set[T]:
+        return set(filter(lambda x: x.value == value, cls))  # type: ignore
+
+    @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
         if cls is not Metric:
-            return t.cast(T, super(Metric, t.cast(t.Type[Metric], cls)).from_str(value))
+            return cls(value)
 
         children = {Skill, Activity, Boss, ComputedMetric}
 
         for child in children:
-            if maybe := child._filter_on_value(value):
-                return t.cast(T, maybe.pop())
+            try:
+                return child(value)  # type: ignore
+            except ValueError:
+                continue
 
         raise RuntimeError(f"No {cls} variant for {value!r}.")
 
     @classmethod
     def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
         if cls is not Metric:
-            return t.cast(T, super(Metric, t.cast(t.Type[Metric], cls)).from_str(value))
+            return super(Metric, cls).from_str_maybe(value)  # pyright: ignore
 
         children = {Skill, Activity, Boss, ComputedMetric}
 
         for child in children:
-            if maybe := child._filter_on_value(value):
-                return t.cast(T, maybe.pop())
+            try:
+                return child(value)  # type: ignore
+            except ValueError:
+                continue
 
         return None
 
