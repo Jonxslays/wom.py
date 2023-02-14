@@ -165,3 +165,27 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_player_gains(data))
+
+    async def get_player_snapshots(
+        self,
+        username: str,
+        *,
+        period: enums.Period | None = None,
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> result.Result[list[models.MinimalSnapshotModel], models.HttpErrorResponse]:
+        # TODO: This returns a new minimal snapshot (missing ehb and ehp)
+        # Are these fields intentionally omitted by WOM?
+        params = self._generate_params(
+            period=period.value if period else None,
+            startDate=start_date.isoformat() if start_date else None,
+            endDate=end_date.isoformat() if end_date else None,
+        )
+
+        route = routes.PLAYER_SNAPSHOTS.compile(username).with_params(params)
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_minimal_snapshot(s) for s in data])

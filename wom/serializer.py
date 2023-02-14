@@ -105,6 +105,14 @@ class Serializer:
         snapshot.data = self.deserialize_snapshot_data(data["data"])
         return snapshot
 
+    def deserialize_minimal_snapshot(self, data: dict[str, t.Any]) -> models.MinimalSnapshotModel:
+        snapshot = models.MinimalSnapshotModel()
+        self._set_attrs_with_js_casing(snapshot, data, "id", "player_id")
+        snapshot.created_at = self._dt_from_iso(data["createdAt"])
+        snapshot.imported_at = self._dt_from_iso_maybe(data["importedAt"])
+        snapshot.data = self.deserialize_minimal_snapshot_data(data["data"])
+        return snapshot
+
     def deserialize_snapshot_data(self, data: dict[str, t.Any]) -> models.SnapshotDataModel:
         snapshot_data = models.SnapshotDataModel()
 
@@ -122,10 +130,35 @@ class Serializer:
 
         return snapshot_data
 
+    def deserialize_minimal_snapshot_data(
+        self, data: dict[str, t.Any]
+    ) -> models.MinimalSnapshotDataModel:
+        snapshot_data = models.MinimalSnapshotDataModel()
+
+        skills = data["skills"].values()
+        snapshot_data.skills = [self.deserialize_minimal_skill(s) for s in skills]
+
+        bosses = data["bosses"].values()
+        snapshot_data.bosses = [self.deserialize_minimal_boss(b) for b in bosses]
+
+        activities = data["activities"].values()
+        snapshot_data.activities = [self.deserialize_activity(a) for a in activities]
+
+        computed = data["computed"].values()
+        snapshot_data.computed = [self.deserialize_computed_metric(c) for c in computed]
+
+        return snapshot_data
+
     def deserialize_skill(self, data: dict[str, t.Any]) -> models.SkillModel:
         skill = models.SkillModel()
         skill.metric = enums.Skill.from_str(data["metric"])
         self._set_attrs_with_js_casing(skill, data, "ehp", "rank", "level", "experience")
+        return skill
+
+    def deserialize_minimal_skill(self, data: dict[str, t.Any]) -> models.MinimalSkillModel:
+        skill = models.MinimalSkillModel()
+        skill.metric = enums.Skill.from_str(data["metric"])
+        self._set_attrs_with_js_casing(skill, data, "rank", "level", "experience")
         return skill
 
     def deserialize_boss(self, data: dict[str, t.Any]) -> models.BossModel:
@@ -133,6 +166,12 @@ class Serializer:
         boss.metric = enums.Boss.from_str(data["metric"])
         self._set_attrs_with_js_casing(boss, data, "ehb", "rank", "kills")
         return boss
+
+    def deserialize_minimal_boss(self, data: dict[str, t.Any]) -> models.MinimalBossModel:
+        skill = models.MinimalBossModel()
+        skill.metric = enums.Boss.from_str(data["metric"])
+        self._set_attrs_with_js_casing(skill, data, "rank", "kills")
+        return skill
 
     def deserialize_activity(self, data: dict[str, t.Any]) -> models.ActivityModel:
         activity = models.ActivityModel()

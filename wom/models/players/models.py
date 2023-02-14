@@ -41,6 +41,10 @@ __all__ = (
     "ComputedGainsModel",
     "ComputedMetricModel",
     "GainsModel",
+    "MinimalBossModel",
+    "MinimalSkillModel",
+    "MinimalSnapshotDataModel",
+    "MinimalSnapshotModel",
     "PlayerAchievementProgressModel",
     "PlayerGainsDataModel",
     "PlayerGainsModel",
@@ -54,20 +58,28 @@ __all__ = (
 
 
 @dataclass(slots=True, init=False)
-class SkillModel:
+class MinimalSkillModel:
     metric: enums.Skill
-    ehp: int
     rank: int
     level: int
     experience: int
 
 
 @dataclass(slots=True, init=False)
-class BossModel:
+class SkillModel(MinimalSkillModel):
+    ehp: int
+
+
+@dataclass(slots=True, init=False)
+class MinimalBossModel:
     metric: enums.Boss
-    ehb: int
     rank: int
     kills: int
+
+
+@dataclass(slots=True, init=False)
+class BossModel(MinimalBossModel):
+    ehb: int
 
 
 @dataclass(slots=True, init=False)
@@ -93,12 +105,29 @@ class SnapshotDataModel:
 
 
 @dataclass(slots=True, init=False)
+class MinimalSnapshotDataModel:
+    skills: list[MinimalSkillModel]
+    bosses: list[MinimalBossModel]
+    activities: list[ActivityModel]
+    computed: list[ComputedMetricModel]
+
+
+@dataclass(slots=True, init=False)
 class SnapshotModel:
     id: int
     player_id: int
     created_at: datetime
     imported_at: datetime | None
     data: SnapshotDataModel
+
+
+@dataclass(slots=True, init=False)
+class MinimalSnapshotModel:
+    id: int
+    player_id: int
+    created_at: datetime
+    imported_at: datetime | None
+    data: MinimalSnapshotDataModel
 
 
 @dataclass(slots=True, init=False)

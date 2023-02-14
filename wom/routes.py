@@ -34,6 +34,7 @@ __all__ = (
     "PLAYER_DETAILS",
     "PLAYER_DETAILS_BY_ID",
     "PLAYER_GAINS",
+    "PLAYER_SNAPSHOTS",
     "SEARCH_PLAYERS",
     "UPDATE_PLAYER",
 )
@@ -90,3 +91,4 @@ PLAYER_ACHIEVEMENTS: Final[Route] = Route("GET", "/players/{}/achievements")
 PLAYER_ACHIEVEMENT_PROGRESS: Final[Route] = Route("GET", "/players/{}/achievements/progress")
 PLAYER_COMPETITION_PARTICIPATION: Final[Route] = Route("GET", "/players/{}/competitions")
 PLAYER_GAINS: Final[Route] = Route("GET", "/players/{}/gained")
+PLAYER_SNAPSHOTS: Final[Route] = Route("GET", "/players/{}/snapshots")
