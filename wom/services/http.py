@@ -73,8 +73,8 @@ class HttpService:
             )
 
     async def _request(
-        self, req: t.Callable[..., t.Awaitable[t.Any]], url: str, _: t.Type[T], **kwargs: t.Any
-    ) -> T | models.HttpErrorResponse:
+        self, req: t.Callable[..., t.Awaitable[t.Any]], url: str, **kwargs: t.Any
+    ) -> t.Any:
         response = await req(url, **kwargs)
         data = await self._try_get_json(response)
 
@@ -86,10 +86,10 @@ class HttpService:
                 data.get("message", "An unexpected error occurred while making the request.")
             )
 
-        return t.cast(T, data)
+        return data
 
     def _get_request_func(self, method: str) -> t.Callable[..., t.Awaitable[t.Any]]:
-        return t.cast(t.Callable[..., t.Awaitable[t.Any]], self._method_mapping[method])
+        return self._method_mapping[method]  # type: ignore
 
     def set_api_key(self, api_key: str) -> None:
         self._headers["x-api-key"] = api_key
@@ -107,14 +107,13 @@ class HttpService:
     async def fetch(
         self,
         route: routes.CompiledRoute,
-        return_type: t.Type[T],
+        _: t.Type[T],
         *,
         payload: dict[str, t.Any] | None = None,
     ) -> T | models.HttpErrorResponse:
-        return await self._request(
+        return await self._request(  # type: ignore
             self._get_request_func(route.method),
             self._base_url + route.uri,
-            return_type,
             headers=self._headers,
             params=route.params,
             data=payload or None,

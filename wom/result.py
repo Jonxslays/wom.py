@@ -96,7 +96,7 @@ class Ok(Result[T, E]):
         return False
 
     def unwrap(self) -> T:
-        return t.cast(T, self._value)
+        return self._value  # type: ignore
 
     def unwrap_err(self) -> E:
         raise errors.UnwrapError(f"Called unwrap error on an non error value - {self._value}")
@@ -121,4 +121,4 @@ class Err(Result[T, E]):
         raise errors.UnwrapError(f"Called unwrap on an error value - {self._error}")
 
     def unwrap_err(self) -> E:
-        return t.cast(E, self._value)
+        return self._error  # type: ignore
