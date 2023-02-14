@@ -35,6 +35,7 @@ class BaseEnum(Enum):
 
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
+        print("Calling BASE from str")
         maybe: set[T] = set(filter(lambda x: x.value == value, cls))  # type: ignore
 
         if maybe:
@@ -45,22 +46,48 @@ class BaseEnum(Enum):
     @classmethod
     def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
         maybe: set[T] = set(filter(lambda x: x.value == value, cls))  # type: ignore
-
-        if maybe:
-            return maybe.pop()
-
         return maybe.pop() if maybe else None
 
 
 class Metric(BaseEnum):
     """Represents a metric, this enum has no attributes itself.
 
-    Will be one of:
+    Will always be one of:
         - `Activity`
         - `Boss`
         - `ComputedMetric`
         - `Skill`
     """
+
+    @classmethod
+    def from_str(cls: t.Type[T], value: str) -> T:
+        if cls is not Metric:
+            return super(Metric, cls).from_str(value)  # type: ignore
+
+        children = {Skill, Activity, Boss, ComputedMetric}
+
+        for child in children:
+            maybe: set[T] = set(filter(lambda x: x.value == value, child))  # type: ignore
+
+            if maybe:
+                return maybe.pop()
+
+        raise RuntimeError(f"No {cls} variant for {value!r}.")
+
+    @classmethod
+    def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
+        if cls is not Metric:
+            return super(Metric, cls).from_str(value)  # type: ignore
+
+        children = {Skill, Activity, Boss, ComputedMetric}
+
+        for child in children:
+            maybe: set[T] = set(filter(lambda x: x.value == value, child))  # type: ignore
+
+            if maybe:
+                return maybe.pop()
+
+        return None
 
 
 class Period(BaseEnum):

@@ -28,6 +28,7 @@ __all__ = (
     "CompiledRoute",
     "Route",
     "ASSERT_PLAYER_TYPE",
+    "GET_PLAYER_ACHIEVEMENTS",
     "GET_PLAYER_DETAILS",
     "GET_PLAYER_DETAILS_BY_ID",
     "SEARCH_PLAYERS",
@@ -82,3 +83,4 @@ UPDATE_PLAYER: t.Final[Route] = Route("POST", "/players/{}")
 ASSERT_PLAYER_TYPE: t.Final[Route] = Route("POST", "/players/{}/assert-type")
 GET_PLAYER_DETAILS: t.Final[Route] = Route("GET", "/players/{}")
 GET_PLAYER_DETAILS_BY_ID: t.Final[Route] = Route("GET", "/players/id/{}")
+GET_PLAYER_ACHIEVEMENTS: t.Final[Route] = Route("GET", "/players/{}/achievements")

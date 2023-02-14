@@ -144,3 +144,11 @@ class Serializer:
         asserted.player = self.deserialize_player(data["player"])
         asserted.changed = data["changed"]
         return asserted
+
+    def deserialize_achievement(self, data: dict[str, t.Any]) -> models.AchievementModel:
+        achievement = models.AchievementModel()
+        achievement.created_at = self._dt_from_iso(data["createdAt"])
+        achievement.metric = enums.Metric.from_str(data["metric"])
+        achievement.measure = models.AchievementMeasure.from_str(data["measure"])
+        self._set_attrs_with_js_casing(achievement, data, "name", "player_id", "threshold")
+        return achievement

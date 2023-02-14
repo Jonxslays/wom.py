@@ -96,3 +96,14 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_player_details(data))
+
+    async def get_player_achievements(
+        self, username: str
+    ) -> result.Result[list[models.AchievementModel], models.HttpErrorResponse]:
+        route = routes.GET_PLAYER_ACHIEVEMENTS.compile(username)
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_achievement(a) for a in data])
