@@ -21,25 +21,12 @@
 
 from __future__ import annotations
 
-__all__ = (
-    "AchievementMeasure",
-    "AchievementModel",
-    "ActivityModel",
-    "BossModel",
-    "Country",
-    "CompetitionStatus",
-    "ComputedMetricModel",
-    "HttpErrorResponse",
-    "PlayerAchievementProgressModel",
-    "PlayerBuild",
-    "PlayerModel",
-    "PlayerDetailModel",
-    "PlayerType",
-    "SkillModel",
-    "SnapshotDataModel",
-    "SnapshotModel",
-)
+from wom.enums import BaseEnum
 
-from .competitions import *
-from .errors import *
-from .players import *
+__all__ = ("CompetitionStatus",)
+
+
+class CompetitionStatus(BaseEnum):
+    Upcoming = "upcoming"
+    Ongoing = "ongoing"
+    Finished = "finished"

@@ -21,25 +21,6 @@
 
 from __future__ import annotations
 
-__all__ = (
-    "AchievementMeasure",
-    "AchievementModel",
-    "ActivityModel",
-    "BossModel",
-    "Country",
-    "CompetitionStatus",
-    "ComputedMetricModel",
-    "HttpErrorResponse",
-    "PlayerAchievementProgressModel",
-    "PlayerBuild",
-    "PlayerModel",
-    "PlayerDetailModel",
-    "PlayerType",
-    "SkillModel",
-    "SnapshotDataModel",
-    "SnapshotModel",
-)
+__all__ = ("CompetitionStatus",)
 
-from .competitions import *
-from .errors import *
-from .players import *
+from .enums import *

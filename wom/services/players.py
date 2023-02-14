@@ -120,3 +120,24 @@ class PlayerService(BaseService):
         return result.Ok(
             [self._serializer.deserialize_player_achievement_progress(p) for p in data]
         )
+
+    async def get_player_competition_participation(
+        self,
+        username: str,
+        *,
+        limit: int | None = None,
+        offset: int | None = None,
+        status: models.CompetitionStatus | None = None,
+    ) -> result.Result[None, models.HttpErrorResponse]:
+        raise NotImplementedError(
+            "competition related endpoints are not yet implemented."
+        )  # Temporary
+
+        params = self._generate_params(status=status.value, limit=limit, offset=offset)
+        route = routes.PLAYER_COMPETITION_PARTICIPATION.compile(username).with_params(params)
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(None)  # TODO: deserialize the model once its created

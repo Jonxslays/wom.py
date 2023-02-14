@@ -21,7 +21,7 @@
 
 from __future__ import annotations
 
-import typing as t
+from typing import Final
 from dataclasses import dataclass
 
 __all__ = (
@@ -30,6 +30,7 @@ __all__ = (
     "ASSERT_PLAYER_TYPE",
     "PLAYER_ACHIEVEMENT_PROGRESS",
     "PLAYER_ACHIEVEMENTS",
+    "PLAYER_COMPETITION_PARTICIPATION",
     "PLAYER_DETAILS",
     "PLAYER_DETAILS_BY_ID",
     "SEARCH_PLAYERS",
@@ -79,10 +80,11 @@ class Route:
         return compiled
 
 
-SEARCH_PLAYERS: t.Final[Route] = Route("GET", "/players/search")
-UPDATE_PLAYER: t.Final[Route] = Route("POST", "/players/{}")
-ASSERT_PLAYER_TYPE: t.Final[Route] = Route("POST", "/players/{}/assert-type")
-PLAYER_DETAILS: t.Final[Route] = Route("GET", "/players/{}")
-PLAYER_DETAILS_BY_ID: t.Final[Route] = Route("GET", "/players/id/{}")
-PLAYER_ACHIEVEMENTS: t.Final[Route] = Route("GET", "/players/{}/achievements")
-PLAYER_ACHIEVEMENT_PROGRESS: t.Final[Route] = Route("GET", "/players/{}/achievements/progress")
+SEARCH_PLAYERS: Final[Route] = Route("GET", "/players/search")
+UPDATE_PLAYER: Final[Route] = Route("POST", "/players/{}")
+ASSERT_PLAYER_TYPE: Final[Route] = Route("POST", "/players/{}/assert-type")
+PLAYER_DETAILS: Final[Route] = Route("GET", "/players/{}")
+PLAYER_DETAILS_BY_ID: Final[Route] = Route("GET", "/players/id/{}")
+PLAYER_ACHIEVEMENTS: Final[Route] = Route("GET", "/players/{}/achievements")
+PLAYER_ACHIEVEMENT_PROGRESS: Final[Route] = Route("GET", "/players/{}/achievements/progress")
+PLAYER_COMPETITION_PARTICIPATION: Final[Route] = Route("GET", "/players/{}/competitions")
