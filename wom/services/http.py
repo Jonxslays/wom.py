@@ -35,7 +35,7 @@ T = t.TypeVar("T")
 
 
 class HttpService:
-    __slots__ = ("_base_url", "_headers", "_session")
+    __slots__ = ("_base_url", "_headers", "_method_mapping", "_session")
 
     def __init__(
         self,
@@ -56,6 +56,13 @@ class HttpService:
 
         self._base_url = api_base_url or constants.WOM_BASE_URL
         self._session = aiohttp.ClientSession()
+        self._method_mapping = {
+            "GET": self._session.get,
+            "POST": self._session.post,
+            "PUT": self._session.put,
+            "PATCH": self._session.patch,
+            "DELETE": self._session.delete,
+        }
 
     async def _try_get_json(self, response: aiohttp.ClientResponse) -> t.Any:
         try:
@@ -81,6 +88,9 @@ class HttpService:
 
         return data
 
+    def _get_request_func(self, method: str) -> t.Callable[..., t.Awaitable[t.Any]]:
+        return self._method_mapping[method]
+
     def set_api_key(self, api_key: str) -> None:
         self._headers["x-api-key"] = api_key
 
@@ -94,70 +104,18 @@ class HttpService:
         if not self._session.closed:
             await self._session.close()
 
-    async def get(self, route: routes.CompiledRoute, _: t.Type[T]) -> T | models.HttpErrorResponse:
-        return await self._request(
-            self._session.get,
-            self._base_url + route.uri,
-            headers=self._headers,
-            params=route.params,
-        )
-
-    async def post(
+    async def fetch(
         self,
         route: routes.CompiledRoute,
         _: t.Type[T],
         *,
         payload: dict[str, t.Any] | None = None,
     ) -> T | models.HttpErrorResponse:
-        return await self._request(
-            self._session.post,
-            self._base_url + route.uri,
-            headers=self._headers,
-            params=route.params,
-            data=payload or None,
-        )
+        kwargs = {"headers": self._headers, "params": route.params}
 
-    async def put(
-        self,
-        route: routes.CompiledRoute,
-        _: t.Type[T],
-        *,
-        payload: dict[str, t.Any] | None = None,
-    ) -> T | models.HttpErrorResponse:
-        return await self._request(
-            self._session.put,
-            self._base_url + route.uri,
-            headers=self._headers,
-            params=route.params,
-            data=payload or None,
-        )
+        if payload:
+            kwargs["data"] = payload
 
-    async def delete(
-        self,
-        route: routes.CompiledRoute,
-        _: t.Type[T],
-        *,
-        payload: dict[str, t.Any] | None = None,
-    ) -> T | models.HttpErrorResponse:
         return await self._request(
-            self._session.delete,
-            self._base_url + route.uri,
-            headers=self._headers,
-            params=route.params,
-            data=payload or None,
-        )
-
-    async def patch(
-        self,
-        route: routes.CompiledRoute,
-        _: t.Type[T],
-        *,
-        payload: dict[str, t.Any] | None = None,
-    ) -> T | models.HttpErrorResponse:
-        return await self._request(
-            self._session.patch,
-            self._base_url + route.uri,
-            headers=self._headers,
-            params=route.params,
-            data=payload or None,
+            self._get_request_func(route.method), self._base_url + route.uri, **kwargs
         )

@@ -46,7 +46,7 @@ class PlayerService(BaseService):
     ) -> result.Result[list[models.PlayerModel], models.HttpErrorResponse]:
         params = self._generate_params(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
-        data = await self._http.get(route, list[dict[str, t.Any]])
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -57,7 +57,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
         route = routes.UPDATE_PLAYER.compile(username)
-        data = await self._http.post(route, dict[str, t.Any])
+        data = await self._http.fetch(route, dict[str, t.Any])
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -68,7 +68,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[models.AssertPlayerTypeModel, models.HttpErrorResponse]:
         route = routes.ASSERT_PLAYER_TYPE.compile(username)
-        data = await self._http.post(route, dict[str, t.Any])
+        data = await self._http.fetch(route, dict[str, t.Any])
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
