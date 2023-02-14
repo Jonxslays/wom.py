@@ -39,7 +39,6 @@ from . import models
 from . import routes
 from . import serializer
 from . import services
-
 from .client import *
 
 __packagename__: Final[str] = "wom.py"

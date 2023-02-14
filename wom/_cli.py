@@ -25,7 +25,8 @@ from __future__ import annotations
 import platform
 from pathlib import Path
 
-from wom import __git_sha__, __version__
+from wom import __git_sha__
+from wom import __version__
 
 
 def info() -> None:

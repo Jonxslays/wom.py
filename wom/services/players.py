@@ -23,9 +23,12 @@ from __future__ import annotations
 
 import typing as t
 
+from wom import models
+from wom import routes
+from wom import serializer
+
 from . import BaseService
 from . import HttpService
-from wom import routes, models, serializer
 
 __all__ = ("PlayerService",)
 

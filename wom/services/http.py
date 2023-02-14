@@ -76,7 +76,7 @@ class HttpService:
             params=route.params,
         )
 
-        return await data.json()
+        return t.cast(T, await data.json())
 
     async def post(
         self,

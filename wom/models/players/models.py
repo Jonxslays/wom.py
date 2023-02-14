@@ -24,11 +24,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 
+from wom import enums
+
 from .enums import AchievementMeasure
 from .enums import Country
 from .enums import PlayerBuild
 from .enums import PlayerType
-from wom import enums
 
 __all__ = (
     "AchievementModel",
