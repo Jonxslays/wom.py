@@ -25,7 +25,8 @@ import typing as t
 
 import aiohttp
 
-from wom import constants, routes
+from wom import constants
+from wom import routes
 
 __all__ = ("HttpService",)
 
@@ -70,17 +71,20 @@ class HttpService:
     async def get(
         self,
         route: routes.CompiledRoute,
-        *,
-        params: dict[str, str | int] = {},
     ) -> dict[str, t.Any]:
-        ...
+        data = await self._session.get(
+            self._base_url + route.uri,
+            headers=self._headers,
+            params=route.params,
+        )
+
+        return await data.json()
 
     async def post(
         self,
         route: routes.CompiledRoute,
         *,
         payload: dict[str, t.Any] = {},
-        params: dict[str, str | int] = {},
     ) -> dict[str, t.Any]:
         ...
 
@@ -89,7 +93,6 @@ class HttpService:
         route: routes.CompiledRoute,
         *,
         payload: dict[str, t.Any] = {},
-        params: dict[str, str | int] = {},
     ) -> dict[str, t.Any]:
         ...
 
@@ -98,7 +101,6 @@ class HttpService:
         route: routes.CompiledRoute,
         *,
         payload: dict[str, t.Any] = {},
-        params: dict[str, str | int] = {},
     ) -> dict[str, t.Any]:
         ...
 
@@ -107,6 +109,5 @@ class HttpService:
         route: routes.CompiledRoute,
         *,
         payload: dict[str, t.Any] = {},
-        params: dict[str, str | int] = {},
     ) -> dict[str, t.Any]:
         ...

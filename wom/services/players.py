@@ -20,3 +20,27 @@
 # SOFTWARE.
 
 from __future__ import annotations
+
+# import typing as t
+
+from . import BaseService
+from . import HttpService
+from wom import routes, models
+
+__all__ = ("PlayerService",)
+
+
+class PlayerService(BaseService):
+    __slots__ = "_http"
+
+    def __init__(self, http_service: HttpService) -> None:
+        self._http = http_service
+
+    async def search_players(
+        self, username: str, *, limit: int | None = None, offset: int | None = None
+    ) -> list[models.PlayerModel]:
+        params = self._generate_params(username=username, limit=limit, offset=offset)
+        route = routes.SEARCH_PLAYERS.compile().with_params(params)
+        data = await self._http.get(route)
+        print(data)
+        return []

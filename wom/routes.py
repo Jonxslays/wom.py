@@ -37,7 +37,9 @@ class CompiledRoute:
         self.params = {}
 
     def with_params(self, params: dict[str, str | int]) -> CompiledRoute:
-        self.params.update(params)
+        if params:
+            self.params.update(params)
+
         return self
 
 

@@ -21,39 +21,18 @@
 
 from __future__ import annotations
 
-from wom import services
+import abc
+import typing as t
 
-__all__ = ("Client",)
+__all__ = ("BaseService",)
 
 
-class Client:
-    __slots__ = ("_http", "_players")
+class BaseService(abc.ABC):
+    def _generate_params(self, **kwargs: t.Any) -> dict[str, t.Any]:
+        params: dict[str, t.Any] = {}
 
-    def __init__(
-        self,
-        api_key: str | None = None,
-        *,
-        user_agent: str | None = None,
-        api_base_url: str | None = None,
-    ) -> None:
-        self._http = services.HttpService(
-            api_key=api_key, user_agent=user_agent, api_base_url=api_base_url
-        )
+        for name, value in kwargs.items():
+            if value is not None:
+                params[name] = value
 
-        self._players = services.PlayerService(self._http)
-
-    @property
-    def players(self) -> services.PlayerService:
-        return self._players
-
-    def set_api_key(self, api_key: str) -> None:
-        self._http.set_api_key(api_key)
-
-    def set_user_agent(self, user_agent: str) -> None:
-        self._http.set_user_agent(user_agent)
-
-    def set_api_base_url(self, api_base_url: str) -> None:
-        self._http.set_base_url(api_base_url)
-
-    async def close(self) -> None:
-        await self._http.close()
+        return params
