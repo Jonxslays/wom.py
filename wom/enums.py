@@ -21,7 +21,10 @@
 
 from __future__ import annotations
 
+import typing as t
 from enum import Enum
+
+T = t.TypeVar("T")
 
 
 class BaseEnum(Enum):
@@ -29,6 +32,24 @@ class BaseEnum(Enum):
 
     value: str  # pyright: ignore
     """The value of the enum member."""
+
+    @classmethod
+    def from_str(cls: t.Type[T], value: str) -> T:
+        maybe: set[T] = set(filter(lambda x: x.value == value, cls))  # type: ignore
+
+        if maybe:
+            return maybe.pop()
+
+        raise RuntimeError(f"No {cls} variant for {value!r}.")
+
+    @classmethod
+    def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
+        maybe: set[T] = set(filter(lambda x: x.value == value, cls))  # type: ignore
+
+        if maybe:
+            return maybe.pop()
+
+        return maybe.pop() if maybe else None
 
 
 class Metric(BaseEnum):

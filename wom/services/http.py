@@ -36,7 +36,6 @@ class HttpService:
 
     def __init__(
         self,
-        *,
         api_key: str | None,
         user_agent: str | None,
         api_base_url: str | None,

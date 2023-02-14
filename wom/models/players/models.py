@@ -100,13 +100,13 @@ class PlayerModel:
     display_name: str
     type: PlayerType
     build: PlayerBuild
-    country: Country
+    country: Country | None
     flagged: bool
     exp: int
     ehp: float
     ehb: float
     ttm: float
-    ttm200m: float
+    tt200m: float
     registered_at: datetime
     updated_at: datetime
     last_changed_at: datetime | None

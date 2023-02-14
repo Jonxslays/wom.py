@@ -28,6 +28,7 @@ __all__ = (
     "enums",
     "models",
     "routes",
+    "serializer",
     "services",
     "Client",
 )
@@ -36,6 +37,7 @@ from . import constants
 from . import enums
 from . import models
 from . import routes
+from . import serializer
 from . import services
 
 from .client import *

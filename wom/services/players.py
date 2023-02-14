@@ -21,26 +21,27 @@
 
 from __future__ import annotations
 
-# import typing as t
+import typing as t
 
 from . import BaseService
 from . import HttpService
-from wom import routes, models
+from wom import routes, models, serializer
 
 __all__ = ("PlayerService",)
 
 
 class PlayerService(BaseService):
-    __slots__ = "_http"
+    __slots__ = ("_http", "_serializer")
 
-    def __init__(self, http_service: HttpService) -> None:
+    def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
+        self._serializer = serializer
 
     async def search_players(
         self, username: str, *, limit: int | None = None, offset: int | None = None
     ) -> list[models.PlayerModel]:
         params = self._generate_params(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
-        data = await self._http.get(route)
-        print(data)
-        return []
+        data: list[dict[str, t.Any]] = await self._http.get(route)  # type: ignore
+        assert isinstance(data, list)
+        return [self._serializer.deserialize_player(player) for player in data]

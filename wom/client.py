@@ -21,13 +21,14 @@
 
 from __future__ import annotations
 
+from wom import serializer
 from wom import services
 
 __all__ = ("Client",)
 
 
 class Client:
-    __slots__ = ("_http", "_players")
+    __slots__ = ("_http", "_players", "_serializer")
 
     def __init__(
         self,
@@ -36,11 +37,9 @@ class Client:
         user_agent: str | None = None,
         api_base_url: str | None = None,
     ) -> None:
-        self._http = services.HttpService(
-            api_key=api_key, user_agent=user_agent, api_base_url=api_base_url
-        )
-
-        self._players = services.PlayerService(self._http)
+        self._serializer = serializer.Serializer()
+        self._http = services.HttpService(api_key, user_agent, api_base_url)
+        self._players = services.PlayerService(self._http, self._serializer)
 
     @property
     def players(self) -> services.PlayerService:
