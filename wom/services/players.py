@@ -78,7 +78,7 @@ class PlayerService(BaseService):
     async def get_player_details(
         self, username: str
     ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
-        route = routes.GET_PLAYER_DETAILS.compile(username)
+        route = routes.PLAYER_DETAILS.compile(username)
         data = await self._http.fetch(route, dict[str, t.Any])
 
         if isinstance(data, models.HttpErrorResponse):
@@ -89,7 +89,7 @@ class PlayerService(BaseService):
     async def get_player_details_by_id(
         self, player_id: int
     ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
-        route = routes.GET_PLAYER_DETAILS_BY_ID.compile(player_id)
+        route = routes.PLAYER_DETAILS_BY_ID.compile(player_id)
         data = await self._http.fetch(route, dict[str, t.Any])
 
         if isinstance(data, models.HttpErrorResponse):
@@ -100,10 +100,23 @@ class PlayerService(BaseService):
     async def get_player_achievements(
         self, username: str
     ) -> result.Result[list[models.AchievementModel], models.HttpErrorResponse]:
-        route = routes.GET_PLAYER_ACHIEVEMENTS.compile(username)
+        route = routes.PLAYER_ACHIEVEMENTS.compile(username)
         data = await self._http.fetch(route, list[dict[str, t.Any]])
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_achievement(a) for a in data])
+
+    async def get_player_achievement_progress(
+        self, username: str
+    ) -> result.Result[list[models.PlayerAchievementProgressModel], models.HttpErrorResponse]:
+        route = routes.PLAYER_ACHIEVEMENT_PROGRESS.compile(username)
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(
+            [self._serializer.deserialize_player_achievement_progress(p) for p in data]
+        )

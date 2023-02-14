@@ -147,8 +147,19 @@ class Serializer:
 
     def deserialize_achievement(self, data: dict[str, t.Any]) -> models.AchievementModel:
         achievement = models.AchievementModel()
-        achievement.created_at = self._dt_from_iso(data["createdAt"])
+        achievement.created_at = self._dt_from_iso_maybe(data["createdAt"])
         achievement.metric = enums.Metric.from_str(data["metric"])
         achievement.measure = models.AchievementMeasure.from_str(data["measure"])
         self._set_attrs_with_js_casing(achievement, data, "name", "player_id", "threshold")
         return achievement
+
+    def deserialize_player_achievement_progress(
+        self, data: dict[str, t.Any]
+    ) -> models.PlayerAchievementProgressModel:
+        progress = models.PlayerAchievementProgressModel()
+        progress.achievement = self.deserialize_achievement(data)
+        self._set_attrs_with_js_casing(
+            progress, data, "current_value", "absolute_progress", "relative_progress"
+        )
+
+        return progress

@@ -134,11 +134,13 @@ class AchievementModel:
     metric: enums.Metric
     measure: AchievementMeasure
     threshold: int
-    created_at: datetime
+    created_at: datetime | None
+    # TODO: This is only nullable on the progress model...
 
 
 @dataclass(slots=True, init=False)
 class PlayerAchievementProgressModel:
+    achievement: AchievementModel
     current_value: int
     absolute_progress: float
     relative_progress: float
