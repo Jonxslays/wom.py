@@ -42,6 +42,5 @@ class PlayerService(BaseService):
     ) -> list[models.PlayerModel]:
         params = self._generate_params(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
-        data: list[dict[str, t.Any]] = await self._http.get(route)  # type: ignore
-        assert isinstance(data, list)
+        data = await self._http.get(route, list[dict[str, t.Any]])
         return [self._serializer.deserialize_player(player) for player in data]

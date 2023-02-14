@@ -30,6 +30,8 @@ from wom import routes
 
 __all__ = ("HttpService",)
 
+T = t.TypeVar("T")
+
 
 class HttpService:
     __slots__ = ("_base_url", "_headers", "_session")
@@ -67,10 +69,7 @@ class HttpService:
         if not self._session.closed:
             await self._session.close()
 
-    async def get(
-        self,
-        route: routes.CompiledRoute,
-    ) -> dict[str, t.Any]:
+    async def get(self, route: routes.CompiledRoute, _: t.Type[T]) -> T:
         data = await self._session.get(
             self._base_url + route.uri,
             headers=self._headers,
@@ -82,31 +81,35 @@ class HttpService:
     async def post(
         self,
         route: routes.CompiledRoute,
+        _: t.Type[T],
         *,
         payload: dict[str, t.Any] = {},
-    ) -> dict[str, t.Any]:
+    ) -> T:
         ...
 
     async def put(
         self,
         route: routes.CompiledRoute,
+        _: t.Type[T],
         *,
         payload: dict[str, t.Any] = {},
-    ) -> dict[str, t.Any]:
+    ) -> T:
         ...
 
     async def delete(
         self,
         route: routes.CompiledRoute,
+        _: t.Type[T],
         *,
         payload: dict[str, t.Any] = {},
-    ) -> dict[str, t.Any]:
+    ) -> T:
         ...
 
     async def patch(
         self,
         route: routes.CompiledRoute,
+        _: t.Type[T],
         *,
         payload: dict[str, t.Any] = {},
-    ) -> dict[str, t.Any]:
+    ) -> T:
         ...
