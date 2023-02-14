@@ -29,6 +29,8 @@ from wom import models
 
 __all__ = ("Serializer",)
 
+TransformT = t.Callable[[t.Any], t.Any] | None
+
 
 class Serializer:
     __slots__ = ()
@@ -51,10 +53,17 @@ class Serializer:
         return self._dt_from_iso(timestamp) if timestamp else None
 
     def _set_attrs_with_js_casing(
-        self, model: t.Any, data: dict[str, t.Any], *normalized_attrs: str
+        self,
+        model: t.Any,
+        data: dict[str, t.Any],
+        *attrs: str,
+        transform: TransformT = None,
     ) -> None:
-        for attr in normalized_attrs:
-            setattr(model, attr, data[self._to_js_casing(attr)])
+        for attr in attrs:
+            if transform:
+                setattr(model, attr, transform(data[self._to_js_casing(attr)]))
+            else:
+                setattr(model, attr, data[self._to_js_casing(attr)])
 
     def deserialize_player(self, data: dict[str, t.Any]) -> models.PlayerModel:
         player = models.PlayerModel()
@@ -76,7 +85,7 @@ class Serializer:
         player.build = models.PlayerBuild.from_str(data["build"])
         player.country = models.Country.from_str_maybe(data["country"])
         player.registered_at = self._dt_from_iso(data["registeredAt"])
-        player.updated_at = self._dt_from_iso(data["registeredAt"])
+        player.updated_at = self._dt_from_iso(data["updatedAt"])
         player.last_changed_at = self._dt_from_iso_maybe(data["lastChangedAt"])
         player.last_imported_at = self._dt_from_iso_maybe(data["lastImportedAt"])
         return player
@@ -163,3 +172,70 @@ class Serializer:
         )
 
         return progress
+
+    def deserialize_gains(self, data: dict[str, t.Any]) -> models.GainsModel:
+        gains = models.GainsModel()
+        self._set_attrs_with_js_casing(gains, data, "gained", "start", "end")
+        return gains
+
+    def deserialize_skill_gains(self, data: dict[str, t.Any]) -> models.SkillGainsModel:
+        gains = models.SkillGainsModel()
+        gains.metric = enums.Skill.from_str(data["metric"])
+        self._set_attrs_with_js_casing(
+            gains, data, "experience", "ehp", "rank", "level", transform=self.deserialize_gains
+        )
+
+        return gains
+
+    def deserialize_boss_gains(self, data: dict[str, t.Any]) -> models.BossGainsModel:
+        gains = models.BossGainsModel()
+        gains.metric = enums.Boss.from_str(data["metric"])
+        self._set_attrs_with_js_casing(
+            gains, data, "ehb", "rank", "kills", transform=self.deserialize_gains
+        )
+
+        return gains
+
+    def deserialize_activity_gains(self, data: dict[str, t.Any]) -> models.ActivityGainsModel:
+        gains = models.ActivityGainsModel()
+        gains.metric = enums.Activity.from_str(data["metric"])
+        self._set_attrs_with_js_casing(
+            gains, data, "rank", "score", transform=self.deserialize_gains
+        )
+
+        return gains
+
+    def deserialize_computed_gains(self, data: dict[str, t.Any]) -> models.ComputedGainsModel:
+        gains = models.ComputedGainsModel()
+        gains.metric = enums.ComputedMetric.from_str(data["metric"])
+        self._set_attrs_with_js_casing(
+            gains, data, "rank", "value", transform=self.deserialize_gains
+        )
+
+        return gains
+
+    def deserialize_player_gains_data(self, data: dict[str, t.Any]) -> models.PlayerGainsDataModel:
+        gains = models.PlayerGainsDataModel()
+
+        skills = data["skills"].values()
+        gains.skills = [self.deserialize_skill_gains(s) for s in skills]
+
+        bosses = data["bosses"].values()
+        gains.bosses = [self.deserialize_boss_gains(b) for b in bosses]
+
+        activities = data["activities"].values()
+        gains.activities = [self.deserialize_activity_gains(a) for a in activities]
+
+        computed = data["computed"].values()
+        gains.computed = [self.deserialize_computed_gains(c) for c in computed]
+
+        return gains
+
+    def deserialize_player_gains(self, data: dict[str, t.Any]) -> models.PlayerGainsModel:
+        gains = models.PlayerGainsModel()
+        gains.data = self.deserialize_player_gains_data(data["data"])
+        self._set_attrs_with_js_casing(
+            gains, data, "starts_at", "ends_at", transform=self._dt_from_iso
+        )
+
+        return gains

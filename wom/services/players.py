@@ -22,7 +22,9 @@
 from __future__ import annotations
 
 import typing as t
+from datetime import datetime
 
+from wom import enums
 from wom import models
 from wom import routes
 from wom import result
@@ -141,3 +143,25 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok(None)  # TODO: deserialize the model once its created
+
+    async def get_player_gains(
+        self,
+        username: str,
+        *,
+        period: enums.Period | None = None,
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> result.Result[models.PlayerGainsModel, models.HttpErrorResponse]:
+        params = self._generate_params(
+            period=period.value if period else None,
+            startDate=start_date.isoformat() if start_date else None,
+            endDate=end_date.isoformat() if end_date else None,
+        )
+
+        route = routes.PLAYER_GAINS.compile(username).with_params(params)
+        data = await self._http.fetch(route, dict[str, t.Any])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_player_gains(data))

@@ -35,7 +35,6 @@ class BaseEnum(Enum):
 
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
-        print("Calling BASE from str")
         maybe: set[T] = set(filter(lambda x: x.value == value, cls))  # type: ignore
 
         if maybe:

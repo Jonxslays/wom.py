@@ -33,13 +33,20 @@ from .enums import PlayerType
 
 __all__ = (
     "AchievementModel",
+    "ActivityGainsModel",
     "ActivityModel",
     "AssertPlayerTypeModel",
+    "BossGainsModel",
     "BossModel",
+    "ComputedGainsModel",
     "ComputedMetricModel",
+    "GainsModel",
     "PlayerAchievementProgressModel",
+    "PlayerGainsDataModel",
+    "PlayerGainsModel",
     "PlayerModel",
     "PlayerDetailModel",
+    "SkillGainsModel",
     "SkillModel",
     "SnapshotDataModel",
     "SnapshotModel",
@@ -144,3 +151,56 @@ class PlayerAchievementProgressModel:
     current_value: int
     absolute_progress: float
     relative_progress: float
+
+
+@dataclass(slots=True, init=False)
+class GainsModel:
+    gained: float
+    start: float
+    end: float
+
+
+@dataclass(slots=True, init=False)
+class SkillGainsModel:
+    metric: enums.Skill
+    experience: GainsModel
+    ehp: GainsModel
+    rank: GainsModel
+    level: GainsModel
+
+
+@dataclass(slots=True, init=False)
+class BossGainsModel:
+    metric: enums.Boss
+    ehb: GainsModel
+    rank: GainsModel
+    kills: GainsModel
+
+
+@dataclass(slots=True, init=False)
+class ActivityGainsModel:
+    metric: enums.Activity
+    rank: GainsModel
+    score: GainsModel
+
+
+@dataclass(slots=True, init=False)
+class ComputedGainsModel:
+    metric: enums.ComputedMetric
+    rank: GainsModel
+    value: GainsModel
+
+
+@dataclass(slots=True, init=False)
+class PlayerGainsDataModel:
+    skills: list[SkillGainsModel]
+    bosses: list[BossGainsModel]
+    activities: list[ActivityGainsModel]
+    computed: list[ComputedGainsModel]
+
+
+@dataclass(slots=True, init=False)
+class PlayerGainsModel:
+    starts_at: datetime
+    ends_at: datetime
+    data: PlayerGainsDataModel
