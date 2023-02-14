@@ -35,7 +35,7 @@ class BaseEnum(Enum):
 
     @classmethod
     def _filter_on_value(cls: t.Type[T], value: str) -> set[T]:
-        return set(filter(lambda x: x.value == value, cls))
+        return set(filter(lambda x: x.value == value, t.cast(t.Iterable[T], cls)))
 
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:

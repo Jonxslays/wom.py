@@ -63,7 +63,8 @@ class Result(t.Generic[T, E], abc.ABC):
             `T`: The unwrapped value.
 
         Raises:
-            `errors.UnwrapError`: If the result was an `Err`, and not `Ok`.
+            `errors.UnwrapError`: If the result was an `Err`,
+                and not `Ok`.
         """
 
     @abc.abstractmethod
@@ -74,7 +75,8 @@ class Result(t.Generic[T, E], abc.ABC):
             `E`: The unwrapped error.
 
         Raises:
-            `errors.UnwrapError`: If the result was an `Ok`, and not an `Err`.
+            `errors.UnwrapError`: If the result was an `Ok`,
+                and not an `Err`.
         """
 
 
@@ -94,7 +96,7 @@ class Ok(Result[T, E]):
         return False
 
     def unwrap(self) -> T:
-        return self._value
+        return t.cast(T, self._value)
 
     def unwrap_err(self) -> E:
         raise errors.UnwrapError(f"Called unwrap error on an non error value - {self._value}")
@@ -119,4 +121,4 @@ class Err(Result[T, E]):
         raise errors.UnwrapError(f"Called unwrap on an error value - {self._error}")
 
     def unwrap_err(self) -> E:
-        return self._error
+        return t.cast(E, self._value)

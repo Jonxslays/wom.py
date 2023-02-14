@@ -26,8 +26,8 @@ from datetime import datetime
 
 from wom import enums
 from wom import models
-from wom import routes
 from wom import result
+from wom import routes
 from wom import serializer
 
 from . import BaseService
