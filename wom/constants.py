@@ -24,5 +24,5 @@ from __future__ import annotations
 from typing import Final
 
 WOM_BASE_URL: Final[str] = "https://api.wiseoldman.net/v2"
-USER_AGENT_BASE: Final[str] = f"(wom.py) -"
+USER_AGENT_BASE: Final[str] = "(wom.py) -"
 DEFAULT_USER_AGENT: Final[str] = f"{USER_AGENT_BASE} No contact info provided"
