@@ -30,7 +30,7 @@ classifiers = [
 ]
 
 [tool.poetry.scripts]
-wise-old-man = "wom._cli:info"
+wompy = "wom._cli:info"
 
 [tool.poetry.dependencies]
 python = ">=3.7"
