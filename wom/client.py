@@ -79,7 +79,7 @@ class Client:
         return self._records
 
     def __init_service(self, service: t.Type[ServiceT]) -> ServiceT:
-        return service(self._http, self._serializer)
+        return service(self._http, self._serializer)  # type: ignore[call-arg]
 
     def __init_core_services(self) -> None:
         self._deltas = self.__init_service(services.DeltaService)

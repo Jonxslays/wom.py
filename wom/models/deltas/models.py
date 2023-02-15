@@ -26,7 +26,6 @@ from datetime import datetime
 
 from ..players import PlayerModel
 
-
 __all__ = ("DeltaLeaderboardEntryModel",)
 
 
