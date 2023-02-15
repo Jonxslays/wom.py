@@ -287,3 +287,33 @@ class Serializer:
         change.resolved_at = self._dt_from_iso_maybe(data["createdAt"])
         self._set_attrs_with_js_casing(change, data, "id", "player_id", "old_name", "new_name")
         return change
+
+    def deserialize_name_change_data(self, data: dict[str, t.Any]) -> models.NameChangeDataModel:
+        change_data = models.NameChangeDataModel()
+        change_data.old_stats = self.deserialize_minimal_snapshot(data["oldStats"])
+        change_data.new_stats = self.deserialize_minimal_snapshot(data["newStats"])
+        self._set_attrs_with_js_casing(
+            change_data,
+            data,
+            "is_new_on_hiscores",
+            "is_old_on_hiscores",
+            "has_negative_gains",
+            "is_new_tracked",
+            "time_diff",
+            "hours_diff",
+            "ehp_diff",
+            "ehb_diff",
+        )
+
+        return change_data
+
+    # TODO: Fix deserialization
+    #   - Sometimes data["data"] is not present
+    #   - When data is present new_stats can be missing an id field
+    def deserialize_name_change_detail(
+        self, data: dict[str, t.Any]
+    ) -> models.NameChangeDetailModel:
+        change_detail = models.NameChangeDetailModel()
+        change_detail.name_change = self.deserialize_name_change(data["nameChange"])
+        change_detail.data = self.deserialize_name_change_data(data["data"])
+        return change_detail

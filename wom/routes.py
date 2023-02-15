@@ -28,6 +28,7 @@ __all__ = (
     "CompiledRoute",
     "Route",
     "ASSERT_PLAYER_TYPE",
+    "NAME_CHANGE_DETAILS",
     "PLAYER_ACHIEVEMENT_PROGRESS",
     "PLAYER_ACHIEVEMENTS",
     "PLAYER_COMPETITION_PARTICIPATION",
@@ -37,6 +38,7 @@ __all__ = (
     "PLAYER_SNAPSHOTS",
     "SEARCH_NAME_CHANGES",
     "SEARCH_PLAYERS",
+    "SUBMIT_NAME_CHANGE",
     "UPDATE_PLAYER",
 )
 
@@ -94,3 +96,5 @@ PLAYER_COMPETITION_PARTICIPATION: Final[Route] = Route("GET", "/players/{}/compe
 PLAYER_GAINS: Final[Route] = Route("GET", "/players/{}/gained")
 PLAYER_SNAPSHOTS: Final[Route] = Route("GET", "/players/{}/snapshots")
 SEARCH_NAME_CHANGES: Final[Route] = Route("GET", "/names")
+SUBMIT_NAME_CHANGE: Final[Route] = Route("POST", "/names")
+NAME_CHANGE_DETAILS: Final[Route] = Route("GET", "/names/{}")

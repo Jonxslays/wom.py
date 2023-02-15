@@ -63,3 +63,28 @@ class NameChangeService(BaseService):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_name_change(c) for c in data])
+
+    async def submit_name_change(
+        self, old_name: str, new_name: str
+    ) -> result.Result[models.NameChangeModel, models.HttpErrorResponse]:
+        payload = self._generate_params(oldName=old_name, newName=new_name)
+        route = routes.SUBMIT_NAME_CHANGE.compile()
+        data = await self._http.fetch(route, dict[str, t.Any], payload=payload)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_name_change(data))
+
+    # TODO: This endpoint isn't consistent.
+    async def get_name_change_details(
+        self, id: int
+    ) -> result.Result[models.NameChangeDetailModel, models.HttpErrorResponse]:
+        raise NotImplementedError("Disabled due to inconsistency in API responses.")
+        route = routes.NAME_CHANGE_DETAILS.compile(id)
+        data = await self._http.fetch(route, dict[str, t.Any])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_name_change_detail(data))

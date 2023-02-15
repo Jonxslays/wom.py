@@ -25,7 +25,7 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from .enums import NameChangeStatus
-from ..players import SnapshotModel
+from ..players import MinimalSnapshotModel
 
 
 __all__ = ("NameChangeDataModel", "NameChangeDetailModel", "NameChangeModel")
@@ -53,8 +53,9 @@ class NameChangeDataModel:
     hours_diff: int
     ehp_diff: int
     ehb_diff: int
-    old_stats: SnapshotModel
-    new_stats: SnapshotModel
+    old_stats: MinimalSnapshotModel
+    new_stats: MinimalSnapshotModel
+    # TODO: These shouldn't be minimal
 
 
 @dataclass(slots=True, init=False)
