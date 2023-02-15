@@ -24,9 +24,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 
-from .enums import NameChangeStatus
 from ..players import MinimalSnapshotModel
-
+from .enums import NameChangeStatus
 
 __all__ = ("NameChangeDataModel", "NameChangeDetailModel", "NameChangeModel")
 

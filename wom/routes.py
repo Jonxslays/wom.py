@@ -28,6 +28,7 @@ __all__ = (
     "CompiledRoute",
     "Route",
     "ASSERT_PLAYER_TYPE",
+    "GLOBAL_RECORD_LEADERS",
     "NAME_CHANGE_DETAILS",
     "PLAYER_ACHIEVEMENT_PROGRESS",
     "PLAYER_ACHIEVEMENTS",
@@ -100,3 +101,4 @@ SEARCH_NAME_CHANGES: Final[Route] = Route("GET", "/names")
 SUBMIT_NAME_CHANGE: Final[Route] = Route("POST", "/names")
 NAME_CHANGE_DETAILS: Final[Route] = Route("GET", "/names/{}")
 PLAYER_NAME_CHANGES: Final[Route] = Route("GET", "/players/{}/names")
+GLOBAL_RECORD_LEADERS: Final[Route] = Route("GET", "/records/leaderboard")

@@ -174,8 +174,8 @@ class PlayerService(BaseService):
         start_date: datetime | None = None,
         end_date: datetime | None = None,
     ) -> result.Result[list[models.MinimalSnapshotModel], models.HttpErrorResponse]:
-        # TODO: This returns a new minimal snapshot (missing ehb and ehp)
-        # Are these fields intentionally omitted by WOM?
+        # TODO: This returns a new minimal snapshot missing ehb and ehp
+        # See https://github.com/wise-old-man/wise-old-man/issues/1063
         params = self._generate_params(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,

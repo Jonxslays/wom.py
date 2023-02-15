@@ -317,3 +317,19 @@ class Serializer:
         change_detail.name_change = self.deserialize_name_change(data["nameChange"])
         change_detail.data = self.deserialize_name_change_data(data["data"])
         return change_detail
+
+    def deserialize_record(self, data: dict[str, t.Any]) -> models.RecordModel:
+        record = models.RecordModel()
+        record.period = enums.Period.from_str(data["period"])
+        record.metric = enums.Metric.from_str(data["metric"])
+        record.updated_at = self._dt_from_iso(data["updatedAt"])
+        self._set_attrs_with_js_casing(record, data, "id", "player_id", "value")
+        return record
+
+    def deserialize_record_leaderboard_entry(
+        self, data: dict[str, t.Any]
+    ) -> models.RecordLeaderboardEntryModel:
+        record = models.RecordLeaderboardEntryModel()
+        record.record = self.deserialize_record(data)
+        record.player = self.deserialize_player(data["player"])
+        return record

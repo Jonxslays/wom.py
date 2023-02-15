@@ -39,6 +39,8 @@ __all__ = (
     "PlayerModel",
     "PlayerDetailModel",
     "PlayerType",
+    "RecordModel",
+    "RecordLeaderboardEntryModel",
     "SkillModel",
     "SnapshotDataModel",
     "SnapshotModel",
@@ -48,3 +50,4 @@ from .competitions import *
 from .errors import *
 from .name_changes import *
 from .players import *
+from .records import *

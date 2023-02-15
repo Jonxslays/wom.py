@@ -21,10 +21,27 @@
 
 from __future__ import annotations
 
-__all__ = ("BaseService", "HttpService", "NameChangeService", "PlayerService", "RecordService")
+from dataclasses import dataclass
+from datetime import datetime
 
-from .base import *
-from .http import *
-from .name_changes import *
-from .players import *
-from .records import *
+from wom import enums
+
+from ..players import PlayerModel
+
+__all__ = ("RecordModel", "RecordLeaderboardEntryModel")
+
+
+@dataclass(slots=True, init=False)
+class RecordModel:
+    id: int
+    player_id: int
+    period: enums.Period
+    metric: enums.Metric
+    value: int
+    updated_at: datetime
+
+
+@dataclass(slots=True, init=False)
+class RecordLeaderboardEntryModel:
+    player: PlayerModel
+    record: RecordModel
