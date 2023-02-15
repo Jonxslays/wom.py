@@ -29,8 +29,9 @@ from wom import result
 from wom import routes
 from wom import serializer
 
+from . import BaseService
+
 if t.TYPE_CHECKING:
-    from . import BaseService
     from . import HttpService
 
 __all__ = ("RecordService",)

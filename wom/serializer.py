@@ -333,3 +333,14 @@ class Serializer:
         record.record = self.deserialize_record(data)
         record.player = self.deserialize_player(data["player"])
         return record
+
+    def deserialize_delta_leaderboard_entry(
+        self, data: dict[str, t.Any]
+    ) -> models.DeltaLeaderboardEntryModel:
+        delta = models.DeltaLeaderboardEntryModel()
+        delta.gained = data["gained"]
+        delta.player_id = data["playerId"]
+        delta.end_date = self._dt_from_iso(data["endDate"])
+        delta.start_date = self._dt_from_iso(data["startDate"])
+        delta.player = self.deserialize_player(data["player"])
+        return delta

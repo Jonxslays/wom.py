@@ -21,20 +21,6 @@
 
 from __future__ import annotations
 
-__all__ = (
-    "BaseService",
-    "DeltaService",
-    "EfficiencyService",
-    "HttpService",
-    "NameChangeService",
-    "PlayerService",
-    "RecordService",
-)
+__all__ = ("DeltaLeaderboardEntryModel",)
 
-from .base import *
-from .deltas import *
-from .efficiency import *
-from .http import *
-from .name_changes import *
-from .players import *
-from .records import *
+from .models import *

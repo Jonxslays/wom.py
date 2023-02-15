@@ -21,14 +21,26 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from wom import serializer
 from wom import services
 
 __all__ = ("Client",)
 
+ServiceT = t.TypeVar("ServiceT")
+
 
 class Client:
-    __slots__ = ("_efficiency", "_http", "_name_changes", "_players", "_records", "_serializer")
+    __slots__ = (
+        "_deltas",
+        "_efficiency",
+        "_http",
+        "_name_changes",
+        "_players",
+        "_records",
+        "_serializer",
+    )
 
     def __init__(
         self,
@@ -39,10 +51,11 @@ class Client:
     ) -> None:
         self._serializer = serializer.Serializer()
         self._http = services.HttpService(api_key, user_agent, api_base_url)
-        self._players = services.PlayerService(self._http, self._serializer)
-        self._records = services.RecordService(self._http, self._serializer)
-        self._efficiency = services.EfficiencyService(self._http, self._serializer)
-        self._name_changes = services.NameChangeService(self._http, self._serializer)
+        self.__init_core_services()
+
+    @property
+    def deltas(self) -> services.DeltaService:
+        return self._deltas
 
     @property
     def efficiency(self) -> services.EfficiencyService:
@@ -59,6 +72,16 @@ class Client:
     @property
     def records(self) -> services.RecordService:
         return self._records
+
+    def __init_service(self, service: t.Type[ServiceT]) -> ServiceT:
+        return service(self._http, self._serializer)
+
+    def __init_core_services(self) -> None:
+        self._deltas = self.__init_service(services.DeltaService)
+        self._players = self.__init_service(services.PlayerService)
+        self._records = self.__init_service(services.RecordService)
+        self._efficiency = self.__init_service(services.EfficiencyService)
+        self._name_changes = self.__init_service(services.NameChangeService)
 
     def set_api_key(self, api_key: str) -> None:
         self._http.set_api_key(api_key)

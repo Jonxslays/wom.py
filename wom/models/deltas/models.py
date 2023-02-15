@@ -21,20 +21,19 @@
 
 from __future__ import annotations
 
-__all__ = (
-    "BaseService",
-    "DeltaService",
-    "EfficiencyService",
-    "HttpService",
-    "NameChangeService",
-    "PlayerService",
-    "RecordService",
-)
+from dataclasses import dataclass
+from datetime import datetime
 
-from .base import *
-from .deltas import *
-from .efficiency import *
-from .http import *
-from .name_changes import *
-from .players import *
-from .records import *
+from ..players import PlayerModel
+
+
+__all__ = ("DeltaLeaderboardEntryModel",)
+
+
+@dataclass(slots=True, init=False)
+class DeltaLeaderboardEntryModel:
+    player_id: int
+    gained: int
+    start_date: datetime
+    end_date: datetime
+    player: PlayerModel

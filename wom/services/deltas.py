@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import typing as t
 
+from wom import enums
 from wom import models
 from wom import result
 from wom import routes
@@ -33,57 +34,37 @@ from . import BaseService
 if t.TYPE_CHECKING:
     from . import HttpService
 
-__all__ = ("NameChangeService",)
+__all__ = ("DeltaService",)
 
 
-class NameChangeService(BaseService):
+class DeltaService(BaseService):
     __slots__ = ("_http", "_serializer")
 
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
         self._serializer = serializer
 
-    async def search_name_changes(
+    async def get_global_delta_leaderboards(
         self,
-        username: str | None = None,
+        metric: enums.Metric,
+        period: enums.Period,
         *,
-        status: models.NameChangeStatus | None = None,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
+        player_type: models.PlayerType | None = None,
+        player_build: models.PlayerBuild | None = None,
+        country: models.Country | None = None,
+    ) -> result.Result[list[models.DeltaLeaderboardEntryModel], models.HttpErrorResponse]:
         params = self._generate_params(
-            username=username, status=status, limit=limit, offset=offset
+            metric=metric.value,
+            period=period.value,
+            playerType=player_type.value if player_type else None,
+            playerBuild=player_build.value if player_build else None,
+            country=country.value if country else None,
         )
 
-        route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
+        route = routes.GLOBAL_DELTA_LEADERS.compile().with_params(params)
         data = await self._http.fetch(route, list[dict[str, t.Any]])
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_name_change(c) for c in data])
-
-    async def submit_name_change(
-        self, old_name: str, new_name: str
-    ) -> result.Result[models.NameChangeModel, models.HttpErrorResponse]:
-        payload = self._generate_params(oldName=old_name, newName=new_name)
-        route = routes.SUBMIT_NAME_CHANGE.compile()
-        data = await self._http.fetch(route, dict[str, t.Any], payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok(self._serializer.deserialize_name_change(data))
-
-    # TODO: This endpoint isn't consistent.
-    async def get_name_change_details(
-        self, id: int
-    ) -> result.Result[models.NameChangeDetailModel, models.HttpErrorResponse]:
-        raise NotImplementedError("Disabled due to inconsistency in API responses.")
-        route = routes.NAME_CHANGE_DETAILS.compile(id)
-        data = await self._http.fetch(route, dict[str, t.Any])
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok(self._serializer.deserialize_name_change_detail(data))
+        return result.Ok([self._serializer.deserialize_delta_leaderboard_entry(d) for d in data])

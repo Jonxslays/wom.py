@@ -29,6 +29,7 @@ __all__ = (
     "Country",
     "CompetitionStatus",
     "ComputedMetricModel",
+    "DeltaLeaderboardEntryModel",
     "HttpErrorResponse",
     "NameChangeDataModel",
     "NameChangeDetailModel",
@@ -47,6 +48,7 @@ __all__ = (
 )
 
 from .competitions import *
+from .deltas import *
 from .errors import *
 from .name_changes import *
 from .players import *
