@@ -28,6 +28,8 @@ __all__ = ("BaseService",)
 
 
 class BaseService(abc.ABC):
+    __slots__ = ()
+
     def _generate_params(self, **kwargs: t.Any) -> dict[str, t.Any]:
         params: dict[str, t.Any] = {}
 

@@ -37,6 +37,8 @@ class Result(t.Generic[T, E], abc.ABC):
     This class cannot be instantiated, only its children can be.
     """
 
+    __slots__ = ("_error", "_value")
+
     def __init__(self, value: T | None, error: E | None) -> None:
         self._value = value
         self._error = error
@@ -84,6 +86,8 @@ class Result(t.Generic[T, E], abc.ABC):
 class Ok(Result[T, E]):
     """The `Ok` variant of a `Result`."""
 
+    __slots__ = ()
+
     def __init__(self, value: T) -> None:
         self._value = value
 
@@ -105,6 +109,8 @@ class Ok(Result[T, E]):
 @t.final
 class Err(Result[T, E]):
     """The `Err` variant of a `Result`."""
+
+    __slots__ = ()
 
     def __init__(self, error: E) -> None:
         self._error = error
