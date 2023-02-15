@@ -29,6 +29,8 @@ Thanks for following the progress!
 - [x] Name change models
 - [x] Name change endpoints
 - [x] Efficiency endpoints
+- [x] Delta models
+- [x] Delta endpoints
 
 </details>
 </div>
@@ -42,8 +44,6 @@ Thanks for following the progress!
 - [ ] Group endpoints
 - [ ] Competition models
 - [ ] Competition endpoints
-- [ ] Delta models
-- [ ] Delta endpoints
 
 </details>
 
