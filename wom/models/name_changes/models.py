@@ -21,43 +21,43 @@
 
 from __future__ import annotations
 
-from wom import serializer
-from wom import services
+from dataclasses import dataclass
+from datetime import datetime
 
-__all__ = ("Client",)
+from .enums import NameChangeStatus
+from ..players import SnapshotModel
 
 
-class Client:
-    __slots__ = ("_http", "_name_changes", "_players", "_serializer")
+__all__ = ("NameChangeDataModel", "NameChangeDetailModel", "NameChangeModel")
 
-    def __init__(
-        self,
-        api_key: str | None = None,
-        *,
-        user_agent: str | None = None,
-        api_base_url: str | None = None,
-    ) -> None:
-        self._serializer = serializer.Serializer()
-        self._http = services.HttpService(api_key, user_agent, api_base_url)
-        self._players = services.PlayerService(self._http, self._serializer)
-        self._name_changes = services.NameChangeService(self._http, self._serializer)
 
-    @property
-    def players(self) -> services.PlayerService:
-        return self._players
+@dataclass(slots=True, init=False)
+class NameChangeModel:
+    id: int
+    player_id: int
+    old_name: str
+    new_name: str
+    status: NameChangeStatus
+    resolved_at: datetime | None
+    updated_at: datetime
+    created_at: datetime
 
-    @property
-    def name_changes(self) -> services.NameChangeService:
-        return self._name_changes
 
-    def set_api_key(self, api_key: str) -> None:
-        self._http.set_api_key(api_key)
+@dataclass(slots=True, init=False)
+class NameChangeDataModel:
+    is_new_on_hiscores: bool
+    is_old_on_hiscores: bool
+    is_new_tracked: bool
+    has_negative_gains: bool
+    time_diff: int
+    hours_diff: int
+    ehp_diff: int
+    ehb_diff: int
+    old_stats: SnapshotModel
+    new_stats: SnapshotModel
 
-    def set_user_agent(self, user_agent: str) -> None:
-        self._http.set_user_agent(user_agent)
 
-    def set_api_base_url(self, api_base_url: str) -> None:
-        self._http.set_base_url(api_base_url)
-
-    async def close(self) -> None:
-        await self._http.close()
+@dataclass(slots=True, init=False)
+class NameChangeDetailModel:
+    name_change: NameChangeModel
+    data: NameChangeDataModel

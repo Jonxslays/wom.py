@@ -21,8 +21,9 @@
 
 from __future__ import annotations
 
-__all__ = ("BaseService", "HttpService", "PlayerService")
+__all__ = ("BaseService", "HttpService", "NameChangeService", "PlayerService")
 
 from .base import *
 from .http import *
+from .name_changes import *
 from .players import *

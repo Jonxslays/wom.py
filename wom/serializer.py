@@ -278,3 +278,12 @@ class Serializer:
         )
 
         return gains
+
+    def deserialize_name_change(self, data: dict[str, t.Any]) -> models.NameChangeModel:
+        change = models.NameChangeModel()
+        change.status = models.NameChangeStatus.from_str(data["status"])
+        change.updated_at = self._dt_from_iso(data["updatedAt"])
+        change.created_at = self._dt_from_iso(data["createdAt"])
+        change.resolved_at = self._dt_from_iso_maybe(data["createdAt"])
+        self._set_attrs_with_js_casing(change, data, "id", "player_id", "old_name", "new_name")
+        return change

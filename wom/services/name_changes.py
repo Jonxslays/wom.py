@@ -21,43 +21,45 @@
 
 from __future__ import annotations
 
+import typing as t
+
+# from wom import enums
+from wom import models
+
+from wom import result
+from wom import routes
 from wom import serializer
-from wom import services
 
-__all__ = ("Client",)
+from . import BaseService
+from . import HttpService
+from . import HttpService
+
+__all__ = ("NameChangeService",)
 
 
-class Client:
-    __slots__ = ("_http", "_name_changes", "_players", "_serializer")
+class NameChangeService(BaseService):
+    __slots__ = ("_http", "_serializer")
 
-    def __init__(
+    def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
+        self._http = http_service
+        self._serializer = serializer
+
+    async def search_name_changes(
         self,
-        api_key: str | None = None,
+        username: str | None = None,
         *,
-        user_agent: str | None = None,
-        api_base_url: str | None = None,
-    ) -> None:
-        self._serializer = serializer.Serializer()
-        self._http = services.HttpService(api_key, user_agent, api_base_url)
-        self._players = services.PlayerService(self._http, self._serializer)
-        self._name_changes = services.NameChangeService(self._http, self._serializer)
+        status: models.NameChangeStatus | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
+        params = self._generate_params(
+            username=username, status=status, limit=limit, offset=offset
+        )
 
-    @property
-    def players(self) -> services.PlayerService:
-        return self._players
+        route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
 
-    @property
-    def name_changes(self) -> services.NameChangeService:
-        return self._name_changes
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
 
-    def set_api_key(self, api_key: str) -> None:
-        self._http.set_api_key(api_key)
-
-    def set_user_agent(self, user_agent: str) -> None:
-        self._http.set_user_agent(user_agent)
-
-    def set_api_base_url(self, api_base_url: str) -> None:
-        self._http.set_base_url(api_base_url)
-
-    async def close(self) -> None:
-        await self._http.close()
+        return result.Ok([self._serializer.deserialize_name_change(c) for c in data])

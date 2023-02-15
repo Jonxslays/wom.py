@@ -30,6 +30,10 @@ __all__ = (
     "CompetitionStatus",
     "ComputedMetricModel",
     "HttpErrorResponse",
+    "NameChangeDataModel",
+    "NameChangeDetailModel",
+    "NameChangeModel",
+    "NameChangeStatus",
     "PlayerAchievementProgressModel",
     "PlayerBuild",
     "PlayerModel",
@@ -42,4 +46,5 @@ __all__ = (
 
 from .competitions import *
 from .errors import *
+from .name_changes import *
 from .players import *
