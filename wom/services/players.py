@@ -189,3 +189,14 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_minimal_snapshot(s) for s in data])
+
+    async def get_player_name_changes(
+        self, username: str
+    ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
+        route = routes.PLAYER_NAME_CHANGES.compile(username)
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_name_change(c) for c in data])
