@@ -33,37 +33,35 @@ if t.TYPE_CHECKING:
     from . import BaseService
     from . import HttpService
 
-__all__ = ("RecordService",)
+__all__ = ("EfficiencyService",)
 
 
-class RecordService(BaseService):
+class EfficiencyService(BaseService):
     __slots__ = ("_http", "_serializer")
 
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
         self._serializer = serializer
 
-    async def get_global_record_leaderboards(
+    async def get_global_efficiency_leaderboard(
         self,
-        metric: enums.Metric,
-        period: enums.Period,
-        *,
+        metric: enums.ComputedMetric,
+        *metrics: enums.ComputedMetric,
         player_type: models.PlayerType | None = None,
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
-    ) -> result.Result[list[models.RecordLeaderboardEntryModel], models.HttpErrorResponse]:
+    ) -> result.Result[list[models.PlayerModel], models.HttpErrorResponse]:
         params = self._generate_params(
-            metric=metric.value,
-            period=period.value,
+            metric="+".join(m.value for m in (metric, *metrics)),
             playerType=player_type.value if player_type else None,
             playerBuild=player_build.value if player_build else None,
             country=country.value if country else None,
         )
 
-        route = routes.GLOBAL_RECORD_LEADERS.compile().with_params(params)
+        route = routes.GLOBAL_EFFICIENCY_LEADERS.compile().with_params(params)
         data = await self._http.fetch(route, list[dict[str, t.Any]])
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_record_leaderboard_entry(r) for r in data])
+        return result.Ok([self._serializer.deserialize_player(p) for p in data])

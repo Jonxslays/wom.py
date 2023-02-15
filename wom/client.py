@@ -28,7 +28,7 @@ __all__ = ("Client",)
 
 
 class Client:
-    __slots__ = ("_http", "_name_changes", "_players", "_records", "_serializer")
+    __slots__ = ("_efficiency", "_http", "_name_changes", "_players", "_records", "_serializer")
 
     def __init__(
         self,
@@ -40,8 +40,13 @@ class Client:
         self._serializer = serializer.Serializer()
         self._http = services.HttpService(api_key, user_agent, api_base_url)
         self._players = services.PlayerService(self._http, self._serializer)
-        self._name_changes = services.NameChangeService(self._http, self._serializer)
         self._records = services.RecordService(self._http, self._serializer)
+        self._efficiency = services.EfficiencyService(self._http, self._serializer)
+        self._name_changes = services.NameChangeService(self._http, self._serializer)
+
+    @property
+    def efficiency(self) -> services.EfficiencyService:
+        return self._efficiency
 
     @property
     def name_changes(self) -> services.NameChangeService:
