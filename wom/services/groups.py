@@ -21,22 +21,24 @@
 
 from __future__ import annotations
 
-__all__ = (
-    "BaseService",
-    "DeltaService",
-    "EfficiencyService",
-    "GroupService",
-    "HttpService",
-    "NameChangeService",
-    "PlayerService",
-    "RecordService",
-)
+import typing as t
 
-from .base import *
-from .deltas import *
-from .efficiency import *
-from .groups import *
-from .http import *
-from .name_changes import *
-from .players import *
-from .records import *
+# from wom import models
+# from wom import result
+# from wom import routes
+from wom import serializer
+
+from . import BaseService
+
+if t.TYPE_CHECKING:
+    from . import HttpService
+
+__all__ = ("GroupService",)
+
+
+class GroupService(BaseService):
+    __slots__ = ("_http", "_serializer")
+
+    def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
+        self._http = http_service
+        self._serializer = serializer

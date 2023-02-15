@@ -35,6 +35,7 @@ class Client:
     __slots__ = (
         "_deltas",
         "_efficiency",
+        "_groups",
         "_http",
         "_name_changes",
         "_players",
@@ -62,6 +63,10 @@ class Client:
         return self._efficiency
 
     @property
+    def groups(self) -> services.GroupService:
+        return self._groups
+
+    @property
     def name_changes(self) -> services.NameChangeService:
         return self._name_changes
 
@@ -78,6 +83,7 @@ class Client:
 
     def __init_core_services(self) -> None:
         self._deltas = self.__init_service(services.DeltaService)
+        self._groups = self.__init_service(services.GroupService)
         self._players = self.__init_service(services.PlayerService)
         self._records = self.__init_service(services.RecordService)
         self._efficiency = self.__init_service(services.EfficiencyService)

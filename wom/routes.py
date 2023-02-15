@@ -40,6 +40,7 @@ __all__ = (
     "PLAYER_NAME_CHANGES",
     "PLAYER_GAINS",
     "PLAYER_SNAPSHOTS",
+    "SEARCH_GROUPS",
     "SEARCH_NAME_CHANGES",
     "SEARCH_PLAYERS",
     "SUBMIT_NAME_CHANGE",
@@ -106,3 +107,4 @@ PLAYER_NAME_CHANGES: Final[Route] = Route("GET", "/players/{}/names")
 GLOBAL_RECORD_LEADERS: Final[Route] = Route("GET", "/records/leaderboard")
 GLOBAL_EFFICIENCY_LEADERS: Final[Route] = Route("GET", "/efficiency/leaderboard")
 GLOBAL_DELTA_LEADERS: Final[Route] = Route("GET", "/deltas/leaderboard")
+SEARCH_GROUPS: Final[Route] = Route("GET", "/groups")
