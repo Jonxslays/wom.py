@@ -28,6 +28,7 @@ Thanks for following the progress!
 - [x] Player endpoints (mostly)
 - [x] Name change models
 - [x] Name change endpoints
+- [x] Efficiency endpoints
 
 </details>
 </div>
@@ -43,7 +44,6 @@ Thanks for following the progress!
 - [ ] Competition endpoints
 - [ ] Delta models
 - [ ] Delta endpoints
-- [ ] Efficienct endpoints
 
 </details>
 
