@@ -33,6 +33,7 @@ ServiceT = t.TypeVar("ServiceT")
 
 class Client:
     __slots__ = (
+        "_competitions",
         "_deltas",
         "_efficiency",
         "_groups",
@@ -53,6 +54,10 @@ class Client:
         self._serializer = serializer.Serializer()
         self._http = services.HttpService(api_key, user_agent, api_base_url)
         self.__init_core_services()
+
+    @property
+    def competitions(self) -> services.CompetitionService:
+        return self._competitions
 
     @property
     def deltas(self) -> services.DeltaService:
@@ -79,6 +84,9 @@ class Client:
         return self._records
 
     def __init_service(self, service: t.Type[ServiceT]) -> ServiceT:
+        if not issubclass(service, services.BaseService):
+            raise TypeError(f"{service.__name__!r} can not be initialized as a service.")
+
         return service(self._http, self._serializer)  # type: ignore[call-arg]
 
     def __init_core_services(self) -> None:

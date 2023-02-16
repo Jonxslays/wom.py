@@ -23,6 +23,7 @@ from __future__ import annotations
 
 __all__ = (
     "BaseService",
+    "CompetitionService",
     "DeltaService",
     "EfficiencyService",
     "GroupService",
@@ -33,6 +34,7 @@ __all__ = (
 )
 
 from .base import *
+from .competitions import *
 from .deltas import *
 from .efficiency import *
 from .groups import *
