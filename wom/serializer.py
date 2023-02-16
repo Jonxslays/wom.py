@@ -30,6 +30,7 @@ from wom import models
 __all__ = ("Serializer",)
 
 TransformT = t.Callable[[t.Any], t.Any] | None
+BaseAchievementT = t.TypeVar("BaseAchievementT", bound=models.BaseAchievementModel)
 
 
 class Serializer:
@@ -64,6 +65,14 @@ class Serializer:
                 setattr(model, attr, transform(data[self._to_js_casing(attr)]))
             else:
                 setattr(model, attr, data[self._to_js_casing(attr)])
+
+    def _deserialize_base_achievement(
+        self, model: BaseAchievementT, data: dict[str, t.Any]
+    ) -> BaseAchievementT:
+        model.metric = enums.Metric.from_str(data["metric"])
+        model.measure = models.AchievementMeasure.from_str(data["measure"])
+        self._set_attrs_with_js_casing(model, data, "name", "player_id", "threshold")
+        return model
 
     def deserialize_player(self, data: dict[str, t.Any]) -> models.PlayerModel:
         player = models.PlayerModel()
@@ -101,16 +110,8 @@ class Serializer:
         snapshot = models.SnapshotModel()
         self._set_attrs_with_js_casing(snapshot, data, "id", "player_id")
         snapshot.created_at = self._dt_from_iso(data["createdAt"])
-        snapshot.imported_at = self._dt_from_iso_maybe(data["importedAt"])
+        snapshot.imported_at = self._dt_from_iso_maybe(data.get("importedAt"))
         snapshot.data = self.deserialize_snapshot_data(data["data"])
-        return snapshot
-
-    def deserialize_minimal_snapshot(self, data: dict[str, t.Any]) -> models.MinimalSnapshotModel:
-        snapshot = models.MinimalSnapshotModel()
-        self._set_attrs_with_js_casing(snapshot, data, "id", "player_id")
-        snapshot.created_at = self._dt_from_iso(data["createdAt"])
-        snapshot.imported_at = self._dt_from_iso_maybe(data["importedAt"])
-        snapshot.data = self.deserialize_minimal_snapshot_data(data["data"])
         return snapshot
 
     def deserialize_snapshot_data(self, data: dict[str, t.Any]) -> models.SnapshotDataModel:
@@ -130,35 +131,19 @@ class Serializer:
 
         return snapshot_data
 
-    def deserialize_minimal_snapshot_data(
-        self, data: dict[str, t.Any]
-    ) -> models.MinimalSnapshotDataModel:
-        snapshot_data = models.MinimalSnapshotDataModel()
-
-        skills = data["skills"].values()
-        snapshot_data.skills = [self.deserialize_minimal_skill(s) for s in skills]
-
-        bosses = data["bosses"].values()
-        snapshot_data.bosses = [self.deserialize_minimal_boss(b) for b in bosses]
-
-        activities = data["activities"].values()
-        snapshot_data.activities = [self.deserialize_activity(a) for a in activities]
-
-        computed = data["computed"].values()
-        snapshot_data.computed = [self.deserialize_computed_metric(c) for c in computed]
-
-        return snapshot_data
-
     def deserialize_skill(self, data: dict[str, t.Any]) -> models.SkillModel:
         skill = models.SkillModel()
         skill.metric = enums.Skill.from_str(data["metric"])
-        self._set_attrs_with_js_casing(skill, data, "ehp", "rank", "level", "experience")
-        return skill
 
-    def deserialize_minimal_skill(self, data: dict[str, t.Any]) -> models.MinimalSkillModel:
-        skill = models.MinimalSkillModel()
-        skill.metric = enums.Skill.from_str(data["metric"])
+        # TODO: Uncomment this when ehp is properly returned on
+        # newStats Snapshot in name change details
+        # self._set_attrs_with_js_casing(skill, data, "ehp", "rank", "level", "experience")
+        #
+        # TODO: Remove these 2 lines when above is ready
         self._set_attrs_with_js_casing(skill, data, "rank", "level", "experience")
+        skill.ehp = data.get("ehp") or -1
+        # END TODO
+
         return skill
 
     def deserialize_boss(self, data: dict[str, t.Any]) -> models.BossModel:
@@ -166,12 +151,6 @@ class Serializer:
         boss.metric = enums.Boss.from_str(data["metric"])
         self._set_attrs_with_js_casing(boss, data, "ehb", "rank", "kills")
         return boss
-
-    def deserialize_minimal_boss(self, data: dict[str, t.Any]) -> models.MinimalBossModel:
-        skill = models.MinimalBossModel()
-        skill.metric = enums.Boss.from_str(data["metric"])
-        self._set_attrs_with_js_casing(skill, data, "rank", "kills")
-        return skill
 
     def deserialize_activity(self, data: dict[str, t.Any]) -> models.ActivityModel:
         activity = models.ActivityModel()
@@ -182,7 +161,12 @@ class Serializer:
     def deserialize_computed_metric(self, data: dict[str, t.Any]) -> models.ComputedMetricModel:
         computed = models.ComputedMetricModel()
         computed.metric = enums.ComputedMetric.from_str(data["metric"])
-        self._set_attrs_with_js_casing(computed, data, "rank", "value")
+
+        # TODO: These fields shouldnt be missing, but for now were compensating
+        computed.rank = data.get("rank", -1)
+        computed.value = data.get("value", -1)
+        # self._set_attrs_with_js_casing(computed, data, "rank", "value")
+        # END TODO
         return computed
 
     def deserialize_asserted_player_type(
@@ -193,19 +177,23 @@ class Serializer:
         asserted.changed = data["changed"]
         return asserted
 
-    def deserialize_achievement(self, data: dict[str, t.Any]) -> models.AchievementModel:
-        achievement = models.AchievementModel()
+    def deserialize_achievement_progress(
+        self, data: dict[str, t.Any]
+    ) -> models.AchievementProgressModel:
+        achievement = self._deserialize_base_achievement(models.AchievementProgressModel(), data)
         achievement.created_at = self._dt_from_iso_maybe(data["createdAt"])
-        achievement.metric = enums.Metric.from_str(data["metric"])
-        achievement.measure = models.AchievementMeasure.from_str(data["measure"])
-        self._set_attrs_with_js_casing(achievement, data, "name", "player_id", "threshold")
+        return achievement
+
+    def deserialize_achievement(self, data: dict[str, t.Any]) -> models.AchievementModel:
+        achievement = self._deserialize_base_achievement(models.AchievementModel(), data)
+        achievement.created_at = self._dt_from_iso(data["createdAt"])
         return achievement
 
     def deserialize_player_achievement_progress(
         self, data: dict[str, t.Any]
     ) -> models.PlayerAchievementProgressModel:
         progress = models.PlayerAchievementProgressModel()
-        progress.achievement = self.deserialize_achievement(data)
+        progress.achievement = self.deserialize_achievement_progress(data)
         self._set_attrs_with_js_casing(
             progress, data, "current_value", "absolute_progress", "relative_progress"
         )
@@ -290,8 +278,15 @@ class Serializer:
 
     def deserialize_name_change_data(self, data: dict[str, t.Any]) -> models.NameChangeDataModel:
         change_data = models.NameChangeDataModel()
-        change_data.old_stats = self.deserialize_minimal_snapshot(data["oldStats"])
-        change_data.new_stats = self.deserialize_minimal_snapshot(data["newStats"])
+        change_data.old_stats = self.deserialize_snapshot(data["oldStats"])
+
+        # TODO: Remove this hack once id is returned on new stats
+        new_stats = data["newStats"]
+        if "id" not in new_stats:
+            new_stats["id"] = -1
+        # End TODO
+
+        change_data.new_stats = self.deserialize_snapshot(new_stats)
         self._set_attrs_with_js_casing(
             change_data,
             data,
@@ -307,15 +302,17 @@ class Serializer:
 
         return change_data
 
-    # TODO: Fix deserialization
-    #   - Sometimes data["data"] is not present
-    #   - When data is present new_stats can be missing an id field
     def deserialize_name_change_detail(
         self, data: dict[str, t.Any]
     ) -> models.NameChangeDetailModel:
         change_detail = models.NameChangeDetailModel()
         change_detail.name_change = self.deserialize_name_change(data["nameChange"])
-        change_detail.data = self.deserialize_name_change_data(data["data"])
+
+        # Data is only present on pending name changes
+        change_detail.data = (
+            self.deserialize_name_change_data(d) if (d := data.get("data")) else None
+        )
+
         return change_detail
 
     def deserialize_record(self, data: dict[str, t.Any]) -> models.RecordModel:

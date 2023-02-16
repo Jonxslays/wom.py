@@ -175,9 +175,7 @@ class PlayerService(BaseService):
         period: enums.Period | None = None,
         start_date: datetime | None = None,
         end_date: datetime | None = None,
-    ) -> result.Result[list[models.MinimalSnapshotModel], models.HttpErrorResponse]:
-        # TODO: This returns a new minimal snapshot missing ehb and ehp
-        # See https://github.com/wise-old-man/wise-old-man/issues/1063
+    ) -> result.Result[list[models.SnapshotModel], models.HttpErrorResponse]:
         params = self._generate_params(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
@@ -190,7 +188,7 @@ class PlayerService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_minimal_snapshot(s) for s in data])
+        return result.Ok([self._serializer.deserialize_snapshot(s) for s in data])
 
     async def get_player_name_changes(
         self, username: str

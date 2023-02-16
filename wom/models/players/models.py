@@ -33,18 +33,16 @@ from .enums import PlayerType
 
 __all__ = (
     "AchievementModel",
+    "AchievementProgressModel",
     "ActivityGainsModel",
     "ActivityModel",
     "AssertPlayerTypeModel",
+    "BaseAchievementModel",
     "BossGainsModel",
     "BossModel",
     "ComputedGainsModel",
     "ComputedMetricModel",
     "GainsModel",
-    "MinimalBossModel",
-    "MinimalSkillModel",
-    "MinimalSnapshotDataModel",
-    "MinimalSnapshotModel",
     "PlayerAchievementProgressModel",
     "PlayerGainsDataModel",
     "PlayerGainsModel",
@@ -58,27 +56,19 @@ __all__ = (
 
 
 @dataclass(slots=True, init=False)
-class MinimalSkillModel:
+class SkillModel:
     metric: enums.Skill
     rank: int
     level: int
     experience: int
-
-
-@dataclass(slots=True, init=False)
-class SkillModel(MinimalSkillModel):
     ehp: int
 
 
 @dataclass(slots=True, init=False)
-class MinimalBossModel:
+class BossModel:
     metric: enums.Boss
     rank: int
     kills: int
-
-
-@dataclass(slots=True, init=False)
-class BossModel(MinimalBossModel):
     ehb: int
 
 
@@ -105,29 +95,12 @@ class SnapshotDataModel:
 
 
 @dataclass(slots=True, init=False)
-class MinimalSnapshotDataModel:
-    skills: list[MinimalSkillModel]
-    bosses: list[MinimalBossModel]
-    activities: list[ActivityModel]
-    computed: list[ComputedMetricModel]
-
-
-@dataclass(slots=True, init=False)
 class SnapshotModel:
     id: int
     player_id: int
     created_at: datetime
     imported_at: datetime | None
     data: SnapshotDataModel
-
-
-@dataclass(slots=True, init=False)
-class MinimalSnapshotModel:
-    id: int
-    player_id: int
-    created_at: datetime
-    imported_at: datetime | None
-    data: MinimalSnapshotDataModel
 
 
 @dataclass(slots=True, init=False)
@@ -164,19 +137,27 @@ class AssertPlayerTypeModel:
 
 
 @dataclass(slots=True, init=False)
-class AchievementModel:
+class BaseAchievementModel:
     player_id: int
     name: str
     metric: enums.Metric
     measure: AchievementMeasure
     threshold: int
+
+
+@dataclass(slots=True, init=False)
+class AchievementModel(BaseAchievementModel):
+    created_at: datetime
+
+
+@dataclass(slots=True, init=False)
+class AchievementProgressModel(BaseAchievementModel):
     created_at: datetime | None
-    # TODO: This is only nullable on the progress model...
 
 
 @dataclass(slots=True, init=False)
 class PlayerAchievementProgressModel:
-    achievement: AchievementModel
+    achievement: AchievementProgressModel
     current_value: int
     absolute_progress: float
     relative_progress: float

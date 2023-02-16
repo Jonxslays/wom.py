@@ -24,7 +24,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 
-from ..players import MinimalSnapshotModel
+from ..players import SnapshotModel
 from .enums import NameChangeStatus
 
 __all__ = ("NameChangeDataModel", "NameChangeDetailModel", "NameChangeModel")
@@ -52,12 +52,11 @@ class NameChangeDataModel:
     hours_diff: int
     ehp_diff: int
     ehb_diff: int
-    old_stats: MinimalSnapshotModel
-    new_stats: MinimalSnapshotModel
-    # TODO: These shouldn't be minimal
+    old_stats: SnapshotModel
+    new_stats: SnapshotModel
 
 
 @dataclass(slots=True, init=False)
 class NameChangeDetailModel:
     name_change: NameChangeModel
-    data: NameChangeDataModel
+    data: NameChangeDataModel | None
