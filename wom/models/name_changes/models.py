@@ -53,7 +53,7 @@ class NameChangeDataModel:
     ehp_diff: int
     ehb_diff: int
     old_stats: SnapshotModel
-    new_stats: SnapshotModel
+    new_stats: SnapshotModel | None
 
 
 @dataclass(slots=True, init=False)

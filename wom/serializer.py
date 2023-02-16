@@ -134,16 +134,7 @@ class Serializer:
     def deserialize_skill(self, data: dict[str, t.Any]) -> models.SkillModel:
         skill = models.SkillModel()
         skill.metric = enums.Skill.from_str(data["metric"])
-
-        # TODO: Uncomment this when ehp is properly returned on
-        # newStats Snapshot in name change details
-        # self._set_attrs_with_js_casing(skill, data, "ehp", "rank", "level", "experience")
-        #
-        # TODO: Remove these 2 lines when above is ready
-        self._set_attrs_with_js_casing(skill, data, "rank", "level", "experience")
-        skill.ehp = data.get("ehp") or -1
-        # END TODO
-
+        self._set_attrs_with_js_casing(skill, data, "ehp", "rank", "level", "experience")
         return skill
 
     def deserialize_boss(self, data: dict[str, t.Any]) -> models.BossModel:
@@ -161,12 +152,7 @@ class Serializer:
     def deserialize_computed_metric(self, data: dict[str, t.Any]) -> models.ComputedMetricModel:
         computed = models.ComputedMetricModel()
         computed.metric = enums.ComputedMetric.from_str(data["metric"])
-
-        # TODO: These fields shouldnt be missing, but for now were compensating
-        computed.rank = data.get("rank", -1)
-        computed.value = data.get("value", -1)
-        # self._set_attrs_with_js_casing(computed, data, "rank", "value")
-        # END TODO
+        self._set_attrs_with_js_casing(computed, data, "rank", "value")
         return computed
 
     def deserialize_asserted_player_type(
@@ -279,14 +265,17 @@ class Serializer:
     def deserialize_name_change_data(self, data: dict[str, t.Any]) -> models.NameChangeDataModel:
         change_data = models.NameChangeDataModel()
         change_data.old_stats = self.deserialize_snapshot(data["oldStats"])
+        # NOTE: Hack to handle the case where name change details new stats
+        # don't have an ID if the new username is not tracked by WOM
+        change_data.new_stats = None
+        new_stats = data.get("newStats")
 
-        # TODO: Remove this hack once id is returned on new stats
-        new_stats = data["newStats"]
-        if "id" not in new_stats:
-            new_stats["id"] = -1
-        # End TODO
+        if new_stats:
+            if "id" not in new_stats:
+                new_stats["id"] = -1
 
-        change_data.new_stats = self.deserialize_snapshot(new_stats)
+            change_data.new_stats = self.deserialize_snapshot(new_stats)
+
         self._set_attrs_with_js_casing(
             change_data,
             data,
