@@ -21,29 +21,16 @@
 
 from __future__ import annotations
 
-import abc
-import typing as t
+# import typing as t
 
-if t.TYPE_CHECKING:
-    from wom import serializer
+# from wom import models
+# from wom import result
+# from wom import routes
 
-    from . import HttpService
+from . import BaseService
 
-__all__ = ("BaseService",)
+__all__ = ("CompetitionService",)
 
 
-class BaseService(abc.ABC):
-    __slots__ = ("_http", "_serializer")
-
-    def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
-        self._http = http_service
-        self._serializer = serializer
-
-    def _generate_params(self, **kwargs: t.Any) -> dict[str, t.Any]:
-        params: dict[str, t.Any] = {}
-
-        for name, value in kwargs.items():
-            if value is not None:
-                params[name] = value
-
-        return params
+class CompetitionService(BaseService):
+    __slots__ = ()

@@ -26,22 +26,14 @@ import typing as t
 from wom import models
 from wom import result
 from wom import routes
-from wom import serializer
 
 from . import BaseService
-
-if t.TYPE_CHECKING:
-    from . import HttpService
 
 __all__ = ("NameChangeService",)
 
 
 class NameChangeService(BaseService):
-    __slots__ = ("_http", "_serializer")
-
-    def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
-        self._http = http_service
-        self._serializer = serializer
+    __slots__ = ()
 
     async def search_name_changes(
         self,
