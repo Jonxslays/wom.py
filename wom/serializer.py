@@ -265,7 +265,7 @@ class Serializer:
     def deserialize_name_change_data(self, data: dict[str, t.Any]) -> models.NameChangeDataModel:
         change_data = models.NameChangeDataModel()
         change_data.old_stats = self.deserialize_snapshot(data["oldStats"])
-        # NOTE: Hack to handle the case where name change details new stats
+        # NOTE: Hack to handle case where name change details new stats
         # don't have an ID if the new username is not tracked by WOM
         change_data.new_stats = None
         new_stats = data.get("newStats")

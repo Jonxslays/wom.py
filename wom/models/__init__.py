@@ -64,6 +64,6 @@ from .competitions import *
 from .deltas import *
 from .errors import *
 from .groups import *
-from .name_changes import *
+from .names import *
 from .players import *
 from .records import *

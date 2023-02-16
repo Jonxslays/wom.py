@@ -38,7 +38,7 @@ class Client:
         "_efficiency",
         "_groups",
         "_http",
-        "_name_changes",
+        "_names",
         "_players",
         "_records",
         "_serializer",
@@ -72,8 +72,8 @@ class Client:
         return self._groups
 
     @property
-    def name_changes(self) -> services.NameChangeService:
-        return self._name_changes
+    def names(self) -> services.NameChangeService:
+        return self._names
 
     @property
     def players(self) -> services.PlayerService:
@@ -87,15 +87,16 @@ class Client:
         if not issubclass(service, services.BaseService):
             raise TypeError(f"{service.__name__!r} can not be initialized as a service.")
 
-        return service(self._http, self._serializer)  # type: ignore[call-arg]
+        return service(self._http, self._serializer)  # type: ignore[return-value]
 
     def __init_core_services(self) -> None:
         self._deltas = self.__init_service(services.DeltaService)
         self._groups = self.__init_service(services.GroupService)
         self._players = self.__init_service(services.PlayerService)
         self._records = self.__init_service(services.RecordService)
+        self._names = self.__init_service(services.NameChangeService)
         self._efficiency = self.__init_service(services.EfficiencyService)
-        self._name_changes = self.__init_service(services.NameChangeService)
+        self._competitions = self.__init_service(services.CompetitionService)
 
     def set_api_key(self, api_key: str) -> None:
         self._http.set_api_key(api_key)
