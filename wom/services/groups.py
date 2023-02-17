@@ -158,3 +158,18 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+
+    async def change_member_role(
+        self, id: int, verification_code: str, username: str, role: models.GroupRole
+    ) -> result.Result[models.GroupMembershipModel, models.HttpErrorResponse]:
+        payload = self._generate_params(
+            verificationCode=verification_code, username=username, role=role.value
+        )
+
+        route = routes.CHANGE_MEMBER_ROLE.compile(id)
+        data = await self._http.fetch(route, self._dict, payload=payload)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_group_membership(data))
