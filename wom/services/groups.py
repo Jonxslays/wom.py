@@ -21,9 +21,11 @@
 
 from __future__ import annotations
 
-# from wom import models
-# from wom import result
-# from wom import routes
+import typing as t
+
+from wom import models
+from wom import result
+from wom import routes
 
 from . import BaseService
 
@@ -32,3 +34,15 @@ __all__ = ("GroupService",)
 
 class GroupService(BaseService):
     __slots__ = ()
+
+    async def search_groups(
+        self, name: str | None = None, limit: int | None = None, offset: int | None = None
+    ) -> result.Result[list[models.GroupModel], models.HttpErrorResponse]:
+        params = self._generate_params(name=name, limit=limit, offset=offset)
+        route = routes.SEARCH_GROUPS.compile().with_params(params)
+        data = await self._http.fetch(route, list[dict[str, t.Any]])
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_group(p) for p in data])
