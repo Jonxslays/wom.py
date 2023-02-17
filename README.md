@@ -33,6 +33,7 @@ Thanks for following the progress!
 - [x] Delta endpoints
 - [x] Group models
 - [x] Group endpoints
+- [x] Competition models
 
 </details>
 </div>
@@ -42,8 +43,9 @@ Thanks for following the progress!
 <details>
 <summary> :x: Incomplete</summary>
 
-- [ ] Competition models
 - [ ] Competition endpoints
+- [ ] Write tests
+- [ ] Write docs
 
 </details>
 
