@@ -277,3 +277,16 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_group_hiscores_entry(h) for h in data])
+
+    async def get_group_name_changes(
+        self, id: int, *, limit: int | None = None, offset: int | None = None
+    ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
+        params = self._generate_params(limit=limit, offset=offset)
+        route = routes.GROUP_NAME_CHANGES.compile(id).with_params(params)
+
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_name_change(n) for n in data])
