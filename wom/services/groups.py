@@ -111,3 +111,15 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_group_details(data))
+
+    async def delete_group(
+        self, id: int, verification_code: str
+    ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
+        payload = self._generate_params(verificationCode=verification_code)
+        route = routes.DELETE_GROUP.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))

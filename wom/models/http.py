@@ -25,10 +25,16 @@ from dataclasses import dataclass
 
 from .base import BaseModel
 
-__all__ = ("HttpErrorResponse",)
+__all__ = ("HttpErrorResponse", "HttpSuccessResponse")
 
 
 @dataclass(slots=True)
 class HttpErrorResponse(BaseModel):
+    status: int
+    message: str
+
+
+@dataclass(slots=True)
+class HttpSuccessResponse(BaseModel):
     status: int
     message: str

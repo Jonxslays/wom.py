@@ -30,6 +30,7 @@ __all__ = (
     "ASSERT_PLAYER_TYPE",
     "CREATE_GROUP",
     "EDIT_GROUP",
+    "DELETE_GROUP",
     "GLOBAL_DELTA_LEADERS",
     "GLOBAL_EFFICIENCY_LEADERS",
     "GLOBAL_RECORD_LEADERS",
@@ -114,3 +115,4 @@ SEARCH_GROUPS: Final[Route] = Route("GET", "/groups")
 GROUP_DETAILS: Final[Route] = Route("GET", "/groups/{}")
 CREATE_GROUP: Final[Route] = Route("POST", "/groups")
 EDIT_GROUP: Final[Route] = Route("PUT", "/groups/{}")
+DELETE_GROUP: Final[Route] = Route("DELETE", "/groups/{}")
