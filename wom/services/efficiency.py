@@ -21,8 +21,6 @@
 
 from __future__ import annotations
 
-import typing as t
-
 from wom import enums
 from wom import models
 from wom import result
@@ -52,7 +50,7 @@ class EfficiencyService(BaseService):
         )
 
         route = routes.GLOBAL_EFFICIENCY_LEADERS.compile().with_params(params)
-        data = await self._http.fetch(route, list[dict[str, t.Any]])
+        data = await self._http.fetch(route, self._LIST)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)

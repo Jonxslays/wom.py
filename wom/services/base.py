@@ -38,6 +38,8 @@ class BaseService(abc.ABC):
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
         self._serializer = serializer
+        self._DICT = dict[str, t.Any]
+        self._LIST = list[dict[str, t.Any]]
 
     def _generate_params(self, **kwargs: t.Any) -> dict[str, t.Any]:
         params: dict[str, t.Any] = {}

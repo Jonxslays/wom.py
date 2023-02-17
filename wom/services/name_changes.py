@@ -21,8 +21,6 @@
 
 from __future__ import annotations
 
-import typing as t
-
 from wom import models
 from wom import result
 from wom import routes
@@ -48,7 +46,7 @@ class NameChangeService(BaseService):
         )
 
         route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
-        data = await self._http.fetch(route, list[dict[str, t.Any]])
+        data = await self._http.fetch(route, self._LIST)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -60,7 +58,7 @@ class NameChangeService(BaseService):
     ) -> result.Result[models.NameChangeModel, models.HttpErrorResponse]:
         payload = self._generate_params(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()
-        data = await self._http.fetch(route, dict[str, t.Any], payload=payload)
+        data = await self._http.fetch(route, self._DICT, payload=payload)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -71,7 +69,7 @@ class NameChangeService(BaseService):
         self, id: int
     ) -> result.Result[models.NameChangeDetailModel, models.HttpErrorResponse]:
         route = routes.NAME_CHANGE_DETAILS.compile(id)
-        data = await self._http.fetch(route, dict[str, t.Any])
+        data = await self._http.fetch(route, self._DICT)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)

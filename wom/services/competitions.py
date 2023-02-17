@@ -21,8 +21,6 @@
 
 from __future__ import annotations
 
-# import typing as t
-
 # from wom import models
 # from wom import result
 # from wom import routes

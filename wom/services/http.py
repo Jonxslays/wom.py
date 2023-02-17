@@ -81,7 +81,7 @@ class HttpService:
         if isinstance(data, models.HttpErrorResponse):
             return data
 
-        if "message" in data or not response.ok:
+        if not response.ok or "message" in data:
             return models.HttpErrorResponse(
                 data.get("message", "An unexpected error occurred while making the request.")
             )

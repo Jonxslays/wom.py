@@ -21,8 +21,6 @@
 
 from __future__ import annotations
 
-import typing as t
-
 from wom import models
 from wom import result
 from wom import routes
@@ -40,9 +38,20 @@ class GroupService(BaseService):
     ) -> result.Result[list[models.GroupModel], models.HttpErrorResponse]:
         params = self._generate_params(name=name, limit=limit, offset=offset)
         route = routes.SEARCH_GROUPS.compile().with_params(params)
-        data = await self._http.fetch(route, list[dict[str, t.Any]])
+        data = await self._http.fetch(route, self._LIST)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_group(p) for p in data])
+
+    async def get_group_details(
+        self, id: int
+    ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
+        route = routes.GROUP_DETAILS.compile(id)
+        data = await self._http.fetch(route, self._DICT)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_group_details(data))

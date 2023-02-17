@@ -340,3 +340,7 @@ class Serializer:
         )
 
         return group
+
+    def deserialize_group_details(self, data: dict[str, t.Any]) -> models.GroupDetailModel:
+        details = models.GroupDetailModel()
+        return details
