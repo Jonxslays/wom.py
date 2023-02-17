@@ -218,3 +218,44 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_delta_leaderboard_entry(d) for d in data])
+
+    async def get_group_achievements(
+        self,
+        id: int,
+        *,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> result.Result[list[models.AchievementModel], models.HttpErrorResponse]:
+        params = self._generate_params(limit=limit, offset=offset)
+
+        route = routes.GROUP_ACHIEVEMENTS.compile(id).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_achievement(a) for a in data])
+
+    async def get_group_records(
+        self,
+        id: int,
+        metric: enums.Metric,
+        period: enums.Period,
+        *,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> result.Result[list[models.RecordLeaderboardEntryModel], models.HttpErrorResponse]:
+        params = self._generate_params(
+            limit=limit,
+            offset=offset,
+            metric=metric.value,
+            period=period.value,
+        )
+
+        route = routes.GROUP_RECORDS.compile(id).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_record_leaderboard_entry(a) for a in data])

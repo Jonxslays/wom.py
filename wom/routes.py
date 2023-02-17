@@ -35,7 +35,9 @@ __all__ = (
     "DELETE_GROUP",
     "GLOBAL_DELTA_LEADERS",
     "GLOBAL_EFFICIENCY_LEADERS",
+    "GROUP_ACHIEVEMENTS",
     "GROUP_GAINS",
+    "GROUP_RECORDS",
     "GLOBAL_RECORD_LEADERS",
     "GROUP_DETAILS",
     "NAME_CHANGE_DETAILS",
@@ -126,3 +128,5 @@ REMOVE_MEMBERS: Final[Route] = Route("DELETE", "/groups/{}/members")
 CHANGE_MEMBER_ROLE: Final[Route] = Route("PUT", "/groups/{}/role")
 UPDATE_OUTDATED_MEMBERS: Final[Route] = Route("POST", "/groups/{}/update-all")
 GROUP_GAINS: Final[Route] = Route("GET", "/groups/{}/gained")
+GROUP_ACHIEVEMENTS: Final[Route] = Route("GET", "/groups/{}/achievements")
+GROUP_RECORDS: Final[Route] = Route("GET", "/groups/{}/records")
