@@ -21,14 +21,20 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from . import BaseService
 
-# from wom import models
-# from wom import result
+from wom import models
+from wom import result
+
 # from wom import routes
 
 
 __all__ = ("CompetitionService",)
+
+ValueT = t.TypeVar("ValueT")
+ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class CompetitionService(BaseService):

@@ -21,6 +21,8 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from wom import enums
 from wom import models
 from wom import result
@@ -29,6 +31,9 @@ from wom import routes
 from . import BaseService
 
 __all__ = ("EfficiencyService",)
+
+ValueT = t.TypeVar("ValueT")
+ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class EfficiencyService(BaseService):
@@ -41,7 +46,7 @@ class EfficiencyService(BaseService):
         player_type: models.PlayerType | None = None,
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
-    ) -> result.Result[list[models.PlayerModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.PlayerModel]]:
         params = self._generate_params(
             metric="+".join(m.value for m in (metric, *metrics)),
             playerType=player_type.value if player_type else None,

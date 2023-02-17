@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import typing as t
 from datetime import datetime
 
 from wom import enums
@@ -32,13 +33,16 @@ from . import BaseService
 
 __all__ = ("PlayerService",)
 
+ValueT = t.TypeVar("ValueT")
+ResultT = result.Result[ValueT, models.HttpErrorResponse]
+
 
 class PlayerService(BaseService):
     __slots__ = ()
 
     async def search_players(
         self, username: str, *, limit: int | None = None, offset: int | None = None
-    ) -> result.Result[list[models.PlayerModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.PlayerModel]]:
         params = self._generate_params(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -48,9 +52,7 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_player(player) for player in data])
 
-    async def update_player(
-        self, username: str
-    ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
+    async def update_player(self, username: str) -> ResultT[models.PlayerDetailModel]:
         route = routes.UPDATE_PLAYER.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -59,9 +61,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def assert_player_type(
-        self, username: str
-    ) -> result.Result[models.AssertPlayerTypeModel, models.HttpErrorResponse]:
+    async def assert_player_type(self, username: str) -> ResultT[models.AssertPlayerTypeModel]:
         route = routes.ASSERT_PLAYER_TYPE.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -70,9 +70,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_asserted_player_type(data))
 
-    async def get_player_details(
-        self, username: str
-    ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
+    async def get_player_details(self, username: str) -> ResultT[models.PlayerDetailModel]:
         route = routes.PLAYER_DETAILS.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -81,9 +79,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def get_player_details_by_id(
-        self, player_id: int
-    ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
+    async def get_player_details_by_id(self, player_id: int) -> ResultT[models.PlayerDetailModel]:
         route = routes.PLAYER_DETAILS_BY_ID.compile(player_id)
         data = await self._http.fetch(route, self._dict)
 
@@ -94,7 +90,7 @@ class PlayerService(BaseService):
 
     async def get_player_achievements(
         self, username: str
-    ) -> result.Result[list[models.AchievementModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.AchievementModel]]:
         route = routes.PLAYER_ACHIEVEMENTS.compile(username)
         data = await self._http.fetch(route, self._list)
 
@@ -105,7 +101,7 @@ class PlayerService(BaseService):
 
     async def get_player_achievement_progress(
         self, username: str
-    ) -> result.Result[list[models.PlayerAchievementProgressModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.PlayerAchievementProgressModel]]:
         route = routes.PLAYER_ACHIEVEMENT_PROGRESS.compile(username)
         data = await self._http.fetch(route, self._list)
 
@@ -123,7 +119,7 @@ class PlayerService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
         status: models.CompetitionStatus | None = None,
-    ) -> result.Result[None, models.HttpErrorResponse]:
+    ) -> ResultT[None]:
         raise NotImplementedError(
             "competition related endpoints are not yet implemented."
         )  # Temporary
@@ -144,7 +140,7 @@ class PlayerService(BaseService):
         period: enums.Period | None = None,
         start_date: datetime | None = None,
         end_date: datetime | None = None,
-    ) -> result.Result[models.PlayerGainsModel, models.HttpErrorResponse]:
+    ) -> ResultT[models.PlayerGainsModel]:
         params = self._generate_params(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
@@ -166,7 +162,7 @@ class PlayerService(BaseService):
         period: enums.Period | None = None,
         start_date: datetime | None = None,
         end_date: datetime | None = None,
-    ) -> result.Result[list[models.SnapshotModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.SnapshotModel]]:
         params = self._generate_params(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
@@ -183,7 +179,7 @@ class PlayerService(BaseService):
 
     async def get_player_name_changes(
         self, username: str
-    ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.NameChangeModel]]:
         route = routes.PLAYER_NAME_CHANGES.compile(username)
         data = await self._http.fetch(route, self._list)
 

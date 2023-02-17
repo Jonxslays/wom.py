@@ -39,6 +39,7 @@ __all__ = (
     "ActivityModel",
     "AssertPlayerTypeModel",
     "BaseAchievementModel",
+    "BaseSnapshotModel",
     "BossGainsModel",
     "BossModel",
     "ComputedGainsModel",
@@ -49,6 +50,7 @@ __all__ = (
     "PlayerGainsModel",
     "PlayerModel",
     "PlayerDetailModel",
+    "StatisticsSnapshotModel",
     "SkillGainsModel",
     "SkillModel",
     "SnapshotDataModel",
@@ -96,12 +98,21 @@ class SnapshotDataModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class SnapshotModel(BaseModel):
+class BaseSnapshotModel(BaseModel):
     id: int
     player_id: int
-    created_at: datetime
     imported_at: datetime | None
     data: SnapshotDataModel
+
+
+@dataclass(slots=True, init=False)
+class SnapshotModel(BaseSnapshotModel):
+    created_at: datetime
+
+
+@dataclass(slots=True, init=False)
+class StatisticsSnapshotModel(BaseSnapshotModel):
+    created_at: datetime | None
 
 
 @dataclass(slots=True, init=False)

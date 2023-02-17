@@ -21,6 +21,8 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from wom import models
 from wom import result
 from wom import routes
@@ -28,6 +30,9 @@ from wom import routes
 from . import BaseService
 
 __all__ = ("NameChangeService",)
+
+ValueT = t.TypeVar("ValueT")
+ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class NameChangeService(BaseService):
@@ -40,7 +45,7 @@ class NameChangeService(BaseService):
         status: models.NameChangeStatus | None = None,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.NameChangeModel]]:
         params = self._generate_params(
             username=username, status=status, limit=limit, offset=offset
         )
@@ -55,7 +60,7 @@ class NameChangeService(BaseService):
 
     async def submit_name_change(
         self, old_name: str, new_name: str
-    ) -> result.Result[models.NameChangeModel, models.HttpErrorResponse]:
+    ) -> ResultT[models.NameChangeModel]:
         payload = self._generate_params(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()
         data = await self._http.fetch(route, self._dict, payload=payload)
@@ -65,9 +70,7 @@ class NameChangeService(BaseService):
 
         return result.Ok(self._serializer.deserialize_name_change(data))
 
-    async def get_name_change_details(
-        self, id: int
-    ) -> result.Result[models.NameChangeDetailModel, models.HttpErrorResponse]:
+    async def get_name_change_details(self, id: int) -> ResultT[models.NameChangeDetailModel]:
         route = routes.NAME_CHANGE_DETAILS.compile(id)
         data = await self._http.fetch(route, self._dict)
 

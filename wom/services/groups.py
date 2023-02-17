@@ -34,6 +34,10 @@ from . import BaseService
 __all__ = ("GroupService",)
 
 
+ValueT = t.TypeVar("ValueT")
+ResultT = result.Result[ValueT, models.HttpErrorResponse]
+
+
 class GroupService(BaseService):
     __slots__ = ()
 
@@ -44,7 +48,7 @@ class GroupService(BaseService):
 
     async def search_groups(
         self, name: str | None = None, limit: int | None = None, offset: int | None = None
-    ) -> result.Result[list[models.GroupModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.GroupModel]]:
         params = self._generate_params(name=name, limit=limit, offset=offset)
         route = routes.SEARCH_GROUPS.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -54,9 +58,7 @@ class GroupService(BaseService):
 
         return result.Ok([self._serializer.deserialize_group(p) for p in data])
 
-    async def get_group_details(
-        self, id: int
-    ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
+    async def get_group_details(self, id: int) -> ResultT[models.GroupDetailModel]:
         route = routes.GROUP_DETAILS.compile(id)
         data = await self._http.fetch(route, self._dict)
 
@@ -72,7 +74,7 @@ class GroupService(BaseService):
         clan_chat: str | None = None,
         description: str | None = None,
         homeworld: int | None = None,
-    ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
+    ) -> ResultT[models.GroupDetailModel]:
         payload = self._generate_params(
             name=name,
             clanChat=clan_chat,
@@ -102,7 +104,7 @@ class GroupService(BaseService):
         clan_chat: str | None = None,
         description: str | None = None,
         homeworld: int | None = None,
-    ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
+    ) -> ResultT[models.GroupDetailModel]:
         payload = self._generate_params(
             name=name,
             clanChat=clan_chat,
@@ -122,7 +124,7 @@ class GroupService(BaseService):
 
     async def delete_group(
         self, id: int, verification_code: str
-    ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
+    ) -> ResultT[models.HttpSuccessResponse]:
         payload = self._generate_params(verificationCode=verification_code)
         route = routes.DELETE_GROUP.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
@@ -150,7 +152,7 @@ class GroupService(BaseService):
 
     async def remove_members(
         self, id: int, verification_code: str, *members: str
-    ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
+    ) -> ResultT[models.HttpSuccessResponse]:
         payload = self._generate_params(verificationCode=verification_code, members=members)
 
         route = routes.REMOVE_MEMBERS.compile(id)
@@ -163,7 +165,7 @@ class GroupService(BaseService):
 
     async def change_member_role(
         self, id: int, verification_code: str, username: str, role: models.GroupRole
-    ) -> result.Result[models.GroupMembershipModel, models.HttpErrorResponse]:
+    ) -> ResultT[models.GroupMembershipModel]:
         payload = self._generate_params(
             verificationCode=verification_code, username=username, role=role.value
         )
@@ -178,7 +180,7 @@ class GroupService(BaseService):
 
     async def update_outdated_members(
         self, id: int, verification_code: str
-    ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
+    ) -> ResultT[models.HttpSuccessResponse]:
         payload = self._generate_params(verificationCode=verification_code)
         route = routes.UPDATE_OUTDATED_MEMBERS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
@@ -189,6 +191,7 @@ class GroupService(BaseService):
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def get_group_competitions(self) -> None:
+        # TODO: Implement this when competition models are created
         raise NotImplementedError("Get group competitions is not implemented yet.")
 
     async def get_group_gains(
@@ -201,7 +204,7 @@ class GroupService(BaseService):
         end_date: datetime | None = None,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> result.Result[list[models.DeltaLeaderboardEntryModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.DeltaLeaderboardEntryModel]]:
         params = self._generate_params(
             limit=limit,
             offset=offset,
@@ -225,7 +228,7 @@ class GroupService(BaseService):
         *,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> result.Result[list[models.AchievementModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.AchievementModel]]:
         params = self._generate_params(limit=limit, offset=offset)
 
         route = routes.GROUP_ACHIEVEMENTS.compile(id).with_params(params)
@@ -244,7 +247,7 @@ class GroupService(BaseService):
         *,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> result.Result[list[models.RecordLeaderboardEntryModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.RecordLeaderboardEntryModel]]:
         params = self._generate_params(
             limit=limit,
             offset=offset,
@@ -267,9 +270,8 @@ class GroupService(BaseService):
         *,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> result.Result[list[models.GroupHiscoresEntryModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.GroupHiscoresEntryModel]]:
         params = self._generate_params(limit=limit, offset=offset, metric=metric.value)
-
         route = routes.GROUP_HISCORES.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
 
@@ -280,13 +282,21 @@ class GroupService(BaseService):
 
     async def get_group_name_changes(
         self, id: int, *, limit: int | None = None, offset: int | None = None
-    ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.NameChangeModel]]:
         params = self._generate_params(limit=limit, offset=offset)
         route = routes.GROUP_NAME_CHANGES.compile(id).with_params(params)
-
         data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_name_change(n) for n in data])
+
+    async def get_group_statistics(self, id: int) -> ResultT[models.GroupStatisticsModel]:
+        route = routes.GROUP_STATISTICS.compile(id)
+        data = await self._http.fetch(route, self._dict)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_group_statistics(data))

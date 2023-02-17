@@ -26,7 +26,7 @@ from datetime import datetime
 
 from ..base import BaseModel
 from ..players import PlayerModel
-from ..players import SnapshotModel
+from ..players import StatisticsSnapshotModel
 from .enums import GroupRole
 
 __all__ = (
@@ -134,4 +134,4 @@ class GroupStatisticsModel(BaseModel):
     maxed_combat_count: int
     maxed_total_count: int
     maxed_200ms_count: int
-    average_stats: SnapshotModel
+    average_stats: StatisticsSnapshotModel

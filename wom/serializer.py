@@ -142,6 +142,16 @@ class Serializer:
         self._set_attrs_cased(snapshot, data, "id", "player_id")
         return snapshot
 
+    def deserialize_statistics_snapshot(
+        self, data: dict[str, t.Any]
+    ) -> models.StatisticsSnapshotModel:
+        snapshot = models.StatisticsSnapshotModel()
+        snapshot.created_at = self._dt_from_iso_maybe(data["createdAt"])
+        snapshot.imported_at = self._dt_from_iso_maybe(data.get("importedAt"))
+        snapshot.data = self.deserialize_snapshot_data(data["data"])
+        self._set_attrs_cased(snapshot, data, "id", "player_id")
+        return snapshot
+
     def gather(
         self, serializer: t.Callable[[dict[str, t.Any]], T], data: list[dict[str, t.Any]]
     ) -> list[T]:
@@ -419,3 +429,10 @@ class Serializer:
         hiscores.player = self.deserialize_player(data["player"])
         hiscores.data = self._determine_hiscores_entry_item(data["data"])
         return hiscores
+
+    def deserialize_group_statistics(self, data: dict[str, t.Any]) -> models.GroupStatisticsModel:
+        statistics = models.GroupStatisticsModel()
+        statistics.maxed_200ms_count = data["maxed200msCount"]
+        statistics.average_stats = self.deserialize_statistics_snapshot(data["averageStats"])
+        self._set_attrs_cased(statistics, data, "maxed_total_count", "maxed_combat_count")
+        return statistics

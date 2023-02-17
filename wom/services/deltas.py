@@ -21,6 +21,8 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from wom import enums
 from wom import models
 from wom import result
@@ -29,6 +31,9 @@ from wom import routes
 from . import BaseService
 
 __all__ = ("DeltaService",)
+
+ValueT = t.TypeVar("ValueT")
+ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class DeltaService(BaseService):
@@ -42,7 +47,7 @@ class DeltaService(BaseService):
         player_type: models.PlayerType | None = None,
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
-    ) -> result.Result[list[models.DeltaLeaderboardEntryModel], models.HttpErrorResponse]:
+    ) -> ResultT[list[models.DeltaLeaderboardEntryModel]]:
         params = self._generate_params(
             metric=metric.value,
             period=period.value,

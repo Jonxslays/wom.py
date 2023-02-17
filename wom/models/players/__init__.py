@@ -29,6 +29,7 @@ __all__ = (
     "ActivityModel",
     "AssertPlayerTypeModel",
     "BaseAchievementModel",
+    "BaseSnapshotModel",
     "BossGainsModel",
     "BossModel",
     "Country",
@@ -46,6 +47,7 @@ __all__ = (
     "SkillModel",
     "SnapshotDataModel",
     "SnapshotModel",
+    "StatisticsSnapshotModel",
 )
 
 from .enums import *
