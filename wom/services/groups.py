@@ -55,3 +55,29 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_group_details(data))
+
+    async def create_group(
+        self,
+        name: str,
+        *members: models.GroupMemberFragmentModel,
+        clan_chat: str | None = None,
+        description: str | None = None,
+        homeworld: int | None = None,
+    ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
+        # payload_members = tuple(m.to_dict() for m in members)
+
+        payload = self._generate_params(
+            name=name,
+            members=tuple({k: str(v) for k, v in m.to_dict().items()} for m in members),
+            clanChat=clan_chat,
+            description=description,
+            homeworld=homeworld,
+        )
+
+        route = routes.CREATE_GROUP.compile()
+        data = await self._http.fetch(route, self._dict, payload=payload)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_group_details(data["group"]))

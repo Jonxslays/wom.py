@@ -23,10 +23,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .base import BaseModel
+
 __all__ = ("HttpErrorResponse",)
 
 
 @dataclass(slots=True)
-class HttpErrorResponse:
+class HttpErrorResponse(BaseModel):
     status: int
     message: str

@@ -24,6 +24,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 
+from ..base import BaseModel
 from ..players import SnapshotModel
 from .enums import NameChangeStatus
 
@@ -31,7 +32,7 @@ __all__ = ("NameChangeDataModel", "NameChangeDetailModel", "NameChangeModel")
 
 
 @dataclass(slots=True, init=False)
-class NameChangeModel:
+class NameChangeModel(BaseModel):
     id: int
     player_id: int
     old_name: str
@@ -43,7 +44,7 @@ class NameChangeModel:
 
 
 @dataclass(slots=True, init=False)
-class NameChangeDataModel:
+class NameChangeDataModel(BaseModel):
     is_new_on_hiscores: bool
     is_old_on_hiscores: bool
     is_new_tracked: bool
@@ -57,6 +58,6 @@ class NameChangeDataModel:
 
 
 @dataclass(slots=True, init=False)
-class NameChangeDetailModel:
+class NameChangeDetailModel(BaseModel):
     name_change: NameChangeModel
     data: NameChangeDataModel | None

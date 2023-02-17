@@ -21,11 +21,12 @@
 
 from __future__ import annotations
 
+from . import BaseService
+
 # from wom import models
 # from wom import result
 # from wom import routes
 
-from . import BaseService
 
 __all__ = ("CompetitionService",)
 

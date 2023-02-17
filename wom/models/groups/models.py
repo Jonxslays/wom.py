@@ -24,6 +24,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 
+from ..base import BaseModel
 from ..players import PlayerModel
 from ..players import SnapshotModel
 from .enums import GroupRole
@@ -45,7 +46,7 @@ __all__ = (
 
 
 @dataclass(slots=True, init=False)
-class GroupModel:
+class GroupModel(BaseModel):
     id: int
     name: str
     clan_chat: str
@@ -59,13 +60,13 @@ class GroupModel:
 
 
 @dataclass(slots=True, init=False)
-class GroupDetailModel:
+class GroupDetailModel(BaseModel):
     group: GroupModel
     memberships: list[GroupMembershipModel]
 
 
 @dataclass(slots=True, init=False)
-class MembershipModel:
+class MembershipModel(BaseModel):
     player_id: int
     group_id: int
     role: GroupRole | None
@@ -74,25 +75,25 @@ class MembershipModel:
 
 
 @dataclass(slots=True, init=False)
-class GroupMembershipModel:
+class GroupMembershipModel(BaseModel):
     player: PlayerModel
     membership: MembershipModel
 
 
 @dataclass(slots=True, init=False)
-class PlayerMembershipModel:
+class PlayerMembershipModel(BaseModel):
     group: GroupModel
     membership: MembershipModel
 
 
-@dataclass(slots=True, init=False)
-class GroupMemberFragmentModel:
+@dataclass(slots=True)
+class GroupMemberFragmentModel(BaseModel):
     username: str
-    role: GroupRole | None
+    role: GroupRole | None = None
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresEntryModel:
+class GroupHiscoresEntryModel(BaseModel):
     player: PlayerModel
     data: (
         GroupHiscoresActivityItemModel
@@ -103,32 +104,32 @@ class GroupHiscoresEntryModel:
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresSkillItemModel:
+class GroupHiscoresSkillItemModel(BaseModel):
     rank: int
     level: int
     experience: int
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresBossItemModel:
+class GroupHiscoresBossItemModel(BaseModel):
     rank: int
     kills: int
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresActivityItemModel:
+class GroupHiscoresActivityItemModel(BaseModel):
     rank: int
     score: int
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresComputedMetricItemModel:
+class GroupHiscoresComputedMetricItemModel(BaseModel):
     rank: int
     value: int
 
 
 @dataclass(slots=True, init=False)
-class GroupStatisticsModel:
+class GroupStatisticsModel(BaseModel):
     maxed_combat_count: int
     maxed_total_count: int
     maxed_200ms_count: int

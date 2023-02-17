@@ -33,6 +33,9 @@ class BaseEnum(Enum):
     value: str  # pyright: ignore
     """The value of the enum member."""
 
+    def __str__(self) -> str:
+        return self.value
+
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
         return cls(value)

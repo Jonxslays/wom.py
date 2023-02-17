@@ -117,5 +117,5 @@ class HttpService:
             self._base_url + route.uri,
             headers=self._headers,
             params=route.params,
-            data=payload or None,
+            json=payload or None,
         )

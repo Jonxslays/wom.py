@@ -24,13 +24,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 
+from ..base import BaseModel
 from ..players import PlayerModel
 
 __all__ = ("DeltaLeaderboardEntryModel",)
 
 
 @dataclass(slots=True, init=False)
-class DeltaLeaderboardEntryModel:
+class DeltaLeaderboardEntryModel(BaseModel):
     player_id: int
     gained: int
     start_date: datetime

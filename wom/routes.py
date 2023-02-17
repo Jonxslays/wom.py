@@ -28,6 +28,7 @@ __all__ = (
     "CompiledRoute",
     "Route",
     "ASSERT_PLAYER_TYPE",
+    "CREATE_GROUP",
     "GLOBAL_DELTA_LEADERS",
     "GLOBAL_EFFICIENCY_LEADERS",
     "GLOBAL_RECORD_LEADERS",
@@ -110,3 +111,4 @@ GLOBAL_EFFICIENCY_LEADERS: Final[Route] = Route("GET", "/efficiency/leaderboard"
 GLOBAL_DELTA_LEADERS: Final[Route] = Route("GET", "/deltas/leaderboard")
 SEARCH_GROUPS: Final[Route] = Route("GET", "/groups")
 GROUP_DETAILS: Final[Route] = Route("GET", "/groups/{}")
+CREATE_GROUP: Final[Route] = Route("POST", "/groups")

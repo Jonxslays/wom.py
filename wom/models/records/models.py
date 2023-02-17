@@ -26,13 +26,14 @@ from datetime import datetime
 
 from wom import enums
 
+from ..base import BaseModel
 from ..players import PlayerModel
 
 __all__ = ("RecordModel", "RecordLeaderboardEntryModel")
 
 
 @dataclass(slots=True, init=False)
-class RecordModel:
+class RecordModel(BaseModel):
     id: int
     player_id: int
     period: enums.Period
@@ -42,6 +43,6 @@ class RecordModel:
 
 
 @dataclass(slots=True, init=False)
-class RecordLeaderboardEntryModel:
+class RecordLeaderboardEntryModel(BaseModel):
     player: PlayerModel
     record: RecordModel

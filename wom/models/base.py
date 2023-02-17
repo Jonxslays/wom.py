@@ -21,51 +21,12 @@
 
 from __future__ import annotations
 
-__all__ = (
-    "AchievementMeasure",
-    "AchievementModel",
-    "ActivityModel",
-    "BaseModel",
-    "BossModel",
-    "Country",
-    "CompetitionStatus",
-    "ComputedMetricModel",
-    "DeltaLeaderboardEntryModel",
-    "GroupDetailModel",
-    "GroupHiscoresActivityItemModel",
-    "GroupHiscoresBossItemModel",
-    "GroupHiscoresComputedMetricItemModel",
-    "GroupHiscoresEntryModel",
-    "GroupHiscoresSkillItemModel",
-    "GroupMemberFragmentModel",
-    "GroupMembershipModel",
-    "GroupModel",
-    "GroupRole",
-    "GroupStatisticsModel",
-    "HttpErrorResponse",
-    "MembershipModel",
-    "NameChangeDataModel",
-    "NameChangeDetailModel",
-    "NameChangeModel",
-    "NameChangeStatus",
-    "PlayerAchievementProgressModel",
-    "PlayerBuild",
-    "PlayerMembershipModel",
-    "PlayerModel",
-    "PlayerDetailModel",
-    "PlayerType",
-    "RecordModel",
-    "RecordLeaderboardEntryModel",
-    "SkillModel",
-    "SnapshotDataModel",
-    "SnapshotModel",
-)
+import typing as t
+from dataclasses import asdict
+from dataclasses import dataclass
 
-from .base import *
-from .competitions import *
-from .deltas import *
-from .errors import *
-from .groups import *
-from .names import *
-from .players import *
-from .records import *
+
+@dataclass(slots=True)
+class BaseModel:
+    def to_dict(self) -> dict[str, t.Any]:
+        return asdict(self)
