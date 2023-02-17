@@ -23,7 +23,12 @@ from __future__ import annotations
 
 from wom.enums import BaseEnum
 
-__all__ = ("CompetitionStatus",)
+__all__ = ("CompetitionStatus", "CompetitionType")
+
+
+class CompetitionType(BaseEnum):
+    Classic = "classic"
+    Team = "team"
 
 
 class CompetitionStatus(BaseEnum):

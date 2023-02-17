@@ -21,6 +21,21 @@
 
 from __future__ import annotations
 
-__all__ = ("CompetitionStatus",)
+__all__ = (
+    "CompetitionModel",
+    "CompetitionDetailModel",
+    "CompetitionHistoryDataPointModel",
+    "CompetitionParticipationModel",
+    "CompetitionProgressModel",
+    "CompetitionStatus",
+    "CompetitionType",
+    "CompetitionWithParticipationsModel",
+    "ParticipationModel",
+    "PlayerCompetitionStandingModel",
+    "PlayerParticipationModel",
+    "TeamModel",
+    "Top5ProgressResultModel",
+)
 
 from .enums import *
+from .models import *
