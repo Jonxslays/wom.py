@@ -33,7 +33,7 @@ InjectorT = Callable[[SessionT], SessionT]
 
 
 def parse_dependencies() -> dict[str, str]:
-    data = toml.load("pyproject.toml")["tool"]["poetry"]  # type: ignore (issue with toml)
+    data = toml.load("pyproject.toml")["tool"]["poetry"]
     deps: dict[str, str | dict[str, str]] = {
         **data["dependencies"],
         **data["group"]["dev"]["dependencies"],
@@ -115,25 +115,25 @@ def imports(session: nox.Session) -> None:
         "--extend-ignore",
         "E,F",
         "--extend-exclude",
-        "__init__.py,",
+        "__init__.py",
     )
 
 
 @nox.session(reuse_venv=True)
 def licensing(session: nox.Session) -> None:
     missing: list[Path] = []
-    files = [
+    files = (
         *Path("./wom").rglob("*.py"),
         *Path("./tests").glob("*.py"),
         *Path(".").glob("*.py"),
-    ]
+    )
 
     for path in files:
         with open(path) as f:
-            # desc = f.readline()
-            # copy = f.readline()
+            desc = f.readline()
+            copy = f.readline()
 
-            if "# wom.py -" not in f.readline() or "# Copyright (c)" not in f.readline():
+            if "# wom.py -" not in desc or "# Copyright (c)" not in copy:
                 missing.append(path)
 
     if missing:
