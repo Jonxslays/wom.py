@@ -69,7 +69,7 @@ class HttpService:
             return await response.json()
         except Exception:
             return models.HttpErrorResponse(
-                "Unable to deserialize response, the api is likely down."
+                response.status, "Unable to deserialize response, the api is likely down."
             )
 
     async def _request(
@@ -83,7 +83,8 @@ class HttpService:
 
         if not response.ok or "message" in data:
             return models.HttpErrorResponse(
-                data.get("message", "An unexpected error occurred while making the request.")
+                response.status,
+                data.get("message", "An unexpected error occurred while making the request."),
             )
 
         return data

@@ -28,4 +28,5 @@ __all__ = ("HttpErrorResponse",)
 
 @dataclass(slots=True)
 class HttpErrorResponse:
+    status: int
     message: str
