@@ -42,10 +42,4 @@ class BaseService(abc.ABC):
         self._list = list[dict[str, t.Any]]
 
     def _generate_params(self, **kwargs: t.Any) -> dict[str, t.Any]:
-        params: dict[str, t.Any] = {}
-
-        for name, value in kwargs.items():
-            if value is not None:
-                params[name] = value
-
-        return params
+        return {k: v for k, v in kwargs.items() if v is not None}

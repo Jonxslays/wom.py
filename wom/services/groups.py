@@ -22,7 +22,9 @@
 from __future__ import annotations
 
 import typing as t
+from datetime import datetime
 
+from wom import enums
 from wom import models
 from wom import result
 from wom import routes
@@ -173,3 +175,46 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_group_membership(data))
+
+    async def update_outdated_members(
+        self, id: int, verification_code: str
+    ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
+        payload = self._generate_params(verificationCode=verification_code)
+        route = routes.UPDATE_OUTDATED_MEMBERS.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+
+    async def get_group_competitions(self) -> None:
+        raise NotImplementedError("Get group competitions is not implemented yet.")
+
+    async def get_group_gains(
+        self,
+        id: int,
+        metric: enums.Metric,
+        *,
+        period: enums.Period | None = None,
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+    ) -> result.Result[list[models.DeltaLeaderboardEntryModel], models.HttpErrorResponse]:
+        params = self._generate_params(
+            limit=limit,
+            offset=offset,
+            metric=metric.value,
+            period=period.value if period else None,
+            endDate=end_date.isoformat() if end_date else None,
+            startDate=start_date.isoformat() if start_date else None,
+        )
+
+        route = routes.GROUP_GAINS.compile(id).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_delta_leaderboard_entry(d) for d in data])
