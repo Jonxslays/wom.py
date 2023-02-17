@@ -341,6 +341,22 @@ class Serializer:
 
         return group
 
+    def deserialize_membership(self, data: dict[str, t.Any]) -> models.MembershipModel:
+        membership = models.MembershipModel()
+        membership.role = models.GroupRole.from_str_maybe(data["role"])
+        membership.created_at = self._dt_from_iso(data["createdAt"])
+        membership.updated_at = self._dt_from_iso(data["updatedAt"])
+        self._set_attrs_cased(membership, data, "player_id", "group_id")
+        return membership
+
+    def deserialize_group_membership(self, data: dict[str, t.Any]) -> models.GroupMembershipModel:
+        group = models.GroupMembershipModel()
+        group.player = self.deserialize_player(data["player"])
+        group.membership = self.deserialize_membership(data)
+        return group
+
     def deserialize_group_details(self, data: dict[str, t.Any]) -> models.GroupDetailModel:
         details = models.GroupDetailModel()
+        details.group = self.deserialize_group(data)
+        details.memberships = self.gather(self.deserialize_group_membership, data["memberships"])
         return details

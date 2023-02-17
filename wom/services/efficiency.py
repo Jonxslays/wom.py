@@ -50,7 +50,7 @@ class EfficiencyService(BaseService):
         )
 
         route = routes.GLOBAL_EFFICIENCY_LEADERS.compile().with_params(params)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)

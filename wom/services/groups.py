@@ -38,7 +38,7 @@ class GroupService(BaseService):
     ) -> result.Result[list[models.GroupModel], models.HttpErrorResponse]:
         params = self._generate_params(name=name, limit=limit, offset=offset)
         route = routes.SEARCH_GROUPS.compile().with_params(params)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -49,7 +49,7 @@ class GroupService(BaseService):
         self, id: int
     ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
         route = routes.GROUP_DETAILS.compile(id)
-        data = await self._http.fetch(route, self._DICT)
+        data = await self._http.fetch(route, self._dict)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)

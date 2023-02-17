@@ -41,7 +41,7 @@ class PlayerService(BaseService):
     ) -> result.Result[list[models.PlayerModel], models.HttpErrorResponse]:
         params = self._generate_params(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -52,7 +52,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
         route = routes.UPDATE_PLAYER.compile(username)
-        data = await self._http.fetch(route, self._DICT)
+        data = await self._http.fetch(route, self._dict)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -63,7 +63,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[models.AssertPlayerTypeModel, models.HttpErrorResponse]:
         route = routes.ASSERT_PLAYER_TYPE.compile(username)
-        data = await self._http.fetch(route, self._DICT)
+        data = await self._http.fetch(route, self._dict)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -74,7 +74,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
         route = routes.PLAYER_DETAILS.compile(username)
-        data = await self._http.fetch(route, self._DICT)
+        data = await self._http.fetch(route, self._dict)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -85,7 +85,7 @@ class PlayerService(BaseService):
         self, player_id: int
     ) -> result.Result[models.PlayerDetailModel, models.HttpErrorResponse]:
         route = routes.PLAYER_DETAILS_BY_ID.compile(player_id)
-        data = await self._http.fetch(route, self._DICT)
+        data = await self._http.fetch(route, self._dict)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -96,7 +96,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[list[models.AchievementModel], models.HttpErrorResponse]:
         route = routes.PLAYER_ACHIEVEMENTS.compile(username)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -107,7 +107,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[list[models.PlayerAchievementProgressModel], models.HttpErrorResponse]:
         route = routes.PLAYER_ACHIEVEMENT_PROGRESS.compile(username)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -130,7 +130,7 @@ class PlayerService(BaseService):
 
         params = self._generate_params(status=status.value, limit=limit, offset=offset)
         route = routes.PLAYER_COMPETITION_PARTICIPATION.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -152,7 +152,7 @@ class PlayerService(BaseService):
         )
 
         route = routes.PLAYER_GAINS.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._DICT)
+        data = await self._http.fetch(route, self._dict)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -174,7 +174,7 @@ class PlayerService(BaseService):
         )
 
         route = routes.PLAYER_SNAPSHOTS.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
@@ -185,7 +185,7 @@ class PlayerService(BaseService):
         self, username: str
     ) -> result.Result[list[models.NameChangeModel], models.HttpErrorResponse]:
         route = routes.PLAYER_NAME_CHANGES.compile(username)
-        data = await self._http.fetch(route, self._LIST)
+        data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)

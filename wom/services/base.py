@@ -33,13 +33,13 @@ __all__ = ("BaseService",)
 
 
 class BaseService(abc.ABC):
-    __slots__ = ("_http", "_serializer")
+    __slots__ = ("_dict", "_list", "_http", "_serializer")
 
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
         self._serializer = serializer
-        self._DICT = dict[str, t.Any]
-        self._LIST = list[dict[str, t.Any]]
+        self._dict = dict[str, t.Any]
+        self._list = list[dict[str, t.Any]]
 
     def _generate_params(self, **kwargs: t.Any) -> dict[str, t.Any]:
         params: dict[str, t.Any] = {}
