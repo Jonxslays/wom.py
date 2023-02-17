@@ -27,7 +27,9 @@ from typing import Final
 __all__ = (
     "CompiledRoute",
     "Route",
+    "ADD_MEMBERS",
     "ASSERT_PLAYER_TYPE",
+    "CHANGE_MEMBER_ROLE",
     "CREATE_GROUP",
     "EDIT_GROUP",
     "DELETE_GROUP",
@@ -44,6 +46,7 @@ __all__ = (
     "PLAYER_NAME_CHANGES",
     "PLAYER_GAINS",
     "PLAYER_SNAPSHOTS",
+    "REMOVE_MEMBERS",
     "SEARCH_GROUPS",
     "SEARCH_NAME_CHANGES",
     "SEARCH_PLAYERS",
@@ -116,3 +119,6 @@ GROUP_DETAILS: Final[Route] = Route("GET", "/groups/{}")
 CREATE_GROUP: Final[Route] = Route("POST", "/groups")
 EDIT_GROUP: Final[Route] = Route("PUT", "/groups/{}")
 DELETE_GROUP: Final[Route] = Route("DELETE", "/groups/{}")
+ADD_MEMBERS: Final[Route] = Route("POST", "/groups/{}/members")
+REMOVE_MEMBERS: Final[Route] = Route("DELETE", "/groups/{}/members")
+CHANGE_MEMBER_ROLE: Final[Route] = Route("PUT", "/groups/{}/role")

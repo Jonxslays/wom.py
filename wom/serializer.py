@@ -357,6 +357,7 @@ class Serializer:
 
     def deserialize_group_details(self, data: dict[str, t.Any]) -> models.GroupDetailModel:
         details = models.GroupDetailModel()
+        details.verification_code = None
         details.group = self.deserialize_group(data)
         details.memberships = self.gather(self.deserialize_group_membership, data["memberships"])
         return details

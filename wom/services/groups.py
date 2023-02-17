@@ -35,6 +35,11 @@ __all__ = ("GroupService",)
 class GroupService(BaseService):
     __slots__ = ()
 
+    def _prepare_member_fragments(
+        self, members: t.Iterable[models.GroupMemberFragmentModel]
+    ) -> tuple[dict[str, t.Any], ...]:
+        return tuple({k: str(v) for k, v in m.to_dict().items() if v} for m in members)
+
     async def search_groups(
         self, name: str | None = None, limit: int | None = None, offset: int | None = None
     ) -> result.Result[list[models.GroupModel], models.HttpErrorResponse]:
@@ -71,7 +76,7 @@ class GroupService(BaseService):
             clanChat=clan_chat,
             homeworld=homeworld,
             description=description,
-            members=tuple({k: str(v) for k, v in m.to_dict().items()} for m in members),
+            members=self._prepare_member_fragments(members),
         )
 
         route = routes.CREATE_GROUP.compile()
@@ -80,7 +85,10 @@ class GroupService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_group_details(data["group"]))
+        # Verification code is only present on new group creations
+        group = self._serializer.deserialize_group_details(data["group"])
+        group.verification_code = data["verificationCode"]
+        return result.Ok(group)
 
     async def edit_group(
         self,
@@ -99,9 +107,7 @@ class GroupService(BaseService):
             homeworld=homeworld,
             description=description,
             verificationCode=verification_code,
-            members=tuple({k: str(v) for k, v in m.to_dict().items()} for m in members)
-            if members
-            else None,
+            members=self._prepare_member_fragments(members) if members else None,
         )
 
         route = routes.EDIT_GROUP.compile(id)
@@ -117,6 +123,35 @@ class GroupService(BaseService):
     ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
         payload = self._generate_params(verificationCode=verification_code)
         route = routes.DELETE_GROUP.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+
+    async def add_members(
+        self, id: int, verification_code: str, *members: models.GroupMemberFragmentModel
+    ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
+        payload = self._generate_params(
+            verificationCode=verification_code,
+            members=self._prepare_member_fragments(members),
+        )
+
+        route = routes.ADD_MEMBERS.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+
+    async def remove_members(
+        self, id: int, verification_code: str, *members: str
+    ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
+        payload = self._generate_params(verificationCode=verification_code, members=members)
+
+        route = routes.REMOVE_MEMBERS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
 
         if not data.message.startswith("Success"):

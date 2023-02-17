@@ -63,6 +63,7 @@ class GroupModel(BaseModel):
 class GroupDetailModel(BaseModel):
     group: GroupModel
     memberships: list[GroupMembershipModel]
+    verification_code: str | None
 
 
 @dataclass(slots=True, init=False)
