@@ -37,6 +37,7 @@ __all__ = (
     "GLOBAL_EFFICIENCY_LEADERS",
     "GROUP_ACHIEVEMENTS",
     "GROUP_GAINS",
+    "GROUP_HISCORES",
     "GROUP_RECORDS",
     "GLOBAL_RECORD_LEADERS",
     "GROUP_DETAILS",
@@ -130,3 +131,4 @@ UPDATE_OUTDATED_MEMBERS: Final[Route] = Route("POST", "/groups/{}/update-all")
 GROUP_GAINS: Final[Route] = Route("GET", "/groups/{}/gained")
 GROUP_ACHIEVEMENTS: Final[Route] = Route("GET", "/groups/{}/achievements")
 GROUP_RECORDS: Final[Route] = Route("GET", "/groups/{}/records")
+GROUP_HISCORES: Final[Route] = Route("GET", "/groups/{}/hiscores")

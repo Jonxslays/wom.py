@@ -80,6 +80,28 @@ class Serializer:
         self._set_attrs_cased(model, data, "name", "player_id", "threshold")
         return model
 
+    def _determine_hiscores_entry_item(
+        self, data: dict[str, t.Any]
+    ) -> (
+        models.GroupHiscoresActivityItemModel
+        | models.GroupHiscoresBossItemModel
+        | models.GroupHiscoresSkillItemModel
+        | models.GroupHiscoresComputedMetricItemModel
+    ):
+        if "experience" in data:
+            return self.deserialize_group_hiscores_skill_item(data)
+
+        if "kills" in data:
+            return self.deserialize_group_hiscores_boss_item(data)
+
+        if "score" in data:
+            return self.deserialize_group_hiscores_activity_item(data)
+
+        if "value" in data:
+            return self.deserialize_group_hiscores_computed_item(data)
+
+        raise ValueError(f"Unknown hiscores entry item: {data}")
+
     def deserialize_player(self, data: dict[str, t.Any]) -> models.PlayerModel:
         player = models.PlayerModel()
         self._set_attrs_cased(
@@ -361,3 +383,39 @@ class Serializer:
         details.group = self.deserialize_group(data)
         details.memberships = self.gather(self.deserialize_group_membership, data["memberships"])
         return details
+
+    def deserialize_group_hiscores_activity_item(
+        self, data: dict[str, t.Any]
+    ) -> models.GroupHiscoresActivityItemModel:
+        item = models.GroupHiscoresActivityItemModel()
+        self._set_attrs(item, data, "rank", "score")
+        return item
+
+    def deserialize_group_hiscores_boss_item(
+        self, data: dict[str, t.Any]
+    ) -> models.GroupHiscoresBossItemModel:
+        item = models.GroupHiscoresBossItemModel()
+        self._set_attrs(item, data, "rank", "kills")
+        return item
+
+    def deserialize_group_hiscores_skill_item(
+        self, data: dict[str, t.Any]
+    ) -> models.GroupHiscoresSkillItemModel:
+        item = models.GroupHiscoresSkillItemModel()
+        self._set_attrs(item, data, "rank", "level", "experience")
+        return item
+
+    def deserialize_group_hiscores_computed_item(
+        self, data: dict[str, t.Any]
+    ) -> models.GroupHiscoresComputedMetricItemModel:
+        item = models.GroupHiscoresComputedMetricItemModel()
+        self._set_attrs(item, data, "rank", "value")
+        return item
+
+    def deserialize_group_hiscores_entry(
+        self, data: dict[str, t.Any]
+    ) -> models.GroupHiscoresEntryModel:
+        hiscores = models.GroupHiscoresEntryModel()
+        hiscores.player = self.deserialize_player(data["player"])
+        hiscores.data = self._determine_hiscores_entry_item(data["data"])
+        return hiscores
