@@ -21,6 +21,8 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from wom import models
 from wom import result
 from wom import routes
@@ -64,14 +66,12 @@ class GroupService(BaseService):
         description: str | None = None,
         homeworld: int | None = None,
     ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
-        # payload_members = tuple(m.to_dict() for m in members)
-
         payload = self._generate_params(
             name=name,
-            members=tuple({k: str(v) for k, v in m.to_dict().items()} for m in members),
             clanChat=clan_chat,
-            description=description,
             homeworld=homeworld,
+            description=description,
+            members=tuple({k: str(v) for k, v in m.to_dict().items()} for m in members),
         )
 
         route = routes.CREATE_GROUP.compile()
@@ -81,3 +81,33 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_group_details(data["group"]))
+
+    async def edit_group(
+        self,
+        id: int,
+        verification_code: str,
+        *,
+        name: str | None = None,
+        members: t.Iterable[models.GroupMemberFragmentModel] | None = None,
+        clan_chat: str | None = None,
+        description: str | None = None,
+        homeworld: int | None = None,
+    ) -> result.Result[models.GroupDetailModel, models.HttpErrorResponse]:
+        payload = self._generate_params(
+            name=name,
+            clanChat=clan_chat,
+            homeworld=homeworld,
+            description=description,
+            verificationCode=verification_code,
+            members=tuple({k: str(v) for k, v in m.to_dict().items()} for m in members)
+            if members
+            else None,
+        )
+
+        route = routes.EDIT_GROUP.compile(id)
+        data = await self._http.fetch(route, self._dict, payload=payload)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_group_details(data))
