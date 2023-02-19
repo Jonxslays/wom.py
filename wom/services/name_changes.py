@@ -46,7 +46,7 @@ class NameChangeService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
     ) -> ResultT[list[models.NameChangeModel]]:
-        params = self._generate_params(
+        params = self._generate_map(
             username=username, status=status, limit=limit, offset=offset
         )
 
@@ -61,7 +61,7 @@ class NameChangeService(BaseService):
     async def submit_name_change(
         self, old_name: str, new_name: str
     ) -> ResultT[models.NameChangeModel]:
-        payload = self._generate_params(oldName=old_name, newName=new_name)
+        payload = self._generate_map(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()
         data = await self._http.fetch(route, self._dict, payload=payload)
 

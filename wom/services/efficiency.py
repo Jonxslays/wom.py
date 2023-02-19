@@ -47,7 +47,7 @@ class EfficiencyService(BaseService):
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
     ) -> ResultT[list[models.PlayerModel]]:
-        params = self._generate_params(
+        params = self._generate_map(
             metric="+".join(m.value for m in (metric, *metrics)),
             playerType=player_type.value if player_type else None,
             playerBuild=player_build.value if player_build else None,

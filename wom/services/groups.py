@@ -49,7 +49,7 @@ class GroupService(BaseService):
     async def search_groups(
         self, name: str | None = None, limit: int | None = None, offset: int | None = None
     ) -> ResultT[list[models.GroupModel]]:
-        params = self._generate_params(name=name, limit=limit, offset=offset)
+        params = self._generate_map(name=name, limit=limit, offset=offset)
         route = routes.SEARCH_GROUPS.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
 
@@ -75,7 +75,7 @@ class GroupService(BaseService):
         description: str | None = None,
         homeworld: int | None = None,
     ) -> ResultT[models.GroupDetailModel]:
-        payload = self._generate_params(
+        payload = self._generate_map(
             name=name,
             clanChat=clan_chat,
             homeworld=homeworld,
@@ -105,7 +105,7 @@ class GroupService(BaseService):
         description: str | None = None,
         homeworld: int | None = None,
     ) -> ResultT[models.GroupDetailModel]:
-        payload = self._generate_params(
+        payload = self._generate_map(
             name=name,
             clanChat=clan_chat,
             homeworld=homeworld,
@@ -125,7 +125,7 @@ class GroupService(BaseService):
     async def delete_group(
         self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        payload = self._generate_params(verificationCode=verification_code)
+        payload = self._generate_map(verificationCode=verification_code)
         route = routes.DELETE_GROUP.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
 
@@ -137,7 +137,7 @@ class GroupService(BaseService):
     async def add_members(
         self, id: int, verification_code: str, *members: models.GroupMemberFragmentModel
     ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
-        payload = self._generate_params(
+        payload = self._generate_map(
             verificationCode=verification_code,
             members=self._prepare_member_fragments(members),
         )
@@ -153,7 +153,7 @@ class GroupService(BaseService):
     async def remove_members(
         self, id: int, verification_code: str, *members: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        payload = self._generate_params(verificationCode=verification_code, members=members)
+        payload = self._generate_map(verificationCode=verification_code, members=members)
 
         route = routes.REMOVE_MEMBERS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
@@ -166,7 +166,7 @@ class GroupService(BaseService):
     async def change_member_role(
         self, id: int, verification_code: str, username: str, role: models.GroupRole
     ) -> ResultT[models.GroupMembershipModel]:
-        payload = self._generate_params(
+        payload = self._generate_map(
             verificationCode=verification_code, username=username, role=role.value
         )
 
@@ -181,7 +181,7 @@ class GroupService(BaseService):
     async def update_outdated_members(
         self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        payload = self._generate_params(verificationCode=verification_code)
+        payload = self._generate_map(verificationCode=verification_code)
         route = routes.UPDATE_OUTDATED_MEMBERS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
 
@@ -192,8 +192,8 @@ class GroupService(BaseService):
 
     async def get_group_competitions(
         self, id: int, *, limit: int | None = None, offset: int | None = None
-    ) -> result.Result[list[models.CompetitionModel], models.HttpErrorResponse]:
-        params = self._generate_params(limit=limit, offset=offset)
+    ) -> ResultT[list[models.CompetitionModel]]:
+        params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_COMPETITIONS.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
 
@@ -213,7 +213,7 @@ class GroupService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
     ) -> ResultT[list[models.DeltaLeaderboardEntryModel]]:
-        params = self._generate_params(
+        params = self._generate_map(
             limit=limit,
             offset=offset,
             metric=metric.value,
@@ -237,7 +237,7 @@ class GroupService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
     ) -> ResultT[list[models.AchievementModel]]:
-        params = self._generate_params(limit=limit, offset=offset)
+        params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_ACHIEVEMENTS.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
 
@@ -255,7 +255,7 @@ class GroupService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
     ) -> ResultT[list[models.RecordLeaderboardEntryModel]]:
-        params = self._generate_params(
+        params = self._generate_map(
             limit=limit,
             offset=offset,
             metric=metric.value,
@@ -278,7 +278,7 @@ class GroupService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
     ) -> ResultT[list[models.GroupHiscoresEntryModel]]:
-        params = self._generate_params(limit=limit, offset=offset, metric=metric.value)
+        params = self._generate_map(limit=limit, offset=offset, metric=metric.value)
         route = routes.GROUP_HISCORES.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
 
@@ -290,7 +290,7 @@ class GroupService(BaseService):
     async def get_group_name_changes(
         self, id: int, *, limit: int | None = None, offset: int | None = None
     ) -> ResultT[list[models.NameChangeModel]]:
-        params = self._generate_params(limit=limit, offset=offset)
+        params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_NAME_CHANGES.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
 

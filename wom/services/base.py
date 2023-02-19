@@ -41,5 +41,5 @@ class BaseService(abc.ABC):
         self._dict = dict[str, t.Any]
         self._list = list[dict[str, t.Any]]
 
-    def _generate_params(self, **kwargs: t.Any) -> dict[str, t.Any]:
+    def _generate_map(self, **kwargs: t.Any) -> dict[str, t.Any]:
         return {k: v for k, v in kwargs.items() if v is not None}

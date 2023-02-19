@@ -43,7 +43,7 @@ class PlayerService(BaseService):
     async def search_players(
         self, username: str, *, limit: int | None = None, offset: int | None = None
     ) -> ResultT[list[models.PlayerModel]]:
-        params = self._generate_params(username=username, limit=limit, offset=offset)
+        params = self._generate_map(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
 
@@ -124,7 +124,7 @@ class PlayerService(BaseService):
             "competition related endpoints are not yet implemented."
         )  # Temporary
 
-        params = self._generate_params(status=status.value, limit=limit, offset=offset)
+        params = self._generate_map(status=status.value, limit=limit, offset=offset)
         route = routes.PLAYER_COMPETITION_PARTICIPATION.compile(username).with_params(params)
         data = await self._http.fetch(route, self._list)
 
@@ -141,7 +141,7 @@ class PlayerService(BaseService):
         start_date: datetime | None = None,
         end_date: datetime | None = None,
     ) -> ResultT[models.PlayerGainsModel]:
-        params = self._generate_params(
+        params = self._generate_map(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
             endDate=end_date.isoformat() if end_date else None,
@@ -163,7 +163,7 @@ class PlayerService(BaseService):
         start_date: datetime | None = None,
         end_date: datetime | None = None,
     ) -> ResultT[list[models.SnapshotModel]]:
-        params = self._generate_params(
+        params = self._generate_map(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
             endDate=end_date.isoformat() if end_date else None,

@@ -48,7 +48,7 @@ class DeltaService(BaseService):
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
     ) -> ResultT[list[models.DeltaLeaderboardEntryModel]]:
-        params = self._generate_params(
+        params = self._generate_map(
             metric=metric.value,
             period=period.value,
             playerType=player_type.value if player_type else None,
