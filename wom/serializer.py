@@ -436,3 +436,25 @@ class Serializer:
         statistics.average_stats = self.deserialize_statistics_snapshot(data["averageStats"])
         self._set_attrs_cased(statistics, data, "maxed_total_count", "maxed_combat_count")
         return statistics
+
+    def deserialize_competition(self, data: dict[str, t.Any]) -> models.CompetitionModel:
+        competition = models.CompetitionModel()
+        competition.group = self.deserialize_group(data["group"])
+        competition.metric = enums.Metric.from_str(data["metric"])
+        competition.type = models.CompetitionType.from_str(data["type"])
+
+        self._set_attrs_cased(
+            competition,
+            data,
+            "starts_at",
+            "ends_at",
+            "created_at",
+            "updated_at",
+            transform=self._dt_from_iso,
+        )
+
+        self._set_attrs_cased(
+            competition, data, "id", "title", "group_id", "score", "participant_count"
+        )
+
+        return competition

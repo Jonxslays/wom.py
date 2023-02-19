@@ -190,9 +190,17 @@ class GroupService(BaseService):
 
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
-    async def get_group_competitions(self) -> None:
-        # TODO: Implement this when competition models are created
-        raise NotImplementedError("Get group competitions is not implemented yet.")
+    async def get_group_competitions(
+        self, id: int, *, limit: int | None = None, offset: int | None = None
+    ) -> result.Result[list[models.CompetitionModel], models.HttpErrorResponse]:
+        params = self._generate_params(limit=limit, offset=offset)
+        route = routes.GROUP_COMPETITIONS.compile(id).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_competition(c) for c in data])
 
     async def get_group_gains(
         self,
@@ -230,7 +238,6 @@ class GroupService(BaseService):
         offset: int | None = None,
     ) -> ResultT[list[models.AchievementModel]]:
         params = self._generate_params(limit=limit, offset=offset)
-
         route = routes.GROUP_ACHIEVEMENTS.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
 
