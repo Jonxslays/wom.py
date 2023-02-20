@@ -33,6 +33,7 @@ __all__ = (
     "CREATE_GROUP",
     "COMPETITION_DETAILS",
     "CREATE_COMPETITION",
+    "DELETE_COMPETITION",
     "EDIT_COMPETITION",
     "EDIT_GROUP",
     "DELETE_GROUP",
@@ -66,6 +67,7 @@ __all__ = (
     "SUBMIT_NAME_CHANGE",
     "TOP_PARTICIPANT_HISTORY",
     "UPDATE_OUTDATED_MEMBERS",
+    "UPDATE_OUTDATED_PARTICIPANTS",
     "UPDATE_PLAYER",
 )
 
@@ -153,3 +155,5 @@ COMPETITION_DETAILS: Final[Route] = Route("GET", "/competitions/{}")
 TOP_PARTICIPANT_HISTORY: Final[Route] = Route("GET", "/competitions/{}/top-history")
 CREATE_COMPETITION: Final[Route] = Route("POST", "/competitions")
 EDIT_COMPETITION: Final[Route] = Route("PUT", "/competitions/{}")
+DELETE_COMPETITION: Final[Route] = Route("DELETE", "/competitions/{}")
+UPDATE_OUTDATED_PARTICIPANTS: Final[Route] = Route("POST", "/competitions/{}/update-all")

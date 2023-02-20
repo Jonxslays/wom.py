@@ -155,9 +155,16 @@ class CompetitionService(BaseService):
         return result.Ok(self._serializer.deserialize_competition_with_participation(data))
 
     async def delete_competition(
-        self, old_name: str, new_name: str
+        self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        raise NotImplementedError
+        payload = self._generate_map(verificationCode=verification_code)
+        route = routes.DELETE_COMPETITION.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def add_participants(
         self, old_name: str, new_name: str
@@ -178,6 +185,13 @@ class CompetitionService(BaseService):
         raise NotImplementedError
 
     async def update_outdated_participants(
-        self, old_name: str, new_name: str
+        self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        raise NotImplementedError
+        payload = self._generate_map(verificationCode=verification_code)
+        route = routes.UPDATE_OUTDATED_PARTICIPANTS.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if "players are being updated" in data.message:
+            return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+
+        return result.Err(data)

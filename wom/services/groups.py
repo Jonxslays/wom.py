@@ -185,10 +185,10 @@ class GroupService(BaseService):
         route = routes.UPDATE_OUTDATED_MEMBERS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
 
-        if not data.message.startswith("Success"):
-            return result.Err(data)
+        if "players are being updated" in data.message:
+            return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        return result.Err(data)
 
     async def get_group_competitions(
         self, id: int, *, limit: int | None = None, offset: int | None = None
