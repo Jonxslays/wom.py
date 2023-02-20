@@ -39,10 +39,6 @@ class Result(t.Generic[T, E], abc.ABC):
 
     __slots__ = ("_error", "_value")
 
-    def __init__(self, value: T | None, error: E | None) -> None:
-        self._value = value
-        self._error = error
-
     def __repr__(self) -> str:
         inner = self._value if self.is_ok else self._error
         return f"{self.__class__.__name__}({inner})"
