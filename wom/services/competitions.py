@@ -23,13 +23,11 @@ from __future__ import annotations
 
 import typing as t
 
-from . import BaseService
-
 from wom import models
 from wom import result
+from wom import routes
 
-# from wom import routes
-
+from . import BaseService
 
 __all__ = ("CompetitionService",)
 
@@ -39,3 +37,56 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 class CompetitionService(BaseService):
     __slots__ = ()
+
+    async def search_competitions(
+        self, old_name: str, new_name: str
+    ) -> ResultT[list[models.CompetitionModel]]:
+        raise NotImplementedError
+
+    async def get_competition_details(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.CompetitionDetailModel]:
+        raise NotImplementedError
+
+    async def get_top_participant_history(
+        self, old_name: str, new_name: str
+    ) -> ResultT[list[models.Top5ProgressResultModel]]:
+        raise NotImplementedError
+
+    async def create_competition(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.CompetitionWithParticipationsModel]:
+        raise NotImplementedError
+
+    async def edit_competition(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.CompetitionWithParticipationsModel]:
+        raise NotImplementedError
+
+    async def delete_competition(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        raise NotImplementedError
+
+    async def add_participants(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        raise NotImplementedError
+
+    async def remove_participants(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        raise NotImplementedError
+
+    async def add_teams(self, old_name: str, new_name: str) -> ResultT[models.HttpSuccessResponse]:
+        raise NotImplementedError
+
+    async def remove_teams(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        raise NotImplementedError
+
+    async def update_outdated_participants(
+        self, old_name: str, new_name: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        raise NotImplementedError

@@ -131,3 +131,4 @@ class TeamModel(BaseModel):
 class CompetitionWithParticipationsModel(BaseModel):
     competition: CompetitionModel
     participations: list[CompetitionParticipationModel]
+    verification_code: str | None
