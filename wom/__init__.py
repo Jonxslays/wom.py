@@ -40,6 +40,17 @@ __all__ = (
     "WomError",
 )
 
+__packagename__: Final[str] = "wom.py"
+__version__: Final[str] = "0.1.0"
+__author__: Final[str] = "Jonxslays"
+__copyright__: Final[str] = "2023-present Jonxslays"
+__description__: Final[str] = "An asynchronous wrapper for the Wise Old Man API."
+__url__: Final[str] = "https://github.com/Jonxslays/wom.py"
+__docs__: Final[str] = "https://jonxslays.github.io/wom.py"
+__repository__: Final[str] = __url__
+__license__: Final[str] = "MIT"
+__git_sha__: Final[str] = "[HEAD]"
+
 from . import constants
 from . import enums
 from . import errors
@@ -51,14 +62,3 @@ from . import services
 from .client import *
 from .errors import *
 from .result import *
-
-__packagename__: Final[str] = "wom.py"
-__version__: Final[str] = "0.1.0"
-__author__: Final[str] = "Jonxslays"
-__copyright__: Final[str] = "2023-present Jonxslays"
-__description__: Final[str] = "An asynchronous wrapper for the Wise Old Man API."
-__url__: Final[str] = "https://github.com/Jonxslays/wom.py"
-__docs__: Final[str] = "https://jonxslays.github.io/wom.py"
-__repository__: Final[str] = __url__
-__license__: Final[str] = "MIT"
-__git_sha__: Final[str] = "[HEAD]"
