@@ -66,7 +66,7 @@ class CompetitionModel(BaseModel):
     created_at: datetime
     updated_at: datetime
     participant_count: int
-    group: GroupModel
+    group: GroupModel | None
 
 
 @dataclass(slots=True, init=False)
@@ -92,6 +92,13 @@ class PlayerParticipationModel(BaseModel):
 
 @dataclass(slots=True, init=False)
 class PlayerCompetitionStandingModel(BaseModel):
+    participation: PlayerParticipationModel
+    progress: CompetitionProgressModel
+    rank: int
+
+
+@dataclass(slots=True, init=False)
+class CompetitionParticipationDetailModel(BaseModel):
     participation: CompetitionParticipationModel
     progress: CompetitionProgressModel
 
@@ -99,7 +106,7 @@ class PlayerCompetitionStandingModel(BaseModel):
 @dataclass(slots=True, init=False)
 class CompetitionDetailModel(BaseModel):
     competition: CompetitionModel
-    participations: CompetitionParticipationModel
+    participations: CompetitionParticipationDetailModel
 
 
 @dataclass(slots=True, init=False)

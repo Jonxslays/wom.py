@@ -112,26 +112,53 @@ class PlayerService(BaseService):
             [self._serializer.deserialize_player_achievement_progress(p) for p in data]
         )
 
-    async def get_player_competition_participation(
+    async def get_player_competition_participations(
         self,
         username: str,
         *,
         limit: int | None = None,
         offset: int | None = None,
         status: models.CompetitionStatus | None = None,
-    ) -> ResultT[None]:
-        raise NotImplementedError(
-            "competition related endpoints are not yet implemented."
-        )  # Temporary
+    ) -> ResultT[list[models.PlayerParticipationModel]]:
+        params = self._generate_map(
+            status=status.value if status else None, limit=limit, offset=offset
+        )
 
-        params = self._generate_map(status=status.value, limit=limit, offset=offset)
         route = routes.PLAYER_COMPETITION_PARTICIPATION.compile(username).with_params(params)
         data = await self._http.fetch(route, self._list)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(None)  # TODO: deserialize the model once its created
+        return result.Ok([self._serializer.deserialize_player_participation(p) for p in data])
+
+    async def get_player_competition_standings(
+        self,
+        username: str,
+        status: models.CompetitionStatus,
+    ) -> ResultT[list[models.PlayerCompetitionStandingModel]]:
+        params = self._generate_map(status=status.value)
+        route = routes.PLAYER_COMPETITION_STANDINGS.compile(username).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(
+            [self._serializer.deserialize_player_competition_standing(s) for s in data]
+        )
+
+    async def get_player_group_memberships(
+        self, username: str, *, limit: int | None = None, offset: int | None = None
+    ) -> ResultT[list[models.PlayerMembershipModel]]:
+        params = self._generate_map(limit=limit, offset=offset)
+        route = routes.PLAYER_GROUP_MEMBERSHIPS.compile(username).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_player_membership(m) for m in data])
 
     async def get_player_gains(
         self,
@@ -154,6 +181,25 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_player_gains(data))
+
+    async def get_player_records(
+        self,
+        username: str,
+        *,
+        period: enums.Period | None = None,
+        metric: enums.Metric | None = None,
+    ) -> ResultT[list[models.RecordModel]]:
+        params = self._generate_map(
+            period=period.value if period else None, metric=metric.value if metric else None
+        )
+
+        route = routes.PLAYER_RECORDS.compile(username).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_record(r) for r in data])
 
     async def get_player_snapshots(
         self,

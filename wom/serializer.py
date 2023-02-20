@@ -439,9 +439,9 @@ class Serializer:
 
     def deserialize_competition(self, data: dict[str, t.Any]) -> models.CompetitionModel:
         competition = models.CompetitionModel()
-        competition.group = self.deserialize_group(data["group"])
         competition.metric = enums.Metric.from_str(data["metric"])
         competition.type = models.CompetitionType.from_str(data["type"])
+        competition.group = self.deserialize_group(g) if (g := data.get("group")) else None
 
         self._set_attrs_cased(
             competition,
@@ -458,3 +458,50 @@ class Serializer:
         )
 
         return competition
+
+    def deserialize_participation(self, data: dict[str, t.Any]) -> models.ParticipationModel:
+        participation = models.ParticipationModel()
+        participation.created_at = self._dt_from_iso(data["createdAt"])
+        participation.updated_at = self._dt_from_iso(data["updatedAt"])
+        self._set_attrs_cased(participation, data, "player_id", "competition_id", "team_name")
+        return participation
+
+    def deserialize_player_participation(
+        self, data: dict[str, t.Any]
+    ) -> models.PlayerParticipationModel:
+        player_participation = models.PlayerParticipationModel()
+        player_participation.competition = self.deserialize_competition(data["competition"])
+        player_participation.participation = self.deserialize_participation(data)
+        return player_participation
+
+    def deserialize_competition_participation(
+        self, data: dict[str, t.Any]
+    ) -> models.CompetitionParticipationModel:
+        competition_participation = models.CompetitionParticipationModel()
+        competition_participation.player = self.deserialize_player(data["player"])
+        competition_participation.participation = self.deserialize_participation(data)
+        return competition_participation
+
+    def deserialize_competition_progress(
+        self, data: dict[str, t.Any]
+    ) -> models.CompetitionProgressModel:
+        progress = models.CompetitionProgressModel()
+        self._set_attrs(progress, data, "start", "end", "gained")
+        return progress
+
+    def deserialize_player_competition_standing(
+        self, data: dict[str, t.Any]
+    ) -> models.PlayerCompetitionStandingModel:
+        standing = models.PlayerCompetitionStandingModel()
+        standing.rank = data["rank"]
+        standing.participation = self.deserialize_player_participation(data)
+        standing.progress = self.deserialize_competition_progress(data["progress"])
+        return standing
+
+    def deserialize_player_membership(
+        self, data: dict[str, t.Any]
+    ) -> models.PlayerMembershipModel:
+        player_membership = models.PlayerMembershipModel()
+        player_membership.group = self.deserialize_group(data["group"])
+        player_membership.membership = self.deserialize_membership(data)
+        return player_membership

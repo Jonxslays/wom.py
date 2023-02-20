@@ -48,8 +48,10 @@ __all__ = (
     "PLAYER_ACHIEVEMENT_PROGRESS",
     "PLAYER_ACHIEVEMENTS",
     "PLAYER_COMPETITION_PARTICIPATION",
+    "PLAYER_COMPETITION_STANDINGS",
     "PLAYER_DETAILS",
     "PLAYER_DETAILS_BY_ID",
+    "PLAYER_GROUP_MEMBERSHIPS",
     "PLAYER_NAME_CHANGES",
     "PLAYER_GAINS",
     "PLAYER_SNAPSHOTS",
@@ -113,7 +115,10 @@ PLAYER_DETAILS_BY_ID: Final[Route] = Route("GET", "/players/id/{}")
 PLAYER_ACHIEVEMENTS: Final[Route] = Route("GET", "/players/{}/achievements")
 PLAYER_ACHIEVEMENT_PROGRESS: Final[Route] = Route("GET", "/players/{}/achievements/progress")
 PLAYER_COMPETITION_PARTICIPATION: Final[Route] = Route("GET", "/players/{}/competitions")
+PLAYER_COMPETITION_STANDINGS: Final[Route] = Route("GET", "/players/{}/competitions/standings")
+PLAYER_GROUP_MEMBERSHIPS: Final[Route] = Route("GET", "/players/{}/groups")
 PLAYER_GAINS: Final[Route] = Route("GET", "/players/{}/gained")
+PLAYER_RECORDS: Final[Route] = Route("GET", "/players/{}/records")
 PLAYER_SNAPSHOTS: Final[Route] = Route("GET", "/players/{}/snapshots")
 SEARCH_NAME_CHANGES: Final[Route] = Route("GET", "/names")
 SUBMIT_NAME_CHANGE: Final[Route] = Route("POST", "/names")
