@@ -122,7 +122,7 @@ class Top5ProgressResultModel(BaseModel):
     history: list[CompetitionHistoryDataPointModel]
 
 
-@dataclass(slots=True, init=False)
+@dataclass(slots=True)
 class TeamModel(BaseModel):
     name: str
     participants: list[str]

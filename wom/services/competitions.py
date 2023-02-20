@@ -190,13 +190,31 @@ class CompetitionService(BaseService):
 
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
-    async def add_teams(self, old_name: str, new_name: str) -> ResultT[models.HttpSuccessResponse]:
-        raise NotImplementedError
+    async def add_teams(
+        self, id: int, verification_code: str, *teams: models.TeamModel
+    ) -> ResultT[models.HttpSuccessResponse]:
+        payload = self._generate_map(
+            verificationCode=verification_code, teams=[t.to_dict() for t in teams]
+        )
+        route = routes.ADD_TEAMS.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def remove_teams(
-        self, old_name: str, new_name: str
+        self, id: int, verification_code: str, *teams: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        raise NotImplementedError
+        payload = self._generate_map(verificationCode=verification_code, teamNames=teams)
+        route = routes.REMOVE_TEAMS.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def update_outdated_participants(
         self, id: int, verification_code: str
