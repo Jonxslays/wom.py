@@ -39,6 +39,6 @@ from .deltas import *
 from .efficiency import *
 from .groups import *
 from .http import *
-from .name_changes import *
+from .names import *
 from .players import *
 from .records import *
