@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import typing as t
 
+from wom import enums
 from wom import models
 from wom import result
 from wom import routes
@@ -39,19 +40,55 @@ class CompetitionService(BaseService):
     __slots__ = ()
 
     async def search_competitions(
-        self, old_name: str, new_name: str
+        self,
+        *,
+        title: str | None = None,
+        type: models.CompetitionType | None = None,
+        status: models.CompetitionStatus | None = None,
+        metric: enums.Metric | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
     ) -> ResultT[list[models.CompetitionModel]]:
-        raise NotImplementedError
+        params = self._generate_map(
+            title=title,
+            limit=limit,
+            offset=offset,
+            type=type.value if type else None,
+            status=status.value if status else None,
+            metric=metric.value if metric else None,
+        )
+
+        route = routes.SEARCH_COMPETITIONS.compile().with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_competition(c) for c in data])
 
     async def get_competition_details(
-        self, old_name: str, new_name: str
+        self, id: int, *, metric: enums.Metric | None = None
     ) -> ResultT[models.CompetitionDetailModel]:
-        raise NotImplementedError
+        params = self._generate_map(metric=metric.value if metric else None)
+        route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
+        data = await self._http.fetch(route, self._dict)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_competition_details(data))
 
     async def get_top_participant_history(
-        self, old_name: str, new_name: str
+        self, id: int, *, metric: enums.Metric | None = None
     ) -> ResultT[list[models.Top5ProgressResultModel]]:
-        raise NotImplementedError
+        params = self._generate_map(metric=metric.value if metric else None)
+        route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_top5_progress_result(r) for r in data])
 
     async def create_competition(
         self, old_name: str, new_name: str

@@ -31,6 +31,7 @@ __all__ = (
     "ASSERT_PLAYER_TYPE",
     "CHANGE_MEMBER_ROLE",
     "CREATE_GROUP",
+    "COMPETITION_DETAILS",
     "EDIT_GROUP",
     "DELETE_GROUP",
     "GLOBAL_DELTA_LEADERS",
@@ -56,10 +57,12 @@ __all__ = (
     "PLAYER_GAINS",
     "PLAYER_SNAPSHOTS",
     "REMOVE_MEMBERS",
+    "SEARCH_COMPETITIONS",
     "SEARCH_GROUPS",
     "SEARCH_NAME_CHANGES",
     "SEARCH_PLAYERS",
     "SUBMIT_NAME_CHANGE",
+    "TOP_PARTICIPANT_HISTORY",
     "UPDATE_OUTDATED_MEMBERS",
     "UPDATE_PLAYER",
 )
@@ -143,3 +146,6 @@ GROUP_HISCORES: Final[Route] = Route("GET", "/groups/{}/hiscores")
 GROUP_NAME_CHANGES: Final[Route] = Route("GET", "/groups/{}/name-changes")
 GROUP_STATISTICS: Final[Route] = Route("GET", "/groups/{}/statistics")
 GROUP_COMPETITIONS: Final[Route] = Route("GET", "/groups/{}/competitions")
+SEARCH_COMPETITIONS: Final[Route] = Route("GET", "/competitions")
+COMPETITION_DETAILS: Final[Route] = Route("GET", "/competitions/{}")
+TOP_PARTICIPANT_HISTORY: Final[Route] = Route("GET", "/competitions/{}/top-history")

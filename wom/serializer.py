@@ -471,7 +471,7 @@ class Serializer:
     ) -> models.PlayerParticipationModel:
         player_participation = models.PlayerParticipationModel()
         player_participation.competition = self.deserialize_competition(data["competition"])
-        player_participation.participation = self.deserialize_participation(data)
+        player_participation.data = self.deserialize_participation(data)
         return player_participation
 
     def deserialize_competition_participation(
@@ -479,7 +479,7 @@ class Serializer:
     ) -> models.CompetitionParticipationModel:
         competition_participation = models.CompetitionParticipationModel()
         competition_participation.player = self.deserialize_player(data["player"])
-        competition_participation.participation = self.deserialize_participation(data)
+        competition_participation.data = self.deserialize_participation(data)
         return competition_participation
 
     def deserialize_competition_progress(
@@ -505,3 +505,41 @@ class Serializer:
         player_membership.group = self.deserialize_group(data["group"])
         player_membership.membership = self.deserialize_membership(data)
         return player_membership
+
+    def deserialize_competition_details(
+        self, data: dict[str, t.Any]
+    ) -> models.CompetitionDetailModel:
+        details = models.CompetitionDetailModel()
+        details.competition = self.deserialize_competition(data)
+        details.participations = self.gather(
+            self.deserialize_competition_participation_detail, data["participations"]
+        )
+
+        return details
+
+    def deserialize_competition_participation_detail(
+        self, data: dict[str, t.Any]
+    ) -> models.CompetitionParticipationDetailModel:
+        participation_details = models.CompetitionParticipationDetailModel()
+        participation_details.participation = self.deserialize_competition_participation(data)
+        participation_details.progress = self.deserialize_competition_progress(data["progress"])
+        return participation_details
+
+    def deserialize_competition_history_data_point(
+        self, data: dict[str, t.Any]
+    ) -> models.CompetitionHistoryDataPointModel:
+        datapoint = models.CompetitionHistoryDataPointModel()
+        datapoint.date = self._dt_from_iso(data["date"])
+        datapoint.value = data["value"]
+        return datapoint
+
+    def deserialize_top5_progress_result(
+        self, data: dict[str, t.Any]
+    ) -> models.Top5ProgressResultModel:
+        progress = models.Top5ProgressResultModel()
+        progress.player = self.deserialize_player(data["player"])
+        progress.history = self.gather(
+            self.deserialize_competition_history_data_point, data["history"]
+        )
+
+        return progress

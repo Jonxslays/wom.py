@@ -35,6 +35,7 @@ __all__ = (
     "CompetitionModel",
     "CompetitionDetailModel",
     "CompetitionHistoryDataPointModel",
+    "CompetitionParticipationDetailModel",
     "CompetitionParticipationModel",
     "CompetitionProgressModel",
     "CompetitionWithParticipationsModel",
@@ -80,13 +81,13 @@ class ParticipationModel(BaseModel):
 
 @dataclass(slots=True, init=False)
 class CompetitionParticipationModel(BaseModel):
-    participation: ParticipationModel
+    data: ParticipationModel
     player: PlayerModel
 
 
 @dataclass(slots=True, init=False)
 class PlayerParticipationModel(BaseModel):
-    participation: ParticipationModel
+    data: ParticipationModel
     competition: CompetitionModel
 
 
@@ -106,7 +107,7 @@ class CompetitionParticipationDetailModel(BaseModel):
 @dataclass(slots=True, init=False)
 class CompetitionDetailModel(BaseModel):
     competition: CompetitionModel
-    participations: CompetitionParticipationDetailModel
+    participations: list[CompetitionParticipationDetailModel]
 
 
 @dataclass(slots=True, init=False)
@@ -118,7 +119,7 @@ class CompetitionHistoryDataPointModel(BaseModel):
 @dataclass(slots=True, init=False)
 class Top5ProgressResultModel(BaseModel):
     player: PlayerModel
-    history: CompetitionHistoryDataPointModel
+    history: list[CompetitionHistoryDataPointModel]
 
 
 @dataclass(slots=True, init=False)

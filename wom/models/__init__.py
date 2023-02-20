@@ -31,6 +31,7 @@ __all__ = (
     "CompetitionModel",
     "CompetitionDetailModel",
     "CompetitionHistoryDataPointModel",
+    "CompetitionParticipationDetailModel",
     "CompetitionParticipationModel",
     "CompetitionProgressModel",
     "CompetitionStatus",
