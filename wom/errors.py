@@ -21,10 +21,7 @@
 
 from __future__ import annotations
 
-__all__ = (
-    "UnwrapError",
-    "WomError",
-)
+__all__ = ("UnwrapError", "WomError")
 
 
 class WomError(Exception):
@@ -32,7 +29,12 @@ class WomError(Exception):
 
 
 class UnwrapError(WomError):
-    """Raised when calling `unwrap` or `unwrap_err` incorrectly."""
+    """Raised when calling :func:`~wom.result.Result.unwrap` or
+    :func:`~wom.result.Result.unwrap_err` incorrectly.
+
+    Args:
+        message: The error message.
+    """
 
     def __init__(self, message: str) -> None:
         super().__init__(f"Unwrap failed: {message}")

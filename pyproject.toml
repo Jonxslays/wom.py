@@ -33,24 +33,24 @@ classifiers = [
 wompy = "wom._cli:info"
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = ">=3.8"
 aiohttp = "==3.8.4"
 
 [tool.poetry.group.dev.dependencies]
 black = "==23.1.0"
 coverage = "==7.1.0"
 flake8 = { version = "==6.0.0", python = ">=3.8.1" }
-isort = { version = "==5.12.0", python = ">=3.8.0" }
-len8 = { version = "==0.7.3.post0", python = ">=3.6.0,<3.12" }
+isort = "==5.12.0"
+len8 = { version = "==0.7.3.post0", python = "<3.12" }
+mkdocs-include-markdown-plugin = { version = "==4.0.3", python = "<3.12" }
+mkdocs-material = "==9.0.13"
+mkdocstrings =  { version = "==0.20.0", extras = ["python"] }
 mypy = "==1.0.0"
 nox = "==2022.11.21"
 pyright = "==1.1.293"
 pytest = "==7.2.1"
 pytest-asyncio = "==0.20.3"
 pytest-testdox = "==3.0.1"
-sphinx = { version = "==6.1.3", python = ">=3.8.0" }
-sphinx-rtd-dark-mode = "==1.2.4"
-sphinx-rtd-theme = "==1.2.0"
 types-toml = "==0.10.8.3"
 toml = "==0.10.2"
 

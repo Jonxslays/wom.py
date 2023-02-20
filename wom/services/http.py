@@ -35,6 +35,8 @@ T = t.TypeVar("T")
 
 
 class HttpService:
+    """The HTTP service used to make requests to the api."""
+
     __slots__ = ("_base_url", "_headers", "_method_mapping", "_session")
 
     def __init__(

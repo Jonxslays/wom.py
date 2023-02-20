@@ -30,18 +30,32 @@ T = t.TypeVar("T", bound="BaseEnum")
 class BaseEnum(Enum):
     """The base enum all library enums inherit from."""
 
-    value: str  # pyright: ignore
-    """The value of the enum member."""
-
     def __str__(self) -> str:
-        return self.value
+        return self.value  # type: ignore[no-any-return]
 
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
+        """Generate this enum from the given value.
+
+        Args:
+            value: The value to generate from.
+
+        Returns:
+            The generated enum.
+        """
         return cls(value)
 
     @classmethod
     def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
+        """Attempt to generate this enum from the given value.
+
+        Args:
+            value: The value to generate from.
+
+        Returns:
+            The generated enum or `None` if the value was not a valid
+            enum variant.
+        """
         try:
             return cls(value)
         except ValueError:
@@ -51,11 +65,10 @@ class BaseEnum(Enum):
 class Metric(BaseEnum):
     """Represents a metric, this enum has no attributes itself.
 
-    Will always be one of:
-        - `Activity`
-        - `Boss`
-        - `ComputedMetric`
-        - `Skill`
+    .. note::
+
+        Will always be one of :obj:`Activity`, :obj:`Boss`,
+        :obj:`ComputedMetric`, or :obj:`Skill`.
     """
 
     @classmethod
@@ -94,6 +107,8 @@ class Metric(BaseEnum):
 
 
 class Period(BaseEnum):
+    """A period of time used by the API."""
+
     FiveMins = "five_min"
     Day = "day"
     Week = "week"
@@ -102,6 +117,8 @@ class Period(BaseEnum):
 
 
 class Skill(Metric):
+    """Skills from OSRS."""
+
     Overall = "overall"
     Attack = "attack"
     Defence = "defence"
@@ -129,6 +146,8 @@ class Skill(Metric):
 
 
 class Activity(Metric):
+    """Activities from OSRS."""
+
     LeaguePoints = "league_points"
     BountyHunterHunter = "bounty_hunter_hunter"
     BountyHunterRogue = "bounty_hunter_rogue"
@@ -146,6 +165,8 @@ class Activity(Metric):
 
 
 class Boss(Metric):
+    """Bosses from OSRS."""
+
     AbyssalSire = "abyssal_sire"
     AlchemicalHydra = "alchemical_hydra"
     BarrowsChests = "barrows_chests"
@@ -200,9 +221,9 @@ class Boss(Metric):
 
 
 class ComputedMetric(Metric):
-    """A metric that is computed."""
+    """A metric that is computed, i.e. efficient hours played and
+    bossed.
+    """
 
     Ehp = "ehp"
-    """Efficient hours played."""
     Ehb = "ehb"
-    """Efficient hours bossed."""

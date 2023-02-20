@@ -19,6 +19,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""This module contains the [`Result`][wom.Result] variants returned by all
+[`Client`][wom.Client] calls.
+"""
+
 from __future__ import annotations
 
 import abc
@@ -33,16 +37,20 @@ E = t.TypeVar("E")
 
 
 class Result(t.Generic[T, E], abc.ABC):
-    """Represents a potential `Ok` or `Err` result.
-    This class cannot be instantiated, only its children can be.
+    """Represents a potential [`Ok`][wom.Ok] or [`Err`][wom.Err] result.
 
-    ## Example
-    ```py
-    if result.is_ok:
-        print(result.unwrap())
-    else:
-        print(result.unwrap_err())
-    ```
+    !!! note
+
+        This class cannot be instantiated, only its children can be.
+
+    ??? Example
+
+        ```py
+        if result.is_ok:
+            print(result.unwrap())
+        else:
+            print(result.unwrap_err())
+        ```
     """
 
     __slots__ = ("_error", "_value")
@@ -59,12 +67,12 @@ class Result(t.Generic[T, E], abc.ABC):
     @property
     @abc.abstractmethod
     def is_ok(self) -> bool:
-        """`True` if this result is the `Ok` variant."""
+        """`True` if this result is the :obj:`Ok` variant."""
 
     @property
     @abc.abstractmethod
     def is_err(self) -> bool:
-        """`True` if this result is the `Err` variant."""
+        """`True` if this result is the :obj:`Err` variant."""
 
     @abc.abstractmethod
     def unwrap(self) -> T:
@@ -74,8 +82,8 @@ class Result(t.Generic[T, E], abc.ABC):
             `T`: The unwrapped value.
 
         Raises:
-            `errors.UnwrapError`: If the result was an `Err`,
-                and not `Ok`.
+            `UnwrapError`: If the result was an :obj:`Err`,
+                and not :obj:`Ok`.
         """
 
     @abc.abstractmethod
@@ -86,14 +94,14 @@ class Result(t.Generic[T, E], abc.ABC):
             `E`: The unwrapped error.
 
         Raises:
-            `errors.UnwrapError`: If the result was an `Ok`,
-                and not an `Err`.
+            `UnwrapError`: If the result was an :obj:`Ok`,
+                and not an :obj:`Err`.
         """
 
 
 @t.final
 class Ok(Result[T, E]):
-    """The `Ok` variant of a `Result`."""
+    """The [`Ok`][wom.Ok] variant of a [`Result`][wom.Result]."""
 
     __slots__ = ()
 
@@ -117,7 +125,7 @@ class Ok(Result[T, E]):
 
 @t.final
 class Err(Result[T, E]):
-    """The `Err` variant of a `Result`."""
+    """The [`Err`][wom.Err] variant of a [`Result`][wom.Result]."""
 
     __slots__ = ()
 

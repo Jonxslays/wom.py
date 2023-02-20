@@ -2,57 +2,10 @@
 
 An asynchronous wrapper for the [Wise Old Man API](https://docs.wiseoldman.net/).
 
-
-
 ## Disclaimer
 
 The library is in early development, and as such features or exposed interfaces
-may change at any time.
-
-Thanks for following the progress!
-
----
-
-### TODO
-
-<div class="todolist" after=>
-<div class="todocolumn">
-
-<details>
-<summary> :heavy_check_mark: Complete</summary>
-
-- [x] Global models
-- [x] Record models
-- [x] Record endpoints
-- [x] Player models
-- [x] Player endpoints
-- [x] Name change models
-- [x] Name change endpoints
-- [x] Efficiency endpoints
-- [x] Delta models
-- [x] Delta endpoints
-- [x] Group models
-- [x] Group endpoints
-- [x] Competition models
-
-</details>
-</div>
-
-<div class="todocolumn">
-
-<details>
-<summary> :x: Incomplete</summary>
-
-- [ ] Competition endpoints
-- [ ] Write tests
-- [ ] Write docs
-
-</details>
-
-</div>
-</div>
-
----
+may change at any time. Thanks for following the progress!
 
 ## What is Wise Old Man
 

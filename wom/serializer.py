@@ -35,6 +35,8 @@ BaseAchievementT = t.TypeVar("BaseAchievementT", bound=models.BaseAchievementMod
 
 
 class Serializer:
+    """Deserializes JSON data into wom.py model classes."""
+
     __slots__ = ()
 
     def _dt_from_iso(self, timestamp: str) -> datetime:
@@ -103,6 +105,13 @@ class Serializer:
         raise ValueError(f"Unknown hiscores entry item: {data}")
 
     def deserialize_player(self, data: dict[str, t.Any]) -> models.PlayerModel:
+        """Deserializes into a player model.
+
+        Args:
+            data: The json payload.
+
+        Returns:
+            The requested player model."""
         player = models.PlayerModel()
         self._set_attrs_cased(
             player,
