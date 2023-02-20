@@ -32,6 +32,8 @@ __all__ = (
     "CHANGE_MEMBER_ROLE",
     "CREATE_GROUP",
     "COMPETITION_DETAILS",
+    "CREATE_COMPETITION",
+    "EDIT_COMPETITION",
     "EDIT_GROUP",
     "DELETE_GROUP",
     "GLOBAL_DELTA_LEADERS",
@@ -149,3 +151,5 @@ GROUP_COMPETITIONS: Final[Route] = Route("GET", "/groups/{}/competitions")
 SEARCH_COMPETITIONS: Final[Route] = Route("GET", "/competitions")
 COMPETITION_DETAILS: Final[Route] = Route("GET", "/competitions/{}")
 TOP_PARTICIPANT_HISTORY: Final[Route] = Route("GET", "/competitions/{}/top-history")
+CREATE_COMPETITION: Final[Route] = Route("POST", "/competitions")
+EDIT_COMPETITION: Final[Route] = Route("PUT", "/competitions/{}")

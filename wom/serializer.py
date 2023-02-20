@@ -543,3 +543,21 @@ class Serializer:
         )
 
         return progress
+
+    def deserialize_competition_with_participation(
+        self, data: dict[str, t.Any]
+    ) -> models.CompetitionWithParticipationsModel:
+        model = models.CompetitionWithParticipationsModel()
+        model.verification_code = data.get("verificationCode")
+        model.competition = self.deserialize_competition(data)
+
+        # TODO: Remove this hack when this PR gets merged
+        # https://github.com/wise-old-man/wise-old-man/pull/1081
+        participations = data.get("participations")
+        model.participations = (
+            self.gather(self.deserialize_competition_participation, participations)
+            if participations
+            else []
+        )
+
+        return model

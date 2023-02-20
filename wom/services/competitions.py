@@ -22,6 +22,7 @@
 from __future__ import annotations
 
 import typing as t
+from datetime import datetime
 
 from wom import enums
 from wom import models
@@ -91,14 +92,67 @@ class CompetitionService(BaseService):
         return result.Ok([self._serializer.deserialize_top5_progress_result(r) for r in data])
 
     async def create_competition(
-        self, old_name: str, new_name: str
+        self,
+        title: str,
+        metric: enums.Metric,
+        starts_at: datetime,
+        ends_at: datetime,
+        *,
+        group_id: int | None = None,
+        group_verification_code: str | None = None,
+        teams: list[models.TeamModel] | None = None,
+        participants: list[str] | None = None,
     ) -> ResultT[models.CompetitionWithParticipationsModel]:
-        raise NotImplementedError
+        payload = self._generate_map(
+            title=title,
+            teams=teams,
+            groupId=group_id,
+            participants=participants,
+            endsAt=ends_at.isoformat(),
+            startsAt=starts_at.isoformat(),
+            metric=metric.value if metric else None,
+            groupVerificationCode=group_verification_code,
+        )
+
+        route = routes.CREATE_COMPETITION.compile()
+        data = await self._http.fetch(route, self._dict, payload=payload)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(
+            self._serializer.deserialize_competition_with_participation(data["competition"])
+        )
 
     async def edit_competition(
-        self, old_name: str, new_name: str
+        self,
+        id: int,
+        verification_code: str,
+        *,
+        title: str | None = None,
+        metric: enums.Metric | None = None,
+        starts_at: datetime | None = None,
+        ends_at: datetime | None = None,
+        teams: list[models.TeamModel] | None = None,
+        participants: list[str] | None = None,
     ) -> ResultT[models.CompetitionWithParticipationsModel]:
-        raise NotImplementedError
+        payload = self._generate_map(
+            title=title,
+            teams=teams,
+            participants=participants,
+            startsAt=starts_at.isoformat() if starts_at else None,
+            endsAt=ends_at.isoformat() if ends_at else None,
+            metric=metric.value if metric else None,
+            verificationCode=verification_code,
+        )
+
+        route = routes.EDIT_COMPETITION.compile(id)
+        data = await self._http.fetch(route, self._dict, payload=payload)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(self._serializer.deserialize_competition_with_participation(data))
 
     async def delete_competition(
         self, old_name: str, new_name: str
