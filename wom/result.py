@@ -35,6 +35,14 @@ E = t.TypeVar("E")
 class Result(t.Generic[T, E], abc.ABC):
     """Represents a potential `Ok` or `Err` result.
     This class cannot be instantiated, only its children can be.
+
+    ## Example
+    ```py
+    if result.is_ok:
+        print(result.unwrap())
+    else:
+        print(result.unwrap_err())
+    ```
     """
 
     __slots__ = ("_error", "_value")
