@@ -167,14 +167,28 @@ class CompetitionService(BaseService):
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def add_participants(
-        self, old_name: str, new_name: str
+        self, id: int, verification_code: str, *participants: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        raise NotImplementedError
+        payload = self._generate_map(verificationCode=verification_code, participants=participants)
+        route = routes.ADD_PARTICIPANTS.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def remove_participants(
-        self, old_name: str, new_name: str
+        self, id: int, verification_code: str, *participants: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        raise NotImplementedError
+        payload = self._generate_map(verificationCode=verification_code, participants=participants)
+        route = routes.REMOVE_PARTICIPANTS.compile(id)
+        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+
+        if not data.message.startswith("Success"):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def add_teams(self, old_name: str, new_name: str) -> ResultT[models.HttpSuccessResponse]:
         raise NotImplementedError

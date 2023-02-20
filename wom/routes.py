@@ -28,6 +28,7 @@ __all__ = (
     "CompiledRoute",
     "Route",
     "ADD_MEMBERS",
+    "ADD_PARTICIPANTS",
     "ASSERT_PLAYER_TYPE",
     "CHANGE_MEMBER_ROLE",
     "CREATE_GROUP",
@@ -60,6 +61,7 @@ __all__ = (
     "PLAYER_GAINS",
     "PLAYER_SNAPSHOTS",
     "REMOVE_MEMBERS",
+    "REMOVE_PARTICIPANTS",
     "SEARCH_COMPETITIONS",
     "SEARCH_GROUPS",
     "SEARCH_NAME_CHANGES",
@@ -157,3 +159,5 @@ CREATE_COMPETITION: Final[Route] = Route("POST", "/competitions")
 EDIT_COMPETITION: Final[Route] = Route("PUT", "/competitions/{}")
 DELETE_COMPETITION: Final[Route] = Route("DELETE", "/competitions/{}")
 UPDATE_OUTDATED_PARTICIPANTS: Final[Route] = Route("POST", "/competitions/{}/update-all")
+ADD_PARTICIPANTS: Final[Route] = Route("POST", "/competitions/{}/participants")
+REMOVE_PARTICIPANTS: Final[Route] = Route("DELETE", "/competitions/{}/participants")
