@@ -25,7 +25,7 @@ Thanks for following the progress!
 - [x] Record models
 - [x] Record endpoints
 - [x] Player models
-- [x] Player endpoints (mostly)
+- [x] Player endpoints
 - [x] Name change models
 - [x] Name change endpoints
 - [x] Efficiency endpoints
