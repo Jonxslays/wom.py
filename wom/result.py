@@ -47,6 +47,11 @@ class Result(t.Generic[T, E], abc.ABC):
 
     __slots__ = ("_error", "_value")
 
+    def __init__(self, value: T, error: E) -> None:
+        # This is really only here because mypy cant infer from slots
+        self._value = value
+        self._error = error
+
     def __repr__(self) -> str:
         inner = self._value if self.is_ok else self._error
         return f"{self.__class__.__name__}({inner})"
@@ -104,7 +109,7 @@ class Ok(Result[T, E]):
         return False
 
     def unwrap(self) -> T:
-        return self._value  # type: ignore
+        return self._value
 
     def unwrap_err(self) -> E:
         raise errors.UnwrapError(f"Called unwrap error on an non error value - {self._value}")
@@ -131,4 +136,4 @@ class Err(Result[T, E]):
         raise errors.UnwrapError(f"Called unwrap on an error value - {self._error}")
 
     def unwrap_err(self) -> E:
-        return self._error  # type: ignore
+        return self._error

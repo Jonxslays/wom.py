@@ -46,10 +46,7 @@ class NameChangeService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
     ) -> ResultT[list[models.NameChangeModel]]:
-        params = self._generate_map(
-            username=username, status=status, limit=limit, offset=offset
-        )
-
+        params = self._generate_map(username=username, status=status, limit=limit, offset=offset)
         route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
 

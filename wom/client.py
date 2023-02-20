@@ -32,6 +32,8 @@ ServiceT = t.TypeVar("ServiceT")
 
 
 class Client:
+    """A client used for interacting with the Wise Old Man API."""
+
     __slots__ = (
         "_competitions",
         "_deltas",
