@@ -21,6 +21,30 @@
 
 """This module contains the [`Result`][wom.Result] variants returned by all
 [`Client`][wom.Client] calls.
+
+!!! success "Correct usage"
+
+    ```py
+    client = wom.Client()
+
+    result = await client.players.update_player("Jonxslays")
+
+    if result.is_ok:
+        print(result.unwrap())
+    else:
+        print(result.unwrap_err())
+    ```
+
+!!! bug "Incorrect usage"
+
+    ```py
+    client = wom.Client()
+
+    result = await client.players.update_player("")
+    print(result.unwrap())
+
+    # Raises UnwrapError, because username can not be an empty string.
+    ```
 """
 
 from __future__ import annotations
@@ -41,16 +65,7 @@ class Result(t.Generic[T, E], abc.ABC):
 
     !!! note
 
-        This class cannot be instantiated, only its children can be.
-
-    ??? Example
-
-        ```py
-        if result.is_ok:
-            print(result.unwrap())
-        else:
-            print(result.unwrap_err())
-        ```
+        This class cannot be instantiated, only its variants can be.
     """
 
     __slots__ = ("_error", "_value")
@@ -67,23 +82,23 @@ class Result(t.Generic[T, E], abc.ABC):
     @property
     @abc.abstractmethod
     def is_ok(self) -> bool:
-        """`True` if this result is the :obj:`Ok` variant."""
+        """`True` if this result is the [`Ok`][wom.Ok] variant."""
 
     @property
     @abc.abstractmethod
     def is_err(self) -> bool:
-        """`True` if this result is the :obj:`Err` variant."""
+        """`True` if this result is the [`Err`][wom.Err] variant."""
 
     @abc.abstractmethod
     def unwrap(self) -> T:
         """Unwraps the result to produce the value.
 
         Returns:
-            `T`: The unwrapped value.
+            The unwrapped value.
 
         Raises:
-            `UnwrapError`: If the result was an :obj:`Err`,
-                and not :obj:`Ok`.
+            UnwrapError: If the result was an [`Err`][wom.Err] and not
+                [`Ok`][wom.Ok].
         """
 
     @abc.abstractmethod
@@ -91,17 +106,24 @@ class Result(t.Generic[T, E], abc.ABC):
         """Unwraps the result to produce the error.
 
         Returns:
-            `E`: The unwrapped error.
+            The unwrapped error.
 
         Raises:
-            `UnwrapError`: If the result was an :obj:`Ok`,
-                and not an :obj:`Err`.
+            UnwrapError: If the result was [`Ok`][wom.Ok] and not an
+                [`Err`][wom.Err].
         """
 
 
 @t.final
 class Ok(Result[T, E]):
-    """The [`Ok`][wom.Ok] variant of a [`Result`][wom.Result]."""
+    """The [`Ok`][wom.Ok] variant of a [`Result`][wom.Result].
+
+    !!! info
+
+        You should receive instances of this class as a result of
+        calling [`Client`][wom.Client] methods, and never have to
+        instantiate it yourself.
+    """
 
     __slots__ = ()
 
@@ -110,22 +132,42 @@ class Ok(Result[T, E]):
 
     @property
     def is_ok(self) -> bool:
+        """Always returns `True` for the [`Ok`][wom.Ok] variant."""
         return True
 
     @property
     def is_err(self) -> bool:
+        """Always returns `False` for the [`Ok`][wom.Ok] variant."""
         return False
 
     def unwrap(self) -> T:
+        """Unwraps the result to produce the value.
+
+        Returns:
+            The unwrapped value.
+        """
         return self._value
 
     def unwrap_err(self) -> E:
+        """Always throws an exception for the [`Ok`][wom.Ok] variant.
+
+        Raises:
+            UnwrapError: Because the result was an [`Ok`][wom.Ok]
+                variant.
+        """
         raise errors.UnwrapError(f"Called unwrap error on an non error value - {self._value}")
 
 
 @t.final
 class Err(Result[T, E]):
-    """The [`Err`][wom.Err] variant of a [`Result`][wom.Result]."""
+    """The [`Err`][wom.Err] variant of a [`Result`][wom.Result].
+
+    !!! info
+
+        You should receive instances of this class as a result of
+        calling [`Client`][wom.Client] methods, and never have to
+        instantiate it yourself.
+    """
 
     __slots__ = ()
 
@@ -134,14 +176,27 @@ class Err(Result[T, E]):
 
     @property
     def is_ok(self) -> bool:
+        """Always returns `False` for the [`Err`][wom.Err] variant."""
         return False
 
     @property
     def is_err(self) -> bool:
+        """Always returns `True` for the [`Err`][wom.Err] variant."""
         return True
 
     def unwrap(self) -> T:
+        """Always throws an exception for the [`Err`][wom.Err] variant.
+
+        Raises:
+            UnwrapError: Because the result was an [`Err`][wom.Err]
+                variant.
+        """
         raise errors.UnwrapError(f"Called unwrap on an error value - {self._error}")
 
     def unwrap_err(self) -> E:
+        """Unwraps the result to produce the error.
+
+        Returns:
+            The unwrapped error.
+        """
         return self._error
