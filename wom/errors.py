@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""This module contains various exceptions used by the project."""
+
 from __future__ import annotations
 
 __all__ = ("UnwrapError", "WomError")
@@ -29,8 +31,8 @@ class WomError(Exception):
 
 
 class UnwrapError(WomError):
-    """Raised when calling :func:`~wom.result.Result.unwrap` or
-    :func:`~wom.result.Result.unwrap_err` incorrectly.
+    """Raised when calling [`unwrap()`][wom.Result.unwrap] or
+    [`unwrap_err()`][wom.Result.unwrap_err] incorrectly.
 
     Args:
         message: The error message.
