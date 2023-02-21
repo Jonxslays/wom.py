@@ -31,7 +31,7 @@ from .enums import NameChangeStatus
 __all__ = ("NameChangeData", "NameChangeDetail", "NameChange")
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class NameChange(BaseModel):
     id: int
     player_id: int
@@ -43,7 +43,7 @@ class NameChange(BaseModel):
     created_at: datetime
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class NameChangeData(BaseModel):
     is_new_on_hiscores: bool
     is_old_on_hiscores: bool
@@ -57,7 +57,7 @@ class NameChangeData(BaseModel):
     new_stats: Snapshot | None
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class NameChangeDetail(BaseModel):
     name_change: NameChange
     data: NameChangeData | None

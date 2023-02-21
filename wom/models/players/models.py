@@ -58,7 +58,7 @@ __all__ = (
 )
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class Skill(BaseModel):
     metric: enums.Skill
     rank: int
@@ -67,7 +67,7 @@ class Skill(BaseModel):
     ehp: int
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class Boss(BaseModel):
     metric: enums.Boss
     rank: int
@@ -75,22 +75,24 @@ class Boss(BaseModel):
     ehb: int
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class Activity(BaseModel):
     metric: enums.Activity
     rank: int
     score: int
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class ComputedMetric(BaseModel):
     metric: enums.ComputedMetric
     rank: int
     value: int
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class SnapshotData(BaseModel):
+    """The data associated with this snapshot."""
+
     skills: list[Skill]
     bosses: list[Boss]
     activities: list[Activity]
@@ -124,10 +126,10 @@ class StatisticsSnapshot(BaseSnapshot):
     """Represents a player statistics snapshot."""
 
     created_at: datetime | None
-    """"The optional date the statistics snapshot was created."""
+    """The optional date the statistics snapshot was created."""
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class Player(BaseModel):
     """Represents a player on WOM."""
 
@@ -149,20 +151,20 @@ class Player(BaseModel):
     last_imported_at: datetime | None
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class PlayerDetail(BaseModel):
     player: Player
     combat_level: int
     latest_snapshot: Snapshot | None
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class AssertPlayerType(BaseModel):
     player: Player
     changed: bool
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class BaseAchievement(BaseModel):
     player_id: int
     name: str
@@ -171,17 +173,17 @@ class BaseAchievement(BaseModel):
     threshold: int
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class Achievement(BaseAchievement):
     created_at: datetime
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class AchievementProgress(BaseAchievement):
     created_at: datetime | None
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class PlayerAchievementProgress(BaseModel):
     achievement: AchievementProgress
     current_value: int
@@ -189,14 +191,14 @@ class PlayerAchievementProgress(BaseModel):
     relative_progress: float
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class Gains(BaseModel):
     gained: float
     start: float
     end: float
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class SkillGains(BaseModel):
     metric: enums.Skill
     experience: Gains
@@ -205,7 +207,7 @@ class SkillGains(BaseModel):
     level: Gains
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class BossGains(BaseModel):
     metric: enums.Boss
     ehb: Gains
@@ -213,21 +215,21 @@ class BossGains(BaseModel):
     kills: Gains
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class ActivityGains(BaseModel):
     metric: enums.Activity
     rank: Gains
     score: Gains
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class ComputedGains(BaseModel):
     metric: enums.ComputedMetric
     rank: Gains
     value: Gains
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class PlayerGainsData(BaseModel):
     skills: list[SkillGains]
     bosses: list[BossGains]
@@ -235,7 +237,7 @@ class PlayerGainsData(BaseModel):
     computed: list[ComputedGains]
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class PlayerGains(BaseModel):
     starts_at: datetime
     ends_at: datetime

@@ -53,7 +53,7 @@ theme:
     code: Noto Sans Mono
 
   logo: wom-logo.png
-  favicon: wom-ico.png
+  favicon: wom-logo.png
 
   features:
     - navigation.instant
