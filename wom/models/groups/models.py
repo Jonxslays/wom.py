@@ -49,19 +49,6 @@ __all__ = (
 class Group(BaseModel):
     """Represents a group of players on WOM."""
 
-    __slots__ = (
-        "id",
-        "name",
-        "clan_chat",
-        "description",
-        "homeworld",
-        "verified",
-        "score",
-        "created_at",
-        "updated_at",
-        "member_count",
-    )
-
     id: int
     """The unique ID for this group."""
     name: str
@@ -88,8 +75,6 @@ class Group(BaseModel):
 class GroupDetail(BaseModel):
     """Represents details about a group."""
 
-    __slots__ = ("group", "memberships", "verification_code")
-
     group: Group
     """The [`Group`][wom.models.Group] itself."""
     memberships: list[GroupMembership]
@@ -107,8 +92,6 @@ class GroupDetail(BaseModel):
 @dataclass(init=False)
 class Membership(BaseModel):
     """Represents a membership in a group."""
-
-    __slots__ = ("player_id", "group_id", "role", "created_at", "updated_at")
 
     player_id: int
     """The unique ID of the player in this membership."""
@@ -128,8 +111,6 @@ class Membership(BaseModel):
 class GroupMembership(BaseModel):
     """Represents a group membership."""
 
-    __slots__ = ("player", "membership")
-
     player: Player
     """The [`Player`][wom.models.Player] that is a member."""
     membership: Membership
@@ -139,8 +120,6 @@ class GroupMembership(BaseModel):
 @dataclass(init=False)
 class PlayerMembership(BaseModel):
     """Represents a player membership."""
-
-    __slots__ = ("group", "membership")
 
     group: Group
     """The [`Group`][wom.models.Group] the player is a member of."""
@@ -158,8 +137,6 @@ class GroupMemberFragment(BaseModel):
         the end user in order to send data to some endpoints.
     """
 
-    __slots__ = ("username", "role")
-
     username: str
     """The group members username."""
     role: GroupRole | None = None
@@ -171,8 +148,6 @@ class GroupMemberFragment(BaseModel):
 @dataclass(init=False)
 class GroupHiscoresEntry(BaseModel):
     """Represents a group hiscores entry."""
-
-    __slots__ = ("player", "data")
 
     player: Player
     """The [`Player`][wom.models.Player] responsible for the entry."""
@@ -189,8 +164,6 @@ class GroupHiscoresEntry(BaseModel):
 class GroupHiscoresSkillItem(BaseModel):
     """Represents a group hiscores item for skills."""
 
-    __slots__ = ("rank", "level", "experience")
-
     rank: int
     """The rank of the hiscore."""
     level: int
@@ -203,8 +176,6 @@ class GroupHiscoresSkillItem(BaseModel):
 class GroupHiscoresBossItem(BaseModel):
     """Represents a group hiscores item for bosses."""
 
-    __slots__ = ("rank", "kills")
-
     rank: int
     """The rank of the hiscore."""
     kills: int
@@ -214,8 +185,6 @@ class GroupHiscoresBossItem(BaseModel):
 @dataclass(init=False)
 class GroupHiscoresActivityItem(BaseModel):
     """Represents a group hiscores item for activities."""
-
-    __slots__ = ("rank", "score")
 
     rank: int
     """The rank of the hiscore."""
@@ -227,8 +196,6 @@ class GroupHiscoresActivityItem(BaseModel):
 class GroupHiscoresComputedMetricItem(BaseModel):
     """Represents a group hiscores item for computed metrics."""
 
-    __slots__ = ("rank", "value")
-
     rank: int
     """The rank of the hiscore."""
     value: int
@@ -238,8 +205,6 @@ class GroupHiscoresComputedMetricItem(BaseModel):
 @dataclass(init=False)
 class GroupStatistics(BaseModel):
     """Represents accumulated group statistics."""
-
-    __slots__ = ("maxed_combat_count", "maxed_total_count", "maxed_200ms_count", "average_stats")
 
     maxed_combat_count: int
     """The number of maxed combat players in the group."""

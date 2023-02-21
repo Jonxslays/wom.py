@@ -36,8 +36,6 @@ __all__ = ("Record", "RecordLeaderboardEntry")
 class Record(BaseModel):
     """Represents a record held by a player."""
 
-    __slots__ = ("id", "player_id", "period", "metric", "value", "updated_at")
-
     id: int
     """The unique ID for this record."""
     player_id: int
@@ -57,8 +55,6 @@ class Record(BaseModel):
 @dataclass(init=False)
 class RecordLeaderboardEntry(BaseModel):
     """Represents a player's record leaderboard entry."""
-
-    __slots__ = ("player", "record")
 
     player: Player
     """The [`Player`][wom.models.Player] holding this leaderboard

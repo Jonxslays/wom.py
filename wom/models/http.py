@@ -34,8 +34,6 @@ __all__ = ("HttpErrorResponse", "HttpSuccessResponse")
 class HttpErrorResponse(BaseModel):
     """Indicates something went wrong during the request."""
 
-    __slots__ = ("message", "status")
-
     status: int
     """The HTTP status code."""
     message: str
@@ -44,9 +42,7 @@ class HttpErrorResponse(BaseModel):
 
 @dataclass()
 class HttpSuccessResponse(BaseModel):
-    """Indicates a succesful HTTP response."""
-
-    __slots__ = ("message", "status")
+    """Indicates a successful HTTP response."""
 
     status: int
     """The HTTP status code."""
