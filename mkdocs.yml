@@ -3,19 +3,16 @@ site_name: wom.py
 plugins:
   - search
   - autorefs
+  - include-markdown
   - mkdocstrings:
       custom_templates: docs/templates
       handlers:
         python:
           options:
             members_order: source
-            # heading_level: 3
             docstring_style: google
-            # docstring_style: numpy
-            # docstring_section_style: list
             show_signature_annotations: true
             separate_signature: true
-  - include-markdown
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -27,6 +24,9 @@ markdown_extensions:
   - footnotes
   - pymdownx.tabbed:
       alternate_style: true
+
+watch:
+  - wom
 
 theme:
   name: material
