@@ -19,6 +19,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""This module contains the models used to represent data returned
+by the WOM API.
+
+Enums related to specific services are also housed in the module.
+
+!!! tip
+
+    Most of the models here you won't create, but a few you will. Those
+    will be documented as such.
+"""
+
 from __future__ import annotations
 
 __all__ = (
