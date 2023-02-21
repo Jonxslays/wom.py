@@ -32,17 +32,39 @@ from ..players import PlayerModel
 __all__ = ("RecordModel", "RecordLeaderboardEntryModel")
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class RecordModel(BaseModel):
+    """Represents a record held by a player."""
+
+    __slots__ = ("id", "player_id", "period", "metric", "value", "updated_at")
+
     id: int
+    """The unique ID for this record."""
     player_id: int
+    """The player ID associated with this record."""
     period: enums.Period
+    """The [`Period`][wom.enums.Period] over which this record was
+    achieved.
+    """
     metric: enums.Metric
+    """The metric measured in this record."""
     value: int
+    """The records gained value."""
     updated_at: datetime
+    """The records creation/modification date."""
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class RecordLeaderboardEntryModel(BaseModel):
+    """Represents a player's record leaderboard entry."""
+
+    __slots__ = ("player", "record")
+
     player: PlayerModel
+    """The [`Player`][wom.models.PlayerModel] holding this leaderboard
+    entry.
+    """
     record: RecordModel
+    """The [`Record`][wom.models.RecordModel] tied to this leaderboard
+    entry.
+    """

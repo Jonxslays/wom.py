@@ -49,9 +49,11 @@ __all__ = (
 )
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class CompetitionProgressModel(BaseModel):
     """Represents progress in a competition."""
+
+    __slots__ = ("start", "end", "gained")
 
     start: int
     """The starting value for the competition's metric."""
@@ -61,20 +63,51 @@ class CompetitionProgressModel(BaseModel):
     """The amount of progress gained in the metric."""
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class CompetitionModel(BaseModel):
+    """Represents a competition."""
+
+    __slots__ = (
+        "id",
+        "title",
+        "metric",
+        "type",
+        "starts_at",
+        "ends_at",
+        "group_id",
+        "score",
+        "created_at",
+        "updated_at",
+        "participant_count",
+        "group",
+    )
+
     id: int
+    """The unique ID of the competition."""
     title: str
+    """The title of the competition."""
     metric: enums.Metric
+    """The metric being measured."""
     type: CompetitionType
+    """The [Competition Type][wom.models.CompetitionType]."""
     starts_at: datetime
+    """The date the competition started at."""
     ends_at: datetime
+    """The date the competition ended at."""
     group_id: int | None
+    """The optional group id associated with the competition."""
     score: int
+    """The competition's score."""
     created_at: datetime
+    """The date the competition was created."""
     updated_at: datetime
+    """The date the competition was updated."""
     participant_count: int
+    """The number of players participating."""
     group: GroupModel | None
+    """The [`Group`][wom.models.GroupModel] associated with the
+    competition, if there is one.
+    """
 
 
 @dataclass(slots=True, init=False)

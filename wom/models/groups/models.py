@@ -47,6 +47,8 @@ __all__ = (
 
 @dataclass(slots=True, init=False)
 class GroupModel(BaseModel):
+    """Represents a group of players on WOM."""
+
     id: int
     name: str
     clan_chat: str

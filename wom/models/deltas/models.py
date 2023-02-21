@@ -30,10 +30,21 @@ from ..players import PlayerModel
 __all__ = ("DeltaLeaderboardEntryModel",)
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class DeltaLeaderboardEntryModel(BaseModel):
+    """Represents a leaderboard entry over the given delta."""
+
+    __slots__ = ("player_id", "gained", "start_date", "end_date", "player")
+
     player_id: int
+    """The ID of the player holding this leaderboard entry."""
     gained: int
+    """The value gained over the delta."""
     start_date: datetime
+    """The start date of the delta."""
     end_date: datetime
+    """The end date of the delta."""
     player: PlayerModel
+    """The [`Player`][wom.models.PlayerModel] holding this leaderboard
+    entry.
+    """
