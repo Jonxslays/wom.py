@@ -52,7 +52,7 @@ theme:
     text: Noto Sans
     code: Noto Sans Mono
 
-  logo: wom-logo.png
+  logo: wom-logo.svg
   favicon: wom-logo.png
 
   features:
