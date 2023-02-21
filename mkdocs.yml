@@ -8,7 +8,7 @@ plugins:
       handlers:
         python:
           options:
-            members_order: source
+            members_order: alphabetical
             # heading_level: 3
             docstring_style: google
             # docstring_style: numpy

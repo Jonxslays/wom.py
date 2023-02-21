@@ -45,27 +45,64 @@ __all__ = (
 )
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class GroupModel(BaseModel):
     """Represents a group of players on WOM."""
 
+    __slots__ = (
+        "id",
+        "name",
+        "clan_chat",
+        "description",
+        "homeworld",
+        "verified",
+        "score",
+        "created_at",
+        "updated_at",
+        "member_count",
+    )
+
     id: int
+    """The unique ID for this group."""
     name: str
+    """The groups name."""
     clan_chat: str
+    """The clan chat for this group."""
     description: str | None
+    """The groups optional description."""
     homeworld: int | None
+    """The groups optional homeworld."""
     verified: bool
+    """Whether or not this group is verified."""
     score: int
+    """The groups score."""
     created_at: datetime
+    """The date the group was created."""
     updated_at: datetime
+    """The date the group was updated."""
     member_count: int
+    """The number of members in the group."""
 
 
-@dataclass(slots=True, init=False)
+@dataclass(init=False)
 class GroupDetailModel(BaseModel):
+    """Represents details about a group."""
+
+    __slots__ = ("group", "memberships", "verification_code")
+
     group: GroupModel
+    """The [`Group`][wom.models.GroupModel] itself."""
     memberships: list[GroupMembershipModel]
+    """A list of [`GroupMemberships`]
+    [wom.models.GroupMembershipModel].
+    """
     verification_code: str | None
+    """The optional verification code for the group.
+
+    !!! note
+
+        This will only be present on group creation.
+    """
 
 
 @dataclass(slots=True, init=False)
