@@ -133,8 +133,8 @@ class GroupMemberFragment(BaseModel):
 
     !!! tip
 
-        This is one of the model classes that will be instantiated by
-        the end user in order to send data to some endpoints.
+        This is a model classes that you will create in order to send
+        data to some endpoints.
     """
 
     username: str

@@ -33,31 +33,76 @@ __all__ = ("NameChangeData", "NameChangeDetail", "NameChange")
 
 @dataclass(init=False)
 class NameChange(BaseModel):
+    """Represents a player name change."""
+
     id: int
+    """The unique ID of this name change."""
     player_id: int
+    """The player ID associated with the name change."""
     old_name: str
+    """The old username of the player."""
     new_name: str
+    """The new username of the player."""
     status: NameChangeStatus
+    """The [`status`][wom.models.NameChangeStatus] of the name
+    change.
+    """
     resolved_at: datetime | None
+    """The date the name change was approved or denied."""
     updated_at: datetime
+    """The date the name change was updated."""
     created_at: datetime
+    """The date the name change was created."""
 
 
 @dataclass(init=False)
 class NameChangeData(BaseModel):
+    """Metadata associated with a name change."""
+
     is_new_on_hiscores: bool
+    """Whether or not he new username is on the hiscores."""
     is_old_on_hiscores: bool
+    """Whether or not he old username is on the hiscores."""
     is_new_tracked: bool
+    """Whether or not he new username is tracked on WOM."""
     has_negative_gains: bool
+    """Whether or not name change has negative XP gains."""
     time_diff: int
+    """Milliseconds between old names last snapshot and new names
+    first snapshot or the name change submission date if not tracked.
+    """
     hours_diff: int
+    """Hours between old names last snapshot and new names first
+    snapshot or the name change submission date if not tracked.
+    """
     ehp_diff: int
+    """The difference in efficient hours played between the old and new
+    usernames.
+    """
     ehb_diff: int
+    """The difference in efficient hours bossed between the old and new
+    usernames.
+    """
     old_stats: Snapshot
+    """The latest [`Snapshot`][wom.models.Snapshot] for the old name."""
     new_stats: Snapshot | None
+    """The new name's first [`Snapshot`][wom.models.Snapshot], current
+    hiscores stats if untracked, or null if untracked and not present
+    on hiscores.
+    """
 
 
 @dataclass(init=False)
 class NameChangeDetail(BaseModel):
+    """Details regarding a name change."""
+
     name_change: NameChange
+    """The [`NameChange`][wom.models.NameChange] itself."""
     data: NameChangeData | None
+    """The [`NameChangeData`][wom.models.NameChangeData] for this name
+    change.
+
+    !!! note
+
+        This will be `None` when the name change is not pending.
+    """

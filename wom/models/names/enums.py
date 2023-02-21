@@ -27,6 +27,8 @@ __all__ = ("NameChangeStatus",)
 
 
 class NameChangeStatus(BaseEnum):
+    """The available name change statuses."""
+
     Pending = "pending"
     Approved = "approved"
     Denied = "denied"

@@ -35,7 +35,7 @@ all [`Client`][wom.Client] calls.
         print(result.unwrap_err())
     ```
 
-!!! bug "Incorrect usage"
+!!! failure "Incorrect usage"
 
     ```py
     client = wom.Client()
