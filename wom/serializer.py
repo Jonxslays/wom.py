@@ -19,6 +19,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""This module contains the [`Serializer`][wom.serializer.Serializer]
+that is used to parse incoming network data into Python classes.
+"""
+
 from __future__ import annotations
 
 import typing as t

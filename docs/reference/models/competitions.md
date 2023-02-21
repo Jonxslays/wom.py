@@ -1,0 +1,3 @@
+# competitions
+
+::: wom.models.competitions
