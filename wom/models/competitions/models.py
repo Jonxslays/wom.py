@@ -274,5 +274,6 @@ class CompetitionWithParticipationsModel(BaseModel):
 
     !!! note
 
-        Only returned when a competition is created.
+        Only returned when a competition is created and will be
+        `None` otherwise.
     """

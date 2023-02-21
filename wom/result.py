@@ -19,8 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""This module contains the [`Result`][wom.Result] variants returned by all
-[`Client`][wom.Client] calls.
+"""This module contains the [`Result`][wom.Result] variants returned by
+all [`Client`][wom.Client] calls.
 
 !!! success "Correct usage"
 
