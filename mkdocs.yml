@@ -90,9 +90,11 @@ nav:
     - "reference/serializer.md"
     - "reference/services.md"
     - "models":
+      - "reference/models/base.md"
       - "reference/models/competitions.md"
       - "reference/models/deltas.md"
       - "reference/models/groups.md"
+      - "reference/models/http.md"
       - "reference/models/names.md"
       - "reference/models/players.md"
       - "reference/models/records.md"
