@@ -103,6 +103,8 @@ class SnapshotData(BaseModel):
 class BaseSnapshot(BaseModel):
     """The base snapshot other snapshots inherit from."""
 
+    __slots__ = ("id", "player_id", "imported_at", "data")
+
     id: int
     """The unique ID of the snapshot."""
     player_id: int
@@ -117,6 +119,8 @@ class BaseSnapshot(BaseModel):
 class Snapshot(BaseSnapshot):
     """Represents a player snapshot."""
 
+    __slots__ = ("created_at",)
+
     created_at: datetime
     """The date the snapshot was created."""
 
@@ -124,6 +128,8 @@ class Snapshot(BaseSnapshot):
 @dataclass(init=False)
 class StatisticsSnapshot(BaseSnapshot):
     """Represents a player statistics snapshot."""
+
+    __slots__ = ("created_at",)
 
     created_at: datetime | None
     """The optional date the statistics snapshot was created."""

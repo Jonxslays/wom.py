@@ -34,6 +34,8 @@ __all__ = ("DeltaLeaderboardEntry",)
 class DeltaLeaderboardEntry(BaseModel):
     """Represents a leaderboard entry over the given delta."""
 
+    __slots__ = ("player_id", "gained", "start_date", "end_date", "player")
+
     player_id: int
     """The ID of the player holding this leaderboard entry."""
     gained: int

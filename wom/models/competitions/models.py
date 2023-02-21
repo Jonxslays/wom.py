@@ -53,6 +53,8 @@ __all__ = (
 class CompetitionProgress(BaseModel):
     """Represents progress in a competition."""
 
+    __slots__ = ("start", "end", "gained")
+
     start: int
     """The starting value for the competition's metric."""
     end: int
@@ -64,6 +66,21 @@ class CompetitionProgress(BaseModel):
 @dataclass(init=False)
 class Competition(BaseModel):
     """Represents a competition."""
+
+    __slots__ = (
+        "id",
+        "title",
+        "metric",
+        "type",
+        "starts_at",
+        "ends_at",
+        "group_id",
+        "score",
+        "created_at",
+        "updated_at",
+        "participant_count",
+        "group",
+    )
 
     id: int
     """The unique ID of the competition."""
@@ -97,6 +114,8 @@ class Competition(BaseModel):
 class Participation(BaseModel):
     """Represents participation in a competition."""
 
+    __slots__ = ("player_id", "competition_id", "team_name", "created_at", "updated_at")
+
     player_id: int
     """The ID of the player associated with this participation."""
     competition_id: int
@@ -113,6 +132,8 @@ class Participation(BaseModel):
 class CompetitionParticipation(BaseModel):
     """Represents a competition participation."""
 
+    __slots__ = ("data", "player")
+
     data: Participation
     """The [`Participation`][wom.models.Participation] achieved
     in this competition.
@@ -127,6 +148,8 @@ class CompetitionParticipation(BaseModel):
 class PlayerParticipation(BaseModel):
     """Represents a players participation in a competition."""
 
+    __slots__ = ("data", "competition")
+
     data: Participation
     """The [`Participation`][wom.models.Participation] the player
     achieved.
@@ -140,6 +163,8 @@ class PlayerParticipation(BaseModel):
 @dataclass(init=False)
 class PlayerCompetitionStanding(BaseModel):
     """Represents a players standing in a competition."""
+
+    __slots__ = ("participation", "progress", "rank")
 
     participation: PlayerParticipation
     """The [`PlayerParticipation`][wom.models.PlayerParticipation]
@@ -157,6 +182,8 @@ class PlayerCompetitionStanding(BaseModel):
 class CompetitionParticipationDetail(BaseModel):
     """Represents competition participation details."""
 
+    __slots__ = ("participation", "progress")
+
     participation: CompetitionParticipation
     """The [`CompetitionParticipation`]
     [wom.models.CompetitionParticipation] in these details.
@@ -170,6 +197,8 @@ class CompetitionParticipationDetail(BaseModel):
 @dataclass(init=False)
 class CompetitionDetail(BaseModel):
     """Represents competition details."""
+
+    __slots__ = ("competition", "participations")
 
     competition: Competition
     """The [`Competition`][wom.models.Competition] that is being
@@ -185,6 +214,8 @@ class CompetitionDetail(BaseModel):
 class CompetitionHistoryDataPoint(BaseModel):
     """A competition history data point."""
 
+    __slots__ = ("date", "value")
+
     date: datetime
     """The date this data point occurred."""
     value: int
@@ -194,6 +225,8 @@ class CompetitionHistoryDataPoint(BaseModel):
 @dataclass(init=False)
 class Top5ProgressResult(BaseModel):
     """A top 5 progress result for a competition."""
+
+    __slots__ = ("player", "history")
 
     player: Player
     """The [`Player`][wom.models.Player] who made top 5
@@ -217,9 +250,11 @@ class Team(BaseModel):
 
     !!! tip
 
-        This is a model classes that you will create in order to send
+        This is a model class that you will create in order to send
         data to some endpoints.
     """
+
+    __slots__ = ("name", "participants")
 
     name: str
     """The name of the team."""
@@ -230,6 +265,8 @@ class Team(BaseModel):
 @dataclass(init=False)
 class CompetitionWithParticipations(BaseModel):
     """Represents a competition with participations."""
+
+    __slots__ = ("competition", "participations", "verification_code")
 
     competition: Competition
     """The [`Competition`][wom.models.Competition] itself."""
