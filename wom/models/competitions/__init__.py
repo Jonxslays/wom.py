@@ -24,20 +24,20 @@
 from __future__ import annotations
 
 __all__ = (
-    "CompetitionModel",
-    "CompetitionDetailModel",
-    "CompetitionHistoryDataPointModel",
-    "CompetitionParticipationDetailModel",
-    "CompetitionParticipationModel",
-    "CompetitionProgressModel",
+    "Competition",
+    "CompetitionDetail",
+    "CompetitionHistoryDataPoint",
+    "CompetitionParticipationDetail",
+    "CompetitionParticipation",
+    "CompetitionProgress",
     "CompetitionStatus",
     "CompetitionType",
-    "CompetitionWithParticipationsModel",
-    "ParticipationModel",
-    "PlayerCompetitionStandingModel",
-    "PlayerParticipationModel",
-    "TeamModel",
-    "Top5ProgressResultModel",
+    "CompetitionWithParticipations",
+    "Participation",
+    "PlayerCompetitionStanding",
+    "PlayerParticipation",
+    "Team",
+    "Top5ProgressResult",
 )
 
 from .enums import *

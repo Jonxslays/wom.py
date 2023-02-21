@@ -25,13 +25,13 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from ..base import BaseModel
-from ..players import PlayerModel
+from ..players import Player
 
-__all__ = ("DeltaLeaderboardEntryModel",)
+__all__ = ("DeltaLeaderboardEntry",)
 
 
 @dataclass(init=False)
-class DeltaLeaderboardEntryModel(BaseModel):
+class DeltaLeaderboardEntry(BaseModel):
     """Represents a leaderboard entry over the given delta."""
 
     __slots__ = ("player_id", "gained", "start_date", "end_date", "player")
@@ -44,7 +44,7 @@ class DeltaLeaderboardEntryModel(BaseModel):
     """The start date of the delta."""
     end_date: datetime
     """The end date of the delta."""
-    player: PlayerModel
-    """The [`Player`][wom.models.PlayerModel] holding this leaderboard
+    player: Player
+    """The [`Player`][wom.models.Player] holding this leaderboard
     entry.
     """

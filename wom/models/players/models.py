@@ -33,33 +33,33 @@ from .enums import PlayerBuild
 from .enums import PlayerType
 
 __all__ = (
-    "AchievementModel",
-    "AchievementProgressModel",
-    "ActivityGainsModel",
-    "ActivityModel",
-    "AssertPlayerTypeModel",
-    "BaseAchievementModel",
-    "BaseSnapshotModel",
-    "BossGainsModel",
-    "BossModel",
-    "ComputedGainsModel",
-    "ComputedMetricModel",
-    "GainsModel",
-    "PlayerAchievementProgressModel",
-    "PlayerGainsDataModel",
-    "PlayerGainsModel",
-    "PlayerModel",
-    "PlayerDetailModel",
-    "StatisticsSnapshotModel",
-    "SkillGainsModel",
-    "SkillModel",
-    "SnapshotDataModel",
-    "SnapshotModel",
+    "Achievement",
+    "AchievementProgress",
+    "ActivityGains",
+    "Activity",
+    "AssertPlayerType",
+    "BaseAchievement",
+    "BaseSnapshot",
+    "BossGains",
+    "Boss",
+    "ComputedGains",
+    "ComputedMetric",
+    "Gains",
+    "PlayerAchievementProgress",
+    "PlayerGainsData",
+    "PlayerGains",
+    "Player",
+    "PlayerDetail",
+    "StatisticsSnapshot",
+    "SkillGains",
+    "Skill",
+    "SnapshotData",
+    "Snapshot",
 )
 
 
 @dataclass(slots=True, init=False)
-class SkillModel(BaseModel):
+class Skill(BaseModel):
     metric: enums.Skill
     rank: int
     level: int
@@ -68,7 +68,7 @@ class SkillModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class BossModel(BaseModel):
+class Boss(BaseModel):
     metric: enums.Boss
     rank: int
     kills: int
@@ -76,48 +76,48 @@ class BossModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class ActivityModel(BaseModel):
+class Activity(BaseModel):
     metric: enums.Activity
     rank: int
     score: int
 
 
 @dataclass(slots=True, init=False)
-class ComputedMetricModel(BaseModel):
+class ComputedMetric(BaseModel):
     metric: enums.ComputedMetric
     rank: int
     value: int
 
 
 @dataclass(slots=True, init=False)
-class SnapshotDataModel(BaseModel):
-    skills: list[SkillModel]
-    bosses: list[BossModel]
-    activities: list[ActivityModel]
-    computed: list[ComputedMetricModel]
+class SnapshotData(BaseModel):
+    skills: list[Skill]
+    bosses: list[Boss]
+    activities: list[Activity]
+    computed: list[ComputedMetric]
 
 
 @dataclass(slots=True, init=False)
-class BaseSnapshotModel(BaseModel):
+class BaseSnapshot(BaseModel):
     id: int
     player_id: int
     imported_at: datetime | None
-    data: SnapshotDataModel
+    data: SnapshotData
 
 
 @dataclass(slots=True, init=False)
-class SnapshotModel(BaseSnapshotModel):
+class Snapshot(BaseSnapshot):
     created_at: datetime
 
 
 @dataclass(slots=True, init=False)
-class StatisticsSnapshotModel(BaseSnapshotModel):
+class StatisticsSnapshot(BaseSnapshot):
     created_at: datetime | None
 
 
 @dataclass(slots=True, init=False)
-class PlayerModel(BaseModel):
-    """Represents a unique player on WOM."""
+class Player(BaseModel):
+    """Represents a player on WOM."""
 
     id: int
     username: str
@@ -138,20 +138,20 @@ class PlayerModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class PlayerDetailModel(BaseModel):
-    player: PlayerModel
+class PlayerDetail(BaseModel):
+    player: Player
     combat_level: int
-    latest_snapshot: SnapshotModel | None
+    latest_snapshot: Snapshot | None
 
 
 @dataclass(slots=True, init=False)
-class AssertPlayerTypeModel(BaseModel):
-    player: PlayerModel
+class AssertPlayerType(BaseModel):
+    player: Player
     changed: bool
 
 
 @dataclass(slots=True, init=False)
-class BaseAchievementModel(BaseModel):
+class BaseAchievement(BaseModel):
     player_id: int
     name: str
     metric: enums.Metric
@@ -160,71 +160,71 @@ class BaseAchievementModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class AchievementModel(BaseAchievementModel):
+class Achievement(BaseAchievement):
     created_at: datetime
 
 
 @dataclass(slots=True, init=False)
-class AchievementProgressModel(BaseAchievementModel):
+class AchievementProgress(BaseAchievement):
     created_at: datetime | None
 
 
 @dataclass(slots=True, init=False)
-class PlayerAchievementProgressModel(BaseModel):
-    achievement: AchievementProgressModel
+class PlayerAchievementProgress(BaseModel):
+    achievement: AchievementProgress
     current_value: int
     absolute_progress: float
     relative_progress: float
 
 
 @dataclass(slots=True, init=False)
-class GainsModel(BaseModel):
+class Gains(BaseModel):
     gained: float
     start: float
     end: float
 
 
 @dataclass(slots=True, init=False)
-class SkillGainsModel(BaseModel):
+class SkillGains(BaseModel):
     metric: enums.Skill
-    experience: GainsModel
-    ehp: GainsModel
-    rank: GainsModel
-    level: GainsModel
+    experience: Gains
+    ehp: Gains
+    rank: Gains
+    level: Gains
 
 
 @dataclass(slots=True, init=False)
-class BossGainsModel(BaseModel):
+class BossGains(BaseModel):
     metric: enums.Boss
-    ehb: GainsModel
-    rank: GainsModel
-    kills: GainsModel
+    ehb: Gains
+    rank: Gains
+    kills: Gains
 
 
 @dataclass(slots=True, init=False)
-class ActivityGainsModel(BaseModel):
+class ActivityGains(BaseModel):
     metric: enums.Activity
-    rank: GainsModel
-    score: GainsModel
+    rank: Gains
+    score: Gains
 
 
 @dataclass(slots=True, init=False)
-class ComputedGainsModel(BaseModel):
+class ComputedGains(BaseModel):
     metric: enums.ComputedMetric
-    rank: GainsModel
-    value: GainsModel
+    rank: Gains
+    value: Gains
 
 
 @dataclass(slots=True, init=False)
-class PlayerGainsDataModel(BaseModel):
-    skills: list[SkillGainsModel]
-    bosses: list[BossGainsModel]
-    activities: list[ActivityGainsModel]
-    computed: list[ComputedGainsModel]
+class PlayerGainsData(BaseModel):
+    skills: list[SkillGains]
+    bosses: list[BossGains]
+    activities: list[ActivityGains]
+    computed: list[ComputedGains]
 
 
 @dataclass(slots=True, init=False)
-class PlayerGainsModel(BaseModel):
+class PlayerGains(BaseModel):
     starts_at: datetime
     ends_at: datetime
-    data: PlayerGainsDataModel
+    data: PlayerGainsData

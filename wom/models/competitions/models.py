@@ -29,28 +29,28 @@ from datetime import datetime
 from wom import enums
 
 from ..base import BaseModel
-from ..groups import GroupModel
-from ..players import PlayerModel
+from ..groups import Group
+from ..players import Player
 from .enums import CompetitionType
 
 __all__ = (
-    "CompetitionModel",
-    "CompetitionDetailModel",
-    "CompetitionHistoryDataPointModel",
-    "CompetitionParticipationDetailModel",
-    "CompetitionParticipationModel",
-    "CompetitionProgressModel",
-    "CompetitionWithParticipationsModel",
-    "ParticipationModel",
-    "PlayerCompetitionStandingModel",
-    "PlayerParticipationModel",
-    "TeamModel",
-    "Top5ProgressResultModel",
+    "Competition",
+    "CompetitionDetail",
+    "CompetitionHistoryDataPoint",
+    "CompetitionParticipationDetail",
+    "CompetitionParticipation",
+    "CompetitionProgress",
+    "CompetitionWithParticipations",
+    "Participation",
+    "PlayerCompetitionStanding",
+    "PlayerParticipation",
+    "Team",
+    "Top5ProgressResult",
 )
 
 
 @dataclass(init=False)
-class CompetitionProgressModel(BaseModel):
+class CompetitionProgress(BaseModel):
     """Represents progress in a competition."""
 
     __slots__ = ("start", "end", "gained")
@@ -64,7 +64,7 @@ class CompetitionProgressModel(BaseModel):
 
 
 @dataclass(init=False)
-class CompetitionModel(BaseModel):
+class Competition(BaseModel):
     """Represents a competition."""
 
     __slots__ = (
@@ -104,14 +104,14 @@ class CompetitionModel(BaseModel):
     """The date the competition was updated."""
     participant_count: int
     """The number of players participating."""
-    group: GroupModel | None
-    """The [`Group`][wom.models.GroupModel] associated with the
+    group: Group | None
+    """The [`Group`][wom.models.Group] associated with the
     competition, if there is one.
     """
 
 
 @dataclass(init=False)
-class ParticipationModel(BaseModel):
+class Participation(BaseModel):
     """Represents participation in a competition."""
 
     __slots__ = ("player_id", "competition_id", "team_name", "created_at", "updated_at")
@@ -129,49 +129,49 @@ class ParticipationModel(BaseModel):
 
 
 @dataclass(init=False)
-class CompetitionParticipationModel(BaseModel):
+class CompetitionParticipation(BaseModel):
     """Represents a competition participation."""
 
     __slots__ = ("data", "player")
 
-    data: ParticipationModel
-    """The [`Participation`][wom.models.ParticipationModel] achieved
+    data: Participation
+    """The [`Participation`][wom.models.Participation] achieved
     in this competition.
     """
-    player: PlayerModel
-    """The [`Player`][wom.models.PlayerModel] that participated in this
+    player: Player
+    """The [`Player`][wom.models.Player] that participated in this
     competition.
     """
 
 
 @dataclass(init=False)
-class PlayerParticipationModel(BaseModel):
+class PlayerParticipation(BaseModel):
     """Represents a players participation in a competition."""
 
     __slots__ = ("data", "competition")
 
-    data: ParticipationModel
-    """The [`Participation`][wom.models.ParticipationModel] the player
+    data: Participation
+    """The [`Participation`][wom.models.Participation] the player
     achieved.
     """
-    competition: CompetitionModel
-    """The [`Competition`][wom.models.CompetitionModel] that the player
+    competition: Competition
+    """The [`Competition`][wom.models.Competition] that the player
     participated in.
     """
 
 
 @dataclass(init=False)
-class PlayerCompetitionStandingModel(BaseModel):
+class PlayerCompetitionStanding(BaseModel):
     """Represents a players standing in a competition."""
 
     __slots__ = ("participation", "progress", "rank")
 
-    participation: PlayerParticipationModel
-    """The [`PlayerParticipotion`][wom.models.PlayerParticipationModel]
+    participation: PlayerParticipation
+    """The [`PlayerParticipotion`][wom.models.PlayerParticipation]
     achieved by the player.
     """
-    progress: CompetitionProgressModel
-    """The [`CompetitionProgress`][wom.models.CompetitionProgressModel]
+    progress: CompetitionProgress
+    """The [`CompetitionProgress`][wom.models.CompetitionProgress]
     that was made.
     """
     rank: int
@@ -179,39 +179,39 @@ class PlayerCompetitionStandingModel(BaseModel):
 
 
 @dataclass(init=False)
-class CompetitionParticipationDetailModel(BaseModel):
+class CompetitionParticipationDetail(BaseModel):
     """Represents competition participation details."""
 
     __slots__ = ("participation", "progress")
 
-    participation: CompetitionParticipationModel
+    participation: CompetitionParticipation
     """The [`CompetitionParticipation`]
-    [wom.models.CompetitionParticipationModel] in these details.
+    [wom.models.CompetitionParticipation] in these details.
     """
-    progress: CompetitionProgressModel
-    """The [`CompetitionProgress`][wom.models.CompetitionProgressModel]
+    progress: CompetitionProgress
+    """The [`CompetitionProgress`][wom.models.CompetitionProgress]
     that was made.
     """
 
 
 @dataclass(init=False)
-class CompetitionDetailModel(BaseModel):
+class CompetitionDetail(BaseModel):
     """Represents competition details."""
 
     __slots__ = ("competition", "participations")
 
-    competition: CompetitionModel
-    """The [`Competition`][wom.models.CompetitionModel] that is being
+    competition: Competition
+    """The [`Competition`][wom.models.Competition] that is being
     detailed.
     """
-    participations: list[CompetitionParticipationDetailModel]
+    participations: list[CompetitionParticipationDetail]
     """A list of [`CompetitionParticipationDetail`]
-    [wom.models.CompetitionParticipationDetailModel] participations
+    [wom.models.CompetitionParticipationDetail] participations
     for this competition."""
 
 
 @dataclass(init=False)
-class CompetitionHistoryDataPointModel(BaseModel):
+class CompetitionHistoryDataPoint(BaseModel):
     """A competition history data point."""
 
     __slots__ = ("date", "value")
@@ -223,24 +223,24 @@ class CompetitionHistoryDataPointModel(BaseModel):
 
 
 @dataclass(init=False)
-class Top5ProgressResultModel(BaseModel):
+class Top5ProgressResult(BaseModel):
     """A top 5 progress result for a competition."""
 
     __slots__ = ("player", "history")
 
-    player: PlayerModel
-    """The [`Player`][wom.models.PlayerModel] who made top 5
+    player: Player
+    """The [`Player`][wom.models.Player] who made top 5
     progress.
     """
-    history: list[CompetitionHistoryDataPointModel]
+    history: list[CompetitionHistoryDataPoint]
     """A list of [CompetitionHistoryDataPoints]
-    [wom.models.CompetitionHistoryDataPointModel] making up the history
+    [wom.models.CompetitionHistoryDataPoint] making up the history
     of this top 5 progress result.
     """
 
 
 @dataclass()
-class TeamModel(BaseModel):
+class Team(BaseModel):
     """Represents a competition team.
 
     !!! tip
@@ -258,16 +258,16 @@ class TeamModel(BaseModel):
 
 
 @dataclass(init=False)
-class CompetitionWithParticipationsModel(BaseModel):
+class CompetitionWithParticipations(BaseModel):
     """Represents a competition with participations."""
 
     __slots__ = ("competition", "participations", "verification_code")
 
-    competition: CompetitionModel
-    """The [`Competition`][wom.models.CompetitionModel] itself."""
-    participations: list[CompetitionParticipationModel]
+    competition: Competition
+    """The [`Competition`][wom.models.Competition] itself."""
+    participations: list[CompetitionParticipation]
     """A list containing the [`CompetitionParticipations`]
-    [wom.models.CompetitionParticipationModel].
+    [wom.models.CompetitionParticipation].
     """
     verification_code: str | None
     """The verification code for the competition.

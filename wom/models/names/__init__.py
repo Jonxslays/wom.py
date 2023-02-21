@@ -22,9 +22,9 @@
 from __future__ import annotations
 
 __all__ = (
-    "NameChangeDataModel",
-    "NameChangeDetailModel",
-    "NameChangeModel",
+    "NameChange",
+    "NameChangeData",
+    "NameChangeDetail",
     "NameChangeStatus",
 )
 

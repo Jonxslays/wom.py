@@ -21,6 +21,6 @@
 
 from __future__ import annotations
 
-__all__ = ("DeltaLeaderboardEntryModel",)
+__all__ = ("DeltaLeaderboardEntry",)
 
 from .models import *

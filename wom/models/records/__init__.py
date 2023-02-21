@@ -21,6 +21,6 @@
 
 from __future__ import annotations
 
-__all__ = ("RecordModel", "RecordLeaderboardEntryModel")
+__all__ = ("Record", "RecordLeaderboardEntry")
 
 from .models import *

@@ -25,14 +25,14 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from ..base import BaseModel
-from ..players import SnapshotModel
+from ..players import Snapshot
 from .enums import NameChangeStatus
 
-__all__ = ("NameChangeDataModel", "NameChangeDetailModel", "NameChangeModel")
+__all__ = ("NameChangeData", "NameChangeDetail", "NameChange")
 
 
 @dataclass(slots=True, init=False)
-class NameChangeModel(BaseModel):
+class NameChange(BaseModel):
     id: int
     player_id: int
     old_name: str
@@ -44,7 +44,7 @@ class NameChangeModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class NameChangeDataModel(BaseModel):
+class NameChangeData(BaseModel):
     is_new_on_hiscores: bool
     is_old_on_hiscores: bool
     is_new_tracked: bool
@@ -53,11 +53,11 @@ class NameChangeDataModel(BaseModel):
     hours_diff: int
     ehp_diff: int
     ehb_diff: int
-    old_stats: SnapshotModel
-    new_stats: SnapshotModel | None
+    old_stats: Snapshot
+    new_stats: Snapshot | None
 
 
 @dataclass(slots=True, init=False)
-class NameChangeDetailModel(BaseModel):
-    name_change: NameChangeModel
-    data: NameChangeDataModel | None
+class NameChangeDetail(BaseModel):
+    name_change: NameChange
+    data: NameChangeData | None

@@ -27,13 +27,13 @@ from datetime import datetime
 from wom import enums
 
 from ..base import BaseModel
-from ..players import PlayerModel
+from ..players import Player
 
-__all__ = ("RecordModel", "RecordLeaderboardEntryModel")
+__all__ = ("Record", "RecordLeaderboardEntry")
 
 
 @dataclass(init=False)
-class RecordModel(BaseModel):
+class Record(BaseModel):
     """Represents a record held by a player."""
 
     __slots__ = ("id", "player_id", "period", "metric", "value", "updated_at")
@@ -55,16 +55,16 @@ class RecordModel(BaseModel):
 
 
 @dataclass(init=False)
-class RecordLeaderboardEntryModel(BaseModel):
+class RecordLeaderboardEntry(BaseModel):
     """Represents a player's record leaderboard entry."""
 
     __slots__ = ("player", "record")
 
-    player: PlayerModel
-    """The [`Player`][wom.models.PlayerModel] holding this leaderboard
+    player: Player
+    """The [`Player`][wom.models.Player] holding this leaderboard
     entry.
     """
-    record: RecordModel
-    """The [`Record`][wom.models.RecordModel] tied to this leaderboard
+    record: Record
+    """The [`Record`][wom.models.Record] tied to this leaderboard
     entry.
     """

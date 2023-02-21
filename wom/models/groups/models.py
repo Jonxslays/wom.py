@@ -25,28 +25,28 @@ from dataclasses import dataclass
 from datetime import datetime
 
 from ..base import BaseModel
-from ..players import PlayerModel
-from ..players import StatisticsSnapshotModel
+from ..players import Player
+from ..players import StatisticsSnapshot
 from .enums import GroupRole
 
 __all__ = (
-    "GroupDetailModel",
-    "GroupHiscoresActivityItemModel",
-    "GroupHiscoresBossItemModel",
-    "GroupHiscoresComputedMetricItemModel",
-    "GroupHiscoresEntryModel",
-    "GroupHiscoresSkillItemModel",
-    "GroupMemberFragmentModel",
-    "GroupMembershipModel",
-    "GroupModel",
-    "GroupStatisticsModel",
-    "MembershipModel",
-    "PlayerMembershipModel",
+    "GroupDetail",
+    "GroupHiscoresActivityItem",
+    "GroupHiscoresBossItem",
+    "GroupHiscoresComputedMetricItem",
+    "GroupHiscoresEntry",
+    "GroupHiscoresSkillItem",
+    "GroupMemberFragment",
+    "GroupMembership",
+    "Group",
+    "GroupStatistics",
+    "Membership",
+    "PlayerMembership",
 )
 
 
 @dataclass(init=False)
-class GroupModel(BaseModel):
+class Group(BaseModel):
     """Represents a group of players on WOM."""
 
     __slots__ = (
@@ -85,16 +85,16 @@ class GroupModel(BaseModel):
 
 
 @dataclass(init=False)
-class GroupDetailModel(BaseModel):
+class GroupDetail(BaseModel):
     """Represents details about a group."""
 
     __slots__ = ("group", "memberships", "verification_code")
 
-    group: GroupModel
-    """The [`Group`][wom.models.GroupModel] itself."""
-    memberships: list[GroupMembershipModel]
+    group: Group
+    """The [`Group`][wom.models.Group] itself."""
+    memberships: list[GroupMembership]
     """A list of [`GroupMemberships`]
-    [wom.models.GroupMembershipModel].
+    [wom.models.GroupMembership].
     """
     verification_code: str | None
     """The optional verification code for the group.
@@ -106,7 +106,7 @@ class GroupDetailModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class MembershipModel(BaseModel):
+class Membership(BaseModel):
     player_id: int
     group_id: int
     role: GroupRole | None
@@ -115,62 +115,62 @@ class MembershipModel(BaseModel):
 
 
 @dataclass(slots=True, init=False)
-class GroupMembershipModel(BaseModel):
-    player: PlayerModel
-    membership: MembershipModel
+class GroupMembership(BaseModel):
+    player: Player
+    membership: Membership
 
 
 @dataclass(slots=True, init=False)
-class PlayerMembershipModel(BaseModel):
-    group: GroupModel
-    membership: MembershipModel
+class PlayerMembership(BaseModel):
+    group: Group
+    membership: Membership
 
 
 @dataclass(slots=True)
-class GroupMemberFragmentModel(BaseModel):
+class GroupMemberFragment(BaseModel):
     username: str
     role: GroupRole | None = None
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresEntryModel(BaseModel):
-    player: PlayerModel
+class GroupHiscoresEntry(BaseModel):
+    player: Player
     data: (
-        GroupHiscoresActivityItemModel
-        | GroupHiscoresBossItemModel
-        | GroupHiscoresSkillItemModel
-        | GroupHiscoresComputedMetricItemModel
+        GroupHiscoresActivityItem
+        | GroupHiscoresBossItem
+        | GroupHiscoresSkillItem
+        | GroupHiscoresComputedMetricItem
     )
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresSkillItemModel(BaseModel):
+class GroupHiscoresSkillItem(BaseModel):
     rank: int
     level: int
     experience: int
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresBossItemModel(BaseModel):
+class GroupHiscoresBossItem(BaseModel):
     rank: int
     kills: int
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresActivityItemModel(BaseModel):
+class GroupHiscoresActivityItem(BaseModel):
     rank: int
     score: int
 
 
 @dataclass(slots=True, init=False)
-class GroupHiscoresComputedMetricItemModel(BaseModel):
+class GroupHiscoresComputedMetricItem(BaseModel):
     rank: int
     value: int
 
 
 @dataclass(slots=True, init=False)
-class GroupStatisticsModel(BaseModel):
+class GroupStatistics(BaseModel):
     maxed_combat_count: int
     maxed_total_count: int
     maxed_200ms_count: int
-    average_stats: StatisticsSnapshotModel
+    average_stats: StatisticsSnapshot

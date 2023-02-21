@@ -22,19 +22,19 @@
 from __future__ import annotations
 
 __all__ = (
-    "GroupDetailModel",
-    "GroupHiscoresActivityItemModel",
-    "GroupHiscoresBossItemModel",
-    "GroupHiscoresComputedMetricItemModel",
-    "GroupHiscoresEntryModel",
-    "GroupHiscoresSkillItemModel",
-    "GroupMemberFragmentModel",
-    "GroupMembershipModel",
-    "GroupModel",
+    "GroupDetail",
+    "GroupHiscoresActivityItem",
+    "GroupHiscoresBossItem",
+    "GroupHiscoresComputedMetricItem",
+    "GroupHiscoresEntry",
+    "GroupHiscoresSkillItem",
+    "GroupMemberFragment",
+    "GroupMembership",
+    "Group",
     "GroupRole",
-    "GroupStatisticsModel",
-    "MembershipModel",
-    "PlayerMembershipModel",
+    "GroupStatistics",
+    "Membership",
+    "PlayerMembership",
 )
 
 from .enums import *
