@@ -47,7 +47,7 @@ class NameChangeService(BaseService):
         status: models.NameChangeStatus | None = None,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> ResultT[list[models.NameChangeModel]]:
+    ) -> ResultT[list[models.NameChange]]:
         params = self._generate_map(username=username, status=status, limit=limit, offset=offset)
         route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -59,7 +59,7 @@ class NameChangeService(BaseService):
 
     async def submit_name_change(
         self, old_name: str, new_name: str
-    ) -> ResultT[models.NameChangeModel]:
+    ) -> ResultT[models.NameChange]:
         payload = self._generate_map(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()
         data = await self._http.fetch(route, self._dict, payload=payload)
@@ -69,7 +69,7 @@ class NameChangeService(BaseService):
 
         return result.Ok(self._serializer.deserialize_name_change(data))
 
-    async def get_name_change_details(self, id: int) -> ResultT[models.NameChangeDetailModel]:
+    async def get_name_change_details(self, id: int) -> ResultT[models.NameChangeDetail]:
         route = routes.NAME_CHANGE_DETAILS.compile(id)
         data = await self._http.fetch(route, self._dict)
 

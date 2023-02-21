@@ -44,7 +44,7 @@ class PlayerService(BaseService):
 
     async def search_players(
         self, username: str, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.PlayerModel]]:
+    ) -> ResultT[list[models.Player]]:
         params = self._generate_map(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -54,7 +54,7 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_player(player) for player in data])
 
-    async def update_player(self, username: str) -> ResultT[models.PlayerDetailModel]:
+    async def update_player(self, username: str) -> ResultT[models.PlayerDetail]:
         route = routes.UPDATE_PLAYER.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -63,7 +63,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def assert_player_type(self, username: str) -> ResultT[models.AssertPlayerTypeModel]:
+    async def assert_player_type(self, username: str) -> ResultT[models.AssertPlayerType]:
         route = routes.ASSERT_PLAYER_TYPE.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -72,7 +72,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_asserted_player_type(data))
 
-    async def get_player_details(self, username: str) -> ResultT[models.PlayerDetailModel]:
+    async def get_player_details(self, username: str) -> ResultT[models.PlayerDetail]:
         route = routes.PLAYER_DETAILS.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -81,7 +81,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def get_player_details_by_id(self, player_id: int) -> ResultT[models.PlayerDetailModel]:
+    async def get_player_details_by_id(self, player_id: int) -> ResultT[models.PlayerDetail]:
         route = routes.PLAYER_DETAILS_BY_ID.compile(player_id)
         data = await self._http.fetch(route, self._dict)
 
@@ -92,7 +92,7 @@ class PlayerService(BaseService):
 
     async def get_player_achievements(
         self, username: str
-    ) -> ResultT[list[models.AchievementModel]]:
+    ) -> ResultT[list[models.Achievement]]:
         route = routes.PLAYER_ACHIEVEMENTS.compile(username)
         data = await self._http.fetch(route, self._list)
 
@@ -103,7 +103,7 @@ class PlayerService(BaseService):
 
     async def get_player_achievement_progress(
         self, username: str
-    ) -> ResultT[list[models.PlayerAchievementProgressModel]]:
+    ) -> ResultT[list[models.PlayerAchievementProgress]]:
         route = routes.PLAYER_ACHIEVEMENT_PROGRESS.compile(username)
         data = await self._http.fetch(route, self._list)
 
@@ -121,7 +121,7 @@ class PlayerService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
         status: models.CompetitionStatus | None = None,
-    ) -> ResultT[list[models.PlayerParticipationModel]]:
+    ) -> ResultT[list[models.PlayerParticipation]]:
         params = self._generate_map(
             status=status.value if status else None, limit=limit, offset=offset
         )
@@ -138,7 +138,7 @@ class PlayerService(BaseService):
         self,
         username: str,
         status: models.CompetitionStatus,
-    ) -> ResultT[list[models.PlayerCompetitionStandingModel]]:
+    ) -> ResultT[list[models.PlayerCompetitionStanding]]:
         params = self._generate_map(status=status.value)
         route = routes.PLAYER_COMPETITION_STANDINGS.compile(username).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -152,7 +152,7 @@ class PlayerService(BaseService):
 
     async def get_player_group_memberships(
         self, username: str, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.PlayerMembershipModel]]:
+    ) -> ResultT[list[models.PlayerMembership]]:
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.PLAYER_GROUP_MEMBERSHIPS.compile(username).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -169,7 +169,7 @@ class PlayerService(BaseService):
         period: enums.Period | None = None,
         start_date: datetime | None = None,
         end_date: datetime | None = None,
-    ) -> ResultT[models.PlayerGainsModel]:
+    ) -> ResultT[models.PlayerGains]:
         params = self._generate_map(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
@@ -190,7 +190,7 @@ class PlayerService(BaseService):
         *,
         period: enums.Period | None = None,
         metric: enums.Metric | None = None,
-    ) -> ResultT[list[models.RecordModel]]:
+    ) -> ResultT[list[models.Record]]:
         params = self._generate_map(
             period=period.value if period else None, metric=metric.value if metric else None
         )
@@ -210,7 +210,7 @@ class PlayerService(BaseService):
         period: enums.Period | None = None,
         start_date: datetime | None = None,
         end_date: datetime | None = None,
-    ) -> ResultT[list[models.SnapshotModel]]:
+    ) -> ResultT[list[models.Snapshot]]:
         params = self._generate_map(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
@@ -227,7 +227,7 @@ class PlayerService(BaseService):
 
     async def get_player_name_changes(
         self, username: str
-    ) -> ResultT[list[models.NameChangeModel]]:
+    ) -> ResultT[list[models.NameChange]]:
         route = routes.PLAYER_NAME_CHANGES.compile(username)
         data = await self._http.fetch(route, self._list)
 

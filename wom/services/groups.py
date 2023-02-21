@@ -44,13 +44,13 @@ class GroupService(BaseService):
     __slots__ = ()
 
     def _prepare_member_fragments(
-        self, members: t.Iterable[models.GroupMemberFragmentModel]
+        self, members: t.Iterable[models.GroupMemberFragment]
     ) -> tuple[dict[str, t.Any], ...]:
         return tuple({k: str(v) for k, v in m.to_dict().items() if v} for m in members)
 
     async def search_groups(
         self, name: str | None = None, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.GroupModel]]:
+    ) -> ResultT[list[models.Group]]:
         params = self._generate_map(name=name, limit=limit, offset=offset)
         route = routes.SEARCH_GROUPS.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -60,7 +60,7 @@ class GroupService(BaseService):
 
         return result.Ok([self._serializer.deserialize_group(p) for p in data])
 
-    async def get_group_details(self, id: int) -> ResultT[models.GroupDetailModel]:
+    async def get_group_details(self, id: int) -> ResultT[models.GroupDetail]:
         route = routes.GROUP_DETAILS.compile(id)
         data = await self._http.fetch(route, self._dict)
 
@@ -72,11 +72,11 @@ class GroupService(BaseService):
     async def create_group(
         self,
         name: str,
-        *members: models.GroupMemberFragmentModel,
+        *members: models.GroupMemberFragment,
         clan_chat: str | None = None,
         description: str | None = None,
         homeworld: int | None = None,
-    ) -> ResultT[models.GroupDetailModel]:
+    ) -> ResultT[models.GroupDetail]:
         payload = self._generate_map(
             name=name,
             clanChat=clan_chat,
@@ -102,11 +102,11 @@ class GroupService(BaseService):
         verification_code: str,
         *,
         name: str | None = None,
-        members: t.Iterable[models.GroupMemberFragmentModel] | None = None,
+        members: t.Iterable[models.GroupMemberFragment] | None = None,
         clan_chat: str | None = None,
         description: str | None = None,
         homeworld: int | None = None,
-    ) -> ResultT[models.GroupDetailModel]:
+    ) -> ResultT[models.GroupDetail]:
         payload = self._generate_map(
             name=name,
             clanChat=clan_chat,
@@ -137,7 +137,7 @@ class GroupService(BaseService):
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def add_members(
-        self, id: int, verification_code: str, *members: models.GroupMemberFragmentModel
+        self, id: int, verification_code: str, *members: models.GroupMemberFragment
     ) -> result.Result[models.HttpSuccessResponse, models.HttpErrorResponse]:
         payload = self._generate_map(
             verificationCode=verification_code,
@@ -167,7 +167,7 @@ class GroupService(BaseService):
 
     async def change_member_role(
         self, id: int, verification_code: str, username: str, role: models.GroupRole
-    ) -> ResultT[models.GroupMembershipModel]:
+    ) -> ResultT[models.GroupMembership]:
         payload = self._generate_map(
             verificationCode=verification_code, username=username, role=role.value
         )
@@ -194,7 +194,7 @@ class GroupService(BaseService):
 
     async def get_group_competitions(
         self, id: int, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.CompetitionModel]]:
+    ) -> ResultT[list[models.Competition]]:
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_COMPETITIONS.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -214,7 +214,7 @@ class GroupService(BaseService):
         end_date: datetime | None = None,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> ResultT[list[models.DeltaLeaderboardEntryModel]]:
+    ) -> ResultT[list[models.DeltaLeaderboardEntry]]:
         params = self._generate_map(
             limit=limit,
             offset=offset,
@@ -238,7 +238,7 @@ class GroupService(BaseService):
         *,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> ResultT[list[models.AchievementModel]]:
+    ) -> ResultT[list[models.Achievement]]:
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_ACHIEVEMENTS.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -256,7 +256,7 @@ class GroupService(BaseService):
         *,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> ResultT[list[models.RecordLeaderboardEntryModel]]:
+    ) -> ResultT[list[models.RecordLeaderboardEntry]]:
         params = self._generate_map(
             limit=limit,
             offset=offset,
@@ -279,7 +279,7 @@ class GroupService(BaseService):
         *,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> ResultT[list[models.GroupHiscoresEntryModel]]:
+    ) -> ResultT[list[models.GroupHiscoresEntry]]:
         params = self._generate_map(limit=limit, offset=offset, metric=metric.value)
         route = routes.GROUP_HISCORES.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -291,7 +291,7 @@ class GroupService(BaseService):
 
     async def get_group_name_changes(
         self, id: int, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.NameChangeModel]]:
+    ) -> ResultT[list[models.NameChange]]:
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_NAME_CHANGES.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -301,7 +301,7 @@ class GroupService(BaseService):
 
         return result.Ok([self._serializer.deserialize_name_change(n) for n in data])
 
-    async def get_group_statistics(self, id: int) -> ResultT[models.GroupStatisticsModel]:
+    async def get_group_statistics(self, id: int) -> ResultT[models.GroupStatistics]:
         route = routes.GROUP_STATISTICS.compile(id)
         data = await self._http.fetch(route, self._dict)
 

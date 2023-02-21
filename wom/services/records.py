@@ -49,7 +49,7 @@ class RecordService(BaseService):
         player_type: models.PlayerType | None = None,
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
-    ) -> ResultT[list[models.RecordLeaderboardEntryModel]]:
+    ) -> ResultT[list[models.RecordLeaderboardEntry]]:
         params = self._generate_map(
             metric=metric.value,
             period=period.value,

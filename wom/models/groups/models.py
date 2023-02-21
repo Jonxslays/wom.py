@@ -93,8 +93,7 @@ class GroupDetail(BaseModel):
     group: Group
     """The [`Group`][wom.models.Group] itself."""
     memberships: list[GroupMembership]
-    """A list of [`GroupMemberships`]
-    [wom.models.GroupMembership].
+    """A list of [`GroupMemberships`][wom.models.GroupMembership].
     """
     verification_code: str | None
     """The optional verification code for the group.
@@ -116,6 +115,8 @@ class Membership(BaseModel):
 
 @dataclass(slots=True, init=False)
 class GroupMembership(BaseModel):
+    """Represents a players membership in a group."""
+
     player: Player
     membership: Membership
 

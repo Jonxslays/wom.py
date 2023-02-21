@@ -31,7 +31,7 @@ __all__ = ("Serializer",)
 
 T = t.TypeVar("T")
 TransformT = t.Callable[[t.Any], t.Any] | None
-BaseAchievementT = t.TypeVar("BaseAchievementT", bound=models.BaseAchievementModel)
+BaseAchievementT = t.TypeVar("BaseAchievementT", bound=models.BaseAchievement)
 
 
 class Serializer:
@@ -85,10 +85,10 @@ class Serializer:
     def _determine_hiscores_entry_item(
         self, data: dict[str, t.Any]
     ) -> (
-        models.GroupHiscoresActivityItemModel
-        | models.GroupHiscoresBossItemModel
-        | models.GroupHiscoresSkillItemModel
-        | models.GroupHiscoresComputedMetricItemModel
+        models.GroupHiscoresActivityItem
+        | models.GroupHiscoresBossItem
+        | models.GroupHiscoresSkillItem
+        | models.GroupHiscoresComputedMetricItem
     ):
         if "experience" in data:
             return self.deserialize_group_hiscores_skill_item(data)
@@ -104,15 +104,16 @@ class Serializer:
 
         raise ValueError(f"Unknown hiscores entry item: {data}")
 
-    def deserialize_player(self, data: dict[str, t.Any]) -> models.PlayerModel:
+    def deserialize_player(self, data: dict[str, t.Any]) -> models.Player:
         """Deserializes the data into a player model.
 
         Args:
-            data: The json payload.
+            data: The JSON payload.
 
         Returns:
-            The requested player model."""
-        player = models.PlayerModel()
+            The requested player model.
+        """
+        player = models.Player()
         self._set_attrs_cased(
             player,
             data,
@@ -136,25 +137,23 @@ class Serializer:
         player.last_imported_at = self._dt_from_iso_maybe(data["lastImportedAt"])
         return player
 
-    def deserialize_player_details(self, data: dict[str, t.Any]) -> models.PlayerDetailModel:
-        details = models.PlayerDetailModel()
+    def deserialize_player_details(self, data: dict[str, t.Any]) -> models.PlayerDetail:
+        details = models.PlayerDetail()
         details.combat_level = data["combatLevel"]
         details.player = self.deserialize_player(data)
         details.latest_snapshot = self.deserialize_snapshot(data["latestSnapshot"])
         return details
 
-    def deserialize_snapshot(self, data: dict[str, t.Any]) -> models.SnapshotModel:
-        snapshot = models.SnapshotModel()
+    def deserialize_snapshot(self, data: dict[str, t.Any]) -> models.Snapshot:
+        snapshot = models.Snapshot()
         snapshot.created_at = self._dt_from_iso(data["createdAt"])
         snapshot.imported_at = self._dt_from_iso_maybe(data.get("importedAt"))
         snapshot.data = self.deserialize_snapshot_data(data["data"])
         self._set_attrs_cased(snapshot, data, "id", "player_id")
         return snapshot
 
-    def deserialize_statistics_snapshot(
-        self, data: dict[str, t.Any]
-    ) -> models.StatisticsSnapshotModel:
-        snapshot = models.StatisticsSnapshotModel()
+    def deserialize_statistics_snapshot(self, data: dict[str, t.Any]) -> models.StatisticsSnapshot:
+        snapshot = models.StatisticsSnapshot()
         snapshot.created_at = self._dt_from_iso_maybe(data["createdAt"])
         snapshot.imported_at = self._dt_from_iso_maybe(data.get("importedAt"))
         snapshot.data = self.deserialize_snapshot_data(data["data"])
@@ -166,8 +165,8 @@ class Serializer:
     ) -> list[T]:
         return [serializer(item) for item in data]
 
-    def deserialize_snapshot_data(self, data: dict[str, t.Any]) -> models.SnapshotDataModel:
-        snapshot_data = models.SnapshotDataModel()
+    def deserialize_snapshot_data(self, data: dict[str, t.Any]) -> models.SnapshotData:
+        snapshot_data = models.SnapshotData()
         snapshot_data.skills = self.gather(self.deserialize_skill, data["skills"].values())
         snapshot_data.bosses = self.gather(self.deserialize_boss, data["bosses"].values())
         snapshot_data.activities = self.gather(
@@ -180,54 +179,52 @@ class Serializer:
 
         return snapshot_data
 
-    def deserialize_skill(self, data: dict[str, t.Any]) -> models.SkillModel:
-        skill = models.SkillModel()
+    def deserialize_skill(self, data: dict[str, t.Any]) -> models.Skill:
+        skill = models.Skill()
         skill.metric = enums.Skill.from_str(data["metric"])
         self._set_attrs(skill, data, "ehp", "rank", "level", "experience")
         return skill
 
-    def deserialize_boss(self, data: dict[str, t.Any]) -> models.BossModel:
-        boss = models.BossModel()
+    def deserialize_boss(self, data: dict[str, t.Any]) -> models.Boss:
+        boss = models.Boss()
         boss.metric = enums.Boss.from_str(data["metric"])
         self._set_attrs(boss, data, "ehb", "rank", "kills")
         return boss
 
-    def deserialize_activity(self, data: dict[str, t.Any]) -> models.ActivityModel:
-        activity = models.ActivityModel()
+    def deserialize_activity(self, data: dict[str, t.Any]) -> models.Activity:
+        activity = models.Activity()
         activity.metric = enums.Activity.from_str(data["metric"])
         self._set_attrs(activity, data, "rank", "score")
         return activity
 
-    def deserialize_computed_metric(self, data: dict[str, t.Any]) -> models.ComputedMetricModel:
-        computed = models.ComputedMetricModel()
+    def deserialize_computed_metric(self, data: dict[str, t.Any]) -> models.ComputedMetric:
+        computed = models.ComputedMetric()
         computed.metric = enums.ComputedMetric.from_str(data["metric"])
         self._set_attrs(computed, data, "rank", "value")
         return computed
 
-    def deserialize_asserted_player_type(
-        self, data: dict[str, t.Any]
-    ) -> models.AssertPlayerTypeModel:
-        asserted = models.AssertPlayerTypeModel()
+    def deserialize_asserted_player_type(self, data: dict[str, t.Any]) -> models.AssertPlayerType:
+        asserted = models.AssertPlayerType()
         asserted.player = self.deserialize_player(data["player"])
         asserted.changed = data["changed"]
         return asserted
 
     def deserialize_achievement_progress(
         self, data: dict[str, t.Any]
-    ) -> models.AchievementProgressModel:
-        achievement = self._deserialize_base_achievement(models.AchievementProgressModel(), data)
+    ) -> models.AchievementProgress:
+        achievement = self._deserialize_base_achievement(models.AchievementProgress(), data)
         achievement.created_at = self._dt_from_iso_maybe(data["createdAt"])
         return achievement
 
-    def deserialize_achievement(self, data: dict[str, t.Any]) -> models.AchievementModel:
-        achievement = self._deserialize_base_achievement(models.AchievementModel(), data)
+    def deserialize_achievement(self, data: dict[str, t.Any]) -> models.Achievement:
+        achievement = self._deserialize_base_achievement(models.Achievement(), data)
         achievement.created_at = self._dt_from_iso(data["createdAt"])
         return achievement
 
     def deserialize_player_achievement_progress(
         self, data: dict[str, t.Any]
-    ) -> models.PlayerAchievementProgressModel:
-        progress = models.PlayerAchievementProgressModel()
+    ) -> models.PlayerAchievementProgress:
+        progress = models.PlayerAchievementProgress()
         progress.achievement = self.deserialize_achievement_progress(data)
         self._set_attrs_cased(
             progress, data, "current_value", "absolute_progress", "relative_progress"
@@ -235,13 +232,13 @@ class Serializer:
 
         return progress
 
-    def deserialize_gains(self, data: dict[str, t.Any]) -> models.GainsModel:
-        gains = models.GainsModel()
+    def deserialize_gains(self, data: dict[str, t.Any]) -> models.Gains:
+        gains = models.Gains()
         self._set_attrs(gains, data, "gained", "start", "end")
         return gains
 
-    def deserialize_skill_gains(self, data: dict[str, t.Any]) -> models.SkillGainsModel:
-        gains = models.SkillGainsModel()
+    def deserialize_skill_gains(self, data: dict[str, t.Any]) -> models.SkillGains:
+        gains = models.SkillGains()
         gains.metric = enums.Skill.from_str(data["metric"])
         self._set_attrs(
             gains, data, "experience", "ehp", "rank", "level", transform=self.deserialize_gains
@@ -249,26 +246,26 @@ class Serializer:
 
         return gains
 
-    def deserialize_boss_gains(self, data: dict[str, t.Any]) -> models.BossGainsModel:
-        gains = models.BossGainsModel()
+    def deserialize_boss_gains(self, data: dict[str, t.Any]) -> models.BossGains:
+        gains = models.BossGains()
         gains.metric = enums.Boss.from_str(data["metric"])
         self._set_attrs(gains, data, "ehb", "rank", "kills", transform=self.deserialize_gains)
         return gains
 
-    def deserialize_activity_gains(self, data: dict[str, t.Any]) -> models.ActivityGainsModel:
-        gains = models.ActivityGainsModel()
+    def deserialize_activity_gains(self, data: dict[str, t.Any]) -> models.ActivityGains:
+        gains = models.ActivityGains()
         gains.metric = enums.Activity.from_str(data["metric"])
         self._set_attrs(gains, data, "rank", "score", transform=self.deserialize_gains)
         return gains
 
-    def deserialize_computed_gains(self, data: dict[str, t.Any]) -> models.ComputedGainsModel:
-        gains = models.ComputedGainsModel()
+    def deserialize_computed_gains(self, data: dict[str, t.Any]) -> models.ComputedGains:
+        gains = models.ComputedGains()
         gains.metric = enums.ComputedMetric.from_str(data["metric"])
         self._set_attrs(gains, data, "rank", "value", transform=self.deserialize_gains)
         return gains
 
-    def deserialize_player_gains_data(self, data: dict[str, t.Any]) -> models.PlayerGainsDataModel:
-        gains = models.PlayerGainsDataModel()
+    def deserialize_player_gains_data(self, data: dict[str, t.Any]) -> models.PlayerGainsData:
+        gains = models.PlayerGainsData()
         gains.skills = self.gather(self.deserialize_skill_gains, data["skills"].values())
         gains.bosses = self.gather(self.deserialize_boss_gains, data["bosses"].values())
         gains.computed = self.gather(self.deserialize_computed_gains, data["computed"].values())
@@ -278,15 +275,15 @@ class Serializer:
 
         return gains
 
-    def deserialize_player_gains(self, data: dict[str, t.Any]) -> models.PlayerGainsModel:
-        gains = models.PlayerGainsModel()
+    def deserialize_player_gains(self, data: dict[str, t.Any]) -> models.PlayerGains:
+        gains = models.PlayerGains()
         gains.data = self.deserialize_player_gains_data(data["data"])
         self._set_attrs_cased(gains, data, "starts_at", "ends_at", transform=self._dt_from_iso)
 
         return gains
 
-    def deserialize_name_change(self, data: dict[str, t.Any]) -> models.NameChangeModel:
-        change = models.NameChangeModel()
+    def deserialize_name_change(self, data: dict[str, t.Any]) -> models.NameChange:
+        change = models.NameChange()
         change.status = models.NameChangeStatus.from_str(data["status"])
         change.updated_at = self._dt_from_iso(data["updatedAt"])
         change.created_at = self._dt_from_iso(data["createdAt"])
@@ -294,8 +291,8 @@ class Serializer:
         self._set_attrs_cased(change, data, "id", "player_id", "old_name", "new_name")
         return change
 
-    def deserialize_name_change_data(self, data: dict[str, t.Any]) -> models.NameChangeDataModel:
-        change_data = models.NameChangeDataModel()
+    def deserialize_name_change_data(self, data: dict[str, t.Any]) -> models.NameChangeData:
+        change_data = models.NameChangeData()
         change_data.old_stats = self.deserialize_snapshot(data["oldStats"])
         # NOTE: Hack to handle case where name change details new stats
         # don't have an ID if the new username is not tracked by WOM
@@ -323,10 +320,8 @@ class Serializer:
 
         return change_data
 
-    def deserialize_name_change_detail(
-        self, data: dict[str, t.Any]
-    ) -> models.NameChangeDetailModel:
-        change_detail = models.NameChangeDetailModel()
+    def deserialize_name_change_detail(self, data: dict[str, t.Any]) -> models.NameChangeDetail:
+        change_detail = models.NameChangeDetail()
         change_detail.name_change = self.deserialize_name_change(data["nameChange"])
 
         # Data is only present on pending name changes
@@ -336,8 +331,8 @@ class Serializer:
 
         return change_detail
 
-    def deserialize_record(self, data: dict[str, t.Any]) -> models.RecordModel:
-        record = models.RecordModel()
+    def deserialize_record(self, data: dict[str, t.Any]) -> models.Record:
+        record = models.Record()
         record.period = enums.Period.from_str(data["period"])
         record.metric = enums.Metric.from_str(data["metric"])
         record.updated_at = self._dt_from_iso(data["updatedAt"])
@@ -346,16 +341,16 @@ class Serializer:
 
     def deserialize_record_leaderboard_entry(
         self, data: dict[str, t.Any]
-    ) -> models.RecordLeaderboardEntryModel:
-        record = models.RecordLeaderboardEntryModel()
+    ) -> models.RecordLeaderboardEntry:
+        record = models.RecordLeaderboardEntry()
         record.record = self.deserialize_record(data)
         record.player = self.deserialize_player(data["player"])
         return record
 
     def deserialize_delta_leaderboard_entry(
         self, data: dict[str, t.Any]
-    ) -> models.DeltaLeaderboardEntryModel:
-        delta = models.DeltaLeaderboardEntryModel()
+    ) -> models.DeltaLeaderboardEntry:
+        delta = models.DeltaLeaderboardEntry()
         delta.gained = data["gained"]
         delta.player_id = data["playerId"]
         delta.end_date = self._dt_from_iso(data["endDate"])
@@ -363,8 +358,8 @@ class Serializer:
         delta.player = self.deserialize_player(data["player"])
         return delta
 
-    def deserialize_group(self, data: dict[str, t.Any]) -> models.GroupModel:
-        group = models.GroupModel()
+    def deserialize_group(self, data: dict[str, t.Any]) -> models.Group:
+        group = models.Group()
         group.created_at = self._dt_from_iso(data["createdAt"])
         group.updated_at = self._dt_from_iso(data["updatedAt"])
         self._set_attrs_cased(
@@ -382,22 +377,22 @@ class Serializer:
 
         return group
 
-    def deserialize_membership(self, data: dict[str, t.Any]) -> models.MembershipModel:
-        membership = models.MembershipModel()
+    def deserialize_membership(self, data: dict[str, t.Any]) -> models.Membership:
+        membership = models.Membership()
         membership.role = models.GroupRole.from_str_maybe(data["role"])
         membership.created_at = self._dt_from_iso(data["createdAt"])
         membership.updated_at = self._dt_from_iso(data["updatedAt"])
         self._set_attrs_cased(membership, data, "player_id", "group_id")
         return membership
 
-    def deserialize_group_membership(self, data: dict[str, t.Any]) -> models.GroupMembershipModel:
-        group = models.GroupMembershipModel()
+    def deserialize_group_membership(self, data: dict[str, t.Any]) -> models.GroupMembership:
+        group = models.GroupMembership()
         group.player = self.deserialize_player(data["player"])
         group.membership = self.deserialize_membership(data)
         return group
 
-    def deserialize_group_details(self, data: dict[str, t.Any]) -> models.GroupDetailModel:
-        details = models.GroupDetailModel()
+    def deserialize_group_details(self, data: dict[str, t.Any]) -> models.GroupDetail:
+        details = models.GroupDetail()
         details.verification_code = None
         details.group = self.deserialize_group(data)
         details.memberships = self.gather(self.deserialize_group_membership, data["memberships"])
@@ -405,49 +400,49 @@ class Serializer:
 
     def deserialize_group_hiscores_activity_item(
         self, data: dict[str, t.Any]
-    ) -> models.GroupHiscoresActivityItemModel:
-        item = models.GroupHiscoresActivityItemModel()
+    ) -> models.GroupHiscoresActivityItem:
+        item = models.GroupHiscoresActivityItem()
         self._set_attrs(item, data, "rank", "score")
         return item
 
     def deserialize_group_hiscores_boss_item(
         self, data: dict[str, t.Any]
-    ) -> models.GroupHiscoresBossItemModel:
-        item = models.GroupHiscoresBossItemModel()
+    ) -> models.GroupHiscoresBossItem:
+        item = models.GroupHiscoresBossItem()
         self._set_attrs(item, data, "rank", "kills")
         return item
 
     def deserialize_group_hiscores_skill_item(
         self, data: dict[str, t.Any]
-    ) -> models.GroupHiscoresSkillItemModel:
-        item = models.GroupHiscoresSkillItemModel()
+    ) -> models.GroupHiscoresSkillItem:
+        item = models.GroupHiscoresSkillItem()
         self._set_attrs(item, data, "rank", "level", "experience")
         return item
 
     def deserialize_group_hiscores_computed_item(
         self, data: dict[str, t.Any]
-    ) -> models.GroupHiscoresComputedMetricItemModel:
-        item = models.GroupHiscoresComputedMetricItemModel()
+    ) -> models.GroupHiscoresComputedMetricItem:
+        item = models.GroupHiscoresComputedMetricItem()
         self._set_attrs(item, data, "rank", "value")
         return item
 
     def deserialize_group_hiscores_entry(
         self, data: dict[str, t.Any]
-    ) -> models.GroupHiscoresEntryModel:
-        hiscores = models.GroupHiscoresEntryModel()
+    ) -> models.GroupHiscoresEntry:
+        hiscores = models.GroupHiscoresEntry()
         hiscores.player = self.deserialize_player(data["player"])
         hiscores.data = self._determine_hiscores_entry_item(data["data"])
         return hiscores
 
-    def deserialize_group_statistics(self, data: dict[str, t.Any]) -> models.GroupStatisticsModel:
-        statistics = models.GroupStatisticsModel()
+    def deserialize_group_statistics(self, data: dict[str, t.Any]) -> models.GroupStatistics:
+        statistics = models.GroupStatistics()
         statistics.maxed_200ms_count = data["maxed200msCount"]
         statistics.average_stats = self.deserialize_statistics_snapshot(data["averageStats"])
         self._set_attrs_cased(statistics, data, "maxed_total_count", "maxed_combat_count")
         return statistics
 
-    def deserialize_competition(self, data: dict[str, t.Any]) -> models.CompetitionModel:
-        competition = models.CompetitionModel()
+    def deserialize_competition(self, data: dict[str, t.Any]) -> models.Competition:
+        competition = models.Competition()
         competition.metric = enums.Metric.from_str(data["metric"])
         competition.type = models.CompetitionType.from_str(data["type"])
         competition.group = self.deserialize_group(g) if (g := data.get("group")) else None
@@ -468,8 +463,8 @@ class Serializer:
 
         return competition
 
-    def deserialize_participation(self, data: dict[str, t.Any]) -> models.ParticipationModel:
-        participation = models.ParticipationModel()
+    def deserialize_participation(self, data: dict[str, t.Any]) -> models.Participation:
+        participation = models.Participation()
         participation.created_at = self._dt_from_iso(data["createdAt"])
         participation.updated_at = self._dt_from_iso(data["updatedAt"])
         self._set_attrs_cased(participation, data, "player_id", "competition_id", "team_name")
@@ -477,48 +472,44 @@ class Serializer:
 
     def deserialize_player_participation(
         self, data: dict[str, t.Any]
-    ) -> models.PlayerParticipationModel:
-        player_participation = models.PlayerParticipationModel()
+    ) -> models.PlayerParticipation:
+        player_participation = models.PlayerParticipation()
         player_participation.competition = self.deserialize_competition(data["competition"])
         player_participation.data = self.deserialize_participation(data)
         return player_participation
 
     def deserialize_competition_participation(
         self, data: dict[str, t.Any]
-    ) -> models.CompetitionParticipationModel:
-        competition_participation = models.CompetitionParticipationModel()
+    ) -> models.CompetitionParticipation:
+        competition_participation = models.CompetitionParticipation()
         competition_participation.player = self.deserialize_player(data["player"])
         competition_participation.data = self.deserialize_participation(data)
         return competition_participation
 
     def deserialize_competition_progress(
         self, data: dict[str, t.Any]
-    ) -> models.CompetitionProgressModel:
-        progress = models.CompetitionProgressModel()
+    ) -> models.CompetitionProgress:
+        progress = models.CompetitionProgress()
         self._set_attrs(progress, data, "start", "end", "gained")
         return progress
 
     def deserialize_player_competition_standing(
         self, data: dict[str, t.Any]
-    ) -> models.PlayerCompetitionStandingModel:
-        standing = models.PlayerCompetitionStandingModel()
+    ) -> models.PlayerCompetitionStanding:
+        standing = models.PlayerCompetitionStanding()
         standing.rank = data["rank"]
         standing.participation = self.deserialize_player_participation(data)
         standing.progress = self.deserialize_competition_progress(data["progress"])
         return standing
 
-    def deserialize_player_membership(
-        self, data: dict[str, t.Any]
-    ) -> models.PlayerMembershipModel:
-        player_membership = models.PlayerMembershipModel()
+    def deserialize_player_membership(self, data: dict[str, t.Any]) -> models.PlayerMembership:
+        player_membership = models.PlayerMembership()
         player_membership.group = self.deserialize_group(data["group"])
         player_membership.membership = self.deserialize_membership(data)
         return player_membership
 
-    def deserialize_competition_details(
-        self, data: dict[str, t.Any]
-    ) -> models.CompetitionDetailModel:
-        details = models.CompetitionDetailModel()
+    def deserialize_competition_details(self, data: dict[str, t.Any]) -> models.CompetitionDetail:
+        details = models.CompetitionDetail()
         details.competition = self.deserialize_competition(data)
         details.participations = self.gather(
             self.deserialize_competition_participation_detail, data["participations"]
@@ -528,24 +519,24 @@ class Serializer:
 
     def deserialize_competition_participation_detail(
         self, data: dict[str, t.Any]
-    ) -> models.CompetitionParticipationDetailModel:
-        participation_details = models.CompetitionParticipationDetailModel()
+    ) -> models.CompetitionParticipationDetail:
+        participation_details = models.CompetitionParticipationDetail()
         participation_details.participation = self.deserialize_competition_participation(data)
         participation_details.progress = self.deserialize_competition_progress(data["progress"])
         return participation_details
 
     def deserialize_competition_history_data_point(
         self, data: dict[str, t.Any]
-    ) -> models.CompetitionHistoryDataPointModel:
-        datapoint = models.CompetitionHistoryDataPointModel()
+    ) -> models.CompetitionHistoryDataPoint:
+        datapoint = models.CompetitionHistoryDataPoint()
         datapoint.date = self._dt_from_iso(data["date"])
         datapoint.value = data["value"]
         return datapoint
 
     def deserialize_top5_progress_result(
         self, data: dict[str, t.Any]
-    ) -> models.Top5ProgressResultModel:
-        progress = models.Top5ProgressResultModel()
+    ) -> models.Top5ProgressResult:
+        progress = models.Top5ProgressResult()
         progress.player = self.deserialize_player(data["player"])
         progress.history = self.gather(
             self.deserialize_competition_history_data_point, data["history"]
@@ -555,8 +546,8 @@ class Serializer:
 
     def deserialize_competition_with_participation(
         self, data: dict[str, t.Any]
-    ) -> models.CompetitionWithParticipationsModel:
-        model = models.CompetitionWithParticipationsModel()
+    ) -> models.CompetitionWithParticipations:
+        model = models.CompetitionWithParticipations()
         model.verification_code = data.get("verificationCode")
         model.competition = self.deserialize_competition(data)
 

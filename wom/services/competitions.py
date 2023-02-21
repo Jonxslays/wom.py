@@ -51,7 +51,7 @@ class CompetitionService(BaseService):
         metric: enums.Metric | None = None,
         limit: int | None = None,
         offset: int | None = None,
-    ) -> ResultT[list[models.CompetitionModel]]:
+    ) -> ResultT[list[models.Competition]]:
         params = self._generate_map(
             title=title,
             limit=limit,
@@ -71,7 +71,7 @@ class CompetitionService(BaseService):
 
     async def get_competition_details(
         self, id: int, *, metric: enums.Metric | None = None
-    ) -> ResultT[models.CompetitionDetailModel]:
+    ) -> ResultT[models.CompetitionDetail]:
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
         data = await self._http.fetch(route, self._dict)
@@ -83,7 +83,7 @@ class CompetitionService(BaseService):
 
     async def get_top_participant_history(
         self, id: int, *, metric: enums.Metric | None = None
-    ) -> ResultT[list[models.Top5ProgressResultModel]]:
+    ) -> ResultT[list[models.Top5ProgressResult]]:
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -102,9 +102,9 @@ class CompetitionService(BaseService):
         *,
         group_id: int | None = None,
         group_verification_code: str | None = None,
-        teams: list[models.TeamModel] | None = None,
+        teams: list[models.Team] | None = None,
         participants: list[str] | None = None,
-    ) -> ResultT[models.CompetitionWithParticipationsModel]:
+    ) -> ResultT[models.CompetitionWithParticipations]:
         payload = self._generate_map(
             title=title,
             teams=teams,
@@ -135,9 +135,9 @@ class CompetitionService(BaseService):
         metric: enums.Metric | None = None,
         starts_at: datetime | None = None,
         ends_at: datetime | None = None,
-        teams: list[models.TeamModel] | None = None,
+        teams: list[models.Team] | None = None,
         participants: list[str] | None = None,
-    ) -> ResultT[models.CompetitionWithParticipationsModel]:
+    ) -> ResultT[models.CompetitionWithParticipations]:
         payload = self._generate_map(
             title=title,
             teams=teams,
@@ -193,7 +193,7 @@ class CompetitionService(BaseService):
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def add_teams(
-        self, id: int, verification_code: str, *teams: models.TeamModel
+        self, id: int, verification_code: str, *teams: models.Team
     ) -> ResultT[models.HttpSuccessResponse]:
         payload = self._generate_map(
             verificationCode=verification_code, teams=[t.to_dict() for t in teams]
