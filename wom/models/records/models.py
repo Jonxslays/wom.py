@@ -47,7 +47,7 @@ class RecordModel(BaseModel):
     achieved.
     """
     metric: enums.Metric
-    """The metric measured in this record."""
+    """The [`Metric`][wom.enums.Metric] measured in this record."""
     value: int
     """The records gained value."""
     updated_at: datetime
