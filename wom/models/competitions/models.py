@@ -210,6 +210,11 @@ class Top5ProgressResult(BaseModel):
 class Team(BaseModel):
     """Represents a competition team.
 
+    Args:
+        name: The name of the team.
+
+        participants: A list of usernames to include in the team.
+
     !!! tip
 
         This is a model classes that you will create in order to send
