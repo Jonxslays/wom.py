@@ -85,6 +85,8 @@ nav:
     - "reference/client.md"
     - "reference/enums.md"
     - "reference/errors.md"
+    - "reference/models.md"
     - "reference/result.md"
     - "reference/routes.md"
     - "reference/serializer.md"
+    - "reference/services.md"

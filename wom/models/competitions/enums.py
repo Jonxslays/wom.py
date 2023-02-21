@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""Competition related enums."""
+
 from __future__ import annotations
 
 from wom.enums import BaseEnum
@@ -27,11 +29,15 @@ __all__ = ("CompetitionStatus", "CompetitionType")
 
 
 class CompetitionType(BaseEnum):
+    """Competition types available on WOM."""
+
     Classic = "classic"
     Team = "team"
 
 
 class CompetitionStatus(BaseEnum):
+    """Potential competition statuses."""
+
     Upcoming = "upcoming"
     Ongoing = "ongoing"
     Finished = "finished"

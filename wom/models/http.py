@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""HTTP response related models."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -28,13 +30,25 @@ from .base import BaseModel
 __all__ = ("HttpErrorResponse", "HttpSuccessResponse")
 
 
-@dataclass(slots=True)
+@dataclass()
 class HttpErrorResponse(BaseModel):
+    """Indicates something went wrong during the request."""
+
+    __slots__ = ("message", "status")
+
     status: int
+    """The HTTP status code."""
     message: str
+    """The error message."""
 
 
-@dataclass(slots=True)
+@dataclass()
 class HttpSuccessResponse(BaseModel):
+    """Indicates a succesful HTTP response."""
+
+    __slots__ = ("message", "status")
+
     status: int
+    """The HTTP status code."""
     message: str
+    """The success message."""

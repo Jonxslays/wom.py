@@ -38,6 +38,8 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class PlayerService(BaseService):
+    """Handles endpoints related to players."""
+
     __slots__ = ()
 
     async def search_players(

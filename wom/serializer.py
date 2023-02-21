@@ -105,7 +105,7 @@ class Serializer:
         raise ValueError(f"Unknown hiscores entry item: {data}")
 
     def deserialize_player(self, data: dict[str, t.Any]) -> models.PlayerModel:
-        """Deserializes into a player model.
+        """Deserializes the data into a player model.
 
         Args:
             data: The json payload.

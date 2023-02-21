@@ -38,6 +38,8 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class CompetitionService(BaseService):
+    """Handles endpoints related to competitions."""
+
     __slots__ = ()
 
     async def search_competitions(

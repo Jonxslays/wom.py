@@ -117,6 +117,8 @@ class StatisticsSnapshotModel(BaseSnapshotModel):
 
 @dataclass(slots=True, init=False)
 class PlayerModel(BaseModel):
+    """Represents a unique player on WOM."""
+
     id: int
     username: str
     display_name: str

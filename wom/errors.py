@@ -29,6 +29,8 @@ __all__ = ("UnwrapError", "WomError")
 class WomError(Exception):
     """The base error all wom errors inherit from."""
 
+    __slots__ = ()
+
 
 class UnwrapError(WomError):
     """Raised when calling [`unwrap()`][wom.Result.unwrap] or
@@ -37,6 +39,8 @@ class UnwrapError(WomError):
     Args:
         message: The error message.
     """
+
+    __slots__ = ()
 
     def __init__(self, message: str) -> None:
         super().__init__(f"Unwrap failed: {message}")

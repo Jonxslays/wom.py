@@ -19,10 +19,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""Route/endpoint related items."""
+
 from __future__ import annotations
 
+import typing as t
 from dataclasses import dataclass
-from typing import Final
 
 __all__ = (
     "CompiledRoute",
@@ -76,10 +78,20 @@ __all__ = (
 )
 
 
-@dataclass(slots=True)
+@dataclass()
 class CompiledRoute:
+    """A route that has been compiled to include uri variables.
+
+    Args:
+        route: The route to compile.
+    """
+
+    __slots__ = ("params", "route")
+
     params: dict[str, str | int]
+    """The query params for the route."""
     route: Route
+    """The route itself."""
 
     def __init__(self, route: Route) -> None:
         self.route = route
@@ -87,6 +99,7 @@ class CompiledRoute:
 
     @property
     def uri(self) -> str:
+        """The routes uri endpoint."""
         return self.route.uri
 
     @uri.setter
@@ -95,21 +108,44 @@ class CompiledRoute:
 
     @property
     def method(self) -> str:
+        """The routes method, i.e. GET, POST..."""
         return self.route.method
 
-    def with_params(self, params: dict[str, str | int]) -> CompiledRoute:
+    def with_params(self, params: dict[str, t.Any]) -> CompiledRoute:
+        """Adds additional query params to this compiled route.
+
+        Args:
+            params: The query params to compile.
+
+        Returns:
+            The compiled route for chained calls.
+        """
         if params:
             self.params.update(params)
 
         return self
 
 
-@dataclass(slots=True)
+@dataclass()
 class Route:
+    """A route that has not been compiled yet."""
+
+    __slots__ = ("method", "uri")
+
     method: str
+    """The request method to use."""
     uri: str
+    """The request uri."""
 
     def compile(self, *args: str | int) -> CompiledRoute:
+        """Turn this route into a compiled route.
+
+        Args:
+            *args: The arguments to insert into the uri.
+
+        Returns:
+            The compiled route.
+        """
         compiled = CompiledRoute(self)
 
         for arg in args:
@@ -118,50 +154,50 @@ class Route:
         return compiled
 
 
-SEARCH_PLAYERS: Final[Route] = Route("GET", "/players/search")
-UPDATE_PLAYER: Final[Route] = Route("POST", "/players/{}")
-ASSERT_PLAYER_TYPE: Final[Route] = Route("POST", "/players/{}/assert-type")
-PLAYER_DETAILS: Final[Route] = Route("GET", "/players/{}")
-PLAYER_DETAILS_BY_ID: Final[Route] = Route("GET", "/players/id/{}")
-PLAYER_ACHIEVEMENTS: Final[Route] = Route("GET", "/players/{}/achievements")
-PLAYER_ACHIEVEMENT_PROGRESS: Final[Route] = Route("GET", "/players/{}/achievements/progress")
-PLAYER_COMPETITION_PARTICIPATION: Final[Route] = Route("GET", "/players/{}/competitions")
-PLAYER_COMPETITION_STANDINGS: Final[Route] = Route("GET", "/players/{}/competitions/standings")
-PLAYER_GROUP_MEMBERSHIPS: Final[Route] = Route("GET", "/players/{}/groups")
-PLAYER_GAINS: Final[Route] = Route("GET", "/players/{}/gained")
-PLAYER_RECORDS: Final[Route] = Route("GET", "/players/{}/records")
-PLAYER_SNAPSHOTS: Final[Route] = Route("GET", "/players/{}/snapshots")
-SEARCH_NAME_CHANGES: Final[Route] = Route("GET", "/names")
-SUBMIT_NAME_CHANGE: Final[Route] = Route("POST", "/names")
-NAME_CHANGE_DETAILS: Final[Route] = Route("GET", "/names/{}")
-PLAYER_NAME_CHANGES: Final[Route] = Route("GET", "/players/{}/names")
-GLOBAL_RECORD_LEADERS: Final[Route] = Route("GET", "/records/leaderboard")
-GLOBAL_EFFICIENCY_LEADERS: Final[Route] = Route("GET", "/efficiency/leaderboard")
-GLOBAL_DELTA_LEADERS: Final[Route] = Route("GET", "/deltas/leaderboard")
-SEARCH_GROUPS: Final[Route] = Route("GET", "/groups")
-GROUP_DETAILS: Final[Route] = Route("GET", "/groups/{}")
-CREATE_GROUP: Final[Route] = Route("POST", "/groups")
-EDIT_GROUP: Final[Route] = Route("PUT", "/groups/{}")
-DELETE_GROUP: Final[Route] = Route("DELETE", "/groups/{}")
-ADD_MEMBERS: Final[Route] = Route("POST", "/groups/{}/members")
-REMOVE_MEMBERS: Final[Route] = Route("DELETE", "/groups/{}/members")
-CHANGE_MEMBER_ROLE: Final[Route] = Route("PUT", "/groups/{}/role")
-UPDATE_OUTDATED_MEMBERS: Final[Route] = Route("POST", "/groups/{}/update-all")
-GROUP_GAINS: Final[Route] = Route("GET", "/groups/{}/gained")
-GROUP_ACHIEVEMENTS: Final[Route] = Route("GET", "/groups/{}/achievements")
-GROUP_RECORDS: Final[Route] = Route("GET", "/groups/{}/records")
-GROUP_HISCORES: Final[Route] = Route("GET", "/groups/{}/hiscores")
-GROUP_NAME_CHANGES: Final[Route] = Route("GET", "/groups/{}/name-changes")
-GROUP_STATISTICS: Final[Route] = Route("GET", "/groups/{}/statistics")
-GROUP_COMPETITIONS: Final[Route] = Route("GET", "/groups/{}/competitions")
-SEARCH_COMPETITIONS: Final[Route] = Route("GET", "/competitions")
-COMPETITION_DETAILS: Final[Route] = Route("GET", "/competitions/{}")
-TOP_PARTICIPANT_HISTORY: Final[Route] = Route("GET", "/competitions/{}/top-history")
-CREATE_COMPETITION: Final[Route] = Route("POST", "/competitions")
-EDIT_COMPETITION: Final[Route] = Route("PUT", "/competitions/{}")
-DELETE_COMPETITION: Final[Route] = Route("DELETE", "/competitions/{}")
-UPDATE_OUTDATED_PARTICIPANTS: Final[Route] = Route("POST", "/competitions/{}/update-all")
-ADD_PARTICIPANTS: Final[Route] = Route("POST", "/competitions/{}/participants")
-REMOVE_PARTICIPANTS: Final[Route] = Route("DELETE", "/competitions/{}/participants")
-ADD_TEAMS: Final[Route] = Route("POST", "/competitions/{}/teams")
-REMOVE_TEAMS: Final[Route] = Route("DELETE", "/competitions/{}/teams")
+SEARCH_PLAYERS: t.Final[Route] = Route("GET", "/players/search")
+UPDATE_PLAYER: t.Final[Route] = Route("POST", "/players/{}")
+ASSERT_PLAYER_TYPE: t.Final[Route] = Route("POST", "/players/{}/assert-type")
+PLAYER_DETAILS: t.Final[Route] = Route("GET", "/players/{}")
+PLAYER_DETAILS_BY_ID: t.Final[Route] = Route("GET", "/players/id/{}")
+PLAYER_ACHIEVEMENTS: t.Final[Route] = Route("GET", "/players/{}/achievements")
+PLAYER_ACHIEVEMENT_PROGRESS: t.Final[Route] = Route("GET", "/players/{}/achievements/progress")
+PLAYER_COMPETITION_PARTICIPATION: t.Final[Route] = Route("GET", "/players/{}/competitions")
+PLAYER_COMPETITION_STANDINGS: t.Final[Route] = Route("GET", "/players/{}/competitions/standings")
+PLAYER_GROUP_MEMBERSHIPS: t.Final[Route] = Route("GET", "/players/{}/groups")
+PLAYER_GAINS: t.Final[Route] = Route("GET", "/players/{}/gained")
+PLAYER_RECORDS: t.Final[Route] = Route("GET", "/players/{}/records")
+PLAYER_SNAPSHOTS: t.Final[Route] = Route("GET", "/players/{}/snapshots")
+SEARCH_NAME_CHANGES: t.Final[Route] = Route("GET", "/names")
+SUBMIT_NAME_CHANGE: t.Final[Route] = Route("POST", "/names")
+NAME_CHANGE_DETAILS: t.Final[Route] = Route("GET", "/names/{}")
+PLAYER_NAME_CHANGES: t.Final[Route] = Route("GET", "/players/{}/names")
+GLOBAL_RECORD_LEADERS: t.Final[Route] = Route("GET", "/records/leaderboard")
+GLOBAL_EFFICIENCY_LEADERS: t.Final[Route] = Route("GET", "/efficiency/leaderboard")
+GLOBAL_DELTA_LEADERS: t.Final[Route] = Route("GET", "/deltas/leaderboard")
+SEARCH_GROUPS: t.Final[Route] = Route("GET", "/groups")
+GROUP_DETAILS: t.Final[Route] = Route("GET", "/groups/{}")
+CREATE_GROUP: t.Final[Route] = Route("POST", "/groups")
+EDIT_GROUP: t.Final[Route] = Route("PUT", "/groups/{}")
+DELETE_GROUP: t.Final[Route] = Route("DELETE", "/groups/{}")
+ADD_MEMBERS: t.Final[Route] = Route("POST", "/groups/{}/members")
+REMOVE_MEMBERS: t.Final[Route] = Route("DELETE", "/groups/{}/members")
+CHANGE_MEMBER_ROLE: t.Final[Route] = Route("PUT", "/groups/{}/role")
+UPDATE_OUTDATED_MEMBERS: t.Final[Route] = Route("POST", "/groups/{}/update-all")
+GROUP_GAINS: t.Final[Route] = Route("GET", "/groups/{}/gained")
+GROUP_ACHIEVEMENTS: t.Final[Route] = Route("GET", "/groups/{}/achievements")
+GROUP_RECORDS: t.Final[Route] = Route("GET", "/groups/{}/records")
+GROUP_HISCORES: t.Final[Route] = Route("GET", "/groups/{}/hiscores")
+GROUP_NAME_CHANGES: t.Final[Route] = Route("GET", "/groups/{}/name-changes")
+GROUP_STATISTICS: t.Final[Route] = Route("GET", "/groups/{}/statistics")
+GROUP_COMPETITIONS: t.Final[Route] = Route("GET", "/groups/{}/competitions")
+SEARCH_COMPETITIONS: t.Final[Route] = Route("GET", "/competitions")
+COMPETITION_DETAILS: t.Final[Route] = Route("GET", "/competitions/{}")
+TOP_PARTICIPANT_HISTORY: t.Final[Route] = Route("GET", "/competitions/{}/top-history")
+CREATE_COMPETITION: t.Final[Route] = Route("POST", "/competitions")
+EDIT_COMPETITION: t.Final[Route] = Route("PUT", "/competitions/{}")
+DELETE_COMPETITION: t.Final[Route] = Route("DELETE", "/competitions/{}")
+UPDATE_OUTDATED_PARTICIPANTS: t.Final[Route] = Route("POST", "/competitions/{}/update-all")
+ADD_PARTICIPANTS: t.Final[Route] = Route("POST", "/competitions/{}/participants")
+REMOVE_PARTICIPANTS: t.Final[Route] = Route("DELETE", "/competitions/{}/participants")
+ADD_TEAMS: t.Final[Route] = Route("POST", "/competitions/{}/teams")
+REMOVE_TEAMS: t.Final[Route] = Route("DELETE", "/competitions/{}/teams")

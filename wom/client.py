@@ -19,6 +19,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""This module houses the wom.py [`Client`][wom.Client].
+
+Services related to different WOM endpoints are available for use.
+All functionality is encompassed in these service methods.
+"""
+
 from __future__ import annotations
 
 import typing as t
@@ -32,7 +38,22 @@ ServiceT = t.TypeVar("ServiceT")
 
 
 class Client:
-    """A client used for interacting with the Wise Old Man API."""
+    """A client used for interacting with the Wise Old Man API.
+
+    Args:
+        api_key: The optional WOM api key to use with requests.
+
+    Keyword Args:
+        user_agent: The optional user agent to use with requests.
+
+            If none is provided a library default will be used.
+
+        api_base_url: The optional alternate api base url to use
+
+            for requests. Useful for development against a local
+
+            version of the WOM api.
+    """
 
     __slots__ = (
         "_competitions",
@@ -59,30 +80,43 @@ class Client:
 
     @property
     def competitions(self) -> services.CompetitionService:
+        """The [`CompetitionService`][wom.services.CompetitionService]
+        used to make competition related requests.
+        """
         return self._competitions
 
     @property
     def deltas(self) -> services.DeltaService:
+        """The [`DeltaService`][wom.services.DeltaService]
+        used to make delta (increment) related requests.
+        """
         return self._deltas
 
     @property
     def efficiency(self) -> services.EfficiencyService:
+        """The [`EfficiencyService`][wom.services.EfficiencyService]
+        used to make efficiency related requests.
+        """
         return self._efficiency
 
     @property
     def groups(self) -> services.GroupService:
+        """Used to make group related requests."""
         return self._groups
 
     @property
     def names(self) -> services.NameChangeService:
+        """Used to make name change related requests."""
         return self._names
 
     @property
     def players(self) -> services.PlayerService:
+        """Used to make player related requests."""
         return self._players
 
     @property
     def records(self) -> services.RecordService:
+        """Used to make record related requests."""
         return self._records
 
     def __init_service(self, service: t.Type[ServiceT]) -> ServiceT:

@@ -37,6 +37,8 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class EfficiencyService(BaseService):
+    """Handles endpoints related to efficiency."""
+
     __slots__ = ()
 
     async def get_global_efficiency_leaderboard(

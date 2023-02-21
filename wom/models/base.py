@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""The base model."""
+
 from __future__ import annotations
 
 import typing as t
@@ -26,7 +28,16 @@ from dataclasses import asdict
 from dataclasses import dataclass
 
 
-@dataclass(slots=True)
+@dataclass()
 class BaseModel:
+    """The base model all library models inherit from."""
+
+    __slots__ = ()
+
     def to_dict(self) -> dict[str, t.Any]:
+        """Converts this dataclass into a dictionary.
+
+        Returns:
+            The requested dictionary.
+        """
         return asdict(self)

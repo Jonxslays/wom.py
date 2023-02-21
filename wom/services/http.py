@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""The http service module."""
+
 from __future__ import annotations
 
 import typing as t
@@ -35,7 +37,15 @@ T = t.TypeVar("T")
 
 
 class HttpService:
-    """The HTTP service used to make requests to the api."""
+    """The HTTP service used to make requests to the WOM API.
+
+    Args:
+        api_key: The optional api key to use.
+
+        user_agent: The optional user agent to use.
+
+        api_base_url: The optional api base url to use.
+    """
 
     __slots__ = ("_base_url", "_headers", "_method_mapping", "_session")
 
@@ -95,15 +105,31 @@ class HttpService:
         return self._method_mapping[method]  # type: ignore
 
     def set_api_key(self, api_key: str) -> None:
+        """Sets the api key used by the http service.
+
+        Args:
+            api_key: The new api key to use.
+        """
         self._headers["x-api-key"] = api_key
 
     def set_user_agent(self, user_agent: str) -> None:
+        """Sets the user agent used by the http service.
+
+        Args:
+            user_agent: The new user agent to use.
+        """
         self._headers["x-user-agent"] = user_agent
 
     def set_base_url(self, base_url: str) -> None:
+        """Sets the api base url used by the http service.
+
+        Args:
+            base_url: The new base url to use.
+        """
         self._base_url = base_url
 
     async def close(self) -> None:
+        """Closes the existing client session, if it's still open."""
         if not self._session.closed:
             await self._session.close()
 
@@ -114,6 +140,19 @@ class HttpService:
         *,
         payload: dict[str, t.Any] | None = None,
     ) -> T | models.HttpErrorResponse:
+        """Fetches the given route.
+
+        Args:
+            route: The route to make the request to.
+
+            _: The type expected to be returned.
+
+            payload: The optional payload to send in the request
+                body.
+
+        Returns:
+            The requested json data or the error response.
+        """
         return await self._request(  # type: ignore
             self._get_request_func(route.method),
             self._base_url + route.uri,

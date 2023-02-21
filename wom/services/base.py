@@ -33,6 +33,16 @@ __all__ = ("BaseService",)
 
 
 class BaseService(abc.ABC):
+    """The base service all API services inherit from.
+
+    Args:
+        http_service: The http service to use for requests.
+
+        serializer: The serializer to use for handling incoming
+
+            JSON data from the API.
+    """
+
     __slots__ = ("_dict", "_list", "_http", "_serializer")
 
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:

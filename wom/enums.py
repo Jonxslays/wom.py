@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""Global enums used throughout the project."""
+
 from __future__ import annotations
 
 import typing as t
@@ -54,7 +56,7 @@ class BaseEnum(Enum):
 
         Returns:
             The generated enum or `None` if the value was not a valid
-            enum variant.
+                enum variant.
         """
         try:
             return cls(value)
@@ -65,10 +67,12 @@ class BaseEnum(Enum):
 class Metric(BaseEnum):
     """Represents a metric, this enum has no attributes itself.
 
-    .. note::
+    !!! tip
 
-        Will always be one of :obj:`Activity`, :obj:`Boss`,
-        :obj:`ComputedMetric`, or :obj:`Skill`.
+        Will always be one of [`Activity`][wom.enums.Activity],
+        [`Boss`][wom.enums.Boss],
+        [`ComputedMetric`][wom.enums.ComputedMetric], or
+        [`Skill`][wom.enums.Skill].
     """
 
     @classmethod

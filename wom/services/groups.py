@@ -39,6 +39,8 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class GroupService(BaseService):
+    """Handles endpoints related to groups."""
+
     __slots__ = ()
 
     def _prepare_member_fragments(

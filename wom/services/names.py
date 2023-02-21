@@ -36,6 +36,8 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class NameChangeService(BaseService):
+    """Handles endpoints related to name changes."""
+
     __slots__ = ()
 
     async def search_name_changes(

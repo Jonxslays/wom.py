@@ -37,6 +37,8 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class RecordService(BaseService):
+    """Handles endpoints related to records."""
+
     __slots__ = ()
 
     async def get_global_record_leaderboards(

@@ -120,8 +120,8 @@ class Ok(Result[T, E]):
 
     !!! info
 
-        You should receive instances of this class as a result of
-        calling [`Client`][wom.Client] methods, and never have to
+        You will receive instances of this class as a result of
+        calling [`Client`][wom.Client] methods, and should not have to
         instantiate it yourself.
     """
 
@@ -164,8 +164,8 @@ class Err(Result[T, E]):
 
     !!! info
 
-        You should receive instances of this class as a result of
-        calling [`Client`][wom.Client] methods, and never have to
+        You will receive instances of this class as a result of
+        calling [`Client`][wom.Client] methods, and should not have to
         instantiate it yourself.
     """
 

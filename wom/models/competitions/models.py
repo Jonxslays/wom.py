@@ -19,6 +19,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""Competition related models."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -49,9 +51,14 @@ __all__ = (
 
 @dataclass(slots=True, init=False)
 class CompetitionProgressModel(BaseModel):
+    """Represents progress in a competition."""
+
     start: int
+    """The starting value for the competition's metric."""
     end: int
+    """The ending value for the competition's metric."""
     gained: int
+    """The amount of progress gained in the metric."""
 
 
 @dataclass(slots=True, init=False)

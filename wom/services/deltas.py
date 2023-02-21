@@ -37,6 +37,8 @@ ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 
 class DeltaService(BaseService):
+    """Handles endpoints related to deltas."""
+
     __slots__ = ()
 
     async def get_global_delta_leaderboards(
