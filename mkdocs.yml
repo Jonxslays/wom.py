@@ -81,7 +81,8 @@ repo_url: https://github.com/Jonxslays/wom.py/
 site_url: https://jonxslays.github.io/wom.py/
 
 nav:
-  - "index.md"
+  - "Home":
+    - "Welcome": "index.md"
   - "Modules":
     - "reference/client.md"
     - "reference/enums.md"
