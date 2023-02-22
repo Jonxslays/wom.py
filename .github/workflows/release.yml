@@ -1,36 +1,30 @@
 # name: Publish release
 
-# # on:
-# #   release:
-# #     types: [published]
-
 # on:
-#   push:
-#     branches:
-#       - master
-#       - docs-testing
+#   release:
+#     types: [published]
 
 # permissions:
 #   contents: write
 
 # jobs:
-#   # pypi:
-#   #   name: Pypi release
-#   #   runs-on: ubuntu-latest
-#   #   steps:
-#   #     - name: Checkout code
-#   #       uses: actions/checkout@v3
+#   pypi:
+#     name: Pypi release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-#   #     - name: Run pre-release script
-#   #       id: prerelease
-#   #       run: ./scripts/pre-release.sh
+#       - name: Run pre-release script
+#         id: prerelease
+#         run: ./scripts/pre-release.sh
 
-#   #     - name: Build and publish
-#   #       uses: JRubics/poetry-publish@v1.16
-#   #       if: steps.prerelease.conclusion == 'success'
-#   #       with:
-#   #         pypi_token: ${{ secrets.PYPI_TOKEN }}
-#   #         ignore_dev_requirements: "yes"
+#       - name: Build and publish
+#         uses: JRubics/poetry-publish@v1.16
+#         if: steps.prerelease.conclusion == "success"
+#         with:
+#           pypi_token: ${{ secrets.PYPI_TOKEN }}
+#           ignore_dev_requirements: "yes"
 
 #   docs:
 #     name: Stable docs release
@@ -57,5 +51,4 @@
 #           git config --global user.name "Jonxslays"
 #           git config --global user.email "51417989+Jonxslays@users.noreply.github.com"
 #           git fetch origin gh-pages --depth=1
-
 #           poetry run mike deploy --push --update-aliases $GITHUB_REF_NAME stable
