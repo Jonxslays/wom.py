@@ -117,6 +117,33 @@ class CompetitionService(BaseService):
     async def get_competition_details(
         self, id: int, *, metric: enums.Metric | None = None
     ) -> ResultT[models.CompetitionDetail]:
+        """Gets details for the given competition.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.get_competition_details(123)
+
+            result2 = await client.competitions.get_competition_details(
+                123, wom.Skills.Attack
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+        Keyword Args:
+            metric: The optional [`Metric`][wom.Metric] to view the
+                competition progress in. As if this competition was
+                actually for that metric. Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the competition details.
+        """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
         data = await self._http.fetch(route, self._dict)

@@ -43,8 +43,8 @@ class EfficiencyService(BaseService):
 
     async def get_global_efficiency_leaderboard(
         self,
-        metric: enums.ComputedMetric,
-        *metrics: enums.ComputedMetric,
+        metric: enums.ComputedMetrics,
+        *metrics: enums.ComputedMetrics,
         player_type: models.PlayerType | None = None,
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,

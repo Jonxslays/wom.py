@@ -61,6 +61,7 @@ __all__ = (
     "CompetitionStatus",
     "CompetitionType",
     "CompetitionWithParticipations",
+    "CompiledRoute",
     "ComputedMetric",
     "ComputedMetrics",
     "DeltaLeaderboardEntry",
@@ -99,6 +100,7 @@ __all__ = (
     "Record",
     "RecordLeaderboardEntry",
     "Result",
+    "Route",
     "Serializer",
     "Skill",
     "Skills",
@@ -131,11 +133,11 @@ from . import result
 from . import routes
 from . import serializer
 from . import services
-
 from .client import *
 from .enums import *
 from .errors import *
 from .models import *
 from .result import *
+from .routes import *
 from .serializer import *
 from .services import *
