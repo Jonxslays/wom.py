@@ -53,7 +53,10 @@ def install(*packages: str) -> InjectorT:
     def inner(func: SessionT) -> SessionT:
         @functools.wraps(func)
         def wrapper(session: nox.Session) -> None:
-            session.install("-U", *(DEPS[p] for p in packages))
+            try:
+                session.install("-U", *(DEPS[p] for p in packages))
+            except KeyError as e:
+                session.error(f"Invalid package install - {e}")
             return func(session)
 
         return wrapper
@@ -89,7 +92,7 @@ def coverage(session: nox.Session) -> None:
 
 
 @nox.session(reuse_venv=True)
-@install("pyright", "mypy", "aiohttp")
+@install("pyright", "mypy", "aiohttp", "attrs")
 def types(session: nox.Session) -> None:
     session.run("mypy")
     session.run("pyright")
