@@ -122,49 +122,49 @@ class Client:
 
     @property
     def competitions(self) -> services.CompetitionService:
-        """The [`CompetitionService`][wom.services.CompetitionService]
-        used to make competition related requests.
+        """The [`CompetitionService`][wom.CompetitionService] used to
+        make competition related requests.
         """
         return self._competitions
 
     @property
     def deltas(self) -> services.DeltaService:
-        """The [`DeltaService`][wom.services.DeltaService]
-        used to make delta (increment) related requests.
+        """The [`DeltaService`][wom.DeltaService] used to make delta
+        related requests.
         """
         return self._deltas
 
     @property
     def efficiency(self) -> services.EfficiencyService:
-        """The [`EfficiencyService`][wom.services.EfficiencyService]
-        used to make efficiency related requests.
+        """The [`EfficiencyService`][wom.EfficiencyService] used to make
+        efficiency related requests.
         """
         return self._efficiency
 
     @property
     def groups(self) -> services.GroupService:
-        """The [`GroupService`][wom.services.GroupService] used to make
-        group related requests.
+        """The [`GroupService`][wom.GroupService] used to make group
+        related requests.
         """
         return self._groups
 
     @property
     def names(self) -> services.NameChangeService:
-        """The [`NameChangeService`][wom.services.NameChangeService]
-        used to make name change related requests.
+        """The [`NameChangeService`][wom.NameChangeService] used to make
+        name change related requests.
         """
         return self._names
 
     @property
     def players(self) -> services.PlayerService:
-        """The [`PlayerService`][wom.services.PlayerService] used to
+        """The [`PlayerService`][wom.PlayerService] used to
         make player related requests.
         """
         return self._players
 
     @property
     def records(self) -> services.RecordService:
-        """The [`RecordService`][wom.services.RecordService] used to
+        """The [`RecordService`][wom.RecordService] used to
         make record related requests.
         """
         return self._records

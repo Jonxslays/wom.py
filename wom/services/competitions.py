@@ -52,6 +52,51 @@ class CompetitionService(BaseService):
         limit: int | None = None,
         offset: int | None = None,
     ) -> ResultT[list[models.Competition]]:
+        """Searches for competitions with the given criteria.
+
+        !!! note
+
+            This method accepts only keyword arguments.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.search_competitions(
+                title="Sick Competition",
+                type=wom.CompetitionType.Classic,
+                status=wom.CompetitionStatus.Ongoing,
+                limit=3,
+                offset=1
+            )
+            ```
+
+        Keyword Args:
+            title: The optional title of the competition. Defaults to
+                `None`.
+
+            type: The optional [`CompetitionType`][wom.CompetitionType]
+                filter. Defaults to `None`
+
+            status: The optional [`CompetitionStatus`]
+                [wom.CompetitionStatus] filter. Defaults to `None`.
+
+            metric: The optional [`Metric`][wom.Metric] filter. Defaults
+                to `None`.
+
+            limit: The maximum number of paginated items to receive.
+                Defaults to `None` (I think thats 20 items?).
+
+            offset: The page offset for requesting multiple pages.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of competitions
+                or an error.
+        """
         params = self._generate_map(
             title=title,
             limit=limit,
