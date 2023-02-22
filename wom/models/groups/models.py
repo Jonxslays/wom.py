@@ -52,22 +52,31 @@ class Group(BaseModel):
 
     id: int
     """The unique ID for this group."""
+
     name: str
     """The groups name."""
+
     clan_chat: str
     """The clan chat for this group."""
+
     description: str | None
     """The groups optional description."""
+
     homeworld: int | None
     """The groups optional homeworld."""
+
     verified: bool
     """Whether or not this group is verified."""
+
     score: int
     """The groups score."""
+
     created_at: datetime
     """The date the group was created."""
+
     updated_at: datetime
     """The date the group was updated."""
+
     member_count: int
     """The number of members in the group."""
 
@@ -78,9 +87,11 @@ class GroupDetail(BaseModel):
 
     group: Group
     """The [`Group`][wom.models.Group] itself."""
+
     memberships: list[GroupMembership]
     """A list of [`GroupMemberships`][wom.models.GroupMembership].
     """
+
     verification_code: str | None
     """The optional verification code for the group.
 
@@ -96,14 +107,18 @@ class Membership(BaseModel):
 
     player_id: int
     """The unique ID of the player in this membership."""
+
     group_id: int
     """The group ID this membership belongs to."""
+
     role: GroupRole | None
     """The optional [`GroupRole`][wom.models.GroupRole] for this
     membership.
     """
+
     created_at: datetime
     """The date this membership was created."""
+
     updated_at: datetime
     """The date this membership was updated."""
 
@@ -114,6 +129,7 @@ class GroupMembership(BaseModel):
 
     player: Player
     """The [`Player`][wom.models.Player] that is a member."""
+
     membership: Membership
     """The [`Membership`][wom.models.Membership] itself."""
 
@@ -124,6 +140,7 @@ class PlayerMembership(BaseModel):
 
     group: Group
     """The [`Group`][wom.models.Group] the player is a member of."""
+
     membership: Membership
     """The [`Membership`][wom.models.Membership] itself."""
 
@@ -150,6 +167,7 @@ class GroupMemberFragment(BaseModel):
 
     username: str
     """The group members username."""
+
     role: GroupRole | None
     """The optional [`GroupRole`][wom.models.GroupRole] for the member.
     """
@@ -161,6 +179,7 @@ class GroupHiscoresEntry(BaseModel):
 
     player: Player
     """The [`Player`][wom.models.Player] responsible for the entry."""
+
     data: (
         GroupHiscoresActivityItem
         | GroupHiscoresBossItem
@@ -176,8 +195,10 @@ class GroupHiscoresSkillItem(BaseModel):
 
     rank: int
     """The rank of the hiscore."""
+
     level: int
     """The level of the skill."""
+
     experience: int
     """The experience in the skill."""
 
@@ -188,6 +209,7 @@ class GroupHiscoresBossItem(BaseModel):
 
     rank: int
     """The rank of the hiscore."""
+
     kills: int
     """The number of boss kills."""
 
@@ -198,6 +220,7 @@ class GroupHiscoresActivityItem(BaseModel):
 
     rank: int
     """The rank of the hiscore."""
+
     score: int
     """The activity score."""
 
@@ -208,6 +231,7 @@ class GroupHiscoresComputedMetricItem(BaseModel):
 
     rank: int
     """The rank of the hiscore."""
+
     value: int
     """The value of the computed metric."""
 
@@ -218,10 +242,13 @@ class GroupStatistics(BaseModel):
 
     maxed_combat_count: int
     """The number of maxed combat players in the group."""
+
     maxed_total_count: int
     """The number of maxed total level players in the group."""
+
     maxed_200ms_count: int
     """The number of maxed 200M xp players in the group."""
+
     average_stats: StatisticsSnapshot
     """The average stat [`StatisticsSnapshot`]
     [wom.models.StatisticsSnapshot].

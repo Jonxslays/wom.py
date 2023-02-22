@@ -37,12 +37,16 @@ class DeltaLeaderboardEntry(BaseModel):
 
     player_id: int
     """The ID of the player holding this leaderboard entry."""
+
     gained: int
     """The value gained over the delta."""
+
     start_date: datetime
     """The start date of the delta."""
+
     end_date: datetime
     """The end date of the delta."""
+
     player: Player
     """The [`Player`][wom.models.Player] holding this leaderboard
     entry.

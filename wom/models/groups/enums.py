@@ -27,7 +27,7 @@ __all__ = ("GroupRole",)
 
 
 class GroupRole(BaseEnum):
-    """Roles that can be assigned to group players."""
+    """Roles that can be assigned to group members."""
 
     Achiever = "achiever"
     Adamant = "adamant"

@@ -39,16 +39,21 @@ class Record(BaseModel):
 
     id: int
     """The unique ID for this record."""
+
     player_id: int
     """The player ID associated with this record."""
+
     period: enums.Period
     """The [`Period`][wom.enums.Period] over which this record was
     achieved.
     """
+
     metric: enums.Metric
     """The [`Metric`][wom.enums.Metric] measured in this record."""
+
     value: int
     """The records gained value."""
+
     updated_at: datetime
     """The records creation/modification date."""
 
@@ -61,6 +66,7 @@ class RecordLeaderboardEntry(BaseModel):
     """The [`Player`][wom.models.Player] holding this leaderboard
     entry.
     """
+
     record: Record
     """The [`Record`][wom.models.Record] tied to this leaderboard
     entry.

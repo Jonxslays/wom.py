@@ -36,6 +36,7 @@ class HttpErrorResponse(BaseModel):
 
     status: int
     """The HTTP status code."""
+
     message: str
     """The error message."""
 
@@ -46,5 +47,6 @@ class HttpSuccessResponse(BaseModel):
 
     status: int
     """The HTTP status code."""
+
     message: str
     """The success message."""

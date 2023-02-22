@@ -56,8 +56,10 @@ class CompetitionProgress(BaseModel):
 
     start: int
     """The starting value for the competition's metric."""
+    
     end: int
     """The ending value for the competition's metric."""
+
     gained: int
     """The amount of progress gained in the metric."""
 
@@ -68,26 +70,37 @@ class Competition(BaseModel):
 
     id: int
     """The unique ID of the competition."""
+
     title: str
     """The title of the competition."""
+
     metric: enums.Metric
     """The metric being measured."""
+
     type: CompetitionType
     """The [CompetitionType][wom.models.CompetitionType]."""
+
     starts_at: datetime
     """The date the competition started at."""
+
     ends_at: datetime
     """The date the competition ended at."""
+
     group_id: int | None
     """The optional group id associated with the competition."""
+
     score: int
     """The competition's score."""
+
     created_at: datetime
     """The date the competition was created."""
+
     updated_at: datetime
     """The date the competition was updated."""
+
     participant_count: int
     """The number of players participating."""
+
     group: Group | None
     """The [`Group`][wom.models.Group] associated with the
     competition, if there is one.
@@ -100,12 +113,16 @@ class Participation(BaseModel):
 
     player_id: int
     """The ID of the player associated with this participation."""
+
     competition_id: int
     """The ID of the competition associated with this participation."""
+
     team_name: str | None
     """The optional team name associated with this participation."""
+
     created_at: datetime
     """The date this participation was created."""
+
     updated_at: datetime
     """The date this participation was updated."""
 
@@ -118,6 +135,7 @@ class CompetitionParticipation(BaseModel):
     """The [`Participation`][wom.models.Participation] achieved
     in this competition.
     """
+
     player: Player
     """The [`Player`][wom.models.Player] that participated in this
     competition.
@@ -132,6 +150,7 @@ class PlayerParticipation(BaseModel):
     """The [`Participation`][wom.models.Participation] the player
     achieved.
     """
+
     competition: Competition
     """The [`Competition`][wom.models.Competition] that the player
     participated in.
@@ -146,10 +165,12 @@ class PlayerCompetitionStanding(BaseModel):
     """The [`PlayerParticipation`][wom.models.PlayerParticipation]
     achieved by the player.
     """
+
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.models.CompetitionProgress]
     that was made.
     """
+
     rank: int
     """The rank in the competition standings."""
 
@@ -162,6 +183,7 @@ class CompetitionParticipationDetail(BaseModel):
     """The [`CompetitionParticipation`]
     [wom.models.CompetitionParticipation] in these details.
     """
+
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.models.CompetitionProgress]
     that was made.
@@ -176,6 +198,7 @@ class CompetitionDetail(BaseModel):
     """The [`Competition`][wom.models.Competition] that is being
     detailed.
     """
+
     participations: list[CompetitionParticipationDetail]
     """A list of [`CompetitionParticipationDetail`]
     [wom.models.CompetitionParticipationDetail] participations
@@ -188,6 +211,7 @@ class CompetitionHistoryDataPoint(BaseModel):
 
     date: datetime
     """The date this data point occurred."""
+
     value: int
     """The value of the data point."""
 
@@ -200,6 +224,7 @@ class Top5ProgressResult(BaseModel):
     """The [`Player`][wom.models.Player] who made top 5
     progress.
     """
+
     history: list[CompetitionHistoryDataPoint]
     """A list of [CompetitionHistoryDataPoints]
     [wom.models.CompetitionHistoryDataPoint] making up the history
@@ -229,6 +254,7 @@ class Team(BaseModel):
 
     name: str
     """The name of the team."""
+
     participants: list[str]
     """A list of participant usernames on the team."""
 
@@ -239,10 +265,12 @@ class CompetitionWithParticipations(BaseModel):
 
     competition: Competition
     """The [`Competition`][wom.models.Competition] itself."""
+
     participations: list[CompetitionParticipation]
     """A list containing the [`CompetitionParticipations`]
     [wom.models.CompetitionParticipation].
     """
+
     verification_code: str | None
     """The verification code for the competition.
 
