@@ -40,10 +40,10 @@ all [`Client`][wom.Client] calls.
     ```py
     client = wom.Client()
 
-    result = await client.players.update_player("")
-    print(result.unwrap())
+    result = await client.players.update_player("eeeeeeeeeeeee")
 
-    # Raises UnwrapError, because username can not be an empty string.
+    print(result.unwrap()) # <-- Exception raised
+    # Raises UnwrapError because the username was too long
     ```
 """
 

@@ -31,7 +31,7 @@ the client. All functionality is encompassed in these service methods.
 
     client = Client(user_agent="@your_discord_handle#1234")
 
-    result = await client.players.search_players("Zezima", limit=1)
+    result = await client.players.search_players("Jonxslays", limit=1)
 
     if result.is_ok:
         print(result.unwrap())
@@ -62,19 +62,16 @@ class Client:
         api_key: The optional WOM api key to use with requests.
 
     Keyword Args:
-        user_agent: The optional user agent to use with requests.
+        user_agent: The optional user agent to use with requests. If none is
+            provided a library default will be used. Defaults to `None`.
 
-            If none is provided a library default will be used.
-
-        api_base_url: The optional alternate api base url to use
-
-            for requests. Useful for development against a local
-
-            version of the WOM api.
+        api_base_url: The optional alternate api base url to use for requests.
+            Useful for development against a local version of the WOM api.
+            Defaults to `None`.
 
     !!! note
 
-        None of the arguments are required, although user agent is
+        None of the arguments are required, although user agent is highly
         encouraged.
 
     ??? example
@@ -86,7 +83,7 @@ class Client:
 
         client = wom.Client(
             environ["WOM_API_KEY"],  # The WOM api key if you have one
-            user_agent="@me#1234",  # Identifier, i.e. Discord username
+            user_agent="@me#1234",  # Identifier, i.e. discord username
             api_base_url=environ["LOCAL_WOM_DOMAIN"],
             # Typically you won't need to change the base url
         )
@@ -200,6 +197,19 @@ class Client:
         """
         self._http.set_api_key(api_key)
 
+    def unset_api_key(self) -> None:
+        """Un-sets the current api key so it isn't sent with requests.
+
+        ??? example
+
+            ```py
+            client = wom.Client(api_key="abc123")
+
+            client.unset_api_key()
+            ```
+        """
+        self._http.unset_api_key()
+
     def set_user_agent(self, user_agent: str) -> None:
         """Sets the user agent used by the http service.
 
@@ -237,13 +247,13 @@ class Client:
 
         !!! tip
 
-            Only call this once, at the end of your program or if you
-            are done with the client completely.
+            Only call this once, at the end of your program or if you are done
+            with the client completely.
 
         !!! warning
 
-            If this is not called before your program terminates,
-            you will receive an error in your console.
+            If this is not called before your program terminates, you will
+            receive an error in your console.
 
         ??? example
 

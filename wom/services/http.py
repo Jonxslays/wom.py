@@ -112,6 +112,11 @@ class HttpService:
         """
         self._headers["x-api-key"] = api_key
 
+    def unset_api_key(self) -> None:
+        """Un-sets the current api key so it isn't sent with requests."""
+        if "x-api-key" in self._headers:
+            del self._headers["x-api-key"]
+
     def set_user_agent(self, user_agent: str) -> None:
         """Sets the user agent used by the http service.
 

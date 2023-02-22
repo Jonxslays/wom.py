@@ -80,8 +80,8 @@ class Metric(BaseEnum):
     !!! tip
 
         Will always be one of [`Activities`][wom.Activities],
-        [`Bosses`][wom.enums.Bosses], [`ComputedMetrics`]
-        [wom.ComputedMetrics], or [`Skills`][wom.Skills].
+        [`Bosses`][wom.Bosses], [`ComputedMetrics`][wom.ComputedMetrics],
+        or [`Skills`][wom.Skills].
     """
 
     @classmethod
