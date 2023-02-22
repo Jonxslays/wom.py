@@ -45,7 +45,7 @@ class NameChange(BaseModel):
     new_name: str
     """The new username of the player."""
     status: NameChangeStatus
-    """The [`status`][wom.models.NameChangeStatus] of the name
+    """The [`status`][wom.NameChangeStatus] of the name
     change.
     """
     resolved_at: datetime | None
@@ -93,12 +93,12 @@ class NameChangeData(BaseModel):
     """
 
     old_stats: Snapshot
-    """The latest [`Snapshot`][wom.models.Snapshot] for the old name."""
+    """The latest [`Snapshot`][wom.Snapshot] for the old name."""
 
     new_stats: Snapshot | None
-    """The new name's first [`Snapshot`][wom.models.Snapshot], current
-    hiscores stats if untracked, or null if untracked and not present
-    on hiscores.
+    """The new name's first [`Snapshot`][wom.Snapshot], current hiscores
+    stats if untracked or `None`` if untracked and not present on
+    hiscores.
     """
 
 
@@ -107,11 +107,10 @@ class NameChangeDetail(BaseModel):
     """Details regarding a name change."""
 
     name_change: NameChange
-    """The [`NameChange`][wom.models.NameChange] itself."""
+    """The [`NameChange`][wom.NameChange] itself."""
 
     data: NameChangeData | None
-    """The [`NameChangeData`][wom.models.NameChangeData] for this name
-    change.
+    """The [`NameChangeData`][wom.NameChangeData] for this name change.
 
     !!! note
 

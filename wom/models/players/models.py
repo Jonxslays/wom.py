@@ -62,7 +62,7 @@ class Skill(BaseModel):
     """Details regarding a particular skill."""
 
     metric: enums.Skills
-    """The [`Skills`][wom.enums.Skills] being measured."""
+    """The [`Skills`][wom.Skills] being measured."""
 
     rank: int
     """The players rank in the skill."""
@@ -82,7 +82,7 @@ class Boss(BaseModel):
     """Details regarding a particular boss."""
 
     metric: enums.Bosses
-    """The [`Bosses`][wom.enums.Bosses] being measured."""
+    """The [`Bosses`][wom.Bosses] being measured."""
 
     rank: int
     """The players rank in killing the boss."""
@@ -99,7 +99,7 @@ class Activity(BaseModel):
     """Details regarding a particular activity."""
 
     metric: enums.Activities
-    """The [`Activities`][wom.enums.Activities] being measured."""
+    """The [`Activities`][wom.Activities] being measured."""
 
     rank: int
     """The players rank in the activity."""
@@ -113,7 +113,7 @@ class ComputedMetric(BaseModel):
     """Details regarding a computed metric."""
 
     metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.enums.ComputedMetrics] being
+    """The [`ComputedMetrics`][wom.ComputedMetrics] being
     measured.
     """
 
@@ -129,23 +129,23 @@ class SnapshotData(BaseModel):
     """The data associated with this snapshot."""
 
     skills: list[Skill]
-    """A list of all [`Skills`][wom.models.Skill] stored in this
+    """A list of all [`Skills`][wom.Skill] stored in this
     snapshot.
     """
 
     bosses: list[Boss]
-    """A list of all [`Bosses`][wom.models.Boss] stored in this
+    """A list of all [`Bosses`][wom.Boss] stored in this
     snapshot.
     """
 
     activities: list[Activity]
-    """A list of all [`Activities`][wom.models.Activity] stored in this
+    """A list of all [`Activities`][wom.Activity] stored in this
     snapshot.
     """
 
     computed: list[ComputedMetric]
-    """A list of all [`ComputedMetrics`][wom.models.ComputedMetric]
-    stored in this snapshot.
+    """A list of all [`ComputedMetrics`][wom.ComputedMetric] stored in
+    this snapshot.
     """
 
 
@@ -163,9 +163,7 @@ class Snapshot(BaseModel):
     """The date the snapshot was imported, if it was."""
 
     data: SnapshotData
-    """The [`SnapshotData`][wom.models.SnapshotData] for the
-    snapshot.
-    """
+    """The [`SnapshotData`][wom.SnapshotData] for the snapshot."""
 
     created_at: datetime
     """The date the snapshot was created."""
@@ -185,9 +183,7 @@ class StatisticsSnapshot(BaseModel):
     """The date the snapshot was imported, if it was."""
 
     data: SnapshotData
-    """The [`SnapshotData`][wom.models.SnapshotData] for the
-    snapshot.
-    """
+    """The [`SnapshotData`][wom.SnapshotData] for the snapshot."""
 
     created_at: datetime | None
     """The optional date the statistics snapshot was created."""
@@ -207,14 +203,14 @@ class Player(BaseModel):
     """The players display name, supports capitalization ."""
 
     type: PlayerType
-    """The [`PlayerType`][wom.models.PlayerType] for this player."""
+    """The [`PlayerType`][wom.PlayerType] for this player."""
 
     build: PlayerBuild
-    """The [`PlayerBuild`][wom.models.PlayerBuild] for this player."""
+    """The [`PlayerBuild`][wom.PlayerBuild] for this player."""
 
     country: Country | None
-    """The players [`Country`][wom.models.Country] country of origin, if
-    they have one set.
+    """The players [`Country`][wom.Country] country of origin, if they
+    have one set.
     """
 
     flagged: bool
@@ -255,7 +251,7 @@ class PlayerDetail(BaseModel):
     """Represents details about a player."""
 
     player: Player
-    """The [Player][wom.models.Player]."""
+    """The [Player][wom.Player]."""
 
     combat_level: int
     """The players combat level."""
@@ -286,10 +282,10 @@ class Achievement(BaseModel):
     """The name of the achievement."""
 
     metric: enums.Metric
-    """The [`Metric`][wom.enums.Metric] for this achievement."""
+    """The [`Metric`][wom.Metric] for this achievement."""
 
     measure: AchievementMeasure
-    """The [`AchievementMeasure`][wom.models.AchievementMeasure] that
+    """The [`AchievementMeasure`][wom.AchievementMeasure] that
     the player obtained.
     """
 
@@ -321,10 +317,10 @@ class AchievementProgress(BaseModel):
     """The name of the achievement."""
 
     metric: enums.Metric
-    """The [`Metric`][wom.enums.Metric] for this achievement."""
+    """The [`Metric`][wom.Metric] for this achievement."""
 
     measure: AchievementMeasure
-    """The [`AchievementMeasure`][wom.models.AchievementMeasure] that
+    """The [`AchievementMeasure`][wom.AchievementMeasure] that
     the player obtained.
     """
 
@@ -352,9 +348,7 @@ class PlayerAchievementProgress(BaseModel):
     """Represents a players progress toward an achievement."""
 
     achievement: AchievementProgress
-    """The [AchievementProgress][wom.models.AchievementProgress]
-    made.
-    """
+    """The [AchievementProgress][wom.AchievementProgress] made."""
 
     current_value: int
     """The current value for the achievement's metric."""

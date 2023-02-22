@@ -48,6 +48,4 @@ class DeltaLeaderboardEntry(BaseModel):
     """The end date of the delta."""
 
     player: Player
-    """The [`Player`][wom.models.Player] holding this leaderboard
-    entry.
-    """
+    """The [`Player`][wom.Player] holding this leaderboard entry."""

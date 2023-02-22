@@ -86,11 +86,10 @@ class GroupDetail(BaseModel):
     """Represents details about a group."""
 
     group: Group
-    """The [`Group`][wom.models.Group] itself."""
+    """The [`Group`][wom.Group] itself."""
 
     memberships: list[GroupMembership]
-    """A list of [`GroupMemberships`][wom.models.GroupMembership].
-    """
+    """A list of [`GroupMemberships`][wom.GroupMembership]."""
 
     verification_code: str | None
     """The optional verification code for the group.
@@ -112,9 +111,7 @@ class Membership(BaseModel):
     """The group ID this membership belongs to."""
 
     role: GroupRole | None
-    """The optional [`GroupRole`][wom.models.GroupRole] for this
-    membership.
-    """
+    """The optional [`GroupRole`][wom.GroupRole] for this membership."""
 
     created_at: datetime
     """The date this membership was created."""
@@ -128,10 +125,10 @@ class GroupMembership(BaseModel):
     """Represents a group membership."""
 
     player: Player
-    """The [`Player`][wom.models.Player] that is a member."""
+    """The [`Player`][wom.Player] that is a member."""
 
     membership: Membership
-    """The [`Membership`][wom.models.Membership] itself."""
+    """The [`Membership`][wom.Membership] itself."""
 
 
 @attrs.define(init=False)
@@ -139,10 +136,10 @@ class PlayerMembership(BaseModel):
     """Represents a player membership."""
 
     group: Group
-    """The [`Group`][wom.models.Group] the player is a member of."""
+    """The [`Group`][wom.Group] the player is a member of."""
 
     membership: Membership
-    """The [`Membership`][wom.models.Membership] itself."""
+    """The [`Membership`][wom.Membership] itself."""
 
 
 @attrs.define
@@ -169,7 +166,7 @@ class GroupMemberFragment(BaseModel):
     """The group members username."""
 
     role: GroupRole | None
-    """The optional [`GroupRole`][wom.models.GroupRole] for the member.
+    """The optional [`GroupRole`][wom.GroupRole] for the member.
     """
 
 
@@ -178,7 +175,7 @@ class GroupHiscoresEntry(BaseModel):
     """Represents a group hiscores entry."""
 
     player: Player
-    """The [`Player`][wom.models.Player] responsible for the entry."""
+    """The [`Player`][wom.Player] responsible for the entry."""
 
     data: (
         GroupHiscoresActivityItem
@@ -251,5 +248,5 @@ class GroupStatistics(BaseModel):
 
     average_stats: StatisticsSnapshot
     """The average stat [`StatisticsSnapshot`]
-    [wom.models.StatisticsSnapshot].
+    [wom.StatisticsSnapshot].
     """

@@ -33,8 +33,9 @@ Enums related to specific services are also housed in the module.
 from __future__ import annotations
 
 __all__ = (
-    "AchievementMeasure",
     "Achievement",
+    "AchievementMeasure",
+    "AchievementProgress",
     "Activity",
     "ActivityGains",
     "BaseModel",
@@ -88,6 +89,7 @@ __all__ = (
     "SkillGains",
     "SnapshotData",
     "Snapshot",
+    "StatisticsSnapshot",
     "Team",
     "Top5ProgressResult",
 )

@@ -56,7 +56,7 @@ class CompetitionProgress(BaseModel):
 
     start: int
     """The starting value for the competition's metric."""
-    
+
     end: int
     """The ending value for the competition's metric."""
 
@@ -78,7 +78,7 @@ class Competition(BaseModel):
     """The metric being measured."""
 
     type: CompetitionType
-    """The [CompetitionType][wom.models.CompetitionType]."""
+    """The [CompetitionType][wom.CompetitionType]."""
 
     starts_at: datetime
     """The date the competition started at."""
@@ -102,8 +102,8 @@ class Competition(BaseModel):
     """The number of players participating."""
 
     group: Group | None
-    """The [`Group`][wom.models.Group] associated with the
-    competition, if there is one.
+    """The [`Group`][wom.Group] associated with the competition, if
+    there is one.
     """
 
 
@@ -132,13 +132,12 @@ class CompetitionParticipation(BaseModel):
     """Represents a competition participation."""
 
     data: Participation
-    """The [`Participation`][wom.models.Participation] achieved
-    in this competition.
+    """The [`Participation`][wom.models.Participation] achieved in this
+    competition.
     """
 
     player: Player
-    """The [`Player`][wom.models.Player] that participated in this
-    competition.
+    """The [`Player`][wom.Player] that participated in this competition.
     """
 
 
@@ -147,13 +146,11 @@ class PlayerParticipation(BaseModel):
     """Represents a players participation in a competition."""
 
     data: Participation
-    """The [`Participation`][wom.models.Participation] the player
-    achieved.
-    """
+    """The [`Participation`][wom.Participation] the player achieved."""
 
     competition: Competition
-    """The [`Competition`][wom.models.Competition] that the player
-    participated in.
+    """The [`Competition`][wom.Competition] that the player participated
+    in.
     """
 
 
@@ -162,13 +159,13 @@ class PlayerCompetitionStanding(BaseModel):
     """Represents a players standing in a competition."""
 
     participation: PlayerParticipation
-    """The [`PlayerParticipation`][wom.models.PlayerParticipation]
-    achieved by the player.
+    """The [`PlayerParticipation`][wom.PlayerParticipation] achieved by
+    the player.
     """
 
     progress: CompetitionProgress
-    """The [`CompetitionProgress`][wom.models.CompetitionProgress]
-    that was made.
+    """The [`CompetitionProgress`][wom.CompetitionProgress] that was
+    made.
     """
 
     rank: int
@@ -180,13 +177,13 @@ class CompetitionParticipationDetail(BaseModel):
     """Represents competition participation details."""
 
     participation: CompetitionParticipation
-    """The [`CompetitionParticipation`]
-    [wom.models.CompetitionParticipation] in these details.
+    """The [`CompetitionParticipation`][wom.CompetitionParticipation]
+    in these details.
     """
 
     progress: CompetitionProgress
-    """The [`CompetitionProgress`][wom.models.CompetitionProgress]
-    that was made.
+    """The [`CompetitionProgress`][wom.CompetitionProgress] that was
+    made.
     """
 
 
@@ -195,14 +192,13 @@ class CompetitionDetail(BaseModel):
     """Represents competition details."""
 
     competition: Competition
-    """The [`Competition`][wom.models.Competition] that is being
-    detailed.
-    """
+    """The [`Competition`][wom.Competition] that is being detailed."""
 
     participations: list[CompetitionParticipationDetail]
     """A list of [`CompetitionParticipationDetail`]
-    [wom.models.CompetitionParticipationDetail] participations
-    for this competition."""
+    [wom.CompetitionParticipationDetail] participations for this
+    competition.
+    """
 
 
 @attrs.define(init=False)
@@ -221,13 +217,11 @@ class Top5ProgressResult(BaseModel):
     """A top 5 progress result for a competition."""
 
     player: Player
-    """The [`Player`][wom.models.Player] who made top 5
-    progress.
-    """
+    """The [`Player`][wom.Player] who made top 5 progress."""
 
     history: list[CompetitionHistoryDataPoint]
     """A list of [CompetitionHistoryDataPoints]
-    [wom.models.CompetitionHistoryDataPoint] making up the history
+    [wom.CompetitionHistoryDataPoint] making up the history
     of this top 5 progress result.
     """
 
@@ -264,11 +258,11 @@ class CompetitionWithParticipations(BaseModel):
     """Represents a competition with participations."""
 
     competition: Competition
-    """The [`Competition`][wom.models.Competition] itself."""
+    """The [`Competition`][wom.Competition] itself."""
 
     participations: list[CompetitionParticipation]
     """A list containing the [`CompetitionParticipations`]
-    [wom.models.CompetitionParticipation].
+    [wom.CompetitionParticipation].
     """
 
     verification_code: str | None

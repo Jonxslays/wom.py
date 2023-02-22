@@ -31,17 +31,15 @@ the client. All functionality is encompassed in these service methods.
 
     client = Client(user_agent="@your_discord_handle#1234")
 
-    result = await client.players.search_players("Jonxslays")
+    result = await client.players.search_players("Zezima", limit=1)
 
     if result.is_ok:
         print(result.unwrap())
     else:
         print(f"ERROR: {result.unwrap_err()}")
+
+    await client.close()
     ```
-
-!!! tip
-
-    All the available client services can be found [`here`][wom.services]
 """
 
 from __future__ import annotations
@@ -73,6 +71,30 @@ class Client:
             for requests. Useful for development against a local
 
             version of the WOM api.
+
+    !!! note
+
+        None of the arguments are required, although user agent is
+        encouraged.
+
+    ??? example
+
+        ```py
+        from os import environ
+
+        import wom
+
+        client = wom.Client(
+            environ["WOM_API_KEY"],  # The WOM api key if you have one
+            user_agent="@me#1234",  # Identifier, i.e. Discord username
+            api_base_url=environ["LOCAL_WOM_DOMAIN"],
+            # Typically you won't need to change the base url
+        )
+
+        # ... Use the client
+
+        await client.close()  # Close the client
+        ```
     """
 
     __slots__ = (
@@ -167,6 +189,14 @@ class Client:
 
         Args:
             api_key: The new api key to use.
+
+        ??? example
+
+            ```py
+            client = wom.Client(...)
+
+            client.set_api_key("abc123")
+            ```
         """
         self._http.set_api_key(api_key)
 
@@ -175,6 +205,14 @@ class Client:
 
         Args:
             user_agent: The new user agent to use.
+
+        ??? example
+
+            ```py
+            client = wom.Client(...)
+
+            client.set_user_agent("@Hi#0000")
+            ```
         """
         self._http.set_user_agent(user_agent)
 
@@ -183,15 +221,36 @@ class Client:
 
         Args:
             base_url: The new base url to use.
+
+        ??? example
+
+            ```py
+            client = wom.Client(...)
+
+            client.set_api_base_url("https://api.wiseoldman.net/v2")
+            ```
         """
         self._http.set_base_url(base_url)
 
     async def close(self) -> None:
         """Closes the existing client session, if it's still open.
 
+        !!! tip
+
+            Only call this once, at the end of your program or if you
+            are done with the client completely.
+
         !!! warning
 
             If this is not called before your program terminates,
             you will receive an error in your console.
+
+        ??? example
+
+            ```py
+            client = wom.Client(...)
+
+            await client.close()
+            ```
         """
         await self._http.close()

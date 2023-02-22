@@ -81,14 +81,23 @@ repo_url: https://github.com/Jonxslays/wom.py
 
 nav:
   - "index.md"
-  - "API reference":
+  - "Modules":
     - "reference/client.md"
     - "reference/enums.md"
     - "reference/errors.md"
     - "reference/result.md"
     - "reference/routes.md"
     - "reference/serializer.md"
-    - "reference/services.md"
+    - "services":
+      - "reference/services/base.md"
+      - "reference/services/competitions.md"
+      - "reference/services/deltas.md"
+      - "reference/services/efficiency.md"
+      - "reference/services/groups.md"
+      - "reference/services/http.md"
+      - "reference/services/names.md"
+      - "reference/services/players.md"
+      - "reference/services/records.md"
     - "models":
       - "reference/models/base.md"
       - "reference/models/competitions.md"
@@ -98,3 +107,5 @@ nav:
       - "reference/models/names.md"
       - "reference/models/players.md"
       - "reference/models/records.md"
+  - "API Reference":
+    - "reference/api.md"

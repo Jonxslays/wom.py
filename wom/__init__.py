@@ -19,6 +19,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""All models, enums, services, etc are exported here in the main
+wom module.
+
+!!! tip
+
+    Know what you're looking for? Hit the search bar ^!
+"""
+
 from __future__ import annotations
 
 from typing import Final
@@ -33,8 +41,9 @@ __all__ = (
     "routes",
     "serializer",
     "services",
-    "AchievementMeasure",
     "Achievement",
+    "AchievementMeasure",
+    "AchievementProgress",
     "Activities",
     "Activity",
     "BaseEnum",
@@ -95,6 +104,7 @@ __all__ = (
     "Skills",
     "SnapshotData",
     "Snapshot",
+    "StatisticsSnapshot",
     "Team",
     "Top5ProgressResult",
     "UnwrapError",
@@ -121,6 +131,7 @@ from . import result
 from . import routes
 from . import serializer
 from . import services
+
 from .client import *
 from .enums import *
 from .errors import *
