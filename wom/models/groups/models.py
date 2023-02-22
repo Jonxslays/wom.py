@@ -135,8 +135,8 @@ class GroupMemberFragment(BaseModel):
     Args:
         username: The username of the group member.
 
-        role: The optional [`GroupRole`][wom.models.GroupRole] to give
-            the member.
+        role: The optional [`GroupRole`][wom.models.GroupRole] to
+            give the member.
 
     !!! tip
 
@@ -144,11 +144,14 @@ class GroupMemberFragment(BaseModel):
         data to some endpoints.
     """
 
+    def __init__(self, username: str, role: GroupRole | None = None) -> None:
+        self.username = username
+        self.role = role
+
     username: str
     """The group members username."""
-    role: GroupRole | None = None
-    """The optional [`GroupRole`][wom.models.GroupRole] for the
-    member.
+    role: GroupRole | None
+    """The optional [`GroupRole`][wom.models.GroupRole] for the member.
     """
 
 

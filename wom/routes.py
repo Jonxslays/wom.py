@@ -100,10 +100,6 @@ class CompiledRoute:
         """The routes uri endpoint."""
         return self.route.uri
 
-    @uri.setter
-    def uri(self, uri: str) -> None:
-        self.route.uri = uri
-
     @property
     def method(self) -> str:
         """The routes method, i.e. GET, POST..."""
@@ -145,7 +141,7 @@ class Route:
         compiled = CompiledRoute(self)
 
         for arg in args:
-            compiled.uri = compiled.uri.replace(r"{}", str(arg), 1)
+            compiled.route.uri = compiled.uri.replace(r"{}", str(arg), 1)
 
         return compiled
 

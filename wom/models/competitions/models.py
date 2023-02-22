@@ -214,13 +214,18 @@ class Team(BaseModel):
     Args:
         name: The name of the team.
 
-        participants: A list of usernames to include in the team.
+        participants: A list of usernames to include in the
+            team.
 
     !!! tip
 
         This is a model class that you will create in order to send
         data to some endpoints.
     """
+
+    def __init__(self, name: str, participants: list[str]) -> None:
+        self.name = name
+        self.participants = participants
 
     name: str
     """The name of the team."""
@@ -231,8 +236,6 @@ class Team(BaseModel):
 @attrs.define(init=False)
 class CompetitionWithParticipations(BaseModel):
     """Represents a competition with participations."""
-
-    __slots__ = ("competition", "participations", "verification_code")
 
     competition: Competition
     """The [`Competition`][wom.models.Competition] itself."""
