@@ -235,7 +235,7 @@ class Serializer:
             The requested model.
         """
         skill = models.Skill()
-        skill.metric = enums.Skill.from_str(data["metric"])
+        skill.metric = enums.Skills.from_str(data["metric"])
         self._set_attrs(skill, data, "ehp", "rank", "level", "experience")
         return skill
 
@@ -249,7 +249,7 @@ class Serializer:
             The requested model.
         """
         boss = models.Boss()
-        boss.metric = enums.Boss.from_str(data["metric"])
+        boss.metric = enums.Bosses.from_str(data["metric"])
         self._set_attrs(boss, data, "ehb", "rank", "kills")
         return boss
 
@@ -263,7 +263,7 @@ class Serializer:
             The requested model.
         """
         activity = models.Activity()
-        activity.metric = enums.Activity.from_str(data["metric"])
+        activity.metric = enums.Activities.from_str(data["metric"])
         self._set_attrs(activity, data, "rank", "score")
         return activity
 
@@ -277,7 +277,7 @@ class Serializer:
             The requested model.
         """
         computed = models.ComputedMetric()
-        computed.metric = enums.ComputedMetric.from_str(data["metric"])
+        computed.metric = enums.ComputedMetrics.from_str(data["metric"])
         self._set_attrs(computed, data, "rank", "value")
         return computed
 
@@ -366,7 +366,7 @@ class Serializer:
             The requested model.
         """
         gains = models.SkillGains()
-        gains.metric = enums.Skill.from_str(data["metric"])
+        gains.metric = enums.Skills.from_str(data["metric"])
         self._set_attrs(
             gains, data, "experience", "ehp", "rank", "level", transform=self.deserialize_gains
         )
@@ -383,7 +383,7 @@ class Serializer:
             The requested model.
         """
         gains = models.BossGains()
-        gains.metric = enums.Boss.from_str(data["metric"])
+        gains.metric = enums.Bosses.from_str(data["metric"])
         self._set_attrs(gains, data, "ehb", "rank", "kills", transform=self.deserialize_gains)
         return gains
 
@@ -397,7 +397,7 @@ class Serializer:
             The requested model.
         """
         gains = models.ActivityGains()
-        gains.metric = enums.Activity.from_str(data["metric"])
+        gains.metric = enums.Activities.from_str(data["metric"])
         self._set_attrs(gains, data, "rank", "score", transform=self.deserialize_gains)
         return gains
 
@@ -411,7 +411,7 @@ class Serializer:
             The requested model.
         """
         gains = models.ComputedGains()
-        gains.metric = enums.ComputedMetric.from_str(data["metric"])
+        gains.metric = enums.ComputedMetrics.from_str(data["metric"])
         self._set_attrs(gains, data, "rank", "value", transform=self.deserialize_gains)
         return gains
 

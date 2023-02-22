@@ -69,10 +69,10 @@ class Metric(BaseEnum):
 
     !!! tip
 
-        Will always be one of [`Activity`][wom.enums.Activity],
-        [`Boss`][wom.enums.Boss],
-        [`ComputedMetric`][wom.enums.ComputedMetric], or
-        [`Skill`][wom.enums.Skill].
+        Will always be one of [`Activities`][wom.enums.Activities],
+        [`Bosses`][wom.enums.Bosses],
+        [`ComputedMetrics`][wom.enums.ComputedMetrics], or
+        [`Skills`][wom.enums.Skills].
     """
 
     @classmethod
@@ -84,7 +84,7 @@ class Metric(BaseEnum):
         if cls is not Metric:
             return cls(value)
 
-        children = {Skill, Activity, Boss, ComputedMetric}
+        children = {Skills, Activities, Bosses, ComputedMetrics}
 
         for child in children:
             try:
@@ -99,7 +99,7 @@ class Metric(BaseEnum):
         if cls is not Metric:
             return super(Metric, cls).from_str_maybe(value)  # pyright: ignore
 
-        children = {Skill, Activity, Boss, ComputedMetric}
+        children = {Skills, Activities, Bosses, ComputedMetrics}
 
         for child in children:
             try:
@@ -120,7 +120,7 @@ class Period(BaseEnum):
     Year = "year"
 
 
-class Skill(Metric):
+class Skills(Metric):
     """Skills from OSRS."""
 
     Overall = "overall"
@@ -149,7 +149,7 @@ class Skill(Metric):
     Construction = "construction"
 
 
-class Activity(Metric):
+class Activities(Metric):
     """Activities from OSRS."""
 
     LeaguePoints = "league_points"
@@ -168,7 +168,7 @@ class Activity(Metric):
     GuardiansOfTheRift = "guardians_of_the_rift"
 
 
-class Boss(Metric):
+class Bosses(Metric):
     """Bosses from OSRS."""
 
     AbyssalSire = "abyssal_sire"
@@ -224,7 +224,7 @@ class Boss(Metric):
     Zulrah = "zulrah"
 
 
-class ComputedMetric(Metric):
+class ComputedMetrics(Metric):
     """A metric that is computed, i.e. efficient hours played and
     bossed.
     """

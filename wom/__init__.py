@@ -51,6 +51,7 @@ __repository__: Final[str] = __url__
 __license__: Final[str] = "MIT"
 __git_sha__: Final[str] = "[HEAD]"
 
+# from . import client
 from . import constants
 from . import enums
 from . import errors
@@ -60,5 +61,7 @@ from . import routes
 from . import serializer
 from . import services
 from .client import *
+from .constants import *
+from .enums import *
 from .errors import *
 from .result import *

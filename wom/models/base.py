@@ -19,7 +19,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""The base model."""
+"""Module containing the base model."""
 
 from __future__ import annotations
 
@@ -33,7 +33,7 @@ class BaseModel:
     """The base model all library models inherit from."""
 
     def to_dict(self) -> dict[str, t.Any]:
-        """Converts this dataclass into a dictionary.
+        """Converts this class into a dictionary.
 
         Returns:
             The requested dictionary.
