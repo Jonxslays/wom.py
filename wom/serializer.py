@@ -35,7 +35,7 @@ __all__ = ("Serializer",)
 
 T = t.TypeVar("T")
 TransformT = t.Callable[[t.Any], t.Any] | None
-BaseAchievementT = t.TypeVar("BaseAchievementT", bound=models.BaseAchievement)
+AchievementT = t.TypeVar("AchievementT", models.Achievement, models.AchievementProgress)
 
 
 class Serializer:
@@ -79,11 +79,11 @@ class Serializer:
         self._set_attrs(model, data, *attrs, transform=transform, camel_case=True)
 
     def _deserialize_base_achievement(
-        self, model: BaseAchievementT, data: dict[str, t.Any]
-    ) -> BaseAchievementT:
+        self, model: AchievementT, data: dict[str, t.Any]
+    ) -> AchievementT:
         model.metric = enums.Metric.from_str(data["metric"])
         model.measure = models.AchievementMeasure.from_str(data["measure"])
-        self._set_attrs_cased(model, data, "name", "player_id", "threshold")
+        self._set_attrs_cased(model, data, "name", "player_id", "threshold", "accuracy")
         return model
 
     def _determine_hiscores_entry_item(

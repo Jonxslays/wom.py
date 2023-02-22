@@ -79,7 +79,6 @@ __all__ = (
 )
 
 
-@attrs.define
 class CompiledRoute:
     """A route that has been compiled to include uri variables.
 
@@ -87,13 +86,16 @@ class CompiledRoute:
         route: The route to compile.
     """
 
-    route: Route
-    """The route itself."""
-    params: dict[str, str | int] = {}
-    """The query params for the route."""
+    __slots__ = ("_route", "_params")
 
     def __init__(self, route: Route) -> None:
-        self.route = route
+        self._route = route
+        self._params: dict[str, str | int] = {}
+
+    @property
+    def route(self) -> Route:
+        """The route itself."""
+        return self._route
 
     @property
     def uri(self) -> str:
@@ -104,6 +106,11 @@ class CompiledRoute:
     def method(self) -> str:
         """The routes method, i.e. GET, POST..."""
         return self.route.method
+
+    @property
+    def params(self) -> dict[str, str | int]:
+        """The query params for the route."""
+        return self._params
 
     def with_params(self, params: dict[str, t.Any]) -> CompiledRoute:
         """Adds additional query params to this compiled route.
