@@ -28,6 +28,16 @@ from enum import Enum
 
 T = t.TypeVar("T", bound="BaseEnum")
 
+__all__ = (
+    "Activities",
+    "BaseEnum",
+    "Bosses",
+    "ComputedMetrics",
+    "Metric",
+    "Period",
+    "Skills",
+)
+
 
 class BaseEnum(Enum):
     """The base enum all library enums inherit from."""
@@ -69,10 +79,9 @@ class Metric(BaseEnum):
 
     !!! tip
 
-        Will always be one of [`Activities`][wom.enums.Activities],
-        [`Bosses`][wom.enums.Bosses],
-        [`ComputedMetrics`][wom.enums.ComputedMetrics], or
-        [`Skills`][wom.enums.Skills].
+        Will always be one of [`Activities`][wom.Activities],
+        [`Bosses`][wom.enums.Bosses], [`ComputedMetrics`]
+        [wom.ComputedMetrics], or [`Skills`][wom.Skills].
     """
 
     @classmethod

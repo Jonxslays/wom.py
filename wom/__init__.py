@@ -24,6 +24,7 @@ from __future__ import annotations
 from typing import Final
 
 __all__ = (
+    "client",
     "constants",
     "enums",
     "errors",
@@ -32,10 +33,70 @@ __all__ = (
     "routes",
     "serializer",
     "services",
+    "AchievementMeasure",
+    "Achievement",
+    "Activities",
+    "Activity",
+    "BaseEnum",
+    "Boss",
+    "Bosses",
+    "BaseModel",
     "Client",
+    "Country",
+    "Competition",
+    "CompetitionDetail",
+    "CompetitionHistoryDataPoint",
+    "CompetitionParticipationDetail",
+    "CompetitionParticipation",
+    "CompetitionProgress",
+    "CompetitionStatus",
+    "CompetitionType",
+    "CompetitionWithParticipations",
+    "ComputedMetric",
+    "ComputedMetrics",
+    "DeltaLeaderboardEntry",
     "Err",
+    "Gains",
+    "GroupDetail",
+    "GroupHiscoresActivityItem",
+    "GroupHiscoresBossItem",
+    "GroupHiscoresComputedMetricItem",
+    "GroupHiscoresEntry",
+    "GroupHiscoresSkillItem",
+    "GroupMemberFragment",
+    "GroupMembership",
+    "Group",
+    "GroupRole",
+    "GroupStatistics",
+    "HttpErrorResponse",
+    "HttpSuccessResponse",
+    "Membership",
+    "Metric",
+    "NameChangeData",
+    "NameChangeDetail",
+    "NameChange",
+    "NameChangeStatus",
     "Ok",
+    "Participation",
+    "Period",
+    "PlayerAchievementProgress",
+    "PlayerBuild",
+    "PlayerCompetitionStanding",
+    "PlayerMembership",
+    "Player",
+    "PlayerDetail",
+    "PlayerParticipation",
+    "PlayerType",
+    "Record",
+    "RecordLeaderboardEntry",
     "Result",
+    "Serializer",
+    "Skill",
+    "Skills",
+    "SnapshotData",
+    "Snapshot",
+    "Team",
+    "Top5ProgressResult",
     "UnwrapError",
     "WomError",
 )
@@ -51,7 +112,7 @@ __repository__: Final[str] = __url__
 __license__: Final[str] = "MIT"
 __git_sha__: Final[str] = "[HEAD]"
 
-# from . import client
+from . import client
 from . import constants
 from . import enums
 from . import errors
@@ -61,7 +122,9 @@ from . import routes
 from . import serializer
 from . import services
 from .client import *
-from .constants import *
 from .enums import *
 from .errors import *
+from .models import *
 from .result import *
+from .serializer import *
+from .services import *

@@ -392,60 +392,64 @@ class SkillGains(BaseModel):
     """Represents skill gains made by a player."""
 
     metric: enums.Skills
-    """The [`Skills`][wom.enums.Skills] being measured."""
+    """The [`Skills`][wom.Skills] being measured."""
 
     experience: Gains
-    """The experience [`Gains`][wom.models.Gains]."""
+    """The experience [`Gains`][wom.Gains]."""
 
     ehp: Gains
-    """The efficient hours played [`Gains`][wom.models.Gains]."""
+    """The efficient hours played [`Gains`][wom.Gains]."""
 
     rank: Gains
-    """The rank [`Gains`][wom.models.Gains]."""
+    """The rank [`Gains`][wom.Gains]."""
 
     level: Gains
-    """The level [`Gains`][wom.models.Gains]."""
+    """The level [`Gains`][wom.Gains]."""
 
 
 @attrs.define(init=False)
 class BossGains(BaseModel):
+    """Represents boss gains made by a player."""
+
     metric: enums.Bosses
-    """The [`Bosses`][wom.enums.Bosses] being measured."""
+    """The [`Bosses`][wom.Bosses] being measured."""
 
     ehb: Gains
-    """The efficient hours bossed [`Gains`][wom.models.Gains]."""
+    """The efficient hours bossed [`Gains`][wom.Gains]."""
 
     rank: Gains
-    """The rank [`Gains`][wom.models.Gains]."""
+    """The rank [`Gains`][wom.Gains]."""
 
     kills: Gains
-    """The boss kill [`Gains`][wom.models.Gains]."""
+    """The boss kill [`Gains`][wom.Gains]."""
 
 
 @attrs.define(init=False)
 class ActivityGains(BaseModel):
+    """Represents activity gains made by a player."""
+
     metric: enums.Activities
-    """The [`Activities`][wom.enums.Activities] being measured."""
+    """The [`Activities`][wom.Activities] being measured."""
 
     rank: Gains
-    """The rank [`Gains`][wom.models.Gains]."""
+    """The rank [`Gains`][wom.Gains]."""
 
     score: Gains
-    """The score [`Gains`][wom.models.Gains]."""
+    """The score [`Gains`][wom.Gains]."""
 
 
 @attrs.define(init=False)
 class ComputedGains(BaseModel):
+    """Represents computed gains made by a player."""
+
     metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.enums.ComputedMetrics] being
-    measured.
-    """
+    """The [`ComputedMetrics`][wom.ComputedMetrics] being measured."""
 
     rank: Gains
-    """The rank [`Gains`][wom.models.Gains]."""
+    """The rank [`Gains`][wom.Gains]."""
 
     value: Gains
-    """The value [`Gains`][wom.models.Gains]."""
+    """The value [`Gains`][wom.Gains]."""
 
 
 @attrs.define(init=False)
@@ -453,16 +457,16 @@ class PlayerGainsData(BaseModel):
     """Contains all the player gains data."""
 
     skills: list[SkillGains]
-    """A list of all [`SkillGains`][wom.models.SkillGains]."""
+    """A list of all [`SkillGains`][wom.SkillGains]."""
 
     bosses: list[BossGains]
-    """A list of all [`BossGains`][wom.models.BossGains]."""
+    """A list of all [`BossGains`][wom.BossGains]."""
 
     activities: list[ActivityGains]
-    """A list of all [`ActivityGains`][wom.models.ActivityGains]."""
+    """A list of all [`ActivityGains`][wom.ActivityGains]."""
 
     computed: list[ComputedGains]
-    """A list of all [`ComputedGains`][wom.models.ComputedGains]."""
+    """A list of all [`ComputedGains`][wom.ComputedGains]."""
 
 
 @attrs.define(init=False)
@@ -476,6 +480,4 @@ class PlayerGains(BaseModel):
     """The date the gains ended at."""
 
     data: PlayerGainsData
-    """The [`PlayerGainsData`][wom.models.PlayerGainsData] for the
-    player.
-    """
+    """The [`PlayerGainsData`][wom.PlayerGainsData] for the player."""
