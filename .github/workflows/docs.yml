@@ -25,4 +25,4 @@ jobs:
         run: |
           pip install -U pip
           poetry install -q
-          mkdocs gh-deploy --force
+          poetry run mkdocs gh-deploy --force
