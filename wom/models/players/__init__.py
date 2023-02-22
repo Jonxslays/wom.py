@@ -30,8 +30,6 @@ __all__ = (
     "ActivityGains",
     "Activity",
     "AssertPlayerType",
-    "BaseAchievement",
-    "BaseSnapshot",
     "BossGains",
     "Boss",
     "Country",

@@ -32,6 +32,8 @@ __all__ = (
 
 
 class PlayerType(BaseEnum):
+    """Different types of players."""
+
     Unknown = "unknown"
     Regular = "regular"
     Ironman = "ironman"
@@ -41,6 +43,8 @@ class PlayerType(BaseEnum):
 
 
 class PlayerBuild(BaseEnum):
+    """Potential account builds."""
+
     Main = "main"
     F2p = "f2p"
     Lvl3 = "lvl3"
@@ -50,6 +54,8 @@ class PlayerBuild(BaseEnum):
 
 
 class AchievementMeasure(BaseEnum):
+    """Measures used to categorize achievements."""
+
     Levels = "levels"
     Experience = "experience"
     Kills = "kills"
@@ -58,6 +64,8 @@ class AchievementMeasure(BaseEnum):
 
 
 class Country(BaseEnum):
+    """Countries in the world."""
+
     Ad = "AD"
     Ae = "AE"
     Af = "AF"
