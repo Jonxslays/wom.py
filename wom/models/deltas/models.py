@@ -21,8 +21,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import datetime
+
+import attrs
 
 from ..base import BaseModel
 from ..players import Player
@@ -30,11 +31,9 @@ from ..players import Player
 __all__ = ("DeltaLeaderboardEntry",)
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class DeltaLeaderboardEntry(BaseModel):
     """Represents a leaderboard entry over the given delta."""
-
-    __slots__ = ("player_id", "gained", "start_date", "end_date", "player")
 
     player_id: int
     """The ID of the player holding this leaderboard entry."""

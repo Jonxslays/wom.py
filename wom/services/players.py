@@ -90,9 +90,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def get_player_achievements(
-        self, username: str
-    ) -> ResultT[list[models.Achievement]]:
+    async def get_player_achievements(self, username: str) -> ResultT[list[models.Achievement]]:
         route = routes.PLAYER_ACHIEVEMENTS.compile(username)
         data = await self._http.fetch(route, self._list)
 
@@ -225,9 +223,7 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_snapshot(s) for s in data])
 
-    async def get_player_name_changes(
-        self, username: str
-    ) -> ResultT[list[models.NameChange]]:
+    async def get_player_name_changes(self, username: str) -> ResultT[list[models.NameChange]]:
         route = routes.PLAYER_NAME_CHANGES.compile(username)
         data = await self._http.fetch(route, self._list)
 

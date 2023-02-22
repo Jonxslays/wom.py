@@ -24,7 +24,8 @@
 from __future__ import annotations
 
 import typing as t
-from dataclasses import dataclass
+
+import attrs
 
 __all__ = (
     "CompiledRoute",
@@ -78,7 +79,7 @@ __all__ = (
 )
 
 
-@dataclass()
+@attrs.define
 class CompiledRoute:
     """A route that has been compiled to include uri variables.
 
@@ -86,16 +87,13 @@ class CompiledRoute:
         route: The route to compile.
     """
 
-    __slots__ = ("params", "route")
-
-    params: dict[str, str | int]
-    """The query params for the route."""
     route: Route
     """The route itself."""
+    params: dict[str, str | int] = {}
+    """The query params for the route."""
 
     def __init__(self, route: Route) -> None:
         self.route = route
-        self.params = {}
 
     @property
     def uri(self) -> str:
@@ -126,11 +124,9 @@ class CompiledRoute:
         return self
 
 
-@dataclass()
+@attrs.define
 class Route:
     """A route that has not been compiled yet."""
-
-    __slots__ = ("method", "uri")
 
     method: str
     """The request method to use."""

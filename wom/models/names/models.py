@@ -21,8 +21,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import datetime
+
+import attrs
 
 from ..base import BaseModel
 from ..players import Snapshot
@@ -31,7 +32,7 @@ from .enums import NameChangeStatus
 __all__ = ("NameChangeData", "NameChangeDetail", "NameChange")
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class NameChange(BaseModel):
     """Represents a player name change."""
 
@@ -55,7 +56,7 @@ class NameChange(BaseModel):
     """The date the name change was created."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class NameChangeData(BaseModel):
     """Metadata associated with a name change."""
 
@@ -92,7 +93,7 @@ class NameChangeData(BaseModel):
     """
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class NameChangeDetail(BaseModel):
     """Details regarding a name change."""
 

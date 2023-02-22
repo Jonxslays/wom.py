@@ -21,8 +21,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import datetime
+
+import attrs
 
 from wom import enums
 
@@ -58,7 +59,7 @@ __all__ = (
 )
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Skill(BaseModel):
     metric: enums.Skill
     rank: int
@@ -67,7 +68,7 @@ class Skill(BaseModel):
     ehp: int
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Boss(BaseModel):
     metric: enums.Boss
     rank: int
@@ -75,21 +76,21 @@ class Boss(BaseModel):
     ehb: int
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Activity(BaseModel):
     metric: enums.Activity
     rank: int
     score: int
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class ComputedMetric(BaseModel):
     metric: enums.ComputedMetric
     rank: int
     value: int
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class SnapshotData(BaseModel):
     """The data associated with this snapshot."""
 
@@ -99,11 +100,9 @@ class SnapshotData(BaseModel):
     computed: list[ComputedMetric]
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class BaseSnapshot(BaseModel):
     """The base snapshot other snapshots inherit from."""
-
-    __slots__ = ("id", "player_id", "imported_at", "data")
 
     id: int
     """The unique ID of the snapshot."""
@@ -115,27 +114,23 @@ class BaseSnapshot(BaseModel):
     """The [`SnapshotData`][wom.models.SnapshotData] for the snapshot."""
 
 
-@dataclass(init=False)
-class Snapshot(BaseSnapshot):
+@attrs.define(init=False)
+class Snapshot(BaseSnapshot):  # type: ignore[override]
     """Represents a player snapshot."""
-
-    __slots__ = ("created_at",)
 
     created_at: datetime
     """The date the snapshot was created."""
 
 
-@dataclass(init=False)
-class StatisticsSnapshot(BaseSnapshot):
+@attrs.define(init=False)
+class StatisticsSnapshot(BaseSnapshot):  # type: ignore[override]
     """Represents a player statistics snapshot."""
-
-    __slots__ = ("created_at",)
 
     created_at: datetime | None
     """The optional date the statistics snapshot was created."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Player(BaseModel):
     """Represents a player on WOM."""
 
@@ -157,20 +152,20 @@ class Player(BaseModel):
     last_imported_at: datetime | None
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class PlayerDetail(BaseModel):
     player: Player
     combat_level: int
     latest_snapshot: Snapshot | None
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class AssertPlayerType(BaseModel):
     player: Player
     changed: bool
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class BaseAchievement(BaseModel):
     player_id: int
     name: str
@@ -179,17 +174,17 @@ class BaseAchievement(BaseModel):
     threshold: int
 
 
-@dataclass(init=False)
-class Achievement(BaseAchievement):
+@attrs.define(init=False)
+class Achievement(BaseAchievement):  # type: ignore[override]
     created_at: datetime
 
 
-@dataclass(init=False)
-class AchievementProgress(BaseAchievement):
+@attrs.define(init=False)
+class AchievementProgress(BaseAchievement):  # type: ignore[override]
     created_at: datetime | None
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class PlayerAchievementProgress(BaseModel):
     achievement: AchievementProgress
     current_value: int
@@ -197,14 +192,14 @@ class PlayerAchievementProgress(BaseModel):
     relative_progress: float
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Gains(BaseModel):
     gained: float
     start: float
     end: float
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class SkillGains(BaseModel):
     metric: enums.Skill
     experience: Gains
@@ -213,7 +208,7 @@ class SkillGains(BaseModel):
     level: Gains
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class BossGains(BaseModel):
     metric: enums.Boss
     ehb: Gains
@@ -221,21 +216,21 @@ class BossGains(BaseModel):
     kills: Gains
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class ActivityGains(BaseModel):
     metric: enums.Activity
     rank: Gains
     score: Gains
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class ComputedGains(BaseModel):
     metric: enums.ComputedMetric
     rank: Gains
     value: Gains
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class PlayerGainsData(BaseModel):
     skills: list[SkillGains]
     bosses: list[BossGains]
@@ -243,7 +238,7 @@ class PlayerGainsData(BaseModel):
     computed: list[ComputedGains]
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class PlayerGains(BaseModel):
     starts_at: datetime
     ends_at: datetime

@@ -21,8 +21,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import datetime
+
+import attrs
 
 from wom import enums
 
@@ -32,11 +33,9 @@ from ..players import Player
 __all__ = ("Record", "RecordLeaderboardEntry")
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Record(BaseModel):
     """Represents a record held by a player."""
-
-    __slots__ = ("id", "player_id", "period", "metric", "value", "updated_at")
 
     id: int
     """The unique ID for this record."""
@@ -54,11 +53,9 @@ class Record(BaseModel):
     """The records creation/modification date."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class RecordLeaderboardEntry(BaseModel):
     """Represents a player's record leaderboard entry."""
-
-    __slots__ = ("player", "record")
 
     player: Player
     """The [`Player`][wom.models.Player] holding this leaderboard

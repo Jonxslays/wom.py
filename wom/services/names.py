@@ -57,9 +57,7 @@ class NameChangeService(BaseService):
 
         return result.Ok([self._serializer.deserialize_name_change(c) for c in data])
 
-    async def submit_name_change(
-        self, old_name: str, new_name: str
-    ) -> ResultT[models.NameChange]:
+    async def submit_name_change(self, old_name: str, new_name: str) -> ResultT[models.NameChange]:
         payload = self._generate_map(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()
         data = await self._http.fetch(route, self._dict, payload=payload)

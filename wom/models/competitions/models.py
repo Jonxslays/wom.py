@@ -23,8 +23,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from datetime import datetime
+
+import attrs
 
 from wom import enums
 
@@ -49,11 +50,9 @@ __all__ = (
 )
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class CompetitionProgress(BaseModel):
     """Represents progress in a competition."""
-
-    __slots__ = ("start", "end", "gained")
 
     start: int
     """The starting value for the competition's metric."""
@@ -63,24 +62,9 @@ class CompetitionProgress(BaseModel):
     """The amount of progress gained in the metric."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Competition(BaseModel):
     """Represents a competition."""
-
-    __slots__ = (
-        "id",
-        "title",
-        "metric",
-        "type",
-        "starts_at",
-        "ends_at",
-        "group_id",
-        "score",
-        "created_at",
-        "updated_at",
-        "participant_count",
-        "group",
-    )
 
     id: int
     """The unique ID of the competition."""
@@ -110,11 +94,9 @@ class Competition(BaseModel):
     """
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Participation(BaseModel):
     """Represents participation in a competition."""
-
-    __slots__ = ("player_id", "competition_id", "team_name", "created_at", "updated_at")
 
     player_id: int
     """The ID of the player associated with this participation."""
@@ -128,11 +110,9 @@ class Participation(BaseModel):
     """The date this participation was updated."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class CompetitionParticipation(BaseModel):
     """Represents a competition participation."""
-
-    __slots__ = ("data", "player")
 
     data: Participation
     """The [`Participation`][wom.models.Participation] achieved
@@ -144,11 +124,9 @@ class CompetitionParticipation(BaseModel):
     """
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class PlayerParticipation(BaseModel):
     """Represents a players participation in a competition."""
-
-    __slots__ = ("data", "competition")
 
     data: Participation
     """The [`Participation`][wom.models.Participation] the player
@@ -160,11 +138,9 @@ class PlayerParticipation(BaseModel):
     """
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class PlayerCompetitionStanding(BaseModel):
     """Represents a players standing in a competition."""
-
-    __slots__ = ("participation", "progress", "rank")
 
     participation: PlayerParticipation
     """The [`PlayerParticipation`][wom.models.PlayerParticipation]
@@ -178,11 +154,9 @@ class PlayerCompetitionStanding(BaseModel):
     """The rank in the competition standings."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class CompetitionParticipationDetail(BaseModel):
     """Represents competition participation details."""
-
-    __slots__ = ("participation", "progress")
 
     participation: CompetitionParticipation
     """The [`CompetitionParticipation`]
@@ -194,11 +168,9 @@ class CompetitionParticipationDetail(BaseModel):
     """
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class CompetitionDetail(BaseModel):
     """Represents competition details."""
-
-    __slots__ = ("competition", "participations")
 
     competition: Competition
     """The [`Competition`][wom.models.Competition] that is being
@@ -210,11 +182,9 @@ class CompetitionDetail(BaseModel):
     for this competition."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class CompetitionHistoryDataPoint(BaseModel):
     """A competition history data point."""
-
-    __slots__ = ("date", "value")
 
     date: datetime
     """The date this data point occurred."""
@@ -222,11 +192,9 @@ class CompetitionHistoryDataPoint(BaseModel):
     """The value of the data point."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class Top5ProgressResult(BaseModel):
     """A top 5 progress result for a competition."""
-
-    __slots__ = ("player", "history")
 
     player: Player
     """The [`Player`][wom.models.Player] who made top 5
@@ -239,7 +207,7 @@ class Top5ProgressResult(BaseModel):
     """
 
 
-@dataclass()
+@attrs.define
 class Team(BaseModel):
     """Represents a competition team.
 
@@ -254,15 +222,13 @@ class Team(BaseModel):
         data to some endpoints.
     """
 
-    __slots__ = ("name", "participants")
-
     name: str
     """The name of the team."""
     participants: list[str]
     """A list of participant usernames on the team."""
 
 
-@dataclass(init=False)
+@attrs.define(init=False)
 class CompetitionWithParticipations(BaseModel):
     """Represents a competition with participations."""
 

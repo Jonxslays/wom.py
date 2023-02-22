@@ -23,18 +23,16 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+import attrs
 
 from .base import BaseModel
 
 __all__ = ("HttpErrorResponse", "HttpSuccessResponse")
 
 
-@dataclass()
+@attrs.define
 class HttpErrorResponse(BaseModel):
     """Indicates something went wrong during the request."""
-
-    __slots__ = ("message", "status")
 
     status: int
     """The HTTP status code."""
@@ -42,11 +40,9 @@ class HttpErrorResponse(BaseModel):
     """The error message."""
 
 
-@dataclass()
+@attrs.define
 class HttpSuccessResponse(BaseModel):
     """Indicates a successful HTTP response."""
-
-    __slots__ = ("message", "status")
 
     status: int
     """The HTTP status code."""
