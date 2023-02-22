@@ -66,6 +66,10 @@ theme:
     repo: fontawesome/brands/github
 
 extra:
+  version:
+    provider: mike
+    default: stable
+
   social:
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/wom.py/
