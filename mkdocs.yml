@@ -72,17 +72,17 @@ extra:
 
   social:
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/wom.py/
+      link: https://pypi.org/project/wom.py
       name: PyPI
     - icon: fontawesome/brands/github
-      link: https://github.com/Jonxslays/wom.py/
+      link: https://github.com/Jonxslays/wom.py
       name: Source
 
 copyright: Copyright &copy; 2023-present Jonxslays
 
 repo_name: Jonxslays/wom.py
-repo_url: https://github.com/Jonxslays/wom.py/
-site_url: https://jonxslays.github.io/wom.py/
+repo_url: https://github.com/Jonxslays/wom.py
+site_url: https://jonxslays.github.io/wom.py
 
 nav:
   - "Home":
