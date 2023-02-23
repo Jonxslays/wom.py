@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Not found</title>
   <noscript>
-    <meta http-equiv="refresh" content="1; url=/stable/404.html" />
+    <meta http-equiv="refresh" content="1; url=/wom.py/stable/404.html" />
   </noscript>
   <script>
     const paths = window.location.pathname.split("/").filter((p) => !!p);
     const defaultVersion = "stable";
+    const project = "wom.py";
 
     try {
       const req = new XMLHttpRequest();
@@ -24,7 +25,7 @@
 
     function navTo404(path) {
       // Navigate to the 404 page for the given path
-      window.location.replace(`/${path}/404.html`);
+      window.location.replace(`/${project}/${path}/404.html`);
     }
 
     function handle404Redirect(e) {
