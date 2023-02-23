@@ -1,3 +1,0 @@
-# deltas
-
-::: wom.services.deltas

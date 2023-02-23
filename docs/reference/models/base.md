@@ -1,3 +1,0 @@
-# base
-
-::: wom.models.base

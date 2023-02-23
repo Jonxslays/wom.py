@@ -1,3 +1,0 @@
-# efficiency
-
-::: wom.services.efficiency

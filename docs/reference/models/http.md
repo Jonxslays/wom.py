@@ -1,3 +1,0 @@
-# http
-
-::: wom.models.http

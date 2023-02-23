@@ -1,3 +1,0 @@
-# records
-
-::: wom.models.records

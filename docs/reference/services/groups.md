@@ -1,3 +1,0 @@
-# groups
-
-::: wom.services.groups

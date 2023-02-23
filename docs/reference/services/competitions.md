@@ -1,3 +1,0 @@
-# competitions
-
-::: wom.services.competitions

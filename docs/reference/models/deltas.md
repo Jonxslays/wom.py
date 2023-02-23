@@ -1,3 +1,0 @@
-# deltas
-
-::: wom.models.deltas

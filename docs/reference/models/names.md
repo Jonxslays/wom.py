@@ -1,3 +1,0 @@
-# names
-
-::: wom.models.names

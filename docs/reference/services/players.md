@@ -1,3 +1,0 @@
-# players
-
-::: wom.services.players
