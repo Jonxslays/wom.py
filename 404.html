@@ -5,10 +5,48 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Not found</title>
-  <script src="/redirect-404.js" async></script>
   <noscript>
     <meta http-equiv="refresh" content="1; url=/stable/404.html" />
   </noscript>
+  <script>
+    const paths = window.location.pathname.split("/").filter((p) => !!p);
+    const defaultVersion = "stable";
+
+    try {
+      const req = new XMLHttpRequest();
+      req.open("GET", "/versions.json");
+      req.onload = handle404Redirect;
+      req.send();
+    } catch {
+      // Go to the default version if there was any error
+      navTo404(defaultVersion);
+    }
+
+    function navTo404(path) {
+      // Navigate to the 404 page for the given path
+      window.location.replace(`/${path}/404.html`);
+    }
+
+    function handle404Redirect(e) {
+      if (e.target.status !== 200) {
+        // Go to default version if we couldn't fetch the versions
+        return navTo404(defaultVersion);
+      }
+
+      // Current available site versions
+      const versions = JSON.parse(e.target.response);
+      const version = versions.filter(
+        (v) => v.title.toLowerCase() === paths[0].toLowerCase()
+      );
+
+      if (version.length) {
+        navTo404(version[0].title);
+      } else {
+        // Go to the default version if no versions matched
+        navTo404(defaultVersion);
+      }
+    }
+  </script>
 </head>
 <body>
   Redirecting...
