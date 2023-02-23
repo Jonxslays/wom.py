@@ -9438,13 +9438,7 @@ achieved.</p>
 <span class="normal"><a href="#__codelineno-0-951">951</a></span>
 <span class="normal"><a href="#__codelineno-0-952">952</a></span>
 <span class="normal"><a href="#__codelineno-0-953">953</a></span>
-<span class="normal"><a href="#__codelineno-0-954">954</a></span>
-<span class="normal"><a href="#__codelineno-0-955">955</a></span>
-<span class="normal"><a href="#__codelineno-0-956">956</a></span>
-<span class="normal"><a href="#__codelineno-0-957">957</a></span>
-<span class="normal"><a href="#__codelineno-0-958">958</a></span>
-<span class="normal"><a href="#__codelineno-0-959">959</a></span>
-<span class="normal"><a href="#__codelineno-0-960">960</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="k">class</span> <span class="nc">Serializer</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-954">954</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="k">class</span> <span class="nc">Serializer</span><span class="p">:</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Deserializes JSON data into wom.py model classes.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a>
 <a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
@@ -10353,17 +10347,11 @@ achieved.</p>
 <a id="__codelineno-0-947" name="__codelineno-0-947"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">()</span>
 <a id="__codelineno-0-948" name="__codelineno-0-948"></a>        <span class="n">model</span><span class="o">.</span><span class="n">verification_code</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verificationCode&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-949" name="__codelineno-0-949"></a>        <span class="n">model</span><span class="o">.</span><span class="n">competition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-950" name="__codelineno-0-950"></a>
-<a id="__codelineno-0-951" name="__codelineno-0-951"></a>        <span class="c1"># TODO: Remove this hack when this PR gets merged</span>
-<a id="__codelineno-0-952" name="__codelineno-0-952"></a>        <span class="c1"># https://github.com/wise-old-man/wise-old-man/pull/1081</span>
-<a id="__codelineno-0-953" name="__codelineno-0-953"></a>        <span class="n">participations</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;participations&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-954" name="__codelineno-0-954"></a>        <span class="n">model</span><span class="o">.</span><span class="n">participations</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-955" name="__codelineno-0-955"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition_participation</span><span class="p">,</span> <span class="n">participations</span><span class="p">)</span>
-<a id="__codelineno-0-956" name="__codelineno-0-956"></a>            <span class="k">if</span> <span class="n">participations</span>
-<a id="__codelineno-0-957" name="__codelineno-0-957"></a>            <span class="k">else</span> <span class="p">[]</span>
-<a id="__codelineno-0-958" name="__codelineno-0-958"></a>        <span class="p">)</span>
-<a id="__codelineno-0-959" name="__codelineno-0-959"></a>
-<a id="__codelineno-0-960" name="__codelineno-0-960"></a>        <span class="k">return</span> <span class="n">model</span>
+<a id="__codelineno-0-950" name="__codelineno-0-950"></a>        <span class="n">model</span><span class="o">.</span><span class="n">participations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+<a id="__codelineno-0-951" name="__codelineno-0-951"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition_participation</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;participations&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-952" name="__codelineno-0-952"></a>        <span class="p">)</span>
+<a id="__codelineno-0-953" name="__codelineno-0-953"></a>
+<a id="__codelineno-0-954" name="__codelineno-0-954"></a>        <span class="k">return</span> <span class="n">model</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -10656,7 +10644,7 @@ achieved.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Snapshot" href="#wom.Snapshot">Snapshot</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Snapshot" href="../models/players/#wom.models.players.Snapshot">Snapshot</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -10753,7 +10741,7 @@ achieved.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.StatisticsSnapshot" href="../models/players/#wom.models.players.StatisticsSnapshot">StatisticsSnapshot</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.StatisticsSnapshot" href="#wom.StatisticsSnapshot">StatisticsSnapshot</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -11526,7 +11514,7 @@ achieved.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.AchievementProgress" href="../models/players/#wom.models.players.AchievementProgress">AchievementProgress</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.AchievementProgress" href="#wom.AchievementProgress">AchievementProgress</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -11621,7 +11609,7 @@ achieved.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Achievement" href="#wom.Achievement">Achievement</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Achievement" href="../models/players/#wom.models.players.Achievement">Achievement</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -11713,7 +11701,7 @@ model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.PlayerAchievementProgress" href="../models/players/#wom.models.players.PlayerAchievementProgress">PlayerAchievementProgress</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.PlayerAchievementProgress" href="#wom.PlayerAchievementProgress">PlayerAchievementProgress</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -12483,7 +12471,7 @@ model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.NameChange" href="#wom.NameChange">NameChange</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.NameChange" href="../models/names/#wom.models.names.NameChange">NameChange</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -12822,7 +12810,7 @@ model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Record" href="../models/records/#wom.models.records.Record">Record</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Record" href="#wom.Record">Record</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -13236,7 +13224,7 @@ model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Membership" href="../models/groups/#wom.models.groups.Membership">Membership</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Membership" href="#wom.Membership">Membership</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -13619,7 +13607,7 @@ model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.GroupHiscoresBossItem" href="../models/groups/#wom.models.groups.GroupHiscoresBossItem">GroupHiscoresBossItem</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.GroupHiscoresBossItem" href="#wom.GroupHiscoresBossItem">GroupHiscoresBossItem</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -13810,7 +13798,7 @@ item model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.GroupHiscoresComputedMetricItem" href="#wom.GroupHiscoresComputedMetricItem">GroupHiscoresComputedMetricItem</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.GroupHiscoresComputedMetricItem" href="../models/groups/#wom.models.groups.GroupHiscoresComputedMetricItem">GroupHiscoresComputedMetricItem</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -13907,7 +13895,7 @@ item model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.GroupHiscoresEntry" href="#wom.GroupHiscoresEntry">GroupHiscoresEntry</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.GroupHiscoresEntry" href="../models/groups/#wom.models.groups.GroupHiscoresEntry">GroupHiscoresEntry</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -14099,7 +14087,7 @@ item model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Competition" href="#wom.Competition">Competition</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Competition" href="../models/competitions/#wom.models.competitions.Competition">Competition</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -14224,7 +14212,7 @@ item model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Participation" href="../models/competitions/#wom.models.competitions.Participation">Participation</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Participation" href="#wom.Participation">Participation</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -14319,7 +14307,7 @@ item model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.PlayerParticipation" href="#wom.PlayerParticipation">PlayerParticipation</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.PlayerParticipation" href="../models/competitions/#wom.models.competitions.PlayerParticipation">PlayerParticipation</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -14416,7 +14404,7 @@ item model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionParticipation" href="../models/competitions/#wom.models.competitions.CompetitionParticipation">CompetitionParticipation</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionParticipation" href="#wom.CompetitionParticipation">CompetitionParticipation</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -14710,7 +14698,7 @@ model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.PlayerMembership" href="../models/groups/#wom.models.groups.PlayerMembership">PlayerMembership</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.PlayerMembership" href="#wom.PlayerMembership">PlayerMembership</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -14903,7 +14891,7 @@ detail model.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionParticipationDetail" href="#wom.CompetitionParticipationDetail">CompetitionParticipationDetail</a></code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionParticipationDetail" href="../models/competitions/#wom.models.competitions.CompetitionParticipationDetail">CompetitionParticipationDetail</a></code>
           </td>
           <td><p>The requested model.</p></td>
         </tr>
@@ -15234,13 +15222,7 @@ model.</p>
 <span class="normal"><a href="#__codelineno-0-951">951</a></span>
 <span class="normal"><a href="#__codelineno-0-952">952</a></span>
 <span class="normal"><a href="#__codelineno-0-953">953</a></span>
-<span class="normal"><a href="#__codelineno-0-954">954</a></span>
-<span class="normal"><a href="#__codelineno-0-955">955</a></span>
-<span class="normal"><a href="#__codelineno-0-956">956</a></span>
-<span class="normal"><a href="#__codelineno-0-957">957</a></span>
-<span class="normal"><a href="#__codelineno-0-958">958</a></span>
-<span class="normal"><a href="#__codelineno-0-959">959</a></span>
-<span class="normal"><a href="#__codelineno-0-960">960</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-935" name="__codelineno-0-935"></a><span class="k">def</span> <span class="nf">deserialize_competition_with_participation</span><span class="p">(</span>
+<span class="normal"><a href="#__codelineno-0-954">954</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-935" name="__codelineno-0-935"></a><span class="k">def</span> <span class="nf">deserialize_competition_with_participation</span><span class="p">(</span>
 <a id="__codelineno-0-936" name="__codelineno-0-936"></a>    <span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span>
 <a id="__codelineno-0-937" name="__codelineno-0-937"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">:</span>
 <a id="__codelineno-0-938" name="__codelineno-0-938"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Deserializes the data into a competition with participations</span>
@@ -15255,17 +15237,11 @@ model.</p>
 <a id="__codelineno-0-947" name="__codelineno-0-947"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">()</span>
 <a id="__codelineno-0-948" name="__codelineno-0-948"></a>    <span class="n">model</span><span class="o">.</span><span class="n">verification_code</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;verificationCode&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-949" name="__codelineno-0-949"></a>    <span class="n">model</span><span class="o">.</span><span class="n">competition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-950" name="__codelineno-0-950"></a>
-<a id="__codelineno-0-951" name="__codelineno-0-951"></a>    <span class="c1"># TODO: Remove this hack when this PR gets merged</span>
-<a id="__codelineno-0-952" name="__codelineno-0-952"></a>    <span class="c1"># https://github.com/wise-old-man/wise-old-man/pull/1081</span>
-<a id="__codelineno-0-953" name="__codelineno-0-953"></a>    <span class="n">participations</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;participations&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-954" name="__codelineno-0-954"></a>    <span class="n">model</span><span class="o">.</span><span class="n">participations</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-955" name="__codelineno-0-955"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition_participation</span><span class="p">,</span> <span class="n">participations</span><span class="p">)</span>
-<a id="__codelineno-0-956" name="__codelineno-0-956"></a>        <span class="k">if</span> <span class="n">participations</span>
-<a id="__codelineno-0-957" name="__codelineno-0-957"></a>        <span class="k">else</span> <span class="p">[]</span>
-<a id="__codelineno-0-958" name="__codelineno-0-958"></a>    <span class="p">)</span>
-<a id="__codelineno-0-959" name="__codelineno-0-959"></a>
-<a id="__codelineno-0-960" name="__codelineno-0-960"></a>    <span class="k">return</span> <span class="n">model</span>
+<a id="__codelineno-0-950" name="__codelineno-0-950"></a>    <span class="n">model</span><span class="o">.</span><span class="n">participations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+<a id="__codelineno-0-951" name="__codelineno-0-951"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition_participation</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;participations&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-952" name="__codelineno-0-952"></a>    <span class="p">)</span>
+<a id="__codelineno-0-953" name="__codelineno-0-953"></a>
+<a id="__codelineno-0-954" name="__codelineno-0-954"></a>    <span class="k">return</span> <span class="n">model</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -21555,7 +21531,7 @@ this snapshot.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The <a class="autorefs autorefs-internal" href="../models/competitions/#wom.models.competitions.Participation"><code>Participation</code></a> achieved in this
+      <p>The <a class="autorefs autorefs-internal" href="#wom.Participation"><code>Participation</code></a> achieved in this
 competition.</p>
   </div>
 
@@ -21952,9 +21928,9 @@ in.</p>
         <tr>
           <td><code>role</code></td>
           <td>
-                <code><a class="autorefs autorefs-internal" title="wom.models.groups.enums.GroupRole" href="../models/groups/#wom.models.groups.GroupRole">GroupRole</a> | None</code>
+                <code><a class="autorefs autorefs-internal" title="wom.models.groups.enums.GroupRole" href="#wom.GroupRole">GroupRole</a> | None</code>
           </td>
-          <td><p>The optional <a class="autorefs autorefs-internal" href="../models/groups/#wom.models.groups.GroupRole"><code>GroupRole</code></a> to
+          <td><p>The optional <a class="autorefs autorefs-internal" href="#wom.GroupRole"><code>GroupRole</code></a> to
 give the member.</p></td>
           <td>
                 <code>None</code>
