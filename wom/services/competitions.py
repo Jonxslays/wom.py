@@ -54,26 +54,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[list[models.Competition]]:
         """Searches for competitions with the given criteria.
 
-        !!! note
-
-            This method accepts only keyword arguments.
-
-        ??? example
-
-            ```py
-            import wom
-
-            client = wom.Client(...)
-
-            result = await client.competitions.search_competitions(
-                title="Sick Competition",
-                type=wom.CompetitionType.Classic,
-                status=wom.CompetitionStatus.Ongoing,
-                limit=3,
-                offset=1
-            )
-            ```
-
         Keyword Args:
             title: The optional title of the competition. Defaults to
                 `None`.
@@ -96,6 +76,26 @@ class CompetitionService(BaseService):
         Returns:
             A [`Result`][wom.Result] containing the list of competitions
                 or an error.
+
+        !!! note
+
+            This method accepts only keyword arguments.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.search_competitions(
+                title="Sick Competition",
+                type=wom.CompetitionType.Classic,
+                status=wom.CompetitionStatus.Ongoing,
+                limit=3,
+                offset=1
+            )
+            ```
         """
         params = self._generate_map(
             title=title,
@@ -119,6 +119,17 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.CompetitionDetail]:
         """Gets details for the given competition.
 
+        Args:
+            id: The ID of the competition.
+
+        Keyword Args:
+            metric: The optional [`Metric`][wom.Metric] to view the
+                competition progress in. As if this competition was
+                actually for that metric. Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the competition details.
+
         ??? example
 
             ```py
@@ -132,17 +143,6 @@ class CompetitionService(BaseService):
                 123, wom.Skills.Attack
             )
             ```
-
-        Args:
-            id: The ID of the competition.
-
-        Keyword Args:
-            metric: The optional [`Metric`][wom.Metric] to view the
-                competition progress in. As if this competition was
-                actually for that metric. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the competition details.
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
@@ -159,6 +159,18 @@ class CompetitionService(BaseService):
         """Gets details for the players with the top 5 progress in the
         competition.
 
+        Args:
+            id: The ID of the competition.
+
+        Keyword Args:
+            metric: The optional [`Metric`][wom.Metric] to view the
+                competition progress in. As if this competition was
+                actually for that metric. Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of top 5
+                progress players.
+
         ??? example
 
             ```py
@@ -172,18 +184,6 @@ class CompetitionService(BaseService):
                 123, wom.Skills.Attack
             )
             ```
-
-        Args:
-            id: The ID of the competition.
-
-        Keyword Args:
-            metric: The optional [`Metric`][wom.Metric] to view the
-                competition progress in. As if this competition was
-                actually for that metric. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of top 5
-                progress players.
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
@@ -207,6 +207,34 @@ class CompetitionService(BaseService):
         participants: list[str] | None = None,
     ) -> ResultT[models.CompetitionWithParticipations]:
         """Creates a new competition.
+
+        Args:
+            title: The title of the competition.
+
+            metric: The [`Metric`][wom.Metric] the competition should
+                measure.
+
+            starts_at: The start date for the competition.
+
+            ends_at: The end date for the competition.
+
+        Keyword Args:
+            group_id: The optional group id to tie to this competition.
+                Defaults to `None`.
+
+            group_verification_code: The optional group verification
+                code. Required if group_id is supplied. Defaults to
+                `None`.
+
+            participants: The optional list of participants to include
+                in the competition. Defaults to `None`.
+
+            teams: The optional teams to include in the competition.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the newly created
+                competition with participations.
 
         !!! info
 
@@ -243,34 +271,6 @@ class CompetitionService(BaseService):
                 group_id: 123,
             )
             ```
-
-        Args:
-            title: The title of the competition.
-
-            metric: The [`Metric`][wom.Metric] the competition should
-                measure.
-
-            starts_at: The start date for the competition.
-
-            ends_at: The end date for the competition.
-
-        Keyword Args:
-            group_id: The optional group id to tie to this competition.
-                Defaults to `None`.
-
-            group_verification_code: The optional group verification
-                code. Required if group_id is supplied. Defaults to
-                `None`.
-
-            participants: The optional list of participants to include
-                in the competition. Defaults to `None`.
-
-            teams: The optional teams to include in the competition.
-                Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the newly created
-                competition with participations.
         """
         payload = self._generate_map(
             title=title,
@@ -289,9 +289,12 @@ class CompetitionService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(
-            self._serializer.deserialize_competition_with_participation(data["competition"])
+        competition = self._serializer.deserialize_competition_with_participation(
+            data["competition"]
         )
+
+        competition.verification_code = data["verificationCode"]
+        return result.Ok(competition)
 
     async def edit_competition(
         self,
@@ -306,25 +309,6 @@ class CompetitionService(BaseService):
         participants: list[str] | None = None,
     ) -> ResultT[models.CompetitionWithParticipations]:
         """Edits an existing competition.
-
-        !!! warning
-
-            The teams/participants parameters will completely
-            overwrite the existing participants/teams. If you're looking
-            to add users, check out [`add_participants`]
-            [wom.CompetitionService.add_participants].
-
-        ??? example
-
-            ```py
-            import wom
-
-            client = wom.Client(...)
-
-            result = await client.competitions.edit_competition(
-                123, "111-111-111", title="New title"
-            )
-            ```
 
         Args:
             id: The ID of the competition.
@@ -354,6 +338,25 @@ class CompetitionService(BaseService):
         Returns:
             A [`Result`][wom.Result] containing the edited competition
                 with participations.
+
+        !!! warning
+
+            The teams/participants parameters will completely
+            overwrite the existing participants/teams. If you're looking
+            to add users, check out [`add_participants`]
+            [wom.CompetitionService.add_participants].
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.edit_competition(
+                123, "111-111-111", title="New title"
+            )
+            ```
         """
         payload = self._generate_map(
             title=title,
@@ -378,6 +381,16 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.HttpSuccessResponse]:
         """Deletes a competition.
 
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
+
         !!! warning
 
             This action can not be reversed.
@@ -393,16 +406,6 @@ class CompetitionService(BaseService):
                 123, "111-111-111"
             )
             ```
-
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
         """
         payload = self._generate_map(verificationCode=verification_code)
         route = routes.DELETE_COMPETITION.compile(id)

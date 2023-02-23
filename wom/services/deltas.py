@@ -50,6 +50,42 @@ class DeltaService(BaseService):
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
     ) -> ResultT[list[models.DeltaLeaderboardEntry]]:
+        """Gets the top global delta leaderboard for a specific
+        metric and period.
+
+        Args:
+            metric: The metric to filter on.
+
+            period: The period of time to filter on.
+
+        Keyword Args:
+            player_type: The optional player type to filter on. Defaults
+                to `None`.
+
+            player_build: The optional player build to filter on.
+                Defaults to `None`.
+
+            country: The optional country to filter on. Defaults to
+                `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing a list of  delta
+                leaderboard entries.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.deltas.get_global_delta_leaderboards(
+                wom.Skills.Attack,
+                wom.Period.Day,
+                country=wom.Country.Gb,
+            )
+            ```
+        """
         params = self._generate_map(
             metric=metric.value,
             period=period.value,
