@@ -9,13 +9,16 @@
     <meta http-equiv="refresh" content="1; url=/wom.py/stable/404.html" />
   </noscript>
   <script>
-    const paths = window.location.pathname.split("/").filter((p) => !!p);
-    const defaultVersion = "stable";
     const project = "wom.py";
+    const defaultVersion = "stable";
+    const paths = window.location.pathname
+      .split("/")
+      .filter((p) => !!p)  // Remove empty strings
+      .slice(1);  // Remove the project name
 
     try {
       const req = new XMLHttpRequest();
-      req.open("GET", "/versions.json");
+      req.open("GET", `/${project}/versions.json`);
       req.onload = handle404Redirect;
       req.send();
     } catch {
