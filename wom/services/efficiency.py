@@ -49,6 +49,40 @@ class EfficiencyService(BaseService):
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
     ) -> ResultT[list[models.Player]]:
+        """Gets the top global efficiency leaderboard.
+
+        Args:
+            metric: The metric to filter on.
+
+            *metrics: The additional metrics to filter on.
+
+        Keyword Args:
+            player_type: The optional player type to filter on. Defaults
+                to `None`.
+
+            player_build: The optional player build to filter on.
+                Defaults to `None`.
+
+            country: The optional country to filter on. Defaults to
+                `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing a list of the top
+                players.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.efficiency.get_global_efficiency_leaderboard(
+                wom.Skills.Slayer,
+                player_type=wom.PlayerType.Ironman,
+            )
+            ```
+        """
         params = self._generate_map(
             metric="+".join(m.value for m in (metric, *metrics)),
             playerType=player_type.value if player_type else None,
