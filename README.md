@@ -2,7 +2,7 @@
 
 An asynchronous wrapper for the [Wise Old Man API](https://docs.wiseoldman.net/).
 
-The library aims to make is easy to interact with the Wise Old Man API by
+The library aims to make it easy to interact with the Wise Old Man API by
 providing service methods for all available endpoints and model classes
 for data consistency.
 
