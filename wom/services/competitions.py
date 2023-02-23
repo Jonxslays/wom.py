@@ -376,6 +376,34 @@ class CompetitionService(BaseService):
     async def delete_competition(
         self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
+        """Deletes a competition.
+
+        !!! warning
+
+            This action can not be reversed.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.delete_competition(
+                123, "111-111-111"
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
+        """
         payload = self._generate_map(verificationCode=verification_code)
         route = routes.DELETE_COMPETITION.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
@@ -388,7 +416,33 @@ class CompetitionService(BaseService):
     async def add_participants(
         self, id: int, verification_code: str, *participants: str
     ) -> ResultT[models.HttpSuccessResponse]:
-        """Adds participants."""
+        """Adds participants to a competition. Only adds valid
+        participants, and ignores duplicates.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.add_participants(
+                123, "111-111-111", "Jonxslays", "Zezima"
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+            *participants: The participants you would like to add.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
+        """
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
         route = routes.ADD_PARTICIPANTS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
@@ -401,6 +455,33 @@ class CompetitionService(BaseService):
     async def remove_participants(
         self, id: int, verification_code: str, *participants: str
     ) -> ResultT[models.HttpSuccessResponse]:
+        """Removes participants from a competition. Ignores usernames
+        that are not competing.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.remove_participants(
+                123, "111-111-111", "Jonxslays"
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+            *participants: The participants you would like to remove.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
+        """
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
         route = routes.REMOVE_PARTICIPANTS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
@@ -413,6 +494,35 @@ class CompetitionService(BaseService):
     async def add_teams(
         self, id: int, verification_code: str, *teams: models.Team
     ) -> ResultT[models.HttpSuccessResponse]:
+        """Adds teams to a competition. Ignores duplicates.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.add_teams(
+                123,
+                "111-111-111",
+                wom.Team("Team 1", ["Jonxslays", "Zezima"]),
+                wom.Team("Team 2", ["lilyuffie88", "the old nite"]),
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+            *teams: The teams you would like to add.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
+        """
         payload = self._generate_map(
             verificationCode=verification_code, teams=[t.to_dict() for t in teams]
         )
@@ -427,6 +537,33 @@ class CompetitionService(BaseService):
     async def remove_teams(
         self, id: int, verification_code: str, *teams: str
     ) -> ResultT[models.HttpSuccessResponse]:
+        """Removes teams from a competition. Ignores teams that don't
+        exist.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.remove_teams(
+                123, "111-111-111", "Team 1", "Team 2"
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+            *teams: The team names you would like to remove.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
+        """
         payload = self._generate_map(verificationCode=verification_code, teamNames=teams)
         route = routes.REMOVE_TEAMS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
@@ -439,6 +576,52 @@ class CompetitionService(BaseService):
     async def update_outdated_participants(
         self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
+        """Attempts to update all outdated competition participants.
+
+        !!! info
+
+            Participants are outdated when either:
+
+            - Competition is ending or started with 6h of now and
+                the player hasn't been updated in over 1h.
+
+            - Player hasn't been updated in over 24h.
+
+        !!! warning
+
+            This method adds every outdated participant to an
+            "update queue", and the WOM servers try to update players
+            in the queue one by one, with a delay in between each. For
+            each player in the queue, an attempt is made to update it
+            up to 3 times, with 30s in between each attempt.
+
+            Please note that this is dependent on the OSRS hiscores
+            functioning correctly, and therefore this method does NOT
+            guarantee the players will be updated, it only guarantees
+            that an attempt will be made to update them, up to 3 times.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.update_outdated_participants(
+                123, "111-111-111"
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
+        """
         payload = self._generate_map(verificationCode=verification_code)
         route = routes.UPDATE_OUTDATED_PARTICIPANTS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
