@@ -34,4 +34,4 @@ jobs:
           git config --global user.name "Jonxslays"
           git config --global user.email "51417989+Jonxslays@users.noreply.github.com"
           git fetch origin gh-pages --depth=1
-          poetry run mike deploy --push --update-aliases dev development
+          poetry run mike deploy --push --update-aliases dev

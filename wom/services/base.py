@@ -39,7 +39,6 @@ class BaseService(abc.ABC):
         http_service: The http service to use for requests.
 
         serializer: The serializer to use for handling incoming
-
             JSON data from the API.
     """
 

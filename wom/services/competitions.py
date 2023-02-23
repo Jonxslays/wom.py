@@ -156,6 +156,35 @@ class CompetitionService(BaseService):
     async def get_top_participant_history(
         self, id: int, *, metric: enums.Metric | None = None
     ) -> ResultT[list[models.Top5ProgressResult]]:
+        """Gets details for the players with the top 5 progress in the
+        competition.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.get_competition_details(123)
+
+            result2 = await client.competitions.get_competition_details(
+                123, wom.Skills.Attack
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+        Keyword Args:
+            metric: The optional [`Metric`][wom.Metric] to view the
+                competition progress in. As if this competition was
+                actually for that metric. Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of top 5
+                progress players.
+        """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
         data = await self._http.fetch(route, self._list)
