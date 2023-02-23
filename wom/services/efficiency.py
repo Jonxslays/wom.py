@@ -43,19 +43,18 @@ class EfficiencyService(BaseService):
 
     async def get_global_leaderboard(
         self,
-        metric: enums.ComputedMetrics,
-        *metrics: enums.ComputedMetrics,
+        metric: enums.ComputedMetrics = enums.ComputedMetrics.Ehp,
+        *,
         player_type: models.PlayerType | None = None,
         player_build: models.PlayerBuild | None = None,
         country: models.Country | None = None,
+        both: bool = False,
     ) -> ResultT[list[models.Player]]:
         """Gets the top global efficiency leaderboard.
 
         Args:
-            metric: The metric to filter on.
-
-            *metrics: The additional metrics to filter on. Currently
-                only ehp and ehb are available for these metrics.
+            metric: The computed metric to filter on. Defaults to
+                [`ComputedMetrics.Ehp`][wom.ComputedMetrics].
 
         Keyword Args:
             player_type: The optional player type to filter on. Defaults
@@ -66,6 +65,10 @@ class EfficiencyService(BaseService):
 
             country: The optional country to filter on. Defaults to
                 `None`.
+
+            both: If `True`, request both ehp and ehb computed metric
+                leaderboards. This will override the `metric`, if provided.
+                Defaults to `False`.
 
         Returns:
             A [`Result`][wom.Result] containing a list of the top
@@ -85,7 +88,7 @@ class EfficiencyService(BaseService):
             ```
         """
         params = self._generate_map(
-            metric="+".join(m.value for m in (metric, *metrics)),
+            metric=metric.value if not both else "+".join(m.value for m in enums.ComputedMetrics),
             playerType=player_type.value if player_type else None,
             playerBuild=player_build.value if player_build else None,
             country=country.value if country else None,
