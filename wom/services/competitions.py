@@ -77,10 +77,6 @@ class CompetitionService(BaseService):
             A [`Result`][wom.Result] containing the list of competitions
                 or an error.
 
-        !!! note
-
-            This method accepts only keyword arguments.
-
         ??? example
 
             ```py
@@ -343,7 +339,7 @@ class CompetitionService(BaseService):
 
             The teams/participants parameters will completely
             overwrite the existing participants/teams. If you're looking
-            to add users, check out [`add_participants`]
+            to add users, check out [`add_participants()`]
             [wom.CompetitionService.add_participants].
 
         ??? example

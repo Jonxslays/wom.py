@@ -45,6 +45,32 @@ class PlayerService(BaseService):
     async def search_players(
         self, username: str, *, limit: int | None = None, offset: int | None = None
     ) -> ResultT[list[models.Player]]:
+        """Searches for a player by partial username.
+
+        Args:
+            username: The username to search for.
+
+        Keyword Args:
+            limit: The maximum number of paginated items to receive.
+                Defaults to `None` (I think thats 20 items?).
+
+            offset: The page offset for requesting multiple pages.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of matching
+                players.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.search_players("Jonxslays", limit=3)
+            ```
+        """
         params = self._generate_map(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -55,6 +81,25 @@ class PlayerService(BaseService):
         return result.Ok([self._serializer.deserialize_player(player) for player in data])
 
     async def update_player(self, username: str) -> ResultT[models.PlayerDetail]:
+        """Updates the given player.
+
+        Args:
+            username: The username to update.
+
+        Returns:
+            A [`Result`][wom.Result] containing the updated player
+                details.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.update_player("Jonxslays")
+            ```
+        """
         route = routes.UPDATE_PLAYER.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -64,6 +109,25 @@ class PlayerService(BaseService):
         return result.Ok(self._serializer.deserialize_player_details(data))
 
     async def assert_player_type(self, username: str) -> ResultT[models.AssertPlayerType]:
+        """Asserts, and fixes, a players type.
+
+        Args:
+            username: The username to assert the type for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the asserted player
+                type.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.assert_player_type("Jonxslays")
+            ```
+        """
         route = routes.ASSERT_PLAYER_TYPE.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -72,7 +136,25 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_asserted_player_type(data))
 
-    async def get_player_details(self, username: str) -> ResultT[models.PlayerDetail]:
+    async def get_details(self, username: str) -> ResultT[models.PlayerDetail]:
+        """Gets the details for a given player.
+
+        Args:
+            username: The username to get the details for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the player details.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_details("Jonxslays")
+            ```
+        """
         route = routes.PLAYER_DETAILS.compile(username)
         data = await self._http.fetch(route, self._dict)
 
@@ -81,7 +163,25 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def get_player_details_by_id(self, player_id: int) -> ResultT[models.PlayerDetail]:
+    async def get_details_by_id(self, player_id: int) -> ResultT[models.PlayerDetail]:
+        """Gets the details for a given player id.
+
+        Args:
+            player_id: The is of the player to get the details for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the player details.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_details_by_id(1234)
+            ```
+        """
         route = routes.PLAYER_DETAILS_BY_ID.compile(player_id)
         data = await self._http.fetch(route, self._dict)
 
@@ -90,7 +190,26 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def get_player_achievements(self, username: str) -> ResultT[list[models.Achievement]]:
+    async def get_achievements(self, username: str) -> ResultT[list[models.Achievement]]:
+        """Gets the achievements for a given player.
+
+        Args:
+            username: The username to get the achievements for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of player
+                achievements.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_achievements("Jonxslays")
+            ```
+        """
         route = routes.PLAYER_ACHIEVEMENTS.compile(username)
         data = await self._http.fetch(route, self._list)
 
@@ -99,9 +218,28 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_achievement(a) for a in data])
 
-    async def get_player_achievement_progress(
+    async def get_achievement_progress(
         self, username: str
     ) -> ResultT[list[models.PlayerAchievementProgress]]:
+        """Gets the progress towards achievements for a given player.
+
+        Args:
+            username: The username to get the achievement progress for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of player
+                achievement progress.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_achievement_progress("Jonxslays")
+            ```
+        """
         route = routes.PLAYER_ACHIEVEMENT_PROGRESS.compile(username)
         data = await self._http.fetch(route, self._list)
 
@@ -112,7 +250,7 @@ class PlayerService(BaseService):
             [self._serializer.deserialize_player_achievement_progress(p) for p in data]
         )
 
-    async def get_player_competition_participations(
+    async def get_competition_participations(
         self,
         username: str,
         *,
@@ -120,6 +258,36 @@ class PlayerService(BaseService):
         offset: int | None = None,
         status: models.CompetitionStatus | None = None,
     ) -> ResultT[list[models.PlayerParticipation]]:
+        """Gets the competition participations for a given player.
+
+        Args:
+            username: The username to get the participations for.
+
+        Keyword Args:
+            limit: The maximum number of paginated items to receive.
+                Defaults to `None` (I think thats 20 items?).
+
+            offset: The page offset for requesting multiple pages.
+                Defaults to `None`.
+
+            status: The optional [`CompetitionStatus`]
+                [wom.CompetitionStatus] to filter on. Defaults to
+                `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of competition
+                participations.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_achievement_progress("Jonxslays")
+            ```
+        """
         params = self._generate_map(
             status=status.value if status else None, limit=limit, offset=offset
         )
@@ -132,11 +300,34 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_player_participation(p) for p in data])
 
-    async def get_player_competition_standings(
+    async def get_competition_standings(
         self,
         username: str,
         status: models.CompetitionStatus,
     ) -> ResultT[list[models.PlayerCompetitionStanding]]:
+        """Gets the competition standings for a given player.
+
+        Args:
+            username: The username to get the standings for.
+
+            status: The competition status to get standings for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of competition
+                standings.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_competition_standings(
+                "Jonxslays", wom.CompetitionStatus.Ongoing
+            )
+            ```
+        """
         params = self._generate_map(status=status.value)
         route = routes.PLAYER_COMPETITION_STANDINGS.compile(username).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -148,9 +339,37 @@ class PlayerService(BaseService):
             [self._serializer.deserialize_player_competition_standing(s) for s in data]
         )
 
-    async def get_player_group_memberships(
+    async def get_group_memberships(
         self, username: str, *, limit: int | None = None, offset: int | None = None
     ) -> ResultT[list[models.PlayerMembership]]:
+        """Gets the group memberships for the given player.
+
+        Args:
+            username: The username to get the memberships for.
+
+        Keyword Args:
+            limit: The maximum number of paginated items to receive.
+                Defaults to `None` (I think thats 20 items?).
+
+            offset: The page offset for requesting multiple pages.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of group
+                memberships.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_group_memberships(
+                "Jonxslays", limit=3
+            )
+            ```
+        """
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.PLAYER_GROUP_MEMBERSHIPS.compile(username).with_params(params)
         data = await self._http.fetch(route, self._list)
@@ -160,7 +379,7 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_player_membership(m) for m in data])
 
-    async def get_player_gains(
+    async def get_gains(
         self,
         username: str,
         *,
@@ -168,6 +387,41 @@ class PlayerService(BaseService):
         start_date: datetime | None = None,
         end_date: datetime | None = None,
     ) -> ResultT[models.PlayerGains]:
+        """Gets the gains made by this player over the given time span.
+
+        Args:
+            username: The username to get the gains for.
+
+        Keyword Args:
+            period: The optional period of time to get gains for.
+                Defaults to `None`.
+
+            start_date: The minimum date to get the gains from. Defaults
+                to `None`.
+
+            end_date: The maximum date to get the gains from. Defaults
+                to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the players gains.
+
+        !!! info
+
+            You can pass either (`period`) or (`start_date` +
+            `end_date`), but not both.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_gains(
+                "Jonxslays", period=wom.Period.Day
+            )
+            ```
+        """
         params = self._generate_map(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
@@ -182,13 +436,41 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_gains(data))
 
-    async def get_player_records(
+    async def get_records(
         self,
         username: str,
         *,
         period: enums.Period | None = None,
         metric: enums.Metric | None = None,
     ) -> ResultT[list[models.Record]]:
+        """Gets the records held by this player.
+
+        Args:
+            username: The username to get the gains for.
+
+        Keyword Args:
+            period: The optional period of time to get gains for.
+                Defaults to `None`.
+
+            metric: The optional metric to filter the records on.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing a list of the players
+                records.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_records(
+                "Jonxslays", period=wom.Period.Day, metric=wom.Skills.Attack
+            )
+            ```
+        """
         params = self._generate_map(
             period=period.value if period else None, metric=metric.value if metric else None
         )
@@ -201,7 +483,7 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_record(r) for r in data])
 
-    async def get_player_snapshots(
+    async def get_snapshots(
         self,
         username: str,
         *,
@@ -209,6 +491,41 @@ class PlayerService(BaseService):
         start_date: datetime | None = None,
         end_date: datetime | None = None,
     ) -> ResultT[list[models.Snapshot]]:
+        """Gets the snapshots for the player.
+
+        Args:
+            username: The username to get the snapshots for.
+
+        Keyword Args:
+            period: The optional period of time to get snapshots for.
+                Defaults to `None`.
+
+            start_date: The minimum date to get the snapshots from.
+                Defaults to `None`.
+
+            end_date: The maximum date to get the snapshots from.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of snapshots.
+
+        !!! info
+
+            You can pass either (`period`) or (`start_date` +
+            `end_date`), but not both.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_snapshots(
+                "Jonxslays", period=wom.Period.Week
+            )
+            ```
+        """
         params = self._generate_map(
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
@@ -223,7 +540,25 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_snapshot(s) for s in data])
 
-    async def get_player_name_changes(self, username: str) -> ResultT[list[models.NameChange]]:
+    async def get_name_changes(self, username: str) -> ResultT[list[models.NameChange]]:
+        """Gets the name changes for the player.
+
+        Args:
+            username: The username to get the name changes for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of name changes.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.players.get_name_changes("Jonxslays")
+            ```
+        """
         route = routes.PLAYER_NAME_CHANGES.compile(username)
         data = await self._http.fetch(route, self._list)
 

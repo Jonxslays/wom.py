@@ -190,6 +190,8 @@ class Client:
         ??? example
 
             ```py
+            import wom
+
             client = wom.Client(...)
 
             client.set_api_key("abc123")
@@ -203,6 +205,8 @@ class Client:
         ??? example
 
             ```py
+            import wom
+
             client = wom.Client(api_key="abc123")
 
             client.unset_api_key()
@@ -219,6 +223,8 @@ class Client:
         ??? example
 
             ```py
+            import wom
+
             client = wom.Client(...)
 
             client.set_user_agent("@Hi#0000")
@@ -235,6 +241,8 @@ class Client:
         ??? example
 
             ```py
+            import wom
+
             client = wom.Client(...)
 
             client.set_api_base_url("https://api.wiseoldman.net/v2")
@@ -258,6 +266,8 @@ class Client:
         ??? example
 
             ```py
+            import wom
+
             client = wom.Client(...)
 
             await client.close()

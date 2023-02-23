@@ -19,6 +19,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+"""This module contains the services used to interact with different
+portions of the WOM API.
+"""
+
 from __future__ import annotations
 
 __all__ = (
