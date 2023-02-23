@@ -14,7 +14,7 @@ may change at any time. Thanks for following our progress!
 ## Documentation
 
 - [Stable](https://jonxslays.github.io/wom.py/)
-- [Development](https://jonxslays.github.io/wom.py/development/)
+- [Development](https://jonxslays.github.io/wom.py/dev/)
 
 ## Installation
 
