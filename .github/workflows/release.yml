@@ -21,7 +21,7 @@ jobs:
 
       - name: Build and publish
         uses: JRubics/poetry-publish@v1.16
-        if: steps.prerelease.conclusion == "success"
+        if: steps.prerelease.conclusion == 'success'
         with:
           pypi_token: ${{ secrets.PYPI_TOKEN }}
           ignore_dev_requirements: "yes"
