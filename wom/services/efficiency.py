@@ -54,7 +54,8 @@ class EfficiencyService(BaseService):
         Args:
             metric: The metric to filter on.
 
-            *metrics: The additional metrics to filter on.
+            *metrics: The additional metrics to filter on. Currently
+                only ehp and ehb are available for these metrics.
 
         Keyword Args:
             player_type: The optional player type to filter on. Defaults
