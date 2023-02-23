@@ -9,7 +9,7 @@ plugins:
       handlers:
         python:
           options:
-            members_order: source
+            members_order: alphabetical
             docstring_style: google
             show_signature_annotations: true
             separate_signature: true

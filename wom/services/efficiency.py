@@ -41,7 +41,7 @@ class EfficiencyService(BaseService):
 
     __slots__ = ()
 
-    async def get_global_efficiency_leaderboard(
+    async def get_global_leaderboard(
         self,
         metric: enums.ComputedMetrics,
         *metrics: enums.ComputedMetrics,
@@ -77,8 +77,8 @@ class EfficiencyService(BaseService):
 
             client = wom.Client(...)
 
-            result = await client.efficiency.get_global_efficiency_leaderboard(
-                wom.Skills.Slayer,
+            result = await client.efficiency.get_global_leaderboard(
+                wom.ComputedMetrics.Ehp,
                 player_type=wom.PlayerType.Ironman,
             )
             ```

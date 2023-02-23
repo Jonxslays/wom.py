@@ -41,7 +41,7 @@ class DeltaService(BaseService):
 
     __slots__ = ()
 
-    async def get_global_delta_leaderboards(
+    async def get_global_leaderboards(
         self,
         metric: enums.Metric,
         period: enums.Period,
@@ -79,7 +79,7 @@ class DeltaService(BaseService):
 
             client = wom.Client(...)
 
-            result = await client.deltas.get_global_delta_leaderboards(
+            result = await client.deltas.get_global_leaderboards(
                 wom.Skills.Attack,
                 wom.Period.Day,
                 country=wom.Country.Gb,

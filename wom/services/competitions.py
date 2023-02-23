@@ -110,7 +110,7 @@ class CompetitionService(BaseService):
 
         return result.Ok([self._serializer.deserialize_competition(c) for c in data])
 
-    async def get_competition_details(
+    async def get_details(
         self, id: int, *, metric: enums.Metric | None = None
     ) -> ResultT[models.CompetitionDetail]:
         """Gets details for the given competition.
@@ -133,9 +133,9 @@ class CompetitionService(BaseService):
 
             client = wom.Client(...)
 
-            result = await client.competitions.get_competition_details(123)
+            result = await client.competitions.get_details(123)
 
-            result2 = await client.competitions.get_competition_details(
+            result2 = await client.competitions.get_details(
                 123, wom.Skills.Attack
             )
             ```
