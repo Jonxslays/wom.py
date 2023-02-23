@@ -396,15 +396,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wom.errors.WomError" class="md-nav__link">
-    WomError
+  <a href="#wom.errors.UnwrapError" class="md-nav__link">
+    UnwrapError
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#wom.errors.UnwrapError" class="md-nav__link">
-    UnwrapError
+  <a href="#wom.errors.WomError" class="md-nav__link">
+    WomError
   </a>
   
 </li>
@@ -528,15 +528,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wom.errors.WomError" class="md-nav__link">
-    WomError
+  <a href="#wom.errors.UnwrapError" class="md-nav__link">
+    UnwrapError
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#wom.errors.UnwrapError" class="md-nav__link">
-    UnwrapError
+  <a href="#wom.errors.WomError" class="md-nav__link">
+    WomError
   </a>
   
 </li>
@@ -580,57 +580,6 @@
 
 
 
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="wom.errors.WomError" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">WomError</span>
-
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code>Exception</code></p>
-
-  
-      <p>The base error all wom errors inherit from.</p>
-
-
-        <details class="quote">
-          <summary>Source code in <code>wom/errors.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="k">class</span> <span class="nc">WomError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The base error all wom errors inherit from.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
-</code></pre></div></td></tr></table></div>
-        </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-  </div>
-
-</div>
 
 <div class="doc doc-object doc-class">
 
@@ -701,6 +650,57 @@
 <a id="__codelineno-0-44" name="__codelineno-0-44"></a>
 <a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unwrap failed: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="wom.errors.WomError" class="doc doc-heading">
+        <span class="doc doc-object-name doc-class-name">WomError</span>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>Exception</code></p>
+
+  
+      <p>The base error all wom errors inherit from.</p>
+
+
+        <details class="quote">
+          <summary>Source code in <code>wom/errors.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="k">class</span> <span class="nc">WomError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The base error all wom errors inherit from.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
