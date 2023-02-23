@@ -206,6 +206,72 @@ class CompetitionService(BaseService):
         teams: list[models.Team] | None = None,
         participants: list[str] | None = None,
     ) -> ResultT[models.CompetitionWithParticipations]:
+        """Creates a new competition.
+
+        !!! info
+
+            The `group_id`, `participants`, and `teams` parameters are
+            mutually exclusive.
+
+            - If `group_id` is provided, this method will create a
+                classic competition with all members of that group as
+                participants.
+
+            - If `participants` is provided and `group_id` isn't, this
+                method will create a classic competition with all those
+                participants included.
+
+            - If `teams` is provided, this endpoint will create a team
+                competition with all those participants included.
+                Also accepts `group_id` as a way to link this
+                competition to the group.
+
+        ??? example
+
+            ```py
+            from datetime import datetime, timedelta
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.create_competition(
+                "Slayer weekend",
+                wom.Skills.Slayer,
+                starts_at: datetime.now() + timedelta(days=7),
+                ends_at: datetime.now() + timedelta(days=14),
+                group_verification_code: "111-111-111",
+                group_id: 123,
+            )
+            ```
+
+        Args:
+            title: The title of the competition.
+
+            metric: The [`Metric`][wom.Metric] the competition should
+                measure.
+
+            starts_at: The start date for the competition.
+
+            ends_at: The end date for the competition.
+
+        Keyword Args:
+            group_id: The optional group id to tie to this competition.
+                Defaults to `None`.
+
+            group_verification_code: The optional group verification
+                code. Required if group_id is supplied. Defaults to
+                `None`.
+
+            participants: The optional list of participants to include
+                in the competition. Defaults to `None`.
+
+            teams: The optional teams to include in the competition.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the newly created
+                competition with participations.
+        """
         payload = self._generate_map(
             title=title,
             teams=teams,
@@ -239,6 +305,56 @@ class CompetitionService(BaseService):
         teams: list[models.Team] | None = None,
         participants: list[str] | None = None,
     ) -> ResultT[models.CompetitionWithParticipations]:
+        """Edits an existing competition.
+
+        !!! warning
+
+            The teams/participants parameters will completely
+            overwrite the existing participants/teams. If you're looking
+            to add users, check out [`add_participants`]
+            [wom.CompetitionService.add_participants].
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            result = await client.competitions.edit_competition(
+                123, "111-111-111", title="New title"
+            )
+            ```
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+        Keyword Args:
+            title: The optional updated title of the competition.
+                Defaults to `None`.
+
+            metric: The optional new [`Metric`][wom.Metric] the
+                competition should measure. Defaults to `None`.
+
+            starts_at: The optional new start date for the competition.
+                Defaults to `None`.
+
+            ends_at: The optional new end date for the competition.
+                Defaults to `None`.
+
+            participants: The optional list of participants to replace
+                the existing participants with. Defaults to `None`.
+
+            teams: The optional list of teams to replace the existing
+                participants with. Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the edited competition
+                with participations.
+        """
         payload = self._generate_map(
             title=title,
             teams=teams,
@@ -272,6 +388,7 @@ class CompetitionService(BaseService):
     async def add_participants(
         self, id: int, verification_code: str, *participants: str
     ) -> ResultT[models.HttpSuccessResponse]:
+        """Adds participants."""
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
         route = routes.ADD_PARTICIPANTS.compile(id)
         data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
