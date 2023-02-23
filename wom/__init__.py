@@ -114,7 +114,7 @@ __all__ = (
 )
 
 __packagename__: Final[str] = "wom.py"
-__version__: Final[str] = "0.1.0"
+__version__: Final[str] = "0.1.1"
 __author__: Final[str] = "Jonxslays"
 __copyright__: Final[str] = "2023-present Jonxslays"
 __description__: Final[str] = "An asynchronous wrapper for the Wise Old Man API."
