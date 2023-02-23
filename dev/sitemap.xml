@@ -2,127 +2,127 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/api/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/client/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/enums/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/errors/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/result/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/routes/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/serializer/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/base/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/competitions/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/deltas/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/groups/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/http/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/names/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/players/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/models/records/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/base/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/competitions/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/deltas/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/efficiency/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/groups/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/http/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/names/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/players/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/services/records/</loc>
-         <lastmod>2023-02-22</lastmod>
+         <lastmod>2023-02-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
