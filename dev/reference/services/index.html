@@ -5876,68 +5876,74 @@ leaderboard entries.</p></td>
 <span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
 <span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
 <span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
-<span class="normal"><a href="#__codelineno-0-100">100</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="k">class</span> <span class="nc">EfficiencyService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="k">class</span> <span class="nc">EfficiencyService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
 <a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles endpoints related to efficiency.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a>
 <a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_global_leaderboard</span><span class="p">(</span>
 <a id="__codelineno-0-45" name="__codelineno-0-45"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>        <span class="o">*</span><span class="n">metrics</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span> <span class="o">=</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="o">.</span><span class="n">Ehp</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>        <span class="o">*</span><span class="p">,</span>
 <a id="__codelineno-0-48" name="__codelineno-0-48"></a>        <span class="n">player_type</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">PlayerType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49"></a>        <span class="n">player_build</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">PlayerBuild</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>        <span class="n">country</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">Country</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Player</span><span class="p">]]:</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the top global efficiency leaderboard.</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">            metric: The metric to filter on.</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">            *metrics: The additional metrics to filter on. Currently</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">                only ehp and ehb are available for these metrics.</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        Keyword Args:</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">            player_type: The optional player type to filter on. Defaults</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">                to `None`.</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">            player_build: The optional player build to filter on.</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">                Defaults to `None`.</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">            country: The optional country to filter on. Defaults to</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">                `None`.</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">            A [`Result`][wom.Result] containing a list of the top</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">                players.</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        ??? example</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>        <span class="n">both</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Player</span><span class="p">]]:</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the top global efficiency leaderboard.</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            metric: The computed metric to filter on. Defaults to</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">                [`ComputedMetrics.Ehp`][wom.ComputedMetrics].</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        Keyword Args:</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">            player_type: The optional player type to filter on. Defaults</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">                to `None`.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">            player_build: The optional player build to filter on.</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">            country: The optional country to filter on. Defaults to</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">                `None`.</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">            both: If `True`, request both ehp and ehb computed metric</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">                leaderboards. This will override the `metric`, if provided.</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">                Defaults to `False`.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">            A [`Result`][wom.Result] containing a list of the top</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">                players.</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        ??? example</span>
 <a id="__codelineno-0-78" name="__codelineno-0-78"></a>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">            client = wom.Client(...)</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">            result = await client.efficiency.get_global_leaderboard(</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">                wom.ComputedMetrics.Ehp,</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">                player_type=wom.PlayerType.Ironman,</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">            )</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">            ```</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a>            <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="o">*</span><span class="n">metrics</span><span class="p">)),</span>
-<a id="__codelineno-0-89" name="__codelineno-0-89"></a>            <span class="n">playerType</span><span class="o">=</span><span class="n">player_type</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a>            <span class="n">playerBuild</span><span class="o">=</span><span class="n">player_build</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_build</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>            <span class="n">country</span><span class="o">=</span><span class="n">country</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">country</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a>        <span class="p">)</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GLOBAL_EFFICIENCY_LEADERS</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">            result = await client.efficiency.get_global_leaderboard(</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">                wom.ComputedMetrics.Ehp,</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">                player_type=wom.PlayerType.Ironman,</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">            )</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>            <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">both</span> <span class="k">else</span> <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">),</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>            <span class="n">playerType</span><span class="o">=</span><span class="n">player_type</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>            <span class="n">playerBuild</span><span class="o">=</span><span class="n">player_build</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_build</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>            <span class="n">country</span><span class="o">=</span><span class="n">country</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">country</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>        <span class="p">)</span>
 <a id="__codelineno-0-96" name="__codelineno-0-96"></a>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GLOBAL_EFFICIENCY_LEADERS</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
 <a id="__codelineno-0-99" name="__codelineno-0-99"></a>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -5967,12 +5973,13 @@ leaderboard entries.</p></td>
 
 </h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">get_global_leaderboard</span><span class="p">(</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="o">*</span><span class="n">metrics</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span> <span class="o">=</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="o">.</span><span class="n">Ehp</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="o">*</span><span class="p">,</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">player_type</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">PlayerType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">player_build</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">PlayerBuild</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">country</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">Country</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Player</span><span class="p">]]</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">country</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">Country</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">both</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Player</span><span class="p">]]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -5995,20 +6002,10 @@ leaderboard entries.</p></td>
           <td>
                 <code><a class="autorefs autorefs-internal" title="wom.enums" href="../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.ComputedMetrics" href="../enums/#wom.enums.ComputedMetrics">ComputedMetrics</a></code>
           </td>
-          <td><p>The metric to filter on.</p></td>
+          <td><p>The computed metric to filter on. Defaults to
+<a class="autorefs autorefs-internal" href="../enums/#wom.enums.ComputedMetrics"><code>ComputedMetrics.Ehp</code></a>.</p></td>
           <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>*metrics</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="wom.enums" href="../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.ComputedMetrics" href="../enums/#wom.enums.ComputedMetrics">ComputedMetrics</a></code>
-          </td>
-          <td><p>The additional metrics to filter on. Currently
-only ehp and ehb are available for these metrics.</p></td>
-          <td>
-                <code>()</code>
+                <code>enums.ComputedMetrics.Ehp</code>
           </td>
         </tr>
     </tbody>
@@ -6047,6 +6044,15 @@ Defaults to <code>None</code>.</p></td>
           </td>
           <td><p>The optional country to filter on. Defaults to
 <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>both</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>If <code>True</code>, request both ehp and ehb computed metric
+leaderboards. This will override the <code>metric</code>, if provided.
+Defaults to <code>False</code>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -6140,63 +6146,69 @@ players.</p></td>
 <span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
 <span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
 <span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
-<span class="normal"><a href="#__codelineno-0-100">100</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_global_leaderboard</span><span class="p">(</span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_global_leaderboard</span><span class="p">(</span>
 <a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="o">*</span><span class="n">metrics</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span> <span class="o">=</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="o">.</span><span class="n">Ehp</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="o">*</span><span class="p">,</span>
 <a id="__codelineno-0-48" name="__codelineno-0-48"></a>    <span class="n">player_type</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">PlayerType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49"></a>    <span class="n">player_build</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">PlayerBuild</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>    <span class="n">country</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">Country</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Player</span><span class="p">]]:</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the top global efficiency leaderboard.</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        metric: The metric to filter on.</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        *metrics: The additional metrics to filter on. Currently</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">            only ehp and ehb are available for these metrics.</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    Keyword Args:</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        player_type: The optional player type to filter on. Defaults</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">            to `None`.</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">        player_build: The optional player build to filter on.</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">            Defaults to `None`.</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">        country: The optional country to filter on. Defaults to</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">            `None`.</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">        A [`Result`][wom.Result] containing a list of the top</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">            players.</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    ??? example</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="n">both</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Player</span><span class="p">]]:</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the top global efficiency leaderboard.</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        metric: The computed metric to filter on. Defaults to</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">            [`ComputedMetrics.Ehp`][wom.ComputedMetrics].</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    Keyword Args:</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        player_type: The optional player type to filter on. Defaults</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">            to `None`.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        player_build: The optional player build to filter on.</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">        country: The optional country to filter on. Defaults to</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">            `None`.</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        both: If `True`, request both ehp and ehb computed metric</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">            leaderboards. This will override the `metric`, if provided.</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">            Defaults to `False`.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        A [`Result`][wom.Result] containing a list of the top</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">            players.</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    ??? example</span>
 <a id="__codelineno-0-78" name="__codelineno-0-78"></a>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">        client = wom.Client(...)</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">        result = await client.efficiency.get_global_leaderboard(</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">            wom.ComputedMetrics.Ehp,</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">            player_type=wom.PlayerType.Ironman,</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">        )</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a>        <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="o">*</span><span class="n">metrics</span><span class="p">)),</span>
-<a id="__codelineno-0-89" name="__codelineno-0-89"></a>        <span class="n">playerType</span><span class="o">=</span><span class="n">player_type</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a>        <span class="n">playerBuild</span><span class="o">=</span><span class="n">player_build</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_build</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="n">country</span><span class="o">=</span><span class="n">country</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">country</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="p">)</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GLOBAL_EFFICIENCY_LEADERS</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">        result = await client.efficiency.get_global_leaderboard(</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">            wom.ComputedMetrics.Ehp,</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">            player_type=wom.PlayerType.Ironman,</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">        )</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">both</span> <span class="k">else</span> <span class="s2">&quot;+&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">),</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>        <span class="n">playerType</span><span class="o">=</span><span class="n">player_type</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>        <span class="n">playerBuild</span><span class="o">=</span><span class="n">player_build</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">player_build</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>        <span class="n">country</span><span class="o">=</span><span class="n">country</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">country</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="p">)</span>
 <a id="__codelineno-0-96" name="__codelineno-0-96"></a>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GLOBAL_EFFICIENCY_LEADERS</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
 <a id="__codelineno-0-99" name="__codelineno-0-99"></a>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
