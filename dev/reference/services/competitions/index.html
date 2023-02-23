@@ -539,6 +539,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#wom.services.competitions.CompetitionService.create_competition" class="md-nav__link">
+    create_competition()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.services.competitions.CompetitionService.edit_competition" class="md-nav__link">
+    edit_competition()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.services.competitions.CompetitionService.add_participants" class="md-nav__link">
+    add_participants()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -921,6 +942,27 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#wom.services.competitions.CompetitionService.create_competition" class="md-nav__link">
+    create_competition()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.services.competitions.CompetitionService.edit_competition" class="md-nav__link">
+    edit_competition()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.services.competitions.CompetitionService.add_participants" class="md-nav__link">
+    add_participants()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1277,7 +1319,124 @@
 <span class="normal"><a href="#__codelineno-0-329">329</a></span>
 <span class="normal"><a href="#__codelineno-0-330">330</a></span>
 <span class="normal"><a href="#__codelineno-0-331">331</a></span>
-<span class="normal"><a href="#__codelineno-0-332">332</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span> <span class="nc">CompetitionService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-332">332</a></span>
+<span class="normal"><a href="#__codelineno-0-333">333</a></span>
+<span class="normal"><a href="#__codelineno-0-334">334</a></span>
+<span class="normal"><a href="#__codelineno-0-335">335</a></span>
+<span class="normal"><a href="#__codelineno-0-336">336</a></span>
+<span class="normal"><a href="#__codelineno-0-337">337</a></span>
+<span class="normal"><a href="#__codelineno-0-338">338</a></span>
+<span class="normal"><a href="#__codelineno-0-339">339</a></span>
+<span class="normal"><a href="#__codelineno-0-340">340</a></span>
+<span class="normal"><a href="#__codelineno-0-341">341</a></span>
+<span class="normal"><a href="#__codelineno-0-342">342</a></span>
+<span class="normal"><a href="#__codelineno-0-343">343</a></span>
+<span class="normal"><a href="#__codelineno-0-344">344</a></span>
+<span class="normal"><a href="#__codelineno-0-345">345</a></span>
+<span class="normal"><a href="#__codelineno-0-346">346</a></span>
+<span class="normal"><a href="#__codelineno-0-347">347</a></span>
+<span class="normal"><a href="#__codelineno-0-348">348</a></span>
+<span class="normal"><a href="#__codelineno-0-349">349</a></span>
+<span class="normal"><a href="#__codelineno-0-350">350</a></span>
+<span class="normal"><a href="#__codelineno-0-351">351</a></span>
+<span class="normal"><a href="#__codelineno-0-352">352</a></span>
+<span class="normal"><a href="#__codelineno-0-353">353</a></span>
+<span class="normal"><a href="#__codelineno-0-354">354</a></span>
+<span class="normal"><a href="#__codelineno-0-355">355</a></span>
+<span class="normal"><a href="#__codelineno-0-356">356</a></span>
+<span class="normal"><a href="#__codelineno-0-357">357</a></span>
+<span class="normal"><a href="#__codelineno-0-358">358</a></span>
+<span class="normal"><a href="#__codelineno-0-359">359</a></span>
+<span class="normal"><a href="#__codelineno-0-360">360</a></span>
+<span class="normal"><a href="#__codelineno-0-361">361</a></span>
+<span class="normal"><a href="#__codelineno-0-362">362</a></span>
+<span class="normal"><a href="#__codelineno-0-363">363</a></span>
+<span class="normal"><a href="#__codelineno-0-364">364</a></span>
+<span class="normal"><a href="#__codelineno-0-365">365</a></span>
+<span class="normal"><a href="#__codelineno-0-366">366</a></span>
+<span class="normal"><a href="#__codelineno-0-367">367</a></span>
+<span class="normal"><a href="#__codelineno-0-368">368</a></span>
+<span class="normal"><a href="#__codelineno-0-369">369</a></span>
+<span class="normal"><a href="#__codelineno-0-370">370</a></span>
+<span class="normal"><a href="#__codelineno-0-371">371</a></span>
+<span class="normal"><a href="#__codelineno-0-372">372</a></span>
+<span class="normal"><a href="#__codelineno-0-373">373</a></span>
+<span class="normal"><a href="#__codelineno-0-374">374</a></span>
+<span class="normal"><a href="#__codelineno-0-375">375</a></span>
+<span class="normal"><a href="#__codelineno-0-376">376</a></span>
+<span class="normal"><a href="#__codelineno-0-377">377</a></span>
+<span class="normal"><a href="#__codelineno-0-378">378</a></span>
+<span class="normal"><a href="#__codelineno-0-379">379</a></span>
+<span class="normal"><a href="#__codelineno-0-380">380</a></span>
+<span class="normal"><a href="#__codelineno-0-381">381</a></span>
+<span class="normal"><a href="#__codelineno-0-382">382</a></span>
+<span class="normal"><a href="#__codelineno-0-383">383</a></span>
+<span class="normal"><a href="#__codelineno-0-384">384</a></span>
+<span class="normal"><a href="#__codelineno-0-385">385</a></span>
+<span class="normal"><a href="#__codelineno-0-386">386</a></span>
+<span class="normal"><a href="#__codelineno-0-387">387</a></span>
+<span class="normal"><a href="#__codelineno-0-388">388</a></span>
+<span class="normal"><a href="#__codelineno-0-389">389</a></span>
+<span class="normal"><a href="#__codelineno-0-390">390</a></span>
+<span class="normal"><a href="#__codelineno-0-391">391</a></span>
+<span class="normal"><a href="#__codelineno-0-392">392</a></span>
+<span class="normal"><a href="#__codelineno-0-393">393</a></span>
+<span class="normal"><a href="#__codelineno-0-394">394</a></span>
+<span class="normal"><a href="#__codelineno-0-395">395</a></span>
+<span class="normal"><a href="#__codelineno-0-396">396</a></span>
+<span class="normal"><a href="#__codelineno-0-397">397</a></span>
+<span class="normal"><a href="#__codelineno-0-398">398</a></span>
+<span class="normal"><a href="#__codelineno-0-399">399</a></span>
+<span class="normal"><a href="#__codelineno-0-400">400</a></span>
+<span class="normal"><a href="#__codelineno-0-401">401</a></span>
+<span class="normal"><a href="#__codelineno-0-402">402</a></span>
+<span class="normal"><a href="#__codelineno-0-403">403</a></span>
+<span class="normal"><a href="#__codelineno-0-404">404</a></span>
+<span class="normal"><a href="#__codelineno-0-405">405</a></span>
+<span class="normal"><a href="#__codelineno-0-406">406</a></span>
+<span class="normal"><a href="#__codelineno-0-407">407</a></span>
+<span class="normal"><a href="#__codelineno-0-408">408</a></span>
+<span class="normal"><a href="#__codelineno-0-409">409</a></span>
+<span class="normal"><a href="#__codelineno-0-410">410</a></span>
+<span class="normal"><a href="#__codelineno-0-411">411</a></span>
+<span class="normal"><a href="#__codelineno-0-412">412</a></span>
+<span class="normal"><a href="#__codelineno-0-413">413</a></span>
+<span class="normal"><a href="#__codelineno-0-414">414</a></span>
+<span class="normal"><a href="#__codelineno-0-415">415</a></span>
+<span class="normal"><a href="#__codelineno-0-416">416</a></span>
+<span class="normal"><a href="#__codelineno-0-417">417</a></span>
+<span class="normal"><a href="#__codelineno-0-418">418</a></span>
+<span class="normal"><a href="#__codelineno-0-419">419</a></span>
+<span class="normal"><a href="#__codelineno-0-420">420</a></span>
+<span class="normal"><a href="#__codelineno-0-421">421</a></span>
+<span class="normal"><a href="#__codelineno-0-422">422</a></span>
+<span class="normal"><a href="#__codelineno-0-423">423</a></span>
+<span class="normal"><a href="#__codelineno-0-424">424</a></span>
+<span class="normal"><a href="#__codelineno-0-425">425</a></span>
+<span class="normal"><a href="#__codelineno-0-426">426</a></span>
+<span class="normal"><a href="#__codelineno-0-427">427</a></span>
+<span class="normal"><a href="#__codelineno-0-428">428</a></span>
+<span class="normal"><a href="#__codelineno-0-429">429</a></span>
+<span class="normal"><a href="#__codelineno-0-430">430</a></span>
+<span class="normal"><a href="#__codelineno-0-431">431</a></span>
+<span class="normal"><a href="#__codelineno-0-432">432</a></span>
+<span class="normal"><a href="#__codelineno-0-433">433</a></span>
+<span class="normal"><a href="#__codelineno-0-434">434</a></span>
+<span class="normal"><a href="#__codelineno-0-435">435</a></span>
+<span class="normal"><a href="#__codelineno-0-436">436</a></span>
+<span class="normal"><a href="#__codelineno-0-437">437</a></span>
+<span class="normal"><a href="#__codelineno-0-438">438</a></span>
+<span class="normal"><a href="#__codelineno-0-439">439</a></span>
+<span class="normal"><a href="#__codelineno-0-440">440</a></span>
+<span class="normal"><a href="#__codelineno-0-441">441</a></span>
+<span class="normal"><a href="#__codelineno-0-442">442</a></span>
+<span class="normal"><a href="#__codelineno-0-443">443</a></span>
+<span class="normal"><a href="#__codelineno-0-444">444</a></span>
+<span class="normal"><a href="#__codelineno-0-445">445</a></span>
+<span class="normal"><a href="#__codelineno-0-446">446</a></span>
+<span class="normal"><a href="#__codelineno-0-447">447</a></span>
+<span class="normal"><a href="#__codelineno-0-448">448</a></span>
+<span class="normal"><a href="#__codelineno-0-449">449</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span> <span class="nc">CompetitionService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles endpoints related to competitions.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a>
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
@@ -1446,130 +1605,247 @@
 <a id="__codelineno-0-206" name="__codelineno-0-206"></a>        <span class="n">teams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Team</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-207" name="__codelineno-0-207"></a>        <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-208" name="__codelineno-0-208"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">]:</span>
-<a id="__codelineno-0-209" name="__codelineno-0-209"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
-<a id="__codelineno-0-210" name="__codelineno-0-210"></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-<a id="__codelineno-0-211" name="__codelineno-0-211"></a>            <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span>
-<a id="__codelineno-0-212" name="__codelineno-0-212"></a>            <span class="n">groupId</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span>
-<a id="__codelineno-0-213" name="__codelineno-0-213"></a>            <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">,</span>
-<a id="__codelineno-0-214" name="__codelineno-0-214"></a>            <span class="n">endsAt</span><span class="o">=</span><span class="n">ends_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
-<a id="__codelineno-0-215" name="__codelineno-0-215"></a>            <span class="n">startsAt</span><span class="o">=</span><span class="n">starts_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
-<a id="__codelineno-0-216" name="__codelineno-0-216"></a>            <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-217" name="__codelineno-0-217"></a>            <span class="n">groupVerificationCode</span><span class="o">=</span><span class="n">group_verification_code</span><span class="p">,</span>
-<a id="__codelineno-0-218" name="__codelineno-0-218"></a>        <span class="p">)</span>
+<a id="__codelineno-0-209" name="__codelineno-0-209"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new competition.</span>
+<a id="__codelineno-0-210" name="__codelineno-0-210"></a>
+<a id="__codelineno-0-211" name="__codelineno-0-211"></a><span class="sd">        !!! info</span>
+<a id="__codelineno-0-212" name="__codelineno-0-212"></a>
+<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="sd">            The `group_id`, `participants`, and `teams` parameters are</span>
+<a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="sd">            mutually exclusive.</span>
+<a id="__codelineno-0-215" name="__codelineno-0-215"></a>
+<a id="__codelineno-0-216" name="__codelineno-0-216"></a><span class="sd">            - If `group_id` is provided, this method will create a</span>
+<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">                classic competition with all members of that group as</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="sd">                participants.</span>
 <a id="__codelineno-0-219" name="__codelineno-0-219"></a>
-<a id="__codelineno-0-220" name="__codelineno-0-220"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">CREATE_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
-<a id="__codelineno-0-221" name="__codelineno-0-221"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-<a id="__codelineno-0-222" name="__codelineno-0-222"></a>
-<a id="__codelineno-0-223" name="__codelineno-0-223"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-224" name="__codelineno-0-224"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-225" name="__codelineno-0-225"></a>
-<a id="__codelineno-0-226" name="__codelineno-0-226"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span>
-<a id="__codelineno-0-227" name="__codelineno-0-227"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_with_participation</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;competition&quot;</span><span class="p">])</span>
-<a id="__codelineno-0-228" name="__codelineno-0-228"></a>        <span class="p">)</span>
-<a id="__codelineno-0-229" name="__codelineno-0-229"></a>
-<a id="__codelineno-0-230" name="__codelineno-0-230"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">edit_competition</span><span class="p">(</span>
-<a id="__codelineno-0-231" name="__codelineno-0-231"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-232" name="__codelineno-0-232"></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-<a id="__codelineno-0-233" name="__codelineno-0-233"></a>        <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-0-234" name="__codelineno-0-234"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-0-235" name="__codelineno-0-235"></a>        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-236" name="__codelineno-0-236"></a>        <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-237" name="__codelineno-0-237"></a>        <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-238" name="__codelineno-0-238"></a>        <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-239" name="__codelineno-0-239"></a>        <span class="n">teams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Team</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-240" name="__codelineno-0-240"></a>        <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-241" name="__codelineno-0-241"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">]:</span>
-<a id="__codelineno-0-242" name="__codelineno-0-242"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
-<a id="__codelineno-0-243" name="__codelineno-0-243"></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-<a id="__codelineno-0-244" name="__codelineno-0-244"></a>            <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span>
-<a id="__codelineno-0-245" name="__codelineno-0-245"></a>            <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">,</span>
-<a id="__codelineno-0-246" name="__codelineno-0-246"></a>            <span class="n">startsAt</span><span class="o">=</span><span class="n">starts_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">starts_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-247" name="__codelineno-0-247"></a>            <span class="n">endsAt</span><span class="o">=</span><span class="n">ends_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">ends_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-248" name="__codelineno-0-248"></a>            <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-249" name="__codelineno-0-249"></a>            <span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span>
-<a id="__codelineno-0-250" name="__codelineno-0-250"></a>        <span class="p">)</span>
-<a id="__codelineno-0-251" name="__codelineno-0-251"></a>
-<a id="__codelineno-0-252" name="__codelineno-0-252"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">EDIT_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-253" name="__codelineno-0-253"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-220" name="__codelineno-0-220"></a><span class="sd">            - If `participants` is provided and `group_id` isn&#39;t, this</span>
+<a id="__codelineno-0-221" name="__codelineno-0-221"></a><span class="sd">                method will create a classic competition with all those</span>
+<a id="__codelineno-0-222" name="__codelineno-0-222"></a><span class="sd">                participants included.</span>
+<a id="__codelineno-0-223" name="__codelineno-0-223"></a>
+<a id="__codelineno-0-224" name="__codelineno-0-224"></a><span class="sd">            - If `teams` is provided, this endpoint will create a team</span>
+<a id="__codelineno-0-225" name="__codelineno-0-225"></a><span class="sd">                competition with all those participants included.</span>
+<a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="sd">                Also accepts `group_id` as a way to link this</span>
+<a id="__codelineno-0-227" name="__codelineno-0-227"></a><span class="sd">                competition to the group.</span>
+<a id="__codelineno-0-228" name="__codelineno-0-228"></a>
+<a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-230" name="__codelineno-0-230"></a>
+<a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-232" name="__codelineno-0-232"></a><span class="sd">            from datetime import datetime, timedelta</span>
+<a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234"></a>
+<a id="__codelineno-0-235" name="__codelineno-0-235"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-236" name="__codelineno-0-236"></a>
+<a id="__codelineno-0-237" name="__codelineno-0-237"></a><span class="sd">            result = await client.competitions.create_competition(</span>
+<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="sd">                &quot;Slayer weekend&quot;,</span>
+<a id="__codelineno-0-239" name="__codelineno-0-239"></a><span class="sd">                wom.Skills.Slayer,</span>
+<a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">                starts_at: datetime.now() + timedelta(days=7),</span>
+<a id="__codelineno-0-241" name="__codelineno-0-241"></a><span class="sd">                ends_at: datetime.now() + timedelta(days=14),</span>
+<a id="__codelineno-0-242" name="__codelineno-0-242"></a><span class="sd">                group_verification_code: &quot;111-111-111&quot;,</span>
+<a id="__codelineno-0-243" name="__codelineno-0-243"></a><span class="sd">                group_id: 123,</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">            )</span>
+<a id="__codelineno-0-245" name="__codelineno-0-245"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-246" name="__codelineno-0-246"></a>
+<a id="__codelineno-0-247" name="__codelineno-0-247"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-248" name="__codelineno-0-248"></a><span class="sd">            title: The title of the competition.</span>
+<a id="__codelineno-0-249" name="__codelineno-0-249"></a>
+<a id="__codelineno-0-250" name="__codelineno-0-250"></a><span class="sd">            metric: The [`Metric`][wom.Metric] the competition should</span>
+<a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">                measure.</span>
+<a id="__codelineno-0-252" name="__codelineno-0-252"></a>
+<a id="__codelineno-0-253" name="__codelineno-0-253"></a><span class="sd">            starts_at: The start date for the competition.</span>
 <a id="__codelineno-0-254" name="__codelineno-0-254"></a>
-<a id="__codelineno-0-255" name="__codelineno-0-255"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-256" name="__codelineno-0-256"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-257" name="__codelineno-0-257"></a>
-<a id="__codelineno-0-258" name="__codelineno-0-258"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_with_participation</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-<a id="__codelineno-0-259" name="__codelineno-0-259"></a>
-<a id="__codelineno-0-260" name="__codelineno-0-260"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_competition</span><span class="p">(</span>
-<a id="__codelineno-0-261" name="__codelineno-0-261"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-262" name="__codelineno-0-262"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
-<a id="__codelineno-0-263" name="__codelineno-0-263"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">)</span>
-<a id="__codelineno-0-264" name="__codelineno-0-264"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">DELETE_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-265" name="__codelineno-0-265"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-<a id="__codelineno-0-266" name="__codelineno-0-266"></a>
-<a id="__codelineno-0-267" name="__codelineno-0-267"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
-<a id="__codelineno-0-268" name="__codelineno-0-268"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-269" name="__codelineno-0-269"></a>
-<a id="__codelineno-0-270" name="__codelineno-0-270"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
-<a id="__codelineno-0-271" name="__codelineno-0-271"></a>
-<a id="__codelineno-0-272" name="__codelineno-0-272"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_participants</span><span class="p">(</span>
-<a id="__codelineno-0-273" name="__codelineno-0-273"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">participants</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-274" name="__codelineno-0-274"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
-<a id="__codelineno-0-275" name="__codelineno-0-275"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">)</span>
-<a id="__codelineno-0-276" name="__codelineno-0-276"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">ADD_PARTICIPANTS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-277" name="__codelineno-0-277"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-<a id="__codelineno-0-278" name="__codelineno-0-278"></a>
-<a id="__codelineno-0-279" name="__codelineno-0-279"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
-<a id="__codelineno-0-280" name="__codelineno-0-280"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-281" name="__codelineno-0-281"></a>
-<a id="__codelineno-0-282" name="__codelineno-0-282"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
-<a id="__codelineno-0-283" name="__codelineno-0-283"></a>
-<a id="__codelineno-0-284" name="__codelineno-0-284"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_participants</span><span class="p">(</span>
-<a id="__codelineno-0-285" name="__codelineno-0-285"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">participants</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-286" name="__codelineno-0-286"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
-<a id="__codelineno-0-287" name="__codelineno-0-287"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">)</span>
-<a id="__codelineno-0-288" name="__codelineno-0-288"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">REMOVE_PARTICIPANTS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-289" name="__codelineno-0-289"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-<a id="__codelineno-0-290" name="__codelineno-0-290"></a>
-<a id="__codelineno-0-291" name="__codelineno-0-291"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
-<a id="__codelineno-0-292" name="__codelineno-0-292"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-293" name="__codelineno-0-293"></a>
-<a id="__codelineno-0-294" name="__codelineno-0-294"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-255" name="__codelineno-0-255"></a><span class="sd">            ends_at: The end date for the competition.</span>
+<a id="__codelineno-0-256" name="__codelineno-0-256"></a>
+<a id="__codelineno-0-257" name="__codelineno-0-257"></a><span class="sd">        Keyword Args:</span>
+<a id="__codelineno-0-258" name="__codelineno-0-258"></a><span class="sd">            group_id: The optional group id to tie to this competition.</span>
+<a id="__codelineno-0-259" name="__codelineno-0-259"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-260" name="__codelineno-0-260"></a>
+<a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="sd">            group_verification_code: The optional group verification</span>
+<a id="__codelineno-0-262" name="__codelineno-0-262"></a><span class="sd">                code. Required if group_id is supplied. Defaults to</span>
+<a id="__codelineno-0-263" name="__codelineno-0-263"></a><span class="sd">                `None`.</span>
+<a id="__codelineno-0-264" name="__codelineno-0-264"></a>
+<a id="__codelineno-0-265" name="__codelineno-0-265"></a><span class="sd">            participants: The optional list of participants to include</span>
+<a id="__codelineno-0-266" name="__codelineno-0-266"></a><span class="sd">                in the competition. Defaults to `None`.</span>
+<a id="__codelineno-0-267" name="__codelineno-0-267"></a>
+<a id="__codelineno-0-268" name="__codelineno-0-268"></a><span class="sd">            teams: The optional teams to include in the competition.</span>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270"></a>
+<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-272" name="__codelineno-0-272"></a><span class="sd">            A [`Result`][wom.Result] containing the newly created</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">                competition with participations.</span>
+<a id="__codelineno-0-274" name="__codelineno-0-274"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a>            <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span>
+<a id="__codelineno-0-278" name="__codelineno-0-278"></a>            <span class="n">groupId</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span>
+<a id="__codelineno-0-279" name="__codelineno-0-279"></a>            <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">,</span>
+<a id="__codelineno-0-280" name="__codelineno-0-280"></a>            <span class="n">endsAt</span><span class="o">=</span><span class="n">ends_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+<a id="__codelineno-0-281" name="__codelineno-0-281"></a>            <span class="n">startsAt</span><span class="o">=</span><span class="n">starts_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+<a id="__codelineno-0-282" name="__codelineno-0-282"></a>            <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-283" name="__codelineno-0-283"></a>            <span class="n">groupVerificationCode</span><span class="o">=</span><span class="n">group_verification_code</span><span class="p">,</span>
+<a id="__codelineno-0-284" name="__codelineno-0-284"></a>        <span class="p">)</span>
+<a id="__codelineno-0-285" name="__codelineno-0-285"></a>
+<a id="__codelineno-0-286" name="__codelineno-0-286"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">CREATE_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<a id="__codelineno-0-287" name="__codelineno-0-287"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-288" name="__codelineno-0-288"></a>
+<a id="__codelineno-0-289" name="__codelineno-0-289"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-291" name="__codelineno-0-291"></a>
+<a id="__codelineno-0-292" name="__codelineno-0-292"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span>
+<a id="__codelineno-0-293" name="__codelineno-0-293"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_with_participation</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;competition&quot;</span><span class="p">])</span>
+<a id="__codelineno-0-294" name="__codelineno-0-294"></a>        <span class="p">)</span>
 <a id="__codelineno-0-295" name="__codelineno-0-295"></a>
-<a id="__codelineno-0-296" name="__codelineno-0-296"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_teams</span><span class="p">(</span>
-<a id="__codelineno-0-297" name="__codelineno-0-297"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">teams</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">Team</span>
-<a id="__codelineno-0-298" name="__codelineno-0-298"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
-<a id="__codelineno-0-299" name="__codelineno-0-299"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
-<a id="__codelineno-0-300" name="__codelineno-0-300"></a>            <span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">teams</span><span class="p">]</span>
-<a id="__codelineno-0-301" name="__codelineno-0-301"></a>        <span class="p">)</span>
-<a id="__codelineno-0-302" name="__codelineno-0-302"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">ADD_TEAMS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-303" name="__codelineno-0-303"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-<a id="__codelineno-0-304" name="__codelineno-0-304"></a>
-<a id="__codelineno-0-305" name="__codelineno-0-305"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
-<a id="__codelineno-0-306" name="__codelineno-0-306"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-307" name="__codelineno-0-307"></a>
-<a id="__codelineno-0-308" name="__codelineno-0-308"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-296" name="__codelineno-0-296"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">edit_competition</span><span class="p">(</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-298" name="__codelineno-0-298"></a>        <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-0-299" name="__codelineno-0-299"></a>        <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-300" name="__codelineno-0-300"></a>        <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-301" name="__codelineno-0-301"></a>        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302"></a>        <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303"></a>        <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304"></a>        <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-305" name="__codelineno-0-305"></a>        <span class="n">teams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Team</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306"></a>        <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">]:</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Edits an existing competition.</span>
 <a id="__codelineno-0-309" name="__codelineno-0-309"></a>
-<a id="__codelineno-0-310" name="__codelineno-0-310"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_teams</span><span class="p">(</span>
-<a id="__codelineno-0-311" name="__codelineno-0-311"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">teams</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-312" name="__codelineno-0-312"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
-<a id="__codelineno-0-313" name="__codelineno-0-313"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">teamNames</span><span class="o">=</span><span class="n">teams</span><span class="p">)</span>
-<a id="__codelineno-0-314" name="__codelineno-0-314"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">REMOVE_TEAMS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-315" name="__codelineno-0-315"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a><span class="sd">        !!! warning</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a><span class="sd">            The teams/participants parameters will completely</span>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a><span class="sd">            overwrite the existing participants/teams. If you&#39;re looking</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a><span class="sd">            to add users, check out [`add_participants`]</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315"></a><span class="sd">            [wom.CompetitionService.add_participants].</span>
 <a id="__codelineno-0-316" name="__codelineno-0-316"></a>
-<a id="__codelineno-0-317" name="__codelineno-0-317"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
-<a id="__codelineno-0-318" name="__codelineno-0-318"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-319" name="__codelineno-0-319"></a>
-<a id="__codelineno-0-320" name="__codelineno-0-320"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-317" name="__codelineno-0-317"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-318" name="__codelineno-0-318"></a>
+<a id="__codelineno-0-319" name="__codelineno-0-319"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-320" name="__codelineno-0-320"></a><span class="sd">            import wom</span>
 <a id="__codelineno-0-321" name="__codelineno-0-321"></a>
-<a id="__codelineno-0-322" name="__codelineno-0-322"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_outdated_participants</span><span class="p">(</span>
-<a id="__codelineno-0-323" name="__codelineno-0-323"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-324" name="__codelineno-0-324"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
-<a id="__codelineno-0-325" name="__codelineno-0-325"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">)</span>
-<a id="__codelineno-0-326" name="__codelineno-0-326"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">UPDATE_OUTDATED_PARTICIPANTS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-327" name="__codelineno-0-327"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-322" name="__codelineno-0-322"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323"></a>
+<a id="__codelineno-0-324" name="__codelineno-0-324"></a><span class="sd">            result = await client.competitions.edit_competition(</span>
+<a id="__codelineno-0-325" name="__codelineno-0-325"></a><span class="sd">                123, &quot;111-111-111&quot;, title=&quot;New title&quot;</span>
+<a id="__codelineno-0-326" name="__codelineno-0-326"></a><span class="sd">            )</span>
+<a id="__codelineno-0-327" name="__codelineno-0-327"></a><span class="sd">            ```</span>
 <a id="__codelineno-0-328" name="__codelineno-0-328"></a>
-<a id="__codelineno-0-329" name="__codelineno-0-329"></a>        <span class="k">if</span> <span class="s2">&quot;players are being updated&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
-<a id="__codelineno-0-330" name="__codelineno-0-330"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-329" name="__codelineno-0-329"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-330" name="__codelineno-0-330"></a><span class="sd">            id: The ID of the competition.</span>
 <a id="__codelineno-0-331" name="__codelineno-0-331"></a>
-<a id="__codelineno-0-332" name="__codelineno-0-332"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-332" name="__codelineno-0-332"></a><span class="sd">            verification_code: The verification code for the</span>
+<a id="__codelineno-0-333" name="__codelineno-0-333"></a><span class="sd">                competition.</span>
+<a id="__codelineno-0-334" name="__codelineno-0-334"></a>
+<a id="__codelineno-0-335" name="__codelineno-0-335"></a><span class="sd">        Keyword Args:</span>
+<a id="__codelineno-0-336" name="__codelineno-0-336"></a><span class="sd">            title: The optional updated title of the competition.</span>
+<a id="__codelineno-0-337" name="__codelineno-0-337"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-338" name="__codelineno-0-338"></a>
+<a id="__codelineno-0-339" name="__codelineno-0-339"></a><span class="sd">            metric: The optional new [`Metric`][wom.Metric] the</span>
+<a id="__codelineno-0-340" name="__codelineno-0-340"></a><span class="sd">                competition should measure. Defaults to `None`.</span>
+<a id="__codelineno-0-341" name="__codelineno-0-341"></a>
+<a id="__codelineno-0-342" name="__codelineno-0-342"></a><span class="sd">            starts_at: The optional new start date for the competition.</span>
+<a id="__codelineno-0-343" name="__codelineno-0-343"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-344" name="__codelineno-0-344"></a>
+<a id="__codelineno-0-345" name="__codelineno-0-345"></a><span class="sd">            ends_at: The optional new end date for the competition.</span>
+<a id="__codelineno-0-346" name="__codelineno-0-346"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-347" name="__codelineno-0-347"></a>
+<a id="__codelineno-0-348" name="__codelineno-0-348"></a><span class="sd">            participants: The optional list of participants to replace</span>
+<a id="__codelineno-0-349" name="__codelineno-0-349"></a><span class="sd">                the existing participants with. Defaults to `None`.</span>
+<a id="__codelineno-0-350" name="__codelineno-0-350"></a>
+<a id="__codelineno-0-351" name="__codelineno-0-351"></a><span class="sd">            teams: The optional list of teams to replace the existing</span>
+<a id="__codelineno-0-352" name="__codelineno-0-352"></a><span class="sd">                participants with. Defaults to `None`.</span>
+<a id="__codelineno-0-353" name="__codelineno-0-353"></a>
+<a id="__codelineno-0-354" name="__codelineno-0-354"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-355" name="__codelineno-0-355"></a><span class="sd">            A [`Result`][wom.Result] containing the edited competition</span>
+<a id="__codelineno-0-356" name="__codelineno-0-356"></a><span class="sd">                with participations.</span>
+<a id="__codelineno-0-357" name="__codelineno-0-357"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-358" name="__codelineno-0-358"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-359" name="__codelineno-0-359"></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+<a id="__codelineno-0-360" name="__codelineno-0-360"></a>            <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span>
+<a id="__codelineno-0-361" name="__codelineno-0-361"></a>            <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">,</span>
+<a id="__codelineno-0-362" name="__codelineno-0-362"></a>            <span class="n">startsAt</span><span class="o">=</span><span class="n">starts_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">starts_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-363" name="__codelineno-0-363"></a>            <span class="n">endsAt</span><span class="o">=</span><span class="n">ends_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">ends_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-364" name="__codelineno-0-364"></a>            <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-365" name="__codelineno-0-365"></a>            <span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span>
+<a id="__codelineno-0-366" name="__codelineno-0-366"></a>        <span class="p">)</span>
+<a id="__codelineno-0-367" name="__codelineno-0-367"></a>
+<a id="__codelineno-0-368" name="__codelineno-0-368"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">EDIT_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-369" name="__codelineno-0-369"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-370" name="__codelineno-0-370"></a>
+<a id="__codelineno-0-371" name="__codelineno-0-371"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-372" name="__codelineno-0-372"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-373" name="__codelineno-0-373"></a>
+<a id="__codelineno-0-374" name="__codelineno-0-374"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_with_participation</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<a id="__codelineno-0-375" name="__codelineno-0-375"></a>
+<a id="__codelineno-0-376" name="__codelineno-0-376"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_competition</span><span class="p">(</span>
+<a id="__codelineno-0-377" name="__codelineno-0-377"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-378" name="__codelineno-0-378"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
+<a id="__codelineno-0-379" name="__codelineno-0-379"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">)</span>
+<a id="__codelineno-0-380" name="__codelineno-0-380"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">DELETE_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-381" name="__codelineno-0-381"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-382" name="__codelineno-0-382"></a>
+<a id="__codelineno-0-383" name="__codelineno-0-383"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-384" name="__codelineno-0-384"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-385" name="__codelineno-0-385"></a>
+<a id="__codelineno-0-386" name="__codelineno-0-386"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-387" name="__codelineno-0-387"></a>
+<a id="__codelineno-0-388" name="__codelineno-0-388"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_participants</span><span class="p">(</span>
+<a id="__codelineno-0-389" name="__codelineno-0-389"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">participants</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-390" name="__codelineno-0-390"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
+<a id="__codelineno-0-391" name="__codelineno-0-391"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds participants.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-392" name="__codelineno-0-392"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">)</span>
+<a id="__codelineno-0-393" name="__codelineno-0-393"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">ADD_PARTICIPANTS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-394" name="__codelineno-0-394"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-395" name="__codelineno-0-395"></a>
+<a id="__codelineno-0-396" name="__codelineno-0-396"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-397" name="__codelineno-0-397"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-398" name="__codelineno-0-398"></a>
+<a id="__codelineno-0-399" name="__codelineno-0-399"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-400" name="__codelineno-0-400"></a>
+<a id="__codelineno-0-401" name="__codelineno-0-401"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_participants</span><span class="p">(</span>
+<a id="__codelineno-0-402" name="__codelineno-0-402"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">participants</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-403" name="__codelineno-0-403"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
+<a id="__codelineno-0-404" name="__codelineno-0-404"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">)</span>
+<a id="__codelineno-0-405" name="__codelineno-0-405"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">REMOVE_PARTICIPANTS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-406" name="__codelineno-0-406"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-407" name="__codelineno-0-407"></a>
+<a id="__codelineno-0-408" name="__codelineno-0-408"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-409" name="__codelineno-0-409"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-410" name="__codelineno-0-410"></a>
+<a id="__codelineno-0-411" name="__codelineno-0-411"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-412" name="__codelineno-0-412"></a>
+<a id="__codelineno-0-413" name="__codelineno-0-413"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_teams</span><span class="p">(</span>
+<a id="__codelineno-0-414" name="__codelineno-0-414"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">teams</span><span class="p">:</span> <span class="n">models</span><span class="o">.</span><span class="n">Team</span>
+<a id="__codelineno-0-415" name="__codelineno-0-415"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
+<a id="__codelineno-0-416" name="__codelineno-0-416"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-417" name="__codelineno-0-417"></a>            <span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">teams</span><span class="p">]</span>
+<a id="__codelineno-0-418" name="__codelineno-0-418"></a>        <span class="p">)</span>
+<a id="__codelineno-0-419" name="__codelineno-0-419"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">ADD_TEAMS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-420" name="__codelineno-0-420"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-421" name="__codelineno-0-421"></a>
+<a id="__codelineno-0-422" name="__codelineno-0-422"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-423" name="__codelineno-0-423"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-424" name="__codelineno-0-424"></a>
+<a id="__codelineno-0-425" name="__codelineno-0-425"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-426" name="__codelineno-0-426"></a>
+<a id="__codelineno-0-427" name="__codelineno-0-427"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_teams</span><span class="p">(</span>
+<a id="__codelineno-0-428" name="__codelineno-0-428"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">teams</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-429" name="__codelineno-0-429"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
+<a id="__codelineno-0-430" name="__codelineno-0-430"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">teamNames</span><span class="o">=</span><span class="n">teams</span><span class="p">)</span>
+<a id="__codelineno-0-431" name="__codelineno-0-431"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">REMOVE_TEAMS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-432" name="__codelineno-0-432"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-433" name="__codelineno-0-433"></a>
+<a id="__codelineno-0-434" name="__codelineno-0-434"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-435" name="__codelineno-0-435"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-436" name="__codelineno-0-436"></a>
+<a id="__codelineno-0-437" name="__codelineno-0-437"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-438" name="__codelineno-0-438"></a>
+<a id="__codelineno-0-439" name="__codelineno-0-439"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_outdated_participants</span><span class="p">(</span>
+<a id="__codelineno-0-440" name="__codelineno-0-440"></a>        <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-441" name="__codelineno-0-441"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
+<a id="__codelineno-0-442" name="__codelineno-0-442"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">)</span>
+<a id="__codelineno-0-443" name="__codelineno-0-443"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">UPDATE_OUTDATED_PARTICIPANTS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-444" name="__codelineno-0-444"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-445" name="__codelineno-0-445"></a>
+<a id="__codelineno-0-446" name="__codelineno-0-446"></a>        <span class="k">if</span> <span class="s2">&quot;players are being updated&quot;</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
+<a id="__codelineno-0-447" name="__codelineno-0-447"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
+<a id="__codelineno-0-448" name="__codelineno-0-448"></a>
+<a id="__codelineno-0-449" name="__codelineno-0-449"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -1653,7 +1929,7 @@
         <tr>
           <td><code>type</code></td>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionType" href="../../api/#wom.CompetitionType">CompetitionType</a> | None</code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionType" href="../../models/competitions/#wom.models.competitions.CompetitionType">CompetitionType</a> | None</code>
           </td>
           <td><p>The optional <a class="autorefs autorefs-internal" href="../../api/#wom.CompetitionType"><code>CompetitionType</code></a>
 filter. Defaults to <code>None</code></p></td>
@@ -1661,7 +1937,7 @@ filter. Defaults to <code>None</code></p></td>
         <tr>
           <td><code>status</code></td>
           <td>
-                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionStatus" href="../../api/#wom.CompetitionStatus">CompetitionStatus</a> | None</code>
+                <code><span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionStatus" href="../../models/competitions/#wom.models.competitions.CompetitionStatus">CompetitionStatus</a> | None</code>
           </td>
           <td><p>The optional <a class="autorefs autorefs-internal" href="../../api/#wom.CompetitionStatus"><code>CompetitionStatus</code></a> filter. Defaults to <code>None</code>.</p></td>
         </tr>
@@ -1703,7 +1979,7 @@ Defaults to <code>None</code>.</p></td>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.services.competitions.ResultT">ResultT</span>[list[<span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Competition" href="../../api/#wom.Competition">Competition</a>]]</code>
+                <code><span title="wom.services.competitions.ResultT">ResultT</span>[list[<span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Competition" href="../../models/competitions/#wom.models.competitions.Competition">Competition</a>]]</code>
           </td>
           <td><p>A <a class="autorefs autorefs-internal" href="../../api/#wom.Result"><code>Result</code></a> containing the list of competitions
 or an error.</p></td>
@@ -2224,6 +2500,779 @@ progress players.</p></td>
 <a id="__codelineno-0-193" name="__codelineno-0-193"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-194" name="__codelineno-0-194"></a>
 <a id="__codelineno-0-195" name="__codelineno-0-195"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_top5_progress_result</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="wom.services.competitions.CompetitionService.create_competition" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">create_competition</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">create_competition</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">group_verification_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">teams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Team</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Creates a new competition.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>group_id</code>, <code>participants</code>, and <code>teams</code> parameters are
+mutually exclusive.</p>
+<ul>
+<li>
+<p>If <code>group_id</code> is provided, this method will create a
+    classic competition with all members of that group as
+    participants.</p>
+</li>
+<li>
+<p>If <code>participants</code> is provided and <code>group_id</code> isn't, this
+    method will create a classic competition with all those
+    participants included.</p>
+</li>
+<li>
+<p>If <code>teams</code> is provided, this endpoint will create a team
+    competition with all those participants included.
+    Also accepts <code>group_id</code> as a way to link this
+    competition to the group.</p>
+</li>
+</ul>
+</div>
+<details class="example">
+<summary>Example</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">wom</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">wom</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">competitions</span><span class="o">.</span><span class="n">create_competition</span><span class="p">(</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="s2">&quot;Slayer weekend&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">wom</span><span class="o">.</span><span class="n">Skills</span><span class="o">.</span><span class="n">Slayer</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">group_verification_code</span><span class="p">:</span> <span class="s2">&quot;111-111-111&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">group_id</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">)</span>
+</code></pre></div>
+</details>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>title</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The title of the competition.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>metric</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="wom.enums" href="../../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.Metric" href="../../enums/#wom.enums.Metric">Metric</a></code>
+          </td>
+          <td><p>The <a class="autorefs autorefs-internal" href="../../api/#wom.Metric"><code>Metric</code></a> the competition should
+measure.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>starts_at</code></td>
+          <td>
+                <code><span title="datetime.datetime">datetime</span></code>
+          </td>
+          <td><p>The start date for the competition.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ends_at</code></td>
+          <td>
+                <code><span title="datetime.datetime">datetime</span></code>
+          </td>
+          <td><p>The end date for the competition.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Other Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>group_id</code></td>
+          <td>
+                <code>int | None</code>
+          </td>
+          <td><p>The optional group id to tie to this competition.
+Defaults to <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>group_verification_code</code></td>
+          <td>
+                <code>str | None</code>
+          </td>
+          <td><p>The optional group verification
+code. Required if group_id is supplied. Defaults to
+<code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>participants</code></td>
+          <td>
+                <code>list[str] | None</code>
+          </td>
+          <td><p>The optional list of participants to include
+in the competition. Defaults to <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>teams</code></td>
+          <td>
+                <code>list[<span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Team" href="../../api/#wom.Team">Team</a>] | None</code>
+          </td>
+          <td><p>The optional teams to include in the competition.
+Defaults to <code>None</code>.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="wom.services.competitions.ResultT">ResultT</span>[<span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionWithParticipations" href="../../models/competitions/#wom.models.competitions.CompetitionWithParticipations">CompetitionWithParticipations</a>]</code>
+          </td>
+          <td><p>A <a class="autorefs autorefs-internal" href="../../api/#wom.Result"><code>Result</code></a> containing the newly created
+competition with participations.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>wom/services/competitions.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-197">197</a></span>
+<span class="normal"><a href="#__codelineno-0-198">198</a></span>
+<span class="normal"><a href="#__codelineno-0-199">199</a></span>
+<span class="normal"><a href="#__codelineno-0-200">200</a></span>
+<span class="normal"><a href="#__codelineno-0-201">201</a></span>
+<span class="normal"><a href="#__codelineno-0-202">202</a></span>
+<span class="normal"><a href="#__codelineno-0-203">203</a></span>
+<span class="normal"><a href="#__codelineno-0-204">204</a></span>
+<span class="normal"><a href="#__codelineno-0-205">205</a></span>
+<span class="normal"><a href="#__codelineno-0-206">206</a></span>
+<span class="normal"><a href="#__codelineno-0-207">207</a></span>
+<span class="normal"><a href="#__codelineno-0-208">208</a></span>
+<span class="normal"><a href="#__codelineno-0-209">209</a></span>
+<span class="normal"><a href="#__codelineno-0-210">210</a></span>
+<span class="normal"><a href="#__codelineno-0-211">211</a></span>
+<span class="normal"><a href="#__codelineno-0-212">212</a></span>
+<span class="normal"><a href="#__codelineno-0-213">213</a></span>
+<span class="normal"><a href="#__codelineno-0-214">214</a></span>
+<span class="normal"><a href="#__codelineno-0-215">215</a></span>
+<span class="normal"><a href="#__codelineno-0-216">216</a></span>
+<span class="normal"><a href="#__codelineno-0-217">217</a></span>
+<span class="normal"><a href="#__codelineno-0-218">218</a></span>
+<span class="normal"><a href="#__codelineno-0-219">219</a></span>
+<span class="normal"><a href="#__codelineno-0-220">220</a></span>
+<span class="normal"><a href="#__codelineno-0-221">221</a></span>
+<span class="normal"><a href="#__codelineno-0-222">222</a></span>
+<span class="normal"><a href="#__codelineno-0-223">223</a></span>
+<span class="normal"><a href="#__codelineno-0-224">224</a></span>
+<span class="normal"><a href="#__codelineno-0-225">225</a></span>
+<span class="normal"><a href="#__codelineno-0-226">226</a></span>
+<span class="normal"><a href="#__codelineno-0-227">227</a></span>
+<span class="normal"><a href="#__codelineno-0-228">228</a></span>
+<span class="normal"><a href="#__codelineno-0-229">229</a></span>
+<span class="normal"><a href="#__codelineno-0-230">230</a></span>
+<span class="normal"><a href="#__codelineno-0-231">231</a></span>
+<span class="normal"><a href="#__codelineno-0-232">232</a></span>
+<span class="normal"><a href="#__codelineno-0-233">233</a></span>
+<span class="normal"><a href="#__codelineno-0-234">234</a></span>
+<span class="normal"><a href="#__codelineno-0-235">235</a></span>
+<span class="normal"><a href="#__codelineno-0-236">236</a></span>
+<span class="normal"><a href="#__codelineno-0-237">237</a></span>
+<span class="normal"><a href="#__codelineno-0-238">238</a></span>
+<span class="normal"><a href="#__codelineno-0-239">239</a></span>
+<span class="normal"><a href="#__codelineno-0-240">240</a></span>
+<span class="normal"><a href="#__codelineno-0-241">241</a></span>
+<span class="normal"><a href="#__codelineno-0-242">242</a></span>
+<span class="normal"><a href="#__codelineno-0-243">243</a></span>
+<span class="normal"><a href="#__codelineno-0-244">244</a></span>
+<span class="normal"><a href="#__codelineno-0-245">245</a></span>
+<span class="normal"><a href="#__codelineno-0-246">246</a></span>
+<span class="normal"><a href="#__codelineno-0-247">247</a></span>
+<span class="normal"><a href="#__codelineno-0-248">248</a></span>
+<span class="normal"><a href="#__codelineno-0-249">249</a></span>
+<span class="normal"><a href="#__codelineno-0-250">250</a></span>
+<span class="normal"><a href="#__codelineno-0-251">251</a></span>
+<span class="normal"><a href="#__codelineno-0-252">252</a></span>
+<span class="normal"><a href="#__codelineno-0-253">253</a></span>
+<span class="normal"><a href="#__codelineno-0-254">254</a></span>
+<span class="normal"><a href="#__codelineno-0-255">255</a></span>
+<span class="normal"><a href="#__codelineno-0-256">256</a></span>
+<span class="normal"><a href="#__codelineno-0-257">257</a></span>
+<span class="normal"><a href="#__codelineno-0-258">258</a></span>
+<span class="normal"><a href="#__codelineno-0-259">259</a></span>
+<span class="normal"><a href="#__codelineno-0-260">260</a></span>
+<span class="normal"><a href="#__codelineno-0-261">261</a></span>
+<span class="normal"><a href="#__codelineno-0-262">262</a></span>
+<span class="normal"><a href="#__codelineno-0-263">263</a></span>
+<span class="normal"><a href="#__codelineno-0-264">264</a></span>
+<span class="normal"><a href="#__codelineno-0-265">265</a></span>
+<span class="normal"><a href="#__codelineno-0-266">266</a></span>
+<span class="normal"><a href="#__codelineno-0-267">267</a></span>
+<span class="normal"><a href="#__codelineno-0-268">268</a></span>
+<span class="normal"><a href="#__codelineno-0-269">269</a></span>
+<span class="normal"><a href="#__codelineno-0-270">270</a></span>
+<span class="normal"><a href="#__codelineno-0-271">271</a></span>
+<span class="normal"><a href="#__codelineno-0-272">272</a></span>
+<span class="normal"><a href="#__codelineno-0-273">273</a></span>
+<span class="normal"><a href="#__codelineno-0-274">274</a></span>
+<span class="normal"><a href="#__codelineno-0-275">275</a></span>
+<span class="normal"><a href="#__codelineno-0-276">276</a></span>
+<span class="normal"><a href="#__codelineno-0-277">277</a></span>
+<span class="normal"><a href="#__codelineno-0-278">278</a></span>
+<span class="normal"><a href="#__codelineno-0-279">279</a></span>
+<span class="normal"><a href="#__codelineno-0-280">280</a></span>
+<span class="normal"><a href="#__codelineno-0-281">281</a></span>
+<span class="normal"><a href="#__codelineno-0-282">282</a></span>
+<span class="normal"><a href="#__codelineno-0-283">283</a></span>
+<span class="normal"><a href="#__codelineno-0-284">284</a></span>
+<span class="normal"><a href="#__codelineno-0-285">285</a></span>
+<span class="normal"><a href="#__codelineno-0-286">286</a></span>
+<span class="normal"><a href="#__codelineno-0-287">287</a></span>
+<span class="normal"><a href="#__codelineno-0-288">288</a></span>
+<span class="normal"><a href="#__codelineno-0-289">289</a></span>
+<span class="normal"><a href="#__codelineno-0-290">290</a></span>
+<span class="normal"><a href="#__codelineno-0-291">291</a></span>
+<span class="normal"><a href="#__codelineno-0-292">292</a></span>
+<span class="normal"><a href="#__codelineno-0-293">293</a></span>
+<span class="normal"><a href="#__codelineno-0-294">294</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-197" name="__codelineno-0-197"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">create_competition</span><span class="p">(</span>
+<a id="__codelineno-0-198" name="__codelineno-0-198"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-199" name="__codelineno-0-199"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-200" name="__codelineno-0-200"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span><span class="p">,</span>
+<a id="__codelineno-0-201" name="__codelineno-0-201"></a>    <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+<a id="__codelineno-0-202" name="__codelineno-0-202"></a>    <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span>
+<a id="__codelineno-0-203" name="__codelineno-0-203"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-204" name="__codelineno-0-204"></a>    <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-205" name="__codelineno-0-205"></a>    <span class="n">group_verification_code</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-206" name="__codelineno-0-206"></a>    <span class="n">teams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Team</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-207" name="__codelineno-0-207"></a>    <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-208" name="__codelineno-0-208"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">]:</span>
+<a id="__codelineno-0-209" name="__codelineno-0-209"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a new competition.</span>
+<a id="__codelineno-0-210" name="__codelineno-0-210"></a>
+<a id="__codelineno-0-211" name="__codelineno-0-211"></a><span class="sd">    !!! info</span>
+<a id="__codelineno-0-212" name="__codelineno-0-212"></a>
+<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="sd">        The `group_id`, `participants`, and `teams` parameters are</span>
+<a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="sd">        mutually exclusive.</span>
+<a id="__codelineno-0-215" name="__codelineno-0-215"></a>
+<a id="__codelineno-0-216" name="__codelineno-0-216"></a><span class="sd">        - If `group_id` is provided, this method will create a</span>
+<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">            classic competition with all members of that group as</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="sd">            participants.</span>
+<a id="__codelineno-0-219" name="__codelineno-0-219"></a>
+<a id="__codelineno-0-220" name="__codelineno-0-220"></a><span class="sd">        - If `participants` is provided and `group_id` isn&#39;t, this</span>
+<a id="__codelineno-0-221" name="__codelineno-0-221"></a><span class="sd">            method will create a classic competition with all those</span>
+<a id="__codelineno-0-222" name="__codelineno-0-222"></a><span class="sd">            participants included.</span>
+<a id="__codelineno-0-223" name="__codelineno-0-223"></a>
+<a id="__codelineno-0-224" name="__codelineno-0-224"></a><span class="sd">        - If `teams` is provided, this endpoint will create a team</span>
+<a id="__codelineno-0-225" name="__codelineno-0-225"></a><span class="sd">            competition with all those participants included.</span>
+<a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="sd">            Also accepts `group_id` as a way to link this</span>
+<a id="__codelineno-0-227" name="__codelineno-0-227"></a><span class="sd">            competition to the group.</span>
+<a id="__codelineno-0-228" name="__codelineno-0-228"></a>
+<a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">    ??? example</span>
+<a id="__codelineno-0-230" name="__codelineno-0-230"></a>
+<a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-232" name="__codelineno-0-232"></a><span class="sd">        from datetime import datetime, timedelta</span>
+<a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234"></a>
+<a id="__codelineno-0-235" name="__codelineno-0-235"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-236" name="__codelineno-0-236"></a>
+<a id="__codelineno-0-237" name="__codelineno-0-237"></a><span class="sd">        result = await client.competitions.create_competition(</span>
+<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="sd">            &quot;Slayer weekend&quot;,</span>
+<a id="__codelineno-0-239" name="__codelineno-0-239"></a><span class="sd">            wom.Skills.Slayer,</span>
+<a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">            starts_at: datetime.now() + timedelta(days=7),</span>
+<a id="__codelineno-0-241" name="__codelineno-0-241"></a><span class="sd">            ends_at: datetime.now() + timedelta(days=14),</span>
+<a id="__codelineno-0-242" name="__codelineno-0-242"></a><span class="sd">            group_verification_code: &quot;111-111-111&quot;,</span>
+<a id="__codelineno-0-243" name="__codelineno-0-243"></a><span class="sd">            group_id: 123,</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">        )</span>
+<a id="__codelineno-0-245" name="__codelineno-0-245"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-246" name="__codelineno-0-246"></a>
+<a id="__codelineno-0-247" name="__codelineno-0-247"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-248" name="__codelineno-0-248"></a><span class="sd">        title: The title of the competition.</span>
+<a id="__codelineno-0-249" name="__codelineno-0-249"></a>
+<a id="__codelineno-0-250" name="__codelineno-0-250"></a><span class="sd">        metric: The [`Metric`][wom.Metric] the competition should</span>
+<a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">            measure.</span>
+<a id="__codelineno-0-252" name="__codelineno-0-252"></a>
+<a id="__codelineno-0-253" name="__codelineno-0-253"></a><span class="sd">        starts_at: The start date for the competition.</span>
+<a id="__codelineno-0-254" name="__codelineno-0-254"></a>
+<a id="__codelineno-0-255" name="__codelineno-0-255"></a><span class="sd">        ends_at: The end date for the competition.</span>
+<a id="__codelineno-0-256" name="__codelineno-0-256"></a>
+<a id="__codelineno-0-257" name="__codelineno-0-257"></a><span class="sd">    Keyword Args:</span>
+<a id="__codelineno-0-258" name="__codelineno-0-258"></a><span class="sd">        group_id: The optional group id to tie to this competition.</span>
+<a id="__codelineno-0-259" name="__codelineno-0-259"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-260" name="__codelineno-0-260"></a>
+<a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="sd">        group_verification_code: The optional group verification</span>
+<a id="__codelineno-0-262" name="__codelineno-0-262"></a><span class="sd">            code. Required if group_id is supplied. Defaults to</span>
+<a id="__codelineno-0-263" name="__codelineno-0-263"></a><span class="sd">            `None`.</span>
+<a id="__codelineno-0-264" name="__codelineno-0-264"></a>
+<a id="__codelineno-0-265" name="__codelineno-0-265"></a><span class="sd">        participants: The optional list of participants to include</span>
+<a id="__codelineno-0-266" name="__codelineno-0-266"></a><span class="sd">            in the competition. Defaults to `None`.</span>
+<a id="__codelineno-0-267" name="__codelineno-0-267"></a>
+<a id="__codelineno-0-268" name="__codelineno-0-268"></a><span class="sd">        teams: The optional teams to include in the competition.</span>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270"></a>
+<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-272" name="__codelineno-0-272"></a><span class="sd">        A [`Result`][wom.Result] containing the newly created</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">            competition with participations.</span>
+<a id="__codelineno-0-274" name="__codelineno-0-274"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a>        <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a>        <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span>
+<a id="__codelineno-0-278" name="__codelineno-0-278"></a>        <span class="n">groupId</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span>
+<a id="__codelineno-0-279" name="__codelineno-0-279"></a>        <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">,</span>
+<a id="__codelineno-0-280" name="__codelineno-0-280"></a>        <span class="n">endsAt</span><span class="o">=</span><span class="n">ends_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+<a id="__codelineno-0-281" name="__codelineno-0-281"></a>        <span class="n">startsAt</span><span class="o">=</span><span class="n">starts_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+<a id="__codelineno-0-282" name="__codelineno-0-282"></a>        <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-283" name="__codelineno-0-283"></a>        <span class="n">groupVerificationCode</span><span class="o">=</span><span class="n">group_verification_code</span><span class="p">,</span>
+<a id="__codelineno-0-284" name="__codelineno-0-284"></a>    <span class="p">)</span>
+<a id="__codelineno-0-285" name="__codelineno-0-285"></a>
+<a id="__codelineno-0-286" name="__codelineno-0-286"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">CREATE_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+<a id="__codelineno-0-287" name="__codelineno-0-287"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-288" name="__codelineno-0-288"></a>
+<a id="__codelineno-0-289" name="__codelineno-0-289"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-291" name="__codelineno-0-291"></a>
+<a id="__codelineno-0-292" name="__codelineno-0-292"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span>
+<a id="__codelineno-0-293" name="__codelineno-0-293"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_with_participation</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;competition&quot;</span><span class="p">])</span>
+<a id="__codelineno-0-294" name="__codelineno-0-294"></a>    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="wom.services.competitions.CompetitionService.edit_competition" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">edit_competition</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">edit_competition</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">teams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Team</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Edits an existing competition.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The teams/participants parameters will completely
+overwrite the existing participants/teams. If you're looking
+to add users, check out <a class="autorefs autorefs-internal" href="#wom.services.competitions.CompetitionService.add_participants"><code>add_participants</code></a>.</p>
+</div>
+<details class="example">
+<summary>Example</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">wom</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">wom</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">competitions</span><span class="o">.</span><span class="n">edit_competition</span><span class="p">(</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;111-111-111&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;New title&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</code></pre></div>
+</details>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>id</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>The ID of the competition.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>verification_code</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The verification code for the
+competition.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Other Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>title</code></td>
+          <td>
+                <code>str | None</code>
+          </td>
+          <td><p>The optional updated title of the competition.
+Defaults to <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>metric</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="wom.enums" href="../../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.Metric" href="../../enums/#wom.enums.Metric">Metric</a> | None</code>
+          </td>
+          <td><p>The optional new <a class="autorefs autorefs-internal" href="../../api/#wom.Metric"><code>Metric</code></a> the
+competition should measure. Defaults to <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>starts_at</code></td>
+          <td>
+                <code><span title="datetime.datetime">datetime</span> | None</code>
+          </td>
+          <td><p>The optional new start date for the competition.
+Defaults to <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>ends_at</code></td>
+          <td>
+                <code><span title="datetime.datetime">datetime</span> | None</code>
+          </td>
+          <td><p>The optional new end date for the competition.
+Defaults to <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>participants</code></td>
+          <td>
+                <code>list[str] | None</code>
+          </td>
+          <td><p>The optional list of participants to replace
+the existing participants with. Defaults to <code>None</code>.</p></td>
+        </tr>
+        <tr>
+          <td><code>teams</code></td>
+          <td>
+                <code>list[<span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.Team" href="../../api/#wom.Team">Team</a>] | None</code>
+          </td>
+          <td><p>The optional list of teams to replace the existing
+participants with. Defaults to <code>None</code>.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="wom.services.competitions.ResultT">ResultT</span>[<span title="wom.models">models</span>.<a class="autorefs autorefs-internal" title="wom.models.CompetitionWithParticipations" href="../../models/competitions/#wom.models.competitions.CompetitionWithParticipations">CompetitionWithParticipations</a>]</code>
+          </td>
+          <td><p>A <a class="autorefs autorefs-internal" href="../../api/#wom.Result"><code>Result</code></a> containing the edited competition
+with participations.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>wom/services/competitions.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-296">296</a></span>
+<span class="normal"><a href="#__codelineno-0-297">297</a></span>
+<span class="normal"><a href="#__codelineno-0-298">298</a></span>
+<span class="normal"><a href="#__codelineno-0-299">299</a></span>
+<span class="normal"><a href="#__codelineno-0-300">300</a></span>
+<span class="normal"><a href="#__codelineno-0-301">301</a></span>
+<span class="normal"><a href="#__codelineno-0-302">302</a></span>
+<span class="normal"><a href="#__codelineno-0-303">303</a></span>
+<span class="normal"><a href="#__codelineno-0-304">304</a></span>
+<span class="normal"><a href="#__codelineno-0-305">305</a></span>
+<span class="normal"><a href="#__codelineno-0-306">306</a></span>
+<span class="normal"><a href="#__codelineno-0-307">307</a></span>
+<span class="normal"><a href="#__codelineno-0-308">308</a></span>
+<span class="normal"><a href="#__codelineno-0-309">309</a></span>
+<span class="normal"><a href="#__codelineno-0-310">310</a></span>
+<span class="normal"><a href="#__codelineno-0-311">311</a></span>
+<span class="normal"><a href="#__codelineno-0-312">312</a></span>
+<span class="normal"><a href="#__codelineno-0-313">313</a></span>
+<span class="normal"><a href="#__codelineno-0-314">314</a></span>
+<span class="normal"><a href="#__codelineno-0-315">315</a></span>
+<span class="normal"><a href="#__codelineno-0-316">316</a></span>
+<span class="normal"><a href="#__codelineno-0-317">317</a></span>
+<span class="normal"><a href="#__codelineno-0-318">318</a></span>
+<span class="normal"><a href="#__codelineno-0-319">319</a></span>
+<span class="normal"><a href="#__codelineno-0-320">320</a></span>
+<span class="normal"><a href="#__codelineno-0-321">321</a></span>
+<span class="normal"><a href="#__codelineno-0-322">322</a></span>
+<span class="normal"><a href="#__codelineno-0-323">323</a></span>
+<span class="normal"><a href="#__codelineno-0-324">324</a></span>
+<span class="normal"><a href="#__codelineno-0-325">325</a></span>
+<span class="normal"><a href="#__codelineno-0-326">326</a></span>
+<span class="normal"><a href="#__codelineno-0-327">327</a></span>
+<span class="normal"><a href="#__codelineno-0-328">328</a></span>
+<span class="normal"><a href="#__codelineno-0-329">329</a></span>
+<span class="normal"><a href="#__codelineno-0-330">330</a></span>
+<span class="normal"><a href="#__codelineno-0-331">331</a></span>
+<span class="normal"><a href="#__codelineno-0-332">332</a></span>
+<span class="normal"><a href="#__codelineno-0-333">333</a></span>
+<span class="normal"><a href="#__codelineno-0-334">334</a></span>
+<span class="normal"><a href="#__codelineno-0-335">335</a></span>
+<span class="normal"><a href="#__codelineno-0-336">336</a></span>
+<span class="normal"><a href="#__codelineno-0-337">337</a></span>
+<span class="normal"><a href="#__codelineno-0-338">338</a></span>
+<span class="normal"><a href="#__codelineno-0-339">339</a></span>
+<span class="normal"><a href="#__codelineno-0-340">340</a></span>
+<span class="normal"><a href="#__codelineno-0-341">341</a></span>
+<span class="normal"><a href="#__codelineno-0-342">342</a></span>
+<span class="normal"><a href="#__codelineno-0-343">343</a></span>
+<span class="normal"><a href="#__codelineno-0-344">344</a></span>
+<span class="normal"><a href="#__codelineno-0-345">345</a></span>
+<span class="normal"><a href="#__codelineno-0-346">346</a></span>
+<span class="normal"><a href="#__codelineno-0-347">347</a></span>
+<span class="normal"><a href="#__codelineno-0-348">348</a></span>
+<span class="normal"><a href="#__codelineno-0-349">349</a></span>
+<span class="normal"><a href="#__codelineno-0-350">350</a></span>
+<span class="normal"><a href="#__codelineno-0-351">351</a></span>
+<span class="normal"><a href="#__codelineno-0-352">352</a></span>
+<span class="normal"><a href="#__codelineno-0-353">353</a></span>
+<span class="normal"><a href="#__codelineno-0-354">354</a></span>
+<span class="normal"><a href="#__codelineno-0-355">355</a></span>
+<span class="normal"><a href="#__codelineno-0-356">356</a></span>
+<span class="normal"><a href="#__codelineno-0-357">357</a></span>
+<span class="normal"><a href="#__codelineno-0-358">358</a></span>
+<span class="normal"><a href="#__codelineno-0-359">359</a></span>
+<span class="normal"><a href="#__codelineno-0-360">360</a></span>
+<span class="normal"><a href="#__codelineno-0-361">361</a></span>
+<span class="normal"><a href="#__codelineno-0-362">362</a></span>
+<span class="normal"><a href="#__codelineno-0-363">363</a></span>
+<span class="normal"><a href="#__codelineno-0-364">364</a></span>
+<span class="normal"><a href="#__codelineno-0-365">365</a></span>
+<span class="normal"><a href="#__codelineno-0-366">366</a></span>
+<span class="normal"><a href="#__codelineno-0-367">367</a></span>
+<span class="normal"><a href="#__codelineno-0-368">368</a></span>
+<span class="normal"><a href="#__codelineno-0-369">369</a></span>
+<span class="normal"><a href="#__codelineno-0-370">370</a></span>
+<span class="normal"><a href="#__codelineno-0-371">371</a></span>
+<span class="normal"><a href="#__codelineno-0-372">372</a></span>
+<span class="normal"><a href="#__codelineno-0-373">373</a></span>
+<span class="normal"><a href="#__codelineno-0-374">374</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-296" name="__codelineno-0-296"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">edit_competition</span><span class="p">(</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-298" name="__codelineno-0-298"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-0-299" name="__codelineno-0-299"></a>    <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-300" name="__codelineno-0-300"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-301" name="__codelineno-0-301"></a>    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303"></a>    <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304"></a>    <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-305" name="__codelineno-0-305"></a>    <span class="n">teams</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">Team</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306"></a>    <span class="n">participants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">CompetitionWithParticipations</span><span class="p">]:</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Edits an existing competition.</span>
+<a id="__codelineno-0-309" name="__codelineno-0-309"></a>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a><span class="sd">    !!! warning</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a><span class="sd">        The teams/participants parameters will completely</span>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a><span class="sd">        overwrite the existing participants/teams. If you&#39;re looking</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a><span class="sd">        to add users, check out [`add_participants`]</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315"></a><span class="sd">        [wom.CompetitionService.add_participants].</span>
+<a id="__codelineno-0-316" name="__codelineno-0-316"></a>
+<a id="__codelineno-0-317" name="__codelineno-0-317"></a><span class="sd">    ??? example</span>
+<a id="__codelineno-0-318" name="__codelineno-0-318"></a>
+<a id="__codelineno-0-319" name="__codelineno-0-319"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-320" name="__codelineno-0-320"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-321" name="__codelineno-0-321"></a>
+<a id="__codelineno-0-322" name="__codelineno-0-322"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323"></a>
+<a id="__codelineno-0-324" name="__codelineno-0-324"></a><span class="sd">        result = await client.competitions.edit_competition(</span>
+<a id="__codelineno-0-325" name="__codelineno-0-325"></a><span class="sd">            123, &quot;111-111-111&quot;, title=&quot;New title&quot;</span>
+<a id="__codelineno-0-326" name="__codelineno-0-326"></a><span class="sd">        )</span>
+<a id="__codelineno-0-327" name="__codelineno-0-327"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-328" name="__codelineno-0-328"></a>
+<a id="__codelineno-0-329" name="__codelineno-0-329"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-330" name="__codelineno-0-330"></a><span class="sd">        id: The ID of the competition.</span>
+<a id="__codelineno-0-331" name="__codelineno-0-331"></a>
+<a id="__codelineno-0-332" name="__codelineno-0-332"></a><span class="sd">        verification_code: The verification code for the</span>
+<a id="__codelineno-0-333" name="__codelineno-0-333"></a><span class="sd">            competition.</span>
+<a id="__codelineno-0-334" name="__codelineno-0-334"></a>
+<a id="__codelineno-0-335" name="__codelineno-0-335"></a><span class="sd">    Keyword Args:</span>
+<a id="__codelineno-0-336" name="__codelineno-0-336"></a><span class="sd">        title: The optional updated title of the competition.</span>
+<a id="__codelineno-0-337" name="__codelineno-0-337"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-338" name="__codelineno-0-338"></a>
+<a id="__codelineno-0-339" name="__codelineno-0-339"></a><span class="sd">        metric: The optional new [`Metric`][wom.Metric] the</span>
+<a id="__codelineno-0-340" name="__codelineno-0-340"></a><span class="sd">            competition should measure. Defaults to `None`.</span>
+<a id="__codelineno-0-341" name="__codelineno-0-341"></a>
+<a id="__codelineno-0-342" name="__codelineno-0-342"></a><span class="sd">        starts_at: The optional new start date for the competition.</span>
+<a id="__codelineno-0-343" name="__codelineno-0-343"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-344" name="__codelineno-0-344"></a>
+<a id="__codelineno-0-345" name="__codelineno-0-345"></a><span class="sd">        ends_at: The optional new end date for the competition.</span>
+<a id="__codelineno-0-346" name="__codelineno-0-346"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-347" name="__codelineno-0-347"></a>
+<a id="__codelineno-0-348" name="__codelineno-0-348"></a><span class="sd">        participants: The optional list of participants to replace</span>
+<a id="__codelineno-0-349" name="__codelineno-0-349"></a><span class="sd">            the existing participants with. Defaults to `None`.</span>
+<a id="__codelineno-0-350" name="__codelineno-0-350"></a>
+<a id="__codelineno-0-351" name="__codelineno-0-351"></a><span class="sd">        teams: The optional list of teams to replace the existing</span>
+<a id="__codelineno-0-352" name="__codelineno-0-352"></a><span class="sd">            participants with. Defaults to `None`.</span>
+<a id="__codelineno-0-353" name="__codelineno-0-353"></a>
+<a id="__codelineno-0-354" name="__codelineno-0-354"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-355" name="__codelineno-0-355"></a><span class="sd">        A [`Result`][wom.Result] containing the edited competition</span>
+<a id="__codelineno-0-356" name="__codelineno-0-356"></a><span class="sd">            with participations.</span>
+<a id="__codelineno-0-357" name="__codelineno-0-357"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-358" name="__codelineno-0-358"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-359" name="__codelineno-0-359"></a>        <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+<a id="__codelineno-0-360" name="__codelineno-0-360"></a>        <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span>
+<a id="__codelineno-0-361" name="__codelineno-0-361"></a>        <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">,</span>
+<a id="__codelineno-0-362" name="__codelineno-0-362"></a>        <span class="n">startsAt</span><span class="o">=</span><span class="n">starts_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">starts_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-363" name="__codelineno-0-363"></a>        <span class="n">endsAt</span><span class="o">=</span><span class="n">ends_at</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">ends_at</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-364" name="__codelineno-0-364"></a>        <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">metric</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-365" name="__codelineno-0-365"></a>        <span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span>
+<a id="__codelineno-0-366" name="__codelineno-0-366"></a>    <span class="p">)</span>
+<a id="__codelineno-0-367" name="__codelineno-0-367"></a>
+<a id="__codelineno-0-368" name="__codelineno-0-368"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">EDIT_COMPETITION</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-369" name="__codelineno-0-369"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-370" name="__codelineno-0-370"></a>
+<a id="__codelineno-0-371" name="__codelineno-0-371"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-372" name="__codelineno-0-372"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-373" name="__codelineno-0-373"></a>
+<a id="__codelineno-0-374" name="__codelineno-0-374"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_with_participation</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="wom.services.competitions.CompetitionService.add_participants" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">add_participants</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">add_participants</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">participants</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Adds participants.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>wom/services/competitions.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-388">388</a></span>
+<span class="normal"><a href="#__codelineno-0-389">389</a></span>
+<span class="normal"><a href="#__codelineno-0-390">390</a></span>
+<span class="normal"><a href="#__codelineno-0-391">391</a></span>
+<span class="normal"><a href="#__codelineno-0-392">392</a></span>
+<span class="normal"><a href="#__codelineno-0-393">393</a></span>
+<span class="normal"><a href="#__codelineno-0-394">394</a></span>
+<span class="normal"><a href="#__codelineno-0-395">395</a></span>
+<span class="normal"><a href="#__codelineno-0-396">396</a></span>
+<span class="normal"><a href="#__codelineno-0-397">397</a></span>
+<span class="normal"><a href="#__codelineno-0-398">398</a></span>
+<span class="normal"><a href="#__codelineno-0-399">399</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-388" name="__codelineno-0-388"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">add_participants</span><span class="p">(</span>
+<a id="__codelineno-0-389" name="__codelineno-0-389"></a>    <span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verification_code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">participants</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-390" name="__codelineno-0-390"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">]:</span>
+<a id="__codelineno-0-391" name="__codelineno-0-391"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds participants.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-392" name="__codelineno-0-392"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">verificationCode</span><span class="o">=</span><span class="n">verification_code</span><span class="p">,</span> <span class="n">participants</span><span class="o">=</span><span class="n">participants</span><span class="p">)</span>
+<a id="__codelineno-0-393" name="__codelineno-0-393"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">ADD_PARTICIPANTS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<a id="__codelineno-0-394" name="__codelineno-0-394"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-395" name="__codelineno-0-395"></a>
+<a id="__codelineno-0-396" name="__codelineno-0-396"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-397" name="__codelineno-0-397"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-398" name="__codelineno-0-398"></a>
+<a id="__codelineno-0-399" name="__codelineno-0-399"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
