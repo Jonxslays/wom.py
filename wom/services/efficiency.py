@@ -53,7 +53,8 @@ class EfficiencyService(BaseService):
         """Gets the top global efficiency leaderboard.
 
         Args:
-            metric: The computed metric to filter on.
+            metric: The computed metric to filter on. Defaults to [`Ehp`]
+                [wom.ComputedMetrics].
 
         Keyword Args:
             player_type: The optional player type to filter on. Defaults
@@ -66,8 +67,8 @@ class EfficiencyService(BaseService):
                 `None`.
 
             both: If `True`, request both ehp and ehb computed metric
-                leaderboards. This will override the `metric`, if provided.
-                Defaults to `False`.
+                leaderboards. This will override the `metric`, if it was
+                provided. Defaults to `False`.
 
         Returns:
             A [`Result`][wom.Result] containing a list of the top
@@ -81,7 +82,6 @@ class EfficiencyService(BaseService):
             client = wom.Client(...)
 
             result = await client.efficiency.get_global_leaderboard(
-                wom.ComputedMetrics.Ehp,
                 player_type=wom.PlayerType.Ironman,
             )
             ```
