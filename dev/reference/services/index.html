@@ -5895,35 +5895,35 @@ leaderboard entries.</p></td>
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the top global efficiency leaderboard.</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54"></a>
 <a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            metric: The computed metric to filter on.</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        Keyword Args:</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">            player_type: The optional player type to filter on. Defaults</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">                to `None`.</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">            player_build: The optional player build to filter on.</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">                Defaults to `None`.</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">            country: The optional country to filter on. Defaults to</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">                `None`.</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">            both: If `True`, request both ehp and ehb computed metric</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">                leaderboards. This will override the `metric`, if provided.</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">                Defaults to `False`.</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">            A [`Result`][wom.Result] containing a list of the top</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">                players.</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">        ??? example</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">            import wom</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">            client = wom.Client(...)</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">            result = await client.efficiency.get_global_leaderboard(</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">                wom.ComputedMetrics.Ehp,</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            metric: The computed metric to filter on. Defaults to [`Ehp`]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">                [wom.ComputedMetrics].</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        Keyword Args:</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">            player_type: The optional player type to filter on. Defaults</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">                to `None`.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">            player_build: The optional player build to filter on.</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">            country: The optional country to filter on. Defaults to</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">                `None`.</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">            both: If `True`, request both ehp and ehb computed metric</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">                leaderboards. This will override the `metric`, if it was</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">                provided. Defaults to `False`.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">            A [`Result`][wom.Result] containing a list of the top</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">                players.</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">            result = await client.efficiency.get_global_leaderboard(</span>
 <a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">                player_type=wom.PlayerType.Ironman,</span>
 <a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">            )</span>
 <a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">            ```</span>
@@ -6000,7 +6000,7 @@ leaderboard entries.</p></td>
           <td>
                 <code><a class="autorefs autorefs-internal" title="wom.enums" href="../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.ComputedMetrics" href="../enums/#wom.enums.ComputedMetrics">ComputedMetrics</a></code>
           </td>
-          <td><p>The computed metric to filter on.</p></td>
+          <td><p>The computed metric to filter on. Defaults to <a class="autorefs autorefs-internal" href="../enums/#wom.enums.ComputedMetrics"><code>Ehp</code></a>.</p></td>
           <td>
                 <code>enums.ComputedMetrics.Ehp</code>
           </td>
@@ -6048,8 +6048,8 @@ Defaults to <code>None</code>.</p></td>
                 <code>bool</code>
           </td>
           <td><p>If <code>True</code>, request both ehp and ehb computed metric
-leaderboards. This will override the <code>metric</code>, if provided.
-Defaults to <code>False</code>.</p></td>
+leaderboards. This will override the <code>metric</code>, if it was
+provided. Defaults to <code>False</code>.</p></td>
         </tr>
     </tbody>
   </table>
@@ -6079,9 +6079,8 @@ players.</p></td>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">wom</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">efficiency</span><span class="o">.</span><span class="n">get_global_leaderboard</span><span class="p">(</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">wom</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="o">.</span><span class="n">Ehp</span><span class="p">,</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">player_type</span><span class="o">=</span><span class="n">wom</span><span class="o">.</span><span class="n">PlayerType</span><span class="o">.</span><span class="n">Ironman</span><span class="p">,</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">player_type</span><span class="o">=</span><span class="n">wom</span><span class="o">.</span><span class="n">PlayerType</span><span class="o">.</span><span class="n">Ironman</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
 </code></pre></div>
 </details>
 
@@ -6157,35 +6156,35 @@ players.</p></td>
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the top global efficiency leaderboard.</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54"></a>
 <a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        metric: The computed metric to filter on.</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    Keyword Args:</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        player_type: The optional player type to filter on. Defaults</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">            to `None`.</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        player_build: The optional player build to filter on.</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">            Defaults to `None`.</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">        country: The optional country to filter on. Defaults to</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">            `None`.</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">        both: If `True`, request both ehp and ehb computed metric</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">            leaderboards. This will override the `metric`, if provided.</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">            Defaults to `False`.</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">        A [`Result`][wom.Result] containing a list of the top</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">            players.</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">    ??? example</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">        import wom</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">        client = wom.Client(...)</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">        result = await client.efficiency.get_global_leaderboard(</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">            wom.ComputedMetrics.Ehp,</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        metric: The computed metric to filter on. Defaults to [`Ehp`]</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">            [wom.ComputedMetrics].</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    Keyword Args:</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        player_type: The optional player type to filter on. Defaults</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">            to `None`.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        player_build: The optional player build to filter on.</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">        country: The optional country to filter on. Defaults to</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">            `None`.</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        both: If `True`, request both ehp and ehb computed metric</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">            leaderboards. This will override the `metric`, if it was</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">            provided. Defaults to `False`.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        A [`Result`][wom.Result] containing a list of the top</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">            players.</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    ??? example</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">        result = await client.efficiency.get_global_leaderboard(</span>
 <a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">            player_type=wom.PlayerType.Ironman,</span>
 <a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">        )</span>
 <a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">        ```</span>
