@@ -53,8 +53,7 @@ class EfficiencyService(BaseService):
         """Gets the top global efficiency leaderboard.
 
         Args:
-            metric: The computed metric to filter on. Defaults to
-                [`ComputedMetrics.Ehp`][wom.ComputedMetrics].
+            metric: The computed metric to filter on.
 
         Keyword Args:
             player_type: The optional player type to filter on. Defaults
