@@ -82,10 +82,9 @@ class Client:
         import wom
 
         client = wom.Client(
-            environ["WOM_API_KEY"],  # The WOM api key if you have one
-            user_agent="@me#1234",  # Identifier, i.e. discord username
+            environ["WOM_API_KEY"],
+            user_agent="@me#1234",
             api_base_url=environ["LOCAL_WOM_DOMAIN"],
-            # Typically you won't need to change the base url
         )
 
         # ... Use the client
