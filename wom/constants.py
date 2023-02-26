@@ -25,6 +25,8 @@ from typing import Final
 
 import wom
 
+__all__ = ()
+
 WOM_BASE_URL: Final[str] = "https://api.wiseoldman.net/v2"
 USER_AGENT_BASE: Final[str] = f"(wom.py v{wom.__version__}) -"
 DEFAULT_USER_AGENT: Final[str] = f"{USER_AGENT_BASE} No contact info provided"

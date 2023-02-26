@@ -144,3 +144,9 @@ def licensing(session: nox.Session) -> None:
             "\nThe following files are missing license attribution:\n"
             + "\n".join(f" - {m}" for m in missing)
         )
+
+
+@nox.session(reuse_venv=True)
+def alls(session: nox.Session) -> None:
+    session.install(".")
+    session.run("python", "scripts/alls.py")
