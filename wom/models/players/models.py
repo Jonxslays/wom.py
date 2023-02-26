@@ -49,7 +49,6 @@ __all__ = (
     "PlayerGains",
     "Player",
     "PlayerDetail",
-    "StatisticsSnapshot",
     "SkillGains",
     "Skill",
     "SnapshotData",
@@ -167,26 +166,6 @@ class Snapshot(BaseModel):
 
     created_at: datetime
     """The date the snapshot was created."""
-
-
-@attrs.define(init=False)
-class StatisticsSnapshot(BaseModel):
-    """Represents a player statistics snapshot."""
-
-    id: int
-    """The unique ID of the snapshot."""
-
-    player_id: int
-    """The unique ID of the player for this snapshot."""
-
-    imported_at: datetime | None
-    """The date the snapshot was imported, if it was."""
-
-    data: SnapshotData
-    """The [`SnapshotData`][wom.SnapshotData] for the snapshot."""
-
-    created_at: datetime | None
-    """The optional date the statistics snapshot was created."""
 
 
 @attrs.define(init=False)

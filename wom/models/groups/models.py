@@ -25,12 +25,17 @@ from datetime import datetime
 
 import attrs
 
+from wom import enums
+
 from ..base import BaseModel
 from ..players import Player
-from ..players import StatisticsSnapshot
+from ..players import Snapshot
 from .enums import GroupRole
 
 __all__ = (
+    "ActivityLeader",
+    "BossLeader",
+    "ComputedMetricLeader",
     "GroupDetail",
     "GroupHiscoresActivityItem",
     "GroupHiscoresBossItem",
@@ -42,7 +47,9 @@ __all__ = (
     "Group",
     "GroupStatistics",
     "Membership",
+    "MetricLeaders",
     "PlayerMembership",
+    "SkillLeader",
 )
 
 
@@ -234,6 +241,100 @@ class GroupHiscoresComputedMetricItem(BaseModel):
 
 
 @attrs.define(init=False)
+class SkillLeader(BaseModel):
+    """Represents a leader in a particular skill."""
+
+    metric: enums.Skills
+    """The [`Skills`][wom.Skills] being measured."""
+
+    rank: int
+    """The players rank in the skill."""
+
+    level: int
+    """The players level in the skill."""
+
+    experience: int
+    """The players experience in the skill."""
+
+    player: Player
+    """The player leading in this metric."""
+
+
+@attrs.define(init=False)
+class BossLeader(BaseModel):
+    """Represents a leader in a particular boss."""
+
+    metric: enums.Bosses
+    """The [`Bosses`][wom.Bosses] being measured."""
+
+    rank: int
+    """The players rank in killing the boss."""
+
+    kills: int
+    """The number of kills the player has."""
+
+    player: Player
+    """The player leading in this metric."""
+
+
+@attrs.define(init=False)
+class ActivityLeader(BaseModel):
+    """Represents a leader in a particular activity."""
+
+    metric: enums.Activities
+    """The [`Activities`][wom.Activities] being measured."""
+
+    rank: int
+    """The players rank in the activity."""
+
+    score: int
+    """The players score in the activity."""
+
+    player: Player
+    """The player leading in this metric."""
+
+
+@attrs.define(init=False)
+class ComputedMetricLeader(BaseModel):
+    """Represents a leader in a particular computed metric."""
+
+    metric: enums.ComputedMetrics
+    """The [`ComputedMetrics`][wom.ComputedMetrics] being
+    measured.
+    """
+
+    rank: int
+    """The players rank in the computed metric."""
+
+    value: int
+    """The value of the computed metric."""
+
+    player: Player
+    """The player leading in this metric."""
+
+
+@attrs.define(init=False)
+class MetricLeaders(BaseModel):
+    """The leaders for each metric in a group."""
+
+    skills: list[SkillLeader]
+    """A list of [`SkillLeader`][wom.SkillLeader]'s for each skill."""
+
+    bosses: list[BossLeader]
+    """A list of all [`BossLeader`][wom.BossLeader]'s for each boss."""
+
+    activities: list[ActivityLeader]
+    """A list of all [`ActivityLeader`][wom.ActivityLeader]'s for each
+    activity.
+    """
+
+    computed: list[ComputedMetricLeader]
+    """A list of all [`ComputedMetricLeader`]
+    [wom.ComputedMetricLeader]'s for each computed metric.
+    """
+
+
+@attrs.define(init=False)
 class GroupStatistics(BaseModel):
     """Represents accumulated group statistics."""
 
@@ -246,7 +347,10 @@ class GroupStatistics(BaseModel):
     maxed_200ms_count: int
     """The number of maxed 200M xp players in the group."""
 
-    average_stats: StatisticsSnapshot
-    """The average stat [`StatisticsSnapshot`]
-    [wom.StatisticsSnapshot].
+    average_stats: Snapshot
+    """The average group statistics in a [`Snapshot`][wom.Snapshot]."""
+
+    metric_leaders: MetricLeaders
+    """The [`MetricLeader`][wom.MetricLeaders]'s in this group for each
+    metric.
     """
