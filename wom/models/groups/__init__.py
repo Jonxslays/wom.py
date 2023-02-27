@@ -24,6 +24,9 @@
 from __future__ import annotations
 
 __all__ = (
+    "ActivityLeader",
+    "BossLeader",
+    "ComputedMetricLeader",
     "GroupDetail",
     "GroupHiscoresActivityItem",
     "GroupHiscoresBossItem",
@@ -36,7 +39,9 @@ __all__ = (
     "GroupRole",
     "GroupStatistics",
     "Membership",
+    "MetricLeaders",
     "PlayerMembership",
+    "SkillLeader",
 )
 
 from .enums import *

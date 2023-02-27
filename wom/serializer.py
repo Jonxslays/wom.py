@@ -172,22 +172,6 @@ class Serializer:
         self._set_attrs_cased(snapshot, data, "id", "player_id")
         return snapshot
 
-    def deserialize_statistics_snapshot(self, data: dict[str, t.Any]) -> models.StatisticsSnapshot:
-        """Deserializes the data into a statistics snapshot model.
-
-        Args:
-            data: The JSON payload.
-
-        Returns:
-            The requested model.
-        """
-        snapshot = models.StatisticsSnapshot()
-        snapshot.created_at = self._dt_from_iso_maybe(data["createdAt"])
-        snapshot.imported_at = self._dt_from_iso_maybe(data.get("importedAt"))
-        snapshot.data = self.deserialize_snapshot_data(data["data"])
-        self._set_attrs_cased(snapshot, data, "id", "player_id")
-        return snapshot
-
     def gather(
         self, serializer: t.Callable[[dict[str, t.Any]], T], data: list[dict[str, t.Any]]
     ) -> list[T]:
@@ -734,7 +718,8 @@ class Serializer:
         """
         statistics = models.GroupStatistics()
         statistics.maxed_200ms_count = data["maxed200msCount"]
-        statistics.average_stats = self.deserialize_statistics_snapshot(data["averageStats"])
+        statistics.average_stats = self.deserialize_snapshot(data["averageStats"])
+        statistics.metric_leaders = self.deserialize_metric_leaders(data["metricLeaders"])
         self._set_attrs_cased(statistics, data, "maxed_total_count", "maxed_combat_count")
         return statistics
 
@@ -952,3 +937,82 @@ class Serializer:
         )
 
         return model
+
+    def deserialize_skill_leader(self, data: dict[str, t.Any]) -> models.SkillLeader:
+        """Deserializes the data into a skill leader model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        leader = models.SkillLeader()
+        leader.metric = enums.Skills.from_str(data["metric"])
+        leader.player = self.deserialize_player(data["player"])
+        self._set_attrs(leader, data, "experience", "rank", "level")
+        return leader
+
+    def deserialize_boss_leader(self, data: dict[str, t.Any]) -> models.BossLeader:
+        """Deserializes the data into a boss leader model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        leader = models.BossLeader()
+        leader.metric = enums.Bosses.from_str(data["metric"])
+        leader.player = self.deserialize_player(data["player"])
+        self._set_attrs(leader, data, "kills", "rank")
+        return leader
+
+    def deserialize_activity_leader(self, data: dict[str, t.Any]) -> models.ActivityLeader:
+        """Deserializes the data into an activity leader model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        leader = models.ActivityLeader()
+        leader.metric = enums.Activities.from_str(data["metric"])
+        leader.player = self.deserialize_player(data["player"])
+        self._set_attrs(leader, data, "score", "rank")
+        return leader
+
+    def deserialize_computed_leader(self, data: dict[str, t.Any]) -> models.ComputedMetricLeader:
+        """Deserializes the data into a computed metric leader model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        leader = models.ComputedMetricLeader()
+        leader.metric = enums.ComputedMetrics.from_str(data["metric"])
+        leader.player = self.deserialize_player(data["player"])
+        self._set_attrs(leader, data, "value", "rank")
+        return leader
+
+    def deserialize_metric_leaders(self, data: dict[str, t.Any]) -> models.MetricLeaders:
+        """Deserializes the data into a metric leaders model model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        leaders = models.MetricLeaders()
+        leaders.skills = self.gather(self.deserialize_skill_leader, data["skills"].values())
+        leaders.bosses = self.gather(self.deserialize_boss_leader, data["bosses"].values())
+        leaders.computed = self.gather(self.deserialize_computed_leader, data["computed"].values())
+        leaders.activities = self.gather(
+            self.deserialize_activity_leader, data["activities"].values()
+        )
+
+        return leaders
