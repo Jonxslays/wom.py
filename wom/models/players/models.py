@@ -127,24 +127,24 @@ class ComputedMetric(BaseModel):
 class SnapshotData(BaseModel):
     """The data associated with this snapshot."""
 
-    skills: list[Skill]
-    """A list of all [`Skills`][wom.Skill] stored in this
-    snapshot.
+    skills: dict[enums.Skills, Skill]
+    """A mapping of [`Skills`][wom.Skills] keys to [`Skill`][wom.Skill] values
+    from this snapshot.
     """
 
-    bosses: list[Boss]
-    """A list of all [`Bosses`][wom.Boss] stored in this
-    snapshot.
+    bosses: dict[enums.Bosses, Boss]
+    """A mapping of [`Bosses`][wom.Bosses] keys to [`Boss`][wom.Boss] values
+    from this snapshot.
     """
 
-    activities: list[Activity]
-    """A list of all [`Activities`][wom.Activity] stored in this
-    snapshot.
+    activities: dict[enums.Activities, Activity]
+    """A mapping of [`Activities`][wom.Activities] keys to [`Activity`]
+    [wom.Activity] values from this snapshot.
     """
 
-    computed: list[ComputedMetric]
-    """A list of all [`ComputedMetrics`][wom.ComputedMetric] stored in
-    this snapshot.
+    computed: dict[enums.ComputedMetrics, ComputedMetric]
+    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
+    [`ComputedMetric`][wom.ComputedMetric] values from this snapshot.
     """
 
 
@@ -429,17 +429,25 @@ class ComputedGains(BaseModel):
 class PlayerGainsData(BaseModel):
     """Contains all the player gains data."""
 
-    skills: list[SkillGains]
-    """A list of all [`SkillGains`][wom.SkillGains]."""
+    skills: dict[enums.Skills, SkillGains]
+    """A mapping of [`Skills`][wom.Skills] keys to [`SkillGains`]
+    [wom.SkillGains] values.
+    """
 
-    bosses: list[BossGains]
-    """A list of all [`BossGains`][wom.BossGains]."""
+    bosses: dict[enums.Bosses, BossGains]
+    """A mapping of [`Bosses`][wom.Bosses] keys to [`BossGains`]
+    [wom.BossGains] values.
+    """
 
-    activities: list[ActivityGains]
-    """A list of all [`ActivityGains`][wom.ActivityGains]."""
+    activities: dict[enums.Activities, ActivityGains]
+    """A mapping of [`Activities`][wom.Activities] keys to [`ActivityGains`]
+    [wom.ActivityGains] values.
+    """
 
-    computed: list[ComputedGains]
-    """A list of all [`ComputedGains`][wom.ComputedGains]."""
+    computed: dict[enums.ComputedMetrics, ComputedGains]
+    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
+    [`ComputedGains`] [wom.ComputedGains] values.
+    """
 
 
 @attrs.define(init=False)

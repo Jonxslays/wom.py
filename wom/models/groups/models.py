@@ -317,20 +317,24 @@ class ComputedMetricLeader(BaseModel):
 class MetricLeaders(BaseModel):
     """The leaders for each metric in a group."""
 
-    skills: list[SkillLeader]
-    """A list of [`SkillLeader`][wom.SkillLeader]'s for each skill."""
-
-    bosses: list[BossLeader]
-    """A list of all [`BossLeader`][wom.BossLeader]'s for each boss."""
-
-    activities: list[ActivityLeader]
-    """A list of all [`ActivityLeader`][wom.ActivityLeader]'s for each
-    activity.
+    skills: dict[enums.Skills, SkillLeader]
+    """A mapping of [`Skills`][wom.Skills] keys to [`SkillLeader`]
+    [wom.SkillLeader] values.
     """
 
-    computed: list[ComputedMetricLeader]
-    """A list of all [`ComputedMetricLeader`]
-    [wom.ComputedMetricLeader]'s for each computed metric.
+    bosses: dict[enums.Bosses, BossLeader]
+    """A mapping of [`Bosses`][wom.Bosses] keys to [`BossLeader`]
+    [wom.BossLeader] values.
+    """
+
+    activities: dict[enums.Activities, ActivityLeader]
+    """A mapping of [`Activities`][wom.Activities] keys to [`ActivityLeader`]
+    [wom.ActivityLeader] values.
+    """
+
+    computed: dict[enums.ComputedMetrics, ComputedMetricLeader]
+    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
+    [`ComputedMetricLeader`][wom.ComputedMetricLeader] values.
     """
 
 
@@ -351,6 +355,6 @@ class GroupStatistics(BaseModel):
     """The average group statistics in a [`Snapshot`][wom.Snapshot]."""
 
     metric_leaders: MetricLeaders
-    """The [`MetricLeader`][wom.MetricLeaders]'s in this group for each
+    """The [`MetricLeaders`][wom.MetricLeaders] in this group for each
     metric.
     """

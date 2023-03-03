@@ -34,8 +34,23 @@ from wom import models
 __all__ = ("Serializer",)
 
 T = t.TypeVar("T")
-TransformT = t.Callable[[t.Any], t.Any] | None
+TransformT = t.Callable[..., t.Any] | None
 AchievementT = t.TypeVar("AchievementT", models.Achievement, models.AchievementProgress)
+HasMetricsT = t.TypeVar(
+    "HasMetricsT",
+    models.Skill,
+    models.Boss,
+    models.Activity,
+    models.ComputedMetric,
+    models.SkillLeader,
+    models.BossLeader,
+    models.ActivityLeader,
+    models.ComputedMetricLeader,
+    models.SkillGains,
+    models.BossGains,
+    models.ActivityGains,
+    models.ComputedGains,
+)
 
 
 class Serializer:
@@ -52,6 +67,11 @@ class Serializer:
     def _to_camel_case(self, attr: str) -> str:
         first, *rest = attr.split("_")
         return "".join((first.lower(), *map(str.title, rest)))
+
+    def __map(
+        self, serializer: t.Callable[[dict[str, t.Any]], HasMetricsT], data: list[dict[str, t.Any]]
+    ) -> dict[t.Any, HasMetricsT]:
+        return {x.metric: x for x in (serializer(y) for y in data)}
 
     def _set_attrs(
         self,
@@ -172,21 +192,6 @@ class Serializer:
         self._set_attrs_cased(snapshot, data, "id", "player_id")
         return snapshot
 
-    def gather(
-        self, serializer: t.Callable[[dict[str, t.Any]], T], data: list[dict[str, t.Any]]
-    ) -> list[T]:
-        """Calls the serializer on each mapping passed in.
-
-        Args:
-            serializer: The deserialization function to use.
-
-            data: The collection of items to deserialize.
-
-        Returns:
-            A list of the deserialized items.
-        """
-        return [serializer(item) for item in data]
-
     def deserialize_snapshot_data(self, data: dict[str, t.Any]) -> models.SnapshotData:
         """Deserializes the data into a snapshot data model.
 
@@ -196,18 +201,12 @@ class Serializer:
         Returns:
             The requested model.
         """
-        snapshot_data = models.SnapshotData()
-        snapshot_data.skills = self.gather(self.deserialize_skill, data["skills"].values())
-        snapshot_data.bosses = self.gather(self.deserialize_boss, data["bosses"].values())
-        snapshot_data.activities = self.gather(
-            self.deserialize_activity, data["activities"].values()
-        )
-
-        snapshot_data.computed = self.gather(
-            self.deserialize_computed_metric, data["computed"].values()
-        )
-
-        return snapshot_data
+        model = models.SnapshotData()
+        model.skills = self.__map(self.deserialize_skill, data["skills"].values())
+        model.bosses = self.__map(self.deserialize_boss, data["bosses"].values())
+        model.activities = self.__map(self.deserialize_activity, data["activities"].values())
+        model.computed = self.__map(self.deserialize_computed_metric, data["computed"].values())
+        return model
 
     def deserialize_skill(self, data: dict[str, t.Any]) -> models.Skill:
         """Deserializes the data into a skill model.
@@ -409,13 +408,10 @@ class Serializer:
             The requested model.
         """
         gains = models.PlayerGainsData()
-        gains.skills = self.gather(self.deserialize_skill_gains, data["skills"].values())
-        gains.bosses = self.gather(self.deserialize_boss_gains, data["bosses"].values())
-        gains.computed = self.gather(self.deserialize_computed_gains, data["computed"].values())
-        gains.activities = self.gather(
-            self.deserialize_activity_gains, data["activities"].values()
-        )
-
+        gains.skills = self.__map(self.deserialize_skill_gains, data["skills"].values())
+        gains.bosses = self.__map(self.deserialize_boss_gains, data["bosses"].values())
+        gains.computed = self.__map(self.deserialize_computed_gains, data["computed"].values())
+        gains.activities = self.__map(self.deserialize_activity_gains, data["activities"].values())
         return gains
 
     def deserialize_player_gains(self, data: dict[str, t.Any]) -> models.PlayerGains:
@@ -626,7 +622,7 @@ class Serializer:
         details = models.GroupDetail()
         details.verification_code = None
         details.group = self.deserialize_group(data)
-        details.memberships = self.gather(self.deserialize_group_membership, data["memberships"])
+        details.memberships = [self.deserialize_group_membership(m) for m in data["memberships"]]
         return details
 
     def deserialize_group_hiscores_activity_item(
@@ -858,9 +854,9 @@ class Serializer:
         """
         details = models.CompetitionDetail()
         details.competition = self.deserialize_competition(data)
-        details.participations = self.gather(
-            self.deserialize_competition_participation_detail, data["participations"]
-        )
+        details.participations = [
+            self.deserialize_competition_participation_detail(d) for d in data["participations"]
+        ]
 
         return details
 
@@ -911,9 +907,9 @@ class Serializer:
         """
         progress = models.Top5ProgressResult()
         progress.player = self.deserialize_player(data["player"])
-        progress.history = self.gather(
-            self.deserialize_competition_history_data_point, data["history"]
-        )
+        progress.history = [
+            self.deserialize_competition_history_data_point(h) for h in data["history"]
+        ]
 
         return progress
 
@@ -932,9 +928,9 @@ class Serializer:
         model = models.CompetitionWithParticipations()
         model.verification_code = data.get("verificationCode")
         model.competition = self.deserialize_competition(data)
-        model.participations = self.gather(
-            self.deserialize_competition_participation, data["participations"]
-        )
+        model.participations = [
+            self.deserialize_competition_participation(p) for p in data["participations"]
+        ]
 
         return model
 
@@ -1008,10 +1004,10 @@ class Serializer:
             The requested model.
         """
         leaders = models.MetricLeaders()
-        leaders.skills = self.gather(self.deserialize_skill_leader, data["skills"].values())
-        leaders.bosses = self.gather(self.deserialize_boss_leader, data["bosses"].values())
-        leaders.computed = self.gather(self.deserialize_computed_leader, data["computed"].values())
-        leaders.activities = self.gather(
+        leaders.skills = self.__map(self.deserialize_skill_leader, data["skills"].values())
+        leaders.bosses = self.__map(self.deserialize_boss_leader, data["bosses"].values())
+        leaders.computed = self.__map(self.deserialize_computed_leader, data["computed"].values())
+        leaders.activities = self.__map(
             self.deserialize_activity_leader, data["activities"].values()
         )
 
