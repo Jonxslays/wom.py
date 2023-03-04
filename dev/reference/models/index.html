@@ -11484,11 +11484,7 @@ data to some endpoints.</p>
 
         <details class="quote">
           <summary>Source code in <code>wom/models/groups/models.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-337">337</a></span>
-<span class="normal"><a href="#__codelineno-0-338">338</a></span>
-<span class="normal"><a href="#__codelineno-0-339">339</a></span>
-<span class="normal"><a href="#__codelineno-0-340">340</a></span>
-<span class="normal"><a href="#__codelineno-0-341">341</a></span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-341">341</a></span>
 <span class="normal"><a href="#__codelineno-0-342">342</a></span>
 <span class="normal"><a href="#__codelineno-0-343">343</a></span>
 <span class="normal"><a href="#__codelineno-0-344">344</a></span>
@@ -11503,26 +11499,30 @@ data to some endpoints.</p>
 <span class="normal"><a href="#__codelineno-0-353">353</a></span>
 <span class="normal"><a href="#__codelineno-0-354">354</a></span>
 <span class="normal"><a href="#__codelineno-0-355">355</a></span>
-<span class="normal"><a href="#__codelineno-0-356">356</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-337" name="__codelineno-0-337"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-338" name="__codelineno-0-338"></a><span class="k">class</span> <span class="nc">GroupStatistics</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<a id="__codelineno-0-339" name="__codelineno-0-339"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents accumulated group statistics.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-340" name="__codelineno-0-340"></a>
-<a id="__codelineno-0-341" name="__codelineno-0-341"></a>    <span class="n">maxed_combat_count</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-342" name="__codelineno-0-342"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of maxed combat players in the group.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-343" name="__codelineno-0-343"></a>
-<a id="__codelineno-0-344" name="__codelineno-0-344"></a>    <span class="n">maxed_total_count</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-345" name="__codelineno-0-345"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of maxed total level players in the group.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-346" name="__codelineno-0-346"></a>
-<a id="__codelineno-0-347" name="__codelineno-0-347"></a>    <span class="n">maxed_200ms_count</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-348" name="__codelineno-0-348"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of maxed 200M xp players in the group.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-349" name="__codelineno-0-349"></a>
-<a id="__codelineno-0-350" name="__codelineno-0-350"></a>    <span class="n">average_stats</span><span class="p">:</span> <span class="n">Snapshot</span>
-<a id="__codelineno-0-351" name="__codelineno-0-351"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The average group statistics in a [`Snapshot`][wom.Snapshot].&quot;&quot;&quot;</span>
-<a id="__codelineno-0-352" name="__codelineno-0-352"></a>
-<a id="__codelineno-0-353" name="__codelineno-0-353"></a>    <span class="n">metric_leaders</span><span class="p">:</span> <span class="n">MetricLeaders</span>
-<a id="__codelineno-0-354" name="__codelineno-0-354"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`MetricLeader`][wom.MetricLeaders]&#39;s in this group for each</span>
-<a id="__codelineno-0-355" name="__codelineno-0-355"></a><span class="sd">    metric.</span>
-<a id="__codelineno-0-356" name="__codelineno-0-356"></a><span class="sd">    &quot;&quot;&quot;</span>
+<span class="normal"><a href="#__codelineno-0-356">356</a></span>
+<span class="normal"><a href="#__codelineno-0-357">357</a></span>
+<span class="normal"><a href="#__codelineno-0-358">358</a></span>
+<span class="normal"><a href="#__codelineno-0-359">359</a></span>
+<span class="normal"><a href="#__codelineno-0-360">360</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-341" name="__codelineno-0-341"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-342" name="__codelineno-0-342"></a><span class="k">class</span> <span class="nc">GroupStatistics</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-343" name="__codelineno-0-343"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents accumulated group statistics.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-344" name="__codelineno-0-344"></a>
+<a id="__codelineno-0-345" name="__codelineno-0-345"></a>    <span class="n">maxed_combat_count</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-346" name="__codelineno-0-346"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of maxed combat players in the group.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-347" name="__codelineno-0-347"></a>
+<a id="__codelineno-0-348" name="__codelineno-0-348"></a>    <span class="n">maxed_total_count</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-349" name="__codelineno-0-349"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of maxed total level players in the group.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-350" name="__codelineno-0-350"></a>
+<a id="__codelineno-0-351" name="__codelineno-0-351"></a>    <span class="n">maxed_200ms_count</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-352" name="__codelineno-0-352"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of maxed 200M xp players in the group.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-353" name="__codelineno-0-353"></a>
+<a id="__codelineno-0-354" name="__codelineno-0-354"></a>    <span class="n">average_stats</span><span class="p">:</span> <span class="n">Snapshot</span>
+<a id="__codelineno-0-355" name="__codelineno-0-355"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The average group statistics in a [`Snapshot`][wom.Snapshot].&quot;&quot;&quot;</span>
+<a id="__codelineno-0-356" name="__codelineno-0-356"></a>
+<a id="__codelineno-0-357" name="__codelineno-0-357"></a>    <span class="n">metric_leaders</span><span class="p">:</span> <span class="n">MetricLeaders</span>
+<a id="__codelineno-0-358" name="__codelineno-0-358"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`MetricLeaders`][wom.MetricLeaders] in this group for each</span>
+<a id="__codelineno-0-359" name="__codelineno-0-359"></a><span class="sd">    metric.</span>
+<a id="__codelineno-0-360" name="__codelineno-0-360"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -11646,7 +11646,7 @@ data to some endpoints.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The <a class="autorefs autorefs-internal" href="#wom.models.MetricLeaders"><code>MetricLeader</code></a>'s in this group for each
+      <p>The <a class="autorefs autorefs-internal" href="#wom.models.MetricLeaders"><code>MetricLeaders</code></a> in this group for each
 metric.</p>
   </div>
 
@@ -12109,25 +12109,33 @@ metric.</p>
 <span class="normal"><a href="#__codelineno-0-331">331</a></span>
 <span class="normal"><a href="#__codelineno-0-332">332</a></span>
 <span class="normal"><a href="#__codelineno-0-333">333</a></span>
-<span class="normal"><a href="#__codelineno-0-334">334</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-316" name="__codelineno-0-316"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-334">334</a></span>
+<span class="normal"><a href="#__codelineno-0-335">335</a></span>
+<span class="normal"><a href="#__codelineno-0-336">336</a></span>
+<span class="normal"><a href="#__codelineno-0-337">337</a></span>
+<span class="normal"><a href="#__codelineno-0-338">338</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-316" name="__codelineno-0-316"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a id="__codelineno-0-317" name="__codelineno-0-317"></a><span class="k">class</span> <span class="nc">MetricLeaders</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-318" name="__codelineno-0-318"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The leaders for each metric in a group.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-319" name="__codelineno-0-319"></a>
-<a id="__codelineno-0-320" name="__codelineno-0-320"></a>    <span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillLeader</span><span class="p">]</span>
-<a id="__codelineno-0-321" name="__codelineno-0-321"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of [`SkillLeader`][wom.SkillLeader]&#39;s for each skill.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-322" name="__codelineno-0-322"></a>
-<a id="__codelineno-0-323" name="__codelineno-0-323"></a>    <span class="n">bosses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BossLeader</span><span class="p">]</span>
-<a id="__codelineno-0-324" name="__codelineno-0-324"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`BossLeader`][wom.BossLeader]&#39;s for each boss.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-325" name="__codelineno-0-325"></a>
-<a id="__codelineno-0-326" name="__codelineno-0-326"></a>    <span class="n">activities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ActivityLeader</span><span class="p">]</span>
-<a id="__codelineno-0-327" name="__codelineno-0-327"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`ActivityLeader`][wom.ActivityLeader]&#39;s for each</span>
-<a id="__codelineno-0-328" name="__codelineno-0-328"></a><span class="sd">    activity.</span>
-<a id="__codelineno-0-329" name="__codelineno-0-329"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-330" name="__codelineno-0-330"></a>
-<a id="__codelineno-0-331" name="__codelineno-0-331"></a>    <span class="n">computed</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ComputedMetricLeader</span><span class="p">]</span>
-<a id="__codelineno-0-332" name="__codelineno-0-332"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`ComputedMetricLeader`]</span>
-<a id="__codelineno-0-333" name="__codelineno-0-333"></a><span class="sd">    [wom.ComputedMetricLeader]&#39;s for each computed metric.</span>
-<a id="__codelineno-0-334" name="__codelineno-0-334"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-320" name="__codelineno-0-320"></a>    <span class="n">skills</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Skills</span><span class="p">,</span> <span class="n">SkillLeader</span><span class="p">]</span>
+<a id="__codelineno-0-321" name="__codelineno-0-321"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Skills`][wom.Skills] keys to [`SkillLeader`]</span>
+<a id="__codelineno-0-322" name="__codelineno-0-322"></a><span class="sd">    [wom.SkillLeader] values.</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-324" name="__codelineno-0-324"></a>
+<a id="__codelineno-0-325" name="__codelineno-0-325"></a>    <span class="n">bosses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Bosses</span><span class="p">,</span> <span class="n">BossLeader</span><span class="p">]</span>
+<a id="__codelineno-0-326" name="__codelineno-0-326"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Bosses`][wom.Bosses] keys to [`BossLeader`]</span>
+<a id="__codelineno-0-327" name="__codelineno-0-327"></a><span class="sd">    [wom.BossLeader] values.</span>
+<a id="__codelineno-0-328" name="__codelineno-0-328"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-329" name="__codelineno-0-329"></a>
+<a id="__codelineno-0-330" name="__codelineno-0-330"></a>    <span class="n">activities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Activities</span><span class="p">,</span> <span class="n">ActivityLeader</span><span class="p">]</span>
+<a id="__codelineno-0-331" name="__codelineno-0-331"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Activities`][wom.Activities] keys to [`ActivityLeader`]</span>
+<a id="__codelineno-0-332" name="__codelineno-0-332"></a><span class="sd">    [wom.ActivityLeader] values.</span>
+<a id="__codelineno-0-333" name="__codelineno-0-333"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-334" name="__codelineno-0-334"></a>
+<a id="__codelineno-0-335" name="__codelineno-0-335"></a>    <span class="n">computed</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span> <span class="n">ComputedMetricLeader</span><span class="p">]</span>
+<a id="__codelineno-0-336" name="__codelineno-0-336"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to</span>
+<a id="__codelineno-0-337" name="__codelineno-0-337"></a><span class="sd">    [`ComputedMetricLeader`][wom.ComputedMetricLeader] values.</span>
+<a id="__codelineno-0-338" name="__codelineno-0-338"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -12154,13 +12162,12 @@ metric.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">activities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ActivityLeader</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">activities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Activities</span><span class="p">,</span> <span class="n">ActivityLeader</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.ActivityLeader"><code>ActivityLeader</code></a>'s for each
-activity.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Activities"><code>Activities</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.ActivityLeader"><code>ActivityLeader</code></a> values.</p>
   </div>
 
 </div>
@@ -12178,12 +12185,12 @@ activity.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">bosses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BossLeader</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">bosses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Bosses</span><span class="p">,</span> <span class="n">BossLeader</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.BossLeader"><code>BossLeader</code></a>'s for each boss.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Bosses"><code>Bosses</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.BossLeader"><code>BossLeader</code></a> values.</p>
   </div>
 
 </div>
@@ -12201,12 +12208,13 @@ activity.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">computed</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ComputedMetricLeader</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">computed</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span> <span class="n">ComputedMetricLeader</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.ComputedMetricLeader"><code>ComputedMetricLeader</code></a>'s for each computed metric.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.ComputedMetrics"><code>ComputedMetrics</code></a> keys to
+<a class="autorefs autorefs-internal" href="#wom.models.ComputedMetricLeader"><code>ComputedMetricLeader</code></a> values.</p>
   </div>
 
 </div>
@@ -12224,12 +12232,12 @@ activity.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillLeader</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">skills</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Skills</span><span class="p">,</span> <span class="n">SkillLeader</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of <a class="autorefs autorefs-internal" href="#wom.models.SkillLeader"><code>SkillLeader</code></a>'s for each skill.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Skills"><code>Skills</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.SkillLeader"><code>SkillLeader</code></a> values.</p>
   </div>
 
 </div>
@@ -12286,28 +12294,38 @@ activity.</p>
 <span class="normal"><a href="#__codelineno-0-53">53</a></span>
 <span class="normal"><a href="#__codelineno-0-54">54</a></span>
 <span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="k">class</span> <span class="nc">NameChange</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a player name change.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-38" name="__codelineno-0-38"></a>
 <a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
 <a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The unique ID of this name change.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="n">player_id</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player ID associated with the name change.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="n">old_name</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The old username of the player.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The new username of the player.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="n">status</span><span class="p">:</span> <span class="n">NameChangeStatus</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`status`][wom.NameChangeStatus] of the name</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    change.</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="n">resolved_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the name change was approved or denied.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="n">updated_at</span><span class="p">:</span> <span class="n">datetime</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the name change was updated.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the name change was created.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="n">player_id</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player ID associated with the name change.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="n">old_name</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The old username of the player.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>    <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The new username of the player.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="n">status</span><span class="p">:</span> <span class="n">NameChangeStatus</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`status`][wom.NameChangeStatus] of the name change.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="n">resolved_at</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the name change was approved or denied.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="n">updated_at</span><span class="p">:</span> <span class="n">datetime</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the name change was updated.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the name change was created.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -12477,8 +12495,7 @@ activity.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The <a class="autorefs autorefs-internal" href="#wom.models.NameChangeStatus"><code>status</code></a> of the name
-change.</p>
+      <p>The <a class="autorefs autorefs-internal" href="#wom.models.NameChangeStatus"><code>status</code></a> of the name change.</p>
   </div>
 
 </div>
@@ -12537,12 +12554,7 @@ change.</p>
 
         <details class="quote">
           <summary>Source code in <code>wom/models/names/models.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
-<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
-<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
-<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
-<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
-<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
 <span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
 <span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
 <span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
@@ -12580,50 +12592,55 @@ change.</p>
 <span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
 <span class="normal"><a href="#__codelineno-0-100">100</a></span>
 <span class="normal"><a href="#__codelineno-0-101">101</a></span>
-<span class="normal"><a href="#__codelineno-0-102">102</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="k">class</span> <span class="nc">NameChangeData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata associated with a name change.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="n">is_new_on_hiscores</span><span class="p">:</span> <span class="nb">bool</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not he new username is on the hiscores.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="n">is_old_on_hiscores</span><span class="p">:</span> <span class="nb">bool</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not he old username is on the hiscores.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="n">is_new_tracked</span><span class="p">:</span> <span class="nb">bool</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not he new username is tracked on WOM.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="n">has_negative_gains</span><span class="p">:</span> <span class="nb">bool</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not name change has negative XP gains.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="n">time_diff</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Milliseconds between old names last snapshot and new names</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    first snapshot or the name change submission date if not tracked.</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">    &quot;&quot;&quot;</span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="k">class</span> <span class="nc">NameChangeData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata associated with a name change.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="n">is_new_on_hiscores</span><span class="p">:</span> <span class="nb">bool</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not he new username is on the hiscores.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="n">is_old_on_hiscores</span><span class="p">:</span> <span class="nb">bool</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not he old username is on the hiscores.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="n">is_new_tracked</span><span class="p">:</span> <span class="nb">bool</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not he new username is tracked on WOM.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="n">has_negative_gains</span><span class="p">:</span> <span class="nb">bool</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not name change has negative XP gains.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-79" name="__codelineno-0-79"></a>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a>    <span class="n">hours_diff</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Hours between old names last snapshot and new names first</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">    snapshot or the name change submission date if not tracked.</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>    <span class="n">time_diff</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Milliseconds between old names last snapshot and new names</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">    first snapshot or the name change submission date if not tracked.</span>
 <a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-84" name="__codelineno-0-84"></a>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="n">ehp_diff</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The difference in efficient hours played between the old and new</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">    usernames.</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="n">hours_diff</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Hours between old names last snapshot and new names first</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">    snapshot or the name change submission date if not tracked.</span>
 <a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-89" name="__codelineno-0-89"></a>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="n">ehb_diff</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The difference in efficient hours bossed between the old and new</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="n">ehp_diff</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The difference in efficient hours played between the old and new</span>
 <a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="sd">    usernames.</span>
 <a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-94" name="__codelineno-0-94"></a>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="n">old_stats</span><span class="p">:</span> <span class="n">Snapshot</span>
-<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The latest [`Snapshot`][wom.Snapshot] for the old name.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>    <span class="n">new_stats</span><span class="p">:</span> <span class="n">Snapshot</span> <span class="o">|</span> <span class="kc">None</span>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The new name&#39;s first [`Snapshot`][wom.Snapshot], current hiscores</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">    stats if untracked or `None`` if untracked and not present on</span>
-<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">    hiscores.</span>
-<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="n">ehb_diff</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The difference in efficient hours bossed between the old and new</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">    usernames.</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="n">old_stats</span><span class="p">:</span> <span class="n">Snapshot</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The latest [`Snapshot`][wom.Snapshot] for the old name.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="n">new_stats</span><span class="p">:</span> <span class="n">Snapshot</span> <span class="o">|</span> <span class="kc">None</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The new name&#39;s first [`Snapshot`][wom.Snapshot], current hiscores</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">    stats if untracked or `None`` if untracked and not present on</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">    hiscores.</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -12904,12 +12921,7 @@ first snapshot or the name change submission date if not tracked.</p>
 
         <details class="quote">
           <summary>Source code in <code>wom/models/names/models.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-105">105</a></span>
-<span class="normal"><a href="#__codelineno-0-106">106</a></span>
-<span class="normal"><a href="#__codelineno-0-107">107</a></span>
-<span class="normal"><a href="#__codelineno-0-108">108</a></span>
-<span class="normal"><a href="#__codelineno-0-109">109</a></span>
-<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-110">110</a></span>
 <span class="normal"><a href="#__codelineno-0-111">111</a></span>
 <span class="normal"><a href="#__codelineno-0-112">112</a></span>
 <span class="normal"><a href="#__codelineno-0-113">113</a></span>
@@ -12917,20 +12929,25 @@ first snapshot or the name change submission date if not tracked.</p>
 <span class="normal"><a href="#__codelineno-0-115">115</a></span>
 <span class="normal"><a href="#__codelineno-0-116">116</a></span>
 <span class="normal"><a href="#__codelineno-0-117">117</a></span>
-<span class="normal"><a href="#__codelineno-0-118">118</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="k">class</span> <span class="nc">NameChangeDetail</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Details regarding a name change.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="n">name_change</span><span class="p">:</span> <span class="n">NameChange</span>
-<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`NameChange`][wom.NameChange] itself.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a>    <span class="n">data</span><span class="p">:</span> <span class="n">NameChangeData</span> <span class="o">|</span> <span class="kc">None</span>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`NameChangeData`][wom.NameChangeData] for this name change.</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="sd">    !!! note</span>
+<span class="normal"><a href="#__codelineno-0-118">118</a></span>
+<span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span>
+<span class="normal"><a href="#__codelineno-0-122">122</a></span>
+<span class="normal"><a href="#__codelineno-0-123">123</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="k">class</span> <span class="nc">NameChangeDetail</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Details regarding a name change.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>    <span class="n">name_change</span><span class="p">:</span> <span class="n">NameChange</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`NameChange`][wom.NameChange] itself.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-116" name="__codelineno-0-116"></a>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="sd">        This will be `None` when the name change is not pending.</span>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="n">data</span><span class="p">:</span> <span class="n">NameChangeData</span> <span class="o">|</span> <span class="kc">None</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`NameChangeData`][wom.NameChangeData] for this name change.</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="sd">    !!! note</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="sd">        This will be `None` when the name change is not pending.</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -14322,29 +14339,29 @@ made.</p>
 
         <details class="quote">
           <summary>Source code in <code>wom/models/players/models.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-445">445</a></span>
-<span class="normal"><a href="#__codelineno-0-446">446</a></span>
-<span class="normal"><a href="#__codelineno-0-447">447</a></span>
-<span class="normal"><a href="#__codelineno-0-448">448</a></span>
-<span class="normal"><a href="#__codelineno-0-449">449</a></span>
-<span class="normal"><a href="#__codelineno-0-450">450</a></span>
-<span class="normal"><a href="#__codelineno-0-451">451</a></span>
-<span class="normal"><a href="#__codelineno-0-452">452</a></span>
-<span class="normal"><a href="#__codelineno-0-453">453</a></span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-453">453</a></span>
 <span class="normal"><a href="#__codelineno-0-454">454</a></span>
 <span class="normal"><a href="#__codelineno-0-455">455</a></span>
-<span class="normal"><a href="#__codelineno-0-456">456</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-445" name="__codelineno-0-445"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-446" name="__codelineno-0-446"></a><span class="k">class</span> <span class="nc">PlayerGains</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<a id="__codelineno-0-447" name="__codelineno-0-447"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gains made by a player.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-448" name="__codelineno-0-448"></a>
-<a id="__codelineno-0-449" name="__codelineno-0-449"></a>    <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span>
-<a id="__codelineno-0-450" name="__codelineno-0-450"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the gains started at.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-451" name="__codelineno-0-451"></a>
-<a id="__codelineno-0-452" name="__codelineno-0-452"></a>    <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span>
-<a id="__codelineno-0-453" name="__codelineno-0-453"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the gains ended at.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-454" name="__codelineno-0-454"></a>
-<a id="__codelineno-0-455" name="__codelineno-0-455"></a>    <span class="n">data</span><span class="p">:</span> <span class="n">PlayerGainsData</span>
-<a id="__codelineno-0-456" name="__codelineno-0-456"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`PlayerGainsData`][wom.PlayerGainsData] for the player.&quot;&quot;&quot;</span>
+<span class="normal"><a href="#__codelineno-0-456">456</a></span>
+<span class="normal"><a href="#__codelineno-0-457">457</a></span>
+<span class="normal"><a href="#__codelineno-0-458">458</a></span>
+<span class="normal"><a href="#__codelineno-0-459">459</a></span>
+<span class="normal"><a href="#__codelineno-0-460">460</a></span>
+<span class="normal"><a href="#__codelineno-0-461">461</a></span>
+<span class="normal"><a href="#__codelineno-0-462">462</a></span>
+<span class="normal"><a href="#__codelineno-0-463">463</a></span>
+<span class="normal"><a href="#__codelineno-0-464">464</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-453" name="__codelineno-0-453"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-454" name="__codelineno-0-454"></a><span class="k">class</span> <span class="nc">PlayerGains</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-455" name="__codelineno-0-455"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gains made by a player.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-456" name="__codelineno-0-456"></a>
+<a id="__codelineno-0-457" name="__codelineno-0-457"></a>    <span class="n">starts_at</span><span class="p">:</span> <span class="n">datetime</span>
+<a id="__codelineno-0-458" name="__codelineno-0-458"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the gains started at.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-459" name="__codelineno-0-459"></a>
+<a id="__codelineno-0-460" name="__codelineno-0-460"></a>    <span class="n">ends_at</span><span class="p">:</span> <span class="n">datetime</span>
+<a id="__codelineno-0-461" name="__codelineno-0-461"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date the gains ended at.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-462" name="__codelineno-0-462"></a>
+<a id="__codelineno-0-463" name="__codelineno-0-463"></a>    <span class="n">data</span><span class="p">:</span> <span class="n">PlayerGainsData</span>
+<a id="__codelineno-0-464" name="__codelineno-0-464"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`PlayerGainsData`][wom.PlayerGainsData] for the player.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -14472,21 +14489,37 @@ made.</p>
 <span class="normal"><a href="#__codelineno-0-439">439</a></span>
 <span class="normal"><a href="#__codelineno-0-440">440</a></span>
 <span class="normal"><a href="#__codelineno-0-441">441</a></span>
-<span class="normal"><a href="#__codelineno-0-442">442</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-428" name="__codelineno-0-428"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-442">442</a></span>
+<span class="normal"><a href="#__codelineno-0-443">443</a></span>
+<span class="normal"><a href="#__codelineno-0-444">444</a></span>
+<span class="normal"><a href="#__codelineno-0-445">445</a></span>
+<span class="normal"><a href="#__codelineno-0-446">446</a></span>
+<span class="normal"><a href="#__codelineno-0-447">447</a></span>
+<span class="normal"><a href="#__codelineno-0-448">448</a></span>
+<span class="normal"><a href="#__codelineno-0-449">449</a></span>
+<span class="normal"><a href="#__codelineno-0-450">450</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-428" name="__codelineno-0-428"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a id="__codelineno-0-429" name="__codelineno-0-429"></a><span class="k">class</span> <span class="nc">PlayerGainsData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-430" name="__codelineno-0-430"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Contains all the player gains data.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-431" name="__codelineno-0-431"></a>
-<a id="__codelineno-0-432" name="__codelineno-0-432"></a>    <span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillGains</span><span class="p">]</span>
-<a id="__codelineno-0-433" name="__codelineno-0-433"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`SkillGains`][wom.SkillGains].&quot;&quot;&quot;</span>
-<a id="__codelineno-0-434" name="__codelineno-0-434"></a>
-<a id="__codelineno-0-435" name="__codelineno-0-435"></a>    <span class="n">bosses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BossGains</span><span class="p">]</span>
-<a id="__codelineno-0-436" name="__codelineno-0-436"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`BossGains`][wom.BossGains].&quot;&quot;&quot;</span>
-<a id="__codelineno-0-437" name="__codelineno-0-437"></a>
-<a id="__codelineno-0-438" name="__codelineno-0-438"></a>    <span class="n">activities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ActivityGains</span><span class="p">]</span>
-<a id="__codelineno-0-439" name="__codelineno-0-439"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`ActivityGains`][wom.ActivityGains].&quot;&quot;&quot;</span>
-<a id="__codelineno-0-440" name="__codelineno-0-440"></a>
-<a id="__codelineno-0-441" name="__codelineno-0-441"></a>    <span class="n">computed</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ComputedGains</span><span class="p">]</span>
-<a id="__codelineno-0-442" name="__codelineno-0-442"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`ComputedGains`][wom.ComputedGains].&quot;&quot;&quot;</span>
+<a id="__codelineno-0-432" name="__codelineno-0-432"></a>    <span class="n">skills</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Skills</span><span class="p">,</span> <span class="n">SkillGains</span><span class="p">]</span>
+<a id="__codelineno-0-433" name="__codelineno-0-433"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Skills`][wom.Skills] keys to [`SkillGains`]</span>
+<a id="__codelineno-0-434" name="__codelineno-0-434"></a><span class="sd">    [wom.SkillGains] values.</span>
+<a id="__codelineno-0-435" name="__codelineno-0-435"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-436" name="__codelineno-0-436"></a>
+<a id="__codelineno-0-437" name="__codelineno-0-437"></a>    <span class="n">bosses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Bosses</span><span class="p">,</span> <span class="n">BossGains</span><span class="p">]</span>
+<a id="__codelineno-0-438" name="__codelineno-0-438"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Bosses`][wom.Bosses] keys to [`BossGains`]</span>
+<a id="__codelineno-0-439" name="__codelineno-0-439"></a><span class="sd">    [wom.BossGains] values.</span>
+<a id="__codelineno-0-440" name="__codelineno-0-440"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-441" name="__codelineno-0-441"></a>
+<a id="__codelineno-0-442" name="__codelineno-0-442"></a>    <span class="n">activities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Activities</span><span class="p">,</span> <span class="n">ActivityGains</span><span class="p">]</span>
+<a id="__codelineno-0-443" name="__codelineno-0-443"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Activities`][wom.Activities] keys to [`ActivityGains`]</span>
+<a id="__codelineno-0-444" name="__codelineno-0-444"></a><span class="sd">    [wom.ActivityGains] values.</span>
+<a id="__codelineno-0-445" name="__codelineno-0-445"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-446" name="__codelineno-0-446"></a>
+<a id="__codelineno-0-447" name="__codelineno-0-447"></a>    <span class="n">computed</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span> <span class="n">ComputedGains</span><span class="p">]</span>
+<a id="__codelineno-0-448" name="__codelineno-0-448"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to</span>
+<a id="__codelineno-0-449" name="__codelineno-0-449"></a><span class="sd">    [`ComputedGains`] [wom.ComputedGains] values.</span>
+<a id="__codelineno-0-450" name="__codelineno-0-450"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -14513,12 +14546,12 @@ made.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">activities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ActivityGains</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">activities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Activities</span><span class="p">,</span> <span class="n">ActivityGains</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.ActivityGains"><code>ActivityGains</code></a>.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Activities"><code>Activities</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.ActivityGains"><code>ActivityGains</code></a> values.</p>
   </div>
 
 </div>
@@ -14536,12 +14569,12 @@ made.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">bosses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">BossGains</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">bosses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Bosses</span><span class="p">,</span> <span class="n">BossGains</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.BossGains"><code>BossGains</code></a>.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Bosses"><code>Bosses</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.BossGains"><code>BossGains</code></a> values.</p>
   </div>
 
 </div>
@@ -14559,12 +14592,13 @@ made.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">computed</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ComputedGains</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">computed</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span> <span class="n">ComputedGains</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.ComputedGains"><code>ComputedGains</code></a>.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.ComputedMetrics"><code>ComputedMetrics</code></a> keys to
+<a class="autorefs autorefs-internal" href="#wom.models.ComputedGains"><code>ComputedGains</code></a> values.</p>
   </div>
 
 </div>
@@ -14582,12 +14616,12 @@ made.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SkillGains</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">skills</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Skills</span><span class="p">,</span> <span class="n">SkillGains</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.SkillGains"><code>SkillGains</code></a>.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Skills"><code>Skills</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.SkillGains"><code>SkillGains</code></a> values.</p>
   </div>
 
 </div>
@@ -14923,9 +14957,7 @@ in.</p>
 <span class="normal"><a href="#__codelineno-0-53">53</a></span>
 <span class="normal"><a href="#__codelineno-0-54">54</a></span>
 <span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="k">class</span> <span class="nc">Record</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a record held by a player.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-39" name="__codelineno-0-39"></a>
@@ -14936,18 +14968,16 @@ in.</p>
 <a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player ID associated with this record.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-45" name="__codelineno-0-45"></a>
 <a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="n">period</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Period</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Period`][wom.Period] over which this record was</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">    achieved.</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Metric`][wom.Metric] measured in this record.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The records gained value.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="n">updated_at</span><span class="p">:</span> <span class="n">datetime</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The records creation/modification date.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Period`][wom.Period] over which this record was achieved.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Metric`][wom.Metric] measured in this record.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The records gained value.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="n">updated_at</span><span class="p">:</span> <span class="n">datetime</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The records creation/modification date.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -15025,8 +15055,7 @@ in.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Period"><code>Period</code></a> over which this record was
-achieved.</p>
+      <p>The <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Period"><code>Period</code></a> over which this record was achieved.</p>
   </div>
 
 </div>
@@ -15131,23 +15160,23 @@ achieved.</p>
 
         <details class="quote">
           <summary>Source code in <code>wom/models/records/models.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-61">61</a></span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
 <span class="normal"><a href="#__codelineno-0-62">62</a></span>
 <span class="normal"><a href="#__codelineno-0-63">63</a></span>
 <span class="normal"><a href="#__codelineno-0-64">64</a></span>
 <span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="k">class</span> <span class="nc">RecordLeaderboardEntry</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a player&#39;s record leaderboard entry.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Player`][wom.Player] holding this leaderboard entry.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="n">record</span><span class="p">:</span> <span class="n">Record</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Record`][wom.Record] tied to this leaderboard entry.&quot;&quot;&quot;</span>
+<span class="normal"><a href="#__codelineno-0-67">67</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="k">class</span> <span class="nc">RecordLeaderboardEntry</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a player&#39;s record leaderboard entry.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Player`][wom.Player] holding this leaderboard entry.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="n">record</span><span class="p">:</span> <span class="n">Record</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Record`][wom.Record] tied to this leaderboard entry.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -16040,24 +16069,24 @@ achieved.</p>
 <a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="k">class</span> <span class="nc">SnapshotData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The data associated with this snapshot.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-129" name="__codelineno-0-129"></a>
-<a id="__codelineno-0-130" name="__codelineno-0-130"></a>    <span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Skill</span><span class="p">]</span>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`Skills`][wom.Skill] stored in this</span>
-<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="sd">    snapshot.</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a>    <span class="n">skills</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Skills</span><span class="p">,</span> <span class="n">Skill</span><span class="p">]</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Skills`][wom.Skills] keys to [`Skill`][wom.Skill] values</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="sd">    from this snapshot.</span>
 <a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-134" name="__codelineno-0-134"></a>
-<a id="__codelineno-0-135" name="__codelineno-0-135"></a>    <span class="n">bosses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Boss</span><span class="p">]</span>
-<a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`Bosses`][wom.Boss] stored in this</span>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">    snapshot.</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135"></a>    <span class="n">bosses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Bosses</span><span class="p">,</span> <span class="n">Boss</span><span class="p">]</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Bosses`][wom.Bosses] keys to [`Boss`][wom.Boss] values</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">    from this snapshot.</span>
 <a id="__codelineno-0-138" name="__codelineno-0-138"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-139" name="__codelineno-0-139"></a>
-<a id="__codelineno-0-140" name="__codelineno-0-140"></a>    <span class="n">activities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Activity</span><span class="p">]</span>
-<a id="__codelineno-0-141" name="__codelineno-0-141"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`Activities`][wom.Activity] stored in this</span>
-<a id="__codelineno-0-142" name="__codelineno-0-142"></a><span class="sd">    snapshot.</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140"></a>    <span class="n">activities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Activities</span><span class="p">,</span> <span class="n">Activity</span><span class="p">]</span>
+<a id="__codelineno-0-141" name="__codelineno-0-141"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`Activities`][wom.Activities] keys to [`Activity`]</span>
+<a id="__codelineno-0-142" name="__codelineno-0-142"></a><span class="sd">    [wom.Activity] values from this snapshot.</span>
 <a id="__codelineno-0-143" name="__codelineno-0-143"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-144" name="__codelineno-0-144"></a>
-<a id="__codelineno-0-145" name="__codelineno-0-145"></a>    <span class="n">computed</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ComputedMetric</span><span class="p">]</span>
-<a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of all [`ComputedMetrics`][wom.ComputedMetric] stored in</span>
-<a id="__codelineno-0-147" name="__codelineno-0-147"></a><span class="sd">    this snapshot.</span>
+<a id="__codelineno-0-145" name="__codelineno-0-145"></a>    <span class="n">computed</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span> <span class="n">ComputedMetric</span><span class="p">]</span>
+<a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to</span>
+<a id="__codelineno-0-147" name="__codelineno-0-147"></a><span class="sd">    [`ComputedMetric`][wom.ComputedMetric] values from this snapshot.</span>
 <a id="__codelineno-0-148" name="__codelineno-0-148"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -16085,13 +16114,12 @@ achieved.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">activities</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Activity</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">activities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Activities</span><span class="p">,</span> <span class="n">Activity</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.Activity"><code>Activities</code></a> stored in this
-snapshot.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Activities"><code>Activities</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.Activity"><code>Activity</code></a> values from this snapshot.</p>
   </div>
 
 </div>
@@ -16109,13 +16137,13 @@ snapshot.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">bosses</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Boss</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">bosses</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Bosses</span><span class="p">,</span> <span class="n">Boss</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.Boss"><code>Bosses</code></a> stored in this
-snapshot.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Bosses"><code>Bosses</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.Boss"><code>Boss</code></a> values
+from this snapshot.</p>
   </div>
 
 </div>
@@ -16133,13 +16161,13 @@ snapshot.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">computed</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ComputedMetric</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">computed</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">ComputedMetrics</span><span class="p">,</span> <span class="n">ComputedMetric</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.ComputedMetric"><code>ComputedMetrics</code></a> stored in
-this snapshot.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.ComputedMetrics"><code>ComputedMetrics</code></a> keys to
+<a class="autorefs autorefs-internal" href="#wom.models.ComputedMetric"><code>ComputedMetric</code></a> values from this snapshot.</p>
   </div>
 
 </div>
@@ -16157,13 +16185,13 @@ this snapshot.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">skills</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Skill</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">skills</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Skills</span><span class="p">,</span> <span class="n">Skill</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>A list of all <a class="autorefs autorefs-internal" href="#wom.models.Skill"><code>Skills</code></a> stored in this
-snapshot.</p>
+      <p>A mapping of <a class="autorefs autorefs-internal" href="../enums/#wom.enums.Skills"><code>Skills</code></a> keys to <a class="autorefs autorefs-internal" href="#wom.models.Skill"><code>Skill</code></a> values
+from this snapshot.</p>
   </div>
 
 </div>
