@@ -44,9 +44,7 @@ class Record(BaseModel):
     """The player ID associated with this record."""
 
     period: enums.Period
-    """The [`Period`][wom.Period] over which this record was
-    achieved.
-    """
+    """The [`Period`][wom.Period] over which this record was achieved."""
 
     metric: enums.Metric
     """The [`Metric`][wom.Metric] measured in this record."""

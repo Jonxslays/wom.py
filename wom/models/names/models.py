@@ -38,20 +38,25 @@ class NameChange(BaseModel):
 
     id: int
     """The unique ID of this name change."""
+
     player_id: int
     """The player ID associated with the name change."""
+
     old_name: str
     """The old username of the player."""
+
     new_name: str
     """The new username of the player."""
+
     status: NameChangeStatus
-    """The [`status`][wom.NameChangeStatus] of the name
-    change.
-    """
+    """The [`status`][wom.NameChangeStatus] of the name change."""
+
     resolved_at: datetime | None
     """The date the name change was approved or denied."""
+
     updated_at: datetime
     """The date the name change was updated."""
+
     created_at: datetime
     """The date the name change was created."""
 
