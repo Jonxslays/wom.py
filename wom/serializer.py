@@ -34,7 +34,7 @@ from wom import models
 __all__ = ("Serializer",)
 
 T = t.TypeVar("T")
-TransformT = t.Callable[..., t.Any] | None
+TransformT = t.Callable[[t.Any], t.Any] | None
 AchievementT = t.TypeVar("AchievementT", models.Achievement, models.AchievementProgress)
 HasMetricsT = t.TypeVar(
     "HasMetricsT",
