@@ -73,6 +73,12 @@ def test_metric_from_str() -> None:
     assert metric.value == "bounty_hunter_hunter"
 
 
+def test_metric_child_from_str() -> None:
+    metric = enums.Activities.from_str("bounty_hunter_hunter")
+    assert metric is enums.Activities.BountyHunterHunter
+    assert metric.value == "bounty_hunter_hunter"
+
+
 def test_metric_from_str_invalid() -> None:
     with pytest.raises(RuntimeError) as e:
         _ = enums.Metric.from_str("hmmm")
