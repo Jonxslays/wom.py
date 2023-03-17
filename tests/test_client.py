@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import pytest
 from unittest import mock
 
 from wom import services
@@ -36,6 +37,7 @@ async def test_all_services_exist() -> None:
     assert isinstance(client.names, services.NameChangeService)
     assert isinstance(client.players, services.PlayerService)
     assert isinstance(client.records, services.RecordService)
+    await client.close()
 
 
 @mock.patch("wom.client.serializer.Serializer")
@@ -87,3 +89,29 @@ async def test_close(close: mock.MagicMock) -> None:
     client = Client()
     await client.close()
     close.assert_called_once()
+
+
+@mock.patch("wom.client.Client._Client__init_service")
+async def test_init_service(init_service: mock.MagicMock) -> None:
+    _ = Client()
+    init_service.assert_has_calls(
+        (
+            mock.call(services.DeltaService),
+            mock.call(services.GroupService),
+            mock.call(services.PlayerService),
+            mock.call(services.RecordService),
+            mock.call(services.NameChangeService),
+            mock.call(services.EfficiencyService),
+            mock.call(services.CompetitionService),
+        )
+    )
+
+
+async def test_init_service_fails() -> None:
+    client = Client()
+
+    with pytest.raises(TypeError) as e:
+        client._Client__init_service(int)  # type: ignore
+
+    assert e.exconly() == "TypeError: 'int' can not be initialized as a service."
+    await client.close()
