@@ -65,7 +65,7 @@ def install(*packages: str) -> InjectorT:
 
 
 @nox.session(reuse_venv=True)
-@install("pytest", "pytest-asyncio", "pytest-testdox", "coverage")
+@install("pytest", "pytest-asyncio", "pytest-testdox", "coverage", "aiohttp", "attrs")
 def tests(session: nox.Session) -> None:
     session.run(
         "coverage",
@@ -82,9 +82,6 @@ def tests(session: nox.Session) -> None:
 @nox.session(reuse_venv=True)
 @install("coverage")
 def coverage(session: nox.Session) -> None:
-    # TODO: Remove this once we have real tests to check coverage for
-    session.skip("Skipping coverage")
-
     if not Path(".coverage").exists():
         session.skip("Skipping coverage")
 
