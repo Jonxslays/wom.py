@@ -84,9 +84,10 @@ class Metric(BaseEnum):
         or [`Skills`][wom.Skills].
     """
 
-    @classmethod
-    def _filter_on_value(cls: t.Type[T], value: str) -> set[T]:
-        return set(filter(lambda x: x.value == value, cls))  # type: ignore
+    # TODO: Do we even need this method??????????
+    # @classmethod
+    # def _filter_on_value(cls: t.Type[T], value: str) -> set[T]:
+    #     return set(filter(lambda x: x.value == value, cls))  # type: ignore
 
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
