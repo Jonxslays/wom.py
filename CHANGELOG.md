@@ -1,4 +1,20 @@
+# Unreleased
+
+## Breaking Changes
+
+- `MetricLeaders`, `PlayerGainsData`, and `SnapshotData` now contain mappings of their
+  `enums.Skills` key to values of the associated type that was previously contained in the list.
+- The deserialization methods associated with the above types were also updated to accommodate
+  this.
+
+---
+
 # v0.2.0 (Feb 2023)
+
+## Breaking Changes
+
+- `GroupStatistics.average_stats` is now a `Snapshot` rather than a `GroupSnapshot`.
+- Remove `GroupSnapshot` model since `created_at` on `Snapshot` is now guaranteed to be present.
 
 ## Bugfixes
 
@@ -6,18 +22,10 @@
 
 ## Additions
 
-- Add leaders models: `SkillLeader`, `BossLeader`, `ActivityLeader`, `ComputedMetricLeader`, and
-  `MetricLeaders`.
+- Add leaders models: `SkillLeader`, `BossLeader`, `ActivityLeader`, `ComputedMetricLeader`,
+  and `MetricLeaders`.
 - Add `metric_leaders` property to `GroupStatistics`.
 - Add deserialization methods for the new leader models.
-
-## Changes
-
-- `GroupStatistics.average_stats` is now a `Snapshot` rather than a `GroupSnapshot`.
-
-## Removals
-
-- Remove `GroupSnapshot` model since `created_at` on `Snapshot` is now guaranteed to be present.
 
 ---
 
