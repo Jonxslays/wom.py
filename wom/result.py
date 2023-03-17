@@ -151,7 +151,7 @@ class Ok(Result[T, E]):
                 variant.
         """
         actual = self._value.__class__.__name__
-        raise errors.UnwrapError(f"Called unwrap error on an non error value - {actual}")
+        raise errors.UnwrapError(f"Called unwrap error on a non error value of type {actual!r}")
 
 
 @t.final
