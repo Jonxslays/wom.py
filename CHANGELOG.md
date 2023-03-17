@@ -7,6 +7,15 @@
 - The deserialization methods associated with the above types were also updated to accommodate
   this.
 
+## Changes
+
+- Only include the type of the value, not the value itself, in the error message raised when
+  calling `unwrap_err` on an `Ok` variant.
+
+## Additions
+
+- Tests! :eyes:
+
 ---
 
 # v0.2.0 (Feb 2023)
