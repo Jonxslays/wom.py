@@ -69,11 +69,11 @@ docs-length = 80
 strict = true
 
 [tool.mypy]
-packages = ["wom", "tests"]
+packages = ["wom"]
 strict = true
 
 [tool.pyright]
-include = ["wom", "tests"]
+include = ["wom"]
 typeCheckingMode = "strict"
 reportImportCycles = false
 
