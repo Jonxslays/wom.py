@@ -119,7 +119,7 @@ class ComputedMetric(BaseModel):
     rank: int
     """The players rank in the computed metric."""
 
-    value: int
+    value: float
     """The value of the computed metric."""
 
 
