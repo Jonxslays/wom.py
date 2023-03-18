@@ -11,6 +11,7 @@
 
 - Only include the type of the value, not the value itself, in the error message raised when
   calling `unwrap_err` on an `Ok` variant.
+- `Skill.ehp`, `Boss.ehb`, and `ComputedMetric.value` are now `float` type.
 
 ## Additions
 
