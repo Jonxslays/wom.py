@@ -72,7 +72,7 @@ class Skill(BaseModel):
     experience: int
     """The players experience in the skill."""
 
-    ehp: int
+    ehp: float
     """The players efficient hours played for the skill."""
 
 
@@ -89,7 +89,7 @@ class Boss(BaseModel):
     kills: int
     """The number of kills the player has."""
 
-    ehb: int
+    ehb: float
     """The players efficient hours bossed for the boss."""
 
 
