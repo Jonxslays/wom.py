@@ -34,6 +34,11 @@ from wom import ComputedMetrics
 from wom import Serializer
 from wom import Skills
 
+AchievementT = t.TypeVar("AchievementT", models.Achievement, models.AchievementProgress)
+DictT = dict[str, t.Any]
+
+serializer = Serializer()
+
 
 @pytest.fixture()
 def blank_class() -> t.Any:
@@ -43,7 +48,7 @@ def blank_class() -> t.Any:
     return BlankClass
 
 
-def _player_dict() -> dict[str, t.Any]:
+def _player_dict() -> DictT:
     return {
         "id": 151063,
         "username": "zezimas bro",
@@ -65,7 +70,7 @@ def _player_dict() -> dict[str, t.Any]:
 
 
 @pytest.fixture()
-def player_dict() -> dict[str, t.Any]:
+def player_dict() -> DictT:
     return _player_dict()
 
 
@@ -95,12 +100,12 @@ def deserialized_player() -> models.Player:
     return _deserialized_player()
 
 
-def _boss_dict() -> dict[str, t.Any]:
+def _boss_dict() -> DictT:
     return {"metric": "abyssal_sire", "kills": -1, "rank": -1, "ehb": 0}
 
 
 @pytest.fixture()
-def boss_dict() -> dict[str, t.Any]:
+def boss_dict() -> DictT:
     return _boss_dict()
 
 
@@ -118,7 +123,7 @@ def deserialized_boss() -> models.Boss:
     return _deserialized_boss()
 
 
-def _skill_dict() -> dict[str, t.Any]:
+def _skill_dict() -> DictT:
     return {
         "metric": "overall",
         "experience": 27957906,
@@ -129,7 +134,7 @@ def _skill_dict() -> dict[str, t.Any]:
 
 
 @pytest.fixture()
-def skill_dict() -> dict[str, t.Any]:
+def skill_dict() -> DictT:
     return _skill_dict()
 
 
@@ -148,7 +153,7 @@ def deserialized_skill() -> models.Skill:
     return _deserialized_skill()
 
 
-def _activity_dict() -> dict[str, t.Any]:
+def _activity_dict() -> DictT:
     return {
         "metric": "bounty_hunter_hunter",
         "score": -1,
@@ -157,7 +162,7 @@ def _activity_dict() -> dict[str, t.Any]:
 
 
 @pytest.fixture()
-def activity_dict() -> dict[str, t.Any]:
+def activity_dict() -> DictT:
     return _activity_dict()
 
 
@@ -174,12 +179,12 @@ def deserialized_activity() -> models.Activity:
     return _deserialized_activity()
 
 
-def _computed_dict() -> dict[str, t.Any]:
+def _computed_dict() -> DictT:
     return {"metric": "ehp", "value": 118.1123000000007, "rank": 289382}
 
 
 @pytest.fixture()
-def computed_dict() -> dict[str, t.Any]:
+def computed_dict() -> DictT:
     return _computed_dict()
 
 
@@ -196,7 +201,84 @@ def deserialized_computed() -> models.ComputedMetric:
     return _deserialized_computed()
 
 
-def _snapshot_data_dict() -> dict[str, t.Any]:
+def _base_achievement_dict() -> DictT:
+    return {
+        "metric": "attack",
+        "measure": "experience",
+        "name": "lol",
+        "playerId": 123,
+        "threshold": 5,
+        "accuracy": None,
+    }
+
+
+@pytest.fixture()
+def base_achievement_dict() -> DictT:
+    return _base_achievement_dict()
+
+
+def _deserialized_base_achievement(model: AchievementT) -> AchievementT:
+    model.metric = Skills.Attack
+    model.measure = models.AchievementMeasure.Experience
+    model.name = "lol"
+    model.player_id = 123
+    model.threshold = 5
+    model.accuracy = None
+    return model
+
+
+@pytest.fixture()
+def deserialized_base_achievement() -> models.Achievement:
+    return _deserialized_base_achievement(models.Achievement())
+
+
+def _achievement_dict() -> DictT:
+    return {
+        **_base_achievement_dict(),
+        "createdAt": "2023-01-30T01:24:41.999Z",
+    }
+
+
+@pytest.fixture()
+def achievement_dict() -> DictT:
+    return _achievement_dict()
+
+
+def _deserialized_achievement() -> models.Achievement:
+    model = _deserialized_base_achievement(models.Achievement())
+    model.created_at = datetime(2023, 1, 30, 1, 24, 41, 999000)
+    return model
+
+
+@pytest.fixture()
+def deserialized_achievement() -> models.Achievement:
+    return _deserialized_achievement()
+
+
+def _achievement_progress_dict() -> DictT:
+    return {
+        **_base_achievement_dict(),
+        "createdAt": None,
+    }
+
+
+@pytest.fixture()
+def achievement_progress_dict() -> DictT:
+    return _achievement_progress_dict()
+
+
+def _deserialized_achievement_progress() -> models.AchievementProgress:
+    model = _deserialized_base_achievement(models.AchievementProgress())
+    model.created_at = None
+    return model
+
+
+@pytest.fixture()
+def deserialized_achievement_progress() -> models.AchievementProgress:
+    return _deserialized_achievement_progress()
+
+
+def _snapshot_data_dict() -> DictT:
     return {
         "skills": {"overall": _skill_dict()},
         "bosses": {"abyssal_sire": _boss_dict()},
@@ -206,7 +288,7 @@ def _snapshot_data_dict() -> dict[str, t.Any]:
 
 
 @pytest.fixture()
-def snapshot_data_dict() -> dict[str, t.Any]:
+def snapshot_data_dict() -> DictT:
     return _snapshot_data_dict()
 
 
@@ -231,7 +313,7 @@ def deserialized_snapshot_data() -> models.SnapshotData:
     return _deserialized_snapshot_data()
 
 
-def _snapshot_dict() -> dict[str, t.Any]:
+def _snapshot_dict() -> DictT:
     return {
         "id": 68052294,
         "playerId": 151063,
@@ -242,7 +324,7 @@ def _snapshot_dict() -> dict[str, t.Any]:
 
 
 @pytest.fixture()
-def snapshot_dict() -> dict[str, t.Any]:
+def snapshot_dict() -> DictT:
     return _snapshot_dict()
 
 
@@ -263,7 +345,7 @@ def deserialized_snapshot() -> models.Snapshot:
     return _deserialized_snapshot()
 
 
-def _player_detail_dict() -> dict[str, t.Any]:
+def _player_detail_dict() -> DictT:
     return {
         **_player_dict(),
         "combatLevel": 126,
@@ -272,7 +354,7 @@ def _player_detail_dict() -> dict[str, t.Any]:
 
 
 @pytest.fixture()
-def player_detail_dict() -> dict[str, t.Any]:
+def player_detail_dict() -> DictT:
     return _player_detail_dict()
 
 
@@ -289,12 +371,12 @@ def deserialized_player_detail() -> models.PlayerDetail:
     return _deserialized_player_detail()
 
 
-def _assert_player_type_dict() -> dict[str, t.Any]:
+def _assert_player_type_dict() -> DictT:
     return {"player": _player_dict(), "changed": True}
 
 
 @pytest.fixture()
-def assert_player_type_dict() -> dict[str, t.Any]:
+def assert_player_type_dict() -> DictT:
     return _assert_player_type_dict()
 
 
@@ -311,7 +393,6 @@ def deserialized_assert_player_type() -> models.AssertPlayerType:
 
 
 def test_dt_from_iso() -> None:
-    serializer = Serializer()
     iso_string = "2023-03-17T17:56:31.436179"
 
     expected = datetime(2023, 3, 17, 17, 56, 31, 436179)
@@ -320,7 +401,6 @@ def test_dt_from_iso() -> None:
 
 
 def test_dt_from_iso_with_z() -> None:
-    serializer = Serializer()
     iso_string = "2023-03-17T17:56:31.436179Z"
 
     expected = datetime(2023, 3, 17, 17, 56, 31, 436179)
@@ -329,7 +409,6 @@ def test_dt_from_iso_with_z() -> None:
 
 
 def test_dt_from_iso_maybe() -> None:
-    serializer = Serializer()
     iso_string = "2023-03-17T17:56:31.436179"
 
     expected = datetime(2023, 3, 17, 17, 56, 31, 436179)
@@ -338,7 +417,6 @@ def test_dt_from_iso_maybe() -> None:
 
 
 def test_dt_from_iso_maybe_with_z() -> None:
-    serializer = Serializer()
     iso_string = "2023-03-17T17:56:31.436179Z"
 
     expected = datetime(2023, 3, 17, 17, 56, 31, 436179)
@@ -347,25 +425,21 @@ def test_dt_from_iso_maybe_with_z() -> None:
 
 
 def test_dt_from_iso_maybe_none() -> None:
-    serializer = Serializer()
     result = serializer._dt_from_iso_maybe(None)  # type: ignore
     assert result == None
 
 
 def test_to_camel_case() -> None:
-    serializer = Serializer()
     result = serializer._to_camel_case("test")  # type: ignore
     assert result == "test"
 
 
 def test_to_camel_case_with_casing() -> None:
-    serializer = Serializer()
     result = serializer._to_camel_case("test_what_im_doing")  # type: ignore
     assert result == "testWhatImDoing"
 
 
 def test_map() -> None:
-    serializer = Serializer()
     data = [
         {"metric": Bosses.Zulrah, "rank": 1000, "kills": 10000, "ehb": 6},
         {"metric": Bosses.Vorkath, "rank": 501, "kills": 23445, "ehb": 5},
@@ -386,8 +460,6 @@ def test_map() -> None:
 
 
 def test_set_attrs(blank_class: t.Any) -> None:
-    serializer = Serializer()
-
     data = {"test": 1, "other": "hello"}
     serializer._set_attrs(blank_class, data, "test", "other")  # type: ignore
 
@@ -396,8 +468,6 @@ def test_set_attrs(blank_class: t.Any) -> None:
 
 
 def test_set_attrs_no_attrs(blank_class: t.Any) -> None:
-    serializer = Serializer()
-
     data = {"test": 1, "other": "hello"}
     serializer._set_attrs(blank_class, data)  # type: ignore
 
@@ -406,8 +476,6 @@ def test_set_attrs_no_attrs(blank_class: t.Any) -> None:
 
 
 def test_set_attrs_transform(blank_class: t.Any) -> None:
-    serializer = Serializer()
-
     data = {"test": 1, "other": "hello"}
     serializer._set_attrs(  # type: ignore
         blank_class, data, "test", "other", transform=lambda a: a * 2
@@ -418,8 +486,6 @@ def test_set_attrs_transform(blank_class: t.Any) -> None:
 
 
 def test_set_attrs_camel_case(blank_class: t.Any) -> None:
-    serializer = Serializer()
-
     data = {"testThing": 1, "otherThing": "hello"}
     serializer._set_attrs(  # type: ignore
         blank_class, data, "test_thing", "other_thing", camel_case=True
@@ -430,8 +496,6 @@ def test_set_attrs_camel_case(blank_class: t.Any) -> None:
 
 
 def test_set_attrs_transform_camel_case(blank_class: t.Any) -> None:
-    serializer = Serializer()
-
     data = {"testThing": 1, "otherThing": "hello"}
     serializer._set_attrs(  # type: ignore
         blank_class, data, "test_thing", "other_thing", camel_case=True, transform=lambda a: a * 2
@@ -443,7 +507,6 @@ def test_set_attrs_transform_camel_case(blank_class: t.Any) -> None:
 
 @mock.patch("wom.serializer.Serializer._set_attrs")
 def test_set_attrs_cased(set_attrs: mock.MagicMock, blank_class: t.Any) -> None:
-    serializer = Serializer()
     serializer._set_attrs_cased(blank_class, {}, "test", "other")  # type: ignore
 
     set_attrs.assert_called_once_with(
@@ -453,7 +516,6 @@ def test_set_attrs_cased(set_attrs: mock.MagicMock, blank_class: t.Any) -> None:
 
 @mock.patch("wom.serializer.Serializer._set_attrs")
 def test_set_attrs_cased_no_attrs(set_attrs: mock.MagicMock, blank_class: t.Any) -> None:
-    serializer = Serializer()
     serializer._set_attrs_cased(blank_class, {})  # type: ignore
 
     set_attrs.assert_called_once_with(blank_class, {}, transform=None, camel_case=True)
@@ -461,7 +523,6 @@ def test_set_attrs_cased_no_attrs(set_attrs: mock.MagicMock, blank_class: t.Any)
 
 @mock.patch("wom.serializer.Serializer._set_attrs")
 def test_set_attrs_cased_transform(set_attrs: mock.MagicMock, blank_class: t.Any) -> None:
-    serializer = Serializer()
     transform: t.Callable[[t.Any], t.Any] | None = lambda i: i
 
     serializer._set_attrs_cased(  # type: ignore
@@ -474,7 +535,6 @@ def test_set_attrs_cased_transform(set_attrs: mock.MagicMock, blank_class: t.Any
 
 
 def test_determine_hiscores_entry_item_skill() -> None:
-    serializer = Serializer()
     data = {
         "experience": 69420,
         "level": 46,
@@ -490,7 +550,6 @@ def test_determine_hiscores_entry_item_skill() -> None:
 
 
 def test_determine_hiscores_entry_item_boss() -> None:
-    serializer = Serializer()
     data = {
         "kills": 900,
         "rank": 72000,
@@ -504,7 +563,6 @@ def test_determine_hiscores_entry_item_boss() -> None:
 
 
 def test_determine_hiscores_entry_item_activity() -> None:
-    serializer = Serializer()
     data = {
         "score": 654321,
         "rank": 1000,
@@ -518,7 +576,6 @@ def test_determine_hiscores_entry_item_activity() -> None:
 
 
 def test_determine_hiscores_entry_item_computed() -> None:
-    serializer = Serializer()
     data = {
         "value": 666,
         "rank": 222,
@@ -532,7 +589,6 @@ def test_determine_hiscores_entry_item_computed() -> None:
 
 
 def test_determine_hiscores_entry_item_invalid() -> None:
-    serializer = Serializer()
     data = {}
 
     with pytest.raises(ValueError) as e:
@@ -541,110 +597,100 @@ def test_determine_hiscores_entry_item_invalid() -> None:
     assert e.exconly() == "ValueError: Unknown hiscores entry item: {}"
 
 
-def test_deserialize_base_achievement() -> None:
-    serializer = Serializer()
-    model = models.Achievement()
-    data = {
-        "metric": "attack",
-        "measure": "experience",
-        "name": "lol",
-        "playerId": 123,
-        "threshold": 5,
-        "accuracy": None,
-    }
-
-    serializer._deserialize_base_achievement(model, data)  # type: ignore
-
-    assert model.metric is Skills.Attack
-    assert model.measure is models.AchievementMeasure.Experience
-    assert model.name == "lol"
-    assert model.player_id == 123
-    assert model.threshold == 5
-    assert model.accuracy == None
-
-
-def test_deserialize_player(
-    player_dict: dict[str, t.Any], deserialized_player: models.Player
+def test_deserialize_base_achievement(
+    base_achievement_dict: DictT, deserialized_base_achievement: models.Achievement
 ) -> None:
-    serializer = Serializer()
+    result = serializer._deserialize_base_achievement(  # type: ignore
+        models.Achievement(), base_achievement_dict
+    )
 
+    # Hack because base achievement doesn't set the created at date
+    # and an exception is raised if not all properties are set
+    now = datetime.now()
+    result.created_at = now
+    deserialized_base_achievement.created_at = now
+
+    assert result == deserialized_base_achievement
+
+
+def test_deserialize_player(player_dict: DictT, deserialized_player: models.Player) -> None:
     result = serializer.deserialize_player(player_dict)
 
     assert result == deserialized_player
 
 
 def test_deserialize_player_details(
-    player_detail_dict: dict[str, t.Any], deserialized_player_detail: models.PlayerDetail
+    player_detail_dict: DictT, deserialized_player_detail: models.PlayerDetail
 ) -> None:
-    serializer = Serializer()
-
     result = serializer.deserialize_player_details(player_detail_dict)
 
     assert result == deserialized_player_detail
 
 
 def test_deserialize_snapshot(
-    snapshot_dict: dict[str, t.Any], deserialized_snapshot: models.Snapshot
+    snapshot_dict: DictT, deserialized_snapshot: models.Snapshot
 ) -> None:
-    serializer = Serializer()
-
     result = serializer.deserialize_snapshot(snapshot_dict)
 
     assert result == deserialized_snapshot
 
 
 def test_deserialize_snapshot_data(
-    snapshot_data_dict: dict[str, t.Any], deserialized_snapshot_data: models.Snapshot
+    snapshot_data_dict: DictT, deserialized_snapshot_data: models.Snapshot
 ) -> None:
-    serializer = Serializer()
-
     result = serializer.deserialize_snapshot_data(snapshot_data_dict)
 
     assert result == deserialized_snapshot_data
 
 
-def test_deserialize_skill(skill_dict: dict[str, t.Any], deserialized_skill: models.Skill) -> None:
-    serializer = Serializer()
-
+def test_deserialize_skill(skill_dict: DictT, deserialized_skill: models.Skill) -> None:
     result = serializer.deserialize_skill(skill_dict)
 
     assert result == deserialized_skill
 
 
-def test_deserialize_boss(boss_dict: dict[str, t.Any], deserialized_boss: models.Boss) -> None:
-    serializer = Serializer()
-
+def test_deserialize_boss(boss_dict: DictT, deserialized_boss: models.Boss) -> None:
     result = serializer.deserialize_boss(boss_dict)
 
     assert result == deserialized_boss
 
 
 def test_deserialize_activity(
-    activity_dict: dict[str, t.Any], deserialized_activity: models.Activity
+    activity_dict: DictT, deserialized_activity: models.Activity
 ) -> None:
-    serializer = Serializer()
-
     result = serializer.deserialize_activity(activity_dict)
 
     assert result == deserialized_activity
 
 
 def test_deserialize_computed_metric(
-    computed_dict: dict[str, t.Any], deserialized_computed: models.ComputedMetric
+    computed_dict: DictT, deserialized_computed: models.ComputedMetric
 ) -> None:
-    serializer = Serializer()
-
     result = serializer.deserialize_computed_metric(computed_dict)
 
     assert result == deserialized_computed
 
 
-def test_deserialized_asserted_player_type(
-    assert_player_type_dict: dict[str, t.Any],
+def test_deserialize_asserted_player_type(
+    assert_player_type_dict: DictT,
     deserialized_assert_player_type: models.AssertPlayerType,
 ) -> None:
-    serializer = Serializer()
-
     result = serializer.deserialize_asserted_player_type(assert_player_type_dict)
 
     assert result == deserialized_assert_player_type
+
+
+def test_deserialize_achievement(
+    achievement_dict: DictT, deserialized_achievement: models.Achievement
+) -> None:
+    result = serializer.deserialize_achievement(achievement_dict)
+
+    assert result == deserialized_achievement
+
+
+def test_deserialize_achievement_progress(
+    achievement_progress_dict: DictT, deserialized_achievement_progress: models.AchievementProgress
+) -> None:
+    result = serializer.deserialize_achievement_progress(achievement_progress_dict)
+
+    assert result == deserialized_achievement_progress
