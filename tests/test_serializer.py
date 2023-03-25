@@ -40,6 +40,11 @@ DictT = dict[str, t.Any]
 serializer = Serializer()
 
 
+####################################################################
+# Test data and expected models
+####################################################################
+
+
 @pytest.fixture()
 def blank_class() -> t.Any:
     class BlankClass:
@@ -278,6 +283,34 @@ def deserialized_achievement_progress() -> models.AchievementProgress:
     return _deserialized_achievement_progress()
 
 
+def _player_achievement_progress_dict() -> DictT:
+    return {
+        **_achievement_progress_dict(),
+        "currentValue": 1000,
+        "absoluteProgress": 1.1234,
+        "relativeProgress": 0.094,
+    }
+
+
+@pytest.fixture()
+def player_achievement_progress_dict() -> DictT:
+    return _player_achievement_progress_dict()
+
+
+def _deserialized_player_achievement_progress() -> models.PlayerAchievementProgress:
+    model = models.PlayerAchievementProgress()
+    model.achievement = _deserialized_achievement_progress()
+    model.current_value = 1000
+    model.absolute_progress = 1.1234
+    model.relative_progress = 0.094
+    return model
+
+
+@pytest.fixture()
+def deserialized_player_achievement_progress() -> models.PlayerAchievementProgress:
+    return _deserialized_player_achievement_progress()
+
+
 def _snapshot_data_dict() -> DictT:
     return {
         "skills": {"overall": _skill_dict()},
@@ -390,6 +423,204 @@ def _deserialized_assert_player_type() -> models.AssertPlayerType:
 @pytest.fixture()
 def deserialized_assert_player_type() -> models.AssertPlayerType:
     return _deserialized_assert_player_type()
+
+
+def _gains_dict() -> DictT:
+    return {"gained": 1.125, "start": 0.01, "end": 1.126}
+
+
+@pytest.fixture()
+def gains_dict() -> DictT:
+    return _gains_dict()
+
+
+def _deserialized_gains() -> models.Gains:
+    model = models.Gains()
+    model.gained = 1.125
+    model.start = 0.01
+    model.end = 1.126
+    return model
+
+
+@pytest.fixture()
+def deserialized_gains() -> models.Gains:
+    return _deserialized_gains()
+
+
+def _skill_gains_dict() -> DictT:
+    return {
+        "metric": "ranged",
+        "experience": _gains_dict(),
+        "ehp": _gains_dict(),
+        "rank": _gains_dict(),
+        "level": _gains_dict(),
+    }
+
+
+@pytest.fixture()
+def skill_gains_dict() -> DictT:
+    return _skill_gains_dict()
+
+
+def _deserialized_skill_gains() -> models.SkillGains:
+    model = models.SkillGains()
+    model.metric = Skills.Ranged
+    model.experience = _deserialized_gains()
+    model.ehp = _deserialized_gains()
+    model.rank = _deserialized_gains()
+    model.level = _deserialized_gains()
+    return model
+
+
+@pytest.fixture()
+def deserialized_skill_gains() -> models.SkillGains:
+    return _deserialized_skill_gains()
+
+
+def _boss_gains_dict() -> DictT:
+    return {
+        "metric": "chaos_fanatic",
+        "ehb": _gains_dict(),
+        "rank": _gains_dict(),
+        "kills": _gains_dict(),
+    }
+
+
+@pytest.fixture()
+def boss_gains_dict() -> DictT:
+    return _boss_gains_dict()
+
+
+def _deserialized_boss_gains() -> models.BossGains:
+    model = models.BossGains()
+    model.metric = Bosses.ChaosFanatic
+    model.ehb = _deserialized_gains()
+    model.rank = _deserialized_gains()
+    model.kills = _deserialized_gains()
+    return model
+
+
+@pytest.fixture()
+def deserialized_boss_gains() -> models.BossGains:
+    return _deserialized_boss_gains()
+
+
+def _activity_gains_dict() -> DictT:
+    return {
+        "metric": "clue_scrolls_all",
+        "score": _gains_dict(),
+        "rank": _gains_dict(),
+    }
+
+
+@pytest.fixture()
+def activity_gains_dict() -> DictT:
+    return _activity_gains_dict()
+
+
+def _deserialized_activity_gains() -> models.ActivityGains:
+    model = models.ActivityGains()
+    model.metric = Activities.ClueScrollsAll
+    model.score = _deserialized_gains()
+    model.rank = _deserialized_gains()
+    return model
+
+
+@pytest.fixture()
+def deserialized_activity_gains() -> models.ActivityGains:
+    return _deserialized_activity_gains()
+
+
+def _computed_gains_dict() -> DictT:
+    return {
+        "metric": "ehp",
+        "value": _gains_dict(),
+        "rank": _gains_dict(),
+    }
+
+
+@pytest.fixture()
+def computed_gains_dict() -> DictT:
+    return _computed_gains_dict()
+
+
+def _deserialized_computed_gains() -> models.ComputedGains:
+    model = models.ComputedGains()
+    model.metric = ComputedMetrics.Ehp
+    model.value = _deserialized_gains()
+    model.rank = _deserialized_gains()
+    return model
+
+
+@pytest.fixture()
+def deserialized_computed_gains() -> models.ComputedGains:
+    return _deserialized_computed_gains()
+
+
+def _player_gains_data_dict() -> DictT:
+    return {
+        "skills": {"ranged": _skill_gains_dict()},
+        "bosses": {"chaos_fanatic": _boss_gains_dict()},
+        "computed": {"ehp": _computed_gains_dict()},
+        "activities": {"clue_scrolls_all": _activity_gains_dict()},
+    }
+
+
+@pytest.fixture()
+def player_gains_data_dict() -> DictT:
+    return _player_gains_data_dict()
+
+
+def _deserialized_player_gains_data() -> models.PlayerGainsData:
+    model = models.PlayerGainsData()
+
+    skill = _deserialized_skill_gains()
+    boss = _deserialized_boss_gains()
+    activity = _deserialized_activity_gains()
+    computed = _deserialized_computed_gains()
+
+    model.skills = {skill.metric: skill}
+    model.bosses = {boss.metric: boss}
+    model.activities = {activity.metric: activity}
+    model.computed = {computed.metric: computed}
+
+    return model
+
+
+@pytest.fixture()
+def deserialized_player_gains_data() -> models.PlayerGainsData:
+    return _deserialized_player_gains_data()
+
+
+def _player_gains_dict() -> DictT:
+    return {
+        "data": _player_gains_data_dict(),
+        "startsAt": "2023-01-30T01:24:41.999Z",
+        "endsAt": "2023-02-15T01:24:41.999Z",
+    }
+
+
+@pytest.fixture()
+def player_gains_dict() -> DictT:
+    return _player_gains_dict()
+
+
+def _deserialized_player_gains() -> models.PlayerGains:
+    model = models.PlayerGains()
+    model.data = _deserialized_player_gains_data()
+    model.starts_at = datetime(2023, 1, 30, 1, 24, 41, 999000)
+    model.ends_at = datetime(2023, 2, 15, 1, 24, 41, 999000)
+    return model
+
+
+@pytest.fixture()
+def deserialized_player_gains() -> models.PlayerGains:
+    return _deserialized_player_gains()
+
+
+####################################################################
+# Tests
+####################################################################
 
 
 def test_dt_from_iso() -> None:
@@ -694,3 +925,66 @@ def test_deserialize_achievement_progress(
     result = serializer.deserialize_achievement_progress(achievement_progress_dict)
 
     assert result == deserialized_achievement_progress
+
+
+def test_deserialize_player_achievement_progress(
+    player_achievement_progress_dict: DictT,
+    deserialized_player_achievement_progress: models.PlayerAchievementProgress,
+) -> None:
+    result = serializer.deserialize_player_achievement_progress(player_achievement_progress_dict)
+
+    assert result == deserialized_player_achievement_progress
+
+
+def test_deserialize_gains(gains_dict: DictT, deserialized_gains: models.Gains) -> None:
+    result = serializer.deserialize_gains(gains_dict)
+
+    assert result == deserialized_gains
+
+
+def test_deserialize_skill_gains(
+    skill_gains_dict: DictT, deserialized_skill_gains: models.SkillGains
+) -> None:
+    result = serializer.deserialize_skill_gains(skill_gains_dict)
+
+    assert result == deserialized_skill_gains
+
+
+def test_deserialize_boss_gains(
+    boss_gains_dict: DictT, deserialized_boss_gains: models.BossGains
+) -> None:
+    result = serializer.deserialize_boss_gains(boss_gains_dict)
+
+    assert result == deserialized_boss_gains
+
+
+def test_deserialize_activity_gains(
+    activity_gains_dict: DictT, deserialized_activity_gains: models.ActivityGains
+) -> None:
+    result = serializer.deserialize_activity_gains(activity_gains_dict)
+
+    assert result == deserialized_activity_gains
+
+
+def test_deserialize_computed_gains(
+    computed_gains_dict: DictT, deserialized_computed_gains: models.ActivityGains
+) -> None:
+    result = serializer.deserialize_computed_gains(computed_gains_dict)
+
+    assert result == deserialized_computed_gains
+
+
+def test_deserialize_player_gains_data(
+    player_gains_data_dict: DictT, deserialized_player_gains_data: models.PlayerGainsData
+) -> None:
+    result = serializer.deserialize_player_gains_data(player_gains_data_dict)
+
+    assert result == deserialized_player_gains_data
+
+
+def test_deserialize_player_gains(
+    player_gains_dict: DictT, deserialized_player_gains: models.PlayerGains
+) -> None:
+    result = serializer.deserialize_player_gains(player_gains_dict)
+
+    assert result == deserialized_player_gains
