@@ -1,4 +1,4 @@
-# Unreleased
+# v0.3.0 (Apr 2023)
 
 ## Breaking Changes
 
@@ -6,6 +6,7 @@
   `enums.Skills` key to values of the associated type that was previously contained in the list.
 - The deserialization methods associated with the above types were also updated to accommodate
   this.
+- the `Player.flagged` field was removed in favor of the `Player.status` field.
 
 ## Changes
 
@@ -16,6 +17,7 @@
 ## Additions
 
 - Tests! :eyes:
+- A `PlayerStatus` enum representing the statuses a player can be in (flagged, active, etc)
 
 ---
 
