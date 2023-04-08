@@ -31,6 +31,7 @@ from ..base import BaseModel
 from .enums import AchievementMeasure
 from .enums import Country
 from .enums import PlayerBuild
+from .enums import PlayerStatus
 from .enums import PlayerType
 
 __all__ = (
@@ -192,10 +193,8 @@ class Player(BaseModel):
     have one set.
     """
 
-    flagged: bool
-    """Whether the player is flagged for having an invalid snapshot
-    history.
-    """
+    status: PlayerStatus
+    """The players status, i.e. flagged, archived, etc."""
 
     exp: int
     """The players overall experience."""

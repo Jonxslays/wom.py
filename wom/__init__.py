@@ -113,6 +113,7 @@ __all__ = (
     "PlayerDetail",
     "PlayerParticipation",
     "PlayerService",
+    "PlayerStatus",
     "PlayerType",
     "Record",
     "RecordService",

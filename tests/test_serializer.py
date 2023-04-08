@@ -61,7 +61,7 @@ def _player_dict() -> DictT:
         "type": "regular",
         "build": "main",
         "country": None,
-        "flagged": False,
+        "status": "active",
         "exp": 330940032,
         "ehp": 1057.05253,
         "ehb": 126.50192,
@@ -87,7 +87,7 @@ def _deserialized_player() -> models.Player:
     player.type = models.PlayerType.Regular
     player.build = models.PlayerBuild.Main
     player.country = None
-    player.flagged = False
+    player.status = models.PlayerStatus.Active
     player.exp = 330940032
     player.ehp = 1057.05253
     player.ehb = 126.50192

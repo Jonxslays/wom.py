@@ -27,6 +27,7 @@ __all__ = (
     "AchievementMeasure",
     "Country",
     "PlayerBuild",
+    "PlayerStatus",
     "PlayerType",
 )
 
@@ -51,6 +52,15 @@ class PlayerBuild(BaseEnum):
     Zerker = "zerker"
     Def1 = "def1"
     Hp10 = "hp10"
+
+
+class PlayerStatus(BaseEnum):
+    """Status for the players account."""
+
+    Active = "active"
+    Unranked = "unranked"
+    Flagged = "flagged"
+    Archived = "archived"
 
 
 class AchievementMeasure(BaseEnum):

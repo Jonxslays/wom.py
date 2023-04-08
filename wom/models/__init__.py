@@ -87,6 +87,7 @@ __all__ = (
     "PlayerGains",
     "PlayerGainsData",
     "PlayerParticipation",
+    "PlayerStatus",
     "PlayerType",
     "Record",
     "RecordLeaderboardEntry",

@@ -42,6 +42,7 @@ __all__ = (
     "PlayerGainsData",
     "Player",
     "PlayerDetail",
+    "PlayerStatus",
     "PlayerType",
     "SkillGains",
     "Skill",

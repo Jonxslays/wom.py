@@ -144,7 +144,6 @@ class Serializer:
             "id",
             "username",
             "display_name",
-            "flagged",
             "exp",
             "ehp",
             "ehb",
@@ -154,6 +153,7 @@ class Serializer:
 
         player.type = models.PlayerType.from_str(data["type"])
         player.build = models.PlayerBuild.from_str(data["build"])
+        player.status = models.PlayerStatus.from_str(data["status"])
         player.country = models.Country.from_str_maybe(data["country"])
         player.registered_at = self._dt_from_iso(data["registeredAt"])
         player.updated_at = self._dt_from_iso(data["updatedAt"])
