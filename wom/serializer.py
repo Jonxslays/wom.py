@@ -995,7 +995,7 @@ class Serializer:
         return leader
 
     def deserialize_metric_leaders(self, data: dict[str, t.Any]) -> models.MetricLeaders:
-        """Deserializes the data into a metric leaders model model.
+        """Deserializes the data into a metric leaders model.
 
         Args:
             data: The JSON payload.
