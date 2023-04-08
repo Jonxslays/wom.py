@@ -13,7 +13,7 @@ packages = [
     { include = "wom/py.typed" },
 ]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -69,11 +69,11 @@ docs-length = 80
 strict = true
 
 [tool.mypy]
-packages = ["wom", "tests"]
+packages = ["wom"]
 strict = true
 
 [tool.pyright]
-include = ["wom", "tests"]
+include = ["wom"]
 typeCheckingMode = "strict"
 reportImportCycles = false
 

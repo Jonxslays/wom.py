@@ -1,27 +1,38 @@
-import typing as t
+import sys
+
+import wom
+
+
+def should_include_module(module: str) -> bool:
+    return module != "annotations" and module[0] != "_" and module[0].upper() != module[0]
+
+
+def get_modules() -> list[str]:
+    return [m for m in wom.__dict__ if should_include_module(m)]
+
+
+def get_alls() -> tuple[set[str], set[str]]:
+    modules = get_modules()
+    return (
+        set(item for module in modules for item in wom.__dict__[module].__all__),
+        set(i for i in wom.__all__ if i not in modules),
+    )
 
 
 def validate_alls() -> None:
-    import wom
+    modules, lib = get_alls()
+    err = None
 
-    should_include_module: t.Callable[[str], bool] = lambda m: (
-        m != "annotations" and m[0] != "_" and m[0].upper() != m[0]
-    )
+    if missing := modules - lib:
+        err = "Missing exported items at top level:\n" + "\n".join(f" - {m}" for m in missing)
+        print(err, file=sys.stderr)
 
-    modules_all: set[str] = set()
-    modules = [m for m in wom.__dict__ if should_include_module(m)]
-    modules_all.update(item for module in modules for item in wom.__dict__[module].__all__)
-    lib_all = set(i for i in wom.__all__ if i not in modules)
+    if missing := lib - modules:
+        err = "Missing exported items at module level:\n" + "\n".join(f" - {m}" for m in missing)
+        print(err, file=sys.stderr)
 
-    if missing := modules_all.difference(lib_all):
-        raise Exception(
-            "Missing exported items at top level:\n" + "\n".join(f" - {m}" for m in missing)
-        )
-
-    if missing := lib_all.difference(modules_all):
-        raise Exception(
-            "Missing exported items at module level:\n" + "\n".join(f" - {m}" for m in missing)
-        )
+    if err:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
