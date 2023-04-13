@@ -1,3 +1,9 @@
+# v0.3.1 (Apr 2023)
+
+## Additions
+
+- Added new wildy bosses Artio, Calvarion, and Spindel to the `Bosses` enum.
+
 # v0.3.0 (Apr 2023)
 
 ## Breaking Changes
