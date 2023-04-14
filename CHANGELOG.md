@@ -1,8 +1,19 @@
+# v0.3.2 (Apr 2023)
+
+## Breaking Changes
+
+- Add a new *required* async `Client.start` method to fix deprecation warning emitted
+  by creating a `ClientSession` in a non-async function.
+
+---
+
 # v0.3.1 (Apr 2023)
 
 ## Additions
 
-- Added new wildy bosses Artio, Calvarion, and Spindel to the `Bosses` enum.
+- Add new wildy bosses Artio, Calvarion, and Spindel to the `Bosses` enum.
+
+---
 
 # v0.3.0 (Apr 2023)
 
