@@ -67,14 +67,6 @@ class HttpService:
             self._headers["x-api-key"] = api_key
 
         self._base_url = api_base_url or constants.WOM_BASE_URL
-        self._session = aiohttp.ClientSession()
-        self._method_mapping = {
-            "GET": self._session.get,
-            "POST": self._session.post,
-            "PUT": self._session.put,
-            "PATCH": self._session.patch,
-            "DELETE": self._session.delete,
-        }
 
     async def _try_get_json(self, response: aiohttp.ClientResponse) -> t.Any:
         try:
@@ -102,7 +94,20 @@ class HttpService:
         return data
 
     def _get_request_func(self, method: str) -> t.Callable[..., t.Awaitable[t.Any]]:
+        if not hasattr(self, "_method_mapping"):
+            raise RuntimeError("HttpService.start was never called, aborting...")
+
         return self._method_mapping[method]  # type: ignore
+
+    async def _init_session(self) -> None:
+        self._session = aiohttp.ClientSession()
+        self._method_mapping = {
+            "GET": self._session.get,
+            "POST": self._session.post,
+            "PUT": self._session.put,
+            "PATCH": self._session.patch,
+            "DELETE": self._session.delete,
+        }
 
     def set_api_key(self, api_key: str) -> None:
         """Sets the api key used by the http service.
@@ -133,9 +138,14 @@ class HttpService:
         """
         self._base_url = base_url
 
+    async def start(self) -> None:
+        """Starts the client session to be used by the http service."""
+        if not hasattr(self, "_session"):
+            await self._init_session()
+
     async def close(self) -> None:
         """Closes the existing client session, if it's still open."""
-        if not self._session.closed:
+        if hasattr(self, "_session") and not self._session.closed:
             await self._session.close()
 
     async def fetch(

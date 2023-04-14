@@ -68,6 +68,8 @@ class PlayerService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.players.search_players("Jonxslays", limit=3)
             ```
         """
@@ -97,6 +99,8 @@ class PlayerService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.players.update_player("Jonxslays")
             ```
         """
@@ -125,6 +129,8 @@ class PlayerService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.players.assert_player_type("Jonxslays")
             ```
         """
@@ -151,6 +157,8 @@ class PlayerService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.players.get_details("Jonxslays")
             ```
@@ -179,6 +187,8 @@ class PlayerService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.players.get_details_by_id(1234)
             ```
         """
@@ -206,6 +216,8 @@ class PlayerService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.players.get_achievements("Jonxslays")
             ```
@@ -236,6 +248,8 @@ class PlayerService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.players.get_achievement_progress("Jonxslays")
             ```
@@ -285,6 +299,8 @@ class PlayerService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.players.get_achievement_progress("Jonxslays")
             ```
         """
@@ -322,6 +338,8 @@ class PlayerService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.players.get_competition_standings(
                 "Jonxslays", wom.CompetitionStatus.Ongoing
@@ -364,6 +382,8 @@ class PlayerService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.players.get_group_memberships(
                 "Jonxslays", limit=3
@@ -417,6 +437,8 @@ class PlayerService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.players.get_gains(
                 "Jonxslays", period=wom.Period.Day
             )
@@ -465,6 +487,8 @@ class PlayerService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.players.get_records(
                 "Jonxslays", period=wom.Period.Day, metric=wom.Skills.Attack
@@ -521,6 +545,8 @@ class PlayerService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.players.get_snapshots(
                 "Jonxslays", period=wom.Period.Week
             )
@@ -555,6 +581,8 @@ class PlayerService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.players.get_name_changes("Jonxslays")
             ```

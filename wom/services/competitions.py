@@ -84,6 +84,8 @@ class CompetitionService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.competitions.search_competitions(
                 title="Sick Competition",
                 type=wom.CompetitionType.Classic,
@@ -132,6 +134,8 @@ class CompetitionService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.competitions.get_details(123)
 
@@ -349,6 +353,8 @@ class CompetitionService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.competitions.edit_competition(
                 123, "111-111-111", title="New title"
             )
@@ -398,6 +404,8 @@ class CompetitionService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.competitions.delete_competition(
                 123, "111-111-111"
             )
@@ -424,6 +432,8 @@ class CompetitionService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.competitions.add_participants(
                 123, "111-111-111", "Jonxslays", "Zezima"
@@ -464,6 +474,8 @@ class CompetitionService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.competitions.remove_participants(
                 123, "111-111-111", "Jonxslays"
             )
@@ -501,6 +513,8 @@ class CompetitionService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.competitions.add_teams(
                 123,
@@ -545,6 +559,8 @@ class CompetitionService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.competitions.remove_teams(
                 123, "111-111-111", "Team 1", "Team 2"
@@ -605,6 +621,8 @@ class CompetitionService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.competitions.update_outdated_participants(
                 123, "111-111-111"

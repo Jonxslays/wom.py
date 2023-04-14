@@ -27,6 +27,8 @@ all [`Client`][wom.Client] calls.
     ```py
     client = wom.Client()
 
+    await client.start()
+
     result = await client.players.update_player("Jonxslays")
 
     if result.is_ok:
@@ -39,6 +41,8 @@ all [`Client`][wom.Client] calls.
 
     ```py
     client = wom.Client()
+
+    await client.start()
 
     result = await client.players.update_player("eeeeeeeeeeeee")
 

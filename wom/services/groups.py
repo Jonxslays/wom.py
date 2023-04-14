@@ -70,6 +70,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.search_groups("Some group", limit=3)
             ```
         """
@@ -97,6 +99,8 @@ class GroupService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.groups.get_details(1234)
             ```
@@ -143,6 +147,8 @@ class GroupService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.groups.create_group(
                 "My new group",
@@ -221,6 +227,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.edit_group(
                 123,
                 "111-111-111",
@@ -272,6 +280,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.delete_group(123, "111-111-111")
             ```
         """
@@ -306,6 +316,8 @@ class GroupService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.groups.add_members(
                 123,
@@ -354,6 +366,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.remove_members(
                 123,
                 "111-111-111",
@@ -396,6 +410,8 @@ class GroupService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.groups.change_member_role(
                 123,
@@ -447,6 +463,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.groups.update_outdated_members(
                 123, "111-111-111"
             )
@@ -493,6 +511,8 @@ class GroupService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.groups.get_competitions(123, limit=10)
             ```
@@ -554,6 +574,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.get_gains(
                 123, wom.Bosses.Zulrah, limit=10
             )
@@ -604,6 +626,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.get_achievements(123, limit=10)
             ```
         """
@@ -649,6 +673,8 @@ class GroupService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.groups.get_records(
                 123, wom.Bosses.Zulrah, wom.Period.Day, limit=3
@@ -701,6 +727,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.get_hiscores(
                 123, wom.Skills.Runecrafting, limit=10
             )
@@ -738,6 +766,8 @@ class GroupService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             await client.groups.get_name_changes(123, limit=10)
             ```
         """
@@ -765,6 +795,8 @@ class GroupService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.groups.get_statistics(123)
             ```

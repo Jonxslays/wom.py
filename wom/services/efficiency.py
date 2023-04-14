@@ -81,6 +81,8 @@ class EfficiencyService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.efficiency.get_global_leaderboard(
                 player_type=wom.PlayerType.Ironman,
             )

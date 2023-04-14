@@ -31,6 +31,8 @@ the client. All functionality is encompassed in these service methods.
 
     client = Client(user_agent="@your_discord_handle#1234")
 
+    await client.start()
+
     result = await client.players.search_players("Jonxslays", limit=1)
 
     if result.is_ok:
@@ -86,6 +88,8 @@ class Client:
             user_agent="@me#1234",
             api_base_url=environ["LOCAL_WOM_DOMAIN"],
         )
+
+        await client.start()  # Start the client
 
         # ... Use the client
 
@@ -249,6 +253,30 @@ class Client:
         """
         self._http.set_base_url(base_url)
 
+    async def start(self) -> None:
+        """Starts the client session to be used for http requests.
+
+        !!! warning
+
+            If this is not called before you use any of the services,
+            your program will crash with a `RuntimeError`.
+
+        !!! note
+
+            Don't forget to close the client!
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+            ```
+        """
+        await self._http.start()
+
     async def close(self) -> None:
         """Closes the existing client session, if it's still open.
 
@@ -256,6 +284,8 @@ class Client:
 
             Only call this once, at the end of your program or if you are done
             with the client completely.
+
+            This method will do nothing if the Client was never started.
 
         !!! warning
 
@@ -268,6 +298,8 @@ class Client:
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             await client.close()
             ```

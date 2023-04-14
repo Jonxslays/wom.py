@@ -78,6 +78,8 @@ class RecordService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.records.get_global_record_leaderboards(
                 wom.Skills.Attack,
                 wom.Period.Day,

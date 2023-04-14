@@ -73,6 +73,8 @@ class NameChangeService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.names.search_name_changes(
                 "Jonxslays", limit=1
             )
@@ -105,6 +107,8 @@ class NameChangeService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.names.submit_name_change(
                 "Jonxslays", "I Mahatma I"
             )
@@ -134,6 +138,8 @@ class NameChangeService(BaseService):
             import wom
 
             client = wom.Client(...)
+
+            await client.start()
 
             result = await client.names.get_name_change_details(123)
             ```

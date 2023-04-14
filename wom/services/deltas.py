@@ -79,6 +79,8 @@ class DeltaService(BaseService):
 
             client = wom.Client(...)
 
+            await client.start()
+
             result = await client.deltas.get_global_leaderboards(
                 wom.Skills.Attack,
                 wom.Period.Day,
