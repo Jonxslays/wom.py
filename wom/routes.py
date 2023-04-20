@@ -37,9 +37,10 @@ class CompiledRoute:
         route: The route to compile.
     """
 
-    __slots__ = ("_route", "_params")
+    __slots__ = ("_route", "_uri", "_params")
 
-    def __init__(self, route: Route) -> None:
+    def __init__(self, route: Route, uri: str) -> None:
+        self._uri = uri
         self._route = route
         self._params: dict[str, str | int] = {}
 
@@ -51,7 +52,11 @@ class CompiledRoute:
     @property
     def uri(self) -> str:
         """The routes uri endpoint."""
-        return self.route.uri
+        return self._uri
+
+    @uri.setter
+    def uri(self, uri: str) -> None:
+        self._uri = uri
 
     @property
     def method(self) -> str:
@@ -96,10 +101,10 @@ class Route:
         Returns:
             The compiled route.
         """
-        compiled = CompiledRoute(self)
+        compiled = CompiledRoute(self, self.uri)
 
         for arg in args:
-            compiled.route.uri = compiled.uri.replace(r"{}", str(arg), 1)
+            compiled.uri = compiled.uri.replace(r"{}", str(arg), 1)
 
         return compiled
 
