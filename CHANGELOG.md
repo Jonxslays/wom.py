@@ -1,8 +1,16 @@
+# v0.3.3 (Apr 2023)
+
+## Bugfixes
+
+- Fix bug in `Route` that caused requests to be made to incorrect URI's.
+
+---
+
 # v0.3.2 (Apr 2023)
 
 ## Breaking Changes
 
-- Add a new *required* async `Client.start` method to fix deprecation warning emitted
+- Add a new _required_ async `Client.start` method to fix deprecation warning emitted
   by creating a `ClientSession` in a non-async function.
 
 ---
