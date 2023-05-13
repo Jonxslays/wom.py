@@ -26,10 +26,105 @@ from datetime import datetime
 
 import attrs
 
+from wom import enums
+
 from ..base import BaseModel
+from .enums import NameChangeReviewReason
 from .enums import NameChangeStatus
 
-__all__ = ("NameChange",)
+__all__ = (
+    "DeniedNameChangeReviewContext",
+    "NameChange",
+    "NameChangeReviewContext",
+    "SkippedNameChangeReviewContext",
+)
+
+
+@attrs.define(init=False)
+class NameChangeReviewContext(BaseModel):
+    """The review context for a name change that was not approved.
+
+    !!! note
+
+        This will always be one of:
+
+        - `DeniedNameChangeReviewContext`
+
+        - `SkippedNameChangeReviewContext`
+
+        You can use an `isinstance(...)` check to determine which one
+        it is.
+    """
+
+    reason: NameChangeReviewReason
+    """The reason this name change was denied."""
+
+
+@attrs.define(init=False)
+class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
+    """The review context for a name change that was denied."""
+
+    reason: t.Literal[
+        NameChangeReviewReason.ManualReview,
+        NameChangeReviewReason.OldStatsNotFound,
+        NameChangeReviewReason.NewNameNotFound,
+        NameChangeReviewReason.NegativeGains,
+    ]
+    """The reason this name change was denied."""
+
+    negative_gains: t.Optional[t.Dict[enums.Metric, int]]
+    """The negative gains that were observed, if there were any. Only populated
+    when the reason is
+    [`NegativeGains`][wom.NameChangeReviewReason.NegativeGains]"""
+
+
+@attrs.define(init=False)
+class SkippedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
+    """The review context for a name change that was skipped."""
+
+    reason: t.Literal[
+        NameChangeReviewReason.TransitionTooLong,
+        NameChangeReviewReason.ExcessiveGains,
+        NameChangeReviewReason.TotalLevelTooLow,
+    ]
+    """The reason this name change was denied."""
+
+    max_hours_diff: t.Optional[int]
+    """The max number of hours in the transition period. Only populated when
+    reason is
+    [`TransitionTooLong`][wom.NameChangeReviewReason.TransitionTooLong].
+    """
+
+    hours_diff: t.Optional[int]
+    """The actual number of hours in the transition period. Only populated when
+    reason is
+    [`TransitionTooLong`][wom.NameChangeReviewReason.TransitionTooLong]
+    or [`ExcessiveGains`][wom.NameChangeReviewReason.ExcessiveGains].
+    """
+
+    ehp_diff: t.Optional[int]
+    """The number difference between the old and new names ehp. Only populated
+    when the reason is
+    [`ExcessiveGains`][wom.NameChangeReviewReason.ExcessiveGains].
+    """
+
+    ehb_diff: t.Optional[int]
+    """The number difference between the old and new names ehb. Only populated
+    when the reason is
+    [`ExcessiveGains`][wom.NameChangeReviewReason.ExcessiveGains].
+    """
+
+    min_total_level: t.Optional[int]
+    """The minimum total level allowed for this name change. Only populated
+    when the reason is
+    [`TotalLevelTooLow`][wom.NameChangeReviewReason.TotalLevelTooLow].
+    """
+
+    total_level: t.Optional[int]
+    """The number difference between the old and new names ehb. Only populated
+    when the reason is
+    [`TotalLevelTooLow`][wom.NameChangeReviewReason.TotalLevelTooLow].
+    """
 
 
 @attrs.define(init=False)
@@ -50,6 +145,11 @@ class NameChange(BaseModel):
 
     status: NameChangeStatus
     """The [`status`][wom.NameChangeStatus] of the name change."""
+
+    review_context: t.Optional[NameChangeReviewContext]
+    """The [review context][wom.NameChangeReviewContext] associated with
+    this name change, if it was denied or skipped.
+    """
 
     resolved_at: t.Optional[datetime]
     """The date the name change was approved or denied."""

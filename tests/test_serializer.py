@@ -741,7 +741,7 @@ def test_set_attrs_cased(set_attrs: mock.MagicMock, blank_class: t.Any) -> None:
     serializer._set_attrs_cased(blank_class, {}, "test", "other")  # type: ignore
 
     set_attrs.assert_called_once_with(
-        blank_class, {}, "test", "other", transform=None, camel_case=True
+        blank_class, {}, "test", "other", transform=None, camel_case=True, maybe=False
     )
 
 
@@ -749,7 +749,9 @@ def test_set_attrs_cased(set_attrs: mock.MagicMock, blank_class: t.Any) -> None:
 def test_set_attrs_cased_no_attrs(set_attrs: mock.MagicMock, blank_class: t.Any) -> None:
     serializer._set_attrs_cased(blank_class, {})  # type: ignore
 
-    set_attrs.assert_called_once_with(blank_class, {}, transform=None, camel_case=True)
+    set_attrs.assert_called_once_with(
+        blank_class, {}, transform=None, camel_case=True, maybe=False
+    )
 
 
 @mock.patch("wom.serializer.Serializer._set_attrs")
@@ -757,11 +759,11 @@ def test_set_attrs_cased_transform(set_attrs: mock.MagicMock, blank_class: t.Any
     transform: t.Callable[[t.Any], t.Any] | None = lambda i: i
 
     serializer._set_attrs_cased(  # type: ignore
-        blank_class, {}, "test", "other", transform=transform
+        blank_class, {}, "test", "other", transform=transform, maybe=False
     )
 
     set_attrs.assert_called_once_with(
-        blank_class, {}, "test", "other", transform=transform, camel_case=True  # type: ignore
+        blank_class, {}, "test", "other", transform=transform, camel_case=True, maybe=False
     )
 
 
