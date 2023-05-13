@@ -27,12 +27,12 @@ from unittest import mock
 
 import pytest
 
-from wom import models
 from wom import Activities
 from wom import Bosses
 from wom import ComputedMetrics
 from wom import Serializer
 from wom import Skills
+from wom import models
 
 AchievementT = t.TypeVar("AchievementT", models.Achievement, models.AchievementProgress)
 DictT = dict[str, t.Any]

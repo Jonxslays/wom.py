@@ -21,11 +21,12 @@
 
 from __future__ import annotations
 
-import pytest
 from unittest import mock
 
-from wom import services
+import pytest
+
 from wom import Client
+from wom import services
 
 
 async def test_all_services_exist() -> None:

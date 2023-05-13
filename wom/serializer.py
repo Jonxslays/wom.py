@@ -446,62 +446,6 @@ class Serializer:
         self._set_attrs_cased(change, data, "id", "player_id", "old_name", "new_name")
         return change
 
-    def deserialize_name_change_data(self, data: dict[str, t.Any]) -> models.NameChangeData:
-        """Deserializes the data into a name change data model.
-
-        Args:
-            data: The JSON payload.
-
-        Returns:
-            The requested model.
-        """
-        change_data = models.NameChangeData()
-        change_data.old_stats = self.deserialize_snapshot(data["oldStats"])
-        # NOTE: Hack to handle case where name change details new stats
-        # don't have an ID if the new username is not tracked by WOM
-        change_data.new_stats = None
-        new_stats = data.get("newStats")
-
-        if new_stats:
-            if "id" not in new_stats:
-                new_stats["id"] = -1
-
-            change_data.new_stats = self.deserialize_snapshot(new_stats)
-
-        self._set_attrs_cased(
-            change_data,
-            data,
-            "is_new_on_hiscores",
-            "is_old_on_hiscores",
-            "has_negative_gains",
-            "is_new_tracked",
-            "time_diff",
-            "hours_diff",
-            "ehp_diff",
-            "ehb_diff",
-        )
-
-        return change_data
-
-    def deserialize_name_change_detail(self, data: dict[str, t.Any]) -> models.NameChangeDetail:
-        """Deserializes the data into a name change detail model.
-
-        Args:
-            data: The JSON payload.
-
-        Returns:
-            The requested model.
-        """
-        change_detail = models.NameChangeDetail()
-        change_detail.name_change = self.deserialize_name_change(data["nameChange"])
-
-        # Data is only present on pending name changes
-        change_detail.data = (
-            self.deserialize_name_change_data(d) if (d := data.get("data")) else None
-        )
-
-        return change_detail
-
     def deserialize_record(self, data: dict[str, t.Any]) -> models.Record:
         """Deserializes the data into a record model.
 

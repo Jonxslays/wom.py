@@ -95,8 +95,6 @@ __all__ = (
     "Membership",
     "Metric",
     "MetricLeaders",
-    "NameChangeData",
-    "NameChangeDetail",
     "NameChange",
     "NameChangeService",
     "NameChangeStatus",

@@ -26,10 +26,9 @@ from datetime import datetime
 import attrs
 
 from ..base import BaseModel
-from ..players import Snapshot
 from .enums import NameChangeStatus
 
-__all__ = ("NameChangeData", "NameChangeDetail", "NameChange")
+__all__ = ("NameChange",)
 
 
 @attrs.define(init=False)
@@ -59,65 +58,3 @@ class NameChange(BaseModel):
 
     created_at: datetime
     """The date the name change was created."""
-
-
-@attrs.define(init=False)
-class NameChangeData(BaseModel):
-    """Metadata associated with a name change."""
-
-    is_new_on_hiscores: bool
-    """Whether or not he new username is on the hiscores."""
-
-    is_old_on_hiscores: bool
-    """Whether or not he old username is on the hiscores."""
-
-    is_new_tracked: bool
-    """Whether or not he new username is tracked on WOM."""
-
-    has_negative_gains: bool
-    """Whether or not name change has negative XP gains."""
-
-    time_diff: int
-    """Milliseconds between old names last snapshot and new names
-    first snapshot or the name change submission date if not tracked.
-    """
-
-    hours_diff: int
-    """Hours between old names last snapshot and new names first
-    snapshot or the name change submission date if not tracked.
-    """
-
-    ehp_diff: int
-    """The difference in efficient hours played between the old and new
-    usernames.
-    """
-
-    ehb_diff: int
-    """The difference in efficient hours bossed between the old and new
-    usernames.
-    """
-
-    old_stats: Snapshot
-    """The latest [`Snapshot`][wom.Snapshot] for the old name."""
-
-    new_stats: Snapshot | None
-    """The new name's first [`Snapshot`][wom.Snapshot], current hiscores
-    stats if untracked or `None`` if untracked and not present on
-    hiscores.
-    """
-
-
-@attrs.define(init=False)
-class NameChangeDetail(BaseModel):
-    """Details regarding a name change."""
-
-    name_change: NameChange
-    """The [`NameChange`][wom.NameChange] itself."""
-
-    data: NameChangeData | None
-    """The [`NameChangeData`][wom.NameChangeData] for this name change.
-
-    !!! note
-
-        This will be `None` when the name change is not pending.
-    """

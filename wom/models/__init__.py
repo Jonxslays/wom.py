@@ -73,8 +73,6 @@ __all__ = (
     "HttpSuccessResponse",
     "Membership",
     "MetricLeaders",
-    "NameChangeData",
-    "NameChangeDetail",
     "NameChange",
     "NameChangeStatus",
     "Participation",

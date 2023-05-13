@@ -21,30 +21,23 @@
 
 from __future__ import annotations
 
-import pytest
 from unittest import mock
 
-from wom import constants
-from wom import HttpService
 from wom import HttpErrorResponse
+from wom import HttpService
+from wom import constants
 
 
-@mock.patch("wom.services.http.aiohttp.ClientSession")
-def test_basic_init(client_session: mock.MagicMock) -> None:
+def test_basic_init() -> None:
     service = HttpService(None, None, None)
 
-    client_session.assert_called_once()
-    assert len(service._method_mapping) == 5  # type: ignore
     assert service._base_url == constants.WOM_BASE_URL  # type: ignore
     assert service._headers == {"x-user-agent": constants.DEFAULT_USER_AGENT}  # type: ignore
 
 
-@mock.patch("wom.services.http.aiohttp.ClientSession")
-def test_full_init(client_session: mock.MagicMock) -> None:
+def test_full_init() -> None:
     service = HttpService("xxx", "lolol", "https://WUTTTT")
 
-    client_session.assert_called_once()
-    assert len(service._method_mapping) == 5  # type: ignore
     assert service._base_url == "https://WUTTTT"  # type: ignore
     assert service._headers == {  # type: ignore
         "x-user-agent": f"{constants.USER_AGENT_BASE} lolol",

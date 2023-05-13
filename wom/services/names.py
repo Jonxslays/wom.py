@@ -122,32 +122,3 @@ class NameChangeService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_name_change(data))
-
-    async def get_name_change_details(self, id: int) -> ResultT[models.NameChangeDetail]:
-        """Gets the details for an existing name change.
-
-        Args:
-            id: The ID of the name change.
-
-        Returns:
-            A [`Result`][wom.Result] containing the name change details.
-
-        ??? example
-
-            ```py
-            import wom
-
-            client = wom.Client(...)
-
-            await client.start()
-
-            result = await client.names.get_name_change_details(123)
-            ```
-        """
-        route = routes.NAME_CHANGE_DETAILS.compile(id)
-        data = await self._http.fetch(route, self._dict)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok(self._serializer.deserialize_name_change_detail(data))
