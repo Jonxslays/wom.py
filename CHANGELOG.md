@@ -1,3 +1,12 @@
+# v0.4.0 (May 2023)
+
+## Breaking Changes
+
+- Remove `NameChangeService.get_name_change_details` as it is no longer supported by WOM.
+- Remove models and serialization methods associated with the above method.
+
+---
+
 # v0.3.3 (Apr 2023)
 
 ## Bugfixes
