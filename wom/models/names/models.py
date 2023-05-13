@@ -74,8 +74,8 @@ class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[ov
 
     negative_gains: t.Optional[t.Dict[enums.Metric, int]]
     """The negative gains that were observed, if there were any. Only populated
-    when the reason is
-    [`NegativeGains`][wom.NameChangeReviewReason.NegativeGains]"""
+    when the reason is [`NegativeGains`][wom.NameChangeReviewReason].
+    """
 
 
 @attrs.define(init=False)
@@ -91,39 +91,33 @@ class SkippedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[o
 
     max_hours_diff: t.Optional[int]
     """The max number of hours in the transition period. Only populated when
-    reason is
-    [`TransitionTooLong`][wom.NameChangeReviewReason.TransitionTooLong].
+    reason is [`TransitionTooLong`][wom.NameChangeReviewReason].
     """
 
     hours_diff: t.Optional[int]
     """The actual number of hours in the transition period. Only populated when
-    reason is
-    [`TransitionTooLong`][wom.NameChangeReviewReason.TransitionTooLong]
-    or [`ExcessiveGains`][wom.NameChangeReviewReason.ExcessiveGains].
+    reason is [`TransitionTooLong`][wom.NameChangeReviewReason] or
+    [`ExcessiveGains`][wom.NameChangeReviewReason].
     """
 
     ehp_diff: t.Optional[int]
     """The number difference between the old and new names ehp. Only populated
-    when the reason is
-    [`ExcessiveGains`][wom.NameChangeReviewReason.ExcessiveGains].
+    when the reason is [`ExcessiveGains`][wom.NameChangeReviewReason].
     """
 
     ehb_diff: t.Optional[int]
     """The number difference between the old and new names ehb. Only populated
-    when the reason is
-    [`ExcessiveGains`][wom.NameChangeReviewReason.ExcessiveGains].
+    when the reason is [`ExcessiveGains`][wom.NameChangeReviewReason].
     """
 
     min_total_level: t.Optional[int]
     """The minimum total level allowed for this name change. Only populated
-    when the reason is
-    [`TotalLevelTooLow`][wom.NameChangeReviewReason.TotalLevelTooLow].
+    when the reason is [`TotalLevelTooLow`][wom.NameChangeReviewReason].
     """
 
     total_level: t.Optional[int]
     """The number difference between the old and new names ehb. Only populated
-    when the reason is
-    [`TotalLevelTooLow`][wom.NameChangeReviewReason.TotalLevelTooLow].
+    when the reason is [`TotalLevelTooLow`][wom.NameChangeReviewReason].
     """
 
 
