@@ -13,6 +13,10 @@
 - Add `NameChangeReviewReason` enum.
 - Add serialization method for the above models.
 
+## Bugfixes
+
+- Fix support for Python 3.8 and 3.9 by using older style type hints.
+
 ---
 
 # v0.3.3 (Apr 2023)
