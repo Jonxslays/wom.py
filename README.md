@@ -1,17 +1,17 @@
-# wom.py
+<div align="center">
+    <h1>wom.py</h1>
+    <a href="https://pypi.org/project/wom.py"><img height="20" alt="Stable version" src="https://img.shields.io/pypi/v/wom.py?label=stable&logo=pypi"></a>
+    <a href="https://github.com/Jonxslays/wom.py/blob/master/LICENSE"><img height="20" alt="License" src="https://img.shields.io/pypi/l/wom-py?label=license"></a>
+    <a href="https://python.org"><img height="20" alt="Python versions" src="https://img.shields.io/pypi/pyversions/wom-py?label=python&logo=python"></a>
+    <a href="https://codeclimate.com/github/Jonxslays/wom.py/maintainability"><img height="20" alt="Maintainability" src="https://api.codeclimate.com/v1/badges/367fb667ef372064fe5a/maintainability" /></a>
+    <a href="https://codeclimate.com/github/Jonxslays/wom.py/test_coverage"><img height="20" alt="Coverage" src="https://api.codeclimate.com/v1/badges/367fb667ef372064fe5a/test_coverage" /></a>
+</div>
 
 An asynchronous wrapper for the [Wise Old Man API](https://docs.wiseoldman.net/).
 
 The library aims to make it easy to interact with the Wise Old Man API by
-providing service methods for all available endpoints and model classes
+providing service methods matching all available endpoints and model classes
 for data consistency.
-
-Python version 3.8 or greater is required to use wom.py.
-
-## Disclaimer
-
-The library is still in Beta, and as such features or public interfaces
-may change at any time. Thanks for checking out the project!
 
 ## Documentation
 
@@ -19,6 +19,8 @@ may change at any time. Thanks for checking out the project!
 - [Development](https://jonxslays.github.io/wom.py/dev/)
 
 ## Installation
+
+**Python version 3.8 or greater is required to use wom.py.**
 
 ### Stable
 
