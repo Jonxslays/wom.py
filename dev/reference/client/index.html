@@ -812,7 +812,7 @@ Wise Old Man API.</p>
         <tr>
           <td><code>api_key</code></td>
           <td>
-                <code>str | None</code>
+                <code><span title="typing">t</span>.<span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>The optional WOM api key to use with requests.</p></td>
           <td>
@@ -835,7 +835,7 @@ Wise Old Man API.</p>
         <tr>
           <td><code>user_agent</code></td>
           <td>
-                <code>str | None</code>
+                <code><span title="typing">t</span>.<span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>The optional user agent to use with requests. If none is
 provided a library default will be used. Defaults to <code>None</code>.</p></td>
@@ -843,7 +843,7 @@ provided a library default will be used. Defaults to <code>None</code>.</p></td>
         <tr>
           <td><code>api_base_url</code></td>
           <td>
-                <code>str | None</code>
+                <code><span title="typing">t</span>.<span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>The optional alternate api base url to use for requests.
 Useful for development against a local version of the WOM api.
@@ -1127,7 +1127,12 @@ encouraged.</p>
 <span class="normal"><a href="#__codelineno-0-304">304</a></span>
 <span class="normal"><a href="#__codelineno-0-305">305</a></span>
 <span class="normal"><a href="#__codelineno-0-306">306</a></span>
-<span class="normal"><a href="#__codelineno-0-307">307</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="k">class</span> <span class="nc">Client</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-307">307</a></span>
+<span class="normal"><a href="#__codelineno-0-308">308</a></span>
+<span class="normal"><a href="#__codelineno-0-309">309</a></span>
+<span class="normal"><a href="#__codelineno-0-310">310</a></span>
+<span class="normal"><a href="#__codelineno-0-311">311</a></span>
+<span class="normal"><a href="#__codelineno-0-312">312</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="k">class</span> <span class="nc">Client</span><span class="p">:</span>
 <a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;An asynchronous client used for interacting with the</span>
 <a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">    Wise Old Man API.</span>
 <a id="__codelineno-0-62" name="__codelineno-0-62"></a>
@@ -1182,10 +1187,10 @@ encouraged.</p>
 <a id="__codelineno-0-111" name="__codelineno-0-111"></a>
 <a id="__codelineno-0-112" name="__codelineno-0-112"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a>        <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>        <span class="n">api_key</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-115" name="__codelineno-0-115"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a>        <span class="n">user_agent</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a>        <span class="n">api_base_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>        <span class="n">user_agent</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>        <span class="n">api_base_url</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-118" name="__codelineno-0-118"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-119" name="__codelineno-0-119"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span> <span class="o">=</span> <span class="n">serializer</span><span class="o">.</span><span class="n">Serializer</span><span class="p">()</span>
 <a id="__codelineno-0-120" name="__codelineno-0-120"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_http</span> <span class="o">=</span> <span class="n">services</span><span class="o">.</span><span class="n">HttpService</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">user_agent</span><span class="p">,</span> <span class="n">api_base_url</span><span class="p">)</span>
@@ -1294,88 +1299,93 @@ encouraged.</p>
 <a id="__codelineno-0-223" name="__codelineno-0-223"></a><span class="sd">        Args:</span>
 <a id="__codelineno-0-224" name="__codelineno-0-224"></a><span class="sd">            user_agent: The new user agent to use.</span>
 <a id="__codelineno-0-225" name="__codelineno-0-225"></a>
-<a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="sd">        !!! note</span>
 <a id="__codelineno-0-227" name="__codelineno-0-227"></a>
-<a id="__codelineno-0-228" name="__codelineno-0-228"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-228" name="__codelineno-0-228"></a><span class="sd">            To remove a previously set user agent, call this method</span>
+<a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">            with an empty string as the user agent.</span>
 <a id="__codelineno-0-230" name="__codelineno-0-230"></a>
-<a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">        ??? example</span>
 <a id="__codelineno-0-232" name="__codelineno-0-232"></a>
-<a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">            client.set_user_agent(&quot;@Hi#0000&quot;)</span>
-<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">            ```</span>
-<a id="__codelineno-0-235" name="__codelineno-0-235"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-236" name="__codelineno-0-236"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_user_agent</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
+<a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-235" name="__codelineno-0-235"></a>
+<a id="__codelineno-0-236" name="__codelineno-0-236"></a><span class="sd">            client = wom.Client(...)</span>
 <a id="__codelineno-0-237" name="__codelineno-0-237"></a>
-<a id="__codelineno-0-238" name="__codelineno-0-238"></a>    <span class="k">def</span> <span class="nf">set_api_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-239" name="__codelineno-0-239"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the api base url used by the http service.</span>
-<a id="__codelineno-0-240" name="__codelineno-0-240"></a>
-<a id="__codelineno-0-241" name="__codelineno-0-241"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-242" name="__codelineno-0-242"></a><span class="sd">            base_url: The new base url to use.</span>
-<a id="__codelineno-0-243" name="__codelineno-0-243"></a>
-<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="sd">            client.set_user_agent(&quot;@Hi#0000&quot;)</span>
+<a id="__codelineno-0-239" name="__codelineno-0-239"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-241" name="__codelineno-0-241"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_user_agent</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
+<a id="__codelineno-0-242" name="__codelineno-0-242"></a>
+<a id="__codelineno-0-243" name="__codelineno-0-243"></a>    <span class="k">def</span> <span class="nf">set_api_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the api base url used by the http service.</span>
 <a id="__codelineno-0-245" name="__codelineno-0-245"></a>
-<a id="__codelineno-0-246" name="__codelineno-0-246"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-247" name="__codelineno-0-247"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-246" name="__codelineno-0-246"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-247" name="__codelineno-0-247"></a><span class="sd">            base_url: The new base url to use.</span>
 <a id="__codelineno-0-248" name="__codelineno-0-248"></a>
-<a id="__codelineno-0-249" name="__codelineno-0-249"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-249" name="__codelineno-0-249"></a><span class="sd">        ??? example</span>
 <a id="__codelineno-0-250" name="__codelineno-0-250"></a>
-<a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">            client.set_api_base_url(&quot;https://api.wiseoldman.net/v2&quot;)</span>
-<a id="__codelineno-0-252" name="__codelineno-0-252"></a><span class="sd">            ```</span>
-<a id="__codelineno-0-253" name="__codelineno-0-253"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-254" name="__codelineno-0-254"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
+<a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-252" name="__codelineno-0-252"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-253" name="__codelineno-0-253"></a>
+<a id="__codelineno-0-254" name="__codelineno-0-254"></a><span class="sd">            client = wom.Client(...)</span>
 <a id="__codelineno-0-255" name="__codelineno-0-255"></a>
-<a id="__codelineno-0-256" name="__codelineno-0-256"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-257" name="__codelineno-0-257"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts the client session to be used for http requests.</span>
-<a id="__codelineno-0-258" name="__codelineno-0-258"></a>
-<a id="__codelineno-0-259" name="__codelineno-0-259"></a><span class="sd">        !!! warning</span>
+<a id="__codelineno-0-256" name="__codelineno-0-256"></a><span class="sd">            client.set_api_base_url(&quot;https://api.wiseoldman.net/v2&quot;)</span>
+<a id="__codelineno-0-257" name="__codelineno-0-257"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-258" name="__codelineno-0-258"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-259" name="__codelineno-0-259"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
 <a id="__codelineno-0-260" name="__codelineno-0-260"></a>
-<a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="sd">            If this is not called before you use any of the services,</span>
-<a id="__codelineno-0-262" name="__codelineno-0-262"></a><span class="sd">            your program will crash with a `RuntimeError`.</span>
+<a id="__codelineno-0-261" name="__codelineno-0-261"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-262" name="__codelineno-0-262"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Starts the client session to be used for http requests.</span>
 <a id="__codelineno-0-263" name="__codelineno-0-263"></a>
-<a id="__codelineno-0-264" name="__codelineno-0-264"></a><span class="sd">        !!! note</span>
+<a id="__codelineno-0-264" name="__codelineno-0-264"></a><span class="sd">        !!! warning</span>
 <a id="__codelineno-0-265" name="__codelineno-0-265"></a>
-<a id="__codelineno-0-266" name="__codelineno-0-266"></a><span class="sd">            Don&#39;t forget to close the client!</span>
-<a id="__codelineno-0-267" name="__codelineno-0-267"></a>
-<a id="__codelineno-0-268" name="__codelineno-0-268"></a><span class="sd">        ??? example</span>
-<a id="__codelineno-0-269" name="__codelineno-0-269"></a>
-<a id="__codelineno-0-270" name="__codelineno-0-270"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-266" name="__codelineno-0-266"></a><span class="sd">            If this is not called before you use any of the services,</span>
+<a id="__codelineno-0-267" name="__codelineno-0-267"></a><span class="sd">            your program will crash with a `RuntimeError`.</span>
+<a id="__codelineno-0-268" name="__codelineno-0-268"></a>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a><span class="sd">        !!! note</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270"></a>
+<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="sd">            Don&#39;t forget to close the client!</span>
 <a id="__codelineno-0-272" name="__codelineno-0-272"></a>
-<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">        ??? example</span>
 <a id="__codelineno-0-274" name="__codelineno-0-274"></a>
-<a id="__codelineno-0-275" name="__codelineno-0-275"></a><span class="sd">            await client.start()</span>
-<a id="__codelineno-0-276" name="__codelineno-0-276"></a><span class="sd">            ```</span>
-<a id="__codelineno-0-277" name="__codelineno-0-277"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-278" name="__codelineno-0-278"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a>
+<a id="__codelineno-0-278" name="__codelineno-0-278"></a><span class="sd">            client = wom.Client(...)</span>
 <a id="__codelineno-0-279" name="__codelineno-0-279"></a>
-<a id="__codelineno-0-280" name="__codelineno-0-280"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-281" name="__codelineno-0-281"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Closes the existing client session, if it&#39;s still open.</span>
-<a id="__codelineno-0-282" name="__codelineno-0-282"></a>
-<a id="__codelineno-0-283" name="__codelineno-0-283"></a><span class="sd">        !!! tip</span>
+<a id="__codelineno-0-280" name="__codelineno-0-280"></a><span class="sd">            await client.start()</span>
+<a id="__codelineno-0-281" name="__codelineno-0-281"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-282" name="__codelineno-0-282"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-283" name="__codelineno-0-283"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <a id="__codelineno-0-284" name="__codelineno-0-284"></a>
-<a id="__codelineno-0-285" name="__codelineno-0-285"></a><span class="sd">            Only call this once, at the end of your program or if you are done</span>
-<a id="__codelineno-0-286" name="__codelineno-0-286"></a><span class="sd">            with the client completely.</span>
+<a id="__codelineno-0-285" name="__codelineno-0-285"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-286" name="__codelineno-0-286"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Closes the existing client session, if it&#39;s still open.</span>
 <a id="__codelineno-0-287" name="__codelineno-0-287"></a>
-<a id="__codelineno-0-288" name="__codelineno-0-288"></a><span class="sd">            This method will do nothing if the Client was never started.</span>
+<a id="__codelineno-0-288" name="__codelineno-0-288"></a><span class="sd">        !!! tip</span>
 <a id="__codelineno-0-289" name="__codelineno-0-289"></a>
-<a id="__codelineno-0-290" name="__codelineno-0-290"></a><span class="sd">        !!! warning</span>
-<a id="__codelineno-0-291" name="__codelineno-0-291"></a>
-<a id="__codelineno-0-292" name="__codelineno-0-292"></a><span class="sd">            If this is not called before your program terminates, you will</span>
-<a id="__codelineno-0-293" name="__codelineno-0-293"></a><span class="sd">            receive an error in your console.</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290"></a><span class="sd">            Only call this once, at the end of your program or if you are done</span>
+<a id="__codelineno-0-291" name="__codelineno-0-291"></a><span class="sd">            with the client completely.</span>
+<a id="__codelineno-0-292" name="__codelineno-0-292"></a>
+<a id="__codelineno-0-293" name="__codelineno-0-293"></a><span class="sd">            This method will do nothing if the Client was never started.</span>
 <a id="__codelineno-0-294" name="__codelineno-0-294"></a>
-<a id="__codelineno-0-295" name="__codelineno-0-295"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-295" name="__codelineno-0-295"></a><span class="sd">        !!! warning</span>
 <a id="__codelineno-0-296" name="__codelineno-0-296"></a>
-<a id="__codelineno-0-297" name="__codelineno-0-297"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-298" name="__codelineno-0-298"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297"></a><span class="sd">            If this is not called before your program terminates, you will</span>
+<a id="__codelineno-0-298" name="__codelineno-0-298"></a><span class="sd">            receive an error in your console.</span>
 <a id="__codelineno-0-299" name="__codelineno-0-299"></a>
-<a id="__codelineno-0-300" name="__codelineno-0-300"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-300" name="__codelineno-0-300"></a><span class="sd">        ??? example</span>
 <a id="__codelineno-0-301" name="__codelineno-0-301"></a>
-<a id="__codelineno-0-302" name="__codelineno-0-302"></a><span class="sd">            await client.start()</span>
-<a id="__codelineno-0-303" name="__codelineno-0-303"></a>
-<a id="__codelineno-0-304" name="__codelineno-0-304"></a><span class="sd">            await client.close()</span>
-<a id="__codelineno-0-305" name="__codelineno-0-305"></a><span class="sd">            ```</span>
-<a id="__codelineno-0-306" name="__codelineno-0-306"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-307" name="__codelineno-0-307"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304"></a>
+<a id="__codelineno-0-305" name="__codelineno-0-305"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306"></a>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a><span class="sd">            await client.start()</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a>
+<a id="__codelineno-0-309" name="__codelineno-0-309"></a><span class="sd">            await client.close()</span>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -1603,12 +1613,7 @@ receive an error in your console.</p>
 
       <details class="quote">
         <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-280">280</a></span>
-<span class="normal"><a href="#__codelineno-0-281">281</a></span>
-<span class="normal"><a href="#__codelineno-0-282">282</a></span>
-<span class="normal"><a href="#__codelineno-0-283">283</a></span>
-<span class="normal"><a href="#__codelineno-0-284">284</a></span>
-<span class="normal"><a href="#__codelineno-0-285">285</a></span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-285">285</a></span>
 <span class="normal"><a href="#__codelineno-0-286">286</a></span>
 <span class="normal"><a href="#__codelineno-0-287">287</a></span>
 <span class="normal"><a href="#__codelineno-0-288">288</a></span>
@@ -1630,34 +1635,39 @@ receive an error in your console.</p>
 <span class="normal"><a href="#__codelineno-0-304">304</a></span>
 <span class="normal"><a href="#__codelineno-0-305">305</a></span>
 <span class="normal"><a href="#__codelineno-0-306">306</a></span>
-<span class="normal"><a href="#__codelineno-0-307">307</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-280" name="__codelineno-0-280"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-281" name="__codelineno-0-281"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Closes the existing client session, if it&#39;s still open.</span>
-<a id="__codelineno-0-282" name="__codelineno-0-282"></a>
-<a id="__codelineno-0-283" name="__codelineno-0-283"></a><span class="sd">    !!! tip</span>
-<a id="__codelineno-0-284" name="__codelineno-0-284"></a>
-<a id="__codelineno-0-285" name="__codelineno-0-285"></a><span class="sd">        Only call this once, at the end of your program or if you are done</span>
-<a id="__codelineno-0-286" name="__codelineno-0-286"></a><span class="sd">        with the client completely.</span>
+<span class="normal"><a href="#__codelineno-0-307">307</a></span>
+<span class="normal"><a href="#__codelineno-0-308">308</a></span>
+<span class="normal"><a href="#__codelineno-0-309">309</a></span>
+<span class="normal"><a href="#__codelineno-0-310">310</a></span>
+<span class="normal"><a href="#__codelineno-0-311">311</a></span>
+<span class="normal"><a href="#__codelineno-0-312">312</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-285" name="__codelineno-0-285"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-286" name="__codelineno-0-286"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Closes the existing client session, if it&#39;s still open.</span>
 <a id="__codelineno-0-287" name="__codelineno-0-287"></a>
-<a id="__codelineno-0-288" name="__codelineno-0-288"></a><span class="sd">        This method will do nothing if the Client was never started.</span>
+<a id="__codelineno-0-288" name="__codelineno-0-288"></a><span class="sd">    !!! tip</span>
 <a id="__codelineno-0-289" name="__codelineno-0-289"></a>
-<a id="__codelineno-0-290" name="__codelineno-0-290"></a><span class="sd">    !!! warning</span>
-<a id="__codelineno-0-291" name="__codelineno-0-291"></a>
-<a id="__codelineno-0-292" name="__codelineno-0-292"></a><span class="sd">        If this is not called before your program terminates, you will</span>
-<a id="__codelineno-0-293" name="__codelineno-0-293"></a><span class="sd">        receive an error in your console.</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290"></a><span class="sd">        Only call this once, at the end of your program or if you are done</span>
+<a id="__codelineno-0-291" name="__codelineno-0-291"></a><span class="sd">        with the client completely.</span>
+<a id="__codelineno-0-292" name="__codelineno-0-292"></a>
+<a id="__codelineno-0-293" name="__codelineno-0-293"></a><span class="sd">        This method will do nothing if the Client was never started.</span>
 <a id="__codelineno-0-294" name="__codelineno-0-294"></a>
-<a id="__codelineno-0-295" name="__codelineno-0-295"></a><span class="sd">    ??? example</span>
+<a id="__codelineno-0-295" name="__codelineno-0-295"></a><span class="sd">    !!! warning</span>
 <a id="__codelineno-0-296" name="__codelineno-0-296"></a>
-<a id="__codelineno-0-297" name="__codelineno-0-297"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-298" name="__codelineno-0-298"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297"></a><span class="sd">        If this is not called before your program terminates, you will</span>
+<a id="__codelineno-0-298" name="__codelineno-0-298"></a><span class="sd">        receive an error in your console.</span>
 <a id="__codelineno-0-299" name="__codelineno-0-299"></a>
-<a id="__codelineno-0-300" name="__codelineno-0-300"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-300" name="__codelineno-0-300"></a><span class="sd">    ??? example</span>
 <a id="__codelineno-0-301" name="__codelineno-0-301"></a>
-<a id="__codelineno-0-302" name="__codelineno-0-302"></a><span class="sd">        await client.start()</span>
-<a id="__codelineno-0-303" name="__codelineno-0-303"></a>
-<a id="__codelineno-0-304" name="__codelineno-0-304"></a><span class="sd">        await client.close()</span>
-<a id="__codelineno-0-305" name="__codelineno-0-305"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-306" name="__codelineno-0-306"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-307" name="__codelineno-0-307"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304"></a>
+<a id="__codelineno-0-305" name="__codelineno-0-305"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306"></a>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a><span class="sd">        await client.start()</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a>
+<a id="__codelineno-0-309" name="__codelineno-0-309"></a><span class="sd">        await client.close()</span>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -1715,12 +1725,7 @@ receive an error in your console.</p>
 
       <details class="quote">
         <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-238">238</a></span>
-<span class="normal"><a href="#__codelineno-0-239">239</a></span>
-<span class="normal"><a href="#__codelineno-0-240">240</a></span>
-<span class="normal"><a href="#__codelineno-0-241">241</a></span>
-<span class="normal"><a href="#__codelineno-0-242">242</a></span>
-<span class="normal"><a href="#__codelineno-0-243">243</a></span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-243">243</a></span>
 <span class="normal"><a href="#__codelineno-0-244">244</a></span>
 <span class="normal"><a href="#__codelineno-0-245">245</a></span>
 <span class="normal"><a href="#__codelineno-0-246">246</a></span>
@@ -1731,23 +1736,28 @@ receive an error in your console.</p>
 <span class="normal"><a href="#__codelineno-0-251">251</a></span>
 <span class="normal"><a href="#__codelineno-0-252">252</a></span>
 <span class="normal"><a href="#__codelineno-0-253">253</a></span>
-<span class="normal"><a href="#__codelineno-0-254">254</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="k">def</span> <span class="nf">set_api_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-239" name="__codelineno-0-239"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets the api base url used by the http service.</span>
-<a id="__codelineno-0-240" name="__codelineno-0-240"></a>
-<a id="__codelineno-0-241" name="__codelineno-0-241"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-242" name="__codelineno-0-242"></a><span class="sd">        base_url: The new base url to use.</span>
-<a id="__codelineno-0-243" name="__codelineno-0-243"></a>
-<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">    ??? example</span>
+<span class="normal"><a href="#__codelineno-0-254">254</a></span>
+<span class="normal"><a href="#__codelineno-0-255">255</a></span>
+<span class="normal"><a href="#__codelineno-0-256">256</a></span>
+<span class="normal"><a href="#__codelineno-0-257">257</a></span>
+<span class="normal"><a href="#__codelineno-0-258">258</a></span>
+<span class="normal"><a href="#__codelineno-0-259">259</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-243" name="__codelineno-0-243"></a><span class="k">def</span> <span class="nf">set_api_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets the api base url used by the http service.</span>
 <a id="__codelineno-0-245" name="__codelineno-0-245"></a>
-<a id="__codelineno-0-246" name="__codelineno-0-246"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-247" name="__codelineno-0-247"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-246" name="__codelineno-0-246"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-247" name="__codelineno-0-247"></a><span class="sd">        base_url: The new base url to use.</span>
 <a id="__codelineno-0-248" name="__codelineno-0-248"></a>
-<a id="__codelineno-0-249" name="__codelineno-0-249"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-249" name="__codelineno-0-249"></a><span class="sd">    ??? example</span>
 <a id="__codelineno-0-250" name="__codelineno-0-250"></a>
-<a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">        client.set_api_base_url(&quot;https://api.wiseoldman.net/v2&quot;)</span>
-<a id="__codelineno-0-252" name="__codelineno-0-252"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-253" name="__codelineno-0-253"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-254" name="__codelineno-0-254"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
+<a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-252" name="__codelineno-0-252"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-253" name="__codelineno-0-253"></a>
+<a id="__codelineno-0-254" name="__codelineno-0-254"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-255" name="__codelineno-0-255"></a>
+<a id="__codelineno-0-256" name="__codelineno-0-256"></a><span class="sd">        client.set_api_base_url(&quot;https://api.wiseoldman.net/v2&quot;)</span>
+<a id="__codelineno-0-257" name="__codelineno-0-257"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-258" name="__codelineno-0-258"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-259" name="__codelineno-0-259"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -1883,7 +1893,12 @@ receive an error in your console.</p>
         </tr>
     </tbody>
   </table>
-      <details class="example">
+      <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To remove a previously set user agent, call this method
+with an empty string as the user agent.</p>
+</div>
+<details class="example">
 <summary>Example</summary>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">wom</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -1911,23 +1926,33 @@ receive an error in your console.</p>
 <span class="normal"><a href="#__codelineno-0-233">233</a></span>
 <span class="normal"><a href="#__codelineno-0-234">234</a></span>
 <span class="normal"><a href="#__codelineno-0-235">235</a></span>
-<span class="normal"><a href="#__codelineno-0-236">236</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-220" name="__codelineno-0-220"></a><span class="k">def</span> <span class="nf">set_user_agent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_agent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-236">236</a></span>
+<span class="normal"><a href="#__codelineno-0-237">237</a></span>
+<span class="normal"><a href="#__codelineno-0-238">238</a></span>
+<span class="normal"><a href="#__codelineno-0-239">239</a></span>
+<span class="normal"><a href="#__codelineno-0-240">240</a></span>
+<span class="normal"><a href="#__codelineno-0-241">241</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-220" name="__codelineno-0-220"></a><span class="k">def</span> <span class="nf">set_user_agent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_agent</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-221" name="__codelineno-0-221"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Sets the user agent used by the http service.</span>
 <a id="__codelineno-0-222" name="__codelineno-0-222"></a>
 <a id="__codelineno-0-223" name="__codelineno-0-223"></a><span class="sd">    Args:</span>
 <a id="__codelineno-0-224" name="__codelineno-0-224"></a><span class="sd">        user_agent: The new user agent to use.</span>
 <a id="__codelineno-0-225" name="__codelineno-0-225"></a>
-<a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="sd">    ??? example</span>
+<a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="sd">    !!! note</span>
 <a id="__codelineno-0-227" name="__codelineno-0-227"></a>
-<a id="__codelineno-0-228" name="__codelineno-0-228"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-228" name="__codelineno-0-228"></a><span class="sd">        To remove a previously set user agent, call this method</span>
+<a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">        with an empty string as the user agent.</span>
 <a id="__codelineno-0-230" name="__codelineno-0-230"></a>
-<a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">    ??? example</span>
 <a id="__codelineno-0-232" name="__codelineno-0-232"></a>
-<a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">        client.set_user_agent(&quot;@Hi#0000&quot;)</span>
-<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-235" name="__codelineno-0-235"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-236" name="__codelineno-0-236"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_user_agent</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
+<a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-235" name="__codelineno-0-235"></a>
+<a id="__codelineno-0-236" name="__codelineno-0-236"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-237" name="__codelineno-0-237"></a>
+<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="sd">        client.set_user_agent(&quot;@Hi#0000&quot;)</span>
+<a id="__codelineno-0-239" name="__codelineno-0-239"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-241" name="__codelineno-0-241"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_user_agent</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -1974,12 +1999,7 @@ your program will crash with a <code>RuntimeError</code>.</p>
 
       <details class="quote">
         <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-256">256</a></span>
-<span class="normal"><a href="#__codelineno-0-257">257</a></span>
-<span class="normal"><a href="#__codelineno-0-258">258</a></span>
-<span class="normal"><a href="#__codelineno-0-259">259</a></span>
-<span class="normal"><a href="#__codelineno-0-260">260</a></span>
-<span class="normal"><a href="#__codelineno-0-261">261</a></span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-261">261</a></span>
 <span class="normal"><a href="#__codelineno-0-262">262</a></span>
 <span class="normal"><a href="#__codelineno-0-263">263</a></span>
 <span class="normal"><a href="#__codelineno-0-264">264</a></span>
@@ -1996,29 +2016,34 @@ your program will crash with a <code>RuntimeError</code>.</p>
 <span class="normal"><a href="#__codelineno-0-275">275</a></span>
 <span class="normal"><a href="#__codelineno-0-276">276</a></span>
 <span class="normal"><a href="#__codelineno-0-277">277</a></span>
-<span class="normal"><a href="#__codelineno-0-278">278</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-256" name="__codelineno-0-256"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-257" name="__codelineno-0-257"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Starts the client session to be used for http requests.</span>
-<a id="__codelineno-0-258" name="__codelineno-0-258"></a>
-<a id="__codelineno-0-259" name="__codelineno-0-259"></a><span class="sd">    !!! warning</span>
-<a id="__codelineno-0-260" name="__codelineno-0-260"></a>
-<a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="sd">        If this is not called before you use any of the services,</span>
-<a id="__codelineno-0-262" name="__codelineno-0-262"></a><span class="sd">        your program will crash with a `RuntimeError`.</span>
+<span class="normal"><a href="#__codelineno-0-278">278</a></span>
+<span class="normal"><a href="#__codelineno-0-279">279</a></span>
+<span class="normal"><a href="#__codelineno-0-280">280</a></span>
+<span class="normal"><a href="#__codelineno-0-281">281</a></span>
+<span class="normal"><a href="#__codelineno-0-282">282</a></span>
+<span class="normal"><a href="#__codelineno-0-283">283</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-262" name="__codelineno-0-262"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Starts the client session to be used for http requests.</span>
 <a id="__codelineno-0-263" name="__codelineno-0-263"></a>
-<a id="__codelineno-0-264" name="__codelineno-0-264"></a><span class="sd">    !!! note</span>
+<a id="__codelineno-0-264" name="__codelineno-0-264"></a><span class="sd">    !!! warning</span>
 <a id="__codelineno-0-265" name="__codelineno-0-265"></a>
-<a id="__codelineno-0-266" name="__codelineno-0-266"></a><span class="sd">        Don&#39;t forget to close the client!</span>
-<a id="__codelineno-0-267" name="__codelineno-0-267"></a>
-<a id="__codelineno-0-268" name="__codelineno-0-268"></a><span class="sd">    ??? example</span>
-<a id="__codelineno-0-269" name="__codelineno-0-269"></a>
-<a id="__codelineno-0-270" name="__codelineno-0-270"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-266" name="__codelineno-0-266"></a><span class="sd">        If this is not called before you use any of the services,</span>
+<a id="__codelineno-0-267" name="__codelineno-0-267"></a><span class="sd">        your program will crash with a `RuntimeError`.</span>
+<a id="__codelineno-0-268" name="__codelineno-0-268"></a>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a><span class="sd">    !!! note</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270"></a>
+<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="sd">        Don&#39;t forget to close the client!</span>
 <a id="__codelineno-0-272" name="__codelineno-0-272"></a>
-<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">    ??? example</span>
 <a id="__codelineno-0-274" name="__codelineno-0-274"></a>
-<a id="__codelineno-0-275" name="__codelineno-0-275"></a><span class="sd">        await client.start()</span>
-<a id="__codelineno-0-276" name="__codelineno-0-276"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-277" name="__codelineno-0-277"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-278" name="__codelineno-0-278"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a>
+<a id="__codelineno-0-278" name="__codelineno-0-278"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-279" name="__codelineno-0-279"></a>
+<a id="__codelineno-0-280" name="__codelineno-0-280"></a><span class="sd">        await client.start()</span>
+<a id="__codelineno-0-281" name="__codelineno-0-281"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-282" name="__codelineno-0-282"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-283" name="__codelineno-0-283"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
