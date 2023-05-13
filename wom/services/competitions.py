@@ -597,7 +597,7 @@ class CompetitionService(BaseService):
 
             Participants are outdated when either:
 
-            - Competition is ending or started with 6h of now and
+            - Competition is ending or started within 6h of now and
                 the player hasn't been updated in over 1h.
 
             - Player hasn't been updated in over 24h.

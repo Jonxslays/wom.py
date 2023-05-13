@@ -42,12 +42,28 @@ __all__ = (
 
 @attrs.define(init=False)
 class NameChangeReviewContext(BaseModel):
+    """The review context for a name change that was not approved.
+
+    !!! note
+
+        This will always be one of:
+
+        - `DeniedNameChangeReviewContext`
+
+        - `SkippedNameChangeReviewContext`
+
+        You can use an `isinstance(...)` check to determine which one
+        it is.
+    """
+
     reason: NameChangeReviewReason
     """The reason this name change was denied."""
 
 
 @attrs.define(init=False)
 class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
+    """The review context for a name change that was denied."""
+
     reason: t.Literal[
         NameChangeReviewReason.ManualReview,
         NameChangeReviewReason.OldStatsNotFound,
@@ -64,6 +80,8 @@ class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[ov
 
 @attrs.define(init=False)
 class SkippedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
+    """The review context for a name change that was skipped."""
+
     reason: t.Literal[
         NameChangeReviewReason.TransitionTooLong,
         NameChangeReviewReason.ExcessiveGains,
