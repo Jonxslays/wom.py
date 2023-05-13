@@ -5,6 +5,14 @@
 - Remove `NameChangeService.get_name_change_details` as it is no longer supported by WOM.
 - Remove models and serialization methods associated with the above method.
 
+## Additions
+
+- Add new `review_context` field to `NameChange`.
+- Add `NameChangeReviewContext`, `SkippedNameChangeReviewContext`, and
+  `DeniedNameChangeReviewContext` models.
+- Add `NameChangeReviewReason` enum.
+- Add serialization method for the above models.
+
 ---
 
 # v0.3.3 (Apr 2023)
