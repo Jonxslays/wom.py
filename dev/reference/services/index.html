@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="../../wom-logo.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.13">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.0.13">
     
     
       
@@ -796,13 +796,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#wom.services.names.NameChangeService.get_name_change_details" class="md-nav__link">
-    get_name_change_details()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#wom.services.names.NameChangeService.search_name_changes" class="md-nav__link">
     search_name_changes()
   </a>
@@ -1331,13 +1324,6 @@
   
     <nav class="md-nav" aria-label="NameChangeService">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#wom.services.names.NameChangeService.get_name_change_details" class="md-nav__link">
-    get_name_change_details()
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#wom.services.names.NameChangeService.search_name_changes" class="md-nav__link">
@@ -12196,36 +12182,7 @@ body.</p></td>
 <span class="normal"><a href="#__codelineno-0-121">121</a></span>
 <span class="normal"><a href="#__codelineno-0-122">122</a></span>
 <span class="normal"><a href="#__codelineno-0-123">123</a></span>
-<span class="normal"><a href="#__codelineno-0-124">124</a></span>
-<span class="normal"><a href="#__codelineno-0-125">125</a></span>
-<span class="normal"><a href="#__codelineno-0-126">126</a></span>
-<span class="normal"><a href="#__codelineno-0-127">127</a></span>
-<span class="normal"><a href="#__codelineno-0-128">128</a></span>
-<span class="normal"><a href="#__codelineno-0-129">129</a></span>
-<span class="normal"><a href="#__codelineno-0-130">130</a></span>
-<span class="normal"><a href="#__codelineno-0-131">131</a></span>
-<span class="normal"><a href="#__codelineno-0-132">132</a></span>
-<span class="normal"><a href="#__codelineno-0-133">133</a></span>
-<span class="normal"><a href="#__codelineno-0-134">134</a></span>
-<span class="normal"><a href="#__codelineno-0-135">135</a></span>
-<span class="normal"><a href="#__codelineno-0-136">136</a></span>
-<span class="normal"><a href="#__codelineno-0-137">137</a></span>
-<span class="normal"><a href="#__codelineno-0-138">138</a></span>
-<span class="normal"><a href="#__codelineno-0-139">139</a></span>
-<span class="normal"><a href="#__codelineno-0-140">140</a></span>
-<span class="normal"><a href="#__codelineno-0-141">141</a></span>
-<span class="normal"><a href="#__codelineno-0-142">142</a></span>
-<span class="normal"><a href="#__codelineno-0-143">143</a></span>
-<span class="normal"><a href="#__codelineno-0-144">144</a></span>
-<span class="normal"><a href="#__codelineno-0-145">145</a></span>
-<span class="normal"><a href="#__codelineno-0-146">146</a></span>
-<span class="normal"><a href="#__codelineno-0-147">147</a></span>
-<span class="normal"><a href="#__codelineno-0-148">148</a></span>
-<span class="normal"><a href="#__codelineno-0-149">149</a></span>
-<span class="normal"><a href="#__codelineno-0-150">150</a></span>
-<span class="normal"><a href="#__codelineno-0-151">151</a></span>
-<span class="normal"><a href="#__codelineno-0-152">152</a></span>
-<span class="normal"><a href="#__codelineno-0-153">153</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="k">class</span> <span class="nc">NameChangeService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="k">class</span> <span class="nc">NameChangeService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
 <a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles endpoints related to name changes.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-40" name="__codelineno-0-40"></a>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
@@ -12312,35 +12269,6 @@ body.</p></td>
 <a id="__codelineno-0-122" name="__codelineno-0-122"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-123" name="__codelineno-0-123"></a>
 <a id="__codelineno-0-124" name="__codelineno-0-124"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-<a id="__codelineno-0-125" name="__codelineno-0-125"></a>
-<a id="__codelineno-0-126" name="__codelineno-0-126"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_name_change_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">NameChangeDetail</span><span class="p">]:</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the details for an existing name change.</span>
-<a id="__codelineno-0-128" name="__codelineno-0-128"></a>
-<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="sd">            id: The ID of the name change.</span>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a>
-<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="sd">            A [`Result`][wom.Result] containing the name change details.</span>
-<a id="__codelineno-0-134" name="__codelineno-0-134"></a>
-<a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="sd">        ??? example</span>
-<a id="__codelineno-0-136" name="__codelineno-0-136"></a>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-138" name="__codelineno-0-138"></a><span class="sd">            import wom</span>
-<a id="__codelineno-0-139" name="__codelineno-0-139"></a>
-<a id="__codelineno-0-140" name="__codelineno-0-140"></a><span class="sd">            client = wom.Client(...)</span>
-<a id="__codelineno-0-141" name="__codelineno-0-141"></a>
-<a id="__codelineno-0-142" name="__codelineno-0-142"></a><span class="sd">            await client.start()</span>
-<a id="__codelineno-0-143" name="__codelineno-0-143"></a>
-<a id="__codelineno-0-144" name="__codelineno-0-144"></a><span class="sd">            result = await client.names.get_name_change_details(123)</span>
-<a id="__codelineno-0-145" name="__codelineno-0-145"></a><span class="sd">            ```</span>
-<a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-147" name="__codelineno-0-147"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">NAME_CHANGE_DETAILS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-148" name="__codelineno-0-148"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">)</span>
-<a id="__codelineno-0-149" name="__codelineno-0-149"></a>
-<a id="__codelineno-0-150" name="__codelineno-0-150"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-151" name="__codelineno-0-151"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-152" name="__codelineno-0-152"></a>
-<a id="__codelineno-0-153" name="__codelineno-0-153"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change_detail</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -12355,144 +12283,6 @@ body.</p></td>
 
 
 
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="wom.services.names.NameChangeService.get_name_change_details" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_name_change_details</span>
-
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">get_name_change_details</span><span class="p">(</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">NameChangeDetail</span><span class="p">]</span>
-</code></pre></div>
-
-  <div class="doc doc-contents ">
-  
-      <p>Gets the details for an existing name change.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>id</code></td>
-          <td>
-                <code>int</code>
-          </td>
-          <td><p>The ID of the name change.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code><span title="wom.services.names.ResultT">ResultT</span>[<a class="autorefs autorefs-internal" title="wom.models" href="../models/#wom.models">models</a>.<a class="autorefs autorefs-internal" title="wom.models.NameChangeDetail" href="../models/#wom.models.NameChangeDetail">NameChangeDetail</a>]</code>
-          </td>
-          <td><p>A <a class="autorefs autorefs-internal" href="../result/#wom.result.Result"><code>Result</code></a> containing the name change details.</p></td>
-        </tr>
-    </tbody>
-  </table>
-      <details class="example">
-<summary>Example</summary>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">wom</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">wom</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">names</span><span class="o">.</span><span class="n">get_name_change_details</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
-</code></pre></div>
-</details>
-
-      <details class="quote">
-        <summary>Source code in <code>wom/services/names.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-126">126</a></span>
-<span class="normal"><a href="#__codelineno-0-127">127</a></span>
-<span class="normal"><a href="#__codelineno-0-128">128</a></span>
-<span class="normal"><a href="#__codelineno-0-129">129</a></span>
-<span class="normal"><a href="#__codelineno-0-130">130</a></span>
-<span class="normal"><a href="#__codelineno-0-131">131</a></span>
-<span class="normal"><a href="#__codelineno-0-132">132</a></span>
-<span class="normal"><a href="#__codelineno-0-133">133</a></span>
-<span class="normal"><a href="#__codelineno-0-134">134</a></span>
-<span class="normal"><a href="#__codelineno-0-135">135</a></span>
-<span class="normal"><a href="#__codelineno-0-136">136</a></span>
-<span class="normal"><a href="#__codelineno-0-137">137</a></span>
-<span class="normal"><a href="#__codelineno-0-138">138</a></span>
-<span class="normal"><a href="#__codelineno-0-139">139</a></span>
-<span class="normal"><a href="#__codelineno-0-140">140</a></span>
-<span class="normal"><a href="#__codelineno-0-141">141</a></span>
-<span class="normal"><a href="#__codelineno-0-142">142</a></span>
-<span class="normal"><a href="#__codelineno-0-143">143</a></span>
-<span class="normal"><a href="#__codelineno-0-144">144</a></span>
-<span class="normal"><a href="#__codelineno-0-145">145</a></span>
-<span class="normal"><a href="#__codelineno-0-146">146</a></span>
-<span class="normal"><a href="#__codelineno-0-147">147</a></span>
-<span class="normal"><a href="#__codelineno-0-148">148</a></span>
-<span class="normal"><a href="#__codelineno-0-149">149</a></span>
-<span class="normal"><a href="#__codelineno-0-150">150</a></span>
-<span class="normal"><a href="#__codelineno-0-151">151</a></span>
-<span class="normal"><a href="#__codelineno-0-152">152</a></span>
-<span class="normal"><a href="#__codelineno-0-153">153</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_name_change_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">NameChangeDetail</span><span class="p">]:</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the details for an existing name change.</span>
-<a id="__codelineno-0-128" name="__codelineno-0-128"></a>
-<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="sd">        id: The ID of the name change.</span>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a>
-<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="sd">        A [`Result`][wom.Result] containing the name change details.</span>
-<a id="__codelineno-0-134" name="__codelineno-0-134"></a>
-<a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="sd">    ??? example</span>
-<a id="__codelineno-0-136" name="__codelineno-0-136"></a>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-138" name="__codelineno-0-138"></a><span class="sd">        import wom</span>
-<a id="__codelineno-0-139" name="__codelineno-0-139"></a>
-<a id="__codelineno-0-140" name="__codelineno-0-140"></a><span class="sd">        client = wom.Client(...)</span>
-<a id="__codelineno-0-141" name="__codelineno-0-141"></a>
-<a id="__codelineno-0-142" name="__codelineno-0-142"></a><span class="sd">        await client.start()</span>
-<a id="__codelineno-0-143" name="__codelineno-0-143"></a>
-<a id="__codelineno-0-144" name="__codelineno-0-144"></a><span class="sd">        result = await client.names.get_name_change_details(123)</span>
-<a id="__codelineno-0-145" name="__codelineno-0-145"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-147" name="__codelineno-0-147"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">NAME_CHANGE_DETAILS</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<a id="__codelineno-0-148" name="__codelineno-0-148"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">)</span>
-<a id="__codelineno-0-149" name="__codelineno-0-149"></a>
-<a id="__codelineno-0-150" name="__codelineno-0-150"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-151" name="__codelineno-0-151"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-152" name="__codelineno-0-152"></a>
-<a id="__codelineno-0-153" name="__codelineno-0-153"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change_detail</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
 
 <div class="doc doc-object doc-function">
 
