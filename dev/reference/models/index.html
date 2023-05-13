@@ -6242,8 +6242,8 @@ the player obtained.</p>
 <a id="__codelineno-0-291" name="__codelineno-0-291"></a>    <span class="n">score</span><span class="p">:</span> <span class="nb">int</span>
 <a id="__codelineno-0-292" name="__codelineno-0-292"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The players score in the activity.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-293" name="__codelineno-0-293"></a>
-<a id="__codelineno-0-294" name="__codelineno-0-294"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
-<a id="__codelineno-0-295" name="__codelineno-0-295"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-294" name="__codelineno-0-294"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
+<a id="__codelineno-0-295" name="__codelineno-0-295"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric, or `None` if none do.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -6293,12 +6293,12 @@ the player obtained.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>The player leading in this metric.</p>
+      <p>The player leading in this metric, or <code>None</code> if none do.</p>
   </div>
 
 </div>
@@ -6855,8 +6855,8 @@ the player obtained.</p>
 <a id="__codelineno-0-274" name="__codelineno-0-274"></a>    <span class="n">kills</span><span class="p">:</span> <span class="nb">int</span>
 <a id="__codelineno-0-275" name="__codelineno-0-275"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The number of kills the player has.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-276" name="__codelineno-0-276"></a>
-<a id="__codelineno-0-277" name="__codelineno-0-277"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
-<a id="__codelineno-0-278" name="__codelineno-0-278"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
+<a id="__codelineno-0-278" name="__codelineno-0-278"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric, or `None` if none do.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -6929,12 +6929,12 @@ the player obtained.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>The player leading in this metric.</p>
+      <p>The player leading in this metric, or <code>None</code> if none do.</p>
   </div>
 
 </div>
@@ -8556,8 +8556,8 @@ measured.</p>
 <a id="__codelineno-0-310" name="__codelineno-0-310"></a>    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
 <a id="__codelineno-0-311" name="__codelineno-0-311"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The value of the computed metric.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-312" name="__codelineno-0-312"></a>
-<a id="__codelineno-0-313" name="__codelineno-0-313"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
-<a id="__codelineno-0-314" name="__codelineno-0-314"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric, or `None` if none do.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -8608,12 +8608,12 @@ measured.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>The player leading in this metric.</p>
+      <p>The player leading in this metric, or <code>None</code> if none do.</p>
   </div>
 
 </div>
@@ -15562,8 +15562,8 @@ in.</p>
 <a id="__codelineno-0-257" name="__codelineno-0-257"></a>    <span class="n">experience</span><span class="p">:</span> <span class="nb">int</span>
 <a id="__codelineno-0-258" name="__codelineno-0-258"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The players experience in the skill.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-259" name="__codelineno-0-259"></a>
-<a id="__codelineno-0-260" name="__codelineno-0-260"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
-<a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-260" name="__codelineno-0-260"></a>    <span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
+<a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The player leading in this metric, or `None` if none do.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -15659,12 +15659,12 @@ in.</p>
   </span>
 
 </h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">Player</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">player</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>The player leading in this metric.</p>
+      <p>The player leading in this metric, or <code>None</code> if none do.</p>
   </div>
 
 </div>
