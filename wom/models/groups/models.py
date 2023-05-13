@@ -257,8 +257,8 @@ class SkillLeader(BaseModel):
     experience: int
     """The players experience in the skill."""
 
-    player: Player
-    """The player leading in this metric."""
+    player: t.Optional[Player]
+    """The player leading in this metric, or `None` if none do."""
 
 
 @attrs.define(init=False)
@@ -274,8 +274,8 @@ class BossLeader(BaseModel):
     kills: int
     """The number of kills the player has."""
 
-    player: Player
-    """The player leading in this metric."""
+    player: t.Optional[Player]
+    """The player leading in this metric, or `None` if none do."""
 
 
 @attrs.define(init=False)
@@ -291,8 +291,8 @@ class ActivityLeader(BaseModel):
     score: int
     """The players score in the activity."""
 
-    player: Player
-    """The player leading in this metric."""
+    player: t.Optional[Player]
+    """The player leading in this metric, or `None` if none do."""
 
 
 @attrs.define(init=False)
@@ -310,8 +310,8 @@ class ComputedMetricLeader(BaseModel):
     value: int
     """The value of the computed metric."""
 
-    player: Player
-    """The player leading in this metric."""
+    player: t.Optional[Player]
+    """The player leading in this metric, or `None` if none do."""
 
 
 @attrs.define(init=False)

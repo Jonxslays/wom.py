@@ -943,8 +943,13 @@ class Serializer:
         """
         leader = models.SkillLeader()
         leader.metric = enums.Skills.from_str(data["metric"])
-        leader.player = self.deserialize_player(data["player"])
         self._set_attrs(leader, data, "experience", "rank", "level")
+
+        if player := data.get("player", None):
+            leader.player = self.deserialize_player(player)
+        else:
+            leader.player = player
+
         return leader
 
     def deserialize_boss_leader(self, data: DictT) -> models.BossLeader:
@@ -958,8 +963,13 @@ class Serializer:
         """
         leader = models.BossLeader()
         leader.metric = enums.Bosses.from_str(data["metric"])
-        leader.player = self.deserialize_player(data["player"])
         self._set_attrs(leader, data, "kills", "rank")
+
+        if player := data.get("player", None):
+            leader.player = self.deserialize_player(player)
+        else:
+            leader.player = player
+
         return leader
 
     def deserialize_activity_leader(self, data: DictT) -> models.ActivityLeader:
@@ -973,8 +983,13 @@ class Serializer:
         """
         leader = models.ActivityLeader()
         leader.metric = enums.Activities.from_str(data["metric"])
-        leader.player = self.deserialize_player(data["player"])
         self._set_attrs(leader, data, "score", "rank")
+
+        if player := data.get("player", None):
+            leader.player = self.deserialize_player(player)
+        else:
+            leader.player = player
+
         return leader
 
     def deserialize_computed_leader(self, data: DictT) -> models.ComputedMetricLeader:
@@ -988,8 +1003,13 @@ class Serializer:
         """
         leader = models.ComputedMetricLeader()
         leader.metric = enums.ComputedMetrics.from_str(data["metric"])
-        leader.player = self.deserialize_player(data["player"])
         self._set_attrs(leader, data, "value", "rank")
+
+        if player := data.get("player", None):
+            leader.player = self.deserialize_player(player)
+        else:
+            leader.player = player
+
         return leader
 
     def deserialize_metric_leaders(self, data: DictT) -> models.MetricLeaders:
