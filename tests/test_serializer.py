@@ -35,7 +35,7 @@ from wom import Skills
 from wom import models
 
 AchievementT = t.TypeVar("AchievementT", models.Achievement, models.AchievementProgress)
-DictT = dict[str, t.Any]
+DictT = t.Dict[str, t.Any]
 
 serializer = Serializer()
 

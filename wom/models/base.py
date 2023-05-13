@@ -32,7 +32,7 @@ import attrs
 class BaseModel:
     """The base model all library models inherit from."""
 
-    def to_dict(self) -> dict[str, t.Any]:
+    def to_dict(self) -> t.Dict[str, t.Any]:
         """Converts this class into a dictionary.
 
         Returns:

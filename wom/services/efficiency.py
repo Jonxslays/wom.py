@@ -45,11 +45,11 @@ class EfficiencyService(BaseService):
         self,
         metric: enums.ComputedMetrics = enums.ComputedMetrics.Ehp,
         *,
-        player_type: models.PlayerType | None = None,
-        player_build: models.PlayerBuild | None = None,
-        country: models.Country | None = None,
+        player_type: t.Optional[models.PlayerType] = None,
+        player_build: t.Optional[models.PlayerBuild] = None,
+        country: t.Optional[models.Country] = None,
         both: bool = False,
-    ) -> ResultT[list[models.Player]]:
+    ) -> ResultT[t.List[models.Player]]:
         """Gets the top global efficiency leaderboard.
 
         Args:

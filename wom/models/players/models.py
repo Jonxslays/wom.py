@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import typing as t
 from datetime import datetime
 
 import attrs
@@ -128,22 +129,22 @@ class ComputedMetric(BaseModel):
 class SnapshotData(BaseModel):
     """The data associated with this snapshot."""
 
-    skills: dict[enums.Skills, Skill]
+    skills: t.Dict[enums.Skills, Skill]
     """A mapping of [`Skills`][wom.Skills] keys to [`Skill`][wom.Skill] values
     from this snapshot.
     """
 
-    bosses: dict[enums.Bosses, Boss]
+    bosses: t.Dict[enums.Bosses, Boss]
     """A mapping of [`Bosses`][wom.Bosses] keys to [`Boss`][wom.Boss] values
     from this snapshot.
     """
 
-    activities: dict[enums.Activities, Activity]
+    activities: t.Dict[enums.Activities, Activity]
     """A mapping of [`Activities`][wom.Activities] keys to [`Activity`]
     [wom.Activity] values from this snapshot.
     """
 
-    computed: dict[enums.ComputedMetrics, ComputedMetric]
+    computed: t.Dict[enums.ComputedMetrics, ComputedMetric]
     """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
     [`ComputedMetric`][wom.ComputedMetric] values from this snapshot.
     """
@@ -159,7 +160,7 @@ class Snapshot(BaseModel):
     player_id: int
     """The unique ID of the player for this snapshot."""
 
-    imported_at: datetime | None
+    imported_at: t.Optional[datetime]
     """The date the snapshot was imported, if it was."""
 
     data: SnapshotData
@@ -188,7 +189,7 @@ class Player(BaseModel):
     build: PlayerBuild
     """The [`PlayerBuild`][wom.PlayerBuild] for this player."""
 
-    country: Country | None
+    country: t.Optional[Country]
     """The players [`Country`][wom.Country] country of origin, if they
     have one set.
     """
@@ -217,10 +218,10 @@ class Player(BaseModel):
     updated_at: datetime
     """The date the player was last updated with WOM."""
 
-    last_changed_at: datetime | None
+    last_changed_at: t.Optional[datetime]
     """The date of the players last change (xp gain, boss kc, etc)."""
 
-    last_imported_at: datetime | None
+    last_imported_at: t.Optional[datetime]
     """The date of the last player history import."""
 
 
@@ -234,7 +235,7 @@ class PlayerDetail(BaseModel):
     combat_level: int
     """The players combat level."""
 
-    latest_snapshot: Snapshot | None
+    latest_snapshot: t.Optional[Snapshot]
     """The latest snapshot for the player, if there is one."""
 
 
@@ -273,7 +274,7 @@ class Achievement(BaseModel):
     created_at: datetime
     """The date the achievement was achieved."""
 
-    accuracy: int | None
+    accuracy: t.Optional[int]
     """The margin of error for the achievements creation date.
 
     !!! note
@@ -305,12 +306,12 @@ class AchievementProgress(BaseModel):
     threshold: int
     """The threshold for this achievement."""
 
-    created_at: datetime | None
+    created_at: t.Optional[datetime]
     """The date the achievement was achieved, or `None` if it has not
     been achieved.
     """
 
-    accuracy: int | None
+    accuracy: t.Optional[int]
     """The margin of error for the achievements creation date.
 
     !!! note
@@ -428,22 +429,22 @@ class ComputedGains(BaseModel):
 class PlayerGainsData(BaseModel):
     """Contains all the player gains data."""
 
-    skills: dict[enums.Skills, SkillGains]
+    skills: t.Dict[enums.Skills, SkillGains]
     """A mapping of [`Skills`][wom.Skills] keys to [`SkillGains`]
     [wom.SkillGains] values.
     """
 
-    bosses: dict[enums.Bosses, BossGains]
+    bosses: t.Dict[enums.Bosses, BossGains]
     """A mapping of [`Bosses`][wom.Bosses] keys to [`BossGains`]
     [wom.BossGains] values.
     """
 
-    activities: dict[enums.Activities, ActivityGains]
+    activities: t.Dict[enums.Activities, ActivityGains]
     """A mapping of [`Activities`][wom.Activities] keys to [`ActivityGains`]
     [wom.ActivityGains] values.
     """
 
-    computed: dict[enums.ComputedMetrics, ComputedGains]
+    computed: t.Dict[enums.ComputedMetrics, ComputedGains]
     """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
     [`ComputedGains`] [wom.ComputedGains] values.
     """

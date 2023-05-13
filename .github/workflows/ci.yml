@@ -48,7 +48,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        session: [types, formatting, imports, licensing, coverage]
+        session: [types, formatting, imports, licensing, alls]
     runs-on: ubuntu-latest
 
     steps:

@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import typing as t
 from datetime import datetime
 
 import attrs
@@ -50,7 +51,7 @@ class NameChange(BaseModel):
     status: NameChangeStatus
     """The [`status`][wom.NameChangeStatus] of the name change."""
 
-    resolved_at: datetime | None
+    resolved_at: t.Optional[datetime]
     """The date the name change was approved or denied."""
 
     updated_at: datetime

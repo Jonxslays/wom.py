@@ -42,7 +42,7 @@ class CompiledRoute:
     def __init__(self, route: Route, uri: str) -> None:
         self._uri = uri
         self._route = route
-        self._params: dict[str, str | int] = {}
+        self._params: t.Dict[str, t.Union[str, int]] = {}
 
     @property
     def route(self) -> Route:
@@ -64,11 +64,11 @@ class CompiledRoute:
         return self.route.method
 
     @property
-    def params(self) -> dict[str, str | int]:
+    def params(self) -> t.Dict[str, t.Union[str, int]]:
         """The query params for the route."""
         return self._params
 
-    def with_params(self, params: dict[str, t.Any]) -> CompiledRoute:
+    def with_params(self, params: t.Dict[str, t.Any]) -> CompiledRoute:
         """Adds additional query params to this compiled route.
 
         Args:
@@ -92,7 +92,7 @@ class Route:
     uri: str
     """The request uri."""
 
-    def compile(self, *args: str | int) -> CompiledRoute:
+    def compile(self, *args: t.Union[str, int]) -> CompiledRoute:
         """Turn this route into a compiled route.
 
         Args:
