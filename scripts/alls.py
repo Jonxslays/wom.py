@@ -1,4 +1,5 @@
 import sys
+import typing as t
 
 import wom
 
@@ -7,11 +8,11 @@ def should_include_module(module: str) -> bool:
     return module != "annotations" and module[0] != "_" and module[0].upper() != module[0]
 
 
-def get_modules() -> list[str]:
+def get_modules() -> t.List[str]:
     return [m for m in wom.__dict__ if should_include_module(m)]
 
 
-def get_alls() -> tuple[set[str], set[str]]:
+def get_alls() -> t.Tuple[t.Set[str], t.Set[str]]:
     modules = get_modules()
     return (
         set(item for module in modules for item in wom.__dict__[module].__all__),
