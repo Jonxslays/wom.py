@@ -81,14 +81,22 @@ class Serializer:
         *attrs: str,
         transform: TransformT = None,
         camel_case: bool = False,
+        maybe: bool = False,
     ) -> None:
+        if transform and maybe:
+            raise RuntimeError("Only one of 'maybe' and 'transform' may be used.")
+
         for attr in attrs:
             cased_attr = self._to_camel_case(attr) if camel_case else attr
 
             if transform:
-                setattr(model, attr, transform(data[cased_attr]))
+                setattr(
+                    model,
+                    attr,
+                    transform(data.get(cased_attr, None) if maybe else data[cased_attr]),
+                )
             else:
-                setattr(model, attr, data[cased_attr])
+                setattr(model, attr, data.get(cased_attr, None) if maybe else data[cased_attr])
 
     def _set_attrs_cased(
         self,
@@ -96,8 +104,9 @@ class Serializer:
         data: DictT,
         *attrs: str,
         transform: TransformT = None,
+        maybe: bool = False,
     ) -> None:
-        self._set_attrs(model, data, *attrs, transform=transform, camel_case=True)
+        self._set_attrs(model, data, *attrs, transform=transform, camel_case=True, maybe=maybe)
 
     def _deserialize_base_achievement(self, model: AchievementT, data: DictT) -> AchievementT:
         model.metric = enums.Metric.from_str(data["metric"])
@@ -426,6 +435,64 @@ class Serializer:
 
         return gains
 
+    def deserialize_name_change_review_context(
+        self, data: DictT
+    ) -> models.NameChangeReviewContext:
+        """Deserializes the data into a name change review context.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        ctx: models.NameChangeReviewContext
+        reason = models.NameChangeReviewReason.from_str(data["reason"])
+
+        skipped_reasons = (
+            models.NameChangeReviewReason.TransitionTooLong,
+            models.NameChangeReviewReason.ExcessiveGains,
+            models.NameChangeReviewReason.TotalLevelTooLow,
+        )
+
+        denied_reasons = (
+            models.NameChangeReviewReason.ManualReview,
+            models.NameChangeReviewReason.OldStatsNotFound,
+            models.NameChangeReviewReason.NewNameNotFound,
+            models.NameChangeReviewReason.NegativeGains,
+        )
+
+        if reason in skipped_reasons:
+            ctx = models.SkippedNameChangeReviewContext()
+            ctx.reason = reason  # type: ignore[assignment]
+            self._set_attrs_cased(
+                ctx,
+                data,
+                "max_hours_diff",
+                "hours_diff",
+                "ehp_diff",
+                "ehb_diff",
+                "min_total_level",
+                "total_level",
+                maybe=True,
+            )
+        elif reason in denied_reasons:
+            ctx = models.DeniedNameChangeReviewContext()
+            ctx.reason = reason  # type: ignore[assignment]
+            ctx.negative_gains = None
+
+            if reason is models.NameChangeReviewReason.NegativeGains:
+                negative_gains: t.Dict[enums.Metric, int] = {}
+
+                for metric, value in data["negativeGains"].items():
+                    negative_gains[enums.Metric.from_str(metric)] = value
+
+                ctx.negative_gains = negative_gains
+        else:
+            raise RuntimeError("Unreachable code reached! Serializer::name_change_review_context")
+
+        return ctx
+
     def deserialize_name_change(self, data: DictT) -> models.NameChange:
         """Deserializes the data into a name change model.
 
@@ -441,6 +508,12 @@ class Serializer:
         change.created_at = self._dt_from_iso(data["createdAt"])
         change.resolved_at = self._dt_from_iso_maybe(data["createdAt"])
         self._set_attrs_cased(change, data, "id", "player_id", "old_name", "new_name")
+
+        if review_context := data.get("reviewContext", None):
+            change.review_context = self.deserialize_name_change_review_context(review_context)
+        else:
+            change.review_context = review_context
+
         return change
 
     def deserialize_record(self, data: DictT) -> models.Record:

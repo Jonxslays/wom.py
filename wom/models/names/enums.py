@@ -23,7 +23,7 @@ from __future__ import annotations
 
 from wom.enums import BaseEnum
 
-__all__ = ("NameChangeStatus",)
+__all__ = ("NameChangeReviewReason", "NameChangeStatus")
 
 
 class NameChangeStatus(BaseEnum):
@@ -32,3 +32,13 @@ class NameChangeStatus(BaseEnum):
     Pending = "pending"
     Approved = "approved"
     Denied = "denied"
+
+
+class NameChangeReviewReason(BaseEnum):
+    ManualReview = "manual_review"
+    OldStatsNotFound = "old_stats_cannot_be_found"
+    NewNameNotFound = "new_name_not_on_the_hiscores"
+    NegativeGains = "negative_gains"
+    TransitionTooLong = "transition_period_too_long"
+    ExcessiveGains = "excessive_gains"
+    TotalLevelTooLow = "total_level_too_low"
