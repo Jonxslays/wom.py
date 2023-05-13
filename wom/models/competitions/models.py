@@ -23,6 +23,7 @@
 
 from __future__ import annotations
 
+import typing as t
 from datetime import datetime
 
 import attrs
@@ -86,7 +87,7 @@ class Competition(BaseModel):
     ends_at: datetime
     """The date the competition ended at."""
 
-    group_id: int | None
+    group_id: t.Optional[int]
     """The optional group id associated with the competition."""
 
     score: int
@@ -101,7 +102,7 @@ class Competition(BaseModel):
     participant_count: int
     """The number of players participating."""
 
-    group: Group | None
+    group: t.Optional[Group]
     """The [`Group`][wom.Group] associated with the competition, if
     there is one.
     """
@@ -117,7 +118,7 @@ class Participation(BaseModel):
     competition_id: int
     """The ID of the competition associated with this participation."""
 
-    team_name: str | None
+    team_name: t.Optional[str]
     """The optional team name associated with this participation."""
 
     created_at: datetime
@@ -194,7 +195,7 @@ class CompetitionDetail(BaseModel):
     competition: Competition
     """The [`Competition`][wom.Competition] that is being detailed."""
 
-    participations: list[CompetitionParticipationDetail]
+    participations: t.List[CompetitionParticipationDetail]
     """A list of [`CompetitionParticipationDetail`]
     [wom.CompetitionParticipationDetail] participations for this
     competition.
@@ -219,7 +220,7 @@ class Top5ProgressResult(BaseModel):
     player: Player
     """The [`Player`][wom.Player] who made top 5 progress."""
 
-    history: list[CompetitionHistoryDataPoint]
+    history: t.List[CompetitionHistoryDataPoint]
     """A list of [CompetitionHistoryDataPoints]
     [wom.CompetitionHistoryDataPoint] making up the history
     of this top 5 progress result.
@@ -242,14 +243,14 @@ class Team(BaseModel):
         data to some endpoints.
     """
 
-    def __init__(self, name: str, participants: list[str]) -> None:
+    def __init__(self, name: str, participants: t.List[str]) -> None:
         self.name = name
         self.participants = participants
 
     name: str
     """The name of the team."""
 
-    participants: list[str]
+    participants: t.List[str]
     """A list of participant usernames on the team."""
 
 
@@ -260,12 +261,12 @@ class CompetitionWithParticipations(BaseModel):
     competition: Competition
     """The [`Competition`][wom.Competition] itself."""
 
-    participations: list[CompetitionParticipation]
+    participations: t.List[CompetitionParticipation]
     """A list containing the [`CompetitionParticipations`]
     [wom.CompetitionParticipation].
     """
 
-    verification_code: str | None
+    verification_code: t.Optional[str]
     """The verification code for the competition.
 
     !!! note

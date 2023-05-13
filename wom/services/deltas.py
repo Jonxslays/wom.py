@@ -46,10 +46,10 @@ class DeltaService(BaseService):
         metric: enums.Metric,
         period: enums.Period,
         *,
-        player_type: models.PlayerType | None = None,
-        player_build: models.PlayerBuild | None = None,
-        country: models.Country | None = None,
-    ) -> ResultT[list[models.DeltaLeaderboardEntry]]:
+        player_type: t.Optional[models.PlayerType] = None,
+        player_build: t.Optional[models.PlayerBuild] = None,
+        country: t.Optional[models.Country] = None,
+    ) -> ResultT[t.List[models.DeltaLeaderboardEntry]]:
         """Gets the top global delta leaderboard for a specific
         metric and period.
 

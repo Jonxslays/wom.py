@@ -42,12 +42,12 @@ class NameChangeService(BaseService):
 
     async def search_name_changes(
         self,
-        username: str | None = None,
+        username: t.Optional[str] = None,
         *,
-        status: models.NameChangeStatus | None = None,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> ResultT[list[models.NameChange]]:
+        status: t.Optional[models.NameChangeStatus] = None,
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.NameChange]]:
         """Searches for name changes.
 
         Args:

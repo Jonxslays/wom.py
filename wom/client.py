@@ -111,10 +111,10 @@ class Client:
 
     def __init__(
         self,
-        api_key: str | None = None,
+        api_key: t.Optional[str] = None,
         *,
-        user_agent: str | None = None,
-        api_base_url: str | None = None,
+        user_agent: t.Optional[str] = None,
+        api_base_url: t.Optional[str] = None,
     ) -> None:
         self._serializer = serializer.Serializer()
         self._http = services.HttpService(api_key, user_agent, api_base_url)
@@ -222,6 +222,11 @@ class Client:
 
         Args:
             user_agent: The new user agent to use.
+
+        !!! note
+
+            To remove a previously set user agent, call this method
+            with an empty string as the user agent.
 
         ??? example
 

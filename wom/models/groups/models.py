@@ -21,6 +21,7 @@
 
 from __future__ import annotations
 
+import typing as t
 from datetime import datetime
 
 import attrs
@@ -66,10 +67,10 @@ class Group(BaseModel):
     clan_chat: str
     """The clan chat for this group."""
 
-    description: str | None
+    description: t.Optional[str]
     """The groups optional description."""
 
-    homeworld: int | None
+    homeworld: t.Optional[int]
     """The groups optional homeworld."""
 
     verified: bool
@@ -95,10 +96,10 @@ class GroupDetail(BaseModel):
     group: Group
     """The [`Group`][wom.Group] itself."""
 
-    memberships: list[GroupMembership]
+    memberships: t.List[GroupMembership]
     """A list of [`GroupMemberships`][wom.GroupMembership]."""
 
-    verification_code: str | None
+    verification_code: t.Optional[str]
     """The optional verification code for the group.
 
     !!! note
@@ -117,7 +118,7 @@ class Membership(BaseModel):
     group_id: int
     """The group ID this membership belongs to."""
 
-    role: GroupRole | None
+    role: t.Optional[GroupRole]
     """The optional [`GroupRole`][wom.GroupRole] for this membership."""
 
     created_at: datetime
@@ -165,14 +166,14 @@ class GroupMemberFragment(BaseModel):
         data to some endpoints.
     """
 
-    def __init__(self, username: str, role: GroupRole | None = None) -> None:
+    def __init__(self, username: str, role: t.Optional[GroupRole] = None) -> None:
         self.username = username
         self.role = role
 
     username: str
     """The group members username."""
 
-    role: GroupRole | None
+    role: t.Optional[GroupRole]
     """The optional [`GroupRole`][wom.GroupRole] for the member.
     """
 
@@ -184,12 +185,12 @@ class GroupHiscoresEntry(BaseModel):
     player: Player
     """The [`Player`][wom.Player] responsible for the entry."""
 
-    data: (
-        GroupHiscoresActivityItem
-        | GroupHiscoresBossItem
-        | GroupHiscoresSkillItem
-        | GroupHiscoresComputedMetricItem
-    )
+    data: t.Union[
+        GroupHiscoresActivityItem,
+        GroupHiscoresBossItem,
+        GroupHiscoresSkillItem,
+        GroupHiscoresComputedMetricItem,
+    ]
     """The data for this hiscores entry."""
 
 
@@ -317,22 +318,22 @@ class ComputedMetricLeader(BaseModel):
 class MetricLeaders(BaseModel):
     """The leaders for each metric in a group."""
 
-    skills: dict[enums.Skills, SkillLeader]
+    skills: t.Dict[enums.Skills, SkillLeader]
     """A mapping of [`Skills`][wom.Skills] keys to [`SkillLeader`]
     [wom.SkillLeader] values.
     """
 
-    bosses: dict[enums.Bosses, BossLeader]
+    bosses: t.Dict[enums.Bosses, BossLeader]
     """A mapping of [`Bosses`][wom.Bosses] keys to [`BossLeader`]
     [wom.BossLeader] values.
     """
 
-    activities: dict[enums.Activities, ActivityLeader]
+    activities: t.Dict[enums.Activities, ActivityLeader]
     """A mapping of [`Activities`][wom.Activities] keys to [`ActivityLeader`]
     [wom.ActivityLeader] values.
     """
 
-    computed: dict[enums.ComputedMetrics, ComputedMetricLeader]
+    computed: t.Dict[enums.ComputedMetrics, ComputedMetricLeader]
     """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
     [`ComputedMetricLeader`][wom.ComputedMetricLeader] values.
     """

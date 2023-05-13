@@ -51,9 +51,9 @@ class HttpService:
 
     def __init__(
         self,
-        api_key: str | None,
-        user_agent: str | None,
-        api_base_url: str | None,
+        api_key: t.Optional[str],
+        user_agent: t.Optional[str],
+        api_base_url: t.Optional[str],
     ) -> None:
         self._headers = {
             "x-user-agent": (
@@ -153,7 +153,7 @@ class HttpService:
         route: routes.CompiledRoute,
         _: t.Type[T],
         *,
-        payload: dict[str, t.Any] | None = None,
+        payload: t.Optional[t.Dict[str, t.Any]] = None,
     ) -> T | models.HttpErrorResponse:
         """Fetches the given route.
 

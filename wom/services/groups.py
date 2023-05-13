@@ -45,12 +45,15 @@ class GroupService(BaseService):
 
     def _prepare_member_fragments(
         self, members: t.Iterable[models.GroupMemberFragment]
-    ) -> tuple[dict[str, t.Any], ...]:
+    ) -> tuple[t.Dict[str, t.Any], ...]:
         return tuple({k: str(v) for k, v in m.to_dict().items() if v} for m in members)
 
     async def search_groups(
-        self, name: str | None = None, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.Group]]:
+        self,
+        name: t.Optional[str] = None,
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.Group]]:
         """Searches for groups that at least partially match the given
         name.
 
@@ -117,9 +120,9 @@ class GroupService(BaseService):
         self,
         name: str,
         *members: models.GroupMemberFragment,
-        clan_chat: str | None = None,
-        description: str | None = None,
-        homeworld: int | None = None,
+        clan_chat: t.Optional[str] = None,
+        description: t.Optional[str] = None,
+        homeworld: t.Optional[int] = None,
     ) -> ResultT[models.GroupDetail]:
         """Creates a new group.
 
@@ -182,11 +185,11 @@ class GroupService(BaseService):
         id: int,
         verification_code: str,
         *,
-        name: str | None = None,
-        members: t.Iterable[models.GroupMemberFragment] | None = None,
-        clan_chat: str | None = None,
-        description: str | None = None,
-        homeworld: int | None = None,
+        name: t.Optional[str] = None,
+        members: t.Optional[t.Iterable[models.GroupMemberFragment]] = None,
+        clan_chat: t.Optional[str] = None,
+        description: t.Optional[str] = None,
+        homeworld: t.Optional[int] = None,
     ) -> ResultT[models.GroupDetail]:
         """Edits an existing group.
 
@@ -489,8 +492,8 @@ class GroupService(BaseService):
         return result.Err(data)
 
     async def get_competitions(
-        self, id: int, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.Competition]]:
+        self, id: int, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
+    ) -> ResultT[t.List[models.Competition]]:
         """Gets competitions for a given group.
 
         Args:
@@ -531,12 +534,12 @@ class GroupService(BaseService):
         id: int,
         metric: enums.Metric,
         *,
-        period: enums.Period | None = None,
-        start_date: datetime | None = None,
-        end_date: datetime | None = None,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> ResultT[list[models.DeltaLeaderboardEntry]]:
+        period: t.Optional[enums.Period] = None,
+        start_date: t.Optional[datetime] = None,
+        end_date: t.Optional[datetime] = None,
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.DeltaLeaderboardEntry]]:
         """Gets the gains for a group over a particular time frame.
 
         Args:
@@ -602,9 +605,9 @@ class GroupService(BaseService):
         self,
         id: int,
         *,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> ResultT[list[models.Achievement]]:
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.Achievement]]:
         """Gets the achievements for the group.
 
         Args:
@@ -646,9 +649,9 @@ class GroupService(BaseService):
         metric: enums.Metric,
         period: enums.Period,
         *,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> ResultT[list[models.RecordLeaderboardEntry]]:
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.RecordLeaderboardEntry]]:
         """Gets the records held by players in the group.
 
         Args:
@@ -701,9 +704,9 @@ class GroupService(BaseService):
         id: int,
         metric: enums.Metric,
         *,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> ResultT[list[models.GroupHiscoresEntry]]:
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.GroupHiscoresEntry]]:
         """Gets the hiscores for the group.
 
         Args:
@@ -744,8 +747,8 @@ class GroupService(BaseService):
         return result.Ok([self._serializer.deserialize_group_hiscores_entry(h) for h in data])
 
     async def get_name_changes(
-        self, id: int, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.NameChange]]:
+        self, id: int, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
+    ) -> ResultT[t.List[models.NameChange]]:
         """Gets the past name changes for the group.
 
         Args:

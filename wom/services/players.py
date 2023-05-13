@@ -43,8 +43,8 @@ class PlayerService(BaseService):
     __slots__ = ()
 
     async def search_players(
-        self, username: str, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.Player]]:
+        self, username: str, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
+    ) -> ResultT[t.List[models.Player]]:
         """Searches for a player by partial username.
 
         Args:
@@ -200,7 +200,7 @@ class PlayerService(BaseService):
 
         return result.Ok(self._serializer.deserialize_player_details(data))
 
-    async def get_achievements(self, username: str) -> ResultT[list[models.Achievement]]:
+    async def get_achievements(self, username: str) -> ResultT[t.List[models.Achievement]]:
         """Gets the achievements for a given player.
 
         Args:
@@ -232,7 +232,7 @@ class PlayerService(BaseService):
 
     async def get_achievement_progress(
         self, username: str
-    ) -> ResultT[list[models.PlayerAchievementProgress]]:
+    ) -> ResultT[t.List[models.PlayerAchievementProgress]]:
         """Gets the progress towards achievements for a given player.
 
         Args:
@@ -268,10 +268,10 @@ class PlayerService(BaseService):
         self,
         username: str,
         *,
-        limit: int | None = None,
-        offset: int | None = None,
-        status: models.CompetitionStatus | None = None,
-    ) -> ResultT[list[models.PlayerParticipation]]:
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+        status: t.Optional[models.CompetitionStatus] = None,
+    ) -> ResultT[t.List[models.PlayerParticipation]]:
         """Gets the competition participations for a given player.
 
         Args:
@@ -320,7 +320,7 @@ class PlayerService(BaseService):
         self,
         username: str,
         status: models.CompetitionStatus,
-    ) -> ResultT[list[models.PlayerCompetitionStanding]]:
+    ) -> ResultT[t.List[models.PlayerCompetitionStanding]]:
         """Gets the competition standings for a given player.
 
         Args:
@@ -358,8 +358,8 @@ class PlayerService(BaseService):
         )
 
     async def get_group_memberships(
-        self, username: str, *, limit: int | None = None, offset: int | None = None
-    ) -> ResultT[list[models.PlayerMembership]]:
+        self, username: str, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
+    ) -> ResultT[t.List[models.PlayerMembership]]:
         """Gets the group memberships for the given player.
 
         Args:
@@ -403,9 +403,9 @@ class PlayerService(BaseService):
         self,
         username: str,
         *,
-        period: enums.Period | None = None,
-        start_date: datetime | None = None,
-        end_date: datetime | None = None,
+        period: t.Optional[enums.Period] = None,
+        start_date: t.Optional[datetime] = None,
+        end_date: t.Optional[datetime] = None,
     ) -> ResultT[models.PlayerGains]:
         """Gets the gains made by this player over the given time span.
 
@@ -462,9 +462,9 @@ class PlayerService(BaseService):
         self,
         username: str,
         *,
-        period: enums.Period | None = None,
-        metric: enums.Metric | None = None,
-    ) -> ResultT[list[models.Record]]:
+        period: t.Optional[enums.Period] = None,
+        metric: t.Optional[enums.Metric] = None,
+    ) -> ResultT[t.List[models.Record]]:
         """Gets the records held by this player.
 
         Args:
@@ -511,10 +511,10 @@ class PlayerService(BaseService):
         self,
         username: str,
         *,
-        period: enums.Period | None = None,
-        start_date: datetime | None = None,
-        end_date: datetime | None = None,
-    ) -> ResultT[list[models.Snapshot]]:
+        period: t.Optional[enums.Period] = None,
+        start_date: t.Optional[datetime] = None,
+        end_date: t.Optional[datetime] = None,
+    ) -> ResultT[t.List[models.Snapshot]]:
         """Gets the snapshots for the player.
 
         Args:
@@ -566,7 +566,7 @@ class PlayerService(BaseService):
 
         return result.Ok([self._serializer.deserialize_snapshot(s) for s in data])
 
-    async def get_name_changes(self, username: str) -> ResultT[list[models.NameChange]]:
+    async def get_name_changes(self, username: str) -> ResultT[t.List[models.NameChange]]:
         """Gets the name changes for the player.
 
         Args:

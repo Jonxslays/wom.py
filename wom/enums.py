@@ -58,7 +58,7 @@ class BaseEnum(Enum):
         return cls(value)
 
     @classmethod
-    def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
+    def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
         """Attempt to generate this enum from the given value.
 
         Args:
@@ -84,11 +84,6 @@ class Metric(BaseEnum):
         or [`Skills`][wom.Skills].
     """
 
-    # TODO: Do we even need this method??????????
-    # @classmethod
-    # def _filter_on_value(cls: t.Type[T], value: str) -> set[T]:
-    #     return set(filter(lambda x: x.value == value, cls))  # type: ignore
-
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
         if cls is not Metric:
@@ -105,7 +100,7 @@ class Metric(BaseEnum):
         raise RuntimeError(f"No {cls} variant for {value!r}.")
 
     @classmethod
-    def from_str_maybe(cls: t.Type[T], value: str) -> T | None:
+    def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
         if cls is not Metric:
             return super(Metric, cls).from_str_maybe(value)  # pyright: ignore
 

@@ -47,8 +47,8 @@ class BaseService(abc.ABC):
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
         self._serializer = serializer
-        self._dict = dict[str, t.Any]
-        self._list = list[dict[str, t.Any]]
+        self._dict = t.Dict[str, t.Any]
+        self._list = t.List[t.Dict[str, t.Any]]
 
-    def _generate_map(self, **kwargs: t.Any) -> dict[str, t.Any]:
+    def _generate_map(self, **kwargs: t.Any) -> t.Dict[str, t.Any]:
         return {k: v for k, v in kwargs.items() if v is not None}

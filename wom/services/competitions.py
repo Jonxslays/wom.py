@@ -45,13 +45,13 @@ class CompetitionService(BaseService):
     async def search_competitions(
         self,
         *,
-        title: str | None = None,
-        type: models.CompetitionType | None = None,
-        status: models.CompetitionStatus | None = None,
-        metric: enums.Metric | None = None,
-        limit: int | None = None,
-        offset: int | None = None,
-    ) -> ResultT[list[models.Competition]]:
+        title: t.Optional[str] = None,
+        type: t.Optional[models.CompetitionType] = None,
+        status: t.Optional[models.CompetitionStatus] = None,
+        metric: t.Optional[enums.Metric] = None,
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.Competition]]:
         """Searches for competitions with the given criteria.
 
         Keyword Args:
@@ -113,7 +113,7 @@ class CompetitionService(BaseService):
         return result.Ok([self._serializer.deserialize_competition(c) for c in data])
 
     async def get_details(
-        self, id: int, *, metric: enums.Metric | None = None
+        self, id: int, *, metric: t.Optional[enums.Metric] = None
     ) -> ResultT[models.CompetitionDetail]:
         """Gets details for the given competition.
 
@@ -154,8 +154,8 @@ class CompetitionService(BaseService):
         return result.Ok(self._serializer.deserialize_competition_details(data))
 
     async def get_top_participant_history(
-        self, id: int, *, metric: enums.Metric | None = None
-    ) -> ResultT[list[models.Top5ProgressResult]]:
+        self, id: int, *, metric: t.Optional[enums.Metric] = None
+    ) -> ResultT[t.List[models.Top5ProgressResult]]:
         """Gets details for the players with the top 5 progress in the
         competition.
 
@@ -201,10 +201,10 @@ class CompetitionService(BaseService):
         starts_at: datetime,
         ends_at: datetime,
         *,
-        group_id: int | None = None,
-        group_verification_code: str | None = None,
-        teams: list[models.Team] | None = None,
-        participants: list[str] | None = None,
+        group_id: t.Optional[int] = None,
+        group_verification_code: t.Optional[str] = None,
+        teams: t.Optional[t.List[models.Team]] = None,
+        participants: t.Optional[t.List[str]] = None,
     ) -> ResultT[models.CompetitionWithParticipations]:
         """Creates a new competition.
 
@@ -301,12 +301,12 @@ class CompetitionService(BaseService):
         id: int,
         verification_code: str,
         *,
-        title: str | None = None,
-        metric: enums.Metric | None = None,
-        starts_at: datetime | None = None,
-        ends_at: datetime | None = None,
-        teams: list[models.Team] | None = None,
-        participants: list[str] | None = None,
+        title: t.Optional[str] = None,
+        metric: t.Optional[enums.Metric] = None,
+        starts_at: t.Optional[datetime] = None,
+        ends_at: t.Optional[datetime] = None,
+        teams: t.Optional[t.List[models.Team]] = None,
+        participants: t.Optional[t.List[str]] = None,
     ) -> ResultT[models.CompetitionWithParticipations]:
         """Edits an existing competition.
 
