@@ -1,3 +1,12 @@
+# v0.4.1 (May 2023)
+
+## Breaking Changes
+
+- Make `MetricLeaders.player` optional, indicating no player leads in the metric.
+- Fix typos in the `Bosses` enum.
+
+---
+
 # v0.4.0 (May 2023)
 
 ## Breaking Changes
