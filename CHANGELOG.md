@@ -1,3 +1,12 @@
+# v0.4.2 (Jun 2023)
+
+## Additions
+
+- Add `Banned` player status.
+- Add helpful error message if new enum variants are not yet added to the lib.
+
+---
+
 # v0.4.1 (May 2023)
 
 ## Breaking Changes
