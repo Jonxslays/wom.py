@@ -36,14 +36,14 @@ def test_from_str_none() -> None:
     with pytest.raises(ValueError) as e:
         _ = enums.Period.from_str(None)  # type: ignore
 
-    assert e.exconly() == "ValueError: None is not a valid Period"
+    assert e.exconly().startswith("ValueError: None is not a valid Period variant.")
 
 
 def test_from_str_invalid() -> None:
     with pytest.raises(ValueError) as e:
         _ = enums.Period.from_str("fake")  # type: ignore
 
-    assert e.exconly() == "ValueError: 'fake' is not a valid Period"
+    assert e.exconly().startswith("ValueError: 'fake' is not a valid Period variant.")
 
 
 def test_from_str_maybe() -> None:
@@ -80,17 +80,17 @@ def test_metric_child_from_str() -> None:
 
 
 def test_metric_from_str_invalid() -> None:
-    with pytest.raises(RuntimeError) as e:
+    with pytest.raises(ValueError) as e:
         _ = enums.Metric.from_str("hmmm")
 
-    assert e.exconly() == "RuntimeError: No <enum 'Metric'> variant for 'hmmm'."
+    assert e.exconly().startswith("ValueError: 'hmmm' is not a valid Metric variant.")
 
 
 def test_metric_from_str_none() -> None:
-    with pytest.raises(RuntimeError) as e:
+    with pytest.raises(ValueError) as e:
         _ = enums.Metric.from_str(None)  # type: ignore
 
-    assert e.exconly() == "RuntimeError: No <enum 'Metric'> variant for None."
+    assert e.exconly().startswith("ValueError: None is not a valid Metric variant.")
 
 
 def test_metric_from_str_maybe() -> None:
