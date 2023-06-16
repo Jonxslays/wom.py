@@ -55,7 +55,13 @@ class BaseEnum(Enum):
         Returns:
             The generated enum.
         """
-        return cls(value)
+        try:
+            return cls(value)
+        except ValueError as e:
+            raise ValueError(
+                f"{e} variant. Please report this issue on github at "
+                "https://github.com/Jonxslays/wom.py/issues/new"
+            ) from None
 
     @classmethod
     def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
@@ -87,7 +93,7 @@ class Metric(BaseEnum):
     @classmethod
     def from_str(cls: t.Type[T], value: str) -> T:
         if cls is not Metric:
-            return cls(value)
+            return super().from_str(value)
 
         children = {Skills, Activities, Bosses, ComputedMetrics}
 
@@ -97,12 +103,15 @@ class Metric(BaseEnum):
             except ValueError:
                 continue
 
-        raise RuntimeError(f"No {cls} variant for {value!r}.")
+        raise ValueError(
+            f"{value!r} is not a valid {cls.__name__} variant. "
+            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new"
+        )
 
     @classmethod
     def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
         if cls is not Metric:
-            return super(Metric, cls).from_str_maybe(value)  # pyright: ignore
+            return super().from_str_maybe(value)  # pyright: ignore
 
         children = {Skills, Activities, Bosses, ComputedMetrics}
 

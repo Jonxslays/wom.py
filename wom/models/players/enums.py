@@ -61,6 +61,7 @@ class PlayerStatus(BaseEnum):
     Unranked = "unranked"
     Flagged = "flagged"
     Archived = "archived"
+    Banned = "banned"
 
 
 class AchievementMeasure(BaseEnum):
