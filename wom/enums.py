@@ -111,13 +111,11 @@ class Metric(BaseEnum):
     @classmethod
     def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
         if cls is not Metric:
-            print("Trying ")
             return super().from_str_maybe(value)  # pyright: ignore
 
         children = {Skills, Activities, Bosses, ComputedMetrics}
 
         for child in children:
-            print("Trying", child)
             try:
                 return child(value)  # type: ignore
             except ValueError:
