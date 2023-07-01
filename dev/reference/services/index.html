@@ -913,6 +913,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#wom.services.players.PlayerService.get_snapshots_timeline" class="md-nav__link">
+    get_snapshots_timeline()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#wom.services.players.PlayerService.search_players" class="md-nav__link">
     search_players()
   </a>
@@ -1438,6 +1445,13 @@
           <li class="md-nav__item">
   <a href="#wom.services.players.PlayerService.get_snapshots" class="md-nav__link">
     get_snapshots()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.services.players.PlayerService.get_snapshots_timeline" class="md-nav__link">
+    get_snapshots_timeline()
   </a>
   
 </li>
@@ -7895,7 +7909,7 @@ players.</p>
 <a id="__codelineno-0-539" name="__codelineno-0-539"></a>        <span class="n">end_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-540" name="__codelineno-0-540"></a>        <span class="n">limit</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-541" name="__codelineno-0-541"></a>        <span class="n">offset</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-542" name="__codelineno-0-542"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">DeltaLeaderboardEntry</span><span class="p">]]:</span>
+<a id="__codelineno-0-542" name="__codelineno-0-542"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">GroupMemberGains</span><span class="p">]]:</span>
 <a id="__codelineno-0-543" name="__codelineno-0-543"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the gains for a group over a particular time frame.</span>
 <a id="__codelineno-0-544" name="__codelineno-0-544"></a>
 <a id="__codelineno-0-545" name="__codelineno-0-545"></a><span class="sd">        Args:</span>
@@ -7955,7 +7969,7 @@ players.</p>
 <a id="__codelineno-0-599" name="__codelineno-0-599"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
 <a id="__codelineno-0-600" name="__codelineno-0-600"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-601" name="__codelineno-0-601"></a>
-<a id="__codelineno-0-602" name="__codelineno-0-602"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_delta_leaderboard_entry</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-602" name="__codelineno-0-602"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_member_gains</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 <a id="__codelineno-0-603" name="__codelineno-0-603"></a>
 <a id="__codelineno-0-604" name="__codelineno-0-604"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_achievements</span><span class="p">(</span>
 <a id="__codelineno-0-605" name="__codelineno-0-605"></a>        <span class="bp">self</span><span class="p">,</span>
@@ -10045,7 +10059,7 @@ competitions.</p>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">end_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">limit</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">offset</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">DeltaLeaderboardEntry</span><span class="p">]]</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">GroupMemberGains</span><span class="p">]]</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -10176,7 +10190,7 @@ to <code>None</code>.</p>
     <tbody>
         <tr>
           <td>
-                <code><span title="wom.services.groups.ResultT">ResultT</span>[<span title="typing">t</span>.<span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="wom.models" href="../models/#wom.models">models</a>.<a class="autorefs autorefs-internal" title="wom.models.DeltaLeaderboardEntry" href="../models/#wom.models.DeltaLeaderboardEntry">DeltaLeaderboardEntry</a>]]</code>
+                <code><span title="wom.services.groups.ResultT">ResultT</span>[<span title="typing">t</span>.<span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="wom.models" href="../models/#wom.models">models</a>.<a class="autorefs autorefs-internal" title="wom.models.GroupMemberGains" href="../models/#wom.models.GroupMemberGains">GroupMemberGains</a>]]</code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -10288,7 +10302,7 @@ leaderboard entries.</p>
 <a id="__codelineno-0-539" name="__codelineno-0-539"></a>    <span class="n">end_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-540" name="__codelineno-0-540"></a>    <span class="n">limit</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-541" name="__codelineno-0-541"></a>    <span class="n">offset</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-542" name="__codelineno-0-542"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">DeltaLeaderboardEntry</span><span class="p">]]:</span>
+<a id="__codelineno-0-542" name="__codelineno-0-542"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">GroupMemberGains</span><span class="p">]]:</span>
 <a id="__codelineno-0-543" name="__codelineno-0-543"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the gains for a group over a particular time frame.</span>
 <a id="__codelineno-0-544" name="__codelineno-0-544"></a>
 <a id="__codelineno-0-545" name="__codelineno-0-545"></a><span class="sd">    Args:</span>
@@ -10348,7 +10362,7 @@ leaderboard entries.</p>
 <a id="__codelineno-0-599" name="__codelineno-0-599"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
 <a id="__codelineno-0-600" name="__codelineno-0-600"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-601" name="__codelineno-0-601"></a>
-<a id="__codelineno-0-602" name="__codelineno-0-602"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_delta_leaderboard_entry</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-602" name="__codelineno-0-602"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_member_gains</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -13897,7 +13911,71 @@ from the API. Defaults to <code>None</code>.</p>
 <span class="normal"><a href="#__codelineno-0-593">593</a></span>
 <span class="normal"><a href="#__codelineno-0-594">594</a></span>
 <span class="normal"><a href="#__codelineno-0-595">595</a></span>
-<span class="normal"><a href="#__codelineno-0-596">596</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span> <span class="nc">PlayerService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-596">596</a></span>
+<span class="normal"><a href="#__codelineno-0-597">597</a></span>
+<span class="normal"><a href="#__codelineno-0-598">598</a></span>
+<span class="normal"><a href="#__codelineno-0-599">599</a></span>
+<span class="normal"><a href="#__codelineno-0-600">600</a></span>
+<span class="normal"><a href="#__codelineno-0-601">601</a></span>
+<span class="normal"><a href="#__codelineno-0-602">602</a></span>
+<span class="normal"><a href="#__codelineno-0-603">603</a></span>
+<span class="normal"><a href="#__codelineno-0-604">604</a></span>
+<span class="normal"><a href="#__codelineno-0-605">605</a></span>
+<span class="normal"><a href="#__codelineno-0-606">606</a></span>
+<span class="normal"><a href="#__codelineno-0-607">607</a></span>
+<span class="normal"><a href="#__codelineno-0-608">608</a></span>
+<span class="normal"><a href="#__codelineno-0-609">609</a></span>
+<span class="normal"><a href="#__codelineno-0-610">610</a></span>
+<span class="normal"><a href="#__codelineno-0-611">611</a></span>
+<span class="normal"><a href="#__codelineno-0-612">612</a></span>
+<span class="normal"><a href="#__codelineno-0-613">613</a></span>
+<span class="normal"><a href="#__codelineno-0-614">614</a></span>
+<span class="normal"><a href="#__codelineno-0-615">615</a></span>
+<span class="normal"><a href="#__codelineno-0-616">616</a></span>
+<span class="normal"><a href="#__codelineno-0-617">617</a></span>
+<span class="normal"><a href="#__codelineno-0-618">618</a></span>
+<span class="normal"><a href="#__codelineno-0-619">619</a></span>
+<span class="normal"><a href="#__codelineno-0-620">620</a></span>
+<span class="normal"><a href="#__codelineno-0-621">621</a></span>
+<span class="normal"><a href="#__codelineno-0-622">622</a></span>
+<span class="normal"><a href="#__codelineno-0-623">623</a></span>
+<span class="normal"><a href="#__codelineno-0-624">624</a></span>
+<span class="normal"><a href="#__codelineno-0-625">625</a></span>
+<span class="normal"><a href="#__codelineno-0-626">626</a></span>
+<span class="normal"><a href="#__codelineno-0-627">627</a></span>
+<span class="normal"><a href="#__codelineno-0-628">628</a></span>
+<span class="normal"><a href="#__codelineno-0-629">629</a></span>
+<span class="normal"><a href="#__codelineno-0-630">630</a></span>
+<span class="normal"><a href="#__codelineno-0-631">631</a></span>
+<span class="normal"><a href="#__codelineno-0-632">632</a></span>
+<span class="normal"><a href="#__codelineno-0-633">633</a></span>
+<span class="normal"><a href="#__codelineno-0-634">634</a></span>
+<span class="normal"><a href="#__codelineno-0-635">635</a></span>
+<span class="normal"><a href="#__codelineno-0-636">636</a></span>
+<span class="normal"><a href="#__codelineno-0-637">637</a></span>
+<span class="normal"><a href="#__codelineno-0-638">638</a></span>
+<span class="normal"><a href="#__codelineno-0-639">639</a></span>
+<span class="normal"><a href="#__codelineno-0-640">640</a></span>
+<span class="normal"><a href="#__codelineno-0-641">641</a></span>
+<span class="normal"><a href="#__codelineno-0-642">642</a></span>
+<span class="normal"><a href="#__codelineno-0-643">643</a></span>
+<span class="normal"><a href="#__codelineno-0-644">644</a></span>
+<span class="normal"><a href="#__codelineno-0-645">645</a></span>
+<span class="normal"><a href="#__codelineno-0-646">646</a></span>
+<span class="normal"><a href="#__codelineno-0-647">647</a></span>
+<span class="normal"><a href="#__codelineno-0-648">648</a></span>
+<span class="normal"><a href="#__codelineno-0-649">649</a></span>
+<span class="normal"><a href="#__codelineno-0-650">650</a></span>
+<span class="normal"><a href="#__codelineno-0-651">651</a></span>
+<span class="normal"><a href="#__codelineno-0-652">652</a></span>
+<span class="normal"><a href="#__codelineno-0-653">653</a></span>
+<span class="normal"><a href="#__codelineno-0-654">654</a></span>
+<span class="normal"><a href="#__codelineno-0-655">655</a></span>
+<span class="normal"><a href="#__codelineno-0-656">656</a></span>
+<span class="normal"><a href="#__codelineno-0-657">657</a></span>
+<span class="normal"><a href="#__codelineno-0-658">658</a></span>
+<span class="normal"><a href="#__codelineno-0-659">659</a></span>
+<span class="normal"><a href="#__codelineno-0-660">660</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span> <span class="nc">PlayerService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles endpoints related to players.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a>
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
@@ -14454,6 +14532,70 @@ from the API. Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-594" name="__codelineno-0-594"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-595" name="__codelineno-0-595"></a>
 <a id="__codelineno-0-596" name="__codelineno-0-596"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-597" name="__codelineno-0-597"></a>
+<a id="__codelineno-0-598" name="__codelineno-0-598"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_snapshots_timeline</span><span class="p">(</span>
+<a id="__codelineno-0-599" name="__codelineno-0-599"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-600" name="__codelineno-0-600"></a>        <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-601" name="__codelineno-0-601"></a>        <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span><span class="p">,</span>
+<a id="__codelineno-0-602" name="__codelineno-0-602"></a>        <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-603" name="__codelineno-0-603"></a>        <span class="n">period</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Period</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-604" name="__codelineno-0-604"></a>        <span class="n">start_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-605" name="__codelineno-0-605"></a>        <span class="n">end_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-606" name="__codelineno-0-606"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">SnapshotTimelineEntry</span><span class="p">]]:</span>
+<a id="__codelineno-0-607" name="__codelineno-0-607"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the snapshots timeline for the given player and metric.</span>
+<a id="__codelineno-0-608" name="__codelineno-0-608"></a>
+<a id="__codelineno-0-609" name="__codelineno-0-609"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-610" name="__codelineno-0-610"></a><span class="sd">            username: The username to get the timeline for.</span>
+<a id="__codelineno-0-611" name="__codelineno-0-611"></a>
+<a id="__codelineno-0-612" name="__codelineno-0-612"></a><span class="sd">            metric: The metric to get the timeline for.</span>
+<a id="__codelineno-0-613" name="__codelineno-0-613"></a>
+<a id="__codelineno-0-614" name="__codelineno-0-614"></a><span class="sd">        Keyword Args:</span>
+<a id="__codelineno-0-615" name="__codelineno-0-615"></a><span class="sd">            period: The optional period of time to get snapshots for.</span>
+<a id="__codelineno-0-616" name="__codelineno-0-616"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-617" name="__codelineno-0-617"></a>
+<a id="__codelineno-0-618" name="__codelineno-0-618"></a><span class="sd">            start_date: The minimum date to get the snapshots from.</span>
+<a id="__codelineno-0-619" name="__codelineno-0-619"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-620" name="__codelineno-0-620"></a>
+<a id="__codelineno-0-621" name="__codelineno-0-621"></a><span class="sd">            end_date: The maximum date to get the snapshots from.</span>
+<a id="__codelineno-0-622" name="__codelineno-0-622"></a><span class="sd">                Defaults to `None`.</span>
+<a id="__codelineno-0-623" name="__codelineno-0-623"></a>
+<a id="__codelineno-0-624" name="__codelineno-0-624"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-625" name="__codelineno-0-625"></a><span class="sd">            A [`Result`][wom.Result] containing the list of snapshots timeline</span>
+<a id="__codelineno-0-626" name="__codelineno-0-626"></a><span class="sd">                entries.</span>
+<a id="__codelineno-0-627" name="__codelineno-0-627"></a>
+<a id="__codelineno-0-628" name="__codelineno-0-628"></a><span class="sd">        !!! info</span>
+<a id="__codelineno-0-629" name="__codelineno-0-629"></a>
+<a id="__codelineno-0-630" name="__codelineno-0-630"></a><span class="sd">            You can pass either (`period`) or (`start_date` +</span>
+<a id="__codelineno-0-631" name="__codelineno-0-631"></a><span class="sd">            `end_date`), but not both.</span>
+<a id="__codelineno-0-632" name="__codelineno-0-632"></a>
+<a id="__codelineno-0-633" name="__codelineno-0-633"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-634" name="__codelineno-0-634"></a>
+<a id="__codelineno-0-635" name="__codelineno-0-635"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-636" name="__codelineno-0-636"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-637" name="__codelineno-0-637"></a>
+<a id="__codelineno-0-638" name="__codelineno-0-638"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-639" name="__codelineno-0-639"></a>
+<a id="__codelineno-0-640" name="__codelineno-0-640"></a><span class="sd">            await client.start()</span>
+<a id="__codelineno-0-641" name="__codelineno-0-641"></a>
+<a id="__codelineno-0-642" name="__codelineno-0-642"></a><span class="sd">            result = await client.players.get_snapshots_timeline(</span>
+<a id="__codelineno-0-643" name="__codelineno-0-643"></a><span class="sd">                &quot;Jonxslays&quot;, wom.Skills.Attack, period=wom.Period.Week</span>
+<a id="__codelineno-0-644" name="__codelineno-0-644"></a><span class="sd">            )</span>
+<a id="__codelineno-0-645" name="__codelineno-0-645"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-646" name="__codelineno-0-646"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-647" name="__codelineno-0-647"></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-648" name="__codelineno-0-648"></a>            <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">period</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-649" name="__codelineno-0-649"></a>            <span class="n">startDate</span><span class="o">=</span><span class="n">start_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">start_date</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-650" name="__codelineno-0-650"></a>            <span class="n">endDate</span><span class="o">=</span><span class="n">end_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">end_date</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-651" name="__codelineno-0-651"></a>            <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-0-652" name="__codelineno-0-652"></a>        <span class="p">)</span>
+<a id="__codelineno-0-653" name="__codelineno-0-653"></a>
+<a id="__codelineno-0-654" name="__codelineno-0-654"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">PLAYER_SNAPSHOTS_TIMELINE</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-0-655" name="__codelineno-0-655"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<a id="__codelineno-0-656" name="__codelineno-0-656"></a>
+<a id="__codelineno-0-657" name="__codelineno-0-657"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-658" name="__codelineno-0-658"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-659" name="__codelineno-0-659"></a>
+<a id="__codelineno-0-660" name="__codelineno-0-660"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_snapshot_timeline_entry</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
@@ -16763,6 +16905,298 @@ Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-565" name="__codelineno-0-565"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-566" name="__codelineno-0-566"></a>
 <a id="__codelineno-0-567" name="__codelineno-0-567"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_snapshot</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="wom.services.players.PlayerService.get_snapshots_timeline" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">get_snapshots_timeline</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">get_snapshots_timeline</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">period</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Period</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">start_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">end_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">SnapshotTimelineEntry</span><span class="p">]]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Gets the snapshots timeline for the given player and metric.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>username</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The username to get the timeline for.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>metric</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="wom.enums" href="../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.Metric" href="../enums/#wom.enums.Metric">Metric</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The metric to get the timeline for.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Other Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>period</code></td>
+          <td>
+                <code><span title="typing">t</span>.<span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="wom.enums" href="../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.Period" href="../enums/#wom.enums.Period">Period</a>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The optional period of time to get snapshots for.
+Defaults to <code>None</code>.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>start_date</code></td>
+          <td>
+                <code><span title="typing">t</span>.<span title="typing.Optional">Optional</span>[<span title="datetime.datetime">datetime</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The minimum date to get the snapshots from.
+Defaults to <code>None</code>.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><code>end_date</code></td>
+          <td>
+                <code><span title="typing">t</span>.<span title="typing.Optional">Optional</span>[<span title="datetime.datetime">datetime</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The maximum date to get the snapshots from.
+Defaults to <code>None</code>.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="wom.services.players.ResultT">ResultT</span>[<span title="typing">t</span>.<span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="wom.models" href="../models/#wom.models">models</a>.<a class="autorefs autorefs-internal" title="wom.models.SnapshotTimelineEntry" href="../models/#wom.models.SnapshotTimelineEntry">SnapshotTimelineEntry</a>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A <a class="autorefs autorefs-internal" href="../result/#wom.result.Result"><code>Result</code></a> containing the list of snapshots timeline
+entries.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can pass either (<code>period</code>) or (<code>start_date</code> +
+<code>end_date</code>), but not both.</p>
+</div>
+<details class="example">
+<summary>Example</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">wom</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">wom</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get_snapshots_timeline</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;Jonxslays&quot;</span><span class="p">,</span> <span class="n">wom</span><span class="o">.</span><span class="n">Skills</span><span class="o">.</span><span class="n">Attack</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">wom</span><span class="o">.</span><span class="n">Period</span><span class="o">.</span><span class="n">Week</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+</code></pre></div>
+</details>
+
+      <details class="quote">
+        <summary>Source code in <code>wom/services/players.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-598">598</a></span>
+<span class="normal"><a href="#__codelineno-0-599">599</a></span>
+<span class="normal"><a href="#__codelineno-0-600">600</a></span>
+<span class="normal"><a href="#__codelineno-0-601">601</a></span>
+<span class="normal"><a href="#__codelineno-0-602">602</a></span>
+<span class="normal"><a href="#__codelineno-0-603">603</a></span>
+<span class="normal"><a href="#__codelineno-0-604">604</a></span>
+<span class="normal"><a href="#__codelineno-0-605">605</a></span>
+<span class="normal"><a href="#__codelineno-0-606">606</a></span>
+<span class="normal"><a href="#__codelineno-0-607">607</a></span>
+<span class="normal"><a href="#__codelineno-0-608">608</a></span>
+<span class="normal"><a href="#__codelineno-0-609">609</a></span>
+<span class="normal"><a href="#__codelineno-0-610">610</a></span>
+<span class="normal"><a href="#__codelineno-0-611">611</a></span>
+<span class="normal"><a href="#__codelineno-0-612">612</a></span>
+<span class="normal"><a href="#__codelineno-0-613">613</a></span>
+<span class="normal"><a href="#__codelineno-0-614">614</a></span>
+<span class="normal"><a href="#__codelineno-0-615">615</a></span>
+<span class="normal"><a href="#__codelineno-0-616">616</a></span>
+<span class="normal"><a href="#__codelineno-0-617">617</a></span>
+<span class="normal"><a href="#__codelineno-0-618">618</a></span>
+<span class="normal"><a href="#__codelineno-0-619">619</a></span>
+<span class="normal"><a href="#__codelineno-0-620">620</a></span>
+<span class="normal"><a href="#__codelineno-0-621">621</a></span>
+<span class="normal"><a href="#__codelineno-0-622">622</a></span>
+<span class="normal"><a href="#__codelineno-0-623">623</a></span>
+<span class="normal"><a href="#__codelineno-0-624">624</a></span>
+<span class="normal"><a href="#__codelineno-0-625">625</a></span>
+<span class="normal"><a href="#__codelineno-0-626">626</a></span>
+<span class="normal"><a href="#__codelineno-0-627">627</a></span>
+<span class="normal"><a href="#__codelineno-0-628">628</a></span>
+<span class="normal"><a href="#__codelineno-0-629">629</a></span>
+<span class="normal"><a href="#__codelineno-0-630">630</a></span>
+<span class="normal"><a href="#__codelineno-0-631">631</a></span>
+<span class="normal"><a href="#__codelineno-0-632">632</a></span>
+<span class="normal"><a href="#__codelineno-0-633">633</a></span>
+<span class="normal"><a href="#__codelineno-0-634">634</a></span>
+<span class="normal"><a href="#__codelineno-0-635">635</a></span>
+<span class="normal"><a href="#__codelineno-0-636">636</a></span>
+<span class="normal"><a href="#__codelineno-0-637">637</a></span>
+<span class="normal"><a href="#__codelineno-0-638">638</a></span>
+<span class="normal"><a href="#__codelineno-0-639">639</a></span>
+<span class="normal"><a href="#__codelineno-0-640">640</a></span>
+<span class="normal"><a href="#__codelineno-0-641">641</a></span>
+<span class="normal"><a href="#__codelineno-0-642">642</a></span>
+<span class="normal"><a href="#__codelineno-0-643">643</a></span>
+<span class="normal"><a href="#__codelineno-0-644">644</a></span>
+<span class="normal"><a href="#__codelineno-0-645">645</a></span>
+<span class="normal"><a href="#__codelineno-0-646">646</a></span>
+<span class="normal"><a href="#__codelineno-0-647">647</a></span>
+<span class="normal"><a href="#__codelineno-0-648">648</a></span>
+<span class="normal"><a href="#__codelineno-0-649">649</a></span>
+<span class="normal"><a href="#__codelineno-0-650">650</a></span>
+<span class="normal"><a href="#__codelineno-0-651">651</a></span>
+<span class="normal"><a href="#__codelineno-0-652">652</a></span>
+<span class="normal"><a href="#__codelineno-0-653">653</a></span>
+<span class="normal"><a href="#__codelineno-0-654">654</a></span>
+<span class="normal"><a href="#__codelineno-0-655">655</a></span>
+<span class="normal"><a href="#__codelineno-0-656">656</a></span>
+<span class="normal"><a href="#__codelineno-0-657">657</a></span>
+<span class="normal"><a href="#__codelineno-0-658">658</a></span>
+<span class="normal"><a href="#__codelineno-0-659">659</a></span>
+<span class="normal"><a href="#__codelineno-0-660">660</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-598" name="__codelineno-0-598"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_snapshots_timeline</span><span class="p">(</span>
+<a id="__codelineno-0-599" name="__codelineno-0-599"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-600" name="__codelineno-0-600"></a>    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-601" name="__codelineno-0-601"></a>    <span class="n">metric</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">Metric</span><span class="p">,</span>
+<a id="__codelineno-0-602" name="__codelineno-0-602"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-603" name="__codelineno-0-603"></a>    <span class="n">period</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">enums</span><span class="o">.</span><span class="n">Period</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-604" name="__codelineno-0-604"></a>    <span class="n">start_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-605" name="__codelineno-0-605"></a>    <span class="n">end_date</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-606" name="__codelineno-0-606"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">SnapshotTimelineEntry</span><span class="p">]]:</span>
+<a id="__codelineno-0-607" name="__codelineno-0-607"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the snapshots timeline for the given player and metric.</span>
+<a id="__codelineno-0-608" name="__codelineno-0-608"></a>
+<a id="__codelineno-0-609" name="__codelineno-0-609"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-610" name="__codelineno-0-610"></a><span class="sd">        username: The username to get the timeline for.</span>
+<a id="__codelineno-0-611" name="__codelineno-0-611"></a>
+<a id="__codelineno-0-612" name="__codelineno-0-612"></a><span class="sd">        metric: The metric to get the timeline for.</span>
+<a id="__codelineno-0-613" name="__codelineno-0-613"></a>
+<a id="__codelineno-0-614" name="__codelineno-0-614"></a><span class="sd">    Keyword Args:</span>
+<a id="__codelineno-0-615" name="__codelineno-0-615"></a><span class="sd">        period: The optional period of time to get snapshots for.</span>
+<a id="__codelineno-0-616" name="__codelineno-0-616"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-617" name="__codelineno-0-617"></a>
+<a id="__codelineno-0-618" name="__codelineno-0-618"></a><span class="sd">        start_date: The minimum date to get the snapshots from.</span>
+<a id="__codelineno-0-619" name="__codelineno-0-619"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-620" name="__codelineno-0-620"></a>
+<a id="__codelineno-0-621" name="__codelineno-0-621"></a><span class="sd">        end_date: The maximum date to get the snapshots from.</span>
+<a id="__codelineno-0-622" name="__codelineno-0-622"></a><span class="sd">            Defaults to `None`.</span>
+<a id="__codelineno-0-623" name="__codelineno-0-623"></a>
+<a id="__codelineno-0-624" name="__codelineno-0-624"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-625" name="__codelineno-0-625"></a><span class="sd">        A [`Result`][wom.Result] containing the list of snapshots timeline</span>
+<a id="__codelineno-0-626" name="__codelineno-0-626"></a><span class="sd">            entries.</span>
+<a id="__codelineno-0-627" name="__codelineno-0-627"></a>
+<a id="__codelineno-0-628" name="__codelineno-0-628"></a><span class="sd">    !!! info</span>
+<a id="__codelineno-0-629" name="__codelineno-0-629"></a>
+<a id="__codelineno-0-630" name="__codelineno-0-630"></a><span class="sd">        You can pass either (`period`) or (`start_date` +</span>
+<a id="__codelineno-0-631" name="__codelineno-0-631"></a><span class="sd">        `end_date`), but not both.</span>
+<a id="__codelineno-0-632" name="__codelineno-0-632"></a>
+<a id="__codelineno-0-633" name="__codelineno-0-633"></a><span class="sd">    ??? example</span>
+<a id="__codelineno-0-634" name="__codelineno-0-634"></a>
+<a id="__codelineno-0-635" name="__codelineno-0-635"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-636" name="__codelineno-0-636"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-637" name="__codelineno-0-637"></a>
+<a id="__codelineno-0-638" name="__codelineno-0-638"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-639" name="__codelineno-0-639"></a>
+<a id="__codelineno-0-640" name="__codelineno-0-640"></a><span class="sd">        await client.start()</span>
+<a id="__codelineno-0-641" name="__codelineno-0-641"></a>
+<a id="__codelineno-0-642" name="__codelineno-0-642"></a><span class="sd">        result = await client.players.get_snapshots_timeline(</span>
+<a id="__codelineno-0-643" name="__codelineno-0-643"></a><span class="sd">            &quot;Jonxslays&quot;, wom.Skills.Attack, period=wom.Period.Week</span>
+<a id="__codelineno-0-644" name="__codelineno-0-644"></a><span class="sd">        )</span>
+<a id="__codelineno-0-645" name="__codelineno-0-645"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-646" name="__codelineno-0-646"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-647" name="__codelineno-0-647"></a>    <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span>
+<a id="__codelineno-0-648" name="__codelineno-0-648"></a>        <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">period</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-649" name="__codelineno-0-649"></a>        <span class="n">startDate</span><span class="o">=</span><span class="n">start_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">start_date</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-650" name="__codelineno-0-650"></a>        <span class="n">endDate</span><span class="o">=</span><span class="n">end_date</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span> <span class="k">if</span> <span class="n">end_date</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-651" name="__codelineno-0-651"></a>        <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+<a id="__codelineno-0-652" name="__codelineno-0-652"></a>    <span class="p">)</span>
+<a id="__codelineno-0-653" name="__codelineno-0-653"></a>
+<a id="__codelineno-0-654" name="__codelineno-0-654"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">PLAYER_SNAPSHOTS_TIMELINE</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-0-655" name="__codelineno-0-655"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<a id="__codelineno-0-656" name="__codelineno-0-656"></a>
+<a id="__codelineno-0-657" name="__codelineno-0-657"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-658" name="__codelineno-0-658"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-659" name="__codelineno-0-659"></a>
+<a id="__codelineno-0-660" name="__codelineno-0-660"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_snapshot_timeline_entry</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
