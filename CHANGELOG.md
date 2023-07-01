@@ -1,3 +1,17 @@
+# v0.5.0 (Jul 2023)
+
+## Additions
+
+- Add `PlayerService.get_snapshots_timeline` method.
+- Add `SnapshotTimelineEntry` model and corresponding serializer method.
+- Add `GroupMemberGains` model and corresponding serializer method.
+
+## Changes
+
+- `GroupService.get_gains` method now returns a `GroupMemberGains` model.
+
+---
+
 # v0.4.2 (Jun 2023)
 
 ## Additions
