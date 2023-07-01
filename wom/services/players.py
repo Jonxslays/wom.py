@@ -594,3 +594,67 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_name_change(c) for c in data])
+
+    async def get_snapshots_timeline(
+        self,
+        username: str,
+        metric: enums.Metric,
+        *,
+        period: t.Optional[enums.Period] = None,
+        start_date: t.Optional[datetime] = None,
+        end_date: t.Optional[datetime] = None,
+    ) -> ResultT[t.List[models.SnapshotTimelineEntry]]:
+        """Gets the snapshots timeline for the given player and metric.
+
+        Args:
+            username: The username to get the timeline for.
+
+            metric: The metric to get the timeline for.
+
+        Keyword Args:
+            period: The optional period of time to get snapshots for.
+                Defaults to `None`.
+
+            start_date: The minimum date to get the snapshots from.
+                Defaults to `None`.
+
+            end_date: The maximum date to get the snapshots from.
+                Defaults to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of snapshots timeline
+                entries.
+
+        !!! info
+
+            You can pass either (`period`) or (`start_date` +
+            `end_date`), but not both.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.players.get_snapshots_timeline(
+                "Jonxslays", wom.Skills.Attack, period=wom.Period.Week
+            )
+            ```
+        """
+        params = self._generate_map(
+            period=period.value if period else None,
+            startDate=start_date.isoformat() if start_date else None,
+            endDate=end_date.isoformat() if end_date else None,
+            metric=metric.value,
+        )
+
+        route = routes.PLAYER_SNAPSHOTS_TIMELINE.compile(username).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_snapshot_timeline_entry(e) for e in data])

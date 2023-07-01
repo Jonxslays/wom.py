@@ -29,6 +29,7 @@ import attrs
 from wom import enums
 
 from ..base import BaseModel
+from ..players import Gains
 from ..players import Player
 from ..players import Snapshot
 from .enums import GroupRole
@@ -37,6 +38,7 @@ __all__ = (
     "ActivityLeader",
     "BossLeader",
     "ComputedMetricLeader",
+    "Group",
     "GroupDetail",
     "GroupHiscoresActivityItem",
     "GroupHiscoresBossItem",
@@ -44,8 +46,8 @@ __all__ = (
     "GroupHiscoresEntry",
     "GroupHiscoresSkillItem",
     "GroupMemberFragment",
+    "GroupMemberGains",
     "GroupMembership",
-    "Group",
     "GroupStatistics",
     "Membership",
     "MetricLeaders",
@@ -359,3 +361,20 @@ class GroupStatistics(BaseModel):
     """The [`MetricLeaders`][wom.MetricLeaders] in this group for each
     metric.
     """
+
+
+@attrs.define(init=False)
+class GroupMemberGains(BaseModel):
+    """Represents a leaderboard entry over the given delta."""
+
+    start_date: datetime
+    """The start date of the gains."""
+
+    end_date: datetime
+    """The end date of the gains."""
+
+    player: Player
+    """The [`Player`][wom.Player] that attained these gains."""
+
+    data: Gains
+    """The [`Gains`][wom.Gains] for this group member."""

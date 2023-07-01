@@ -539,7 +539,7 @@ class GroupService(BaseService):
         end_date: t.Optional[datetime] = None,
         limit: t.Optional[int] = None,
         offset: t.Optional[int] = None,
-    ) -> ResultT[t.List[models.DeltaLeaderboardEntry]]:
+    ) -> ResultT[t.List[models.GroupMemberGains]]:
         """Gets the gains for a group over a particular time frame.
 
         Args:
@@ -599,7 +599,7 @@ class GroupService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_delta_leaderboard_entry(d) for d in data])
+        return result.Ok([self._serializer.deserialize_group_member_gains(d) for d in data])
 
     async def get_achievements(
         self,

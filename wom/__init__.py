@@ -32,7 +32,7 @@ from __future__ import annotations
 from typing import Final
 
 __packagename__: Final[str] = "wom.py"
-__version__: Final[str] = "0.4.2"
+__version__: Final[str] = "0.5.0"
 __author__: Final[str] = "Jonxslays"
 __copyright__: Final[str] = "2023-present Jonxslays"
 __description__: Final[str] = "An asynchronous wrapper for the Wise Old Man API."
@@ -107,6 +107,7 @@ __all__ = (
     "EfficiencyService",
     "Err",
     "Gains",
+    "Group",
     "GroupDetail",
     "GroupHiscoresActivityItem",
     "GroupHiscoresBossItem",
@@ -114,8 +115,8 @@ __all__ = (
     "GroupHiscoresEntry",
     "GroupHiscoresSkillItem",
     "GroupMemberFragment",
+    "GroupMemberGains",
     "GroupMembership",
-    "Group",
     "GroupRole",
     "GroupService",
     "GroupStatistics",
@@ -158,6 +159,7 @@ __all__ = (
     "SkippedNameChangeReviewContext",
     "SnapshotData",
     "Snapshot",
+    "SnapshotTimelineEntry",
     "Team",
     "Top5ProgressResult",
     "UnwrapError",

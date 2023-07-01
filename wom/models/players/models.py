@@ -55,6 +55,7 @@ __all__ = (
     "Skill",
     "SnapshotData",
     "Snapshot",
+    "SnapshotTimelineEntry",
 )
 
 
@@ -462,3 +463,14 @@ class PlayerGains(BaseModel):
 
     data: PlayerGainsData
     """The [`PlayerGainsData`][wom.PlayerGainsData] for the player."""
+
+
+@attrs.define(init=False)
+class SnapshotTimelineEntry(BaseModel):
+    """An entry representing a point in time of a players gains."""
+
+    value: int
+    """The total xp gained since the last timeline entry."""
+
+    date: datetime
+    """The date this timeline entry was recorded."""
