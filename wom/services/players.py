@@ -604,12 +604,12 @@ class PlayerService(BaseService):
         start_date: t.Optional[datetime] = None,
         end_date: t.Optional[datetime] = None,
     ) -> ResultT[t.List[models.SnapshotTimelineEntry]]:
-        """Gets the snapshots timeline for the player and metric.
+        """Gets the snapshots timeline for the given player and metric.
 
         Args:
-            username: The username to get the snapshots for.
+            username: The username to get the timeline for.
 
-            metric: The metric to get the snapshots timeline for.
+            metric: The metric to get the timeline for.
 
         Keyword Args:
             period: The optional period of time to get snapshots for.
