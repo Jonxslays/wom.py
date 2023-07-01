@@ -158,6 +158,7 @@ __all__ = (
     "SkippedNameChangeReviewContext",
     "SnapshotData",
     "Snapshot",
+    "SnapshotTimelineEntry",
     "Team",
     "Top5ProgressResult",
     "UnwrapError",
