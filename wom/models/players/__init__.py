@@ -48,6 +48,7 @@ __all__ = (
     "Skill",
     "SnapshotData",
     "Snapshot",
+    "SnapshotTimelineEntry",
 )
 
 from .enums import *
