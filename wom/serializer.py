@@ -1030,3 +1030,17 @@ class Serializer:
         )
 
         return leaders
+
+    def deserialize_snapshot_timeline_entry(self, data: DictT) -> models.SnapshotTimelineEntry:
+        """Deserializes the data into a snapshot timeline entry model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        entry = models.SnapshotTimelineEntry()
+        entry.date = self._dt_from_iso(data["date"])
+        entry.value = data["value"]
+        return entry
