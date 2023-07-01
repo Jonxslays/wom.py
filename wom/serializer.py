@@ -563,6 +563,22 @@ class Serializer:
         delta.player = self.deserialize_player(data["player"])
         return delta
 
+    def deserialize_group_member_gains(self, data: DictT) -> models.GroupMemberGains:
+        """Deserializes the data into a group member gains model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        gains = models.GroupMemberGains()
+        gains.end_date = self._dt_from_iso(data["endDate"])
+        gains.start_date = self._dt_from_iso(data["startDate"])
+        gains.player = self.deserialize_player(data["player"])
+        gains.data = self.deserialize_gains(data["data"])
+        return gains
+
     def deserialize_group(self, data: DictT) -> models.Group:
         """Deserializes the data into a group model.
 
