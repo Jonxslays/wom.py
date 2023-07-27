@@ -17,7 +17,7 @@
         <link rel="next" href="../routes/">
       
       <link rel="icon" href="../../wom-logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.1.14">
     
     
       
@@ -837,15 +837,15 @@ all <a class="autorefs autorefs-internal" href="../client/#wom.client.Client"><c
 
 
 <h2 id="wom.result.Err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Err</span>
+          <span class="doc doc-object-name doc-class-name">Err</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.result.Result" href="#wom.result.Result">Result</a>[<span title="wom.result.T">T</span>, <span title="wom.result.E">E</span>]</code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.result.Result" href="#wom.result.Result">Result</a>[<span title="wom.result.T">T</span>, <span title="wom.result.E">E</span>]</code></p>
 
   
       <p>The <a class="autorefs autorefs-internal" href="#wom.result.Err"><code>Err</code></a> variant of a <a class="autorefs autorefs-internal" href="#wom.result.Result"><code>Result</code></a>.</p>
@@ -856,10 +856,9 @@ calling <a class="autorefs autorefs-internal" href="../client/#wom.client.Client
 instantiate it yourself.</p>
 </div>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/result.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-161">161</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/result.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-161">161</a></span>
 <span class="normal"><a href="#__codelineno-0-162">162</a></span>
 <span class="normal"><a href="#__codelineno-0-163">163</a></span>
 <span class="normal"><a href="#__codelineno-0-164">164</a></span>
@@ -943,7 +942,7 @@ instantiate it yourself.</p>
 <a id="__codelineno-0-201" name="__codelineno-0-201"></a><span class="sd">        &quot;&quot;&quot;</span>
 <a id="__codelineno-0-202" name="__codelineno-0-202"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -960,7 +959,7 @@ instantiate it yourself.</p>
 
 
 <h3 id="wom.result.Err.is_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_err</span>
+          <span class="doc doc-object-name doc-attribute-name">is_err</span>
 
   
   <span class="doc doc-labels">
@@ -983,7 +982,7 @@ instantiate it yourself.</p>
 
 
 <h3 id="wom.result.Err.is_ok" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_ok</span>
+          <span class="doc doc-object-name doc-attribute-name">is_ok</span>
 
   
   <span class="doc doc-labels">
@@ -1003,12 +1002,13 @@ instantiate it yourself.</p>
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.result.Err.unwrap" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap</span>
+          <span class="doc doc-object-name doc-function-name">unwrap</span>
 
 
 </h3>
@@ -1018,6 +1018,8 @@ instantiate it yourself.</p>
   <div class="doc doc-contents ">
   
       <p>Always throws an exception for the <a class="autorefs autorefs-internal" href="#wom.result.Err"><code>Err</code></a> variant.</p>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -1042,9 +1044,9 @@ variant.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-187">187</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-187">187</a></span>
 <span class="normal"><a href="#__codelineno-0-188">188</a></span>
 <span class="normal"><a href="#__codelineno-0-189">189</a></span>
 <span class="normal"><a href="#__codelineno-0-190">190</a></span>
@@ -1060,17 +1062,18 @@ variant.</p>
 <a id="__codelineno-0-193" name="__codelineno-0-193"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-194" name="__codelineno-0-194"></a>    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Called unwrap on an error value - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.result.Err.unwrap_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap_err</span>
+          <span class="doc doc-object-name doc-function-name">unwrap_err</span>
 
 
 </h3>
@@ -1080,6 +1083,8 @@ variant.</p>
   <div class="doc doc-contents ">
   
       <p>Unwraps the result to produce the error.</p>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1103,9 +1108,9 @@ variant.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-196">196</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-196">196</a></span>
 <span class="normal"><a href="#__codelineno-0-197">197</a></span>
 <span class="normal"><a href="#__codelineno-0-198">198</a></span>
 <span class="normal"><a href="#__codelineno-0-199">199</a></span>
@@ -1119,7 +1124,7 @@ variant.</p>
 <a id="__codelineno-0-201" name="__codelineno-0-201"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-202" name="__codelineno-0-202"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -1137,15 +1142,15 @@ variant.</p>
 
 
 <h2 id="wom.result.Ok" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Ok</span>
+          <span class="doc doc-object-name doc-class-name">Ok</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.result.Result" href="#wom.result.Result">Result</a>[<span title="wom.result.T">T</span>, <span title="wom.result.E">E</span>]</code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.result.Result" href="#wom.result.Result">Result</a>[<span title="wom.result.T">T</span>, <span title="wom.result.E">E</span>]</code></p>
 
   
       <p>The <a class="autorefs autorefs-internal" href="#wom.result.Ok"><code>Ok</code></a> variant of a <a class="autorefs autorefs-internal" href="#wom.result.Result"><code>Result</code></a>.</p>
@@ -1156,10 +1161,9 @@ calling <a class="autorefs autorefs-internal" href="../client/#wom.client.Client
 instantiate it yourself.</p>
 </div>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/result.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-116">116</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/result.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-116">116</a></span>
 <span class="normal"><a href="#__codelineno-0-117">117</a></span>
 <span class="normal"><a href="#__codelineno-0-118">118</a></span>
 <span class="normal"><a href="#__codelineno-0-119">119</a></span>
@@ -1245,7 +1249,7 @@ instantiate it yourself.</p>
 <a id="__codelineno-0-157" name="__codelineno-0-157"></a>        <span class="n">actual</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
 <a id="__codelineno-0-158" name="__codelineno-0-158"></a>        <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Called unwrap error on a non error value of type </span><span class="si">{</span><span class="n">actual</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1262,7 +1266,7 @@ instantiate it yourself.</p>
 
 
 <h3 id="wom.result.Ok.is_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_err</span>
+          <span class="doc doc-object-name doc-attribute-name">is_err</span>
 
   
   <span class="doc doc-labels">
@@ -1285,7 +1289,7 @@ instantiate it yourself.</p>
 
 
 <h3 id="wom.result.Ok.is_ok" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_ok</span>
+          <span class="doc doc-object-name doc-attribute-name">is_ok</span>
 
   
   <span class="doc doc-labels">
@@ -1305,12 +1309,13 @@ instantiate it yourself.</p>
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.result.Ok.unwrap" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap</span>
+          <span class="doc doc-object-name doc-function-name">unwrap</span>
 
 
 </h3>
@@ -1320,6 +1325,8 @@ instantiate it yourself.</p>
   <div class="doc doc-contents ">
   
       <p>Unwraps the result to produce the value.</p>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1343,9 +1350,9 @@ instantiate it yourself.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-142">142</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-142">142</a></span>
 <span class="normal"><a href="#__codelineno-0-143">143</a></span>
 <span class="normal"><a href="#__codelineno-0-144">144</a></span>
 <span class="normal"><a href="#__codelineno-0-145">145</a></span>
@@ -1359,17 +1366,18 @@ instantiate it yourself.</p>
 <a id="__codelineno-0-147" name="__codelineno-0-147"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-148" name="__codelineno-0-148"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.result.Ok.unwrap_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap_err</span>
+          <span class="doc doc-object-name doc-function-name">unwrap_err</span>
 
 
 </h3>
@@ -1379,6 +1387,8 @@ instantiate it yourself.</p>
   <div class="doc doc-contents ">
   
       <p>Always throws an exception for the <a class="autorefs autorefs-internal" href="#wom.result.Ok"><code>Ok</code></a> variant.</p>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -1403,9 +1413,9 @@ variant.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-150">150</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-150">150</a></span>
 <span class="normal"><a href="#__codelineno-0-151">151</a></span>
 <span class="normal"><a href="#__codelineno-0-152">152</a></span>
 <span class="normal"><a href="#__codelineno-0-153">153</a></span>
@@ -1423,7 +1433,7 @@ variant.</p>
 <a id="__codelineno-0-157" name="__codelineno-0-157"></a>    <span class="n">actual</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
 <a id="__codelineno-0-158" name="__codelineno-0-158"></a>    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Called unwrap error on a non error value of type </span><span class="si">{</span><span class="n">actual</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -1441,15 +1451,15 @@ variant.</p>
 
 
 <h2 id="wom.result.Result" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Result</span>
+          <span class="doc doc-object-name doc-class-name">Result</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="typing">t</span>.<span title="typing.Generic">Generic</span>[<span title="wom.result.T">T</span>, <span title="wom.result.E">E</span>]</code>, <code>abc.<span title="abc.ABC">ABC</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="typing">t</span>.<span title="typing.Generic">Generic</span>[<span title="wom.result.T">T</span>, <span title="wom.result.E">E</span>]</code>, <code>abc.<span title="abc.ABC">ABC</span></code></p>
 
   
       <p>Represents a potential <a class="autorefs autorefs-internal" href="#wom.result.Ok"><code>Ok</code></a> or <a class="autorefs autorefs-internal" href="#wom.result.Err"><code>Err</code></a> result.</p>
@@ -1458,10 +1468,9 @@ variant.</p>
 <p>This class cannot be instantiated, only its variants can be.</p>
 </div>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/result.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/result.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
 <span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
 <span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
 <span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
@@ -1555,7 +1564,7 @@ variant.</p>
 <a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">                [`Err`][wom.Err].</span>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">        &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1572,7 +1581,7 @@ variant.</p>
 
 
 <h3 id="wom.result.Result.is_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_err</span>
+          <span class="doc doc-object-name doc-attribute-name">is_err</span>
 
   
   <span class="doc doc-labels">
@@ -1596,7 +1605,7 @@ variant.</p>
 
 
 <h3 id="wom.result.Result.is_ok" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">is_ok</span>
+          <span class="doc doc-object-name doc-attribute-name">is_ok</span>
 
   
   <span class="doc doc-labels">
@@ -1617,12 +1626,13 @@ variant.</p>
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.result.Result.unwrap" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap</span>
+          <span class="doc doc-object-name doc-function-name">unwrap</span>
 
   
   <span class="doc doc-labels">
@@ -1636,6 +1646,8 @@ variant.</p>
   <div class="doc doc-contents ">
   
       <p>Unwraps the result to produce the value.</p>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1658,6 +1670,8 @@ variant.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -1682,9 +1696,9 @@ variant.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
 <span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
 <span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
 <span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
@@ -1706,17 +1720,18 @@ variant.</p>
 <a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">            [`Ok`][wom.Ok].</span>
 <a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.result.Result.unwrap_err" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unwrap_err</span>
+          <span class="doc doc-object-name doc-function-name">unwrap_err</span>
 
   
   <span class="doc doc-labels">
@@ -1730,6 +1745,8 @@ variant.</p>
   <div class="doc doc-contents ">
   
       <p>Unwraps the result to produce the error.</p>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -1752,6 +1769,8 @@ variant.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -1776,9 +1795,9 @@ variant.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/result.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-103">103</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/result.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-103">103</a></span>
 <span class="normal"><a href="#__codelineno-0-104">104</a></span>
 <span class="normal"><a href="#__codelineno-0-105">105</a></span>
 <span class="normal"><a href="#__codelineno-0-106">106</a></span>
@@ -1800,7 +1819,7 @@ variant.</p>
 <a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">            [`Err`][wom.Err].</span>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>

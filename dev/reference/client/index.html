@@ -17,7 +17,7 @@
         <link rel="next" href="../enums/">
       
       <link rel="icon" href="../../wom-logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.1.14">
     
     
       
@@ -792,7 +792,7 @@ the client. All functionality is encompassed in these service methods.</p>
 
 
 <h2 id="wom.client.Client" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Client</span>
+          <span class="doc doc-object-name doc-class-name">Client</span>
 
 
 </h2>
@@ -803,6 +803,8 @@ the client. All functionality is encompassed in these service methods.</p>
   
       <p>An asynchronous client used for interacting with the
 Wise Old Man API.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -831,6 +833,8 @@ Wise Old Man API.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -894,10 +898,9 @@ encouraged.</p>
 </code></pre></div>
 </details>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/client.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/client.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
 <span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
 <span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
 <span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
@@ -1405,7 +1408,7 @@ encouraged.</p>
 <a id="__codelineno-0-311" name="__codelineno-0-311"></a><span class="sd">        &quot;&quot;&quot;</span>
 <a id="__codelineno-0-312" name="__codelineno-0-312"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1422,7 +1425,7 @@ encouraged.</p>
 
 
 <h3 id="wom.client.Client.competitions" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">competitions</span>
+          <span class="doc doc-object-name doc-attribute-name">competitions</span>
 
   
   <span class="doc doc-labels">
@@ -1446,7 +1449,7 @@ make competition related requests.</p>
 
 
 <h3 id="wom.client.Client.deltas" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">deltas</span>
+          <span class="doc doc-object-name doc-attribute-name">deltas</span>
 
   
   <span class="doc doc-labels">
@@ -1470,7 +1473,7 @@ related requests.</p>
 
 
 <h3 id="wom.client.Client.efficiency" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">efficiency</span>
+          <span class="doc doc-object-name doc-attribute-name">efficiency</span>
 
   
   <span class="doc doc-labels">
@@ -1494,7 +1497,7 @@ efficiency related requests.</p>
 
 
 <h3 id="wom.client.Client.groups" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">groups</span>
+          <span class="doc doc-object-name doc-attribute-name">groups</span>
 
   
   <span class="doc doc-labels">
@@ -1518,7 +1521,7 @@ related requests.</p>
 
 
 <h3 id="wom.client.Client.names" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">names</span>
+          <span class="doc doc-object-name doc-attribute-name">names</span>
 
   
   <span class="doc doc-labels">
@@ -1542,7 +1545,7 @@ name change related requests.</p>
 
 
 <h3 id="wom.client.Client.players" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">players</span>
+          <span class="doc doc-object-name doc-attribute-name">players</span>
 
   
   <span class="doc doc-labels">
@@ -1566,7 +1569,7 @@ make player related requests.</p>
 
 
 <h3 id="wom.client.Client.records" class="doc doc-heading">
-        <span class="doc doc-object-name doc-attribute-name">records</span>
+          <span class="doc doc-object-name doc-attribute-name">records</span>
 
   
   <span class="doc doc-labels">
@@ -1587,12 +1590,13 @@ make record related requests.</p>
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.client.Client.close" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">close</span>
+          <span class="doc doc-object-name doc-function-name">close</span>
 
   
   <span class="doc doc-labels">
@@ -1629,9 +1633,9 @@ receive an error in your console.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-285">285</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-285">285</a></span>
 <span class="normal"><a href="#__codelineno-0-286">286</a></span>
 <span class="normal"><a href="#__codelineno-0-287">287</a></span>
 <span class="normal"><a href="#__codelineno-0-288">288</a></span>
@@ -1687,17 +1691,18 @@ receive an error in your console.</p>
 <a id="__codelineno-0-311" name="__codelineno-0-311"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-312" name="__codelineno-0-312"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.client.Client.set_api_base_url" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_api_base_url</span>
+          <span class="doc doc-object-name doc-function-name">set_api_base_url</span>
 
 
 </h3>
@@ -1707,6 +1712,8 @@ receive an error in your console.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the api base url used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1745,9 +1752,9 @@ receive an error in your console.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-243">243</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-243">243</a></span>
 <span class="normal"><a href="#__codelineno-0-244">244</a></span>
 <span class="normal"><a href="#__codelineno-0-245">245</a></span>
 <span class="normal"><a href="#__codelineno-0-246">246</a></span>
@@ -1781,17 +1788,18 @@ receive an error in your console.</p>
 <a id="__codelineno-0-258" name="__codelineno-0-258"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-259" name="__codelineno-0-259"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_base_url</span><span class="p">(</span><span class="n">base_url</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.client.Client.set_api_key" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_api_key</span>
+          <span class="doc doc-object-name doc-function-name">set_api_key</span>
 
 
 </h3>
@@ -1801,6 +1809,8 @@ receive an error in your console.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the api key used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1839,9 +1849,9 @@ receive an error in your console.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-187">187</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-187">187</a></span>
 <span class="normal"><a href="#__codelineno-0-188">188</a></span>
 <span class="normal"><a href="#__codelineno-0-189">189</a></span>
 <span class="normal"><a href="#__codelineno-0-190">190</a></span>
@@ -1875,17 +1885,18 @@ receive an error in your console.</p>
 <a id="__codelineno-0-202" name="__codelineno-0-202"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-203" name="__codelineno-0-203"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.client.Client.set_user_agent" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_user_agent</span>
+          <span class="doc doc-object-name doc-function-name">set_user_agent</span>
 
 
 </h3>
@@ -1895,6 +1906,8 @@ receive an error in your console.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the user agent used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1938,9 +1951,9 @@ with an empty string as the user agent.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-220">220</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-220">220</a></span>
 <span class="normal"><a href="#__codelineno-0-221">221</a></span>
 <span class="normal"><a href="#__codelineno-0-222">222</a></span>
 <span class="normal"><a href="#__codelineno-0-223">223</a></span>
@@ -1984,17 +1997,18 @@ with an empty string as the user agent.</p>
 <a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-241" name="__codelineno-0-241"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">set_user_agent</span><span class="p">(</span><span class="n">user_agent</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.client.Client.start" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">start</span>
+          <span class="doc doc-object-name doc-function-name">start</span>
 
   
   <span class="doc doc-labels">
@@ -2027,9 +2041,9 @@ your program will crash with a <code>RuntimeError</code>.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-261">261</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-261">261</a></span>
 <span class="normal"><a href="#__codelineno-0-262">262</a></span>
 <span class="normal"><a href="#__codelineno-0-263">263</a></span>
 <span class="normal"><a href="#__codelineno-0-264">264</a></span>
@@ -2075,17 +2089,18 @@ your program will crash with a <code>RuntimeError</code>.</p>
 <a id="__codelineno-0-282" name="__codelineno-0-282"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-283" name="__codelineno-0-283"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.client.Client.unset_api_key" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unset_api_key</span>
+          <span class="doc doc-object-name doc-function-name">unset_api_key</span>
 
 
 </h3>
@@ -2105,9 +2120,9 @@ your program will crash with a <code>RuntimeError</code>.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/client.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-205">205</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/client.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-205">205</a></span>
 <span class="normal"><a href="#__codelineno-0-206">206</a></span>
 <span class="normal"><a href="#__codelineno-0-207">207</a></span>
 <span class="normal"><a href="#__codelineno-0-208">208</a></span>
@@ -2135,7 +2150,7 @@ your program will crash with a <code>RuntimeError</code>.</p>
 <a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-218" name="__codelineno-0-218"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">unset_api_key</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>

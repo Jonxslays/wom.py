@@ -17,7 +17,7 @@
         <link rel="next" href="../services/">
       
       <link rel="icon" href="../../wom-logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.1.14">
     
     
       
@@ -1333,7 +1333,7 @@ that is used to parse incoming network data into Python classes.</p>
 
 
 <h2 id="wom.serializer.Serializer" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">Serializer</span>
+          <span class="doc doc-object-name doc-class-name">Serializer</span>
 
 
 </h2>
@@ -1344,10 +1344,9 @@ that is used to parse incoming network data into Python classes.</p>
   
       <p>Deserializes JSON data into wom.py model classes.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/serializer.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-57">  57</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/serializer.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-57">  57</a></span>
 <span class="normal"><a href="#__codelineno-0-58">  58</a></span>
 <span class="normal"><a href="#__codelineno-0-59">  59</a></span>
 <span class="normal"><a href="#__codelineno-0-60">  60</a></span>
@@ -3359,11 +3358,12 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-1061" name="__codelineno-0-1061"></a>        <span class="n">entry</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-1062" name="__codelineno-0-1062"></a>        <span class="k">return</span> <span class="n">entry</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -3378,7 +3378,7 @@ that is used to parse incoming network data into Python classes.</p>
 
 
 <h3 id="wom.serializer.Serializer.deserialize_achievement" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_achievement</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_achievement</span>
 
 
 </h3>
@@ -3388,6 +3388,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into an achievement model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3416,6 +3418,8 @@ that is used to parse incoming network data into Python classes.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -3439,9 +3443,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-302">302</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-302">302</a></span>
 <span class="normal"><a href="#__codelineno-0-303">303</a></span>
 <span class="normal"><a href="#__codelineno-0-304">304</a></span>
 <span class="normal"><a href="#__codelineno-0-305">305</a></span>
@@ -3465,17 +3469,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-312" name="__codelineno-0-312"></a>    <span class="n">achievement</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dt_from_iso</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;createdAt&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-313" name="__codelineno-0-313"></a>    <span class="k">return</span> <span class="n">achievement</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_achievement_progress" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_achievement_progress</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_achievement_progress</span>
 
 
 </h3>
@@ -3487,6 +3492,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into an achievement progress model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3515,6 +3522,8 @@ that is used to parse incoming network data into Python classes.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -3538,9 +3547,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-289">289</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-289">289</a></span>
 <span class="normal"><a href="#__codelineno-0-290">290</a></span>
 <span class="normal"><a href="#__codelineno-0-291">291</a></span>
 <span class="normal"><a href="#__codelineno-0-292">292</a></span>
@@ -3564,17 +3573,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-299" name="__codelineno-0-299"></a>    <span class="n">achievement</span><span class="o">.</span><span class="n">created_at</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dt_from_iso_maybe</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;createdAt&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-300" name="__codelineno-0-300"></a>    <span class="k">return</span> <span class="n">achievement</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_activity" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_activity</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_activity</span>
 
 
 </h3>
@@ -3584,6 +3594,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into an activity model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3613,6 +3625,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3635,9 +3649,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-247">247</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-247">247</a></span>
 <span class="normal"><a href="#__codelineno-0-248">248</a></span>
 <span class="normal"><a href="#__codelineno-0-249">249</a></span>
 <span class="normal"><a href="#__codelineno-0-250">250</a></span>
@@ -3663,17 +3677,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-258" name="__codelineno-0-258"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">activity</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-259" name="__codelineno-0-259"></a>    <span class="k">return</span> <span class="n">activity</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_activity_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_activity_gains</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_activity_gains</span>
 
 
 </h3>
@@ -3685,6 +3700,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into an activity gains model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3714,6 +3731,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3736,9 +3755,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-379">379</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-379">379</a></span>
 <span class="normal"><a href="#__codelineno-0-380">380</a></span>
 <span class="normal"><a href="#__codelineno-0-381">381</a></span>
 <span class="normal"><a href="#__codelineno-0-382">382</a></span>
@@ -3764,17 +3783,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-390" name="__codelineno-0-390"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">gains</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_gains</span><span class="p">)</span>
 <a id="__codelineno-0-391" name="__codelineno-0-391"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_activity_leader" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_activity_leader</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_activity_leader</span>
 
 
 </h3>
@@ -3786,6 +3806,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into an activity leader model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3815,6 +3837,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3837,9 +3861,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-991"> 991</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-991"> 991</a></span>
 <span class="normal"><a href="#__codelineno-0-992"> 992</a></span>
 <span class="normal"><a href="#__codelineno-0-993"> 993</a></span>
 <span class="normal"><a href="#__codelineno-0-994"> 994</a></span>
@@ -3877,17 +3901,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-1008" name="__codelineno-0-1008"></a>
 <a id="__codelineno-0-1009" name="__codelineno-0-1009"></a>    <span class="k">return</span> <span class="n">leader</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_asserted_player_type" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_asserted_player_type</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_asserted_player_type</span>
 
 
 </h3>
@@ -3899,6 +3924,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into an assert player type model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3928,6 +3955,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3950,9 +3979,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-275">275</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-275">275</a></span>
 <span class="normal"><a href="#__codelineno-0-276">276</a></span>
 <span class="normal"><a href="#__codelineno-0-277">277</a></span>
 <span class="normal"><a href="#__codelineno-0-278">278</a></span>
@@ -3978,17 +4007,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-286" name="__codelineno-0-286"></a>    <span class="n">asserted</span><span class="o">.</span><span class="n">changed</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;changed&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-287" name="__codelineno-0-287"></a>    <span class="k">return</span> <span class="n">asserted</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_boss" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_boss</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_boss</span>
 
 
 </h3>
@@ -3998,6 +4028,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a boss model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4027,6 +4059,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4049,9 +4083,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-233">233</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-233">233</a></span>
 <span class="normal"><a href="#__codelineno-0-234">234</a></span>
 <span class="normal"><a href="#__codelineno-0-235">235</a></span>
 <span class="normal"><a href="#__codelineno-0-236">236</a></span>
@@ -4077,17 +4111,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-244" name="__codelineno-0-244"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">boss</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;ehb&quot;</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;kills&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-245" name="__codelineno-0-245"></a>    <span class="k">return</span> <span class="n">boss</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_boss_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_boss_gains</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_boss_gains</span>
 
 
 </h3>
@@ -4097,6 +4132,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a boss gains model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4126,6 +4163,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4148,9 +4187,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-365">365</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-365">365</a></span>
 <span class="normal"><a href="#__codelineno-0-366">366</a></span>
 <span class="normal"><a href="#__codelineno-0-367">367</a></span>
 <span class="normal"><a href="#__codelineno-0-368">368</a></span>
@@ -4176,17 +4215,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-376" name="__codelineno-0-376"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">gains</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;ehb&quot;</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;kills&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_gains</span><span class="p">)</span>
 <a id="__codelineno-0-377" name="__codelineno-0-377"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_boss_leader" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_boss_leader</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_boss_leader</span>
 
 
 </h3>
@@ -4196,6 +4236,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a boss leader model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4225,6 +4267,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4247,9 +4291,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-971">971</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-971">971</a></span>
 <span class="normal"><a href="#__codelineno-0-972">972</a></span>
 <span class="normal"><a href="#__codelineno-0-973">973</a></span>
 <span class="normal"><a href="#__codelineno-0-974">974</a></span>
@@ -4287,17 +4331,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-988" name="__codelineno-0-988"></a>
 <a id="__codelineno-0-989" name="__codelineno-0-989"></a>    <span class="k">return</span> <span class="n">leader</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_competition" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_competition</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_competition</span>
 
 
 </h3>
@@ -4307,6 +4352,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a competition model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4336,6 +4383,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4358,9 +4407,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-742">742</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-742">742</a></span>
 <span class="normal"><a href="#__codelineno-0-743">743</a></span>
 <span class="normal"><a href="#__codelineno-0-744">744</a></span>
 <span class="normal"><a href="#__codelineno-0-745">745</a></span>
@@ -4418,17 +4467,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-769" name="__codelineno-0-769"></a>
 <a id="__codelineno-0-770" name="__codelineno-0-770"></a>    <span class="k">return</span> <span class="n">competition</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_competition_details" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_competition_details</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_competition_details</span>
 
 
 </h3>
@@ -4440,6 +4490,8 @@ that is used to parse incoming network data into Python classes.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a competition detail model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4469,6 +4521,8 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4491,9 +4545,9 @@ that is used to parse incoming network data into Python classes.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-862">862</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-862">862</a></span>
 <span class="normal"><a href="#__codelineno-0-863">863</a></span>
 <span class="normal"><a href="#__codelineno-0-864">864</a></span>
 <span class="normal"><a href="#__codelineno-0-865">865</a></span>
@@ -4525,17 +4579,18 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-876" name="__codelineno-0-876"></a>
 <a id="__codelineno-0-877" name="__codelineno-0-877"></a>    <span class="k">return</span> <span class="n">details</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_competition_history_data_point" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_competition_history_data_point</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_competition_history_data_point</span>
 
 
 </h3>
@@ -4548,6 +4603,8 @@ that is used to parse incoming network data into Python classes.</p>
   
       <p>Deserializes the data into a competition history data point
 model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4577,6 +4634,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4599,9 +4658,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-896">896</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-896">896</a></span>
 <span class="normal"><a href="#__codelineno-0-897">897</a></span>
 <span class="normal"><a href="#__codelineno-0-898">898</a></span>
 <span class="normal"><a href="#__codelineno-0-899">899</a></span>
@@ -4633,17 +4692,18 @@ model.</p>
 <a id="__codelineno-0-910" name="__codelineno-0-910"></a>    <span class="n">datapoint</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-911" name="__codelineno-0-911"></a>    <span class="k">return</span> <span class="n">datapoint</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_competition_participation" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_competition_participation</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_competition_participation</span>
 
 
 </h3>
@@ -4655,6 +4715,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a competition participation model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4684,6 +4746,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4706,9 +4770,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-801">801</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-801">801</a></span>
 <span class="normal"><a href="#__codelineno-0-802">802</a></span>
 <span class="normal"><a href="#__codelineno-0-803">803</a></span>
 <span class="normal"><a href="#__codelineno-0-804">804</a></span>
@@ -4738,17 +4802,18 @@ model.</p>
 <a id="__codelineno-0-814" name="__codelineno-0-814"></a>    <span class="n">competition_participation</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_participation</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-815" name="__codelineno-0-815"></a>    <span class="k">return</span> <span class="n">competition_participation</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_competition_participation_detail" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_competition_participation_detail</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_competition_participation_detail</span>
 
 
 </h3>
@@ -4761,6 +4826,8 @@ model.</p>
   
       <p>Deserializes the data into a competition participation
 detail model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4790,6 +4857,8 @@ detail model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4812,9 +4881,9 @@ detail model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-879">879</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-879">879</a></span>
 <span class="normal"><a href="#__codelineno-0-880">880</a></span>
 <span class="normal"><a href="#__codelineno-0-881">881</a></span>
 <span class="normal"><a href="#__codelineno-0-882">882</a></span>
@@ -4846,17 +4915,18 @@ detail model.</p>
 <a id="__codelineno-0-893" name="__codelineno-0-893"></a>    <span class="n">participation_details</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition_progress</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;progress&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-894" name="__codelineno-0-894"></a>    <span class="k">return</span> <span class="n">participation_details</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_competition_progress" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_competition_progress</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_competition_progress</span>
 
 
 </h3>
@@ -4868,6 +4938,8 @@ detail model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a competition progress model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4896,6 +4968,8 @@ detail model.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -4919,9 +4993,9 @@ detail model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-817">817</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-817">817</a></span>
 <span class="normal"><a href="#__codelineno-0-818">818</a></span>
 <span class="normal"><a href="#__codelineno-0-819">819</a></span>
 <span class="normal"><a href="#__codelineno-0-820">820</a></span>
@@ -4945,17 +5019,18 @@ detail model.</p>
 <a id="__codelineno-0-827" name="__codelineno-0-827"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">progress</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;gained&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-828" name="__codelineno-0-828"></a>    <span class="k">return</span> <span class="n">progress</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_competition_with_participation" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_competition_with_participation</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_competition_with_participation</span>
 
 
 </h3>
@@ -4968,6 +5043,8 @@ detail model.</p>
   
       <p>Deserializes the data into a competition with participations
 model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4997,6 +5074,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5019,9 +5098,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-930">930</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-930">930</a></span>
 <span class="normal"><a href="#__codelineno-0-931">931</a></span>
 <span class="normal"><a href="#__codelineno-0-932">932</a></span>
 <span class="normal"><a href="#__codelineno-0-933">933</a></span>
@@ -5061,17 +5140,18 @@ model.</p>
 <a id="__codelineno-0-948" name="__codelineno-0-948"></a>
 <a id="__codelineno-0-949" name="__codelineno-0-949"></a>    <span class="k">return</span> <span class="n">model</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_computed_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_computed_gains</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_computed_gains</span>
 
 
 </h3>
@@ -5083,6 +5163,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a computed gains model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5112,6 +5194,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5134,9 +5218,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-393">393</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-393">393</a></span>
 <span class="normal"><a href="#__codelineno-0-394">394</a></span>
 <span class="normal"><a href="#__codelineno-0-395">395</a></span>
 <span class="normal"><a href="#__codelineno-0-396">396</a></span>
@@ -5162,17 +5246,18 @@ model.</p>
 <a id="__codelineno-0-404" name="__codelineno-0-404"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">gains</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_gains</span><span class="p">)</span>
 <a id="__codelineno-0-405" name="__codelineno-0-405"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_computed_leader" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_computed_leader</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_computed_leader</span>
 
 
 </h3>
@@ -5184,6 +5269,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a computed metric leader model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5213,6 +5300,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5235,9 +5324,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1011">1011</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1011">1011</a></span>
 <span class="normal"><a href="#__codelineno-0-1012">1012</a></span>
 <span class="normal"><a href="#__codelineno-0-1013">1013</a></span>
 <span class="normal"><a href="#__codelineno-0-1014">1014</a></span>
@@ -5275,17 +5364,18 @@ model.</p>
 <a id="__codelineno-0-1028" name="__codelineno-0-1028"></a>
 <a id="__codelineno-0-1029" name="__codelineno-0-1029"></a>    <span class="k">return</span> <span class="n">leader</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_computed_metric" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_computed_metric</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_computed_metric</span>
 
 
 </h3>
@@ -5297,6 +5387,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a computed metric model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5326,6 +5418,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5348,9 +5442,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-261">261</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-261">261</a></span>
 <span class="normal"><a href="#__codelineno-0-262">262</a></span>
 <span class="normal"><a href="#__codelineno-0-263">263</a></span>
 <span class="normal"><a href="#__codelineno-0-264">264</a></span>
@@ -5376,17 +5470,18 @@ model.</p>
 <a id="__codelineno-0-272" name="__codelineno-0-272"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">computed</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-273" name="__codelineno-0-273"></a>    <span class="k">return</span> <span class="n">computed</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_delta_leaderboard_entry" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_delta_leaderboard_entry</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_delta_leaderboard_entry</span>
 
 
 </h3>
@@ -5398,6 +5493,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a delta leaderboard entry  model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5427,6 +5524,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5449,9 +5548,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-549">549</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-549">549</a></span>
 <span class="normal"><a href="#__codelineno-0-550">550</a></span>
 <span class="normal"><a href="#__codelineno-0-551">551</a></span>
 <span class="normal"><a href="#__codelineno-0-552">552</a></span>
@@ -5483,17 +5582,18 @@ model.</p>
 <a id="__codelineno-0-563" name="__codelineno-0-563"></a>    <span class="n">delta</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;player&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-564" name="__codelineno-0-564"></a>    <span class="k">return</span> <span class="n">delta</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_gains</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_gains</span>
 
 
 </h3>
@@ -5503,6 +5603,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a gains model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5531,6 +5633,8 @@ model.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -5554,9 +5658,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-335">335</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-335">335</a></span>
 <span class="normal"><a href="#__codelineno-0-336">336</a></span>
 <span class="normal"><a href="#__codelineno-0-337">337</a></span>
 <span class="normal"><a href="#__codelineno-0-338">338</a></span>
@@ -5580,17 +5684,18 @@ model.</p>
 <a id="__codelineno-0-345" name="__codelineno-0-345"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">gains</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;gained&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-346" name="__codelineno-0-346"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group</span>
 
 
 </h3>
@@ -5600,6 +5705,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5629,6 +5736,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5651,9 +5760,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-582">582</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-582">582</a></span>
 <span class="normal"><a href="#__codelineno-0-583">583</a></span>
 <span class="normal"><a href="#__codelineno-0-584">584</a></span>
 <span class="normal"><a href="#__codelineno-0-585">585</a></span>
@@ -5705,17 +5814,18 @@ model.</p>
 <a id="__codelineno-0-606" name="__codelineno-0-606"></a>
 <a id="__codelineno-0-607" name="__codelineno-0-607"></a>    <span class="k">return</span> <span class="n">group</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_details" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_details</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_details</span>
 
 
 </h3>
@@ -5727,6 +5837,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group detail model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5756,6 +5868,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5778,9 +5892,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-639">639</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-639">639</a></span>
 <span class="normal"><a href="#__codelineno-0-640">640</a></span>
 <span class="normal"><a href="#__codelineno-0-641">641</a></span>
 <span class="normal"><a href="#__codelineno-0-642">642</a></span>
@@ -5808,17 +5922,18 @@ model.</p>
 <a id="__codelineno-0-651" name="__codelineno-0-651"></a>    <span class="n">details</span><span class="o">.</span><span class="n">memberships</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_group_membership</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;memberships&quot;</span><span class="p">]]</span>
 <a id="__codelineno-0-652" name="__codelineno-0-652"></a>    <span class="k">return</span> <span class="n">details</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_hiscores_activity_item" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_activity_item</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_activity_item</span>
 
 
 </h3>
@@ -5831,6 +5946,8 @@ model.</p>
   
       <p>Deserializes the data into a group hiscores activity item
 model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5860,6 +5977,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5882,9 +6001,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-654">654</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-654">654</a></span>
 <span class="normal"><a href="#__codelineno-0-655">655</a></span>
 <span class="normal"><a href="#__codelineno-0-656">656</a></span>
 <span class="normal"><a href="#__codelineno-0-657">657</a></span>
@@ -5914,17 +6033,18 @@ model.</p>
 <a id="__codelineno-0-667" name="__codelineno-0-667"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-668" name="__codelineno-0-668"></a>    <span class="k">return</span> <span class="n">item</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_hiscores_boss_item" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_boss_item</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_boss_item</span>
 
 
 </h3>
@@ -5936,6 +6056,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group hiscores boss item model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5964,6 +6086,8 @@ model.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -5987,9 +6111,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-670">670</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-670">670</a></span>
 <span class="normal"><a href="#__codelineno-0-671">671</a></span>
 <span class="normal"><a href="#__codelineno-0-672">672</a></span>
 <span class="normal"><a href="#__codelineno-0-673">673</a></span>
@@ -6013,17 +6137,18 @@ model.</p>
 <a id="__codelineno-0-680" name="__codelineno-0-680"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;kills&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-681" name="__codelineno-0-681"></a>    <span class="k">return</span> <span class="n">item</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_hiscores_computed_item" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_computed_item</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_computed_item</span>
 
 
 </h3>
@@ -6036,6 +6161,8 @@ model.</p>
   
       <p>Deserializes the data into a group hiscores computed metric
 item model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6065,6 +6192,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6087,9 +6216,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-696">696</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-696">696</a></span>
 <span class="normal"><a href="#__codelineno-0-697">697</a></span>
 <span class="normal"><a href="#__codelineno-0-698">698</a></span>
 <span class="normal"><a href="#__codelineno-0-699">699</a></span>
@@ -6119,17 +6248,18 @@ item model.</p>
 <a id="__codelineno-0-709" name="__codelineno-0-709"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-710" name="__codelineno-0-710"></a>    <span class="k">return</span> <span class="n">item</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_hiscores_entry" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_entry</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_entry</span>
 
 
 </h3>
@@ -6141,6 +6271,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group hiscores entry model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6170,6 +6302,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6192,9 +6326,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-712">712</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-712">712</a></span>
 <span class="normal"><a href="#__codelineno-0-713">713</a></span>
 <span class="normal"><a href="#__codelineno-0-714">714</a></span>
 <span class="normal"><a href="#__codelineno-0-715">715</a></span>
@@ -6220,17 +6354,18 @@ item model.</p>
 <a id="__codelineno-0-723" name="__codelineno-0-723"></a>    <span class="n">hiscores</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_hiscores_entry_item</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-724" name="__codelineno-0-724"></a>    <span class="k">return</span> <span class="n">hiscores</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_hiscores_skill_item" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_skill_item</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_hiscores_skill_item</span>
 
 
 </h3>
@@ -6242,6 +6377,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group hiscores skill item model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6270,6 +6407,8 @@ item model.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -6293,9 +6432,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-683">683</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-683">683</a></span>
 <span class="normal"><a href="#__codelineno-0-684">684</a></span>
 <span class="normal"><a href="#__codelineno-0-685">685</a></span>
 <span class="normal"><a href="#__codelineno-0-686">686</a></span>
@@ -6319,17 +6458,18 @@ item model.</p>
 <a id="__codelineno-0-693" name="__codelineno-0-693"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="s2">&quot;experience&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-694" name="__codelineno-0-694"></a>    <span class="k">return</span> <span class="n">item</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_member_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_member_gains</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_member_gains</span>
 
 
 </h3>
@@ -6341,6 +6481,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group member gains model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6370,6 +6512,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6392,9 +6536,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-566">566</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-566">566</a></span>
 <span class="normal"><a href="#__codelineno-0-567">567</a></span>
 <span class="normal"><a href="#__codelineno-0-568">568</a></span>
 <span class="normal"><a href="#__codelineno-0-569">569</a></span>
@@ -6424,17 +6568,18 @@ item model.</p>
 <a id="__codelineno-0-579" name="__codelineno-0-579"></a>    <span class="n">gains</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_gains</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-580" name="__codelineno-0-580"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_membership" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_membership</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_membership</span>
 
 
 </h3>
@@ -6446,6 +6591,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group membership model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6475,6 +6622,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6497,9 +6646,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-625">625</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-625">625</a></span>
 <span class="normal"><a href="#__codelineno-0-626">626</a></span>
 <span class="normal"><a href="#__codelineno-0-627">627</a></span>
 <span class="normal"><a href="#__codelineno-0-628">628</a></span>
@@ -6525,17 +6674,18 @@ item model.</p>
 <a id="__codelineno-0-636" name="__codelineno-0-636"></a>    <span class="n">group</span><span class="o">.</span><span class="n">membership</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_membership</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-637" name="__codelineno-0-637"></a>    <span class="k">return</span> <span class="n">group</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_group_statistics" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_group_statistics</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_group_statistics</span>
 
 
 </h3>
@@ -6547,6 +6697,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a group statistics model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6576,6 +6728,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6598,9 +6752,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-726">726</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-726">726</a></span>
 <span class="normal"><a href="#__codelineno-0-727">727</a></span>
 <span class="normal"><a href="#__codelineno-0-728">728</a></span>
 <span class="normal"><a href="#__codelineno-0-729">729</a></span>
@@ -6630,17 +6784,18 @@ item model.</p>
 <a id="__codelineno-0-739" name="__codelineno-0-739"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs_cased</span><span class="p">(</span><span class="n">statistics</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;maxed_total_count&quot;</span><span class="p">,</span> <span class="s2">&quot;maxed_combat_count&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-740" name="__codelineno-0-740"></a>    <span class="k">return</span> <span class="n">statistics</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_membership" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_membership</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_membership</span>
 
 
 </h3>
@@ -6650,6 +6805,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a membership model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6679,6 +6836,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6701,9 +6860,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-609">609</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-609">609</a></span>
 <span class="normal"><a href="#__codelineno-0-610">610</a></span>
 <span class="normal"><a href="#__codelineno-0-611">611</a></span>
 <span class="normal"><a href="#__codelineno-0-612">612</a></span>
@@ -6733,17 +6892,18 @@ item model.</p>
 <a id="__codelineno-0-622" name="__codelineno-0-622"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs_cased</span><span class="p">(</span><span class="n">membership</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;player_id&quot;</span><span class="p">,</span> <span class="s2">&quot;group_id&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-623" name="__codelineno-0-623"></a>    <span class="k">return</span> <span class="n">membership</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_metric_leaders" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_metric_leaders</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_metric_leaders</span>
 
 
 </h3>
@@ -6755,6 +6915,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a metric leaders model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6784,6 +6946,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6806,9 +6970,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1031">1031</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1031">1031</a></span>
 <span class="normal"><a href="#__codelineno-0-1032">1032</a></span>
 <span class="normal"><a href="#__codelineno-0-1033">1033</a></span>
 <span class="normal"><a href="#__codelineno-0-1034">1034</a></span>
@@ -6844,17 +7008,18 @@ item model.</p>
 <a id="__codelineno-0-1047" name="__codelineno-0-1047"></a>
 <a id="__codelineno-0-1048" name="__codelineno-0-1048"></a>    <span class="k">return</span> <span class="n">leaders</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_name_change" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_name_change</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_name_change</span>
 
 
 </h3>
@@ -6864,6 +7029,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a name change model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6893,6 +7060,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6915,9 +7084,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-496">496</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-496">496</a></span>
 <span class="normal"><a href="#__codelineno-0-497">497</a></span>
 <span class="normal"><a href="#__codelineno-0-498">498</a></span>
 <span class="normal"><a href="#__codelineno-0-499">499</a></span>
@@ -6961,17 +7130,18 @@ item model.</p>
 <a id="__codelineno-0-516" name="__codelineno-0-516"></a>
 <a id="__codelineno-0-517" name="__codelineno-0-517"></a>    <span class="k">return</span> <span class="n">change</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_name_change_review_context" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_name_change_review_context</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_name_change_review_context</span>
 
 
 </h3>
@@ -6983,6 +7153,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a name change review context.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7012,6 +7184,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7034,9 +7208,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-438">438</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-438">438</a></span>
 <span class="normal"><a href="#__codelineno-0-439">439</a></span>
 <span class="normal"><a href="#__codelineno-0-440">440</a></span>
 <span class="normal"><a href="#__codelineno-0-441">441</a></span>
@@ -7150,17 +7324,18 @@ item model.</p>
 <a id="__codelineno-0-493" name="__codelineno-0-493"></a>
 <a id="__codelineno-0-494" name="__codelineno-0-494"></a>    <span class="k">return</span> <span class="n">ctx</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_participation" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_participation</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_participation</span>
 
 
 </h3>
@@ -7172,6 +7347,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a participation model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7201,6 +7378,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7223,9 +7402,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-772">772</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-772">772</a></span>
 <span class="normal"><a href="#__codelineno-0-773">773</a></span>
 <span class="normal"><a href="#__codelineno-0-774">774</a></span>
 <span class="normal"><a href="#__codelineno-0-775">775</a></span>
@@ -7253,17 +7432,18 @@ item model.</p>
 <a id="__codelineno-0-784" name="__codelineno-0-784"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs_cased</span><span class="p">(</span><span class="n">participation</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;player_id&quot;</span><span class="p">,</span> <span class="s2">&quot;competition_id&quot;</span><span class="p">,</span> <span class="s2">&quot;team_name&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-785" name="__codelineno-0-785"></a>    <span class="k">return</span> <span class="n">participation</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player</span>
 
 
 </h3>
@@ -7273,6 +7453,8 @@ item model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a player model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7302,6 +7484,8 @@ item model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7324,9 +7508,9 @@ item model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-139">139</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-139">139</a></span>
 <span class="normal"><a href="#__codelineno-0-140">140</a></span>
 <span class="normal"><a href="#__codelineno-0-141">141</a></span>
 <span class="normal"><a href="#__codelineno-0-142">142</a></span>
@@ -7390,17 +7574,18 @@ item model.</p>
 <a id="__codelineno-0-169" name="__codelineno-0-169"></a>    <span class="n">player</span><span class="o">.</span><span class="n">last_imported_at</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dt_from_iso_maybe</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;lastImportedAt&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-170" name="__codelineno-0-170"></a>    <span class="k">return</span> <span class="n">player</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player_achievement_progress" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player_achievement_progress</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player_achievement_progress</span>
 
 
 </h3>
@@ -7413,6 +7598,8 @@ item model.</p>
   
       <p>Deserializes the data into a player achievement progress
 model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7442,6 +7629,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7464,9 +7653,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-315">315</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-315">315</a></span>
 <span class="normal"><a href="#__codelineno-0-316">316</a></span>
 <span class="normal"><a href="#__codelineno-0-317">317</a></span>
 <span class="normal"><a href="#__codelineno-0-318">318</a></span>
@@ -7504,17 +7693,18 @@ model.</p>
 <a id="__codelineno-0-332" name="__codelineno-0-332"></a>
 <a id="__codelineno-0-333" name="__codelineno-0-333"></a>    <span class="k">return</span> <span class="n">progress</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player_competition_standing" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player_competition_standing</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player_competition_standing</span>
 
 
 </h3>
@@ -7527,6 +7717,8 @@ model.</p>
   
       <p>Deserializes the data into a player competition standing
 model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7556,6 +7748,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7578,9 +7772,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-830">830</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-830">830</a></span>
 <span class="normal"><a href="#__codelineno-0-831">831</a></span>
 <span class="normal"><a href="#__codelineno-0-832">832</a></span>
 <span class="normal"><a href="#__codelineno-0-833">833</a></span>
@@ -7614,17 +7808,18 @@ model.</p>
 <a id="__codelineno-0-845" name="__codelineno-0-845"></a>    <span class="n">standing</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_competition_progress</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;progress&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-846" name="__codelineno-0-846"></a>    <span class="k">return</span> <span class="n">standing</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player_details" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player_details</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player_details</span>
 
 
 </h3>
@@ -7636,6 +7831,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a player detail model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7665,6 +7862,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7687,9 +7886,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-172">172</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-172">172</a></span>
 <span class="normal"><a href="#__codelineno-0-173">173</a></span>
 <span class="normal"><a href="#__codelineno-0-174">174</a></span>
 <span class="normal"><a href="#__codelineno-0-175">175</a></span>
@@ -7717,17 +7916,18 @@ model.</p>
 <a id="__codelineno-0-184" name="__codelineno-0-184"></a>    <span class="n">details</span><span class="o">.</span><span class="n">latest_snapshot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_snapshot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;latestSnapshot&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-185" name="__codelineno-0-185"></a>    <span class="k">return</span> <span class="n">details</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player_gains</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player_gains</span>
 
 
 </h3>
@@ -7737,6 +7937,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a player gains model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7766,6 +7968,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7788,9 +7992,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-423">423</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-423">423</a></span>
 <span class="normal"><a href="#__codelineno-0-424">424</a></span>
 <span class="normal"><a href="#__codelineno-0-425">425</a></span>
 <span class="normal"><a href="#__codelineno-0-426">426</a></span>
@@ -7818,17 +8022,18 @@ model.</p>
 <a id="__codelineno-0-435" name="__codelineno-0-435"></a>
 <a id="__codelineno-0-436" name="__codelineno-0-436"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player_gains_data" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player_gains_data</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player_gains_data</span>
 
 
 </h3>
@@ -7840,6 +8045,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a player gains data model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7869,6 +8076,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7891,9 +8100,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-407">407</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-407">407</a></span>
 <span class="normal"><a href="#__codelineno-0-408">408</a></span>
 <span class="normal"><a href="#__codelineno-0-409">409</a></span>
 <span class="normal"><a href="#__codelineno-0-410">410</a></span>
@@ -7923,17 +8132,18 @@ model.</p>
 <a id="__codelineno-0-420" name="__codelineno-0-420"></a>    <span class="n">gains</span><span class="o">.</span><span class="n">activities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_activity_gains</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;activities&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <a id="__codelineno-0-421" name="__codelineno-0-421"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player_membership" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player_membership</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player_membership</span>
 
 
 </h3>
@@ -7945,6 +8155,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a player membership model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -7974,6 +8186,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -7996,9 +8210,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-848">848</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-848">848</a></span>
 <span class="normal"><a href="#__codelineno-0-849">849</a></span>
 <span class="normal"><a href="#__codelineno-0-850">850</a></span>
 <span class="normal"><a href="#__codelineno-0-851">851</a></span>
@@ -8024,17 +8238,18 @@ model.</p>
 <a id="__codelineno-0-859" name="__codelineno-0-859"></a>    <span class="n">player_membership</span><span class="o">.</span><span class="n">membership</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_membership</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-860" name="__codelineno-0-860"></a>    <span class="k">return</span> <span class="n">player_membership</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_player_participation" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_player_participation</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_player_participation</span>
 
 
 </h3>
@@ -8046,6 +8261,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a player participation model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8075,6 +8292,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8097,9 +8316,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-787">787</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-787">787</a></span>
 <span class="normal"><a href="#__codelineno-0-788">788</a></span>
 <span class="normal"><a href="#__codelineno-0-789">789</a></span>
 <span class="normal"><a href="#__codelineno-0-790">790</a></span>
@@ -8125,17 +8344,18 @@ model.</p>
 <a id="__codelineno-0-798" name="__codelineno-0-798"></a>    <span class="n">player_participation</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_participation</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-799" name="__codelineno-0-799"></a>    <span class="k">return</span> <span class="n">player_participation</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_record" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_record</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_record</span>
 
 
 </h3>
@@ -8145,6 +8365,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a record model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8174,6 +8396,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8196,9 +8420,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-519">519</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-519">519</a></span>
 <span class="normal"><a href="#__codelineno-0-520">520</a></span>
 <span class="normal"><a href="#__codelineno-0-521">521</a></span>
 <span class="normal"><a href="#__codelineno-0-522">522</a></span>
@@ -8228,17 +8452,18 @@ model.</p>
 <a id="__codelineno-0-532" name="__codelineno-0-532"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs_cased</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;player_id&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-533" name="__codelineno-0-533"></a>    <span class="k">return</span> <span class="n">record</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_record_leaderboard_entry" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_record_leaderboard_entry</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_record_leaderboard_entry</span>
 
 
 </h3>
@@ -8250,6 +8475,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a record leaderboard entry model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8279,6 +8506,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8301,9 +8530,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-535">535</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-535">535</a></span>
 <span class="normal"><a href="#__codelineno-0-536">536</a></span>
 <span class="normal"><a href="#__codelineno-0-537">537</a></span>
 <span class="normal"><a href="#__codelineno-0-538">538</a></span>
@@ -8329,17 +8558,18 @@ model.</p>
 <a id="__codelineno-0-546" name="__codelineno-0-546"></a>    <span class="n">record</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;player&quot;</span><span class="p">])</span>
 <a id="__codelineno-0-547" name="__codelineno-0-547"></a>    <span class="k">return</span> <span class="n">record</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_skill" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_skill</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_skill</span>
 
 
 </h3>
@@ -8349,6 +8579,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a skill model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8378,6 +8610,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8400,9 +8634,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-219">219</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-219">219</a></span>
 <span class="normal"><a href="#__codelineno-0-220">220</a></span>
 <span class="normal"><a href="#__codelineno-0-221">221</a></span>
 <span class="normal"><a href="#__codelineno-0-222">222</a></span>
@@ -8428,17 +8662,18 @@ model.</p>
 <a id="__codelineno-0-230" name="__codelineno-0-230"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs</span><span class="p">(</span><span class="n">skill</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;ehp&quot;</span><span class="p">,</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span> <span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="s2">&quot;experience&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-231" name="__codelineno-0-231"></a>    <span class="k">return</span> <span class="n">skill</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_skill_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_skill_gains</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_skill_gains</span>
 
 
 </h3>
@@ -8448,6 +8683,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a skill gains model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8477,6 +8714,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8499,9 +8738,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-348">348</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-348">348</a></span>
 <span class="normal"><a href="#__codelineno-0-349">349</a></span>
 <span class="normal"><a href="#__codelineno-0-350">350</a></span>
 <span class="normal"><a href="#__codelineno-0-351">351</a></span>
@@ -8533,17 +8772,18 @@ model.</p>
 <a id="__codelineno-0-362" name="__codelineno-0-362"></a>
 <a id="__codelineno-0-363" name="__codelineno-0-363"></a>    <span class="k">return</span> <span class="n">gains</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_skill_leader" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_skill_leader</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_skill_leader</span>
 
 
 </h3>
@@ -8553,6 +8793,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a skill leader model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8582,6 +8824,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8604,9 +8848,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-951">951</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-951">951</a></span>
 <span class="normal"><a href="#__codelineno-0-952">952</a></span>
 <span class="normal"><a href="#__codelineno-0-953">953</a></span>
 <span class="normal"><a href="#__codelineno-0-954">954</a></span>
@@ -8644,17 +8888,18 @@ model.</p>
 <a id="__codelineno-0-968" name="__codelineno-0-968"></a>
 <a id="__codelineno-0-969" name="__codelineno-0-969"></a>    <span class="k">return</span> <span class="n">leader</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_snapshot" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_snapshot</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_snapshot</span>
 
 
 </h3>
@@ -8664,6 +8909,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a snapshot model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8693,6 +8940,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8715,9 +8964,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-187">187</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-187">187</a></span>
 <span class="normal"><a href="#__codelineno-0-188">188</a></span>
 <span class="normal"><a href="#__codelineno-0-189">189</a></span>
 <span class="normal"><a href="#__codelineno-0-190">190</a></span>
@@ -8747,17 +8996,18 @@ model.</p>
 <a id="__codelineno-0-200" name="__codelineno-0-200"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_set_attrs_cased</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;player_id&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-201" name="__codelineno-0-201"></a>    <span class="k">return</span> <span class="n">snapshot</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_snapshot_data" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_snapshot_data</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_snapshot_data</span>
 
 
 </h3>
@@ -8769,6 +9019,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a snapshot data model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8798,6 +9050,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8820,9 +9074,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-203">203</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-203">203</a></span>
 <span class="normal"><a href="#__codelineno-0-204">204</a></span>
 <span class="normal"><a href="#__codelineno-0-205">205</a></span>
 <span class="normal"><a href="#__codelineno-0-206">206</a></span>
@@ -8852,17 +9106,18 @@ model.</p>
 <a id="__codelineno-0-216" name="__codelineno-0-216"></a>    <span class="n">model</span><span class="o">.</span><span class="n">computed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deserialize_computed_metric</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;computed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <a id="__codelineno-0-217" name="__codelineno-0-217"></a>    <span class="k">return</span> <span class="n">model</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_snapshot_timeline_entry" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_snapshot_timeline_entry</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_snapshot_timeline_entry</span>
 
 
 </h3>
@@ -8874,6 +9129,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a snapshot timeline entry model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8903,6 +9160,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8925,9 +9184,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1050">1050</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1050">1050</a></span>
 <span class="normal"><a href="#__codelineno-0-1051">1051</a></span>
 <span class="normal"><a href="#__codelineno-0-1052">1052</a></span>
 <span class="normal"><a href="#__codelineno-0-1053">1053</a></span>
@@ -8953,17 +9212,18 @@ model.</p>
 <a id="__codelineno-0-1061" name="__codelineno-0-1061"></a>    <span class="n">entry</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-1062" name="__codelineno-0-1062"></a>    <span class="k">return</span> <span class="n">entry</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.serializer.Serializer.deserialize_top5_progress_result" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">deserialize_top5_progress_result</span>
+          <span class="doc doc-object-name doc-function-name">deserialize_top5_progress_result</span>
 
 
 </h3>
@@ -8975,6 +9235,8 @@ model.</p>
   <div class="doc doc-contents ">
   
       <p>Deserializes the data into a top 5 progress result model.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -9004,6 +9266,8 @@ model.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -9026,9 +9290,9 @@ model.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/serializer.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-913">913</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/serializer.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-913">913</a></span>
 <span class="normal"><a href="#__codelineno-0-914">914</a></span>
 <span class="normal"><a href="#__codelineno-0-915">915</a></span>
 <span class="normal"><a href="#__codelineno-0-916">916</a></span>
@@ -9060,7 +9324,7 @@ model.</p>
 <a id="__codelineno-0-927" name="__codelineno-0-927"></a>
 <a id="__codelineno-0-928" name="__codelineno-0-928"></a>    <span class="k">return</span> <span class="n">progress</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>

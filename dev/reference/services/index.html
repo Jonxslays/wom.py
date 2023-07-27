@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="../../wom-logo.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.5.0, mkdocs-material-9.1.14">
     
     
       
@@ -1541,18 +1541,20 @@ portions of the WOM API.</p>
 
 
 <h2 id="wom.services.BaseService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">BaseService</span>
+          <span class="doc doc-object-name doc-class-name">BaseService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code>abc.<span title="abc.ABC">ABC</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code>abc.<span title="abc.ABC">ABC</span></code></p>
 
   
       <p>The base service all API services inherit from.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1597,10 +1599,9 @@ JSON data from the API.</p>
     </tbody>
   </table>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/base.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-35">35</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/base.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-35">35</a></span>
 <span class="normal"><a href="#__codelineno-0-36">36</a></span>
 <span class="normal"><a href="#__codelineno-0-37">37</a></span>
 <span class="normal"><a href="#__codelineno-0-38">38</a></span>
@@ -1640,7 +1641,7 @@ JSON data from the API.</p>
 <a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="k">def</span> <span class="nf">_generate_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
 <a id="__codelineno-0-54" name="__codelineno-0-54"></a>        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1667,23 +1668,22 @@ JSON data from the API.</p>
 
 
 <h2 id="wom.services.CompetitionService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">CompetitionService</span>
+          <span class="doc doc-object-name doc-class-name">CompetitionService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
 
   
       <p>Handles endpoints related to competitions.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/competitions.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/competitions.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
 <span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
 <span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
 <span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
@@ -2903,11 +2903,12 @@ JSON data from the API.</p>
 <a id="__codelineno-0-648" name="__codelineno-0-648"></a>
 <a id="__codelineno-0-649" name="__codelineno-0-649"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -2922,7 +2923,7 @@ JSON data from the API.</p>
 
 
 <h3 id="wom.services.competitions.CompetitionService.add_participants" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">add_participants</span>
+          <span class="doc doc-object-name doc-function-name">add_participants</span>
 
   
   <span class="doc doc-labels">
@@ -2952,6 +2953,8 @@ participants, and ignores duplicates.</p>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
 </code></pre></div>
 </details>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3010,6 +3013,8 @@ competition.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3033,9 +3038,9 @@ message.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-423">423</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-423">423</a></span>
 <span class="normal"><a href="#__codelineno-0-424">424</a></span>
 <span class="normal"><a href="#__codelineno-0-425">425</a></span>
 <span class="normal"><a href="#__codelineno-0-426">426</a></span>
@@ -3115,17 +3120,18 @@ message.</p>
 <a id="__codelineno-0-461" name="__codelineno-0-461"></a>
 <a id="__codelineno-0-462" name="__codelineno-0-462"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.add_teams" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">add_teams</span>
+          <span class="doc doc-object-name doc-function-name">add_teams</span>
 
   
   <span class="doc doc-labels">
@@ -3157,6 +3163,8 @@ message.</p>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span>
 </code></pre></div>
 </details>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3215,6 +3223,8 @@ competition.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3238,9 +3248,9 @@ message.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-505">505</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-505">505</a></span>
 <span class="normal"><a href="#__codelineno-0-506">506</a></span>
 <span class="normal"><a href="#__codelineno-0-507">507</a></span>
 <span class="normal"><a href="#__codelineno-0-508">508</a></span>
@@ -3328,17 +3338,18 @@ message.</p>
 <a id="__codelineno-0-547" name="__codelineno-0-547"></a>
 <a id="__codelineno-0-548" name="__codelineno-0-548"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.create_competition" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">create_competition</span>
+          <span class="doc doc-object-name doc-function-name">create_competition</span>
 
   
   <span class="doc doc-labels">
@@ -3362,6 +3373,8 @@ message.</p>
   <div class="doc doc-contents ">
   
       <p>Creates a new competition.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3434,6 +3447,8 @@ measure.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Other Parameters:</strong></p>
   <table>
     <thead>
@@ -3495,6 +3510,8 @@ Defaults to <code>None</code>.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -3559,9 +3576,9 @@ mutually exclusive.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-197">197</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-197">197</a></span>
 <span class="normal"><a href="#__codelineno-0-198">198</a></span>
 <span class="normal"><a href="#__codelineno-0-199">199</a></span>
 <span class="normal"><a href="#__codelineno-0-200">200</a></span>
@@ -3763,17 +3780,18 @@ mutually exclusive.</p>
 <a id="__codelineno-0-296" name="__codelineno-0-296"></a>    <span class="n">competition</span><span class="o">.</span><span class="n">verification_code</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;verificationCode&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-297" name="__codelineno-0-297"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">competition</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.delete_competition" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">delete_competition</span>
+          <span class="doc doc-object-name doc-function-name">delete_competition</span>
 
   
   <span class="doc doc-labels">
@@ -3789,6 +3807,8 @@ mutually exclusive.</p>
   <div class="doc doc-contents ">
   
       <p>Deletes a competition.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3833,6 +3853,8 @@ competition.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3873,9 +3895,9 @@ message.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-381">381</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-381">381</a></span>
 <span class="normal"><a href="#__codelineno-0-382">382</a></span>
 <span class="normal"><a href="#__codelineno-0-383">383</a></span>
 <span class="normal"><a href="#__codelineno-0-384">384</a></span>
@@ -3957,17 +3979,18 @@ message.</p>
 <a id="__codelineno-0-420" name="__codelineno-0-420"></a>
 <a id="__codelineno-0-421" name="__codelineno-0-421"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.edit_competition" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">edit_competition</span>
+          <span class="doc doc-object-name doc-function-name">edit_competition</span>
 
   
   <span class="doc doc-labels">
@@ -3991,6 +4014,8 @@ message.</p>
   <div class="doc doc-contents ">
   
       <p>Edits an existing competition.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4034,6 +4059,8 @@ competition.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -4120,6 +4147,8 @@ participants with. Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4162,9 +4191,9 @@ to add users, check out <a class="autorefs autorefs-internal" href="#wom.service
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-299">299</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-299">299</a></span>
 <span class="normal"><a href="#__codelineno-0-300">300</a></span>
 <span class="normal"><a href="#__codelineno-0-301">301</a></span>
 <span class="normal"><a href="#__codelineno-0-302">302</a></span>
@@ -4326,17 +4355,18 @@ to add users, check out <a class="autorefs autorefs-internal" href="#wom.service
 <a id="__codelineno-0-378" name="__codelineno-0-378"></a>
 <a id="__codelineno-0-379" name="__codelineno-0-379"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_with_participation</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.get_details" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_details</span>
+          <span class="doc doc-object-name doc-function-name">get_details</span>
 
   
   <span class="doc doc-labels">
@@ -4352,6 +4382,8 @@ to add users, check out <a class="autorefs autorefs-internal" href="#wom.service
   <div class="doc doc-contents ">
   
       <p>Gets details for the given competition.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4381,6 +4413,8 @@ to add users, check out <a class="autorefs autorefs-internal" href="#wom.service
     </tbody>
   </table>
 
+
+
   <p><strong>Other Parameters:</strong></p>
   <table>
     <thead>
@@ -4406,6 +4440,8 @@ actually for that metric. Defaults to <code>None</code>.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -4444,9 +4480,9 @@ actually for that metric. Defaults to <code>None</code>.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-115">115</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-115">115</a></span>
 <span class="normal"><a href="#__codelineno-0-116">116</a></span>
 <span class="normal"><a href="#__codelineno-0-117">117</a></span>
 <span class="normal"><a href="#__codelineno-0-118">118</a></span>
@@ -4526,17 +4562,18 @@ actually for that metric. Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-153" name="__codelineno-0-153"></a>
 <a id="__codelineno-0-154" name="__codelineno-0-154"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition_details</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.get_top_participant_history" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_top_participant_history</span>
+          <span class="doc doc-object-name doc-function-name">get_top_participant_history</span>
 
   
   <span class="doc doc-labels">
@@ -4553,6 +4590,8 @@ actually for that metric. Defaults to <code>None</code>.</p>
   
       <p>Gets details for the players with the top 5 progress in the
 competition.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4582,6 +4621,8 @@ competition.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Other Parameters:</strong></p>
   <table>
     <thead>
@@ -4607,6 +4648,8 @@ actually for that metric. Defaults to <code>None</code>.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -4644,9 +4687,9 @@ progress players.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-156">156</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-156">156</a></span>
 <span class="normal"><a href="#__codelineno-0-157">157</a></span>
 <span class="normal"><a href="#__codelineno-0-158">158</a></span>
 <span class="normal"><a href="#__codelineno-0-159">159</a></span>
@@ -4726,17 +4769,18 @@ progress players.</p>
 <a id="__codelineno-0-194" name="__codelineno-0-194"></a>
 <a id="__codelineno-0-195" name="__codelineno-0-195"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_top5_progress_result</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.remove_participants" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">remove_participants</span>
+          <span class="doc doc-object-name doc-function-name">remove_participants</span>
 
   
   <span class="doc doc-labels">
@@ -4766,6 +4810,8 @@ that are not competing.</p>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
 </code></pre></div>
 </details>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -4824,6 +4870,8 @@ competition.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -4847,9 +4895,9 @@ message.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-464">464</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-464">464</a></span>
 <span class="normal"><a href="#__codelineno-0-465">465</a></span>
 <span class="normal"><a href="#__codelineno-0-466">466</a></span>
 <span class="normal"><a href="#__codelineno-0-467">467</a></span>
@@ -4929,17 +4977,18 @@ message.</p>
 <a id="__codelineno-0-502" name="__codelineno-0-502"></a>
 <a id="__codelineno-0-503" name="__codelineno-0-503"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.remove_teams" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">remove_teams</span>
+          <span class="doc doc-object-name doc-function-name">remove_teams</span>
 
   
   <span class="doc doc-labels">
@@ -4969,6 +5018,8 @@ exist.</p>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
 </code></pre></div>
 </details>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5027,6 +5078,8 @@ competition.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5050,9 +5103,9 @@ message.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-550">550</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-550">550</a></span>
 <span class="normal"><a href="#__codelineno-0-551">551</a></span>
 <span class="normal"><a href="#__codelineno-0-552">552</a></span>
 <span class="normal"><a href="#__codelineno-0-553">553</a></span>
@@ -5132,17 +5185,18 @@ message.</p>
 <a id="__codelineno-0-588" name="__codelineno-0-588"></a>
 <a id="__codelineno-0-589" name="__codelineno-0-589"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.search_competitions" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">search_competitions</span>
+          <span class="doc doc-object-name doc-function-name">search_competitions</span>
 
   
   <span class="doc doc-labels">
@@ -5164,6 +5218,8 @@ message.</p>
   <div class="doc doc-contents ">
   
       <p>Searches for competitions with the given criteria.</p>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -5249,6 +5305,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5289,9 +5347,9 @@ or an error.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
 <span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
 <span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
 <span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
@@ -5429,17 +5487,18 @@ or an error.</p>
 <a id="__codelineno-0-112" name="__codelineno-0-112"></a>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.competitions.CompetitionService.update_outdated_participants" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">update_outdated_participants</span>
+          <span class="doc doc-object-name doc-function-name">update_outdated_participants</span>
 
   
   <span class="doc doc-labels">
@@ -5494,6 +5553,8 @@ that an attempt will be made to update them, up to 3 times.</p>
 </code></pre></div>
 </details>
 
+
+
   <p><strong>Parameters:</strong></p>
   <table>
     <thead>
@@ -5537,6 +5598,8 @@ competition.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -5560,9 +5623,9 @@ message.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/competitions.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-591">591</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/competitions.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-591">591</a></span>
 <span class="normal"><a href="#__codelineno-0-592">592</a></span>
 <span class="normal"><a href="#__codelineno-0-593">593</a></span>
 <span class="normal"><a href="#__codelineno-0-594">594</a></span>
@@ -5680,7 +5743,7 @@ message.</p>
 <a id="__codelineno-0-648" name="__codelineno-0-648"></a>
 <a id="__codelineno-0-649" name="__codelineno-0-649"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -5698,23 +5761,22 @@ message.</p>
 
 
 <h2 id="wom.services.DeltaService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">DeltaService</span>
+          <span class="doc doc-object-name doc-class-name">DeltaService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
 
   
       <p>Handles endpoints related to deltas.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/deltas.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/deltas.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
 <span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
 <span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
 <span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
@@ -5848,11 +5910,12 @@ message.</p>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a>
 <a id="__codelineno-0-105" name="__codelineno-0-105"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_delta_leaderboard_entry</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -5867,7 +5930,7 @@ message.</p>
 
 
 <h3 id="wom.services.deltas.DeltaService.get_global_leaderboards" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_global_leaderboards</span>
+          <span class="doc doc-object-name doc-function-name">get_global_leaderboards</span>
 
   
   <span class="doc doc-labels">
@@ -5889,6 +5952,8 @@ message.</p>
   
       <p>Gets the top global delta leaderboard for a specific
 metric and period.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -5931,6 +5996,8 @@ metric and period.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -5981,6 +6048,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6019,9 +6088,9 @@ leaderboard entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/deltas.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/deltas.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
 <span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
 <span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
 <span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
@@ -6145,7 +6214,7 @@ leaderboard entries.</p>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a>
 <a id="__codelineno-0-105" name="__codelineno-0-105"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_delta_leaderboard_entry</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -6163,23 +6232,22 @@ leaderboard entries.</p>
 
 
 <h2 id="wom.services.EfficiencyService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">EfficiencyService</span>
+          <span class="doc doc-object-name doc-class-name">EfficiencyService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
 
   
       <p>Handles endpoints related to efficiency.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/efficiency.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/efficiency.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
 <span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
 <span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
 <span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
@@ -6311,11 +6379,12 @@ leaderboard entries.</p>
 <a id="__codelineno-0-103" name="__codelineno-0-103"></a>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -6330,7 +6399,7 @@ leaderboard entries.</p>
 
 
 <h3 id="wom.services.efficiency.EfficiencyService.get_global_leaderboard" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_global_leaderboard</span>
+          <span class="doc doc-object-name doc-function-name">get_global_leaderboard</span>
 
   
   <span class="doc doc-labels">
@@ -6351,6 +6420,8 @@ leaderboard entries.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the top global efficiency leaderboard.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -6374,11 +6445,13 @@ leaderboard entries.</p>
             </div>
           </td>
           <td>
-                <code>enums.ComputedMetrics.Ehp</code>
+                <code><a class="autorefs autorefs-internal" title="wom.enums" href="../enums/#wom.enums">enums</a>.<a class="autorefs autorefs-internal" title="wom.enums.ComputedMetrics" href="../enums/#wom.enums.ComputedMetrics">ComputedMetrics</a>.<span title="wom.enums.ComputedMetrics.Ehp">Ehp</span></code>
           </td>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -6442,6 +6515,8 @@ provided. Defaults to <code>False</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -6478,9 +6553,9 @@ players.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/efficiency.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/efficiency.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
 <span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
 <span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
 <span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
@@ -6602,7 +6677,7 @@ players.</p>
 <a id="__codelineno-0-103" name="__codelineno-0-103"></a>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -6620,23 +6695,22 @@ players.</p>
 
 
 <h2 id="wom.services.GroupService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">GroupService</span>
+          <span class="doc doc-object-name doc-class-name">GroupService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
 
   
       <p>Handles endpoints related to groups.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/groups.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/groups.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
 <span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
 <span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
 <span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
@@ -8182,11 +8256,12 @@ players.</p>
 <a id="__codelineno-0-812" name="__codelineno-0-812"></a>
 <a id="__codelineno-0-813" name="__codelineno-0-813"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_statistics</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -8201,7 +8276,7 @@ players.</p>
 
 
 <h3 id="wom.services.groups.GroupService.add_members" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">add_members</span>
+          <span class="doc doc-object-name doc-function-name">add_members</span>
 
   
   <span class="doc doc-labels">
@@ -8219,6 +8294,8 @@ players.</p>
   <div class="doc doc-contents ">
   
       <p>Adds members to an existing group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8276,6 +8353,8 @@ players.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8318,9 +8397,9 @@ message.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-300">300</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-300">300</a></span>
 <span class="normal"><a href="#__codelineno-0-301">301</a></span>
 <span class="normal"><a href="#__codelineno-0-302">302</a></span>
 <span class="normal"><a href="#__codelineno-0-303">303</a></span>
@@ -8416,17 +8495,18 @@ message.</p>
 <a id="__codelineno-0-346" name="__codelineno-0-346"></a>
 <a id="__codelineno-0-347" name="__codelineno-0-347"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.change_member_role" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">change_member_role</span>
+          <span class="doc doc-object-name doc-function-name">change_member_role</span>
 
   
   <span class="doc doc-labels">
@@ -8445,6 +8525,8 @@ message.</p>
   <div class="doc doc-contents ">
   
       <p>Changes the role for a member in an existing group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8516,6 +8598,8 @@ message.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8555,9 +8639,9 @@ membership.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-392">392</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-392">392</a></span>
 <span class="normal"><a href="#__codelineno-0-393">393</a></span>
 <span class="normal"><a href="#__codelineno-0-394">394</a></span>
 <span class="normal"><a href="#__codelineno-0-395">395</a></span>
@@ -8649,17 +8733,18 @@ membership.</p>
 <a id="__codelineno-0-436" name="__codelineno-0-436"></a>
 <a id="__codelineno-0-437" name="__codelineno-0-437"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_membership</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.create_group" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">create_group</span>
+          <span class="doc doc-object-name doc-function-name">create_group</span>
 
   
   <span class="doc doc-labels">
@@ -8679,6 +8764,8 @@ membership.</p>
   <div class="doc doc-contents ">
   
       <p>Creates a new group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -8721,6 +8808,8 @@ membership.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -8771,6 +8860,8 @@ membership.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -8809,9 +8900,9 @@ membership.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-119">119</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-119">119</a></span>
 <span class="normal"><a href="#__codelineno-0-120">120</a></span>
 <span class="normal"><a href="#__codelineno-0-121">121</a></span>
 <span class="normal"><a href="#__codelineno-0-122">122</a></span>
@@ -8937,17 +9028,18 @@ membership.</p>
 <a id="__codelineno-0-180" name="__codelineno-0-180"></a>    <span class="n">group</span><span class="o">.</span><span class="n">verification_code</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;verificationCode&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-181" name="__codelineno-0-181"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.delete_group" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">delete_group</span>
+          <span class="doc doc-object-name doc-function-name">delete_group</span>
 
   
   <span class="doc doc-labels">
@@ -8963,6 +9055,8 @@ membership.</p>
   <div class="doc doc-contents ">
   
       <p>Deletes an existing group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -9006,6 +9100,8 @@ membership.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -9044,9 +9140,9 @@ message.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-261">261</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-261">261</a></span>
 <span class="normal"><a href="#__codelineno-0-262">262</a></span>
 <span class="normal"><a href="#__codelineno-0-263">263</a></span>
 <span class="normal"><a href="#__codelineno-0-264">264</a></span>
@@ -9122,17 +9218,18 @@ message.</p>
 <a id="__codelineno-0-297" name="__codelineno-0-297"></a>
 <a id="__codelineno-0-298" name="__codelineno-0-298"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.edit_group" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">edit_group</span>
+          <span class="doc doc-object-name doc-function-name">edit_group</span>
 
   
   <span class="doc doc-labels">
@@ -9157,6 +9254,8 @@ message.</p>
   <div class="doc doc-contents ">
   
       <p>Edits an existing group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -9199,6 +9298,8 @@ message.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -9273,6 +9374,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -9318,9 +9421,9 @@ existing members. If you want to add members, see
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-183">183</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-183">183</a></span>
 <span class="normal"><a href="#__codelineno-0-184">184</a></span>
 <span class="normal"><a href="#__codelineno-0-185">185</a></span>
 <span class="normal"><a href="#__codelineno-0-186">186</a></span>
@@ -9474,17 +9577,18 @@ existing members. If you want to add members, see
 <a id="__codelineno-0-258" name="__codelineno-0-258"></a>
 <a id="__codelineno-0-259" name="__codelineno-0-259"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_details</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_achievements" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_achievements</span>
+          <span class="doc doc-object-name doc-function-name">get_achievements</span>
 
   
   <span class="doc doc-labels">
@@ -9503,6 +9607,8 @@ existing members. If you want to add members, see
   <div class="doc doc-contents ">
   
       <p>Gets the achievements for the group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -9531,6 +9637,8 @@ existing members. If you want to add members, see
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -9567,6 +9675,8 @@ existing members. If you want to add members, see
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -9601,9 +9711,9 @@ achievements.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-604">604</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-604">604</a></span>
 <span class="normal"><a href="#__codelineno-0-605">605</a></span>
 <span class="normal"><a href="#__codelineno-0-606">606</a></span>
 <span class="normal"><a href="#__codelineno-0-607">607</a></span>
@@ -9685,17 +9795,18 @@ achievements.</p>
 <a id="__codelineno-0-643" name="__codelineno-0-643"></a>
 <a id="__codelineno-0-644" name="__codelineno-0-644"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_achievement</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_competitions" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_competitions</span>
+          <span class="doc doc-object-name doc-function-name">get_competitions</span>
 
   
   <span class="doc doc-labels">
@@ -9714,6 +9825,8 @@ achievements.</p>
   <div class="doc doc-contents ">
   
       <p>Gets competitions for a given group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -9742,6 +9855,8 @@ achievements.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -9778,6 +9893,8 @@ achievements.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -9812,9 +9929,9 @@ competitions.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-494">494</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-494">494</a></span>
 <span class="normal"><a href="#__codelineno-0-495">495</a></span>
 <span class="normal"><a href="#__codelineno-0-496">496</a></span>
 <span class="normal"><a href="#__codelineno-0-497">497</a></span>
@@ -9888,17 +10005,18 @@ competitions.</p>
 <a id="__codelineno-0-529" name="__codelineno-0-529"></a>
 <a id="__codelineno-0-530" name="__codelineno-0-530"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_competition</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_details" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_details</span>
+          <span class="doc doc-object-name doc-function-name">get_details</span>
 
   
   <span class="doc doc-labels">
@@ -9912,6 +10030,8 @@ competitions.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the details for the given group id.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -9940,6 +10060,8 @@ competitions.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -9974,9 +10096,9 @@ competitions.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
 <span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
 <span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
 <span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
@@ -10032,17 +10154,18 @@ competitions.</p>
 <a id="__codelineno-0-116" name="__codelineno-0-116"></a>
 <a id="__codelineno-0-117" name="__codelineno-0-117"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_details</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_gains</span>
+          <span class="doc doc-object-name doc-function-name">get_gains</span>
 
   
   <span class="doc doc-labels">
@@ -10065,6 +10188,8 @@ competitions.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the gains for a group over a particular time frame.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -10107,6 +10232,8 @@ competitions.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -10179,6 +10306,8 @@ to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -10220,9 +10349,9 @@ leaderboard entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-532">532</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-532">532</a></span>
 <span class="normal"><a href="#__codelineno-0-533">533</a></span>
 <span class="normal"><a href="#__codelineno-0-534">534</a></span>
 <span class="normal"><a href="#__codelineno-0-535">535</a></span>
@@ -10364,17 +10493,18 @@ leaderboard entries.</p>
 <a id="__codelineno-0-601" name="__codelineno-0-601"></a>
 <a id="__codelineno-0-602" name="__codelineno-0-602"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_member_gains</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_hiscores" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_hiscores</span>
+          <span class="doc doc-object-name doc-function-name">get_hiscores</span>
 
   
   <span class="doc doc-labels">
@@ -10394,6 +10524,8 @@ leaderboard entries.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the hiscores for the group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -10437,6 +10569,8 @@ leaderboard entries.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Other Parameters:</strong></p>
   <table>
     <thead>
@@ -10471,6 +10605,8 @@ leaderboard entries.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -10508,9 +10644,9 @@ entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-702">702</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-702">702</a></span>
 <span class="normal"><a href="#__codelineno-0-703">703</a></span>
 <span class="normal"><a href="#__codelineno-0-704">704</a></span>
 <span class="normal"><a href="#__codelineno-0-705">705</a></span>
@@ -10602,17 +10738,18 @@ entries.</p>
 <a id="__codelineno-0-746" name="__codelineno-0-746"></a>
 <a id="__codelineno-0-747" name="__codelineno-0-747"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_hiscores_entry</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_name_changes" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_name_changes</span>
+          <span class="doc doc-object-name doc-function-name">get_name_changes</span>
 
   
   <span class="doc doc-labels">
@@ -10631,6 +10768,8 @@ entries.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the past name changes for the group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -10659,6 +10798,8 @@ entries.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -10695,6 +10836,8 @@ entries.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -10728,9 +10871,9 @@ entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-749">749</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-749">749</a></span>
 <span class="normal"><a href="#__codelineno-0-750">750</a></span>
 <span class="normal"><a href="#__codelineno-0-751">751</a></span>
 <span class="normal"><a href="#__codelineno-0-752">752</a></span>
@@ -10802,17 +10945,18 @@ entries.</p>
 <a id="__codelineno-0-783" name="__codelineno-0-783"></a>
 <a id="__codelineno-0-784" name="__codelineno-0-784"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_records" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_records</span>
+          <span class="doc doc-object-name doc-function-name">get_records</span>
 
   
   <span class="doc doc-labels">
@@ -10833,6 +10977,8 @@ entries.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the records held by players in the group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -10890,6 +11036,8 @@ entries.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Other Parameters:</strong></p>
   <table>
     <thead>
@@ -10924,6 +11072,8 @@ entries.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -10961,9 +11111,9 @@ leaderboard entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-646">646</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-646">646</a></span>
 <span class="normal"><a href="#__codelineno-0-647">647</a></span>
 <span class="normal"><a href="#__codelineno-0-648">648</a></span>
 <span class="normal"><a href="#__codelineno-0-649">649</a></span>
@@ -11073,17 +11223,18 @@ leaderboard entries.</p>
 <a id="__codelineno-0-699" name="__codelineno-0-699"></a>
 <a id="__codelineno-0-700" name="__codelineno-0-700"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_record_leaderboard_entry</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.get_statistics" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_statistics</span>
+          <span class="doc doc-object-name doc-function-name">get_statistics</span>
 
   
   <span class="doc doc-labels">
@@ -11097,6 +11248,8 @@ leaderboard entries.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the statistics for the group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -11125,6 +11278,8 @@ leaderboard entries.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -11159,9 +11314,9 @@ leaderboard entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-786">786</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-786">786</a></span>
 <span class="normal"><a href="#__codelineno-0-787">787</a></span>
 <span class="normal"><a href="#__codelineno-0-788">788</a></span>
 <span class="normal"><a href="#__codelineno-0-789">789</a></span>
@@ -11217,17 +11372,18 @@ leaderboard entries.</p>
 <a id="__codelineno-0-812" name="__codelineno-0-812"></a>
 <a id="__codelineno-0-813" name="__codelineno-0-813"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_statistics</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.remove_members" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">remove_members</span>
+          <span class="doc doc-object-name doc-function-name">remove_members</span>
 
   
   <span class="doc doc-labels">
@@ -11243,6 +11399,8 @@ leaderboard entries.</p>
   <div class="doc doc-contents ">
   
       <p>Removes members from an existing group.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -11300,6 +11458,8 @@ leaderboard entries.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -11339,9 +11499,9 @@ message.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-349">349</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-349">349</a></span>
 <span class="normal"><a href="#__codelineno-0-350">350</a></span>
 <span class="normal"><a href="#__codelineno-0-351">351</a></span>
 <span class="normal"><a href="#__codelineno-0-352">352</a></span>
@@ -11425,17 +11585,18 @@ message.</p>
 <a id="__codelineno-0-389" name="__codelineno-0-389"></a>
 <a id="__codelineno-0-390" name="__codelineno-0-390"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">HttpSuccessResponse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.search_groups" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">search_groups</span>
+          <span class="doc doc-object-name doc-function-name">search_groups</span>
 
   
   <span class="doc doc-labels">
@@ -11454,6 +11615,8 @@ message.</p>
   
       <p>Searches for groups that at least partially match the given
 name.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -11511,6 +11674,8 @@ name.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -11545,9 +11710,9 @@ groups.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-51">51</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-51">51</a></span>
 <span class="normal"><a href="#__codelineno-0-52">52</a></span>
 <span class="normal"><a href="#__codelineno-0-53">53</a></span>
 <span class="normal"><a href="#__codelineno-0-54">54</a></span>
@@ -11623,17 +11788,18 @@ groups.</p>
 <a id="__codelineno-0-87" name="__codelineno-0-87"></a>
 <a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.groups.GroupService.update_outdated_members" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">update_outdated_members</span>
+          <span class="doc doc-object-name doc-function-name">update_outdated_members</span>
 
   
   <span class="doc doc-labels">
@@ -11680,6 +11846,8 @@ that an attempt will be made to update them, up to 3 times.</p>
 </code></pre></div>
 </details>
 
+
+
   <p><strong>Parameters:</strong></p>
   <table>
     <thead>
@@ -11722,6 +11890,8 @@ that an attempt will be made to update them, up to 3 times.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -11745,9 +11915,9 @@ message.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/groups.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-439">439</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/groups.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-439">439</a></span>
 <span class="normal"><a href="#__codelineno-0-440">440</a></span>
 <span class="normal"><a href="#__codelineno-0-441">441</a></span>
 <span class="normal"><a href="#__codelineno-0-442">442</a></span>
@@ -11855,7 +12025,7 @@ message.</p>
 <a id="__codelineno-0-491" name="__codelineno-0-491"></a>
 <a id="__codelineno-0-492" name="__codelineno-0-492"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -11873,7 +12043,7 @@ message.</p>
 
 
 <h2 id="wom.services.HttpService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">HttpService</span>
+          <span class="doc doc-object-name doc-class-name">HttpService</span>
 
 
 </h2>
@@ -11883,6 +12053,8 @@ message.</p>
 
   
       <p>The HTTP service used to make requests to the WOM API.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -11940,10 +12112,9 @@ message.</p>
     </tbody>
   </table>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/http.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/http.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
 <span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
 <span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
 <span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
@@ -12221,11 +12392,12 @@ message.</p>
 <a id="__codelineno-0-176" name="__codelineno-0-176"></a>            <span class="n">json</span><span class="o">=</span><span class="n">payload</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-177" name="__codelineno-0-177"></a>        <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -12240,7 +12412,7 @@ message.</p>
 
 
 <h3 id="wom.services.http.HttpService.close" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">close</span>
+          <span class="doc doc-object-name doc-function-name">close</span>
 
   
   <span class="doc doc-labels">
@@ -12255,9 +12427,9 @@ message.</p>
   
       <p>Closes the existing client session, if it's still open.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/http.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-146">146</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/http.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-146">146</a></span>
 <span class="normal"><a href="#__codelineno-0-147">147</a></span>
 <span class="normal"><a href="#__codelineno-0-148">148</a></span>
 <span class="normal"><a href="#__codelineno-0-149">149</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -12265,17 +12437,18 @@ message.</p>
 <a id="__codelineno-0-148" name="__codelineno-0-148"></a>    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_session&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
 <a id="__codelineno-0-149" name="__codelineno-0-149"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.http.HttpService.fetch" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">fetch</span>
+          <span class="doc doc-object-name doc-function-name">fetch</span>
 
   
   <span class="doc doc-labels">
@@ -12294,6 +12467,8 @@ message.</p>
   <div class="doc doc-contents ">
   
       <p>Fetches the given route.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -12352,6 +12527,8 @@ body.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -12374,9 +12551,9 @@ body.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/http.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-151">151</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/http.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-151">151</a></span>
 <span class="normal"><a href="#__codelineno-0-152">152</a></span>
 <span class="normal"><a href="#__codelineno-0-153">153</a></span>
 <span class="normal"><a href="#__codelineno-0-154">154</a></span>
@@ -12430,17 +12607,18 @@ body.</p>
 <a id="__codelineno-0-176" name="__codelineno-0-176"></a>        <span class="n">json</span><span class="o">=</span><span class="n">payload</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-0-177" name="__codelineno-0-177"></a>    <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.http.HttpService.set_api_key" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_api_key</span>
+          <span class="doc doc-object-name doc-function-name">set_api_key</span>
 
 
 </h3>
@@ -12450,6 +12628,8 @@ body.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the api key used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -12479,9 +12659,9 @@ body.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/http.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-112">112</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/http.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-112">112</a></span>
 <span class="normal"><a href="#__codelineno-0-113">113</a></span>
 <span class="normal"><a href="#__codelineno-0-114">114</a></span>
 <span class="normal"><a href="#__codelineno-0-115">115</a></span>
@@ -12495,17 +12675,18 @@ body.</p>
 <a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-118" name="__codelineno-0-118"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">[</span><span class="s2">&quot;x-api-key&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">api_key</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.http.HttpService.set_base_url" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_base_url</span>
+          <span class="doc doc-object-name doc-function-name">set_base_url</span>
 
 
 </h3>
@@ -12515,6 +12696,8 @@ body.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the api base url used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -12544,9 +12727,9 @@ body.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/http.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-133">133</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/http.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-133">133</a></span>
 <span class="normal"><a href="#__codelineno-0-134">134</a></span>
 <span class="normal"><a href="#__codelineno-0-135">135</a></span>
 <span class="normal"><a href="#__codelineno-0-136">136</a></span>
@@ -12560,17 +12743,18 @@ body.</p>
 <a id="__codelineno-0-138" name="__codelineno-0-138"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-139" name="__codelineno-0-139"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span> <span class="o">=</span> <span class="n">base_url</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.http.HttpService.set_user_agent" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">set_user_agent</span>
+          <span class="doc doc-object-name doc-function-name">set_user_agent</span>
 
 
 </h3>
@@ -12580,6 +12764,8 @@ body.</p>
   <div class="doc doc-contents ">
   
       <p>Sets the user agent used by the http service.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -12609,9 +12795,9 @@ body.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/http.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-125">125</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/http.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-125">125</a></span>
 <span class="normal"><a href="#__codelineno-0-126">126</a></span>
 <span class="normal"><a href="#__codelineno-0-127">127</a></span>
 <span class="normal"><a href="#__codelineno-0-128">128</a></span>
@@ -12625,17 +12811,18 @@ body.</p>
 <a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-131" name="__codelineno-0-131"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">[</span><span class="s2">&quot;x-user-agent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_agent</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.http.HttpService.start" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">start</span>
+          <span class="doc doc-object-name doc-function-name">start</span>
 
   
   <span class="doc doc-labels">
@@ -12650,9 +12837,9 @@ body.</p>
   
       <p>Starts the client session to be used by the http service.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/http.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-141">141</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/http.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-141">141</a></span>
 <span class="normal"><a href="#__codelineno-0-142">142</a></span>
 <span class="normal"><a href="#__codelineno-0-143">143</a></span>
 <span class="normal"><a href="#__codelineno-0-144">144</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-141" name="__codelineno-0-141"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -12660,17 +12847,18 @@ body.</p>
 <a id="__codelineno-0-143" name="__codelineno-0-143"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_session&quot;</span><span class="p">):</span>
 <a id="__codelineno-0-144" name="__codelineno-0-144"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_init_session</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.http.HttpService.unset_api_key" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">unset_api_key</span>
+          <span class="doc doc-object-name doc-function-name">unset_api_key</span>
 
 
 </h3>
@@ -12681,9 +12869,9 @@ body.</p>
   
       <p>Un-sets the current api key so it isn't sent with requests.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/http.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-120">120</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/http.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-120">120</a></span>
 <span class="normal"><a href="#__codelineno-0-121">121</a></span>
 <span class="normal"><a href="#__codelineno-0-122">122</a></span>
 <span class="normal"><a href="#__codelineno-0-123">123</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="k">def</span> <span class="nf">unset_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -12691,7 +12879,7 @@ body.</p>
 <a id="__codelineno-0-122" name="__codelineno-0-122"></a>    <span class="k">if</span> <span class="s2">&quot;x-api-key&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">:</span>
 <a id="__codelineno-0-123" name="__codelineno-0-123"></a>        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span><span class="p">[</span><span class="s2">&quot;x-api-key&quot;</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -12709,23 +12897,22 @@ body.</p>
 
 
 <h2 id="wom.services.NameChangeService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">NameChangeService</span>
+          <span class="doc doc-object-name doc-class-name">NameChangeService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
 
   
       <p>Handles endpoints related to name changes.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/names.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/names.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
 <span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
 <span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
 <span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
@@ -12899,11 +13086,12 @@ body.</p>
 <a id="__codelineno-0-123" name="__codelineno-0-123"></a>
 <a id="__codelineno-0-124" name="__codelineno-0-124"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -12918,7 +13106,7 @@ body.</p>
 
 
 <h3 id="wom.services.names.NameChangeService.search_name_changes" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">search_name_changes</span>
+          <span class="doc doc-object-name doc-function-name">search_name_changes</span>
 
   
   <span class="doc doc-labels">
@@ -12938,6 +13126,8 @@ body.</p>
   <div class="doc doc-contents ">
   
       <p>Searches for name changes.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -12966,6 +13156,8 @@ body.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -13016,6 +13208,8 @@ from the API. Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -13051,9 +13245,9 @@ from the API. Defaults to <code>None</code>.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/names.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-43">43</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/names.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-43">43</a></span>
 <span class="normal"><a href="#__codelineno-0-44">44</a></span>
 <span class="normal"><a href="#__codelineno-0-45">45</a></span>
 <span class="normal"><a href="#__codelineno-0-46">46</a></span>
@@ -13149,17 +13343,18 @@ from the API. Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-89" name="__codelineno-0-89"></a>
 <a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.names.NameChangeService.submit_name_change" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">submit_name_change</span>
+          <span class="doc doc-object-name doc-function-name">submit_name_change</span>
 
   
   <span class="doc doc-labels">
@@ -13175,6 +13370,8 @@ from the API. Defaults to <code>None</code>.</p>
   <div class="doc doc-contents ">
   
       <p>Submits a new name change.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -13218,6 +13415,8 @@ from the API. Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -13253,9 +13452,9 @@ from the API. Defaults to <code>None</code>.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/names.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/names.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
 <span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
 <span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
 <span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
@@ -13321,7 +13520,7 @@ from the API. Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-123" name="__codelineno-0-123"></a>
 <a id="__codelineno-0-124" name="__codelineno-0-124"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -13339,23 +13538,22 @@ from the API. Defaults to <code>None</code>.</p>
 
 
 <h2 id="wom.services.PlayerService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">PlayerService</span>
+          <span class="doc doc-object-name doc-class-name">PlayerService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
 
   
       <p>Handles endpoints related to players.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/players.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/players.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
 <span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
 <span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
 <span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
@@ -14597,11 +14795,12 @@ from the API. Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-659" name="__codelineno-0-659"></a>
 <a id="__codelineno-0-660" name="__codelineno-0-660"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_snapshot_timeline_entry</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -14616,7 +14815,7 @@ from the API. Defaults to <code>None</code>.</p>
 
 
 <h3 id="wom.services.players.PlayerService.assert_player_type" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">assert_player_type</span>
+          <span class="doc doc-object-name doc-function-name">assert_player_type</span>
 
   
   <span class="doc doc-labels">
@@ -14632,6 +14831,8 @@ from the API. Defaults to <code>None</code>.</p>
   <div class="doc doc-contents ">
   
       <p>Asserts, and fixes, a players type.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -14660,6 +14861,8 @@ from the API. Defaults to <code>None</code>.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -14695,9 +14898,9 @@ type.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-115">115</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-115">115</a></span>
 <span class="normal"><a href="#__codelineno-0-116">116</a></span>
 <span class="normal"><a href="#__codelineno-0-117">117</a></span>
 <span class="normal"><a href="#__codelineno-0-118">118</a></span>
@@ -14755,17 +14958,18 @@ type.</p>
 <a id="__codelineno-0-142" name="__codelineno-0-142"></a>
 <a id="__codelineno-0-143" name="__codelineno-0-143"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_asserted_player_type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_achievement_progress" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_achievement_progress</span>
+          <span class="doc doc-object-name doc-function-name">get_achievement_progress</span>
 
   
   <span class="doc doc-labels">
@@ -14781,6 +14985,8 @@ type.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the progress towards achievements for a given player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -14809,6 +15015,8 @@ type.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -14844,9 +15052,9 @@ achievement progress.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-233">233</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-233">233</a></span>
 <span class="normal"><a href="#__codelineno-0-234">234</a></span>
 <span class="normal"><a href="#__codelineno-0-235">235</a></span>
 <span class="normal"><a href="#__codelineno-0-236">236</a></span>
@@ -14912,17 +15120,18 @@ achievement progress.</p>
 <a id="__codelineno-0-264" name="__codelineno-0-264"></a>        <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_achievement_progress</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
 <a id="__codelineno-0-265" name="__codelineno-0-265"></a>    <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_achievements" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_achievements</span>
+          <span class="doc doc-object-name doc-function-name">get_achievements</span>
 
   
   <span class="doc doc-labels">
@@ -14938,6 +15147,8 @@ achievement progress.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the achievements for a given player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -14966,6 +15177,8 @@ achievement progress.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -15001,9 +15214,9 @@ achievements.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-203">203</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-203">203</a></span>
 <span class="normal"><a href="#__codelineno-0-204">204</a></span>
 <span class="normal"><a href="#__codelineno-0-205">205</a></span>
 <span class="normal"><a href="#__codelineno-0-206">206</a></span>
@@ -15061,17 +15274,18 @@ achievements.</p>
 <a id="__codelineno-0-230" name="__codelineno-0-230"></a>
 <a id="__codelineno-0-231" name="__codelineno-0-231"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_achievement</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_competition_participations" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_competition_participations</span>
+          <span class="doc doc-object-name doc-function-name">get_competition_participations</span>
 
   
   <span class="doc doc-labels">
@@ -15091,6 +15305,8 @@ achievements.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the competition participations for a given player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -15119,6 +15335,8 @@ achievements.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -15169,6 +15387,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -15203,9 +15423,9 @@ participations.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-267">267</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-267">267</a></span>
 <span class="normal"><a href="#__codelineno-0-268">268</a></span>
 <span class="normal"><a href="#__codelineno-0-269">269</a></span>
 <span class="normal"><a href="#__codelineno-0-270">270</a></span>
@@ -15307,17 +15527,18 @@ participations.</p>
 <a id="__codelineno-0-316" name="__codelineno-0-316"></a>
 <a id="__codelineno-0-317" name="__codelineno-0-317"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_participation</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_competition_standings" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_competition_standings</span>
+          <span class="doc doc-object-name doc-function-name">get_competition_standings</span>
 
   
   <span class="doc doc-labels">
@@ -15333,6 +15554,8 @@ participations.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the competition standings for a given player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -15376,6 +15599,8 @@ participations.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -15412,9 +15637,9 @@ standings.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-319">319</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-319">319</a></span>
 <span class="normal"><a href="#__codelineno-0-320">320</a></span>
 <span class="normal"><a href="#__codelineno-0-321">321</a></span>
 <span class="normal"><a href="#__codelineno-0-322">322</a></span>
@@ -15494,17 +15719,18 @@ standings.</p>
 <a id="__codelineno-0-357" name="__codelineno-0-357"></a>        <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_competition_standing</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
 <a id="__codelineno-0-358" name="__codelineno-0-358"></a>    <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_details" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_details</span>
+          <span class="doc doc-object-name doc-function-name">get_details</span>
 
   
   <span class="doc doc-labels">
@@ -15518,6 +15744,8 @@ standings.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the details for a given player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -15546,6 +15774,8 @@ standings.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -15580,9 +15810,9 @@ standings.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-145">145</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-145">145</a></span>
 <span class="normal"><a href="#__codelineno-0-146">146</a></span>
 <span class="normal"><a href="#__codelineno-0-147">147</a></span>
 <span class="normal"><a href="#__codelineno-0-148">148</a></span>
@@ -15638,17 +15868,18 @@ standings.</p>
 <a id="__codelineno-0-171" name="__codelineno-0-171"></a>
 <a id="__codelineno-0-172" name="__codelineno-0-172"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_details</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_details_by_id" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_details_by_id</span>
+          <span class="doc doc-object-name doc-function-name">get_details_by_id</span>
 
   
   <span class="doc doc-labels">
@@ -15664,6 +15895,8 @@ standings.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the details for a given player id.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -15692,6 +15925,8 @@ standings.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -15726,9 +15961,9 @@ standings.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-174">174</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-174">174</a></span>
 <span class="normal"><a href="#__codelineno-0-175">175</a></span>
 <span class="normal"><a href="#__codelineno-0-176">176</a></span>
 <span class="normal"><a href="#__codelineno-0-177">177</a></span>
@@ -15784,17 +16019,18 @@ standings.</p>
 <a id="__codelineno-0-200" name="__codelineno-0-200"></a>
 <a id="__codelineno-0-201" name="__codelineno-0-201"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_details</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_gains" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_gains</span>
+          <span class="doc doc-object-name doc-function-name">get_gains</span>
 
   
   <span class="doc doc-labels">
@@ -15814,6 +16050,8 @@ standings.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the gains made by this player over the given time span.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -15842,6 +16080,8 @@ standings.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -15892,6 +16132,8 @@ to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -15932,9 +16174,9 @@ to <code>None</code>.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-402">402</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-402">402</a></span>
 <span class="normal"><a href="#__codelineno-0-403">403</a></span>
 <span class="normal"><a href="#__codelineno-0-404">404</a></span>
 <span class="normal"><a href="#__codelineno-0-405">405</a></span>
@@ -16050,17 +16292,18 @@ to <code>None</code>.</p>
 <a id="__codelineno-0-458" name="__codelineno-0-458"></a>
 <a id="__codelineno-0-459" name="__codelineno-0-459"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_gains</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_group_memberships" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_group_memberships</span>
+          <span class="doc doc-object-name doc-function-name">get_group_memberships</span>
 
   
   <span class="doc doc-labels">
@@ -16079,6 +16322,8 @@ to <code>None</code>.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the group memberships for the given player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -16107,6 +16352,8 @@ to <code>None</code>.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -16145,6 +16392,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -16181,9 +16430,9 @@ memberships.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-360">360</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-360">360</a></span>
 <span class="normal"><a href="#__codelineno-0-361">361</a></span>
 <span class="normal"><a href="#__codelineno-0-362">362</a></span>
 <span class="normal"><a href="#__codelineno-0-363">363</a></span>
@@ -16265,17 +16514,18 @@ memberships.</p>
 <a id="__codelineno-0-399" name="__codelineno-0-399"></a>
 <a id="__codelineno-0-400" name="__codelineno-0-400"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_membership</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_name_changes" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_name_changes</span>
+          <span class="doc doc-object-name doc-function-name">get_name_changes</span>
 
   
   <span class="doc doc-labels">
@@ -16291,6 +16541,8 @@ memberships.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the name changes for the player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -16319,6 +16571,8 @@ memberships.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -16353,9 +16607,9 @@ memberships.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-569">569</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-569">569</a></span>
 <span class="normal"><a href="#__codelineno-0-570">570</a></span>
 <span class="normal"><a href="#__codelineno-0-571">571</a></span>
 <span class="normal"><a href="#__codelineno-0-572">572</a></span>
@@ -16411,17 +16665,18 @@ memberships.</p>
 <a id="__codelineno-0-595" name="__codelineno-0-595"></a>
 <a id="__codelineno-0-596" name="__codelineno-0-596"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_name_change</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_records" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_records</span>
+          <span class="doc doc-object-name doc-function-name">get_records</span>
 
   
   <span class="doc doc-labels">
@@ -16440,6 +16695,8 @@ memberships.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the records held by this player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -16468,6 +16725,8 @@ memberships.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -16506,6 +16765,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -16542,9 +16803,9 @@ records.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-461">461</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-461">461</a></span>
 <span class="normal"><a href="#__codelineno-0-462">462</a></span>
 <span class="normal"><a href="#__codelineno-0-463">463</a></span>
 <span class="normal"><a href="#__codelineno-0-464">464</a></span>
@@ -16640,17 +16901,18 @@ records.</p>
 <a id="__codelineno-0-507" name="__codelineno-0-507"></a>
 <a id="__codelineno-0-508" name="__codelineno-0-508"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_record</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_snapshots" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_snapshots</span>
+          <span class="doc doc-object-name doc-function-name">get_snapshots</span>
 
   
   <span class="doc doc-labels">
@@ -16670,6 +16932,8 @@ records.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the snapshots for the player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -16698,6 +16962,8 @@ records.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -16748,6 +17014,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -16788,9 +17056,9 @@ Defaults to <code>None</code>.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-510">510</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-510">510</a></span>
 <span class="normal"><a href="#__codelineno-0-511">511</a></span>
 <span class="normal"><a href="#__codelineno-0-512">512</a></span>
 <span class="normal"><a href="#__codelineno-0-513">513</a></span>
@@ -16906,17 +17174,18 @@ Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-566" name="__codelineno-0-566"></a>
 <a id="__codelineno-0-567" name="__codelineno-0-567"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_snapshot</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.get_snapshots_timeline" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_snapshots_timeline</span>
+          <span class="doc doc-object-name doc-function-name">get_snapshots_timeline</span>
 
   
   <span class="doc doc-labels">
@@ -16937,6 +17206,8 @@ Defaults to <code>None</code>.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the snapshots timeline for the given player and metric.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -16979,6 +17250,8 @@ Defaults to <code>None</code>.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -17029,6 +17302,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -17070,9 +17345,9 @@ entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-598">598</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-598">598</a></span>
 <span class="normal"><a href="#__codelineno-0-599">599</a></span>
 <span class="normal"><a href="#__codelineno-0-600">600</a></span>
 <span class="normal"><a href="#__codelineno-0-601">601</a></span>
@@ -17198,17 +17473,18 @@ entries.</p>
 <a id="__codelineno-0-659" name="__codelineno-0-659"></a>
 <a id="__codelineno-0-660" name="__codelineno-0-660"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_snapshot_timeline_entry</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.search_players" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">search_players</span>
+          <span class="doc doc-object-name doc-function-name">search_players</span>
 
   
   <span class="doc doc-labels">
@@ -17227,6 +17503,8 @@ entries.</p>
   <div class="doc doc-contents ">
   
       <p>Searches for a player by partial username.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -17255,6 +17533,8 @@ entries.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -17293,6 +17573,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -17327,9 +17609,9 @@ players.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-45">45</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-45">45</a></span>
 <span class="normal"><a href="#__codelineno-0-46">46</a></span>
 <span class="normal"><a href="#__codelineno-0-47">47</a></span>
 <span class="normal"><a href="#__codelineno-0-48">48</a></span>
@@ -17407,17 +17689,18 @@ players.</p>
 <a id="__codelineno-0-82" name="__codelineno-0-82"></a>
 <a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player</span><span class="p">(</span><span class="n">player</span><span class="p">)</span> <span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
 
 
 <h3 id="wom.services.players.PlayerService.update_player" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">update_player</span>
+          <span class="doc doc-object-name doc-function-name">update_player</span>
 
   
   <span class="doc doc-labels">
@@ -17433,6 +17716,8 @@ players.</p>
   <div class="doc doc-contents ">
   
       <p>Updates the given player.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -17461,6 +17746,8 @@ players.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -17496,9 +17783,9 @@ details.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/players.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
 <span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
 <span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
 <span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
@@ -17556,7 +17843,7 @@ details.</p>
 <a id="__codelineno-0-112" name="__codelineno-0-112"></a>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_details</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -17574,23 +17861,22 @@ details.</p>
 
 
 <h2 id="wom.services.RecordService" class="doc doc-heading">
-        <span class="doc doc-object-name doc-class-name">RecordService</span>
+          <span class="doc doc-object-name doc-class-name">RecordService</span>
 
 
 </h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.services.base.BaseService" href="#wom.services.BaseService">BaseService</a></code></p>
 
   
       <p>Handles endpoints related to records.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>wom/services/records.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+            <details class="quote">
+              <summary>Source code in <code>wom/services/records.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
 <span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
 <span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
 <span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
@@ -17722,11 +18008,12 @@ details.</p>
 <a id="__codelineno-0-103" name="__codelineno-0-103"></a>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_record_leaderboard_entry</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -17741,7 +18028,7 @@ details.</p>
 
 
 <h3 id="wom.services.records.RecordService.get_global_record_leaderboards" class="doc doc-heading">
-        <span class="doc doc-object-name doc-function-name">get_global_record_leaderboards</span>
+          <span class="doc doc-object-name doc-function-name">get_global_record_leaderboards</span>
 
   
   <span class="doc doc-labels">
@@ -17762,6 +18049,8 @@ details.</p>
   <div class="doc doc-contents ">
   
       <p>Gets the global record leaderboards.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -17804,6 +18093,8 @@ details.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Other Parameters:</strong></p>
   <table>
@@ -17854,6 +18145,8 @@ Defaults to <code>None</code>.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -17892,9 +18185,9 @@ leaderboard entries.</p>
 </code></pre></div>
 </details>
 
-      <details class="quote">
-        <summary>Source code in <code>wom/services/records.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+          <details class="quote">
+            <summary>Source code in <code>wom/services/records.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
 <span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
 <span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
 <span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
@@ -18016,7 +18309,7 @@ leaderboard entries.</p>
 <a id="__codelineno-0-103" name="__codelineno-0-103"></a>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_record_leaderboard_entry</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
