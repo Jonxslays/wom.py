@@ -1,3 +1,11 @@
+# v0.6.0 (Jul 2023)
+
+## Additions
+
+- Add support for Desert Treasure 2 bosses.
+
+---
+
 # v0.5.0 (Jul 2023)
 
 ## Additions
