@@ -65,9 +65,8 @@ Some of the popular features include:
 
 ## Contributing
 
-wom.py is open to contributions.
-
-Come back soon™ once I've written the contributing guide.
+wom.py is open to contributions. Check out the
+[contributing guide](https://github.com/Jonxslays/wom.py/blob/master/CONTRIBUTING.md) to learn how.
 
 ## License
 
