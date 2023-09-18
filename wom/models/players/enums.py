@@ -52,6 +52,7 @@ class PlayerBuild(BaseEnum):
     Zerker = "zerker"
     Def1 = "def1"
     Hp10 = "hp10"
+    F2pLvl3 = "f2p_lvl3"
 
 
 class PlayerStatus(BaseEnum):
