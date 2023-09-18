@@ -1,3 +1,12 @@
+# v0.6.1 (Sep 2023)
+
+## Additions
+
+- Add `F2P Lvl 3` player build.
+
+---
+
+
 # v0.6.0 (Jul 2023)
 
 ## Additions
