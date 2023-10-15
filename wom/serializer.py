@@ -179,7 +179,7 @@ class Serializer:
         player.status = models.PlayerStatus.from_str(data["status"])
         player.country = models.Country.from_str_maybe(data["country"])
         player.registered_at = self._dt_from_iso(data["registeredAt"])
-        player.updated_at = self._dt_from_iso(data["updatedAt"])
+        player.updated_at = self._dt_from_iso_maybe(data["updatedAt"])
         player.last_changed_at = self._dt_from_iso_maybe(data["lastChangedAt"])
         player.last_imported_at = self._dt_from_iso_maybe(data["lastImportedAt"])
         return player
