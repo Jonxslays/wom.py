@@ -106,6 +106,7 @@ __all__ = (
     "DeniedNameChangeReviewContext",
     "EfficiencyService",
     "Err",
+    "FailedToDeserialize",
     "Gains",
     "Group",
     "GroupDetail",

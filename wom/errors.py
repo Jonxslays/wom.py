@@ -23,7 +23,14 @@
 
 from __future__ import annotations
 
-__all__ = ("UnwrapError", "WomError")
+import typing as t
+
+if t.TYPE_CHECKING:
+    from wom.serializer import SerializerT
+
+__all__ = ("FailedToDeserialize", "UnwrapError", "WomError")
+
+T = t.TypeVar("T")
 
 
 class WomError(Exception):
@@ -44,3 +51,15 @@ class UnwrapError(WomError):
 
     def __init__(self, message: str) -> None:
         super().__init__(f"Unwrap failed: {message}")
+
+
+class FailedToDeserialize(WomError, t.Generic[T]):
+    """Raised when a response from the WOM api fails to deserialize.
+
+    Args:
+        method: The serializer method that was being called.
+        exc: The exception that occurred.
+    """
+
+    def __init__(self, method: SerializerT[T], exc: Exception) -> None:
+        super().__init__(f"Serializer call to `{method.__name__}` failed\n -> {exc}")
