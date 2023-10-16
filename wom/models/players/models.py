@@ -216,8 +216,8 @@ class Player(BaseModel):
     registered_at: datetime
     """The date the player was registered with WOM."""
 
-    updated_at: datetime
-    """The date the player was last updated with WOM."""
+    updated_at: t.Optional[datetime]
+    """The date the player was last successfully updated with WOM."""
 
     last_changed_at: t.Optional[datetime]
     """The date of the players last change (xp gain, boss kc, etc)."""

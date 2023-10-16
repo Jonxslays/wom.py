@@ -32,7 +32,7 @@ from __future__ import annotations
 from typing import Final
 
 __packagename__: Final[str] = "wom.py"
-__version__: Final[str] = "0.6.1"
+__version__: Final[str] = "0.7.0"
 __author__: Final[str] = "Jonxslays"
 __copyright__: Final[str] = "2023-present Jonxslays"
 __description__: Final[str] = "An asynchronous wrapper for the Wise Old Man API."
@@ -106,6 +106,7 @@ __all__ = (
     "DeniedNameChangeReviewContext",
     "EfficiencyService",
     "Err",
+    "FailedToDeserialize",
     "Gains",
     "Group",
     "GroupDetail",
