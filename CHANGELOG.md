@@ -8,6 +8,10 @@
 
 - Add `FailedToDeserialize` error.
 
+## Fixes
+
+- Fix typo in docstring for `PlayerService.get_records`.
+
 ---
 
 # v0.6.1 (Sep 2023)

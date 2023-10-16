@@ -471,7 +471,7 @@ class PlayerService(BaseService):
             username: The username to get the gains for.
 
         Keyword Args:
-            period: The optional period of time to get gains for.
+            period: The optional period of time to get records for.
                 Defaults to `None`.
 
             metric: The optional metric to filter the records on.
