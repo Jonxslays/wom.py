@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wom.py"
-version = "0.7.0"
+version = "0.8.0"
 description = "An asynchronous wrapper for the Wise Old Man API."
 authors = ["Jonxslays"]
 license = "MIT"
@@ -8,10 +8,7 @@ readme = "README.md"
 homepage = "https://github.com/Jonxslays/wom.py"
 repository = "https://github.com/Jonxslays/wom.py"
 documentation = "https://jonxslays.github.io/wom.py"
-packages = [
-    { include = "wom" },
-    { include = "wom/py.typed" },
-]
+packages = [{ include = "wom" }, { include = "wom/py.typed" }]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Framework :: AsyncIO",
