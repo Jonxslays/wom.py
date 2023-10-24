@@ -811,3 +811,41 @@ class GroupService(BaseService):
             return result.Err(data)
 
         return result.Ok(self._serializer.deserialize_group_statistics(data))
+
+    async def get_activity(
+        self,
+        id: int,
+        *,
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
+    ) -> ResultT[t.List[models.GroupActivity]]:
+        """Gets the activity for the group. This is a paginated endpoint.
+
+        Args:
+            id: The ID of the group to fetch activity for.
+            limit: The pagination limit.
+            offset: The pagination offset.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of activities.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            await client.groups.get_activity(69, limit=5)
+            ```
+        """
+        params = self._generate_map(limit=limit, offset=offset)
+        route = routes.GROUP_ACTIVITY.compile(id).with_params(params)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_group_activity(a) for a in data])
