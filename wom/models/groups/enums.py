@@ -23,7 +23,15 @@ from __future__ import annotations
 
 from wom.enums import BaseEnum
 
-__all__ = ("GroupRole",)
+__all__ = ("GroupActivityType", "GroupRole")
+
+
+class GroupActivityType(BaseEnum):
+    """Activities that can occur for a group."""
+
+    ChangedRole = "changed_role"
+    Joined = "joined"
+    Left = "left"
 
 
 class GroupRole(BaseEnum):

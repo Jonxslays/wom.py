@@ -32,6 +32,7 @@ from ..base import BaseModel
 from ..players import Gains
 from ..players import Player
 from ..players import Snapshot
+from .enums import GroupActivityType
 from .enums import GroupRole
 
 __all__ = (
@@ -39,6 +40,7 @@ __all__ = (
     "BossLeader",
     "ComputedMetricLeader",
     "Group",
+    "GroupActivity",
     "GroupDetail",
     "GroupHiscoresActivityItem",
     "GroupHiscoresBossItem",
@@ -378,3 +380,26 @@ class GroupMemberGains(BaseModel):
 
     data: Gains
     """The [`Gains`][wom.Gains] for this group member."""
+
+
+@attrs.define(init=False)
+class GroupActivity(BaseModel):
+    """An activity that occurred in a group."""
+
+    group_id: int
+    """The unique ID of the group this activity occurred for."""
+
+    player_id: int
+    """The unique ID of the player associated with this activity."""
+
+    type: GroupActivityType
+    """The type of activity that occurred."""
+
+    role: GroupRole
+    """The players role in the group."""
+
+    created_at: datetime
+    """The datetime indicating when this activity occurred."""
+
+    player: Player
+    """The player associated with this activity."""
