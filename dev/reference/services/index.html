@@ -7553,7 +7553,10 @@ players.</p>
 <span class="normal"><a href="#__codelineno-0-848">848</a></span>
 <span class="normal"><a href="#__codelineno-0-849">849</a></span>
 <span class="normal"><a href="#__codelineno-0-850">850</a></span>
-<span class="normal"><a href="#__codelineno-0-851">851</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="k">class</span> <span class="nc">GroupService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-851">851</a></span>
+<span class="normal"><a href="#__codelineno-0-852">852</a></span>
+<span class="normal"><a href="#__codelineno-0-853">853</a></span>
+<span class="normal"><a href="#__codelineno-0-854">854</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="k">class</span> <span class="nc">GroupService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles endpoints related to groups.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a>
 <a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
@@ -8338,32 +8341,35 @@ players.</p>
 <a id="__codelineno-0-823" name="__codelineno-0-823"></a>
 <a id="__codelineno-0-824" name="__codelineno-0-824"></a><span class="sd">        Args:</span>
 <a id="__codelineno-0-825" name="__codelineno-0-825"></a><span class="sd">            id: The ID of the group to fetch activity for.</span>
-<a id="__codelineno-0-826" name="__codelineno-0-826"></a><span class="sd">            limit: The pagination limit.</span>
-<a id="__codelineno-0-827" name="__codelineno-0-827"></a><span class="sd">            offset: The pagination offset.</span>
-<a id="__codelineno-0-828" name="__codelineno-0-828"></a>
-<a id="__codelineno-0-829" name="__codelineno-0-829"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-830" name="__codelineno-0-830"></a><span class="sd">            A [`Result`][wom.Result] containing the list of activities.</span>
+<a id="__codelineno-0-826" name="__codelineno-0-826"></a>
+<a id="__codelineno-0-827" name="__codelineno-0-827"></a><span class="sd">        Keyword Args:</span>
+<a id="__codelineno-0-828" name="__codelineno-0-828"></a><span class="sd">            limit: The pagination limit.</span>
+<a id="__codelineno-0-829" name="__codelineno-0-829"></a>
+<a id="__codelineno-0-830" name="__codelineno-0-830"></a><span class="sd">            offset: The pagination offset.</span>
 <a id="__codelineno-0-831" name="__codelineno-0-831"></a>
-<a id="__codelineno-0-832" name="__codelineno-0-832"></a><span class="sd">        ??? example</span>
-<a id="__codelineno-0-833" name="__codelineno-0-833"></a>
-<a id="__codelineno-0-834" name="__codelineno-0-834"></a><span class="sd">            ```py</span>
-<a id="__codelineno-0-835" name="__codelineno-0-835"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-832" name="__codelineno-0-832"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-833" name="__codelineno-0-833"></a><span class="sd">            A [`Result`][wom.Result] containing the list of activities.</span>
+<a id="__codelineno-0-834" name="__codelineno-0-834"></a>
+<a id="__codelineno-0-835" name="__codelineno-0-835"></a><span class="sd">        ??? example</span>
 <a id="__codelineno-0-836" name="__codelineno-0-836"></a>
-<a id="__codelineno-0-837" name="__codelineno-0-837"></a><span class="sd">            client = wom.Client(...)</span>
-<a id="__codelineno-0-838" name="__codelineno-0-838"></a>
-<a id="__codelineno-0-839" name="__codelineno-0-839"></a><span class="sd">            await client.start()</span>
-<a id="__codelineno-0-840" name="__codelineno-0-840"></a>
-<a id="__codelineno-0-841" name="__codelineno-0-841"></a><span class="sd">            await client.groups.get_activity(69, limit=5)</span>
-<a id="__codelineno-0-842" name="__codelineno-0-842"></a><span class="sd">            ```</span>
-<a id="__codelineno-0-843" name="__codelineno-0-843"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-844" name="__codelineno-0-844"></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
-<a id="__codelineno-0-845" name="__codelineno-0-845"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GROUP_ACTIVITY</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-<a id="__codelineno-0-846" name="__codelineno-0-846"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
-<a id="__codelineno-0-847" name="__codelineno-0-847"></a>
-<a id="__codelineno-0-848" name="__codelineno-0-848"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-849" name="__codelineno-0-849"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-837" name="__codelineno-0-837"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-838" name="__codelineno-0-838"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-839" name="__codelineno-0-839"></a>
+<a id="__codelineno-0-840" name="__codelineno-0-840"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-841" name="__codelineno-0-841"></a>
+<a id="__codelineno-0-842" name="__codelineno-0-842"></a><span class="sd">            await client.start()</span>
+<a id="__codelineno-0-843" name="__codelineno-0-843"></a>
+<a id="__codelineno-0-844" name="__codelineno-0-844"></a><span class="sd">            await client.groups.get_activity(69, limit=5)</span>
+<a id="__codelineno-0-845" name="__codelineno-0-845"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-846" name="__codelineno-0-846"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-847" name="__codelineno-0-847"></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
+<a id="__codelineno-0-848" name="__codelineno-0-848"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GROUP_ACTIVITY</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-0-849" name="__codelineno-0-849"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
 <a id="__codelineno-0-850" name="__codelineno-0-850"></a>
-<a id="__codelineno-0-851" name="__codelineno-0-851"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_activity</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-851" name="__codelineno-0-851"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-852" name="__codelineno-0-852"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-853" name="__codelineno-0-853"></a>
+<a id="__codelineno-0-854" name="__codelineno-0-854"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_activity</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -9969,6 +9975,21 @@ achievements.</p>
               <em>required</em>
           </td>
         </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Other Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
         <tr>
           <td><code>limit</code></td>
           <td>
@@ -9978,9 +9999,6 @@ achievements.</p>
             <div class="doc-md-description">
               <p>The pagination limit.</p>
             </div>
-          </td>
-          <td>
-                <code>None</code>
           </td>
         </tr>
         <tr>
@@ -9992,9 +10010,6 @@ achievements.</p>
             <div class="doc-md-description">
               <p>The pagination offset.</p>
             </div>
-          </td>
-          <td>
-                <code>None</code>
           </td>
         </tr>
     </tbody>
@@ -10073,7 +10088,10 @@ achievements.</p>
 <span class="normal"><a href="#__codelineno-0-848">848</a></span>
 <span class="normal"><a href="#__codelineno-0-849">849</a></span>
 <span class="normal"><a href="#__codelineno-0-850">850</a></span>
-<span class="normal"><a href="#__codelineno-0-851">851</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-815" name="__codelineno-0-815"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_activity</span><span class="p">(</span>
+<span class="normal"><a href="#__codelineno-0-851">851</a></span>
+<span class="normal"><a href="#__codelineno-0-852">852</a></span>
+<span class="normal"><a href="#__codelineno-0-853">853</a></span>
+<span class="normal"><a href="#__codelineno-0-854">854</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-815" name="__codelineno-0-815"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_activity</span><span class="p">(</span>
 <a id="__codelineno-0-816" name="__codelineno-0-816"></a>    <span class="bp">self</span><span class="p">,</span>
 <a id="__codelineno-0-817" name="__codelineno-0-817"></a>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <a id="__codelineno-0-818" name="__codelineno-0-818"></a>    <span class="o">*</span><span class="p">,</span>
@@ -10084,32 +10102,35 @@ achievements.</p>
 <a id="__codelineno-0-823" name="__codelineno-0-823"></a>
 <a id="__codelineno-0-824" name="__codelineno-0-824"></a><span class="sd">    Args:</span>
 <a id="__codelineno-0-825" name="__codelineno-0-825"></a><span class="sd">        id: The ID of the group to fetch activity for.</span>
-<a id="__codelineno-0-826" name="__codelineno-0-826"></a><span class="sd">        limit: The pagination limit.</span>
-<a id="__codelineno-0-827" name="__codelineno-0-827"></a><span class="sd">        offset: The pagination offset.</span>
-<a id="__codelineno-0-828" name="__codelineno-0-828"></a>
-<a id="__codelineno-0-829" name="__codelineno-0-829"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-830" name="__codelineno-0-830"></a><span class="sd">        A [`Result`][wom.Result] containing the list of activities.</span>
+<a id="__codelineno-0-826" name="__codelineno-0-826"></a>
+<a id="__codelineno-0-827" name="__codelineno-0-827"></a><span class="sd">    Keyword Args:</span>
+<a id="__codelineno-0-828" name="__codelineno-0-828"></a><span class="sd">        limit: The pagination limit.</span>
+<a id="__codelineno-0-829" name="__codelineno-0-829"></a>
+<a id="__codelineno-0-830" name="__codelineno-0-830"></a><span class="sd">        offset: The pagination offset.</span>
 <a id="__codelineno-0-831" name="__codelineno-0-831"></a>
-<a id="__codelineno-0-832" name="__codelineno-0-832"></a><span class="sd">    ??? example</span>
-<a id="__codelineno-0-833" name="__codelineno-0-833"></a>
-<a id="__codelineno-0-834" name="__codelineno-0-834"></a><span class="sd">        ```py</span>
-<a id="__codelineno-0-835" name="__codelineno-0-835"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-832" name="__codelineno-0-832"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-833" name="__codelineno-0-833"></a><span class="sd">        A [`Result`][wom.Result] containing the list of activities.</span>
+<a id="__codelineno-0-834" name="__codelineno-0-834"></a>
+<a id="__codelineno-0-835" name="__codelineno-0-835"></a><span class="sd">    ??? example</span>
 <a id="__codelineno-0-836" name="__codelineno-0-836"></a>
-<a id="__codelineno-0-837" name="__codelineno-0-837"></a><span class="sd">        client = wom.Client(...)</span>
-<a id="__codelineno-0-838" name="__codelineno-0-838"></a>
-<a id="__codelineno-0-839" name="__codelineno-0-839"></a><span class="sd">        await client.start()</span>
-<a id="__codelineno-0-840" name="__codelineno-0-840"></a>
-<a id="__codelineno-0-841" name="__codelineno-0-841"></a><span class="sd">        await client.groups.get_activity(69, limit=5)</span>
-<a id="__codelineno-0-842" name="__codelineno-0-842"></a><span class="sd">        ```</span>
-<a id="__codelineno-0-843" name="__codelineno-0-843"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-844" name="__codelineno-0-844"></a>    <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
-<a id="__codelineno-0-845" name="__codelineno-0-845"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GROUP_ACTIVITY</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-<a id="__codelineno-0-846" name="__codelineno-0-846"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
-<a id="__codelineno-0-847" name="__codelineno-0-847"></a>
-<a id="__codelineno-0-848" name="__codelineno-0-848"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
-<a id="__codelineno-0-849" name="__codelineno-0-849"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-837" name="__codelineno-0-837"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-838" name="__codelineno-0-838"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-839" name="__codelineno-0-839"></a>
+<a id="__codelineno-0-840" name="__codelineno-0-840"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-841" name="__codelineno-0-841"></a>
+<a id="__codelineno-0-842" name="__codelineno-0-842"></a><span class="sd">        await client.start()</span>
+<a id="__codelineno-0-843" name="__codelineno-0-843"></a>
+<a id="__codelineno-0-844" name="__codelineno-0-844"></a><span class="sd">        await client.groups.get_activity(69, limit=5)</span>
+<a id="__codelineno-0-845" name="__codelineno-0-845"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-846" name="__codelineno-0-846"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-847" name="__codelineno-0-847"></a>    <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_map</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">)</span>
+<a id="__codelineno-0-848" name="__codelineno-0-848"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">GROUP_ACTIVITY</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span><span class="o">.</span><span class="n">with_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<a id="__codelineno-0-849" name="__codelineno-0-849"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
 <a id="__codelineno-0-850" name="__codelineno-0-850"></a>
-<a id="__codelineno-0-851" name="__codelineno-0-851"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_activity</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-851" name="__codelineno-0-851"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-852" name="__codelineno-0-852"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-853" name="__codelineno-0-853"></a>
+<a id="__codelineno-0-854" name="__codelineno-0-854"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_group_activity</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
