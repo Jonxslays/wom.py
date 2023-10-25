@@ -823,7 +823,10 @@ class GroupService(BaseService):
 
         Args:
             id: The ID of the group to fetch activity for.
+
+        Keyword Args:
             limit: The pagination limit.
+
             offset: The pagination offset.
 
         Returns:
