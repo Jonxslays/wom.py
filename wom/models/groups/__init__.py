@@ -28,6 +28,8 @@ __all__ = (
     "BossLeader",
     "ComputedMetricLeader",
     "Group",
+    "GroupActivity",
+    "GroupActivityType",
     "GroupDetail",
     "GroupHiscoresActivityItem",
     "GroupHiscoresBossItem",

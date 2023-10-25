@@ -61,6 +61,8 @@ __all__ = (
     "Gains",
     "GroupDetail",
     "Group",
+    "GroupActivity",
+    "GroupActivityType",
     "GroupHiscoresActivityItem",
     "GroupHiscoresBossItem",
     "GroupHiscoresComputedMetricItem",

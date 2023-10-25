@@ -1,3 +1,14 @@
+# v0.8.0 (Oct 2023)
+
+## Additions
+
+- Add `GroupActivity` and `GroupActivityType` models.
+- Add `deserialize_group_activity` serializer method.
+- Add `get_activity` group service method.
+- Add `GROUP_ACTIVITY` Route.
+
+---
+
 # v0.7.0 (Oct 2023)
 
 ## Changes

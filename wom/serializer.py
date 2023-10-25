@@ -1127,3 +1127,21 @@ class Serializer:
         entry.date = self._dt_from_iso(data["date"])
         entry.value = data["value"]
         return entry
+
+    @serializer_guard
+    def deserialize_group_activity(self, data: DictT) -> models.GroupActivity:
+        """Deserializes the data into a group activity model.
+
+        Args:
+            data: The JSON payload.
+
+        Returns:
+            The requested model.
+        """
+        activity = models.GroupActivity()
+        activity.role = models.GroupRole.from_str_maybe(data["role"])
+        activity.player = self.deserialize_player(data["player"])
+        activity.created_at = self._dt_from_iso(data["createdAt"])
+        activity.type = models.GroupActivityType.from_str(data["type"])
+        self._set_attrs_cased(activity, data, "group_id", "player_id")
+        return activity
