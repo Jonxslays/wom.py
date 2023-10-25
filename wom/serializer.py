@@ -1139,7 +1139,7 @@ class Serializer:
             The requested model.
         """
         activity = models.GroupActivity()
-        activity.role = models.GroupRole.from_str(data["role"])
+        activity.role = models.GroupRole.from_str_maybe(data["role"])
         activity.player = self.deserialize_player(data["player"])
         activity.created_at = self._dt_from_iso(data["createdAt"])
         activity.type = models.GroupActivityType.from_str(data["type"])

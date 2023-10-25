@@ -395,8 +395,8 @@ class GroupActivity(BaseModel):
     type: GroupActivityType
     """The type of activity that occurred."""
 
-    role: GroupRole
-    """The players role in the group."""
+    role: t.Optional[GroupRole]
+    """The players role in the group, if they have one."""
 
     created_at: datetime
     """The datetime indicating when this activity occurred."""
