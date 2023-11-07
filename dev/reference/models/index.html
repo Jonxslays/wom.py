@@ -2852,6 +2852,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#wom.models.SnapshotTimelineEntry.rank" class="md-nav__link">
+    rank
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#wom.models.SnapshotTimelineEntry.value" class="md-nav__link">
     value
   </a>
@@ -5453,6 +5460,13 @@
           <li class="md-nav__item">
   <a href="#wom.models.SnapshotTimelineEntry.date" class="md-nav__link">
     date
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.SnapshotTimelineEntry.rank" class="md-nav__link">
+    rank
   </a>
   
 </li>
@@ -17364,15 +17378,25 @@ from this snapshot.</p>
 <span class="normal"><a href="#__codelineno-0-473">473</a></span>
 <span class="normal"><a href="#__codelineno-0-474">474</a></span>
 <span class="normal"><a href="#__codelineno-0-475">475</a></span>
-<span class="normal"><a href="#__codelineno-0-476">476</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-468" name="__codelineno-0-468"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-476">476</a></span>
+<span class="normal"><a href="#__codelineno-0-477">477</a></span>
+<span class="normal"><a href="#__codelineno-0-478">478</a></span>
+<span class="normal"><a href="#__codelineno-0-479">479</a></span>
+<span class="normal"><a href="#__codelineno-0-480">480</a></span>
+<span class="normal"><a href="#__codelineno-0-481">481</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-468" name="__codelineno-0-468"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a id="__codelineno-0-469" name="__codelineno-0-469"></a><span class="k">class</span> <span class="nc">SnapshotTimelineEntry</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-470" name="__codelineno-0-470"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;An entry representing a point in time of a players gains.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-471" name="__codelineno-0-471"></a>
 <a id="__codelineno-0-472" name="__codelineno-0-472"></a>    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-0-473" name="__codelineno-0-473"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The total xp gained since the last timeline entry.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-474" name="__codelineno-0-474"></a>
-<a id="__codelineno-0-475" name="__codelineno-0-475"></a>    <span class="n">date</span><span class="p">:</span> <span class="n">datetime</span>
-<a id="__codelineno-0-476" name="__codelineno-0-476"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date this timeline entry was recorded.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-473" name="__codelineno-0-473"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The players value for a specific metric, at a specific point in</span>
+<a id="__codelineno-0-474" name="__codelineno-0-474"></a><span class="sd">    time.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-475" name="__codelineno-0-475"></a>
+<a id="__codelineno-0-476" name="__codelineno-0-476"></a>    <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-0-477" name="__codelineno-0-477"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The players rank for a specific metric, at a specific point in</span>
+<a id="__codelineno-0-478" name="__codelineno-0-478"></a><span class="sd">    time.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-479" name="__codelineno-0-479"></a>
+<a id="__codelineno-0-480" name="__codelineno-0-480"></a>    <span class="n">date</span><span class="p">:</span> <span class="n">datetime</span>
+<a id="__codelineno-0-481" name="__codelineno-0-481"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The date this timeline entry was recorded.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -17415,6 +17439,31 @@ from this snapshot.</p>
 
 
 
+<h3 id="wom.models.SnapshotTimelineEntry.rank" class="doc doc-heading">
+          <span class="doc doc-object-name doc-attribute-name">rank</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">rank</span><span class="p">:</span> <span class="nb">int</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>The players rank for a specific metric, at a specific point in
+time.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+
 <h3 id="wom.models.SnapshotTimelineEntry.value" class="doc doc-heading">
           <span class="doc doc-object-name doc-attribute-name">value</span>
 
@@ -17429,7 +17478,8 @@ from this snapshot.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The total xp gained since the last timeline entry.</p>
+      <p>The players value for a specific metric, at a specific point in
+time.</p>
   </div>
 
 </div>
