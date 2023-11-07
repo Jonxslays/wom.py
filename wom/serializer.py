@@ -1125,7 +1125,7 @@ class Serializer:
         """
         entry = models.SnapshotTimelineEntry()
         entry.date = self._dt_from_iso(data["date"])
-        entry.value = data["value"]
+        self._set_attrs(entry, data, "value", "rank")
         return entry
 
     @serializer_guard

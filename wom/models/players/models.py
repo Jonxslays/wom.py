@@ -470,7 +470,12 @@ class SnapshotTimelineEntry(BaseModel):
     """An entry representing a point in time of a players gains."""
 
     value: int
-    """The total xp gained since the last timeline entry."""
+    """The players value for a specific metric, at a specific point in
+    time."""
+
+    rank: int
+    """The players rank for a specific metric, at a specific point in
+    time."""
 
     date: datetime
     """The date this timeline entry was recorded."""
