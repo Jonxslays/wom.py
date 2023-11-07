@@ -1,3 +1,11 @@
+# v0.8.1 (Nov 2023)
+
+## Additions
+
+- Add `rank` property to `SnapshotTimelineEntry`.
+
+---
+
 # v0.8.0 (Oct 2023)
 
 ## Additions
