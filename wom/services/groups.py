@@ -129,13 +129,13 @@ class GroupService(BaseService):
         Args:
             name: The name for the group.
 
-            *members: The optional members to add to the group.
+            *members: The optional members to add to the group, as GroupMemberFragment objects.
 
         Keyword Args:
             clan_chat: The optional clan chat for the group. Defaults to
                 `None`.
 
-            description: The optional group description.Defaults to
+            description: The optional group description. Defaults to
                 `None`.
 
             homeworld: The optional homeworld for the group. Defaults to
@@ -155,8 +155,8 @@ class GroupService(BaseService):
 
             await client.groups.create_group(
                 "My new group",
-                "Jonxslays",
-                "Zezima",
+                wom.models.GroupMemberFragment("Jonxslays", wom.models.GroupRole.Owner),
+                wom.models.GroupMemberFragment("Faabvk"),
                 description="The most epic group."
             )
             ```
@@ -208,7 +208,7 @@ class GroupService(BaseService):
             clan_chat: The optional new clan chat for the group.
                 Defaults to `None`.
 
-            description: The optional new group description.Defaults to
+            description: The optional new group description. Defaults to
                 `None`.
 
             homeworld: The optional new homeworld for the group.
@@ -236,7 +236,10 @@ class GroupService(BaseService):
                 123,
                 "111-111-111",
                 name="My new group name",
-                members=["Jonxslays"],
+                members=[
+                    wom.models.GroupMemberFragment("Jonxslays", wom.models.GroupRole.Owner),
+                    wom.models.GroupMemberFragment("Faabvk", None)
+                ],
                 description="Some new description."
             )
             ```
@@ -325,11 +328,11 @@ class GroupService(BaseService):
             await client.groups.add_members(
                 123,
                 "111-111-111",
-                wom.GroupMemberFragment(
+                wom.models.GroupMemberFragment(
                     "Jonxslays", wom.GroupRole.Administrator
                 ),
-                wom.GroupMemberFragment("Zezima"),
-                wom.GroupMemberFragment("Psikoi"),
+                wom.models.GroupMemberFragment("Zezima"),
+                wom.models.GroupMemberFragment("Psikoi"),
             )
             ```
         """
