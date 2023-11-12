@@ -135,7 +135,7 @@ class GroupService(BaseService):
             clan_chat: The optional clan chat for the group. Defaults to
                 `None`.
 
-            description: The optional group description.Defaults to
+            description: The optional group description. Defaults to
                 `None`.
 
             homeworld: The optional homeworld for the group. Defaults to
@@ -155,8 +155,8 @@ class GroupService(BaseService):
 
             await client.groups.create_group(
                 "My new group",
-                "Jonxslays",
-                "Zezima",
+                wom.GroupMemberFragment("Jonxslays", wom.GroupRole.Owner),
+                wom.GroupMemberFragment("Faabvk"),
                 description="The most epic group."
             )
             ```
@@ -208,7 +208,7 @@ class GroupService(BaseService):
             clan_chat: The optional new clan chat for the group.
                 Defaults to `None`.
 
-            description: The optional new group description.Defaults to
+            description: The optional new group description. Defaults to
                 `None`.
 
             homeworld: The optional new homeworld for the group.
@@ -236,7 +236,10 @@ class GroupService(BaseService):
                 123,
                 "111-111-111",
                 name="My new group name",
-                members=["Jonxslays"],
+                members=[
+                    wom.GroupMemberFragment("Jonxslays", wom.GroupRole.Owner),
+                    wom.GroupMemberFragment("Faabvk")
+                ],
                 description="Some new description."
             )
             ```
