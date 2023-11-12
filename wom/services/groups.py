@@ -328,7 +328,7 @@ class GroupService(BaseService):
             await client.groups.add_members(
                 123,
                 "111-111-111",
-                wom.models.GroupMemberFragment(
+                wom.GroupMemberFragment(
                     "Jonxslays", wom.GroupRole.Administrator
                 ),
                 wom.GroupMemberFragment("Zezima"),
