@@ -129,7 +129,7 @@ class GroupService(BaseService):
         Args:
             name: The name for the group.
 
-            *members: The optional members to add to the group, as GroupMemberFragment objects.
+            *members: The optional members to add to the group.
 
         Keyword Args:
             clan_chat: The optional clan chat for the group. Defaults to
@@ -155,8 +155,8 @@ class GroupService(BaseService):
 
             await client.groups.create_group(
                 "My new group",
-                wom.models.GroupMemberFragment("Jonxslays", wom.models.GroupRole.Owner),
-                wom.models.GroupMemberFragment("Faabvk"),
+                wom.GroupMemberFragment("Jonxslays", wom.GroupRole.Owner),
+                wom.GroupMemberFragment("Faabvk"),
                 description="The most epic group."
             )
             ```
@@ -237,8 +237,8 @@ class GroupService(BaseService):
                 "111-111-111",
                 name="My new group name",
                 members=[
-                    wom.models.GroupMemberFragment("Jonxslays", wom.models.GroupRole.Owner),
-                    wom.models.GroupMemberFragment("Faabvk", None)
+                    wom.GroupMemberFragment("Jonxslays", wom.GroupRole.Owner),
+                    wom.GroupMemberFragment("Faabvk")
                 ],
                 description="Some new description."
             )
@@ -331,8 +331,8 @@ class GroupService(BaseService):
                 wom.models.GroupMemberFragment(
                     "Jonxslays", wom.GroupRole.Administrator
                 ),
-                wom.models.GroupMemberFragment("Zezima"),
-                wom.models.GroupMemberFragment("Psikoi"),
+                wom.GroupMemberFragment("Zezima"),
+                wom.GroupMemberFragment("Psikoi"),
             )
             ```
         """
