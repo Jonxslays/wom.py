@@ -23,6 +23,7 @@
 
 from __future__ import annotations
 
+import random
 import typing as t
 from enum import Enum
 
@@ -78,6 +79,14 @@ class BaseEnum(Enum):
             return cls(value)
         except ValueError:
             return None
+
+    @classmethod
+    def at_random(cls: t.Type[T]) -> T:
+        """Generates a random variant of this enum.
+
+        Returns:
+            The randomly generated enum."""
+        return random.choice(tuple(cls))
 
 
 class Metric(BaseEnum):
