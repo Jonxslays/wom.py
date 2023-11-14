@@ -1,3 +1,15 @@
+# Unreleased (Nov 2023)
+
+## Additions
+
+- Add `at_random` method to `BaseEnum` for picking an enum value at random.
+
+## Changes
+
+- Update examples in `GroupService` that work with `GroupMemberFragment`.
+
+---
+
 # v0.8.1 (Nov 2023)
 
 ## Additions
