@@ -18,23 +18,10 @@ for data consistency.
 - [Stable](https://jonxslays.github.io/wom.py/)
 - [Development](https://jonxslays.github.io/wom.py/dev/)
 
-## Installation
+## Getting started
 
-**Python version 3.8 or greater is required to use wom.py.**
-
-### Stable
-
-```sh
-pip install -U wom.py
-```
-
-### Development
-
-```sh
-pip install -U git+https://github.com/Jonxslays/wom.py
-```
-
-For more information on using `pip`, check out the [pip documentation](https://pip.pypa.io/en/stable/).
+If you're new to using wom.py, check out our
+[getting started guide](https://jonxslays.github.io/wom.py/dev/getting-started/installation/).
 
 ## Problems
 
