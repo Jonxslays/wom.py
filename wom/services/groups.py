@@ -44,9 +44,21 @@ class GroupService(BaseService):
     __slots__ = ()
 
     def _prepare_member_fragments(
-        self, members: t.Iterable[models.GroupMemberFragment]
+        self, members: t.Iterable[t.Union[str, models.GroupMemberFragment]]
     ) -> tuple[t.Dict[str, t.Any], ...]:
-        return tuple({k: str(v) for k, v in m.to_dict().items() if v} for m in members)
+        return tuple(
+            {k: str(v) for k, v in m.to_dict().items() if v}
+            for m in self._parse_member_fragments(members)
+        )
+
+    def _parse_member_fragments(
+        self, members: t.Iterable[t.Union[str, models.GroupMemberFragment]]
+    ) -> t.Generator[models.GroupMemberFragment, None, None]:
+        for m in members:
+            if isinstance(m, str):
+                yield models.GroupMemberFragment(m, None)
+            else:
+                yield m
 
     async def search_groups(
         self,
@@ -119,7 +131,7 @@ class GroupService(BaseService):
     async def create_group(
         self,
         name: str,
-        *members: models.GroupMemberFragment,
+        *members: t.Union[str, models.GroupMemberFragment],
         clan_chat: t.Optional[str] = None,
         description: t.Optional[str] = None,
         homeworld: t.Optional[int] = None,
@@ -129,7 +141,9 @@ class GroupService(BaseService):
         Args:
             name: The name for the group.
 
-            *members: The optional members to add to the group.
+            *members: The optional members to add to the group. A mixture of
+                strings and GroupMemberFragments can be passed here. If a string
+                is passed, no role will be added for that member.
 
         Keyword Args:
             clan_chat: The optional clan chat for the group. Defaults to
@@ -156,7 +170,9 @@ class GroupService(BaseService):
             await client.groups.create_group(
                 "My new group",
                 wom.GroupMemberFragment("Jonxslays", wom.GroupRole.Owner),
-                wom.GroupMemberFragment("Faabvk"),
+                "Faabvk",
+                "psikoi",
+                "rro",
                 description="The most epic group."
             )
             ```
@@ -186,7 +202,7 @@ class GroupService(BaseService):
         verification_code: str,
         *,
         name: t.Optional[str] = None,
-        members: t.Optional[t.Iterable[models.GroupMemberFragment]] = None,
+        members: t.Optional[t.Iterable[t.Union[str, models.GroupMemberFragment]]] = None,
         clan_chat: t.Optional[str] = None,
         description: t.Optional[str] = None,
         homeworld: t.Optional[int] = None,
@@ -203,7 +219,9 @@ class GroupService(BaseService):
                 `None`.
 
             members: The optional iterable of members to replace the
-                existing group members with. Defaults to `None`.
+                existing group members with. Defaults to `None`. A mixture of
+                strings and GroupMemberFragments can be passed here. If a string
+                is passed, no role will be added for that member.
 
             clan_chat: The optional new clan chat for the group.
                 Defaults to `None`.
@@ -238,7 +256,7 @@ class GroupService(BaseService):
                 name="My new group name",
                 members=[
                     wom.GroupMemberFragment("Jonxslays", wom.GroupRole.Owner),
-                    wom.GroupMemberFragment("Faabvk")
+                    "Faabvk",
                 ],
                 description="Some new description."
             )
@@ -310,7 +328,9 @@ class GroupService(BaseService):
 
             verification_code: The group verification code.
 
-            *members: The members to add to the group.
+            *members: The members to add to the group. A mixture of strings and
+                GroupMemberFragments can be passed here. If a string is passed,
+                no role will be added for that member.
 
         Returns:
             A [`Result`][wom.Result] containing the success response
@@ -331,8 +351,8 @@ class GroupService(BaseService):
                 wom.GroupMemberFragment(
                     "Jonxslays", wom.GroupRole.Administrator
                 ),
-                wom.GroupMemberFragment("Zezima"),
-                wom.GroupMemberFragment("Psikoi"),
+                "Zezima",
+                "Psikoi",
             )
             ```
         """
@@ -359,7 +379,7 @@ class GroupService(BaseService):
 
             verification_code: The group verification code.
 
-            *members: The members to remove from the group.
+            *members: The usernames of members to remove from the group.
 
         Returns:
             A [`Result`][wom.Result] containing the success response
@@ -622,8 +642,7 @@ class GroupService(BaseService):
             offset: The optional pagination offset. Defaults to `None`.
 
         Returns:
-            A [`Result`][wom.Result] containing the list of
-                achievements.
+            A [`Result`][wom.Result] containing the list of achievements.
 
         ??? example
 
