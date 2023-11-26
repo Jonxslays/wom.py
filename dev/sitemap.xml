@@ -6,6 +6,26 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://jonxslays.github.io/wom.py/dev/getting-started/client/</loc>
+         <lastmod>2023-11-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonxslays.github.io/wom.py/dev/getting-started/installation/</loc>
+         <lastmod>2023-11-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonxslays.github.io/wom.py/dev/getting-started/result/</loc>
+         <lastmod>2023-11-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://jonxslays.github.io/wom.py/dev/getting-started/services/</loc>
+         <lastmod>2023-11-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://jonxslays.github.io/wom.py/dev/reference/client/</loc>
          <lastmod>2023-11-26</lastmod>
          <changefreq>daily</changefreq>
