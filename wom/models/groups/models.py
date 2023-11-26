@@ -55,6 +55,7 @@ __all__ = (
     "MetricLeaders",
     "PlayerMembership",
     "SkillLeader",
+    "SocialLinks",
 )
 
 
@@ -80,6 +81,15 @@ class Group(BaseModel):
     verified: bool
     """Whether or not this group is verified."""
 
+    patron: bool
+    """Whether or not this group is subscribed via Patreon."""
+
+    profile_image: t.Optional[str]
+    """The profile image url for this group, if any."""
+
+    banner_image: t.Optional[str]
+    """The banner image url for this group, if any."""
+
     score: int
     """The groups score."""
 
@@ -103,6 +113,9 @@ class GroupDetail(BaseModel):
     memberships: t.List[GroupMembership]
     """A list of [`GroupMemberships`][wom.GroupMembership]."""
 
+    social_links: t.Optional[SocialLinks]
+    """The social links for this group, if any."""
+
     verification_code: t.Optional[str]
     """The optional verification code for the group.
 
@@ -110,6 +123,26 @@ class GroupDetail(BaseModel):
 
         This will only be present on group creation.
     """
+
+
+@attrs.define(init=False)
+class SocialLinks(BaseModel):
+    """A groups social links."""
+
+    website: t.Optional[str]
+    """The groups website url."""
+
+    discord: t.Optional[str]
+    """The groups discord invite url."""
+
+    twitter: t.Optional[str]
+    """The groups twitter url."""
+
+    youtube: t.Optional[str]
+    """The groups youtube url."""
+
+    twitch: t.Optional[str]
+    """The groups twitch url."""
 
 
 @attrs.define(init=False)

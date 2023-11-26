@@ -163,6 +163,7 @@ __all__ = (
     "SnapshotData",
     "Snapshot",
     "SnapshotTimelineEntry",
+    "SocialLinks",
     "Team",
     "Top5ProgressResult",
     "UnwrapError",
