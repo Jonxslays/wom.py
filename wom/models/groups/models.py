@@ -125,9 +125,23 @@ class GroupDetail(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define
 class SocialLinks(BaseModel):
     """A groups social links."""
+
+    def __init__(
+        self,
+        website: t.Optional[str] = None,
+        discord: t.Optional[str] = None,
+        twitter: t.Optional[str] = None,
+        youtube: t.Optional[str] = None,
+        twitch: t.Optional[str] = None,
+    ) -> None:
+        self.website = website
+        self.discord = discord
+        self.twitter = twitter
+        self.youtube = youtube
+        self.twitch = twitch
 
     website: t.Optional[str]
     """The groups website url."""

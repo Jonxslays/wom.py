@@ -60,6 +60,14 @@ class GroupService(BaseService):
             else:
                 yield m
 
+    def _parse_social_links(
+        self, links: t.Optional[models.SocialLinks]
+    ) -> t.Optional[dict[str, t.Any]]:
+        if not links:
+            return None
+
+        return {k: v if v else "" for k, v in links.to_dict().items()}
+
     async def search_groups(
         self,
         name: t.Optional[str] = None,
@@ -210,6 +218,7 @@ class GroupService(BaseService):
         clan_chat: t.Optional[str] = None,
         description: t.Optional[str] = None,
         homeworld: t.Optional[int] = None,
+        social_links: t.Optional[models.SocialLinks] = None,
     ) -> ResultT[models.GroupDetail]:
         """Edits an existing group.
 
@@ -232,6 +241,9 @@ class GroupService(BaseService):
                 `None`.
 
             homeworld: The optional new homeworld for the group.
+                Defaults to `None`.
+
+            social_links: The optional new social links for the group.
                 Defaults to `None`.
 
         Returns:
@@ -277,6 +289,7 @@ class GroupService(BaseService):
             description=description,
             verificationCode=verification_code,
             members=self._prepare_member_fragments(members) if members else None,
+            socialLinks=self._parse_social_links(social_links),
         )
 
         route = routes.EDIT_GROUP.compile(id)
