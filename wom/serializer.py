@@ -1162,9 +1162,10 @@ class Serializer:
 
     @serializer_guard
     def deserialize_social_links(self, data: DictT) -> models.SocialLinks:
-        links = models.SocialLinks()
-        self._set_attrs(
-            links, data, "website", "discord", "twitter", "youtube", "twitch", maybe=True
+        return models.SocialLinks(
+            website=data.get("website"),
+            discord=data.get("discord"),
+            youtube=data.get("youtube"),
+            twitter=data.get("twitter"),
+            twitch=data.get("twitch"),
         )
-
-        return links
