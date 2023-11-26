@@ -7,6 +7,7 @@
 
 ## Changes
 
+- Methods that previously accepted only `GroupMemberFragment` now accept strings as well.
 - Update examples in `GroupService` that work with `GroupMemberFragment`.
 
 ---
