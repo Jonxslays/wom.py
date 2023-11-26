@@ -1,8 +1,9 @@
-# Unreleased (Nov 2023)
+# Unreleased
 
 ## Additions
 
-- Add `at_random` method to `BaseEnum` for picking an enum value at random.
+- Add `at_random` method to `BaseEnum` for generating an enum variant at random.
+- Add `levels` property to `CompetitionParticipationDetail`.
 
 ## Changes
 
