@@ -327,7 +327,7 @@ class GroupService(BaseService):
         return result.Ok(models.HttpSuccessResponse(data.status, data.message))
 
     async def add_members(
-        self, id: int, verification_code: str, *members: models.GroupMemberFragment
+        self, id: int, verification_code: str, *members: t.Union[str, models.GroupMemberFragment]
     ) -> ResultT[models.HttpSuccessResponse]:
         """Adds members to an existing group.
 
