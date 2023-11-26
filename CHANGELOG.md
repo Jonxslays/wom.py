@@ -6,6 +6,7 @@
 - Add `levels` property to `CompetitionParticipationDetail`.
 - Add `patron`, `banner_image`, and `profile_image` properties to `Group`.
 - Add `SocialLinks` model and `social_links` property to `GroupDetail`.
+- Add getting started guide to the documentation.
 
 ## Changes
 
