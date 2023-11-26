@@ -141,9 +141,7 @@ class GroupService(BaseService):
         Args:
             name: The name for the group.
 
-            *members: The optional members to add to the group. A mixture of
-                strings and GroupMemberFragments can be passed here. If a string
-                is passed, no role will be added for that member.
+            *members: The optional members to add to the group.
 
         Keyword Args:
             clan_chat: The optional clan chat for the group. Defaults to
@@ -157,6 +155,12 @@ class GroupService(BaseService):
 
         Returns:
             A [`Result`][wom.Result] containing the group details.
+
+        !!! note
+
+             A mixture of strings and GroupMemberFragments can be passed for
+             members. If a string is passed, no role will be added for that
+             member.
 
         ??? example
 
@@ -219,9 +223,7 @@ class GroupService(BaseService):
                 `None`.
 
             members: The optional iterable of members to replace the
-                existing group members with. Defaults to `None`. A mixture of
-                strings and GroupMemberFragments can be passed here. If a string
-                is passed, no role will be added for that member.
+                existing group members with. Defaults to `None`.
 
             clan_chat: The optional new clan chat for the group.
                 Defaults to `None`.
@@ -240,6 +242,12 @@ class GroupService(BaseService):
             The members list provided will completely replace the
             existing members. If you want to add members, see
             [`add_members()`][wom.GroupService.add_members]
+
+        !!! note
+
+             A mixture of strings and GroupMemberFragments can be passed for
+             members. If a string is passed, no role will be added for that
+             member.
 
         ??? example
 
@@ -328,13 +336,17 @@ class GroupService(BaseService):
 
             verification_code: The group verification code.
 
-            *members: The members to add to the group. A mixture of strings and
-                GroupMemberFragments can be passed here. If a string is passed,
-                no role will be added for that member.
+            *members: The members to add to the group.
 
         Returns:
             A [`Result`][wom.Result] containing the success response
                 message.
+
+        !!! note
+
+             A mixture of strings and GroupMemberFragments can be passed for
+             members. If a string is passed, no role will be added for that
+             member.
 
         ??? example
 
