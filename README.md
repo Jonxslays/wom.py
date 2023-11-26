@@ -21,7 +21,7 @@ for data consistency.
 ## Getting started
 
 If you're new to using wom.py, check out our
-[getting started guide](https://jonxslays.github.io/wom.py/dev/getting-started/installation/).
+[getting started guide](https://jonxslays.github.io/wom.py/stable/getting-started/installation/).
 
 ## Problems
 
