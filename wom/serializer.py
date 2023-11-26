@@ -946,10 +946,16 @@ class Serializer:
         Returns:
             The requested model.
         """
-        participation_details = models.CompetitionParticipationDetail()
-        participation_details.participation = self.deserialize_competition_participation(data)
-        participation_details.progress = self.deserialize_competition_progress(data["progress"])
-        return participation_details
+        details = models.CompetitionParticipationDetail()
+        details.participation = self.deserialize_competition_participation(data)
+        details.progress = self.deserialize_competition_progress(data["progress"])
+
+        if levels := data.get("levels", None):
+            details.levels = self.deserialize_competition_progress(levels)
+        else:
+            details.levels = levels
+
+        return details
 
     @serializer_guard
     def deserialize_competition_history_data_point(

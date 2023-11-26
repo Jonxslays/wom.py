@@ -138,8 +138,7 @@ class CompetitionParticipation(BaseModel):
     """
 
     player: Player
-    """The [`Player`][wom.Player] that participated in this competition.
-    """
+    """The [`Player`][wom.Player] that participated in this competition."""
 
 
 @attrs.define(init=False)
@@ -186,6 +185,11 @@ class CompetitionParticipationDetail(BaseModel):
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
     made.
     """
+
+    levels: t.Optional[CompetitionProgress]
+    """The optional [`CompetitionProgress`][wom.CompetitionProgress] as it
+    relates the number of overall levels gained. Can be `None` if this is not a
+    skilling competition, or the player is unranked in the skill."""
 
 
 @attrs.define(init=False)
