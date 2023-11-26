@@ -45,6 +45,7 @@ __all__ = (
     "MetricLeaders",
     "PlayerMembership",
     "SkillLeader",
+    "SocialLinks",
 )
 
 from .enums import *

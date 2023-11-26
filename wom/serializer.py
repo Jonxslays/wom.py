@@ -631,6 +631,7 @@ class Serializer:
         group = models.Group()
         group.created_at = self._dt_from_iso(data["createdAt"])
         group.updated_at = self._dt_from_iso(data["updatedAt"])
+        self._set_attrs_cased(group, data, "profile_image", "banner_image", maybe=True)
         self._set_attrs_cased(
             group,
             data,
@@ -642,6 +643,7 @@ class Serializer:
             "verified",
             "score",
             "member_count",
+            "patron",
         )
 
         return group
@@ -692,6 +694,12 @@ class Serializer:
         details.verification_code = None
         details.group = self.deserialize_group(data)
         details.memberships = [self.deserialize_group_membership(m) for m in data["memberships"]]
+
+        if links := data.get("socialLinks", None):
+            details.social_links = self.deserialize_social_links(links)
+        else:
+            details.social_links = links
+
         return details
 
     @serializer_guard
@@ -1151,3 +1159,13 @@ class Serializer:
         activity.type = models.GroupActivityType.from_str(data["type"])
         self._set_attrs_cased(activity, data, "group_id", "player_id")
         return activity
+
+    @serializer_guard
+    def deserialize_social_links(self, data: DictT) -> models.SocialLinks:
+        return models.SocialLinks(
+            website=data.get("website"),
+            discord=data.get("discord"),
+            youtube=data.get("youtube"),
+            twitter=data.get("twitter"),
+            twitch=data.get("twitch"),
+        )
