@@ -694,12 +694,7 @@ class Serializer:
         details.verification_code = None
         details.group = self.deserialize_group(data)
         details.memberships = [self.deserialize_group_membership(m) for m in data["memberships"]]
-
-        if links := data.get("socialLinks", None):
-            details.social_links = self.deserialize_social_links(links)
-        else:
-            details.social_links = links
-
+        details.social_links = self.deserialize_social_links(data["links"])
         return details
 
     @serializer_guard
@@ -957,12 +952,7 @@ class Serializer:
         details = models.CompetitionParticipationDetail()
         details.participation = self.deserialize_competition_participation(data)
         details.progress = self.deserialize_competition_progress(data["progress"])
-
-        if levels := data.get("levels", None):
-            details.levels = self.deserialize_competition_progress(levels)
-        else:
-            details.levels = levels
-
+        details.levels = self.deserialize_competition_progress(data["levels"])
         return details
 
     @serializer_guard

@@ -113,8 +113,8 @@ class GroupDetail(BaseModel):
     memberships: t.List[GroupMembership]
     """A list of [`GroupMemberships`][wom.GroupMembership]."""
 
-    social_links: t.Optional[SocialLinks]
-    """The social links for this group, if any."""
+    social_links: SocialLinks
+    """The social links for this group."""
 
     verification_code: t.Optional[str]
     """The optional verification code for the group.

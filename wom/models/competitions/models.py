@@ -186,10 +186,10 @@ class CompetitionParticipationDetail(BaseModel):
     made.
     """
 
-    levels: t.Optional[CompetitionProgress]
-    """The optional [`CompetitionProgress`][wom.CompetitionProgress] as it
-    relates the number of overall levels gained. Can be `None` if this is not a
-    skilling competition, or the player is unranked in the skill."""
+    levels: CompetitionProgress
+    """The [`CompetitionProgress`][wom.CompetitionProgress] as it relates to
+    the number of levels gained. Only contains useful information for skilling
+    competitions."""
 
 
 @attrs.define(init=False)

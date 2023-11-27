@@ -60,14 +60,6 @@ class GroupService(BaseService):
             else:
                 yield m
 
-    def _parse_social_links(
-        self, links: t.Optional[models.SocialLinks]
-    ) -> t.Optional[dict[str, t.Any]]:
-        if not links:
-            return None
-
-        return {k: v if v else "" for k, v in links.to_dict().items()}
-
     async def search_groups(
         self,
         name: t.Optional[str] = None,
@@ -289,7 +281,7 @@ class GroupService(BaseService):
             description=description,
             verificationCode=verification_code,
             members=self._prepare_member_fragments(members) if members else None,
-            socialLinks=self._parse_social_links(social_links),
+            socialLinks=social_links.to_dict() if social_links else None,
         )
 
         route = routes.EDIT_GROUP.compile(id)
