@@ -8375,10 +8375,10 @@ competition.</p>
 <a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="sd">    made.</span>
 <a id="__codelineno-0-187" name="__codelineno-0-187"></a><span class="sd">    &quot;&quot;&quot;</span>
 <a id="__codelineno-0-188" name="__codelineno-0-188"></a>
-<a id="__codelineno-0-189" name="__codelineno-0-189"></a>    <span class="n">levels</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">CompetitionProgress</span><span class="p">]</span>
-<a id="__codelineno-0-190" name="__codelineno-0-190"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The optional [`CompetitionProgress`][wom.CompetitionProgress] as it</span>
-<a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="sd">    relates the number of overall levels gained. Can be `None` if this is not a</span>
-<a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="sd">    skilling competition, or the player is unranked in the skill.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a>    <span class="n">levels</span><span class="p">:</span> <span class="n">CompetitionProgress</span>
+<a id="__codelineno-0-190" name="__codelineno-0-190"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`CompetitionProgress`][wom.CompetitionProgress] as it relates to</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="sd">    the number of levels gained. Only contains useful information for skilling</span>
+<a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="sd">    competitions.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -8406,14 +8406,14 @@ competition.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">levels</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">CompetitionProgress</span><span class="p">]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">levels</span><span class="p">:</span> <span class="n">CompetitionProgress</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>The optional <a class="autorefs autorefs-internal" href="#wom.models.CompetitionProgress"><code>CompetitionProgress</code></a> as it
-relates the number of overall levels gained. Can be <code>None</code> if this is not a
-skilling competition, or the player is unranked in the skill.</p>
+      <p>The <a class="autorefs autorefs-internal" href="#wom.models.CompetitionProgress"><code>CompetitionProgress</code></a> as it relates to
+the number of levels gained. Only contains useful information for skilling
+competitions.</p>
   </div>
 
 </div>
@@ -11129,8 +11129,8 @@ when the reason is <code>NegativeGains</code>.</p>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="n">memberships</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">GroupMembership</span><span class="p">]</span>
 <a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A list of [`GroupMemberships`][wom.GroupMembership].&quot;&quot;&quot;</span>
 <a id="__codelineno-0-115" name="__codelineno-0-115"></a>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a>    <span class="n">social_links</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">SocialLinks</span><span class="p">]</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The social links for this group, if any.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>    <span class="n">social_links</span><span class="p">:</span> <span class="n">SocialLinks</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The social links for this group.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-118" name="__codelineno-0-118"></a>
 <a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="n">verification_code</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The optional verification code for the group.</span>
@@ -11214,12 +11214,12 @@ when the reason is <code>NegativeGains</code>.</p>
   </span>
 
 </h3>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">social_links</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">SocialLinks</span><span class="p">]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">social_links</span><span class="p">:</span> <span class="n">SocialLinks</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>The social links for this group, if any.</p>
+      <p>The social links for this group.</p>
   </div>
 
 </div>
