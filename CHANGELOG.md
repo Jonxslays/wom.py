@@ -1,3 +1,11 @@
+# v0.9.1 (Nov 2023)
+
+## Bugfixes
+
+- Fix invalid key regression for social links.
+
+---
+
 # v0.9.0 (Nov 2023)
 
 ## Additions

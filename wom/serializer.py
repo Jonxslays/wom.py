@@ -694,7 +694,7 @@ class Serializer:
         details.verification_code = None
         details.group = self.deserialize_group(data)
         details.memberships = [self.deserialize_group_membership(m) for m in data["memberships"]]
-        details.social_links = self.deserialize_social_links(data["links"])
+        details.social_links = self.deserialize_social_links(data["socialLinks"])
         return details
 
     @serializer_guard
