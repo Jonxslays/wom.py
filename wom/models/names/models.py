@@ -40,7 +40,7 @@ __all__ = (
 )
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class NameChangeReviewContext(BaseModel):
     """The review context for a name change that was not approved.
 
@@ -60,7 +60,7 @@ class NameChangeReviewContext(BaseModel):
     """The reason this name change was denied."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
     """The review context for a name change that was denied."""
 
@@ -78,7 +78,7 @@ class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[ov
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class SkippedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
     """The review context for a name change that was skipped."""
 
@@ -120,7 +120,7 @@ class SkippedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[o
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class NameChange(BaseModel):
     """Represents a player name change."""
 

@@ -31,7 +31,7 @@ from ..players import Player
 __all__ = ("DeltaLeaderboardEntry",)
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class DeltaLeaderboardEntry(BaseModel):
     """Represents a leaderboard entry over the given delta."""
 

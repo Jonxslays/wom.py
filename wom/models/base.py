@@ -28,7 +28,7 @@ import typing as t
 import attrs
 
 
-@attrs.define
+@attrs.define(weakref_slot=False)
 class BaseModel:
     """The base model all library models inherit from."""
 

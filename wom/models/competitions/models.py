@@ -51,7 +51,7 @@ __all__ = (
 )
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class CompetitionProgress(BaseModel):
     """Represents progress in a competition."""
 
@@ -65,7 +65,7 @@ class CompetitionProgress(BaseModel):
     """The amount of progress gained in the metric."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Competition(BaseModel):
     """Represents a competition."""
 
@@ -108,7 +108,7 @@ class Competition(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Participation(BaseModel):
     """Represents participation in a competition."""
 
@@ -128,7 +128,7 @@ class Participation(BaseModel):
     """The date this participation was updated."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class CompetitionParticipation(BaseModel):
     """Represents a competition participation."""
 
@@ -141,7 +141,7 @@ class CompetitionParticipation(BaseModel):
     """The [`Player`][wom.Player] that participated in this competition."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class PlayerParticipation(BaseModel):
     """Represents a players participation in a competition."""
 
@@ -154,7 +154,7 @@ class PlayerParticipation(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class PlayerCompetitionStanding(BaseModel):
     """Represents a players standing in a competition."""
 
@@ -172,7 +172,7 @@ class PlayerCompetitionStanding(BaseModel):
     """The rank in the competition standings."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class CompetitionParticipationDetail(BaseModel):
     """Represents competition participation details."""
 
@@ -192,7 +192,7 @@ class CompetitionParticipationDetail(BaseModel):
     competitions."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class CompetitionDetail(BaseModel):
     """Represents competition details."""
 
@@ -206,7 +206,7 @@ class CompetitionDetail(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class CompetitionHistoryDataPoint(BaseModel):
     """A competition history data point."""
 
@@ -217,7 +217,7 @@ class CompetitionHistoryDataPoint(BaseModel):
     """The value of the data point."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Top5ProgressResult(BaseModel):
     """A top 5 progress result for a competition."""
 
@@ -231,7 +231,7 @@ class Top5ProgressResult(BaseModel):
     """
 
 
-@attrs.define
+@attrs.define(weakref_slot=False)
 class Team(BaseModel):
     """Represents a competition team.
 
@@ -258,7 +258,7 @@ class Team(BaseModel):
     """A list of participant usernames on the team."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class CompetitionWithParticipations(BaseModel):
     """Represents a competition with participations."""
 

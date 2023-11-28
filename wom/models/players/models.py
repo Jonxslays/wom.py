@@ -59,7 +59,7 @@ __all__ = (
 )
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Skill(BaseModel):
     """Details regarding a particular skill."""
 
@@ -79,7 +79,7 @@ class Skill(BaseModel):
     """The players efficient hours played for the skill."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Boss(BaseModel):
     """Details regarding a particular boss."""
 
@@ -96,7 +96,7 @@ class Boss(BaseModel):
     """The players efficient hours bossed for the boss."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Activity(BaseModel):
     """Details regarding a particular activity."""
 
@@ -110,7 +110,7 @@ class Activity(BaseModel):
     """The players score in the activity."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class ComputedMetric(BaseModel):
     """Details regarding a computed metric."""
 
@@ -126,7 +126,7 @@ class ComputedMetric(BaseModel):
     """The value of the computed metric."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class SnapshotData(BaseModel):
     """The data associated with this snapshot."""
 
@@ -151,7 +151,7 @@ class SnapshotData(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Snapshot(BaseModel):
     """Represents a player snapshot."""
 
@@ -171,7 +171,7 @@ class Snapshot(BaseModel):
     """The date the snapshot was created."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Player(BaseModel):
     """Represents a player on WOM."""
 
@@ -226,7 +226,7 @@ class Player(BaseModel):
     """The date of the last player history import."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class PlayerDetail(BaseModel):
     """Represents details about a player."""
 
@@ -240,7 +240,7 @@ class PlayerDetail(BaseModel):
     """The latest snapshot for the player, if there is one."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class AssertPlayerType(BaseModel):
     """Represents a player type that has been asserted."""
 
@@ -251,7 +251,7 @@ class AssertPlayerType(BaseModel):
     """Whether or not the player type changed."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Achievement(BaseModel):
     """Represents an achievement made by a player."""
 
@@ -286,7 +286,7 @@ class Achievement(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class AchievementProgress(BaseModel):
     """Represents progress made toward an achievement."""
 
@@ -323,7 +323,7 @@ class AchievementProgress(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class PlayerAchievementProgress(BaseModel):
     """Represents a players progress toward an achievement."""
 
@@ -347,7 +347,7 @@ class PlayerAchievementProgress(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Gains(BaseModel):
     """Represents gains made by a player."""
 
@@ -361,7 +361,7 @@ class Gains(BaseModel):
     """The ending amount."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class SkillGains(BaseModel):
     """Represents skill gains made by a player."""
 
@@ -381,7 +381,7 @@ class SkillGains(BaseModel):
     """The level [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class BossGains(BaseModel):
     """Represents boss gains made by a player."""
 
@@ -398,7 +398,7 @@ class BossGains(BaseModel):
     """The boss kill [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class ActivityGains(BaseModel):
     """Represents activity gains made by a player."""
 
@@ -412,7 +412,7 @@ class ActivityGains(BaseModel):
     """The score [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class ComputedGains(BaseModel):
     """Represents computed gains made by a player."""
 
@@ -426,7 +426,7 @@ class ComputedGains(BaseModel):
     """The value [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class PlayerGainsData(BaseModel):
     """Contains all the player gains data."""
 
@@ -451,7 +451,7 @@ class PlayerGainsData(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class PlayerGains(BaseModel):
     """Gains made by a player."""
 
@@ -465,7 +465,7 @@ class PlayerGains(BaseModel):
     """The [`PlayerGainsData`][wom.PlayerGainsData] for the player."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class SnapshotTimelineEntry(BaseModel):
     """An entry representing a point in time of a players gains."""
 

@@ -33,7 +33,7 @@ from ..players import Player
 __all__ = ("Record", "RecordLeaderboardEntry")
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Record(BaseModel):
     """Represents a record held by a player."""
 
@@ -56,7 +56,7 @@ class Record(BaseModel):
     """The records creation/modification date."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class RecordLeaderboardEntry(BaseModel):
     """Represents a player's record leaderboard entry."""
 
