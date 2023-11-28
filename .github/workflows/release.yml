@@ -20,11 +20,29 @@ jobs:
         run: ./scripts/pre-release.sh
 
       - name: Build and publish
+        id: publish
         uses: JRubics/poetry-publish@v1.16
         if: steps.prerelease.conclusion == 'success'
         with:
           pypi_token: ${{ secrets.PYPI_TOKEN }}
           ignore_dev_requirements: "yes"
+
+      - name: Send release webhook
+        if: steps.publish.conclusion == 'success'
+        run: |
+          VERSION=$(sed -rn 's/__version__: Final\[str\] = "(.*)"/\1/p' wom/__init__.py);
+
+          curl -X POST ${{ secrets.WOM_DISCORD_WEBHOOK_URL }} \
+            -H "Content-Type: application/json" \
+            -d '{
+              "username": "Automated Old Man",
+              "avatar_url": "https://jonxslays.github.io/wom.py/dev/wom-logo.png",
+              "embeds": [{
+                "color": 3447003,
+                "title": "wom.py v'$VERSION' has released to PyPI",
+                "description": "**Upgrade with**:\n```pip install -U wom.py=='$VERSION'```\n- [Changelog](https://github.com/Jonxslays/wom.py/blob/master/CHANGELOG.md)\n- [Repository](https://github.com/Jonxslays/wom.py)\n- [Python Package Index](https://pypi.org/project/wom-py)"
+              }]
+            }'
 
   docs:
     name: Stable docs release
