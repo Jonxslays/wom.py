@@ -30,7 +30,7 @@ from .base import BaseModel
 __all__ = ("HttpErrorResponse", "HttpSuccessResponse")
 
 
-@attrs.define
+@attrs.define(weakref_slot=False)
 class HttpErrorResponse(BaseModel):
     """Indicates something went wrong during the request."""
 
@@ -41,7 +41,7 @@ class HttpErrorResponse(BaseModel):
     """The error message."""
 
 
-@attrs.define
+@attrs.define(weakref_slot=False)
 class HttpSuccessResponse(BaseModel):
     """Indicates a successful HTTP response."""
 

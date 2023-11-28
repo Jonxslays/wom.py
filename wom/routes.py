@@ -83,7 +83,7 @@ class CompiledRoute:
         return self
 
 
-@attrs.define
+@attrs.define(weakref_slot=False)
 class Route:
     """A route that has not been compiled yet."""
 

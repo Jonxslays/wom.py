@@ -1,4 +1,4 @@
-# Unreleased
+# v0.9.0 (Nov 2023)
 
 ## Additions
 
@@ -12,6 +12,7 @@
 
 - Methods that previously accepted only `GroupMemberFragment` now accept strings as well.
 - Update examples in `GroupService` that work with `GroupMemberFragment`.
+- Remove usage of weakref slots throughout the project, improving memory footprint.
 
 ---
 

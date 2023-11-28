@@ -59,7 +59,7 @@ __all__ = (
 )
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Group(BaseModel):
     """Represents a group of players on WOM."""
 
@@ -103,7 +103,7 @@ class Group(BaseModel):
     """The number of members in the group."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupDetail(BaseModel):
     """Represents details about a group."""
 
@@ -125,7 +125,7 @@ class GroupDetail(BaseModel):
     """
 
 
-@attrs.define
+@attrs.define(weakref_slot=False)
 class SocialLinks(BaseModel):
     """A groups social links."""
 
@@ -159,7 +159,7 @@ class SocialLinks(BaseModel):
     """The groups twitch url."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class Membership(BaseModel):
     """Represents a membership in a group."""
 
@@ -179,7 +179,7 @@ class Membership(BaseModel):
     """The date this membership was updated."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupMembership(BaseModel):
     """Represents a group membership."""
 
@@ -190,7 +190,7 @@ class GroupMembership(BaseModel):
     """The [`Membership`][wom.Membership] itself."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class PlayerMembership(BaseModel):
     """Represents a player membership."""
 
@@ -201,7 +201,7 @@ class PlayerMembership(BaseModel):
     """The [`Membership`][wom.Membership] itself."""
 
 
-@attrs.define
+@attrs.define(weakref_slot=False)
 class GroupMemberFragment(BaseModel):
     """Represents a condensed group member.
 
@@ -229,7 +229,7 @@ class GroupMemberFragment(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresEntry(BaseModel):
     """Represents a group hiscores entry."""
 
@@ -245,7 +245,7 @@ class GroupHiscoresEntry(BaseModel):
     """The data for this hiscores entry."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresSkillItem(BaseModel):
     """Represents a group hiscores item for skills."""
 
@@ -259,7 +259,7 @@ class GroupHiscoresSkillItem(BaseModel):
     """The experience in the skill."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresBossItem(BaseModel):
     """Represents a group hiscores item for bosses."""
 
@@ -270,7 +270,7 @@ class GroupHiscoresBossItem(BaseModel):
     """The number of boss kills."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresActivityItem(BaseModel):
     """Represents a group hiscores item for activities."""
 
@@ -281,7 +281,7 @@ class GroupHiscoresActivityItem(BaseModel):
     """The activity score."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresComputedMetricItem(BaseModel):
     """Represents a group hiscores item for computed metrics."""
 
@@ -292,7 +292,7 @@ class GroupHiscoresComputedMetricItem(BaseModel):
     """The value of the computed metric."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class SkillLeader(BaseModel):
     """Represents a leader in a particular skill."""
 
@@ -312,7 +312,7 @@ class SkillLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class BossLeader(BaseModel):
     """Represents a leader in a particular boss."""
 
@@ -329,7 +329,7 @@ class BossLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class ActivityLeader(BaseModel):
     """Represents a leader in a particular activity."""
 
@@ -346,7 +346,7 @@ class ActivityLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class ComputedMetricLeader(BaseModel):
     """Represents a leader in a particular computed metric."""
 
@@ -365,7 +365,7 @@ class ComputedMetricLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class MetricLeaders(BaseModel):
     """The leaders for each metric in a group."""
 
@@ -390,7 +390,7 @@ class MetricLeaders(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupStatistics(BaseModel):
     """Represents accumulated group statistics."""
 
@@ -412,7 +412,7 @@ class GroupStatistics(BaseModel):
     """
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupMemberGains(BaseModel):
     """Represents a leaderboard entry over the given delta."""
 
@@ -429,7 +429,7 @@ class GroupMemberGains(BaseModel):
     """The [`Gains`][wom.Gains] for this group member."""
 
 
-@attrs.define(init=False)
+@attrs.define(init=False, weakref_slot=False)
 class GroupActivity(BaseModel):
     """An activity that occurred in a group."""
 
