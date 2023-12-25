@@ -677,7 +677,7 @@ def test_map() -> None:
     ]
 
     result = serializer._Serializer__map(serializer.deserialize_boss, data)  # type: ignore
-    expected: dict[Bosses, models.Boss | int] = {}
+    expected: t.Dict[Bosses, models.Boss | int] = {}
 
     for i in range(2):
         boss = models.Boss()

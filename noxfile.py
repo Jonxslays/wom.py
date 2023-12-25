@@ -22,6 +22,7 @@
 from __future__ import annotations
 
 import functools
+import typing as t
 from typing import Callable
 from pathlib import Path
 
@@ -32,9 +33,9 @@ SessionT = Callable[[nox.Session], None]
 InjectorT = Callable[[SessionT], SessionT]
 
 
-def parse_dependencies() -> dict[str, str]:
+def parse_dependencies() -> t.Dict[str, str]:
     data = toml.load("pyproject.toml")["tool"]["poetry"]
-    deps: dict[str, str | dict[str, str]] = {
+    deps: t.Dict[str, t.Union[str, t.Dict[str, str]]] = {
         **data["dependencies"],
         **data["group"]["dev"]["dependencies"],
     }
@@ -121,7 +122,7 @@ def imports(session: nox.Session) -> None:
 
 @nox.session(reuse_venv=True)
 def licensing(session: nox.Session) -> None:
-    missing: list[Path] = []
+    missing: t.List[Path] = []
     files = (
         *Path("./wom").rglob("*.py"),
         *Path("./tests").glob("*.py"),

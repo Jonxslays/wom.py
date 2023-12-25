@@ -84,7 +84,7 @@ class Serializer:
         return "".join((first.lower(), *map(str.title, rest)))
 
     def __map(
-        self, serializer: t.Callable[[DictT], HasMetricsT], data: list[DictT]
+        self, serializer: t.Callable[[DictT], HasMetricsT], data: t.List[DictT]
     ) -> t.Dict[t.Any, HasMetricsT]:
         return {x.metric: x for x in (serializer(y) for y in data)}
 
