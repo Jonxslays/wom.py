@@ -1,3 +1,11 @@
+# Unreleased
+
+## Additions
+
+- Add `archive` property to `PlayerDetail`.
+- Add `Archive` and `PlayerArchive` models/serialization methods.
+- Add `get_archives` method to `PlayerService`.
+
 # v0.9.1 (Nov 2023)
 
 ## Bugfixes
