@@ -487,7 +487,7 @@ class SnapshotTimelineEntry(BaseModel):
 
 
 @attrs.define(init=False, weakref_slot=False)
-class Archive:
+class Archive(BaseModel):
     """Information detailing a player that has been archived."""
 
     player_id: int
@@ -511,7 +511,7 @@ class Archive:
 
 
 @attrs.define(init=False, weakref_slot=False)
-class PlayerArchive:
+class PlayerArchive(BaseModel):
     """Information detailing a player that has been archived, including the
     [`Player`][wom.Player] object."""
 
