@@ -1,10 +1,17 @@
-# Unreleased
+# v0.9.2 (Dec 2023)
 
 ## Additions
 
 - Add `archive` property to `PlayerDetail`.
 - Add `Archive` and `PlayerArchive` models/serialization methods.
 - Add `get_archives` method to `PlayerService`.
+- Add `to_dict` method to `Result`.
+
+## Fixes
+
+- Fix some Python 3.8 incompatible type hints.
+
+---
 
 # v0.9.1 (Nov 2023)
 
