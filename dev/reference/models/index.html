@@ -7128,6 +7128,8 @@ the player obtained.</p>
 
 
   <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.models.base.BaseModel" href="#wom.models.BaseModel">BaseModel</a></code></p>
 
   
       <p>Information detailing a player that has been archived.</p>
@@ -7156,7 +7158,7 @@ the player obtained.</p>
 <span class="normal"><a href="#__codelineno-0-508">508</a></span>
 <span class="normal"><a href="#__codelineno-0-509">509</a></span>
 <span class="normal"><a href="#__codelineno-0-510">510</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-489" name="__codelineno-0-489"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weakref_slot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-490" name="__codelineno-0-490"></a><span class="k">class</span> <span class="nc">Archive</span><span class="p">:</span>
+<a id="__codelineno-0-490" name="__codelineno-0-490"></a><span class="k">class</span> <span class="nc">Archive</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-491" name="__codelineno-0-491"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Information detailing a player that has been archived.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-492" name="__codelineno-0-492"></a>
 <a id="__codelineno-0-493" name="__codelineno-0-493"></a>    <span class="n">player_id</span><span class="p">:</span> <span class="nb">int</span>
@@ -15555,6 +15557,8 @@ starting from the previous achievement.</p>
 
 
   <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="wom.models.base.BaseModel" href="#wom.models.BaseModel">BaseModel</a></code></p>
 
   
       <p>Information detailing a player that has been archived, including the
@@ -15572,7 +15576,7 @@ starting from the previous achievement.</p>
 <span class="normal"><a href="#__codelineno-0-520">520</a></span>
 <span class="normal"><a href="#__codelineno-0-521">521</a></span>
 <span class="normal"><a href="#__codelineno-0-522">522</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-513" name="__codelineno-0-513"></a><span class="nd">@attrs</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">weakref_slot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-0-514" name="__codelineno-0-514"></a><span class="k">class</span> <span class="nc">PlayerArchive</span><span class="p">:</span>
+<a id="__codelineno-0-514" name="__codelineno-0-514"></a><span class="k">class</span> <span class="nc">PlayerArchive</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <a id="__codelineno-0-515" name="__codelineno-0-515"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Information detailing a player that has been archived, including the</span>
 <a id="__codelineno-0-516" name="__codelineno-0-516"></a><span class="sd">    [`Player`][wom.Player] object.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-517" name="__codelineno-0-517"></a>
