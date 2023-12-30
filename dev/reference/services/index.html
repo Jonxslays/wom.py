@@ -964,6 +964,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#wom.services.PlayerService.get_archives" class="md-nav__link">
+    get_archives()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#wom.services.PlayerService.get_competition_participations" class="md-nav__link">
     get_competition_participations()
   </a>
@@ -1503,6 +1510,13 @@
           <li class="md-nav__item">
   <a href="#wom.services.PlayerService.get_achievements" class="md-nav__link">
     get_achievements()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.services.PlayerService.get_archives" class="md-nav__link">
+    get_archives()
   </a>
   
 </li>
@@ -14806,7 +14820,39 @@ from the API. Defaults to <code>None</code>.</p>
 <span class="normal"><a href="#__codelineno-0-657">657</a></span>
 <span class="normal"><a href="#__codelineno-0-658">658</a></span>
 <span class="normal"><a href="#__codelineno-0-659">659</a></span>
-<span class="normal"><a href="#__codelineno-0-660">660</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span> <span class="nc">PlayerService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-660">660</a></span>
+<span class="normal"><a href="#__codelineno-0-661">661</a></span>
+<span class="normal"><a href="#__codelineno-0-662">662</a></span>
+<span class="normal"><a href="#__codelineno-0-663">663</a></span>
+<span class="normal"><a href="#__codelineno-0-664">664</a></span>
+<span class="normal"><a href="#__codelineno-0-665">665</a></span>
+<span class="normal"><a href="#__codelineno-0-666">666</a></span>
+<span class="normal"><a href="#__codelineno-0-667">667</a></span>
+<span class="normal"><a href="#__codelineno-0-668">668</a></span>
+<span class="normal"><a href="#__codelineno-0-669">669</a></span>
+<span class="normal"><a href="#__codelineno-0-670">670</a></span>
+<span class="normal"><a href="#__codelineno-0-671">671</a></span>
+<span class="normal"><a href="#__codelineno-0-672">672</a></span>
+<span class="normal"><a href="#__codelineno-0-673">673</a></span>
+<span class="normal"><a href="#__codelineno-0-674">674</a></span>
+<span class="normal"><a href="#__codelineno-0-675">675</a></span>
+<span class="normal"><a href="#__codelineno-0-676">676</a></span>
+<span class="normal"><a href="#__codelineno-0-677">677</a></span>
+<span class="normal"><a href="#__codelineno-0-678">678</a></span>
+<span class="normal"><a href="#__codelineno-0-679">679</a></span>
+<span class="normal"><a href="#__codelineno-0-680">680</a></span>
+<span class="normal"><a href="#__codelineno-0-681">681</a></span>
+<span class="normal"><a href="#__codelineno-0-682">682</a></span>
+<span class="normal"><a href="#__codelineno-0-683">683</a></span>
+<span class="normal"><a href="#__codelineno-0-684">684</a></span>
+<span class="normal"><a href="#__codelineno-0-685">685</a></span>
+<span class="normal"><a href="#__codelineno-0-686">686</a></span>
+<span class="normal"><a href="#__codelineno-0-687">687</a></span>
+<span class="normal"><a href="#__codelineno-0-688">688</a></span>
+<span class="normal"><a href="#__codelineno-0-689">689</a></span>
+<span class="normal"><a href="#__codelineno-0-690">690</a></span>
+<span class="normal"><a href="#__codelineno-0-691">691</a></span>
+<span class="normal"><a href="#__codelineno-0-692">692</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span> <span class="nc">PlayerService</span><span class="p">(</span><span class="n">BaseService</span><span class="p">):</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles endpoints related to players.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a>
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
@@ -15427,6 +15473,38 @@ from the API. Defaults to <code>None</code>.</p>
 <a id="__codelineno-0-658" name="__codelineno-0-658"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-659" name="__codelineno-0-659"></a>
 <a id="__codelineno-0-660" name="__codelineno-0-660"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_snapshot_timeline_entry</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+<a id="__codelineno-0-661" name="__codelineno-0-661"></a>
+<a id="__codelineno-0-662" name="__codelineno-0-662"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_archives</span><span class="p">(</span>
+<a id="__codelineno-0-663" name="__codelineno-0-663"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-664" name="__codelineno-0-664"></a>        <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-665" name="__codelineno-0-665"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">PlayerArchive</span><span class="p">]]:</span>
+<a id="__codelineno-0-666" name="__codelineno-0-666"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the archives for the given player.</span>
+<a id="__codelineno-0-667" name="__codelineno-0-667"></a>
+<a id="__codelineno-0-668" name="__codelineno-0-668"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-669" name="__codelineno-0-669"></a><span class="sd">            username: The username to get archives for.</span>
+<a id="__codelineno-0-670" name="__codelineno-0-670"></a>
+<a id="__codelineno-0-671" name="__codelineno-0-671"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-672" name="__codelineno-0-672"></a><span class="sd">            A [`Result`][wom.Result] containing the list of archives.</span>
+<a id="__codelineno-0-673" name="__codelineno-0-673"></a>
+<a id="__codelineno-0-674" name="__codelineno-0-674"></a><span class="sd">        ??? example</span>
+<a id="__codelineno-0-675" name="__codelineno-0-675"></a>
+<a id="__codelineno-0-676" name="__codelineno-0-676"></a><span class="sd">            ```py</span>
+<a id="__codelineno-0-677" name="__codelineno-0-677"></a><span class="sd">            import wom</span>
+<a id="__codelineno-0-678" name="__codelineno-0-678"></a>
+<a id="__codelineno-0-679" name="__codelineno-0-679"></a><span class="sd">            client = wom.Client(...)</span>
+<a id="__codelineno-0-680" name="__codelineno-0-680"></a>
+<a id="__codelineno-0-681" name="__codelineno-0-681"></a><span class="sd">            await client.start()</span>
+<a id="__codelineno-0-682" name="__codelineno-0-682"></a>
+<a id="__codelineno-0-683" name="__codelineno-0-683"></a><span class="sd">            result = await client.players.get_archives(&quot;Jonxslays&quot;)</span>
+<a id="__codelineno-0-684" name="__codelineno-0-684"></a><span class="sd">            ```</span>
+<a id="__codelineno-0-685" name="__codelineno-0-685"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-686" name="__codelineno-0-686"></a>        <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">PLAYER_ARCHIVES</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+<a id="__codelineno-0-687" name="__codelineno-0-687"></a>        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<a id="__codelineno-0-688" name="__codelineno-0-688"></a>
+<a id="__codelineno-0-689" name="__codelineno-0-689"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-690" name="__codelineno-0-690"></a>            <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-691" name="__codelineno-0-691"></a>
+<a id="__codelineno-0-692" name="__codelineno-0-692"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_archive</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -15909,6 +15987,164 @@ achievements.</p>
 <a id="__codelineno-0-229" name="__codelineno-0-229"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-230" name="__codelineno-0-230"></a>
 <a id="__codelineno-0-231" name="__codelineno-0-231"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_achievement</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+
+<h3 id="wom.services.PlayerService.get_archives" class="doc doc-heading">
+          <span class="doc doc-object-name doc-function-name">get_archives</span>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">get_archives</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">PlayerArchive</span><span class="p">]]</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Gets the archives for the given player.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>username</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The username to get archives for.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="wom.services.players.ResultT">ResultT</span>[<span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="wom.models.PlayerArchive" href="../models/#wom.models.PlayerArchive">PlayerArchive</a>]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A <a class="autorefs autorefs-internal" href="../result/#wom.result.Result"><code>Result</code></a> containing the list of archives.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <details class="example">
+<summary>Example</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">wom</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">client</span> <span class="o">=</span> <span class="n">wom</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">get_archives</span><span class="p">(</span><span class="s2">&quot;Jonxslays&quot;</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+          <details class="quote">
+            <summary>Source code in <code>wom/services/players.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-662">662</a></span>
+<span class="normal"><a href="#__codelineno-0-663">663</a></span>
+<span class="normal"><a href="#__codelineno-0-664">664</a></span>
+<span class="normal"><a href="#__codelineno-0-665">665</a></span>
+<span class="normal"><a href="#__codelineno-0-666">666</a></span>
+<span class="normal"><a href="#__codelineno-0-667">667</a></span>
+<span class="normal"><a href="#__codelineno-0-668">668</a></span>
+<span class="normal"><a href="#__codelineno-0-669">669</a></span>
+<span class="normal"><a href="#__codelineno-0-670">670</a></span>
+<span class="normal"><a href="#__codelineno-0-671">671</a></span>
+<span class="normal"><a href="#__codelineno-0-672">672</a></span>
+<span class="normal"><a href="#__codelineno-0-673">673</a></span>
+<span class="normal"><a href="#__codelineno-0-674">674</a></span>
+<span class="normal"><a href="#__codelineno-0-675">675</a></span>
+<span class="normal"><a href="#__codelineno-0-676">676</a></span>
+<span class="normal"><a href="#__codelineno-0-677">677</a></span>
+<span class="normal"><a href="#__codelineno-0-678">678</a></span>
+<span class="normal"><a href="#__codelineno-0-679">679</a></span>
+<span class="normal"><a href="#__codelineno-0-680">680</a></span>
+<span class="normal"><a href="#__codelineno-0-681">681</a></span>
+<span class="normal"><a href="#__codelineno-0-682">682</a></span>
+<span class="normal"><a href="#__codelineno-0-683">683</a></span>
+<span class="normal"><a href="#__codelineno-0-684">684</a></span>
+<span class="normal"><a href="#__codelineno-0-685">685</a></span>
+<span class="normal"><a href="#__codelineno-0-686">686</a></span>
+<span class="normal"><a href="#__codelineno-0-687">687</a></span>
+<span class="normal"><a href="#__codelineno-0-688">688</a></span>
+<span class="normal"><a href="#__codelineno-0-689">689</a></span>
+<span class="normal"><a href="#__codelineno-0-690">690</a></span>
+<span class="normal"><a href="#__codelineno-0-691">691</a></span>
+<span class="normal"><a href="#__codelineno-0-692">692</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-662" name="__codelineno-0-662"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_archives</span><span class="p">(</span>
+<a id="__codelineno-0-663" name="__codelineno-0-663"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-664" name="__codelineno-0-664"></a>    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-665" name="__codelineno-0-665"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResultT</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">models</span><span class="o">.</span><span class="n">PlayerArchive</span><span class="p">]]:</span>
+<a id="__codelineno-0-666" name="__codelineno-0-666"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the archives for the given player.</span>
+<a id="__codelineno-0-667" name="__codelineno-0-667"></a>
+<a id="__codelineno-0-668" name="__codelineno-0-668"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-669" name="__codelineno-0-669"></a><span class="sd">        username: The username to get archives for.</span>
+<a id="__codelineno-0-670" name="__codelineno-0-670"></a>
+<a id="__codelineno-0-671" name="__codelineno-0-671"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-672" name="__codelineno-0-672"></a><span class="sd">        A [`Result`][wom.Result] containing the list of archives.</span>
+<a id="__codelineno-0-673" name="__codelineno-0-673"></a>
+<a id="__codelineno-0-674" name="__codelineno-0-674"></a><span class="sd">    ??? example</span>
+<a id="__codelineno-0-675" name="__codelineno-0-675"></a>
+<a id="__codelineno-0-676" name="__codelineno-0-676"></a><span class="sd">        ```py</span>
+<a id="__codelineno-0-677" name="__codelineno-0-677"></a><span class="sd">        import wom</span>
+<a id="__codelineno-0-678" name="__codelineno-0-678"></a>
+<a id="__codelineno-0-679" name="__codelineno-0-679"></a><span class="sd">        client = wom.Client(...)</span>
+<a id="__codelineno-0-680" name="__codelineno-0-680"></a>
+<a id="__codelineno-0-681" name="__codelineno-0-681"></a><span class="sd">        await client.start()</span>
+<a id="__codelineno-0-682" name="__codelineno-0-682"></a>
+<a id="__codelineno-0-683" name="__codelineno-0-683"></a><span class="sd">        result = await client.players.get_archives(&quot;Jonxslays&quot;)</span>
+<a id="__codelineno-0-684" name="__codelineno-0-684"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-685" name="__codelineno-0-685"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-686" name="__codelineno-0-686"></a>    <span class="n">route</span> <span class="o">=</span> <span class="n">routes</span><span class="o">.</span><span class="n">PLAYER_ARCHIVES</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+<a id="__codelineno-0-687" name="__codelineno-0-687"></a>    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_http</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list</span><span class="p">)</span>
+<a id="__codelineno-0-688" name="__codelineno-0-688"></a>
+<a id="__codelineno-0-689" name="__codelineno-0-689"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">HttpErrorResponse</span><span class="p">):</span>
+<a id="__codelineno-0-690" name="__codelineno-0-690"></a>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Err</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-691" name="__codelineno-0-691"></a>
+<a id="__codelineno-0-692" name="__codelineno-0-692"></a>    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">Ok</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_serializer</span><span class="o">.</span><span class="n">deserialize_player_archive</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
