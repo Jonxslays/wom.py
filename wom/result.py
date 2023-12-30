@@ -58,7 +58,6 @@ import typing as t
 
 from wom import errors
 from wom.models import BaseModel
-from wom.models import HttpErrorResponse
 
 __all__ = ("Err", "Ok", "Result")
 
@@ -185,7 +184,7 @@ class Ok(Result[T, E]):
         elif isinstance(self._value, list):
             if self._value:
                 if isinstance(self._value[0], BaseModel):
-                    value = [v.to_dict() for v in self._value]  # type: ignore
+                    value = [v.to_dict() for v in self._value]  # pyright: ignore
                 elif isinstance(self._value[0], (dict, int, str, bool)):
                     value = self._value
                 else:
@@ -259,19 +258,18 @@ class Err(Result[T, E]):
             error = self._error
         elif isinstance(self._error, Exception):
             error = str(self._error)
-        elif isinstance(self._value, list):
-            if self._value:
-                if isinstance(self._value[0], BaseModel):
-                    error = [e.to_dict() for e in self._value]  # type: ignore
-                elif isinstance(self._value[0], (dict, int, str, bool)):
-                    error = self._value
+        elif isinstance(self._error, list):
+            if self._error:
+                if isinstance(self._error[0], BaseModel):
+                    error = [e.to_dict() for e in self._error]  # pyright: ignore
+                elif isinstance(self._error[0], (dict, int, str, bool)):
+                    error = self._error
                 else:
                     raise RuntimeError(
                         f"Cant convert Result(Err) to dict, please report this: {self._error}"
                     )
             else:
                 error = []
-
         else:
             raise RuntimeError(
                 f"Cant convert Result(Err) to dict, please report this: {self._error}"
