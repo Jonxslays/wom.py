@@ -378,11 +378,69 @@ def deserialized_snapshot() -> models.Snapshot:
     return _deserialized_snapshot()
 
 
+def _archive_dict() -> DictT:
+    return {
+        "playerId": 1234,
+        "previousUsername": "testlol",
+        "archiveUsername": "archive69420",
+        "restoredUsername": None,
+        "createdAt": "2022-10-27T11:44:11.057Z",
+        "restoredAt": None,
+    }
+
+
+@pytest.fixture()
+def archive_dict() -> DictT:
+    return _archive_dict()
+
+
+def _deserialized_archive() -> models.Archive:
+    model = models.Archive()
+
+    model.player_id = 1234
+    model.previous_username = "testlol"
+    model.archive_username = "archive69420"
+    model.restored_username = None
+    model.created_at = datetime(2022, 10, 27, 11, 44, 11, 57000)
+    model.restored_at = None
+
+    return model
+
+
+@pytest.fixture()
+def deserialized_archive() -> models.Archive:
+    return _deserialized_archive()
+
+
+def _player_archive_dict() -> DictT:
+    return {**_archive_dict(), "player": _player_dict()}
+
+
+@pytest.fixture()
+def player_archive_dict() -> DictT:
+    return _player_archive_dict()
+
+
+def _deserialized_player_archive() -> models.PlayerArchive:
+    model = models.PlayerArchive()
+
+    model.player = _deserialized_player()
+    model.archive = _deserialized_archive()
+
+    return model
+
+
+@pytest.fixture()
+def deserialized_player_archive() -> models.PlayerArchive:
+    return _deserialized_player_archive()
+
+
 def _player_detail_dict() -> DictT:
     return {
         **_player_dict(),
         "combatLevel": 126,
         "latestSnapshot": _snapshot_dict(),
+        "archive": _archive_dict(),
     }
 
 
@@ -396,6 +454,7 @@ def _deserialized_player_detail() -> models.PlayerDetail:
     model.combat_level = 126
     model.player = _deserialized_player()
     model.latest_snapshot = _deserialized_snapshot()
+    model.archive = _deserialized_archive()
     return model
 
 
@@ -677,7 +736,7 @@ def test_map() -> None:
     ]
 
     result = serializer._Serializer__map(serializer.deserialize_boss, data)  # type: ignore
-    expected: dict[Bosses, models.Boss | int] = {}
+    expected: t.Dict[Bosses, models.Boss | int] = {}
 
     for i in range(2):
         boss = models.Boss()
@@ -990,3 +1049,17 @@ def test_deserialize_player_gains(
     result = serializer.deserialize_player_gains(player_gains_dict)
 
     assert result == deserialized_player_gains
+
+
+def test_deserialize_archive(archive_dict: DictT, deserialized_archive: models.Archive) -> None:
+    result = serializer.deserialize_archive(archive_dict)
+
+    assert result == deserialized_archive
+
+
+def test_deserialize_player_archive(
+    player_archive_dict: DictT, deserialized_player_archive: models.PlayerArchive
+) -> None:
+    result = serializer.deserialize_player_archive(player_archive_dict)
+
+    assert result == deserialized_player_archive

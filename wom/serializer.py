@@ -84,7 +84,7 @@ class Serializer:
         return "".join((first.lower(), *map(str.title, rest)))
 
     def __map(
-        self, serializer: t.Callable[[DictT], HasMetricsT], data: list[DictT]
+        self, serializer: t.Callable[[DictT], HasMetricsT], data: t.List[DictT]
     ) -> t.Dict[t.Any, HasMetricsT]:
         return {x.metric: x for x in (serializer(y) for y in data)}
 
@@ -198,6 +198,12 @@ class Serializer:
         details.combat_level = data["combatLevel"]
         details.player = self.deserialize_player(data)
         details.latest_snapshot = self.deserialize_snapshot(data["latestSnapshot"])
+
+        if archive := data.get("archive"):
+            details.archive = self.deserialize_archive(archive)
+        else:
+            details.archive = None
+
         return details
 
     @serializer_guard
@@ -1159,3 +1165,19 @@ class Serializer:
             twitter=data.get("twitter"),
             twitch=data.get("twitch"),
         )
+
+    @serializer_guard
+    def deserialize_archive(self, data: DictT) -> models.Archive:
+        archive = models.Archive()
+        archive.restored_at = self._dt_from_iso_maybe(data.get("restoredAt"))
+        archive.created_at = self._dt_from_iso(data["createdAt"])
+        archive.restored_username = data.get("restoredUsername")
+        self._set_attrs_cased(archive, data, "archive_username", "player_id", "previous_username")
+        return archive
+
+    @serializer_guard
+    def deserialize_player_archive(self, data: DictT) -> models.PlayerArchive:
+        archive = models.PlayerArchive()
+        archive.archive = self.deserialize_archive(data)
+        archive.player = self.deserialize_player(data["player"])
+        return archive

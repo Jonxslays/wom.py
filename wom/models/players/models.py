@@ -40,6 +40,7 @@ __all__ = (
     "AchievementProgress",
     "ActivityGains",
     "Activity",
+    "Archive",
     "AssertPlayerType",
     "BossGains",
     "Boss",
@@ -47,6 +48,7 @@ __all__ = (
     "ComputedMetric",
     "Gains",
     "PlayerAchievementProgress",
+    "PlayerArchive",
     "PlayerGainsData",
     "PlayerGains",
     "Player",
@@ -238,6 +240,9 @@ class PlayerDetail(BaseModel):
 
     latest_snapshot: t.Optional[Snapshot]
     """The latest snapshot for the player, if there is one."""
+
+    archive: t.Optional[Archive]
+    """The players archive information, if any."""
 
 
 @attrs.define(init=False, weakref_slot=False)
@@ -479,3 +484,39 @@ class SnapshotTimelineEntry(BaseModel):
 
     date: datetime
     """The date this timeline entry was recorded."""
+
+
+@attrs.define(init=False, weakref_slot=False)
+class Archive:
+    """Information detailing a player that has been archived."""
+
+    player_id: int
+    """The ID of the parent player that was archived."""
+
+    previous_username: str
+    """The players previous username before the archive."""
+
+    archive_username: str
+    """The players placeholder username after the archive."""
+
+    restored_username: t.Optional[str]
+    """The players new username after restoration from archive. Can be
+    `None` if the player has not been restored."""
+
+    created_at: datetime
+    """The date the archive was created."""
+
+    restored_at: t.Optional[datetime]
+    """The date the player was restored, if they have been."""
+
+
+@attrs.define(init=False, weakref_slot=False)
+class PlayerArchive:
+    """Information detailing a player that has been archived, including the
+    [`Player`][wom.Player] object."""
+
+    archive: Archive
+    """The archive information."""
+
+    player: Player
+    """The player information."""

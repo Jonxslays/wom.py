@@ -658,3 +658,35 @@ class PlayerService(BaseService):
             return result.Err(data)
 
         return result.Ok([self._serializer.deserialize_snapshot_timeline_entry(e) for e in data])
+
+    async def get_archives(
+        self,
+        username: str,
+    ) -> ResultT[t.List[models.PlayerArchive]]:
+        """Gets the archives for the given player.
+
+        Args:
+            username: The username to get archives for.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of archives.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.players.get_archives("Jonxslays")
+            ```
+        """
+        route = routes.PLAYER_ARCHIVES.compile(username)
+        data = await self._http.fetch(route, self._list)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok([self._serializer.deserialize_player_archive(a) for a in data])
