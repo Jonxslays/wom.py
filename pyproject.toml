@@ -10,7 +10,7 @@ repository = "https://github.com/Jonxslays/wom.py"
 documentation = "https://jonxslays.github.io/wom.py"
 packages = [{ include = "wom" }, { include = "wom/py.typed" }]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -27,7 +27,7 @@ classifiers = [
 ]
 
 [tool.poetry.scripts]
-wompy = "wom._cli:info"
+wom = "wom.__main__:_main"
 
 [tool.poetry.dependencies]
 python = ">=3.8"

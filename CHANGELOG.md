@@ -1,3 +1,14 @@
+# v1.0.0-rc.1 (Jan 2024)
+
+Stable Release Candidate 1!
+
+## Breaking changes
+
+- Removed internal `wom._cli` module.
+- Renamed project info `wompy` cli command to `wom`.
+
+---
+
 # v0.9.2 (Jan 2024)
 
 ## Additions
