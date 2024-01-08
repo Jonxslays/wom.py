@@ -23,15 +23,12 @@ from __future__ import annotations
 
 from datetime import datetime
 
-import attrs
-
 from ..base import BaseModel
 from ..players import Player
 
 __all__ = ("DeltaLeaderboardEntry",)
 
 
-@attrs.define(init=False, weakref_slot=False)
 class DeltaLeaderboardEntry(BaseModel):
     """Represents a leaderboard entry over the given delta."""
 

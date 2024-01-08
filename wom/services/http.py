@@ -26,6 +26,7 @@ from __future__ import annotations
 import typing as t
 
 import aiohttp
+import msgspec
 
 from wom import constants
 from wom import models
@@ -55,12 +56,15 @@ class HttpService:
         user_agent: t.Optional[str],
         api_base_url: t.Optional[str],
     ) -> None:
+        user_agent = (
+            f"{constants.USER_AGENT_BASE} {user_agent}"
+            if user_agent
+            else constants.DEFAULT_USER_AGENT
+        )
+
         self._headers = {
-            "x-user-agent": (
-                f"{constants.USER_AGENT_BASE} {user_agent}"
-                if user_agent
-                else constants.DEFAULT_USER_AGENT
-            )
+            "x-user-agent": user_agent,
+            "User-Agent": user_agent,
         }
 
         if api_key:
@@ -68,30 +72,32 @@ class HttpService:
 
         self._base_url = api_base_url or constants.WOM_BASE_URL
 
-    async def _try_get_json(self, response: aiohttp.ClientResponse) -> t.Any:
+    async def _read_content(
+        self, response: aiohttp.ClientResponse
+    ) -> t.Union[bytes, models.HttpErrorResponse]:
         try:
-            return await response.json()
+            return await response.content.read()
         except Exception:
-            return models.HttpErrorResponse(
-                response.status, "Unable to deserialize response, the api is likely down."
-            )
+            return models.HttpErrorResponse(response.status, "Failed to read response content.")
 
     async def _request(
         self, req: t.Callable[..., t.Awaitable[t.Any]], url: str, **kwargs: t.Any
-    ) -> t.Any:
+    ) -> t.Union[bytes, models.HttpErrorResponse]:
         response = await req(url, **kwargs)
-        data = await self._try_get_json(response)
+        content = await self._read_content(response)
 
-        if isinstance(data, models.HttpErrorResponse):
-            return data
+        if isinstance(content, models.HttpErrorResponse):
+            return content
 
-        if not response.ok or "message" in data:
+        if not response.ok:
+            error = msgspec.json.decode(content)
+
             return models.HttpErrorResponse(
                 response.status,
-                data.get("message", "An unexpected error occurred while making the request."),
+                error.get("message", "An unexpected error occurred while making the request."),
             )
 
-        return data
+        return content
 
     def _get_request_func(self, method: str) -> t.Callable[..., t.Awaitable[t.Any]]:
         if not hasattr(self, "_method_mapping"):
@@ -129,6 +135,7 @@ class HttpService:
             user_agent: The new user agent to use.
         """
         self._headers["x-user-agent"] = user_agent
+        self._headers["User-Agent"] = user_agent
 
     def set_base_url(self, base_url: str) -> None:
         """Sets the api base url used by the http service.
@@ -151,10 +158,9 @@ class HttpService:
     async def fetch(
         self,
         route: routes.CompiledRoute,
-        _: t.Type[T],
         *,
         payload: t.Optional[t.Dict[str, t.Any]] = None,
-    ) -> T | models.HttpErrorResponse:
+    ) -> bytes | models.HttpErrorResponse:
         """Fetches the given route.
 
         Args:
@@ -168,7 +174,7 @@ class HttpService:
         Returns:
             The requested json data or the error response.
         """
-        return await self._request(  # type: ignore
+        return await self._request(
             self._get_request_func(route.method),
             self._base_url + route.uri,
             headers=self._headers,

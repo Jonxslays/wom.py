@@ -26,8 +26,6 @@ from __future__ import annotations
 import typing as t
 from datetime import datetime
 
-import attrs
-
 from wom import enums
 
 from ..base import BaseModel
@@ -51,7 +49,6 @@ __all__ = (
 )
 
 
-@attrs.define(init=False, weakref_slot=False)
 class CompetitionProgress(BaseModel):
     """Represents progress in a competition."""
 
@@ -65,7 +62,6 @@ class CompetitionProgress(BaseModel):
     """The amount of progress gained in the metric."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Competition(BaseModel):
     """Represents a competition."""
 
@@ -102,13 +98,12 @@ class Competition(BaseModel):
     participant_count: int
     """The number of players participating."""
 
-    group: t.Optional[Group]
+    group: t.Optional[Group] = None
     """The [`Group`][wom.Group] associated with the competition, if
     there is one.
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Participation(BaseModel):
     """Represents participation in a competition."""
 
@@ -128,25 +123,15 @@ class Participation(BaseModel):
     """The date this participation was updated."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class CompetitionParticipation(BaseModel):
+class CompetitionParticipation(Participation):
     """Represents a competition participation."""
-
-    data: Participation
-    """The [`Participation`][wom.models.Participation] achieved in this
-    competition.
-    """
 
     player: Player
     """The [`Player`][wom.Player] that participated in this competition."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class PlayerParticipation(BaseModel):
+class PlayerParticipation(Participation):
     """Represents a players participation in a competition."""
-
-    data: Participation
-    """The [`Participation`][wom.Participation] the player achieved."""
 
     competition: Competition
     """The [`Competition`][wom.Competition] that the player participated
@@ -154,25 +139,23 @@ class PlayerParticipation(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
-class PlayerCompetitionStanding(BaseModel):
+class PlayerCompetitionStanding(PlayerParticipation):
     """Represents a players standing in a competition."""
-
-    participation: PlayerParticipation
-    """The [`PlayerParticipation`][wom.PlayerParticipation] achieved by
-    the player.
-    """
 
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
     made.
     """
 
+    levels: CompetitionProgress
+    """The [`CompetitionProgress`][wom.CompetitionProgress] that was
+    made. Only contains useful information for skilling competitions.
+    """
+
     rank: int
     """The rank in the competition standings."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class CompetitionParticipationDetail(BaseModel):
     """Represents competition participation details."""
 
@@ -192,7 +175,6 @@ class CompetitionParticipationDetail(BaseModel):
     competitions."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class CompetitionDetail(BaseModel):
     """Represents competition details."""
 
@@ -206,7 +188,6 @@ class CompetitionDetail(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class CompetitionHistoryDataPoint(BaseModel):
     """A competition history data point."""
 
@@ -217,7 +198,6 @@ class CompetitionHistoryDataPoint(BaseModel):
     """The value of the data point."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Top5ProgressResult(BaseModel):
     """A top 5 progress result for a competition."""
 
@@ -231,7 +211,6 @@ class Top5ProgressResult(BaseModel):
     """
 
 
-@attrs.define(weakref_slot=False)
 class Team(BaseModel):
     """Represents a competition team.
 
@@ -247,10 +226,6 @@ class Team(BaseModel):
         data to some endpoints.
     """
 
-    def __init__(self, name: str, participants: t.List[str]) -> None:
-        self.name = name
-        self.participants = participants
-
     name: str
     """The name of the team."""
 
@@ -258,7 +233,6 @@ class Team(BaseModel):
     """A list of participant usernames on the team."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class CompetitionWithParticipations(BaseModel):
     """Represents a competition with participations."""
 

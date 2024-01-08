@@ -46,39 +46,17 @@ class BaseEnum(Enum):
     def __str__(self) -> str:
         return self.value  # type: ignore[no-any-return]
 
-    @classmethod
-    def from_str(cls: t.Type[T], value: str) -> T:
-        """Generate this enum from the given value.
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, BaseEnum):
+            return self.value == other.value
 
-        Args:
-            value: The value to generate from.
+        if isinstance(other, str):
+            return self.value == other
 
-        Returns:
-            The generated enum.
-        """
-        try:
-            return cls(value)
-        except ValueError as e:
-            raise ValueError(
-                f"{e} variant. Please report this issue on github at "
-                "https://github.com/Jonxslays/wom.py/issues/new"
-            ) from None
+        return super().__eq__(other)
 
-    @classmethod
-    def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
-        """Attempt to generate this enum from the given value.
-
-        Args:
-            value: The value to generate from.
-
-        Returns:
-            The generated enum or `None` if the value was not a valid
-                enum variant.
-        """
-        try:
-            return cls(value)
-        except ValueError:
-            return None
+    def __hash__(self) -> int:
+        return hash(self.value)
 
     @classmethod
     def at_random(cls: t.Type[T]) -> T:
@@ -90,47 +68,116 @@ class BaseEnum(Enum):
 
 
 class Metric(BaseEnum):
-    """Represents a metric, this enum has no attributes itself.
-
-    !!! tip
-
-        Will always be one of [`Activities`][wom.Activities],
-        [`Bosses`][wom.Bosses], [`ComputedMetrics`][wom.ComputedMetrics],
-        or [`Skills`][wom.Skills].
+    """Represents all metrics, can be used interchangeably with
+    [`Activities`][wom.Activities], [`Bosses`][wom.Bosses],
+    [`ComputedMetrics`][wom.ComputedMetrics], or [`Skills`][wom.Skills].
     """
 
-    @classmethod
-    def from_str(cls: t.Type[T], value: str) -> T:
-        if cls is not Metric:
-            return super().from_str(value)
+    # Skills
+    Overall = "overall"
+    Attack = "attack"
+    Defence = "defence"
+    Strength = "strength"
+    Hitpoints = "hitpoints"
+    Ranged = "ranged"
+    Prayer = "prayer"
+    Magic = "magic"
+    Cooking = "cooking"
+    Woodcutting = "woodcutting"
+    Fletching = "fletching"
+    Fishing = "fishing"
+    Firemaking = "firemaking"
+    Crafting = "crafting"
+    Smithing = "smithing"
+    Mining = "mining"
+    Herblore = "herblore"
+    Agility = "agility"
+    Thieving = "thieving"
+    Slayer = "slayer"
+    Farming = "farming"
+    Runecrafting = "runecrafting"
+    Hunter = "hunter"
+    Construction = "construction"
 
-        children = {Skills, Activities, Bosses, ComputedMetrics}
+    # Activities
+    LeaguePoints = "league_points"
+    BountyHunterHunter = "bounty_hunter_hunter"
+    BountyHunterRogue = "bounty_hunter_rogue"
+    ClueScrollsAll = "clue_scrolls_all"
+    ClueScrollsBeginner = "clue_scrolls_beginner"
+    ClueScrollsEasy = "clue_scrolls_easy"
+    ClueScrollsMedium = "clue_scrolls_medium"
+    ClueScrollsHard = "clue_scrolls_hard"
+    ClueScrollsElite = "clue_scrolls_elite"
+    ClueScrollsMaster = "clue_scrolls_master"
+    LastManStanding = "last_man_standing"
+    PvpArena = "pvp_arena"
+    SoulWarsZeal = "soul_wars_zeal"
+    GuardiansOfTheRift = "guardians_of_the_rift"
 
-        for child in children:
-            try:
-                return child(value)  # type: ignore
-            except ValueError:
-                continue
+    # Bosses
+    AbyssalSire = "abyssal_sire"
+    AlchemicalHydra = "alchemical_hydra"
+    Artio = "artio"
+    BarrowsChests = "barrows_chests"
+    Bryophyta = "bryophyta"
+    Callisto = "callisto"
+    Calvarion = "calvarion"
+    Cerberus = "cerberus"
+    ChambersOfXeric = "chambers_of_xeric"
+    ChambersOfXericChallenge = "chambers_of_xeric_challenge_mode"
+    ChaosElemental = "chaos_elemental"
+    ChaosFanatic = "chaos_fanatic"
+    CommanderZilyana = "commander_zilyana"
+    CorporealBeast = "corporeal_beast"
+    CrazyArchaeologist = "crazy_archaeologist"
+    DagannothPrime = "dagannoth_prime"
+    DagannothRex = "dagannoth_rex"
+    DagannothSupreme = "dagannoth_supreme"
+    DerangedArchaeologist = "deranged_archaeologist"
+    DukeSucellus = "duke_sucellus"
+    GeneralGraardor = "general_graardor"
+    GiantMole = "giant_mole"
+    GrotesqueGuardians = "grotesque_guardians"
+    Hespori = "hespori"
+    KalphiteQueen = "kalphite_queen"
+    KingBlackDragon = "king_black_dragon"
+    Kraken = "kraken"
+    Kreearra = "kreearra"
+    KrilTsutsaroth = "kril_tsutsaroth"
+    Mimic = "mimic"
+    Nex = "nex"
+    Nightmare = "nightmare"
+    PhosanisNightmare = "phosanis_nightmare"
+    Obor = "obor"
+    PhantomMuspah = "phantom_muspah"
+    Sarachnis = "sarachnis"
+    Scorpia = "scorpia"
+    Skotizo = "skotizo"
+    Spindel = "spindel"
+    Tempoross = "tempoross"
+    TheGauntlet = "the_gauntlet"
+    TheCorruptedGauntlet = "the_corrupted_gauntlet"
+    TheLeviathan = "the_leviathan"
+    TheWhisperer = "the_whisperer"
+    TheatreOfBlood = "theatre_of_blood"
+    TheatreOfBloodHard = "theatre_of_blood_hard_mode"
+    ThermonuclearSmokeDevil = "thermonuclear_smoke_devil"
+    TombsOfAmascut = "tombs_of_amascut"
+    TombsOfAmascutExpert = "tombs_of_amascut_expert"
+    TzKalZuk = "tzkal_zuk"
+    TzTokJad = "tztok_jad"
+    Vardorvis = "vardorvis"
+    Venenatis = "venenatis"
+    Vetion = "vetion"
+    Vorkath = "vorkath"
+    Wintertodt = "wintertodt"
+    Zalcano = "zalcano"
+    Zulrah = "zulrah"
 
-        raise ValueError(
-            f"{value!r} is not a valid {cls.__name__} variant. "
-            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new"
-        )
-
-    @classmethod
-    def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
-        if cls is not Metric:
-            return super().from_str_maybe(value)  # pyright: ignore
-
-        children = {Skills, Activities, Bosses, ComputedMetrics}
-
-        for child in children:
-            try:
-                return child(value)  # type: ignore
-            except ValueError:
-                continue
-
-        return None
+    # Computed Metrics
+    Ehp = "ehp"
+    Ehb = "ehb"
 
 
 class Period(BaseEnum):
@@ -143,7 +190,11 @@ class Period(BaseEnum):
     Year = "year"
 
 
-class Skills(Metric):
+# Sadly idk how to go about not duplicating
+# skills/activities/bosses/computed and metrics at this point.
+
+
+class Skills(BaseEnum):
     """Skills from OSRS."""
 
     Overall = "overall"
@@ -172,7 +223,7 @@ class Skills(Metric):
     Construction = "construction"
 
 
-class Activities(Metric):
+class Activities(BaseEnum):
     """Activities from OSRS."""
 
     LeaguePoints = "league_points"
@@ -191,7 +242,7 @@ class Activities(Metric):
     GuardiansOfTheRift = "guardians_of_the_rift"
 
 
-class Bosses(Metric):
+class Bosses(BaseEnum):
     """Bosses from OSRS."""
 
     AbyssalSire = "abyssal_sire"
@@ -254,7 +305,7 @@ class Bosses(Metric):
     Zulrah = "zulrah"
 
 
-class ComputedMetrics(Metric):
+class ComputedMetrics(BaseEnum):
     """A metric that is computed, i.e. efficient hours played and
     bossed.
     """

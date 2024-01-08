@@ -24,10 +24,15 @@ from __future__ import annotations
 import abc
 import typing as t
 
-if t.TYPE_CHECKING:
-    from wom import serializer
+from wom import result
 
+if t.TYPE_CHECKING:
+    from wom import models
+    from wom import serializer
     from . import HttpService
+
+    ValueT = t.TypeVar("ValueT")
+    ResultT = result.Result[ValueT, models.HttpErrorResponse]
 
 __all__ = ("BaseService",)
 
@@ -47,8 +52,9 @@ class BaseService(abc.ABC):
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
         self._serializer = serializer
-        self._dict = t.Dict[str, t.Any]
-        self._list = t.List[t.Dict[str, t.Any]]
 
     def _generate_map(self, **kwargs: t.Any) -> t.Dict[str, t.Any]:
         return {k: v for k, v in kwargs.items() if v is not None}
+
+    def ok(self, data: bytes, model_type: t.Type[ValueT]) -> ResultT[ValueT]:
+        return result.Ok(self._serializer.decode(data, model_type))

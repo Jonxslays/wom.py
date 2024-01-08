@@ -178,7 +178,7 @@ class Ok(Result[T, E]):
         """
         value: t.Any
         actual = self._value.__class__.__name__
-
+        # I'm so sorry for doing this...
         if isinstance(self._value, BaseModel):
             value = self._value.to_dict()
         elif isinstance(self._value, list):
@@ -251,7 +251,7 @@ class Err(Result[T, E]):
             The requested dictionary.
         """
         error: t.Any
-
+        # And this...
         if isinstance(self._error, BaseModel):
             error = self._error.to_dict()
         elif isinstance(self._error, (dict, int, str, bool)):

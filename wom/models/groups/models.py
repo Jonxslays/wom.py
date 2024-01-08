@@ -24,8 +24,6 @@ from __future__ import annotations
 import typing as t
 from datetime import datetime
 
-import attrs
-
 from wom import enums
 
 from ..base import BaseModel
@@ -59,7 +57,6 @@ __all__ = (
 )
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Group(BaseModel):
     """Represents a group of players on WOM."""
 
@@ -103,7 +100,6 @@ class Group(BaseModel):
     """The number of members in the group."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupDetail(BaseModel):
     """Represents details about a group."""
 
@@ -125,41 +121,25 @@ class GroupDetail(BaseModel):
     """
 
 
-@attrs.define(weakref_slot=False)
 class SocialLinks(BaseModel):
     """A groups social links."""
 
-    def __init__(
-        self,
-        website: t.Optional[str] = None,
-        discord: t.Optional[str] = None,
-        twitter: t.Optional[str] = None,
-        youtube: t.Optional[str] = None,
-        twitch: t.Optional[str] = None,
-    ) -> None:
-        self.website = website
-        self.discord = discord
-        self.twitter = twitter
-        self.youtube = youtube
-        self.twitch = twitch
-
-    website: t.Optional[str]
+    website: t.Optional[str] = None
     """The groups website url."""
 
-    discord: t.Optional[str]
+    discord: t.Optional[str] = None
     """The groups discord invite url."""
 
-    twitter: t.Optional[str]
+    twitter: t.Optional[str] = None
     """The groups twitter url."""
 
-    youtube: t.Optional[str]
+    youtube: t.Optional[str] = None
     """The groups youtube url."""
 
-    twitch: t.Optional[str]
+    twitch: t.Optional[str] = None
     """The groups twitch url."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Membership(BaseModel):
     """Represents a membership in a group."""
 
@@ -179,29 +159,21 @@ class Membership(BaseModel):
     """The date this membership was updated."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupMembership(BaseModel):
+class GroupMembership(Membership):
     """Represents a group membership."""
 
     player: Player
     """The [`Player`][wom.Player] that is a member."""
 
-    membership: Membership
-    """The [`Membership`][wom.Membership] itself."""
 
-
-@attrs.define(init=False, weakref_slot=False)
-class PlayerMembership(BaseModel):
+class PlayerMembership(Membership):
     """Represents a player membership."""
 
     group: Group
     """The [`Group`][wom.Group] the player is a member of."""
 
-    membership: Membership
-    """The [`Membership`][wom.Membership] itself."""
 
 
-@attrs.define(weakref_slot=False)
 class GroupMemberFragment(BaseModel):
     """Represents a condensed group member.
 
@@ -217,19 +189,14 @@ class GroupMemberFragment(BaseModel):
         data to some endpoints.
     """
 
-    def __init__(self, username: str, role: t.Optional[GroupRole] = None) -> None:
-        self.username = username
-        self.role = role
-
     username: str
     """The group members username."""
 
-    role: t.Optional[GroupRole]
+    role: t.Optional[GroupRole] = None
     """The optional [`GroupRole`][wom.GroupRole] for the member.
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresEntry(BaseModel):
     """Represents a group hiscores entry."""
 
@@ -245,7 +212,6 @@ class GroupHiscoresEntry(BaseModel):
     """The data for this hiscores entry."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresSkillItem(BaseModel):
     """Represents a group hiscores item for skills."""
 
@@ -259,7 +225,6 @@ class GroupHiscoresSkillItem(BaseModel):
     """The experience in the skill."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresBossItem(BaseModel):
     """Represents a group hiscores item for bosses."""
 
@@ -270,7 +235,6 @@ class GroupHiscoresBossItem(BaseModel):
     """The number of boss kills."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresActivityItem(BaseModel):
     """Represents a group hiscores item for activities."""
 
@@ -281,7 +245,6 @@ class GroupHiscoresActivityItem(BaseModel):
     """The activity score."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresComputedMetricItem(BaseModel):
     """Represents a group hiscores item for computed metrics."""
 
@@ -292,7 +255,6 @@ class GroupHiscoresComputedMetricItem(BaseModel):
     """The value of the computed metric."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class SkillLeader(BaseModel):
     """Represents a leader in a particular skill."""
 
@@ -312,7 +274,6 @@ class SkillLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class BossLeader(BaseModel):
     """Represents a leader in a particular boss."""
 
@@ -329,7 +290,6 @@ class BossLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class ActivityLeader(BaseModel):
     """Represents a leader in a particular activity."""
 
@@ -346,7 +306,6 @@ class ActivityLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class ComputedMetricLeader(BaseModel):
     """Represents a leader in a particular computed metric."""
 
@@ -365,7 +324,6 @@ class ComputedMetricLeader(BaseModel):
     """The player leading in this metric, or `None` if none do."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class MetricLeaders(BaseModel):
     """The leaders for each metric in a group."""
 
@@ -390,7 +348,6 @@ class MetricLeaders(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupStatistics(BaseModel):
     """Represents accumulated group statistics."""
 
@@ -412,7 +369,6 @@ class GroupStatistics(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupMemberGains(BaseModel):
     """Represents a leaderboard entry over the given delta."""
 
@@ -429,7 +385,6 @@ class GroupMemberGains(BaseModel):
     """The [`Gains`][wom.Gains] for this group member."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupActivity(BaseModel):
     """An activity that occurred in a group."""
 

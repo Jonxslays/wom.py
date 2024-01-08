@@ -75,12 +75,12 @@ class PlayerService(BaseService):
         """
         params = self._generate_map(username=username, limit=limit, offset=offset)
         route = routes.SEARCH_PLAYERS.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_player(player) for player in data])
+        return self.ok(data, t.List[models.Player])
 
     async def update_player(self, username: str) -> ResultT[models.PlayerDetail]:
         """Updates the given player.
@@ -105,12 +105,12 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.UPDATE_PLAYER.compile(username)
-        data = await self._http.fetch(route, self._dict)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_player_details(data))
+        return self.ok(data, models.PlayerDetail)
 
     async def assert_player_type(self, username: str) -> ResultT[models.AssertPlayerType]:
         """Asserts, and fixes, a players type.
@@ -135,12 +135,12 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.ASSERT_PLAYER_TYPE.compile(username)
-        data = await self._http.fetch(route, self._dict)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_asserted_player_type(data))
+        return self.ok(data, models.AssertPlayerType)
 
     async def get_details(self, username: str) -> ResultT[models.PlayerDetail]:
         """Gets the details for a given player.
@@ -164,12 +164,12 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.PLAYER_DETAILS.compile(username)
-        data = await self._http.fetch(route, self._dict)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_player_details(data))
+        return self.ok(data, models.PlayerDetail)
 
     async def get_details_by_id(self, player_id: int) -> ResultT[models.PlayerDetail]:
         """Gets the details for a given player id.
@@ -193,12 +193,12 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.PLAYER_DETAILS_BY_ID.compile(player_id)
-        data = await self._http.fetch(route, self._dict)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_player_details(data))
+        return self.ok(data, models.PlayerDetail)
 
     async def get_achievements(self, username: str) -> ResultT[t.List[models.Achievement]]:
         """Gets the achievements for a given player.
@@ -223,12 +223,12 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.PLAYER_ACHIEVEMENTS.compile(username)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_achievement(a) for a in data])
+        return self.ok(data, t.List[models.Achievement])
 
     async def get_achievement_progress(
         self, username: str
@@ -255,14 +255,12 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.PLAYER_ACHIEVEMENT_PROGRESS.compile(username)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(
-            [self._serializer.deserialize_player_achievement_progress(p) for p in data]
-        )
+        return self.ok(data, t.List[models.PlayerAchievementProgress])
 
     async def get_competition_participations(
         self,
@@ -305,16 +303,18 @@ class PlayerService(BaseService):
             ```
         """
         params = self._generate_map(
-            status=status.value if status else None, limit=limit, offset=offset
+            status=status.value if status else None,
+            offset=offset,
+            limit=limit,
         )
 
-        route = routes.PLAYER_COMPETITION_PARTICIPATION.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        route = routes.PLAYER_COMPETITION_PARTICIPATION.compile(username)
+        data = await self._http.fetch(route.with_params(params))
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_player_participation(p) for p in data])
+        return self.ok(data, t.List[models.PlayerParticipation])
 
     async def get_competition_standings(
         self,
@@ -347,15 +347,13 @@ class PlayerService(BaseService):
             ```
         """
         params = self._generate_map(status=status.value)
-        route = routes.PLAYER_COMPETITION_STANDINGS.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        route = routes.PLAYER_COMPETITION_STANDINGS.compile(username)
+        data = await self._http.fetch(route.with_params(params))
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(
-            [self._serializer.deserialize_player_competition_standing(s) for s in data]
-        )
+        return self.ok(data, t.List[models.PlayerCompetitionStanding])
 
     async def get_group_memberships(
         self, username: str, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
@@ -391,13 +389,13 @@ class PlayerService(BaseService):
             ```
         """
         params = self._generate_map(limit=limit, offset=offset)
-        route = routes.PLAYER_GROUP_MEMBERSHIPS.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        route = routes.PLAYER_GROUP_MEMBERSHIPS.compile(username)
+        data = await self._http.fetch(route.with_params(params))
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_player_membership(m) for m in data])
+        return self.ok(data, t.List[models.PlayerMembership])
 
     async def get_gains(
         self,
@@ -451,12 +449,12 @@ class PlayerService(BaseService):
         )
 
         route = routes.PLAYER_GAINS.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._dict)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_player_gains(data))
+        return self.ok(data, models.PlayerGains)
 
     async def get_records(
         self,
@@ -500,12 +498,12 @@ class PlayerService(BaseService):
         )
 
         route = routes.PLAYER_RECORDS.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_record(r) for r in data])
+        return self.ok(data, t.List[models.Record])
 
     async def get_snapshots(
         self,
@@ -558,13 +556,13 @@ class PlayerService(BaseService):
             endDate=end_date.isoformat() if end_date else None,
         )
 
-        route = routes.PLAYER_SNAPSHOTS.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        route = routes.PLAYER_SNAPSHOTS.compile(username)
+        data = await self._http.fetch(route.with_params(params))
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_snapshot(s) for s in data])
+        return self.ok(data, t.List[models.Snapshot])
 
     async def get_name_changes(self, username: str) -> ResultT[t.List[models.NameChange]]:
         """Gets the name changes for the player.
@@ -588,12 +586,12 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.PLAYER_NAME_CHANGES.compile(username)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_name_change(c) for c in data])
+        return self.ok(data, t.List[models.NameChange])
 
     async def get_snapshots_timeline(
         self,
@@ -651,13 +649,13 @@ class PlayerService(BaseService):
             metric=metric.value,
         )
 
-        route = routes.PLAYER_SNAPSHOTS_TIMELINE.compile(username).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        route = routes.PLAYER_SNAPSHOTS_TIMELINE.compile(username)
+        data = await self._http.fetch(route.with_params(params))
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_snapshot_timeline_entry(e) for e in data])
+        return self.ok(data, t.List[models.SnapshotTimelineEntry])
 
     async def get_archives(
         self,
@@ -684,9 +682,9 @@ class PlayerService(BaseService):
             ```
         """
         route = routes.PLAYER_ARCHIVES.compile(username)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_player_archive(a) for a in data])
+        return self.ok(data, t.List[models.PlayerArchive])

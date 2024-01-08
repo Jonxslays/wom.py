@@ -24,8 +24,6 @@ from __future__ import annotations
 import typing as t
 from datetime import datetime
 
-import attrs
-
 from wom import enums
 
 from ..base import BaseModel
@@ -40,7 +38,6 @@ __all__ = (
 )
 
 
-@attrs.define(init=False, weakref_slot=False)
 class NameChangeReviewContext(BaseModel):
     """The review context for a name change that was not approved.
 
@@ -60,11 +57,10 @@ class NameChangeReviewContext(BaseModel):
     """The reason this name change was denied."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
     """The review context for a name change that was denied."""
 
-    reason: t.Literal[
+    reason: t.Literal[  # pyright: ignore
         NameChangeReviewReason.ManualReview,
         NameChangeReviewReason.OldStatsNotFound,
         NameChangeReviewReason.NewNameNotFound,
@@ -78,11 +74,10 @@ class DeniedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[ov
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class SkippedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[override]
     """The review context for a name change that was skipped."""
 
-    reason: t.Literal[
+    reason: t.Literal[  # pyright: ignore
         NameChangeReviewReason.TransitionTooLong,
         NameChangeReviewReason.ExcessiveGains,
         NameChangeReviewReason.TotalLevelTooLow,
@@ -120,7 +115,6 @@ class SkippedNameChangeReviewContext(NameChangeReviewContext):  # type: ignore[o
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class NameChange(BaseModel):
     """Represents a player name change."""
 
