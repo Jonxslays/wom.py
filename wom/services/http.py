@@ -107,7 +107,10 @@ class HttpService:
         return self._method_mapping[method]  # type: ignore
 
     async def _init_session(self) -> None:
-        self._session = aiohttp.ClientSession()
+        self._session = aiohttp.ClientSession(
+            json_serialize=lambda o: msgspec.json.encode(o).decode()
+        )
+
         self._method_mapping = {
             "GET": self._session.get,
             "POST": self._session.post,
