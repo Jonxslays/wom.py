@@ -10,8 +10,6 @@ Stable Release Candidate 1
 - Renamed project info `wompy` cli command to `wom`.
 - Models are now `msgspec.Struct` models instead of `attrs` models.
 - `PlayerDetail` now inherits from `Player` and so the `player` property was removed.
-- The `Metric` enum now houses all variants of `Skills`, `Activities`, `Bosses`,
-  and `ComputedMetrics` as well, and can be compared with them using `==`.
 - `PlayerAchievementProgress` now inherits from `PlayerAchievement` and so the
   `achievement` property was removed.
 - `PlayerCompetitionStanding` now inherits from `PlayerParticipation` and so the
@@ -22,10 +20,14 @@ Stable Release Candidate 1
 - Renamed `RecordService.get_global_record_leaderboards` to `get_global_leaderboards`.
 - `RecordLeaderboardEntry` now inherits from `Record` and so the `record` property
   was removed.
+- Removed `DeniedNameChangeReviewContext`, and `SkippedNameChangeReviewContext`,
+  their properties now live on `NameChangeReviewContext`.
 
 ## Changes
 
 - `Record.value` is now a `float` instead of an `int`.
+- The `Metric` enum now includes all variants of `Skills`, `Activities`, `Bosses`,
+  and `ComputedMetrics` as well, and can be compared with them using `==`.
 
 ---
 GroupMembership
