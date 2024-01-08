@@ -67,9 +67,19 @@ class BaseEnum(Enum):
         return random.choice(tuple(cls))
 
 
+class Period(BaseEnum):
+    """A period of time used by the API."""
+
+    FiveMins = "five_min"
+    Day = "day"
+    Week = "week"
+    Month = "month"
+    Year = "year"
+
+
 class Metric(BaseEnum):
-    """Represents all metrics, can be used interchangeably with
-    [`Activities`][wom.Activities], [`Bosses`][wom.Bosses],
+    """Represents all metrics, used in places that accept or return all
+    of [`Activities`][wom.Activities], [`Bosses`][wom.Bosses],
     [`ComputedMetrics`][wom.ComputedMetrics], or [`Skills`][wom.Skills].
     """
 
@@ -178,16 +188,6 @@ class Metric(BaseEnum):
     # Computed Metrics
     Ehp = "ehp"
     Ehb = "ehb"
-
-
-class Period(BaseEnum):
-    """A period of time used by the API."""
-
-    FiveMins = "five_min"
-    Day = "day"
-    Week = "week"
-    Month = "month"
-    Year = "year"
 
 
 # Sadly idk how to go about not duplicating

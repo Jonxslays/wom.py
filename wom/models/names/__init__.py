@@ -24,12 +24,10 @@
 from __future__ import annotations
 
 __all__ = (
-    "DeniedNameChangeReviewContext",
     "NameChange",
     "NameChangeReviewContext",
     "NameChangeReviewReason",
     "NameChangeStatus",
-    "SkippedNameChangeReviewContext",
 )
 
 from .enums import *

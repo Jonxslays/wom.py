@@ -228,7 +228,7 @@ class PlayerDetail(Player):
     latest_snapshot: t.Optional[Snapshot]
     """The latest snapshot for the player, if there is one."""
 
-    archive: t.Optional[Archive]
+    archive: t.Optional[Archive] = None
     """The players archive information, if any."""
 
 
