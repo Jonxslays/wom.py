@@ -1,14 +1,31 @@
 # v1.0.0-rc.1 (Jan 2024)
 
-Stable Release Candidate 1!
+Stable Release Candidate 1
+
+10x performance increase when serializing models!
 
 ## Breaking changes
 
 - Removed internal `wom._cli` module.
 - Renamed project info `wompy` cli command to `wom`.
+- Models are now `msgspec.Struct` models instead of `attrs` models.
+- `PlayerDetail` now inherits from `Player` and so the `player` property was removed.
+- The `Metric` enum now houses all variants of `Skills`, `Activities`, `Bosses`,
+  and `ComputedMetrics` as well, and can be compared with them using `==`.
+- `PlayerAchievementProgress` now inherits from `PlayerAchievement` and so the
+  `achievement` property was removed.
+- `PlayerCompetitionStanding` now inherits from `PlayerParticipation` and so the
+  `participation` property was removed.
+- `GroupMembership` and `PlayerMembership` now inherit from `Membership` and so the
+  `membership` property was removed.
+- `PlayerArchive` now inherits from `Archive` and so the `archive` property was removed.
+
+## Changes
+
+- `Record.value` is now a `float` instead of an `int`.
 
 ---
-
+GroupMembership
 # v0.9.2 (Jan 2024)
 
 ## Additions
