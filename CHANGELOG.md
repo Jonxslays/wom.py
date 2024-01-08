@@ -19,6 +19,9 @@ Stable Release Candidate 1
 - `GroupMembership` and `PlayerMembership` now inherit from `Membership` and so the
   `membership` property was removed.
 - `PlayerArchive` now inherits from `Archive` and so the `archive` property was removed.
+- Renamed `RecordService.get_global_record_leaderboards` to `get_global_leaderboards`.
+- `RecordLeaderboardEntry` now inherits from `Record` and so the `record` property
+  was removed.
 
 ## Changes
 
