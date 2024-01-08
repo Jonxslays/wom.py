@@ -48,7 +48,7 @@ class HttpService:
         api_base_url: The optional api base url to use.
     """
 
-    __slots__ = ("_base_url", "_decoder", "_headers", "_method_mapping", "_session")
+    __slots__ = ("_base_url", "_decoder", "_encoder", "_headers", "_method_mapping", "_session")
 
     def __init__(
         self,
@@ -72,6 +72,7 @@ class HttpService:
 
         self._base_url = api_base_url or constants.WOM_BASE_URL
         self._decoder = msgspec.json.Decoder()
+        self._encoder = msgspec.json.Encoder()
 
     async def _read_content(
         self, response: aiohttp.ClientResponse
@@ -108,7 +109,7 @@ class HttpService:
 
     async def _init_session(self) -> None:
         self._session = aiohttp.ClientSession(
-            json_serialize=lambda o: msgspec.json.encode(o).decode()
+            json_serialize=lambda o: self._encoder.encode(o).decode()
         )
 
         self._method_mapping = {
