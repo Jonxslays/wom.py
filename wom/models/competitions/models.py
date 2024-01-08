@@ -103,6 +103,11 @@ class Competition(BaseModel):
     there is one.
     """
 
+    participations: t.List[CompetitionParticipation] = []
+    """A list containing the [`CompetitionParticipations`]
+    [wom.CompetitionParticipation].
+    """
+
 
 class Participation(BaseModel):
     """Represents participation in a competition."""
@@ -156,13 +161,8 @@ class PlayerCompetitionStanding(PlayerParticipation):
     """The rank in the competition standings."""
 
 
-class CompetitionParticipationDetail(BaseModel):
+class CompetitionParticipationDetail(CompetitionParticipation):
     """Represents competition participation details."""
-
-    participation: CompetitionParticipation
-    """The [`CompetitionParticipation`][wom.CompetitionParticipation]
-    in these details.
-    """
 
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
@@ -175,13 +175,10 @@ class CompetitionParticipationDetail(BaseModel):
     competitions."""
 
 
-class CompetitionDetail(BaseModel):
+class CompetitionDetail(Competition):
     """Represents competition details."""
 
-    competition: Competition
-    """The [`Competition`][wom.Competition] that is being detailed."""
-
-    participations: t.List[CompetitionParticipationDetail]
+    participations: t.List[CompetitionParticipationDetail] = []  # pyright: ignore
     """A list of [`CompetitionParticipationDetail`]
     [wom.CompetitionParticipationDetail] participations for this
     competition.
@@ -238,11 +235,6 @@ class CompetitionWithParticipations(BaseModel):
 
     competition: Competition
     """The [`Competition`][wom.Competition] itself."""
-
-    participations: t.List[CompetitionParticipation]
-    """A list containing the [`CompetitionParticipations`]
-    [wom.CompetitionParticipation].
-    """
 
     verification_code: t.Optional[str]
     """The verification code for the competition.

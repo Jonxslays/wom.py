@@ -105,12 +105,12 @@ class CompetitionService(BaseService):
         )
 
         route = routes.SEARCH_COMPETITIONS.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_competition(c) for c in data])
+        return self.ok(data, t.List[models.Competition])
 
     async def get_details(
         self, id: int, *, metric: t.Optional[enums.Metric] = None
@@ -146,12 +146,12 @@ class CompetitionService(BaseService):
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
-        data = await self._http.fetch(route, self._dict)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_competition_details(data))
+        return self.ok(data, models.CompetitionDetail)
 
     async def get_top_participant_history(
         self, id: int, *, metric: t.Optional[enums.Metric] = None
@@ -187,12 +187,12 @@ class CompetitionService(BaseService):
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_top5_progress_result(r) for r in data])
+        return self.ok(data, t.List[models.Top5ProgressResult])
 
     async def create_competition(
         self,
@@ -284,17 +284,12 @@ class CompetitionService(BaseService):
         )
 
         route = routes.CREATE_COMPETITION.compile()
-        data = await self._http.fetch(route, self._dict, payload=payload)
+        data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        competition = self._serializer.deserialize_competition_with_participation(
-            data["competition"]
-        )
-
-        competition.verification_code = data["verificationCode"]
-        return result.Ok(competition)
+        return self.ok(data, models.CompetitionWithParticipations)
 
     async def edit_competition(
         self,
@@ -307,7 +302,7 @@ class CompetitionService(BaseService):
         ends_at: t.Optional[datetime] = None,
         teams: t.Optional[t.List[models.Team]] = None,
         participants: t.Optional[t.List[str]] = None,
-    ) -> ResultT[models.CompetitionWithParticipations]:
+    ) -> ResultT[models.Competition]:
         """Edits an existing competition.
 
         Args:
@@ -371,12 +366,12 @@ class CompetitionService(BaseService):
         )
 
         route = routes.EDIT_COMPETITION.compile(id)
-        data = await self._http.fetch(route, self._dict, payload=payload)
+        data = await self._http.fetch(route, payload=payload)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_competition_with_participation(data))
+        return self.ok(data, models.Competition)
 
     async def delete_competition(
         self, id: int, verification_code: str
