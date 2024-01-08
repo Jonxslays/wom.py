@@ -53,11 +53,8 @@ class Record(BaseModel):
     """The records creation/modification date."""
 
 
-class RecordLeaderboardEntry(BaseModel):
+class RecordLeaderboardEntry(Record):
     """Represents a player's record leaderboard entry."""
 
     player: Player
     """The [`Player`][wom.Player] holding this leaderboard entry."""
-
-    record: Record
-    """The [`Record`][wom.Record] tied to this leaderboard entry."""

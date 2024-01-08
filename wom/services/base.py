@@ -47,7 +47,7 @@ class BaseService(abc.ABC):
             JSON data from the API.
     """
 
-    __slots__ = ("_dict", "_list", "_http", "_serializer")
+    __slots__ = ("_http", "_serializer")
 
     def __init__(self, http_service: HttpService, serializer: serializer.Serializer) -> None:
         self._http = http_service
@@ -57,4 +57,4 @@ class BaseService(abc.ABC):
         return {k: v for k, v in kwargs.items() if v is not None}
 
     def ok(self, data: bytes, model_type: t.Type[ValueT]) -> ResultT[ValueT]:
-        return result.Ok(self._serializer.decode(data, model_type))
+        return result.Ok(self._serializer.decode(data, model_type))  # pyright: ignore

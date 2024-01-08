@@ -41,7 +41,7 @@ class RecordService(BaseService):
 
     __slots__ = ()
 
-    async def get_global_record_leaderboards(
+    async def get_global_leaderboards(
         self,
         metric: enums.Metric,
         period: enums.Period,
@@ -95,10 +95,10 @@ class RecordService(BaseService):
             country=country.value if country else None,
         )
 
-        route = routes.GLOBAL_RECORD_LEADERS.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
+        route = routes.GLOBAL_RECORD_LEADERS.compile()
+        data = await self._http.fetch(route.with_params(params))
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_record_leaderboard_entry(r) for r in data])
+        return self.ok(data, t.List[models.RecordLeaderboardEntry])
