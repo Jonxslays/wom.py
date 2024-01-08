@@ -48,7 +48,7 @@ class HttpService:
         api_base_url: The optional api base url to use.
     """
 
-    __slots__ = ("_base_url", "_headers", "_method_mapping", "_session")
+    __slots__ = ("_base_url", "_decoder", "_headers", "_method_mapping", "_session")
 
     def __init__(
         self,
@@ -71,6 +71,7 @@ class HttpService:
             self._headers["x-api-key"] = api_key
 
         self._base_url = api_base_url or constants.WOM_BASE_URL
+        self._decoder = msgspec.json.Decoder()
 
     async def _read_content(
         self, response: aiohttp.ClientResponse
@@ -90,7 +91,7 @@ class HttpService:
             return content
 
         if not response.ok:
-            error = msgspec.json.decode(content)
+            error = self._decoder.decode(content)
 
             return models.HttpErrorResponse(
                 response.status,

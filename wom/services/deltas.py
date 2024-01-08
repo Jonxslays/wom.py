@@ -96,10 +96,10 @@ class DeltaService(BaseService):
             country=country.value if country else None,
         )
 
-        route = routes.GLOBAL_DELTA_LEADERS.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
+        route = routes.GLOBAL_DELTA_LEADERS.compile()
+        data = await self._http.fetch(route.with_params(params))
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_delta_leaderboard_entry(d) for d in data])
+        return self.ok(data, t.List[models.DeltaLeaderboardEntry])
