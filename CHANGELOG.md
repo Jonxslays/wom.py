@@ -22,6 +22,12 @@ Stable Release Candidate 1
   was removed.
 - Removed `DeniedNameChangeReviewContext`, and `SkippedNameChangeReviewContext`,
   their properties now live on `NameChangeReviewContext`.
+- `CompetitionParticipationDetail` now inherits from `CompetitionParticipation`
+  and so the `participation` property was removed.
+- `CompetitionDetail` now inherits from `Competition` and so the `competition`
+  property was removed.
+- `CompetitionService.edit_competition` now returns a `Competition`.
+- `CompetitionWithParticipations.participations` removed and added to `Competition`.
 
 ## Changes
 
@@ -30,7 +36,7 @@ Stable Release Candidate 1
   and `ComputedMetrics` as well, and can be compared with them using `==`.
 
 ---
-GroupMembership
+
 # v0.9.2 (Jan 2024)
 
 ## Additions
