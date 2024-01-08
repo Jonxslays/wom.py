@@ -80,10 +80,14 @@ class HttpService:
         try:
             return await response.content.read()
         except Exception:
-            return models.HttpErrorResponse(response.status, "Failed to read response content.")
+            return models.HttpErrorResponse("Failed to read response content.", response.status)
 
     async def _request(
-        self, req: t.Callable[..., t.Awaitable[t.Any]], url: str, **kwargs: t.Any
+        self,
+        req: t.Callable[..., t.Awaitable[t.Any]],
+        url: str,
+        allow_http_success: bool = False,
+        **kwargs: t.Any,
     ) -> t.Union[bytes, models.HttpErrorResponse]:
         response = await req(url, **kwargs)
         content = await self._read_content(response)
@@ -91,12 +95,12 @@ class HttpService:
         if isinstance(content, models.HttpErrorResponse):
             return content
 
-        if not response.ok:
+        if not response.ok or allow_http_success:
             error = self._decoder.decode(content)
 
             return models.HttpErrorResponse(
-                response.status,
                 error.get("message", "An unexpected error occurred while making the request."),
+                response.status,
             )
 
         return content
@@ -165,6 +169,7 @@ class HttpService:
         route: routes.CompiledRoute,
         *,
         payload: t.Optional[t.Dict[str, t.Any]] = None,
+        allow_http_success: bool = False,
     ) -> bytes | models.HttpErrorResponse:
         """Fetches the given route.
 
@@ -182,6 +187,7 @@ class HttpService:
         return await self._request(
             self._get_request_func(route.method),
             self._base_url + route.uri,
+            allow_http_success,
             headers=self._headers,
             params=route.params,
             json=payload or None,

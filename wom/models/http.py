@@ -31,18 +31,18 @@ __all__ = ("HttpErrorResponse", "HttpSuccessResponse")
 class HttpErrorResponse(BaseModel):
     """Indicates something went wrong during the request."""
 
-    status: int
-    """The HTTP status code."""
-
     message: str
     """The error message."""
+
+    status: int = -1
+    """The HTTP status code."""
 
 
 class HttpSuccessResponse(BaseModel):
     """Indicates a successful HTTP response."""
 
-    status: int
-    """The HTTP status code."""
-
     message: str
     """The success message."""
+
+    status: int = -1
+    """The HTTP status code."""

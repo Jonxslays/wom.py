@@ -408,12 +408,16 @@ class CompetitionService(BaseService):
         """
         payload = self._generate_map(verificationCode=verification_code)
         route = routes.DELETE_COMPETITION.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+
+        if isinstance(data, bytes):
+            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            return result.Err(err)
 
         if not data.message.startswith("Success"):
             return result.Err(data)
 
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        return result.Ok(models.HttpSuccessResponse(data.message, data.status))
 
     async def add_participants(
         self, id: int, verification_code: str, *participants: str

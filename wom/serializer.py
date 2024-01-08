@@ -52,7 +52,10 @@ class Serializer:
         Returns:
             The requested model.
         """
+        return self.get_decoder(model_type).decode(data)
+
+    def get_decoder(self, model_type: t.Type[StructT]) -> msgspec.json.Decoder[StructT]:
         if not (decoder := self._decoders.get(model_type)):
             decoder = self._decoders[model_type] = msgspec.json.Decoder(model_type)
 
-        return decoder.decode(data)  # pyright: ignore[reportGeneralTypeIssues]
+        return decoder  # pyright: ignore[reportGeneralTypeIssues]
