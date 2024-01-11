@@ -543,16 +543,18 @@ class CompetitionService(BaseService):
             A [`Result`][wom.Result] containing the success response
                 message.
         """
-        payload = self._generate_map(
-            verificationCode=verification_code, teams=[t.to_dict() for t in teams]
-        )
+        payload = self._generate_map(verificationCode=verification_code, teams=teams)
         route = routes.ADD_TEAMS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+
+        if isinstance(data, bytes):
+            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            return result.Err(err)
 
         if not data.message.startswith("Success"):
             return result.Err(data)
 
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        return result.Ok(models.HttpSuccessResponse(data.message, data.status))
 
     async def remove_teams(
         self, id: int, verification_code: str, *teams: str
@@ -588,12 +590,16 @@ class CompetitionService(BaseService):
         """
         payload = self._generate_map(verificationCode=verification_code, teamNames=teams)
         route = routes.REMOVE_TEAMS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+
+        if isinstance(data, bytes):
+            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            return result.Err(err)
 
         if not data.message.startswith("Success"):
             return result.Err(data)
 
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        return result.Ok(models.HttpSuccessResponse(data.message, data.status))
 
     async def update_outdated_participants(
         self, id: int, verification_code: str
