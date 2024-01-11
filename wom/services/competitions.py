@@ -453,12 +453,16 @@ class CompetitionService(BaseService):
         """
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
         route = routes.ADD_PARTICIPANTS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+
+        if isinstance(data, bytes):
+            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            return result.Err(err)
 
         if not data.message.startswith("Success"):
             return result.Err(data)
 
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        return result.Ok(models.HttpSuccessResponse(data.message, data.status))
 
     async def remove_participants(
         self, id: int, verification_code: str, *participants: str
@@ -494,12 +498,16 @@ class CompetitionService(BaseService):
         """
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
         route = routes.REMOVE_PARTICIPANTS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+
+        if isinstance(data, bytes):
+            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            return result.Err(err)
 
         if not data.message.startswith("Success"):
             return result.Err(data)
 
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        return result.Ok(models.HttpSuccessResponse(data.message, data.status))
 
     async def add_teams(
         self, id: int, verification_code: str, *teams: models.Team
@@ -640,9 +648,13 @@ class CompetitionService(BaseService):
         """
         payload = self._generate_map(verificationCode=verification_code)
         route = routes.UPDATE_OUTDATED_PARTICIPANTS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
 
-        if "players are being updated" in data.message:
-            return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        if isinstance(data, bytes):
+            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            return result.Err(err)
 
-        return result.Err(data)
+        if "players are being updated" not in data.message:
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.message, data.status))
