@@ -85,7 +85,8 @@ class BaseEnum(Enum):
         """Generates a random variant of this enum.
 
         Returns:
-            The randomly generated enum."""
+            The randomly generated enum.
+        """
         return random.choice(tuple(cls))
 
 
@@ -231,6 +232,7 @@ class Bosses(Metric):
     PhantomMuspah = "phantom_muspah"
     Sarachnis = "sarachnis"
     Scorpia = "scorpia"
+    Scurrius = "scurrius"
     Skotizo = "skotizo"
     Spindel = "spindel"
     Tempoross = "tempoross"
