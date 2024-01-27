@@ -1,3 +1,11 @@
+# v0.9.3 (Jan 2024)
+
+## Additions
+
+- Add `Scurrius` to `Bosses`.
+
+---
+
 # v0.9.2 (Jan 2024)
 
 ## Additions
