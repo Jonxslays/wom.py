@@ -1,3 +1,11 @@
+# v0.9.4 (Mar 2024)
+
+## Bugfixes
+
+- Fix bug where `PlayerDetail` with no latest snapshot would fail to deserialize.
+
+---
+
 # v0.9.3 (Jan 2024)
 
 ## Additions
