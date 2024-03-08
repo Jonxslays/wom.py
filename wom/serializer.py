@@ -197,7 +197,11 @@ class Serializer:
         details = models.PlayerDetail()
         details.combat_level = data["combatLevel"]
         details.player = self.deserialize_player(data)
-        details.latest_snapshot = self.deserialize_snapshot(data["latestSnapshot"])
+
+        if snapshot := data.get("latestSnapshot"):
+            details.latest_snapshot = self.deserialize_snapshot(snapshot)
+        else:
+            details.latest_snapshot = None
 
         if archive := data.get("archive"):
             details.archive = self.deserialize_archive(archive)
