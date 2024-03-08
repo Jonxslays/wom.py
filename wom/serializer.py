@@ -151,7 +151,7 @@ class Serializer:
         raise ValueError(f"Unknown hiscores entry item: {data}")
 
     @serializer_guard
-    def deserialize_player(self, data: DictT) -> models.Player:
+    def deserialize_player(self: Serializer, data: DictT) -> models.Player:
         """Deserializes the data into a player model.
 
         Args:
@@ -185,7 +185,7 @@ class Serializer:
         return player
 
     @serializer_guard
-    def deserialize_player_details(self, data: DictT) -> models.PlayerDetail:
+    def deserialize_player_details(self: Serializer, data: DictT) -> models.PlayerDetail:
         """Deserializes the data into a player detail model.
 
         Args:
@@ -211,7 +211,7 @@ class Serializer:
         return details
 
     @serializer_guard
-    def deserialize_snapshot(self, data: DictT) -> models.Snapshot:
+    def deserialize_snapshot(self: Serializer, data: DictT) -> models.Snapshot:
         """Deserializes the data into a snapshot model.
 
         Args:
@@ -228,7 +228,7 @@ class Serializer:
         return snapshot
 
     @serializer_guard
-    def deserialize_snapshot_data(self, data: DictT) -> models.SnapshotData:
+    def deserialize_snapshot_data(self: Serializer, data: DictT) -> models.SnapshotData:
         """Deserializes the data into a snapshot data model.
 
         Args:
@@ -245,7 +245,7 @@ class Serializer:
         return model
 
     @serializer_guard
-    def deserialize_skill(self, data: DictT) -> models.Skill:
+    def deserialize_skill(self: Serializer, data: DictT) -> models.Skill:
         """Deserializes the data into a skill model.
 
         Args:
@@ -260,7 +260,7 @@ class Serializer:
         return skill
 
     @serializer_guard
-    def deserialize_boss(self, data: DictT) -> models.Boss:
+    def deserialize_boss(self: Serializer, data: DictT) -> models.Boss:
         """Deserializes the data into a boss model.
 
         Args:
@@ -275,7 +275,7 @@ class Serializer:
         return boss
 
     @serializer_guard
-    def deserialize_activity(self, data: DictT) -> models.Activity:
+    def deserialize_activity(self: Serializer, data: DictT) -> models.Activity:
         """Deserializes the data into an activity model.
 
         Args:
@@ -290,7 +290,7 @@ class Serializer:
         return activity
 
     @serializer_guard
-    def deserialize_computed_metric(self, data: DictT) -> models.ComputedMetric:
+    def deserialize_computed_metric(self: Serializer, data: DictT) -> models.ComputedMetric:
         """Deserializes the data into a computed metric model.
 
         Args:
@@ -305,7 +305,7 @@ class Serializer:
         return computed
 
     @serializer_guard
-    def deserialize_asserted_player_type(self, data: DictT) -> models.AssertPlayerType:
+    def deserialize_asserted_player_type(self: Serializer, data: DictT) -> models.AssertPlayerType:
         """Deserializes the data into an assert player type model.
 
         Args:
@@ -320,7 +320,9 @@ class Serializer:
         return asserted
 
     @serializer_guard
-    def deserialize_achievement_progress(self, data: DictT) -> models.AchievementProgress:
+    def deserialize_achievement_progress(
+        self: Serializer, data: DictT
+    ) -> models.AchievementProgress:
         """Deserializes the data into an achievement progress model.
 
         Args:
@@ -334,7 +336,7 @@ class Serializer:
         return achievement
 
     @serializer_guard
-    def deserialize_achievement(self, data: DictT) -> models.Achievement:
+    def deserialize_achievement(self: Serializer, data: DictT) -> models.Achievement:
         """Deserializes the data into an achievement model.
 
         Args:
@@ -349,7 +351,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_player_achievement_progress(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.PlayerAchievementProgress:
         """Deserializes the data into a player achievement progress
         model.
@@ -369,7 +371,7 @@ class Serializer:
         return progress
 
     @serializer_guard
-    def deserialize_gains(self, data: DictT) -> models.Gains:
+    def deserialize_gains(self: Serializer, data: DictT) -> models.Gains:
         """Deserializes the data into a gains model.
 
         Args:
@@ -383,7 +385,7 @@ class Serializer:
         return gains
 
     @serializer_guard
-    def deserialize_skill_gains(self, data: DictT) -> models.SkillGains:
+    def deserialize_skill_gains(self: Serializer, data: DictT) -> models.SkillGains:
         """Deserializes the data into a skill gains model.
 
         Args:
@@ -401,7 +403,7 @@ class Serializer:
         return gains
 
     @serializer_guard
-    def deserialize_boss_gains(self, data: DictT) -> models.BossGains:
+    def deserialize_boss_gains(self: Serializer, data: DictT) -> models.BossGains:
         """Deserializes the data into a boss gains model.
 
         Args:
@@ -416,7 +418,7 @@ class Serializer:
         return gains
 
     @serializer_guard
-    def deserialize_activity_gains(self, data: DictT) -> models.ActivityGains:
+    def deserialize_activity_gains(self: Serializer, data: DictT) -> models.ActivityGains:
         """Deserializes the data into an activity gains model.
 
         Args:
@@ -431,7 +433,7 @@ class Serializer:
         return gains
 
     @serializer_guard
-    def deserialize_computed_gains(self, data: DictT) -> models.ComputedGains:
+    def deserialize_computed_gains(self: Serializer, data: DictT) -> models.ComputedGains:
         """Deserializes the data into a computed gains model.
 
         Args:
@@ -446,7 +448,7 @@ class Serializer:
         return gains
 
     @serializer_guard
-    def deserialize_player_gains_data(self, data: DictT) -> models.PlayerGainsData:
+    def deserialize_player_gains_data(self: Serializer, data: DictT) -> models.PlayerGainsData:
         """Deserializes the data into a player gains data model.
 
         Args:
@@ -463,7 +465,7 @@ class Serializer:
         return gains
 
     @serializer_guard
-    def deserialize_player_gains(self, data: DictT) -> models.PlayerGains:
+    def deserialize_player_gains(self: Serializer, data: DictT) -> models.PlayerGains:
         """Deserializes the data into a player gains model.
 
         Args:
@@ -480,7 +482,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_name_change_review_context(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.NameChangeReviewContext:
         """Deserializes the data into a name change review context.
 
@@ -538,7 +540,7 @@ class Serializer:
         return ctx
 
     @serializer_guard
-    def deserialize_name_change(self, data: DictT) -> models.NameChange:
+    def deserialize_name_change(self: Serializer, data: DictT) -> models.NameChange:
         """Deserializes the data into a name change model.
 
         Args:
@@ -562,7 +564,7 @@ class Serializer:
         return change
 
     @serializer_guard
-    def deserialize_record(self, data: DictT) -> models.Record:
+    def deserialize_record(self: Serializer, data: DictT) -> models.Record:
         """Deserializes the data into a record model.
 
         Args:
@@ -579,7 +581,9 @@ class Serializer:
         return record
 
     @serializer_guard
-    def deserialize_record_leaderboard_entry(self, data: DictT) -> models.RecordLeaderboardEntry:
+    def deserialize_record_leaderboard_entry(
+        self: Serializer, data: DictT
+    ) -> models.RecordLeaderboardEntry:
         """Deserializes the data into a record leaderboard entry model.
 
         Args:
@@ -594,7 +598,9 @@ class Serializer:
         return record
 
     @serializer_guard
-    def deserialize_delta_leaderboard_entry(self, data: DictT) -> models.DeltaLeaderboardEntry:
+    def deserialize_delta_leaderboard_entry(
+        self: Serializer, data: DictT
+    ) -> models.DeltaLeaderboardEntry:
         """Deserializes the data into a delta leaderboard entry  model.
 
         Args:
@@ -612,7 +618,7 @@ class Serializer:
         return delta
 
     @serializer_guard
-    def deserialize_group_member_gains(self, data: DictT) -> models.GroupMemberGains:
+    def deserialize_group_member_gains(self: Serializer, data: DictT) -> models.GroupMemberGains:
         """Deserializes the data into a group member gains model.
 
         Args:
@@ -629,7 +635,7 @@ class Serializer:
         return gains
 
     @serializer_guard
-    def deserialize_group(self, data: DictT) -> models.Group:
+    def deserialize_group(self: Serializer, data: DictT) -> models.Group:
         """Deserializes the data into a group model.
 
         Args:
@@ -659,7 +665,7 @@ class Serializer:
         return group
 
     @serializer_guard
-    def deserialize_membership(self, data: DictT) -> models.Membership:
+    def deserialize_membership(self: Serializer, data: DictT) -> models.Membership:
         """Deserializes the data into a membership model.
 
         Args:
@@ -676,7 +682,7 @@ class Serializer:
         return membership
 
     @serializer_guard
-    def deserialize_group_membership(self, data: DictT) -> models.GroupMembership:
+    def deserialize_group_membership(self: Serializer, data: DictT) -> models.GroupMembership:
         """Deserializes the data into a group membership model.
 
         Args:
@@ -691,7 +697,7 @@ class Serializer:
         return group
 
     @serializer_guard
-    def deserialize_group_details(self, data: DictT) -> models.GroupDetail:
+    def deserialize_group_details(self: Serializer, data: DictT) -> models.GroupDetail:
         """Deserializes the data into a group detail model.
 
         Args:
@@ -709,7 +715,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_group_hiscores_activity_item(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.GroupHiscoresActivityItem:
         """Deserializes the data into a group hiscores activity item
         model.
@@ -725,7 +731,9 @@ class Serializer:
         return item
 
     @serializer_guard
-    def deserialize_group_hiscores_boss_item(self, data: DictT) -> models.GroupHiscoresBossItem:
+    def deserialize_group_hiscores_boss_item(
+        self: Serializer, data: DictT
+    ) -> models.GroupHiscoresBossItem:
         """Deserializes the data into a group hiscores boss item model.
 
         Args:
@@ -739,7 +747,9 @@ class Serializer:
         return item
 
     @serializer_guard
-    def deserialize_group_hiscores_skill_item(self, data: DictT) -> models.GroupHiscoresSkillItem:
+    def deserialize_group_hiscores_skill_item(
+        self: Serializer, data: DictT
+    ) -> models.GroupHiscoresSkillItem:
         """Deserializes the data into a group hiscores skill item model.
 
         Args:
@@ -754,7 +764,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_group_hiscores_computed_item(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.GroupHiscoresComputedMetricItem:
         """Deserializes the data into a group hiscores computed metric
         item model.
@@ -770,7 +780,9 @@ class Serializer:
         return item
 
     @serializer_guard
-    def deserialize_group_hiscores_entry(self, data: DictT) -> models.GroupHiscoresEntry:
+    def deserialize_group_hiscores_entry(
+        self: Serializer, data: DictT
+    ) -> models.GroupHiscoresEntry:
         """Deserializes the data into a group hiscores entry model.
 
         Args:
@@ -785,7 +797,7 @@ class Serializer:
         return hiscores
 
     @serializer_guard
-    def deserialize_group_statistics(self, data: DictT) -> models.GroupStatistics:
+    def deserialize_group_statistics(self: Serializer, data: DictT) -> models.GroupStatistics:
         """Deserializes the data into a group statistics model.
 
         Args:
@@ -802,7 +814,7 @@ class Serializer:
         return statistics
 
     @serializer_guard
-    def deserialize_competition(self, data: DictT) -> models.Competition:
+    def deserialize_competition(self: Serializer, data: DictT) -> models.Competition:
         """Deserializes the data into a competition model.
 
         Args:
@@ -833,7 +845,7 @@ class Serializer:
         return competition
 
     @serializer_guard
-    def deserialize_participation(self, data: DictT) -> models.Participation:
+    def deserialize_participation(self: Serializer, data: DictT) -> models.Participation:
         """Deserializes the data into a participation model.
 
         Args:
@@ -849,7 +861,9 @@ class Serializer:
         return participation
 
     @serializer_guard
-    def deserialize_player_participation(self, data: DictT) -> models.PlayerParticipation:
+    def deserialize_player_participation(
+        self: Serializer, data: DictT
+    ) -> models.PlayerParticipation:
         """Deserializes the data into a player participation model.
 
         Args:
@@ -865,7 +879,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_competition_participation(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.CompetitionParticipation:
         """Deserializes the data into a competition participation model.
 
@@ -881,7 +895,9 @@ class Serializer:
         return competition_participation
 
     @serializer_guard
-    def deserialize_competition_progress(self, data: DictT) -> models.CompetitionProgress:
+    def deserialize_competition_progress(
+        self: Serializer, data: DictT
+    ) -> models.CompetitionProgress:
         """Deserializes the data into a competition progress model.
 
         Args:
@@ -896,7 +912,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_player_competition_standing(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.PlayerCompetitionStanding:
         """Deserializes the data into a player competition standing
         model.
@@ -914,7 +930,7 @@ class Serializer:
         return standing
 
     @serializer_guard
-    def deserialize_player_membership(self, data: DictT) -> models.PlayerMembership:
+    def deserialize_player_membership(self: Serializer, data: DictT) -> models.PlayerMembership:
         """Deserializes the data into a player membership model.
 
         Args:
@@ -929,7 +945,7 @@ class Serializer:
         return player_membership
 
     @serializer_guard
-    def deserialize_competition_details(self, data: DictT) -> models.CompetitionDetail:
+    def deserialize_competition_details(self: Serializer, data: DictT) -> models.CompetitionDetail:
         """Deserializes the data into a competition detail model.
 
         Args:
@@ -948,7 +964,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_competition_participation_detail(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.CompetitionParticipationDetail:
         """Deserializes the data into a competition participation
         detail model.
@@ -967,7 +983,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_competition_history_data_point(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.CompetitionHistoryDataPoint:
         """Deserializes the data into a competition history data point
         model.
@@ -984,7 +1000,9 @@ class Serializer:
         return datapoint
 
     @serializer_guard
-    def deserialize_top5_progress_result(self, data: DictT) -> models.Top5ProgressResult:
+    def deserialize_top5_progress_result(
+        self: Serializer, data: DictT
+    ) -> models.Top5ProgressResult:
         """Deserializes the data into a top 5 progress result model.
 
         Args:
@@ -1003,7 +1021,7 @@ class Serializer:
 
     @serializer_guard
     def deserialize_competition_with_participation(
-        self, data: DictT
+        self: Serializer, data: DictT
     ) -> models.CompetitionWithParticipations:
         """Deserializes the data into a competition with participations
         model.
@@ -1024,7 +1042,7 @@ class Serializer:
         return model
 
     @serializer_guard
-    def deserialize_skill_leader(self, data: DictT) -> models.SkillLeader:
+    def deserialize_skill_leader(self: Serializer, data: DictT) -> models.SkillLeader:
         """Deserializes the data into a skill leader model.
 
         Args:
@@ -1045,7 +1063,7 @@ class Serializer:
         return leader
 
     @serializer_guard
-    def deserialize_boss_leader(self, data: DictT) -> models.BossLeader:
+    def deserialize_boss_leader(self: Serializer, data: DictT) -> models.BossLeader:
         """Deserializes the data into a boss leader model.
 
         Args:
@@ -1066,7 +1084,7 @@ class Serializer:
         return leader
 
     @serializer_guard
-    def deserialize_activity_leader(self, data: DictT) -> models.ActivityLeader:
+    def deserialize_activity_leader(self: Serializer, data: DictT) -> models.ActivityLeader:
         """Deserializes the data into an activity leader model.
 
         Args:
@@ -1087,7 +1105,7 @@ class Serializer:
         return leader
 
     @serializer_guard
-    def deserialize_computed_leader(self, data: DictT) -> models.ComputedMetricLeader:
+    def deserialize_computed_leader(self: Serializer, data: DictT) -> models.ComputedMetricLeader:
         """Deserializes the data into a computed metric leader model.
 
         Args:
@@ -1108,7 +1126,7 @@ class Serializer:
         return leader
 
     @serializer_guard
-    def deserialize_metric_leaders(self, data: DictT) -> models.MetricLeaders:
+    def deserialize_metric_leaders(self: Serializer, data: DictT) -> models.MetricLeaders:
         """Deserializes the data into a metric leaders model.
 
         Args:
@@ -1128,7 +1146,9 @@ class Serializer:
         return leaders
 
     @serializer_guard
-    def deserialize_snapshot_timeline_entry(self, data: DictT) -> models.SnapshotTimelineEntry:
+    def deserialize_snapshot_timeline_entry(
+        self: Serializer, data: DictT
+    ) -> models.SnapshotTimelineEntry:
         """Deserializes the data into a snapshot timeline entry model.
 
         Args:
@@ -1143,7 +1163,7 @@ class Serializer:
         return entry
 
     @serializer_guard
-    def deserialize_group_activity(self, data: DictT) -> models.GroupActivity:
+    def deserialize_group_activity(self: Serializer, data: DictT) -> models.GroupActivity:
         """Deserializes the data into a group activity model.
 
         Args:
@@ -1161,7 +1181,7 @@ class Serializer:
         return activity
 
     @serializer_guard
-    def deserialize_social_links(self, data: DictT) -> models.SocialLinks:
+    def deserialize_social_links(self: Serializer, data: DictT) -> models.SocialLinks:
         return models.SocialLinks(
             website=data.get("website"),
             discord=data.get("discord"),
@@ -1171,7 +1191,7 @@ class Serializer:
         )
 
     @serializer_guard
-    def deserialize_archive(self, data: DictT) -> models.Archive:
+    def deserialize_archive(self: Serializer, data: DictT) -> models.Archive:
         archive = models.Archive()
         archive.restored_at = self._dt_from_iso_maybe(data.get("restoredAt"))
         archive.created_at = self._dt_from_iso(data["createdAt"])
@@ -1180,7 +1200,7 @@ class Serializer:
         return archive
 
     @serializer_guard
-    def deserialize_player_archive(self, data: DictT) -> models.PlayerArchive:
+    def deserialize_player_archive(self: Serializer, data: DictT) -> models.PlayerArchive:
         archive = models.PlayerArchive()
         archive.archive = self.deserialize_archive(data)
         archive.player = self.deserialize_player(data["player"])
