@@ -1,3 +1,11 @@
+# v0.9.5 (Mar 2024)
+
+## Additions
+
+- Add varlamore metrics (ColosseumGlory, LunarChests, SolHeredit).
+
+---
+
 # v0.9.4 (Mar 2024)
 
 ## Bugfixes
