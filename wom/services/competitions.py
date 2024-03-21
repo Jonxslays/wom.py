@@ -411,7 +411,7 @@ class CompetitionService(BaseService):
         data = await self._http.fetch(route, payload=payload, allow_http_success=True)
 
         if isinstance(data, bytes):
-            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            err = self._serializer.decode(data, models.HttpErrorResponse)
             return result.Err(err)
 
         if not data.message.startswith("Success"):
@@ -456,7 +456,7 @@ class CompetitionService(BaseService):
         data = await self._http.fetch(route, payload=payload, allow_http_success=True)
 
         if isinstance(data, bytes):
-            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            err = self._serializer.decode(data, models.HttpErrorResponse)
             return result.Err(err)
 
         if not data.message.startswith("Success"):
@@ -501,7 +501,7 @@ class CompetitionService(BaseService):
         data = await self._http.fetch(route, payload=payload, allow_http_success=True)
 
         if isinstance(data, bytes):
-            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            err = self._serializer.decode(data, models.HttpErrorResponse)
             return result.Err(err)
 
         if not data.message.startswith("Success"):
@@ -548,7 +548,7 @@ class CompetitionService(BaseService):
         data = await self._http.fetch(route, payload=payload, allow_http_success=True)
 
         if isinstance(data, bytes):
-            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            err = self._serializer.decode(data, models.HttpErrorResponse)
             return result.Err(err)
 
         if not data.message.startswith("Success"):
@@ -593,7 +593,7 @@ class CompetitionService(BaseService):
         data = await self._http.fetch(route, payload=payload, allow_http_success=True)
 
         if isinstance(data, bytes):
-            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            err = self._serializer.decode(data, models.HttpErrorResponse)
             return result.Err(err)
 
         if not data.message.startswith("Success"):
@@ -657,7 +657,7 @@ class CompetitionService(BaseService):
         data = await self._http.fetch(route, payload=payload, allow_http_success=True)
 
         if isinstance(data, bytes):
-            err = self._serializer.get_decoder(models.HttpErrorResponse).decode(data)
+            err = self._serializer.decode(data, models.HttpErrorResponse)
             return result.Err(err)
 
         if "players are being updated" not in data.message:

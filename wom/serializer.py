@@ -32,6 +32,7 @@ from msgspec.json import Decoder
 
 __all__ = ("Serializer",)
 
+StructT = t.TypeVar("StructT", bound=Struct)
 DecodersT = t.Dict[t.Type[Struct], Decoder[Struct]]
 
 
@@ -43,7 +44,7 @@ class Serializer:
     def __init__(self) -> None:
         self._decoders: DecodersT = {}
 
-    def decode(self, data: bytes, model_type: t.Type[Struct]) -> Struct:
+    def decode(self, data: bytes, model_type: t.Type[StructT]) -> StructT:
         """Decodes the data into the given model type.
 
         Args:
@@ -54,8 +55,8 @@ class Serializer:
         """
         return self.get_decoder(model_type).decode(data)
 
-    def get_decoder(self, model_type: t.Type[Struct]) -> Decoder[Struct]:
+    def get_decoder(self, model_type: t.Type[StructT]) -> Decoder[StructT]:
         if not (decoder := self._decoders.get(model_type)):
             decoder = self._decoders[model_type] = Decoder(model_type)
 
-        return decoder  # pyright: ignore[reportGeneralTypeIssues]
+        return t.cast(Decoder[StructT], decoder)
