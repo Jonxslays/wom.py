@@ -176,20 +176,21 @@ class Skills(Metric):
 class Activities(Metric):
     """Activities from OSRS."""
 
-    LeaguePoints = "league_points"
     BountyHunterHunter = "bounty_hunter_hunter"
     BountyHunterRogue = "bounty_hunter_rogue"
     ClueScrollsAll = "clue_scrolls_all"
     ClueScrollsBeginner = "clue_scrolls_beginner"
     ClueScrollsEasy = "clue_scrolls_easy"
-    ClueScrollsMedium = "clue_scrolls_medium"
-    ClueScrollsHard = "clue_scrolls_hard"
     ClueScrollsElite = "clue_scrolls_elite"
+    ClueScrollsHard = "clue_scrolls_hard"
     ClueScrollsMaster = "clue_scrolls_master"
+    ClueScrollsMedium = "clue_scrolls_medium"
+    ColosseumGlory = "colosseum_glory"
+    GuardiansOfTheRift = "guardians_of_the_rift"
     LastManStanding = "last_man_standing"
+    LeaguePoints = "league_points"
     PvpArena = "pvp_arena"
     SoulWarsZeal = "soul_wars_zeal"
-    GuardiansOfTheRift = "guardians_of_the_rift"
 
 
 class Bosses(Metric):
@@ -224,6 +225,7 @@ class Bosses(Metric):
     Kraken = "kraken"
     Kreearra = "kreearra"
     KrilTsutsaroth = "kril_tsutsaroth"
+    LunarChests = "lunar_chests"
     Mimic = "mimic"
     Nex = "nex"
     Nightmare = "nightmare"
@@ -234,6 +236,7 @@ class Bosses(Metric):
     Scorpia = "scorpia"
     Scurrius = "scurrius"
     Skotizo = "skotizo"
+    SolHeredit = "sol_heredit"
     Spindel = "spindel"
     Tempoross = "tempoross"
     TheGauntlet = "the_gauntlet"
