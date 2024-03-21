@@ -61,7 +61,6 @@ before using it, or close it before your program terminates.
 
 ```py
 import asyncio
-import os
 
 import wom
 

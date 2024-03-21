@@ -1,4 +1,4 @@
-# v1.0.0-rc.1 (Jan 2024)
+# v1.0.0-rc.1 (Unreleased)
 
 Stable Release Candidate 1
 
@@ -34,6 +34,30 @@ Stable Release Candidate 1
 - `Record.value` is now a `float` instead of an `int`.
 - The `Metric` enum now includes all variants of `Skills`, `Activities`, `Bosses`,
   and `ComputedMetrics` as well, and can be compared with them using `==`.
+
+---
+
+# v0.9.5 (Mar 2024)
+
+## Additions
+
+- Add varlamore metrics (ColosseumGlory, LunarChests, SolHeredit).
+
+---
+
+# v0.9.4 (Mar 2024)
+
+## Bugfixes
+
+- Fix bug where `PlayerDetail` with no latest snapshot would fail to deserialize.
+
+---
+
+# v0.9.3 (Jan 2024)
+
+## Additions
+
+- Add `Scurrius` to `Bosses`.
 
 ---
 
