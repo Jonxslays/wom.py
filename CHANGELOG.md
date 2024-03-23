@@ -27,12 +27,14 @@ Stable Release Candidate 1
 - `CompetitionDetail` now inherits from `Competition` and so the `competition`
   property was removed.
 - `CompetitionService.edit_competition` now returns a `Competition`.
-- `CompetitionWithParticipations.participations` removed and added to `Competition`.
 - All methods in the `Serializer` prefixed with `deserialize_` were removed.
 - `GroupDetail` now inherits from `Group` and so the `group` property was removed.
 - The `verification_code` property on `GroupDetail` was removed.
 - Converted the `Skills`, `Activities`, `Bosses`, and `ComputedMetrics` enums
   into `frozenset`s.
+- `CompetitionWithParticipations` was renamed to `CreatedCompetitionDetail` because the
+  `participations` property was removed and added to `Competition` and the name was no
+  longer an accurate representation of the object.
 
 ## Additions
 
