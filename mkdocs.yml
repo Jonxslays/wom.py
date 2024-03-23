@@ -5,7 +5,7 @@ plugins:
   - autorefs
   - include-markdown
   - mkdocstrings:
-      custom_templates: docs/templates
+      # custom_templates: docs/templates
       handlers:
         python:
           options:
@@ -92,11 +92,13 @@ nav:
       - "getting-started/services.md"
       - "getting-started/result.md"
   - "Modules":
-    - "reference/client.md"
-    - "reference/enums.md"
-    - "reference/errors.md"
-    - "reference/models.md"
-    - "reference/result.md"
-    - "reference/routes.md"
-    - "reference/serializer.md"
-    - "reference/services.md"
+      - "reference/client.md"
+      - "reference/enums.md"
+      - "reference/errors.md"
+      - "reference/models.md"
+      - "reference/result.md"
+      - "reference/routes.md"
+      - "reference/serializer.md"
+      - "reference/services.md"
+  - "Migration guides":
+      - "migrating/v1.md"
