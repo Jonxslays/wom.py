@@ -10,7 +10,7 @@ Stable Release Candidate 1
 - Renamed project info `wompy` cli command to `wom`.
 - Models are now `msgspec.Struct` models instead of `attrs` models.
 - `PlayerDetail` now inherits from `Player` and so the `player` property was removed.
-- `PlayerAchievementProgress` now inherits from `PlayerAchievement` and so the
+- `PlayerAchievementProgress` now inherits from `AchievementProgress` and so the
   `achievement` property was removed.
 - `PlayerCompetitionStanding` now inherits from `PlayerParticipation` and so the
   `participation` property was removed.
