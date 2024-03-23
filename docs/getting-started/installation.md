@@ -19,18 +19,24 @@ For more information on using `pip`, check out the
 
 ## Verify
 
-You can verify your install succeeded with the `wompy` command:
+You can verify your install succeeded with the `wom` command:
 
 ```bash
-$ wompy
+$ wom
 ```
 
 The output should look similar to this:
 
 ```
-wom.py v0.8.1 from [bd047d3]
-@ /home/projects/tester/.venv/lib/python3.11/site-packages/wom
-CPython 3.11.5 GCC 13.2.1 20230801
-Linux love 6.1.60-1-lts x86_64
-#1 SMP PREEMPT_DYNAMIC Wed, 25 Oct 2023 11:10:15 +0000
+-------------------------------------------------------------------------
+Package:     wom.py v1.0.0-rc.1 @ [HEAD]
+-------------------------------------------------------------------------
+Location:    /home/projects/tester/.venv/lib/python3.11/site-packages/wom
+-------------------------------------------------------------------------
+Interpreter: CPython 3.11.8
+-------------------------------------------------------------------------
+Compiler:    GCC 13.2.1 20230801
+-------------------------------------------------------------------------
+OS/Arch:     Linux 6.6.22-1-lts / x86_64
+-------------------------------------------------------------------------
 ```
