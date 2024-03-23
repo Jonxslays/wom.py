@@ -216,7 +216,7 @@ class GroupHiscoresEntry(BaseModel):
     """The data for this hiscores entry."""
 
 
-class GroupHiscoresSkillItem(BaseModel):
+class GroupHiscoresSkillItem(BaseModel, tag="skill"):
     """Represents a group hiscores item for skills."""
 
     rank: int
@@ -229,7 +229,7 @@ class GroupHiscoresSkillItem(BaseModel):
     """The experience in the skill."""
 
 
-class GroupHiscoresBossItem(BaseModel):
+class GroupHiscoresBossItem(BaseModel, tag="boss"):
     """Represents a group hiscores item for bosses."""
 
     rank: int
@@ -239,7 +239,7 @@ class GroupHiscoresBossItem(BaseModel):
     """The number of boss kills."""
 
 
-class GroupHiscoresActivityItem(BaseModel):
+class GroupHiscoresActivityItem(BaseModel, tag="activity"):
     """Represents a group hiscores item for activities."""
 
     rank: int
@@ -249,7 +249,7 @@ class GroupHiscoresActivityItem(BaseModel):
     """The activity score."""
 
 
-class GroupHiscoresComputedMetricItem(BaseModel):
+class GroupHiscoresComputedMetricItem(BaseModel, tag="computed"):
     """Represents a group hiscores item for computed metrics."""
 
     rank: int
@@ -319,7 +319,7 @@ class ComputedMetricLeader(BaseModel):
     rank: int
     """The players rank in the computed metric."""
 
-    value: int
+    value: float
     """The value of the computed metric."""
 
     player: t.Optional[Player]
@@ -346,7 +346,16 @@ class MetricLeaders(BaseModel):
     """
 
 
-class GroupStatistics(BaseModel):
+class GroupStatistics(
+    BaseModel,
+    rename={
+        "maxed_combat_count": "maxedCombatCount",
+        "maxed_total_count": "maxedTotalCount",
+        "maxed_200ms_count": "maxed200msCount",
+        "average_stats": "averageStats",
+        "metric_leaders": "metricLeaders",
+    },
+):
     """Represents accumulated group statistics."""
 
     maxed_combat_count: int

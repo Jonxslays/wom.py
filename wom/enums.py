@@ -30,9 +30,13 @@ from enum import Enum
 T = t.TypeVar("T", bound="BaseEnum")
 
 __all__ = (
+    "Activities",
     "BaseEnum",
+    "Bosses",
+    "ComputedMetrics",
     "Metric",
     "Period",
+    "Skills",
 )
 
 
@@ -44,10 +48,10 @@ class BaseEnum(Enum):
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, BaseEnum):
-            return self.value == other.value
+            return self.value == other.value  # type: ignore[no-any-return]
 
         if isinstance(other, str):
-            return self.value == other
+            return self.value == other  # type: ignore[no-any-return]
 
         return super().__eq__(other)
 
@@ -222,6 +226,7 @@ Skills: t.FrozenSet[Metric] = frozenset(
     }
 )
 """Set containing skills."""
+
 Activities: t.FrozenSet[Metric] = frozenset(
     {
         Metric.LeaguePoints,

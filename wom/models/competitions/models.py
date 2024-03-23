@@ -178,7 +178,7 @@ class CompetitionParticipationDetail(CompetitionParticipation):
 class CompetitionDetail(Competition):
     """Represents competition details."""
 
-    participations: t.List[CompetitionParticipationDetail] = []  # pyright: ignore
+    participations: t.List[CompetitionParticipationDetail] = []  # type: ignore[assignment]
     """A list of [`CompetitionParticipationDetail`]
     [wom.CompetitionParticipationDetail] participations for this
     competition.

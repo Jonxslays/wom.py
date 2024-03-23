@@ -53,7 +53,7 @@ from wom import services
 
 __all__ = ("Client",)
 
-ServiceT = t.TypeVar("ServiceT")
+ServiceT = t.TypeVar("ServiceT", bound=services.BaseService)
 
 
 class Client:

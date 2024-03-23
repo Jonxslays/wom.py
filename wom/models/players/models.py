@@ -62,8 +62,8 @@ __all__ = (
 class Skill(BaseModel):
     """Details regarding a particular skill."""
 
-    metric: enums.Skills
-    """The [`Skills`][wom.Skills] being measured."""
+    metric: enums.Metric
+    """The skill being measured."""
 
     rank: int
     """The players rank in the skill."""
@@ -81,8 +81,8 @@ class Skill(BaseModel):
 class Boss(BaseModel):
     """Details regarding a particular boss."""
 
-    metric: enums.Bosses
-    """The [`Bosses`][wom.Bosses] being measured."""
+    metric: enums.Metric
+    """The boss being measured."""
 
     rank: int
     """The players rank in killing the boss."""
@@ -97,8 +97,8 @@ class Boss(BaseModel):
 class Activity(BaseModel):
     """Details regarding a particular activity."""
 
-    metric: enums.Activities
-    """The [`Activities`][wom.Activities] being measured."""
+    metric: enums.Metric
+    """The activity being measured."""
 
     rank: int
     """The players rank in the activity."""
@@ -110,10 +110,8 @@ class Activity(BaseModel):
 class ComputedMetric(BaseModel):
     """Details regarding a computed metric."""
 
-    metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.ComputedMetrics] being
-    measured.
-    """
+    metric: enums.Metric
+    """The computed metric being measured."""
 
     rank: int
     """The players rank in the computed metric."""
@@ -125,24 +123,18 @@ class ComputedMetric(BaseModel):
 class SnapshotData(BaseModel):
     """The data associated with this snapshot."""
 
-    skills: t.Dict[enums.Skills, Skill]
-    """A mapping of [`Skills`][wom.Skills] keys to [`Skill`][wom.Skill] values
-    from this snapshot.
-    """
+    skills: t.Dict[enums.Metric, Skill]
+    """A mapping of skill keys to skill values from this snapshot."""
 
-    bosses: t.Dict[enums.Bosses, Boss]
-    """A mapping of [`Bosses`][wom.Bosses] keys to [`Boss`][wom.Boss] values
-    from this snapshot.
-    """
+    bosses: t.Dict[enums.Metric, Boss]
+    """A mapping of boss keys to boss values from this snapshot."""
 
-    activities: t.Dict[enums.Activities, Activity]
-    """A mapping of [`Activities`][wom.Activities] keys to [`Activity`]
-    [wom.Activity] values from this snapshot.
-    """
+    activities: t.Dict[enums.Metric, Activity]
+    """A mapping of activity keys to activity values from this snapshot."""
 
-    computed: t.Dict[enums.ComputedMetrics, ComputedMetric]
-    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
-    [`ComputedMetric`][wom.ComputedMetric] values from this snapshot.
+    computed: t.Dict[enums.Metric, ComputedMetric]
+    """A mapping of computed metric keys to computed metric values from
+    this snapshot.
     """
 
 
@@ -348,8 +340,8 @@ class Gains(BaseModel):
 class SkillGains(BaseModel):
     """Represents skill gains made by a player."""
 
-    metric: enums.Skills
-    """The [`Skills`][wom.Skills] being measured."""
+    metric: enums.Metric
+    """The skill being measured."""
 
     experience: Gains
     """The experience [`Gains`][wom.Gains]."""
@@ -367,8 +359,8 @@ class SkillGains(BaseModel):
 class BossGains(BaseModel):
     """Represents boss gains made by a player."""
 
-    metric: enums.Bosses
-    """The [`Bosses`][wom.Bosses] being measured."""
+    metric: enums.Metric
+    """The boss being measured."""
 
     ehb: Gains
     """The efficient hours bossed [`Gains`][wom.Gains]."""
@@ -383,8 +375,8 @@ class BossGains(BaseModel):
 class ActivityGains(BaseModel):
     """Represents activity gains made by a player."""
 
-    metric: enums.Activities
-    """The [`Activities`][wom.Activities] being measured."""
+    metric: enums.Metric
+    """The activity being measured."""
 
     rank: Gains
     """The rank [`Gains`][wom.Gains]."""
@@ -396,8 +388,8 @@ class ActivityGains(BaseModel):
 class ComputedGains(BaseModel):
     """Represents computed gains made by a player."""
 
-    metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.ComputedMetrics] being measured."""
+    metric: enums.Metric
+    """The computed metric being measured."""
 
     rank: Gains
     """The rank [`Gains`][wom.Gains]."""
@@ -409,24 +401,20 @@ class ComputedGains(BaseModel):
 class PlayerGainsData(BaseModel):
     """Contains all the player gains data."""
 
-    skills: t.Dict[enums.Skills, SkillGains]
-    """A mapping of [`Skills`][wom.Skills] keys to [`SkillGains`]
-    [wom.SkillGains] values.
+    skills: t.Dict[enums.Metric, SkillGains]
+    """A mapping of skill keys to [`SkillGains`] [wom.SkillGains] values."""
+
+    bosses: t.Dict[enums.Metric, BossGains]
+    """A mapping of boss keys to [`BossGains`][wom.BossGains] values."""
+
+    activities: t.Dict[enums.Metric, ActivityGains]
+    """A mapping of activity keys to [`ActivityGains`][wom.ActivityGains]
+    values.
     """
 
-    bosses: t.Dict[enums.Bosses, BossGains]
-    """A mapping of [`Bosses`][wom.Bosses] keys to [`BossGains`]
-    [wom.BossGains] values.
-    """
-
-    activities: t.Dict[enums.Activities, ActivityGains]
-    """A mapping of [`Activities`][wom.Activities] keys to [`ActivityGains`]
-    [wom.ActivityGains] values.
-    """
-
-    computed: t.Dict[enums.ComputedMetrics, ComputedGains]
-    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
-    [`ComputedGains`] [wom.ComputedGains] values.
+    computed: t.Dict[enums.Metric, ComputedGains]
+    """A mapping of computed metric keys to [`ComputedGains`]
+    [wom.ComputedGains] values.
     """
 
 

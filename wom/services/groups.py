@@ -765,7 +765,7 @@ class GroupService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        # TODO: hiscores entries are broken as hell
+        # TODO: Need changes in WOM for these hiscore entries to decode properly
         return self._ok(data, t.List[models.GroupHiscoresEntry])
 
     async def get_name_changes(
@@ -798,12 +798,12 @@ class GroupService(BaseService):
         """
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_NAME_CHANGES.compile(id).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_name_change(n) for n in data])
+        return self._ok(data, t.List[models.NameChange])
 
     async def get_statistics(self, id: int) -> ResultT[models.GroupStatistics]:
         """Gets the statistics for the group.
@@ -827,12 +827,12 @@ class GroupService(BaseService):
             ```
         """
         route = routes.GROUP_STATISTICS.compile(id)
-        data = await self._http.fetch(route, self._dict)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(self._serializer.deserialize_group_statistics(data))
+        return self._ok(data, models.GroupStatistics)
 
     async def get_activity(
         self,
@@ -868,9 +868,9 @@ class GroupService(BaseService):
         """
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_ACTIVITY.compile(id).with_params(params)
-        data = await self._http.fetch(route, self._list)
+        data = await self._http.fetch(route)
 
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok([self._serializer.deserialize_group_activity(a) for a in data])
+        return self._ok(data, t.List[models.GroupActivity])

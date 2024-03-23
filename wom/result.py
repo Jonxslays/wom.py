@@ -182,11 +182,11 @@ class Ok(Result[T, E]):
         if isinstance(self._value, BaseModel):
             value = self._value.to_dict()
         elif isinstance(self._value, list):
-            if self._value:
-                if isinstance(self._value[0], BaseModel):
+            if self._value:  # pyright: ignore
+                if isinstance(self._value[0], BaseModel):  # pyright: ignore
                     value = [v.to_dict() for v in self._value]  # pyright: ignore
-                elif isinstance(self._value[0], (dict, int, str, bool)):
-                    value = self._value
+                elif isinstance(self._value[0], (dict, int, str, bool)):  # pyright: ignore
+                    value = self._value  # pyright: ignore
                 else:
                     raise RuntimeError(
                         f"Cant convert Result(Ok) to dict, please report this: {actual!r}"
@@ -194,7 +194,7 @@ class Ok(Result[T, E]):
             else:
                 value = []
         elif isinstance(self._value, (dict, int, str, bool)):
-            value = self._value
+            value = self._value  # pyright: ignore
         else:
             raise RuntimeError(f"Cant convert Result(Ok) to dict, please report this: {actual!r}")
 
@@ -255,18 +255,19 @@ class Err(Result[T, E]):
         if isinstance(self._error, BaseModel):
             error = self._error.to_dict()
         elif isinstance(self._error, (dict, int, str, bool)):
-            error = self._error
+            error = self._error  # pyright: ignore
         elif isinstance(self._error, Exception):
             error = str(self._error)
         elif isinstance(self._error, list):
-            if self._error:
-                if isinstance(self._error[0], BaseModel):
+            if self._error:  # pyright: ignore
+                if isinstance(self._error[0], BaseModel):  # pyright: ignore
                     error = [e.to_dict() for e in self._error]  # pyright: ignore
-                elif isinstance(self._error[0], (dict, int, str, bool)):
-                    error = self._error
+                elif isinstance(self._error[0], (dict, int, str, bool)):  # pyright: ignore
+                    error = self._error  # pyright: ignore
                 else:
+                    error = self._error  # pyright: ignore
                     raise RuntimeError(
-                        f"Cant convert Result(Err) to dict, please report this: {self._error}"
+                        f"Cant convert Result(Err) to dict, please report this: {error}"
                     )
             else:
                 error = []
