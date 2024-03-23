@@ -88,6 +88,7 @@ __all__ = (
     "Client",
     "Country",
     "Competition",
+    "CompetitionCSVTableType",
     "CompetitionDetail",
     "CompetitionHistoryDataPoint",
     "CompetitionParticipationDetail",

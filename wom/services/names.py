@@ -83,11 +83,7 @@ class NameChangeService(BaseService):
         params = self._generate_map(username=username, status=status, limit=limit, offset=offset)
         route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.NameChange])
+        return self._ok_or_err(data, t.List[models.NameChange])
 
     async def submit_name_change(self, old_name: str, new_name: str) -> ResultT[models.NameChange]:
         """Submits a new name change.
@@ -117,8 +113,4 @@ class NameChangeService(BaseService):
         payload = self._generate_map(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()
         data = await self._http.fetch(route, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.NameChange)
+        return self._ok_or_err(data, models.NameChange)

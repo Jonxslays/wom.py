@@ -97,8 +97,4 @@ class RecordService(BaseService):
 
         route = routes.GLOBAL_RECORD_LEADERS.compile()
         data = await self._http.fetch(route.with_params(params))
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.RecordLeaderboardEntry])
+        return self._ok_or_err(data, t.List[models.RecordLeaderboardEntry])

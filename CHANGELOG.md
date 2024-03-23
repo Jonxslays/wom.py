@@ -37,10 +37,13 @@ Stable Release Candidate 1
 ## Additions
 
 - Added `CreatedGroupDetail` model which always has the verification code present.
+- Added `previous_role` property to `GroupActivity`.
+- Added `CompetitionService.get_details_csv` method.
 
 ## Changes
 
 - `Record.value` is now a `float` instead of an `int`.
+- `ComputedMetricLeader.value` is now a `float` instead of an `int`.
 - The `Metric` enum now includes all variants of the old `Skills`, `Activities`,
   `Bosses`, and `ComputedMetrics` enums.
 - `GroupService.create_group` now returns a `CreatedGroupDetail` model.

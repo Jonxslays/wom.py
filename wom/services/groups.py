@@ -54,11 +54,7 @@ class GroupService(BaseService):
     def _parse_member_fragments(
         self, members: t.Iterable[t.Union[str, models.GroupMemberFragment]]
     ) -> t.Generator[models.GroupMemberFragment, None, None]:
-        for m in members:
-            if isinstance(m, str):
-                yield models.GroupMemberFragment(m, None)
-            else:
-                yield m
+        return (models.GroupMemberFragment(m, None) if isinstance(m, str) else m for m in members)
 
     async def search_groups(
         self,
@@ -95,11 +91,7 @@ class GroupService(BaseService):
         params = self._generate_map(name=name, limit=limit, offset=offset)
         route = routes.SEARCH_GROUPS.compile().with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.Group])
+        return self._ok_or_err(data, t.List[models.Group])
 
     async def get_details(self, id: int) -> ResultT[models.GroupDetail]:
         """Gets the details for the given group id.
@@ -124,11 +116,7 @@ class GroupService(BaseService):
         """
         route = routes.GROUP_DETAILS.compile(id)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.GroupDetail)
+        return self._ok_or_err(data, models.GroupDetail)
 
     async def create_group(
         self,
@@ -193,11 +181,7 @@ class GroupService(BaseService):
 
         route = routes.CREATE_GROUP.compile()
         data = await self._http.fetch(route, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.CreatedGroupDetail)
+        return self._ok_or_err(data, models.CreatedGroupDetail)
 
     async def edit_group(
         self,
@@ -285,11 +269,7 @@ class GroupService(BaseService):
 
         route = routes.EDIT_GROUP.compile(id)
         data = await self._http.fetch(route, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.GroupDetail)
+        return self._ok_or_err(data, models.GroupDetail)
 
     async def delete_group(
         self, id: int, verification_code: str
@@ -456,11 +436,7 @@ class GroupService(BaseService):
 
         route = routes.CHANGE_MEMBER_ROLE.compile(id)
         data = await self._http.fetch(route, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.GroupMembership)
+        return self._ok_or_err(data, models.GroupMembership)
 
     async def update_outdated_members(
         self, id: int, verification_code: str
@@ -545,11 +521,7 @@ class GroupService(BaseService):
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_COMPETITIONS.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.Competition])
+        return self._ok_or_err(data, t.List[models.Competition])
 
     async def get_gains(
         self,
@@ -617,11 +589,7 @@ class GroupService(BaseService):
 
         route = routes.GROUP_GAINS.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.GroupMemberGains])
+        return self._ok_or_err(data, t.List[models.GroupMemberGains])
 
     async def get_achievements(
         self,
@@ -658,11 +626,7 @@ class GroupService(BaseService):
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_ACHIEVEMENTS.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.Achievement])
+        return self._ok_or_err(data, t.List[models.Achievement])
 
     async def get_records(
         self,
@@ -714,11 +678,7 @@ class GroupService(BaseService):
 
         route = routes.GROUP_RECORDS.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.RecordLeaderboardEntry])
+        return self._ok_or_err(data, t.List[models.RecordLeaderboardEntry])
 
     async def get_hiscores(
         self,
@@ -761,12 +721,7 @@ class GroupService(BaseService):
         params = self._generate_map(limit=limit, offset=offset, metric=metric.value)
         route = routes.GROUP_HISCORES.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        # TODO: Need changes in WOM for these hiscore entries to decode properly
-        return self._ok(data, t.List[models.GroupHiscoresEntry])
+        return self._ok_or_err(data, t.List[models.GroupHiscoresEntry])
 
     async def get_name_changes(
         self, id: int, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
@@ -799,11 +754,7 @@ class GroupService(BaseService):
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_NAME_CHANGES.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.NameChange])
+        return self._ok_or_err(data, t.List[models.NameChange])
 
     async def get_statistics(self, id: int) -> ResultT[models.GroupStatistics]:
         """Gets the statistics for the group.
@@ -828,11 +779,7 @@ class GroupService(BaseService):
         """
         route = routes.GROUP_STATISTICS.compile(id)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.GroupStatistics)
+        return self._ok_or_err(data, models.GroupStatistics)
 
     async def get_activity(
         self,
@@ -869,8 +816,4 @@ class GroupService(BaseService):
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_ACTIVITY.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.GroupActivity])
+        return self._ok_or_err(data, t.List[models.GroupActivity])

@@ -32,7 +32,6 @@ wom = "wom.__main__:_main"
 [tool.poetry.dependencies]
 python = ">=3.8"
 aiohttp = ">3.8.1"
-attrs = ">=22"
 msgspec = ">=0.18.5"
 
 [tool.poetry.group.dev.dependencies]

@@ -158,3 +158,4 @@ ADD_PARTICIPANTS: t.Final[Route] = Route("POST", "/competitions/{}/participants"
 REMOVE_PARTICIPANTS: t.Final[Route] = Route("DELETE", "/competitions/{}/participants")
 ADD_TEAMS: t.Final[Route] = Route("POST", "/competitions/{}/teams")
 REMOVE_TEAMS: t.Final[Route] = Route("DELETE", "/competitions/{}/teams")
+COMPETITION_DETAILS_CSV: t.Final[Route] = Route("GET", "/competitions/{}/csv")

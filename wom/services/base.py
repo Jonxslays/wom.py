@@ -59,6 +59,14 @@ class BaseService(abc.ABC):
     def _ok(self, data: bytes, model_type: t.Type[T]) -> ResultT[T]:
         return result.Ok(self._serializer.decode(data, model_type))
 
+    def _ok_or_err(
+        self, data: t.Union[bytes, models.HttpErrorResponse], model_type: t.Type[T]
+    ) -> ResultT[T]:
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return self._ok(data, model_type)
+
     def _success_or_err(
         self,
         data: t.Union[bytes, models.HttpErrorResponse],

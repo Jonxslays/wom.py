@@ -106,11 +106,7 @@ class CompetitionService(BaseService):
 
         route = routes.SEARCH_COMPETITIONS.compile().with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.Competition])
+        return self._ok_or_err(data, t.List[models.Competition])
 
     async def get_details(
         self, id: int, *, metric: t.Optional[enums.Metric] = None
@@ -147,11 +143,7 @@ class CompetitionService(BaseService):
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.CompetitionDetail)
+        return self._ok_or_err(data, models.CompetitionDetail)
 
     async def get_top_participant_history(
         self, id: int, *, metric: t.Optional[enums.Metric] = None
@@ -188,11 +180,7 @@ class CompetitionService(BaseService):
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
         data = await self._http.fetch(route)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, t.List[models.Top5ProgressResult])
+        return self._ok_or_err(data, t.List[models.Top5ProgressResult])
 
     async def create_competition(
         self,
@@ -285,11 +273,7 @@ class CompetitionService(BaseService):
 
         route = routes.CREATE_COMPETITION.compile()
         data = await self._http.fetch(route, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.CompetitionWithParticipations)
+        return self._ok_or_err(data, models.CompetitionWithParticipations)
 
     async def edit_competition(
         self,
@@ -367,11 +351,7 @@ class CompetitionService(BaseService):
 
         route = routes.EDIT_COMPETITION.compile(id)
         data = await self._http.fetch(route, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return self._ok(data, models.Competition)
+        return self._ok_or_err(data, models.Competition)
 
     async def delete_competition(
         self, id: int, verification_code: str
@@ -617,3 +597,53 @@ class CompetitionService(BaseService):
         payload = self._generate_map(verificationCode=verification_code)
         data = await self._http.fetch(route, payload=payload, allow_http_success=True)
         return self._success_or_err(data, predicate=lambda m: "players are being updated" in m)
+
+    async def get_details_csv(
+        self,
+        id: int,
+        *,
+        metric: t.Optional[enums.Metric] = None,
+        team_name: t.Optional[str] = None,
+        table_type: t.Optional[models.CompetitionCSVTableType] = None,
+    ) -> ResultT[str]:
+        """Gets details about the competition in CSV format.
+
+        Args:
+            id: The ID of the competition.
+
+        Keyword Args:
+            metric: The optional [`Metric`][wom.Metric] to view the
+                competition progress in. As if this competition was
+                actually for that metric. Defaults to `None`.
+
+            team_name: The optional team name you would like to get details
+                for. Defaults to `None`.
+
+            table_type: The optional table type formatting to apply.
+                Defaults to `Participants`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the CSV string.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.competitions.get_details_csv(
+                123, team_name="Cool team"
+            )
+            ```
+        """
+        params = self._generate_map(metric=metric, teamName=team_name, table=table_type)
+        route = routes.COMPETITION_DETAILS_CSV.compile(id).with_params(params)
+        data = await self._http.fetch(route)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(str(data))

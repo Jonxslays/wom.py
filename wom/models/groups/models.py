@@ -407,6 +407,9 @@ class GroupActivity(BaseModel):
     role: t.Optional[GroupRole]
     """The players role in the group, if they have one."""
 
+    previous_role: t.Optional[GroupRole]
+    """The players previous role in the group, if they had one."""
+
     created_at: datetime
     """The datetime indicating when this activity occurred."""
 

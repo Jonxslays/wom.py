@@ -46,6 +46,7 @@ __all__ = (
     "BossLeader",
     "Country",
     "Competition",
+    "CompetitionCSVTableType",
     "CompetitionDetail",
     "CompetitionHistoryDataPoint",
     "CompetitionParticipationDetail",

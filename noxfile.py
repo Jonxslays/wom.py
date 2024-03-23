@@ -66,7 +66,7 @@ def install(*packages: str) -> InjectorT:
 
 
 @nox.session(reuse_venv=True)
-@install("pytest", "pytest-asyncio", "pytest-testdox", "coverage", "aiohttp", "attrs", "msgspec")
+@install("pytest", "pytest-asyncio", "pytest-testdox", "coverage", "aiohttp", "msgspec")
 def tests(session: nox.Session) -> None:
     session.run(
         "coverage",
@@ -90,7 +90,7 @@ def coverage(session: nox.Session) -> None:
 
 
 @nox.session(reuse_venv=True)
-@install("pyright", "mypy", "aiohttp", "attrs", "msgspec")
+@install("pyright", "mypy", "aiohttp", "msgspec")
 def types(session: nox.Session) -> None:
     session.run("mypy")
     session.run("pyright")
