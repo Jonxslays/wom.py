@@ -43,3 +43,8 @@ def test_generate_map() -> None:
     result = service._generate_map(test=1, other=2, nothing=None)  # type: ignore
 
     assert result == expected
+
+
+# TODO: Add tests for the new base service methods:
+#   - _ok()
+#   - _success_or_err()

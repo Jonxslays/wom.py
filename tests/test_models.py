@@ -27,19 +27,26 @@ from wom import GroupRole
 from wom import Team
 
 
-def test_base_to_dict() -> None:
+def test_base() -> None:
     assert BaseModel().to_dict() == {}
 
 
-def test_team_init() -> None:
+def test_team() -> None:
     team = Team("woo", ["Jonxslays", "Zezima"])
     assert team.name == "woo"
     assert team.participants == ["Jonxslays", "Zezima"]
     assert team.to_dict() == {"name": "woo", "participants": ["Jonxslays", "Zezima"]}
 
 
-def test_group_member_fragment_init() -> None:
+def test_group_member_fragment() -> None:
     fragment = GroupMemberFragment("Jonxslays", GroupRole.Adept)
     assert fragment.username == "Jonxslays"
     assert fragment.role is GroupRole.Adept
     assert fragment.to_dict() == {"username": "Jonxslays", "role": GroupRole.Adept}
+
+
+def test_group_member_fragment_no_role() -> None:
+    fragment = GroupMemberFragment("Jonxslays")
+    assert fragment.username == "Jonxslays"
+    assert fragment.role is None
+    assert fragment.to_dict() == {"username": "Jonxslays", "role": None}

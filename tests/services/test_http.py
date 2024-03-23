@@ -32,7 +32,10 @@ def test_basic_init() -> None:
     service = HttpService(None, None, None)
 
     assert service._base_url == constants.WOM_BASE_URL  # type: ignore
-    assert service._headers == {"x-user-agent": constants.DEFAULT_USER_AGENT}  # type: ignore
+    assert service._headers == {  # type: ignore
+        "x-user-agent": constants.DEFAULT_USER_AGENT,
+        "User-Agent": constants.DEFAULT_USER_AGENT,
+    }
 
 
 def test_full_init() -> None:
@@ -41,33 +44,41 @@ def test_full_init() -> None:
     assert service._base_url == "https://WUTTTT"  # type: ignore
     assert service._headers == {  # type: ignore
         "x-user-agent": f"{constants.USER_AGENT_BASE} lolol",
+        "User-Agent": f"{constants.USER_AGENT_BASE} lolol",
         "x-api-key": "xxx",
     }
 
 
 @mock.patch("wom.services.http.aiohttp.ClientResponse")
 @mock.patch("wom.services.http.aiohttp.ClientSession")
-async def test_try_get_json(_: mock.MagicMock, client_response: mock.MagicMock) -> None:
+async def test_read_content(_: mock.MagicMock, client_response: mock.MagicMock) -> None:
     service = HttpService(None, None, None)
-    response_json = mock.AsyncMock()
-    client_response.json = response_json
+    read_bytes = mock.AsyncMock()
+    client_response.content.read = read_bytes
 
-    await service._try_get_json(client_response)  # type: ignore
+    await service._read_content(client_response)  # type: ignore
 
-    response_json.assert_awaited_once()
+    read_bytes.assert_awaited_once()
 
 
 @mock.patch("wom.services.http.aiohttp.ClientResponse")
 @mock.patch("wom.services.http.aiohttp.ClientSession")
-async def test_try_get_json_fails(_: mock.MagicMock, client_response: mock.MagicMock) -> None:
+async def test_read_content_fails(_: mock.MagicMock, client_response: mock.MagicMock) -> None:
     service = HttpService(None, None, None)
-    response_json = mock.AsyncMock(side_effect=Exception)
-    client_response.json = response_json
-    client_response.status = 404
+    read_bytes = mock.AsyncMock(side_effect=Exception)
+    client_response.content.read = read_bytes
+    client_response.status = 500
 
-    result = await service._try_get_json(client_response)  # type: ignore
+    result = await service._read_content(client_response)  # type: ignore
 
-    response_json.assert_awaited_once()
+    read_bytes.assert_awaited_once()
     assert isinstance(result, HttpErrorResponse)
-    assert result.status == 404
-    assert result.message == "Unable to deserialize response, the api is likely down."
+    assert result.status == 500
+    assert result.message == "Failed to read response content."
+
+
+# TODO: Add more http tests here for the public methods and also with mocks for:
+#   - fetch
+#   - _get_request_func
+#   - _init_session
+#   - _request
