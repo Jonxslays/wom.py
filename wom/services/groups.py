@@ -817,3 +817,32 @@ class GroupService(BaseService):
         route = routes.GROUP_ACTIVITY.compile(id).with_params(params)
         data = await self._http.fetch(route)
         return self._ok_or_err(data, t.List[models.GroupActivity])
+
+    async def get_members_csv(self, id: int) -> ResultT[str]:
+        """Gets members in this group in CSV format.
+
+        Args:
+            id: The ID of the group.
+
+        Returns:
+            A [`Result`][wom.Result] containing the CSV string.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.groups.get_members_csv(123)
+            ```
+        """
+        route = routes.GROUP_MEMBERS_CSV.compile(id)
+        data = await self._http.fetch(route)
+
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
+
+        return result.Ok(data.decode())

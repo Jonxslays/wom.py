@@ -646,4 +646,4 @@ class CompetitionService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(str(data))
+        return result.Ok(data.decode())
