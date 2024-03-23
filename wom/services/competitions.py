@@ -193,7 +193,7 @@ class CompetitionService(BaseService):
         group_verification_code: t.Optional[str] = None,
         teams: t.Optional[t.List[models.Team]] = None,
         participants: t.Optional[t.List[str]] = None,
-    ) -> ResultT[models.CompetitionWithParticipations]:
+    ) -> ResultT[models.CreatedCompetitionDetail]:
         """Creates a new competition.
 
         Args:
@@ -222,7 +222,7 @@ class CompetitionService(BaseService):
 
         Returns:
             A [`Result`][wom.Result] containing the newly created
-                competition with participations.
+                competition detail.
 
         !!! info
 
@@ -251,12 +251,12 @@ class CompetitionService(BaseService):
             client = wom.Client(...)
 
             result = await client.competitions.create_competition(
-                "Slayer weekend",
+                "Slayer week",
                 wom.Metric.Slayer,
-                starts_at: datetime.now() + timedelta(days=7),
-                ends_at: datetime.now() + timedelta(days=14),
-                group_verification_code: "111-111-111",
-                group_id: 123,
+                starts_at=datetime.now() + timedelta(days=7),
+                ends_at=datetime.now() + timedelta(days=14),
+                group_verification_code="111-111-111",
+                group_id=123,
             )
             ```
         """
@@ -273,7 +273,7 @@ class CompetitionService(BaseService):
 
         route = routes.CREATE_COMPETITION.compile()
         data = await self._http.fetch(route, payload=payload)
-        return self._ok_or_err(data, models.CompetitionWithParticipations)
+        return self._ok_or_err(data, models.CreatedCompetitionDetail)
 
     async def edit_competition(
         self,

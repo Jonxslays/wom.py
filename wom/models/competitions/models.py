@@ -40,7 +40,7 @@ __all__ = (
     "CompetitionParticipationDetail",
     "CompetitionParticipation",
     "CompetitionProgress",
-    "CompetitionWithParticipations",
+    "CreatedCompetitionDetail",
     "Participation",
     "PlayerCompetitionStanding",
     "PlayerParticipation",
@@ -211,12 +211,6 @@ class Top5ProgressResult(BaseModel):
 class Team(BaseModel):
     """Represents a competition team.
 
-    Args:
-        name: The name of the team.
-
-        participants: A list of usernames to include in the
-            team.
-
     !!! tip
 
         This is a model class that you will create in order to send
@@ -230,17 +224,11 @@ class Team(BaseModel):
     """A list of participant usernames on the team."""
 
 
-class CompetitionWithParticipations(BaseModel):
-    """Represents a competition with participations."""
+class CreatedCompetitionDetail(BaseModel):
+    """Represents a competition that was just created."""
 
     competition: Competition
     """The [`Competition`][wom.Competition] itself."""
 
-    verification_code: t.Optional[str]
-    """The verification code for the competition.
-
-    !!! note
-
-        Only returned when a competition is created and will be
-        `None` otherwise.
-    """
+    verification_code: str
+    """The verification code for the competition."""

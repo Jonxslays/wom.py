@@ -182,12 +182,6 @@ class PlayerMembership(Membership):
 class GroupMemberFragment(BaseModel):
     """Represents a condensed group member.
 
-    Args:
-        username: The username of the group member.
-
-        role: The optional [`GroupRole`][wom.models.GroupRole] to
-            give the member.
-
     !!! tip
 
         This is a model class that you will create in order to send

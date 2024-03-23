@@ -33,7 +33,7 @@ __all__ = (
     "CompetitionProgress",
     "CompetitionStatus",
     "CompetitionType",
-    "CompetitionWithParticipations",
+    "CreatedCompetitionDetail",
     "Participation",
     "PlayerCompetitionStanding",
     "PlayerParticipation",
