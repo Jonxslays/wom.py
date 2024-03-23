@@ -39,6 +39,7 @@ Stable Release Candidate 1
 - Added `CreatedGroupDetail` model which always has the verification code present.
 - Added `previous_role` property to `GroupActivity`.
 - Added `CompetitionService.get_details_csv` method.
+- Added `MetricLeader` class for the different flavors of leader to derive from.
 
 ## Changes
 
