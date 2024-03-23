@@ -28,12 +28,22 @@ Stable Release Candidate 1
   property was removed.
 - `CompetitionService.edit_competition` now returns a `Competition`.
 - `CompetitionWithParticipations.participations` removed and added to `Competition`.
+- All methods in the `Serializer` prefixed with `deserialize_` were removed.
+- `GroupDetail` now inherits from `Group` and so the `group` property was removed.
+- The `verification_code` property on `GroupDetail` was removed.
+- Converted the `Skills`, `Activities`, `Bosses`, and `ComputedMetrics` enums
+  into `frozenset`s.
+
+## Additions
+
+- Added `CreatedGroupDetail` model which always has the verification code present.
 
 ## Changes
 
 - `Record.value` is now a `float` instead of an `int`.
-- The `Metric` enum now includes all variants of `Skills`, `Activities`, `Bosses`,
-  and `ComputedMetrics` as well, and can be compared with them using `==`.
+- The `Metric` enum now includes all variants of the old `Skills`, `Activities`,
+  `Bosses`, and `ComputedMetrics` enums.
+- `GroupService.create_group` now returns a `CreatedGroupDetail` model.
 
 ---
 

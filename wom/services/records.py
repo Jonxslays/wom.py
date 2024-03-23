@@ -32,8 +32,8 @@ from . import BaseService
 
 __all__ = ("RecordService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class RecordService(BaseService):
@@ -101,4 +101,4 @@ class RecordService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return self.ok(data, t.List[models.RecordLeaderboardEntry])
+        return self._ok(data, t.List[models.RecordLeaderboardEntry])

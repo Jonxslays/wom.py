@@ -37,6 +37,7 @@ __all__ = (
     "ActivityLeader",
     "BossLeader",
     "ComputedMetricLeader",
+    "CreatedGroupDetail",
     "Group",
     "GroupActivity",
     "GroupDetail",
@@ -100,11 +101,8 @@ class Group(BaseModel):
     """The number of members in the group."""
 
 
-class GroupDetail(BaseModel):
+class GroupDetail(Group):
     """Represents details about a group."""
-
-    group: Group
-    """The [`Group`][wom.Group] itself."""
 
     memberships: t.List[GroupMembership]
     """A list of [`GroupMemberships`][wom.GroupMembership]."""
@@ -112,12 +110,19 @@ class GroupDetail(BaseModel):
     social_links: SocialLinks
     """The social links for this group."""
 
-    verification_code: t.Optional[str]
-    """The optional verification code for the group.
+
+class CreatedGroupDetail(BaseModel):
+    """Represents a newly created group."""
+
+    group: GroupDetail
+    """The details about the group."""
+
+    verification_code: str
+    """The verification code for the group.
 
     !!! note
 
-        This will only be present on group creation.
+        This should be kept safe and only shared trusted clan members.
     """
 
 
@@ -171,7 +176,6 @@ class PlayerMembership(Membership):
 
     group: Group
     """The [`Group`][wom.Group] the player is a member of."""
-
 
 
 class GroupMemberFragment(BaseModel):
@@ -258,8 +262,8 @@ class GroupHiscoresComputedMetricItem(BaseModel):
 class SkillLeader(BaseModel):
     """Represents a leader in a particular skill."""
 
-    metric: enums.Skills
-    """The [`Skills`][wom.Skills] being measured."""
+    metric: enums.Metric
+    """The skill being measured."""
 
     rank: int
     """The players rank in the skill."""
@@ -277,8 +281,8 @@ class SkillLeader(BaseModel):
 class BossLeader(BaseModel):
     """Represents a leader in a particular boss."""
 
-    metric: enums.Bosses
-    """The [`Bosses`][wom.Bosses] being measured."""
+    metric: enums.Metric
+    """The boss being measured."""
 
     rank: int
     """The players rank in killing the boss."""
@@ -293,8 +297,8 @@ class BossLeader(BaseModel):
 class ActivityLeader(BaseModel):
     """Represents a leader in a particular activity."""
 
-    metric: enums.Activities
-    """The [`Activities`][wom.Activities] being measured."""
+    metric: enums.Metric
+    """The activity being measured."""
 
     rank: int
     """The players rank in the activity."""
@@ -309,10 +313,8 @@ class ActivityLeader(BaseModel):
 class ComputedMetricLeader(BaseModel):
     """Represents a leader in a particular computed metric."""
 
-    metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.ComputedMetrics] being
-    measured.
-    """
+    metric: enums.Metric
+    """The computed metric being measured."""
 
     rank: int
     """The players rank in the computed metric."""
@@ -327,23 +329,19 @@ class ComputedMetricLeader(BaseModel):
 class MetricLeaders(BaseModel):
     """The leaders for each metric in a group."""
 
-    skills: t.Dict[enums.Skills, SkillLeader]
-    """A mapping of [`Skills`][wom.Skills] keys to [`SkillLeader`]
-    [wom.SkillLeader] values.
-    """
+    skills: t.Dict[enums.Metric, SkillLeader]
+    """A mapping of skill keys to [`SkillLeader`][wom.SkillLeader] values."""
 
-    bosses: t.Dict[enums.Bosses, BossLeader]
-    """A mapping of [`Bosses`][wom.Bosses] keys to [`BossLeader`]
-    [wom.BossLeader] values.
-    """
+    bosses: t.Dict[enums.Metric, BossLeader]
+    """A mapping of boss keys to [`BossLeader`][wom.BossLeader] values."""
 
-    activities: t.Dict[enums.Activities, ActivityLeader]
-    """A mapping of [`Activities`][wom.Activities] keys to [`ActivityLeader`]
+    activities: t.Dict[enums.Metric, ActivityLeader]
+    """A mapping of activity keys to [`ActivityLeader`]
     [wom.ActivityLeader] values.
     """
 
-    computed: t.Dict[enums.ComputedMetrics, ComputedMetricLeader]
-    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
+    computed: t.Dict[enums.Metric, ComputedMetricLeader]
+    """A mapping of computed metric keys to
     [`ComputedMetricLeader`][wom.ComputedMetricLeader] values.
     """
 

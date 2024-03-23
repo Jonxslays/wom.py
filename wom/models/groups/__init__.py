@@ -27,6 +27,7 @@ __all__ = (
     "ActivityLeader",
     "BossLeader",
     "ComputedMetricLeader",
+    "CreatedGroupDetail",
     "Group",
     "GroupActivity",
     "GroupActivityType",

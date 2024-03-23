@@ -31,8 +31,8 @@ from . import BaseService
 
 __all__ = ("NameChangeService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class NameChangeService(BaseService):
@@ -87,7 +87,7 @@ class NameChangeService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return self.ok(data, t.List[models.NameChange])
+        return self._ok(data, t.List[models.NameChange])
 
     async def submit_name_change(self, old_name: str, new_name: str) -> ResultT[models.NameChange]:
         """Submits a new name change.
@@ -121,4 +121,4 @@ class NameChangeService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return self.ok(data, models.NameChange)
+        return self._ok(data, models.NameChange)

@@ -24,15 +24,15 @@ from __future__ import annotations
 import abc
 import typing as t
 
+from wom import models
 from wom import result
+from wom import serializer
 
 if t.TYPE_CHECKING:
-    from wom import models
-    from wom import serializer
     from . import HttpService
 
-    ValueT = t.TypeVar("ValueT")
-    ResultT = result.Result[ValueT, models.HttpErrorResponse]
+    T = t.TypeVar("T")
+    ResultT = result.Result[T, models.HttpErrorResponse]
 
 __all__ = ("BaseService",)
 
@@ -56,5 +56,22 @@ class BaseService(abc.ABC):
     def _generate_map(self, **kwargs: t.Any) -> t.Dict[str, t.Any]:
         return {k: v for k, v in kwargs.items() if v is not None}
 
-    def ok(self, data: bytes, model_type: t.Type[ValueT]) -> ResultT[ValueT]:
-        return result.Ok(self._serializer.decode(data, model_type))  # pyright: ignore
+    def _ok(self, data: bytes, model_type: t.Type[T]) -> ResultT[T]:
+        return result.Ok(self._serializer.decode(data, model_type))
+
+    def _success_or_err(
+        self,
+        data: t.Union[bytes, models.HttpErrorResponse],
+        *,
+        predicate: t.Optional[t.Callable[[str], bool]] = None,
+    ) -> ResultT[models.HttpSuccessResponse]:
+        if isinstance(data, bytes):
+            err = self._serializer.decode(data, models.HttpErrorResponse)
+            return result.Err(err)
+
+        predicate = predicate or (lambda m: m.startswith("Success"))
+
+        if not predicate(data.message):
+            return result.Err(data)
+
+        return result.Ok(models.HttpSuccessResponse(data.message, data.status))

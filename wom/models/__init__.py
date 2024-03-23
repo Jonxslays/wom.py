@@ -57,6 +57,7 @@ __all__ = (
     "ComputedGains",
     "ComputedMetric",
     "ComputedMetricLeader",
+    "CreatedGroupDetail",
     "DeltaLeaderboardEntry",
     "Gains",
     "GroupDetail",

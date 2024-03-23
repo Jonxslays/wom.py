@@ -32,8 +32,8 @@ from . import BaseService
 
 __all__ = ("DeltaService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class DeltaService(BaseService):
@@ -82,7 +82,7 @@ class DeltaService(BaseService):
             await client.start()
 
             result = await client.deltas.get_global_leaderboards(
-                wom.Skills.Attack,
+                wom.Metric.Attack,
                 wom.Period.Day,
                 country=wom.Country.Gb,
             )
@@ -102,4 +102,4 @@ class DeltaService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return self.ok(data, t.List[models.DeltaLeaderboardEntry])
+        return self._ok(data, t.List[models.DeltaLeaderboardEntry])

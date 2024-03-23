@@ -176,13 +176,14 @@ class HttpService:
         Args:
             route: The route to make the request to.
 
-            _: The type expected to be returned.
-
             payload: The optional payload to send in the request
                 body.
 
+            allow_http_success: Whether or not the caller is planning
+                to return http success.
+
         Returns:
-            The requested json data or the error response.
+            The requested bytes or the error response.
         """
         return await self._request(
             self._get_request_func(route.method),

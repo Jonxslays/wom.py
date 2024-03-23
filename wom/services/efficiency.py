@@ -32,8 +32,8 @@ from . import BaseService
 
 __all__ = ("EfficiencyService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class EfficiencyService(BaseService):
@@ -43,7 +43,7 @@ class EfficiencyService(BaseService):
 
     async def get_global_leaderboard(
         self,
-        metric: enums.ComputedMetrics = enums.ComputedMetrics.Ehp,
+        metric: enums.Metric = enums.Metric.Ehp,
         *,
         player_type: t.Optional[models.PlayerType] = None,
         player_build: t.Optional[models.PlayerBuild] = None,
@@ -53,8 +53,8 @@ class EfficiencyService(BaseService):
         """Gets the top global efficiency leaderboard.
 
         Args:
-            metric: The computed metric to filter on. Defaults to [`Ehp`]
-                [wom.ComputedMetrics].
+            metric: The computed metric to filter on. Defaults to `Ehp`,
+                must be one of `Ehp` or `Ehb` if supplied.
 
         Keyword Args:
             player_type: The optional player type to filter on. Defaults
@@ -67,7 +67,7 @@ class EfficiencyService(BaseService):
                 `None`.
 
             both: If `True`, request both ehp and ehb computed metric
-                leaderboards. This will override the `metric`, if it was
+                leaderboards. This will override the `metric` if it was
                 provided. Defaults to `False`.
 
         Returns:
@@ -101,4 +101,4 @@ class EfficiencyService(BaseService):
         if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return self.ok(data, t.List[models.Player])
+        return self._ok(data, t.List[models.Player])

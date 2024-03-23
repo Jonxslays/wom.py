@@ -30,13 +30,9 @@ from enum import Enum
 T = t.TypeVar("T", bound="BaseEnum")
 
 __all__ = (
-    "Activities",
     "BaseEnum",
-    "Bosses",
-    "ComputedMetrics",
     "Metric",
     "Period",
-    "Skills",
 )
 
 
@@ -79,9 +75,8 @@ class Period(BaseEnum):
 
 
 class Metric(BaseEnum):
-    """Represents all metrics, used in places that accept or return all
-    of [`Activities`][wom.Activities], [`Bosses`][wom.Bosses],
-    [`ComputedMetrics`][wom.ComputedMetrics], or [`Skills`][wom.Skills].
+    """Represents all metrics including skills, bosses, activities, and
+    computed metrics.
     """
 
     # Skills
@@ -121,132 +116,13 @@ class Metric(BaseEnum):
     ClueScrollsHard = "clue_scrolls_hard"
     ClueScrollsElite = "clue_scrolls_elite"
     ClueScrollsMaster = "clue_scrolls_master"
+    ColosseumGlory = "colosseum_glory"
     LastManStanding = "last_man_standing"
     PvpArena = "pvp_arena"
     SoulWarsZeal = "soul_wars_zeal"
     GuardiansOfTheRift = "guardians_of_the_rift"
 
     # Bosses
-    AbyssalSire = "abyssal_sire"
-    AlchemicalHydra = "alchemical_hydra"
-    Artio = "artio"
-    BarrowsChests = "barrows_chests"
-    Bryophyta = "bryophyta"
-    Callisto = "callisto"
-    Calvarion = "calvarion"
-    Cerberus = "cerberus"
-    ChambersOfXeric = "chambers_of_xeric"
-    ChambersOfXericChallenge = "chambers_of_xeric_challenge_mode"
-    ChaosElemental = "chaos_elemental"
-    ChaosFanatic = "chaos_fanatic"
-    CommanderZilyana = "commander_zilyana"
-    CorporealBeast = "corporeal_beast"
-    CrazyArchaeologist = "crazy_archaeologist"
-    DagannothPrime = "dagannoth_prime"
-    DagannothRex = "dagannoth_rex"
-    DagannothSupreme = "dagannoth_supreme"
-    DerangedArchaeologist = "deranged_archaeologist"
-    DukeSucellus = "duke_sucellus"
-    GeneralGraardor = "general_graardor"
-    GiantMole = "giant_mole"
-    GrotesqueGuardians = "grotesque_guardians"
-    Hespori = "hespori"
-    KalphiteQueen = "kalphite_queen"
-    KingBlackDragon = "king_black_dragon"
-    Kraken = "kraken"
-    Kreearra = "kreearra"
-    KrilTsutsaroth = "kril_tsutsaroth"
-    Mimic = "mimic"
-    Nex = "nex"
-    Nightmare = "nightmare"
-    PhosanisNightmare = "phosanis_nightmare"
-    Obor = "obor"
-    PhantomMuspah = "phantom_muspah"
-    Sarachnis = "sarachnis"
-    Scorpia = "scorpia"
-    Skotizo = "skotizo"
-    Spindel = "spindel"
-    Tempoross = "tempoross"
-    TheGauntlet = "the_gauntlet"
-    TheCorruptedGauntlet = "the_corrupted_gauntlet"
-    TheLeviathan = "the_leviathan"
-    TheWhisperer = "the_whisperer"
-    TheatreOfBlood = "theatre_of_blood"
-    TheatreOfBloodHard = "theatre_of_blood_hard_mode"
-    ThermonuclearSmokeDevil = "thermonuclear_smoke_devil"
-    TombsOfAmascut = "tombs_of_amascut"
-    TombsOfAmascutExpert = "tombs_of_amascut_expert"
-    TzKalZuk = "tzkal_zuk"
-    TzTokJad = "tztok_jad"
-    Vardorvis = "vardorvis"
-    Venenatis = "venenatis"
-    Vetion = "vetion"
-    Vorkath = "vorkath"
-    Wintertodt = "wintertodt"
-    Zalcano = "zalcano"
-    Zulrah = "zulrah"
-
-    # Computed Metrics
-    Ehp = "ehp"
-    Ehb = "ehb"
-
-
-# Sadly idk how to go about not duplicating
-# skills/activities/bosses/computed and metrics at this point.
-
-
-class Skills(BaseEnum):
-    """Skills from OSRS."""
-
-    Overall = "overall"
-    Attack = "attack"
-    Defence = "defence"
-    Strength = "strength"
-    Hitpoints = "hitpoints"
-    Ranged = "ranged"
-    Prayer = "prayer"
-    Magic = "magic"
-    Cooking = "cooking"
-    Woodcutting = "woodcutting"
-    Fletching = "fletching"
-    Fishing = "fishing"
-    Firemaking = "firemaking"
-    Crafting = "crafting"
-    Smithing = "smithing"
-    Mining = "mining"
-    Herblore = "herblore"
-    Agility = "agility"
-    Thieving = "thieving"
-    Slayer = "slayer"
-    Farming = "farming"
-    Runecrafting = "runecrafting"
-    Hunter = "hunter"
-    Construction = "construction"
-
-
-class Activities(BaseEnum):
-    """Activities from OSRS."""
-
-    BountyHunterHunter = "bounty_hunter_hunter"
-    BountyHunterRogue = "bounty_hunter_rogue"
-    ClueScrollsAll = "clue_scrolls_all"
-    ClueScrollsBeginner = "clue_scrolls_beginner"
-    ClueScrollsEasy = "clue_scrolls_easy"
-    ClueScrollsElite = "clue_scrolls_elite"
-    ClueScrollsHard = "clue_scrolls_hard"
-    ClueScrollsMaster = "clue_scrolls_master"
-    ClueScrollsMedium = "clue_scrolls_medium"
-    ColosseumGlory = "colosseum_glory"
-    GuardiansOfTheRift = "guardians_of_the_rift"
-    LastManStanding = "last_man_standing"
-    LeaguePoints = "league_points"
-    PvpArena = "pvp_arena"
-    SoulWarsZeal = "soul_wars_zeal"
-
-
-class Bosses(BaseEnum):
-    """Bosses from OSRS."""
-
     AbyssalSire = "abyssal_sire"
     AlchemicalHydra = "alchemical_hydra"
     Artio = "artio"
@@ -309,11 +185,127 @@ class Bosses(BaseEnum):
     Zalcano = "zalcano"
     Zulrah = "zulrah"
 
-
-class ComputedMetrics(BaseEnum):
-    """A metric that is computed, i.e. efficient hours played and
-    bossed.
-    """
-
+    # Computed Metrics
     Ehp = "ehp"
     Ehb = "ehb"
+
+
+ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb})
+"""Set containing all the types of computed metrics."""
+
+Skills: t.FrozenSet[Metric] = frozenset(
+    {
+        Metric.Overall,
+        Metric.Attack,
+        Metric.Defence,
+        Metric.Strength,
+        Metric.Hitpoints,
+        Metric.Ranged,
+        Metric.Prayer,
+        Metric.Magic,
+        Metric.Cooking,
+        Metric.Woodcutting,
+        Metric.Fletching,
+        Metric.Fishing,
+        Metric.Firemaking,
+        Metric.Crafting,
+        Metric.Smithing,
+        Metric.Mining,
+        Metric.Herblore,
+        Metric.Agility,
+        Metric.Thieving,
+        Metric.Slayer,
+        Metric.Farming,
+        Metric.Runecrafting,
+        Metric.Hunter,
+        Metric.Construction,
+    }
+)
+"""Set containing skills."""
+Activities: t.FrozenSet[Metric] = frozenset(
+    {
+        Metric.LeaguePoints,
+        Metric.BountyHunterHunter,
+        Metric.BountyHunterRogue,
+        Metric.ClueScrollsAll,
+        Metric.ClueScrollsBeginner,
+        Metric.ClueScrollsEasy,
+        Metric.ClueScrollsMedium,
+        Metric.ClueScrollsHard,
+        Metric.ClueScrollsElite,
+        Metric.ClueScrollsMaster,
+        Metric.ColosseumGlory,
+        Metric.LastManStanding,
+        Metric.PvpArena,
+        Metric.SoulWarsZeal,
+        Metric.GuardiansOfTheRift,
+    }
+)
+"""Set containing activities."""
+
+Bosses: t.FrozenSet[Metric] = frozenset(
+    {
+        Metric.AbyssalSire,
+        Metric.AlchemicalHydra,
+        Metric.Artio,
+        Metric.BarrowsChests,
+        Metric.Bryophyta,
+        Metric.Callisto,
+        Metric.Calvarion,
+        Metric.Cerberus,
+        Metric.ChambersOfXeric,
+        Metric.ChambersOfXericChallenge,
+        Metric.ChaosElemental,
+        Metric.ChaosFanatic,
+        Metric.CommanderZilyana,
+        Metric.CorporealBeast,
+        Metric.CrazyArchaeologist,
+        Metric.DagannothPrime,
+        Metric.DagannothRex,
+        Metric.DagannothSupreme,
+        Metric.DerangedArchaeologist,
+        Metric.DukeSucellus,
+        Metric.GeneralGraardor,
+        Metric.GiantMole,
+        Metric.GrotesqueGuardians,
+        Metric.Hespori,
+        Metric.KalphiteQueen,
+        Metric.KingBlackDragon,
+        Metric.Kraken,
+        Metric.Kreearra,
+        Metric.KrilTsutsaroth,
+        Metric.LunarChests,
+        Metric.Mimic,
+        Metric.Nex,
+        Metric.Nightmare,
+        Metric.PhosanisNightmare,
+        Metric.Obor,
+        Metric.PhantomMuspah,
+        Metric.Sarachnis,
+        Metric.Scorpia,
+        Metric.Scurrius,
+        Metric.Skotizo,
+        Metric.SolHeredit,
+        Metric.Spindel,
+        Metric.Tempoross,
+        Metric.TheGauntlet,
+        Metric.TheCorruptedGauntlet,
+        Metric.TheLeviathan,
+        Metric.TheWhisperer,
+        Metric.TheatreOfBlood,
+        Metric.TheatreOfBloodHard,
+        Metric.ThermonuclearSmokeDevil,
+        Metric.TombsOfAmascut,
+        Metric.TombsOfAmascutExpert,
+        Metric.TzKalZuk,
+        Metric.TzTokJad,
+        Metric.Vardorvis,
+        Metric.Venenatis,
+        Metric.Vetion,
+        Metric.Vorkath,
+        Metric.Wintertodt,
+        Metric.Zalcano,
+        Metric.Zulrah,
+    }
+)
+"""Set containing bosses."""
