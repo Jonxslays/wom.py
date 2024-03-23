@@ -129,6 +129,7 @@ __all__ = (
     "HttpSuccessResponse",
     "Membership",
     "Metric",
+    "MetricLeader",
     "MetricLeaders",
     "NameChange",
     "NameChangeReviewContext",

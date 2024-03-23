@@ -37,25 +37,15 @@ __all__ = (
 
 
 class NameChangeReviewContext(BaseModel):
-    """The review context for a name change that was not approved.
-
-    !!! note
-
-        This will always be one of:
-
-        - `DeniedNameChangeReviewContext`
-
-        - `SkippedNameChangeReviewContext`
-
-        You can use an `isinstance(...)` check to determine which one
-        it is.
-    """
+    """The review context for a name change that was not approved."""
 
     reason: NameChangeReviewReason
     """The reason this name change was denied."""
 
-    # TODO: Setting everything to None here is painful
-    # Can we leverage a tagged union of classes based on the reason???
+    # TODO: Setting everything to None here is painful.
+    # Determine with Ruben whether we want to keep this
+    # public on the name change endpoints and if we do
+    # determine how to handle it in a cleaner way.
 
     negative_gains: t.Optional[t.Dict[enums.Metric, int]] = None
     """The negative gains that were observed, if there were any. Only populated

@@ -43,6 +43,7 @@ __all__ = (
     "GroupRole",
     "GroupStatistics",
     "Membership",
+    "MetricLeader",
     "MetricLeaders",
     "PlayerMembership",
     "SkillLeader",

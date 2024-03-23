@@ -78,6 +78,7 @@ __all__ = (
     "HttpErrorResponse",
     "HttpSuccessResponse",
     "Membership",
+    "MetricLeader",
     "MetricLeaders",
     "NameChange",
     "NameChangeReviewContext",

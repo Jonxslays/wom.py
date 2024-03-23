@@ -51,6 +51,7 @@ __all__ = (
     "GroupMembership",
     "GroupStatistics",
     "Membership",
+    "MetricLeader",
     "MetricLeaders",
     "PlayerMembership",
     "SkillLeader",
@@ -259,14 +260,21 @@ class GroupHiscoresComputedMetricItem(BaseModel, tag="computed"):
     """The value of the computed metric."""
 
 
-class SkillLeader(BaseModel):
-    """Represents a leader in a particular skill."""
+class MetricLeader(BaseModel):
+    """Base class used to derive leaders in different metrics."""
 
     metric: enums.Metric
-    """The skill being measured."""
+    """The metric being measured."""
 
     rank: int
-    """The players rank in the skill."""
+    """The players rank in the metric."""
+
+    player: t.Optional[Player]
+    """The player leading in this metric, or `None` if none do."""
+
+
+class SkillLeader(MetricLeader):
+    """Represents a leader in a particular skill."""
 
     level: int
     """The players level in the skill."""
@@ -274,56 +282,26 @@ class SkillLeader(BaseModel):
     experience: int
     """The players experience in the skill."""
 
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
-
-class BossLeader(BaseModel):
+class BossLeader(MetricLeader):
     """Represents a leader in a particular boss."""
-
-    metric: enums.Metric
-    """The boss being measured."""
-
-    rank: int
-    """The players rank in killing the boss."""
 
     kills: int
     """The number of kills the player has."""
 
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
-
-class ActivityLeader(BaseModel):
+class ActivityLeader(MetricLeader):
     """Represents a leader in a particular activity."""
-
-    metric: enums.Metric
-    """The activity being measured."""
-
-    rank: int
-    """The players rank in the activity."""
 
     score: int
     """The players score in the activity."""
 
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
-
-class ComputedMetricLeader(BaseModel):
+class ComputedMetricLeader(MetricLeader):
     """Represents a leader in a particular computed metric."""
-
-    metric: enums.Metric
-    """The computed metric being measured."""
-
-    rank: int
-    """The players rank in the computed metric."""
 
     value: float
     """The value of the computed metric."""
-
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
 
 class MetricLeaders(BaseModel):
