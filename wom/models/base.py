@@ -37,4 +37,4 @@ class BaseModel(msgspec.Struct, rename="camel"):
         Returns:
             The requested dictionary.
         """
-        return {attr: getattr(self, attr) for attr in self.__struct_fields__}
+        return msgspec.structs.asdict(self)
