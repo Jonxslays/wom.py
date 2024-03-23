@@ -54,6 +54,9 @@ class NameChangeReviewContext(BaseModel):
     reason: NameChangeReviewReason
     """The reason this name change was denied."""
 
+    # TODO: Setting everything to None here is painful
+    # Can we leverage a tagged union of classes based on the reason???
+
     negative_gains: t.Optional[t.Dict[enums.Metric, int]] = None
     """The negative gains that were observed, if there were any. Only populated
     when the reason is `NegativeGains`.
