@@ -80,8 +80,8 @@ class RecordService(BaseService):
 
             await client.start()
 
-            result = await client.records.get_global_record_leaderboards(
-                wom.Skills.Attack,
+            result = await client.records.get_global_leaderboards(
+                wom.Metric.Attack,
                 wom.Period.Day,
                 country=wom.Country.Us,
             )
