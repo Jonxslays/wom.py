@@ -23,6 +23,8 @@ from __future__ import annotations
 
 from unittest import mock
 
+import pytest
+
 from wom import HttpErrorResponse
 from wom import HttpService
 from wom import constants
@@ -77,8 +79,43 @@ async def test_read_content_fails(_: mock.MagicMock, client_response: mock.Magic
     assert result.message == "Failed to read response content."
 
 
+@mock.patch("wom.services.http.aiohttp.ClientSession")
+async def test_get_request_func(session: mock.MagicMock) -> None:
+    service = HttpService(None, None, None)
+    get = mock.Mock()
+    session.return_value.get = get
+
+    await service.start()
+    result = service._get_request_func("GET")  # type: ignore
+
+    session.assert_called_once()
+    assert result is get
+
+
+@mock.patch("wom.services.http.aiohttp.ClientSession")
+async def test_get_request_func_fails_w_no_start(session: mock.MagicMock) -> None:
+    service = HttpService(None, None, None)
+
+    with pytest.raises(RuntimeError) as e:
+        _ = service._get_request_func("GET")  # type: ignore
+
+    session.assert_not_called()
+    assert e.exconly() == "RuntimeError: HttpService.start was never called, aborting..."
+
+
+@mock.patch("wom.services.http.aiohttp.ClientSession")
+async def test_get_request_func_fails_w_invalid_method(session: mock.MagicMock) -> None:
+    service = HttpService(None, None, None)
+    await service.start()
+
+    with pytest.raises(KeyError) as e:
+        _ = service._get_request_func("EEP")  # type: ignore
+
+    session.assert_called_once()
+    assert e.exconly() == "KeyError: 'EEP'"
+
+
 # TODO: Add more http tests here for the public methods and also with mocks for:
 #   - fetch
-#   - _get_request_func
 #   - _init_session
 #   - _request
