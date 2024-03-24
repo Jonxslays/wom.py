@@ -487,7 +487,7 @@ class PlayerService(BaseService):
 
         !!! info
 
-            You must pass one of (`period`) or (`start_date` +
+            You can pass either (`period`) or (`start_date` +
             `end_date`), but not both.
 
         ??? example
@@ -571,7 +571,7 @@ class PlayerService(BaseService):
 
         !!! info
 
-            You must pass one of (`period`) or (`start_date` +
+            You can pass either (`period`) or (`start_date` +
             `end_date`), but not both.
 
         ??? example
