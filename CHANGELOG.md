@@ -54,6 +54,8 @@ Stable Release Candidate 1
 - The `Metric` enum now includes all variants of the old `Skills`, `Activities`,
   `Bosses`, and `ComputedMetrics` enums.
 - `GroupService.create_group` now returns a `CreatedGroupDetail` model.
+- Updated docstrings for group classes.
+- Fixed broken poetry install link in contriubuting guide. 
 
 ---
 

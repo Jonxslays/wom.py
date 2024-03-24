@@ -16,7 +16,7 @@ Thanks for your interest in wom.py! Here are some tips for contributing.
 wom.py uses [Poetry](https://python-poetry.org/) for dependency management.
 
 Check out poetry's full
-[installation guide](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
+[installation guide](https://python-poetry.org/docs/#installation)
 for detailed instructions if you aren't familiar with it.
 
 ## Installing dependencies
