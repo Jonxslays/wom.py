@@ -37,6 +37,7 @@ Stable Release Candidate 1
   longer an accurate representation of the object.
 - `EfficiencyService.get_global_leaderboard` was renamed to `get_global_leaderboards`
   to be in line with the other leaderboard method names.
+- The `from_str` and `from_str_maybe` methods were removed from the `Metric` enum.
 
 ## Additions
 
