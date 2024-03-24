@@ -41,7 +41,7 @@ class EfficiencyService(BaseService):
 
     __slots__ = ()
 
-    async def get_global_leaderboard(
+    async def get_global_leaderboards(
         self,
         metric: enums.Metric = enums.Metric.Ehp,
         *,
@@ -83,16 +83,20 @@ class EfficiencyService(BaseService):
 
             await client.start()
 
-            result = await client.efficiency.get_global_leaderboard(
+            result = await client.efficiency.get_global_leaderboards(
                 player_type=wom.PlayerType.Ironman,
             )
             ```
         """
         params = self._generate_map(
-            metric=metric.value if not both else "+".join(m.value for m in enums.ComputedMetrics),
             playerType=player_type.value if player_type else None,
             playerBuild=player_build.value if player_build else None,
             country=country.value if country else None,
+            metric=(
+                metric.value
+                if not both
+                else "+".join(sorted((m.value for m in enums.ComputedMetrics), reverse=True))
+            ),
         )
 
         route = routes.GLOBAL_EFFICIENCY_LEADERS.compile()

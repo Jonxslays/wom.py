@@ -28,42 +28,42 @@ from wom import Route
 
 
 @pytest.fixture()
-def mock_route() -> Route:
+def mock_get() -> Route:
     return Route("GET", "/69420")
 
 
 @pytest.fixture()
-def mock_route_w_uri() -> Route:
+def mock_post() -> Route:
     return Route("POST", "/69420/{}/hi/{}")
 
 
-def test_route_instantiation(mock_route: Route) -> None:
-    assert mock_route.method == "GET"
-    assert mock_route.uri == "/69420"
+def test_route_instantiation(mock_get: Route) -> None:
+    assert mock_get.method == "GET"
+    assert mock_get.uri == "/69420"
 
 
-def test_route_compiles(mock_route: Route) -> None:
-    compiled = mock_route.compile()
+def test_route_compiles(mock_get: Route) -> None:
+    compiled = mock_get.compile()
     assert isinstance(compiled, CompiledRoute)
-    assert compiled.route == mock_route
+    assert compiled.route == mock_get
     assert compiled.uri == "/69420"
     assert compiled.method == "GET"
     assert not compiled.params
 
 
-def test_route_compiles_w_uri(mock_route_w_uri: Route) -> None:
-    compiled = mock_route_w_uri.compile(1, 2)
+def test_route_compiles_w_uri(mock_post: Route) -> None:
+    compiled = mock_post.compile(1, 2)
     assert isinstance(compiled, CompiledRoute)
-    assert compiled.route == mock_route_w_uri
+    assert compiled.route == mock_post
     assert compiled.uri == "/69420/1/hi/2"
     assert compiled.method == "POST"
     assert not compiled.params
 
 
-def test_route_compiles_w_params(mock_route: Route) -> None:
-    compiled = mock_route.compile().with_params({"test": 1})
+def test_route_compiles_w_params(mock_get: Route) -> None:
+    compiled = mock_get.compile().with_params({"test": 1})
     assert isinstance(compiled, CompiledRoute)
-    assert compiled.route == mock_route
+    assert compiled.route == mock_get
     assert compiled.uri == "/69420"
     assert compiled.method == "GET"
     assert len(compiled.params) == 1
