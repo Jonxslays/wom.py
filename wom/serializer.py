@@ -32,8 +32,9 @@ from msgspec.json import Decoder
 
 __all__ = ("Serializer",)
 
-T = t.TypeVar("T")
-DecodersT = t.Dict[t.Any, Decoder[Struct]]
+if t.TYPE_CHECKING:  # pragma: no cover
+    T = t.TypeVar("T")
+    DecodersT = t.Dict[t.Any, Decoder[Struct]]
 
 
 class Serializer:
