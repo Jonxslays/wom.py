@@ -35,6 +35,8 @@ Stable Release Candidate 1
 - `CompetitionWithParticipations` was renamed to `CreatedCompetitionDetail` because the
   `participations` property was removed and added to `Competition` and the name was no
   longer an accurate representation of the object.
+- `EfficiencyService.get_global_leaderboard` was renamed to `get_global_leaderboards`
+  to be in line with the other leaderboard method names.
 
 ## Additions
 
