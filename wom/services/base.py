@@ -28,7 +28,7 @@ from wom import models
 from wom import result
 from wom import serializer
 
-if t.TYPE_CHECKING:
+if t.TYPE_CHECKING:  # pragma: no cover
     from . import HttpService
 
     T = t.TypeVar("T")
