@@ -109,14 +109,14 @@ class GroupDetail(Group):
     """A list of [`GroupMemberships`][wom.GroupMembership]."""
 
     social_links: SocialLinks
-    """The social links for this group."""
+    """The [`SocialLinks`][wom.SocialLinks] for the group."""
 
 
 class CreatedGroupDetail(BaseModel):
     """Represents a newly created group."""
 
     group: GroupDetail
-    """The details about the group."""
+    """The [`GroupDetail`][wom.GroupDetail] for the group."""
 
     verification_code: str
     """The verification code for the group.
