@@ -21,95 +21,35 @@
 
 from __future__ import annotations
 
-import pytest
+from unittest import mock
 
-from wom import enums
-
-
-def test_from_str() -> None:
-    skill = enums.Skills.from_str("thieving")
-    assert skill is enums.Skills.Thieving
-    assert skill.value == "thieving"
-
-
-def test_from_str_none() -> None:
-    with pytest.raises(ValueError) as e:
-        _ = enums.Period.from_str(None)  # type: ignore
-
-    assert e.exconly().startswith("ValueError: None is not a valid Period variant.")
-
-
-def test_from_str_invalid() -> None:
-    with pytest.raises(ValueError) as e:
-        _ = enums.Period.from_str("fake")  # type: ignore
-
-    assert e.exconly().startswith("ValueError: 'fake' is not a valid Period variant.")
-
-
-def test_from_str_maybe() -> None:
-    period = enums.Period.from_str_maybe("day")
-    assert period is enums.Period.Day
-    assert period.value == "day"
-
-
-def test_from_str_maybe_invalid() -> None:
-    period = enums.Period.from_str_maybe("lol")
-    assert period is None
-
-
-def test_from_str_maybe_none() -> None:
-    period = enums.Period.from_str_maybe(None)  # type: ignore
-    assert period is None
+import wom
 
 
 def test_str() -> None:
-    period = enums.Period.Month
-    assert str(period) == "month"
+    attack = wom.Metric.Attack
+    zulrah = wom.Metric.Zulrah
+    lms = wom.Metric.LastManStanding
+    ehp = wom.Metric.Ehp
+
+    assert str(attack) == "attack"
+    assert str(zulrah) == "zulrah"
+    assert str(lms) == "last_man_standing"
+    assert str(ehp) == "ehp"
 
 
-def test_metric_from_str() -> None:
-    metric = enums.Metric.from_str("bounty_hunter_hunter")
-    assert metric is enums.Activities.BountyHunterHunter
-    assert metric.value == "bounty_hunter_hunter"
+def test_eq() -> None:
+    assert wom.Metric.Slayer == wom.Metric.Slayer
+    assert wom.Metric.BarrowsChests == "barrows_chests"
+    assert wom.Metric.Ehb != 123
 
 
-def test_metric_child_from_str() -> None:
-    metric = enums.Activities.from_str("bounty_hunter_hunter")
-    assert metric is enums.Activities.BountyHunterHunter
-    assert metric.value == "bounty_hunter_hunter"
+def test_hash() -> None:
+    metric = wom.Metric.Agility
+    assert hash(metric) == hash("agility")
 
 
-def test_metric_from_str_invalid() -> None:
-    with pytest.raises(ValueError) as e:
-        _ = enums.Metric.from_str("hmmm")
-
-    assert e.exconly().startswith("ValueError: 'hmmm' is not a valid Metric variant.")
-
-
-def test_metric_from_str_none() -> None:
-    with pytest.raises(ValueError) as e:
-        _ = enums.Metric.from_str(None)  # type: ignore
-
-    assert e.exconly().startswith("ValueError: None is not a valid Metric variant.")
-
-
-def test_metric_from_str_maybe() -> None:
-    metric = enums.Metric.from_str_maybe("attack")
-    assert metric is enums.Skills.Attack
-    assert metric.value == "attack"
-
-
-def test_metric_child_from_str_maybe() -> None:
-    metric = enums.ComputedMetrics.from_str_maybe("ehp")
-    assert metric is enums.ComputedMetrics.Ehp
-    assert metric.value == "ehp"
-
-
-def test_metric_from_str_maybe_invalid() -> None:
-    metric = enums.Metric.from_str_maybe("fake")
-    assert metric is None
-
-
-def test_metric_from_str_maybe_none() -> None:
-    metric = enums.Metric.from_str_maybe(None)  # type: ignore
-    assert metric is None
+@mock.patch("wom.enums.random.choice")
+def test_at_random(choice: mock.MagicMock) -> None:
+    _ = wom.Metric.at_random()
+    choice.assert_called_once_with(tuple(wom.Metric))

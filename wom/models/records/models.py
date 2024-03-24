@@ -23,8 +23,6 @@ from __future__ import annotations
 
 from datetime import datetime
 
-import attrs
-
 from wom import enums
 
 from ..base import BaseModel
@@ -33,7 +31,6 @@ from ..players import Player
 __all__ = ("Record", "RecordLeaderboardEntry")
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Record(BaseModel):
     """Represents a record held by a player."""
 
@@ -49,19 +46,15 @@ class Record(BaseModel):
     metric: enums.Metric
     """The [`Metric`][wom.Metric] measured in this record."""
 
-    value: int
+    value: float
     """The records gained value."""
 
     updated_at: datetime
     """The records creation/modification date."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class RecordLeaderboardEntry(BaseModel):
+class RecordLeaderboardEntry(Record):
     """Represents a player's record leaderboard entry."""
 
     player: Player
     """The [`Player`][wom.Player] holding this leaderboard entry."""
-
-    record: Record
-    """The [`Record`][wom.Record] tied to this leaderboard entry."""

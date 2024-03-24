@@ -1,3 +1,62 @@
+# v1.0.0-rc.1 (Unreleased)
+
+Stable Release Candidate 1
+
+10x performance increase when serializing models!
+
+## Breaking changes
+
+- Removed internal `wom._cli` module.
+- Renamed project info `wompy` cli command to `wom`.
+- Models are now `msgspec.Struct` models instead of `attrs` models.
+- `PlayerDetail` now inherits from `Player` and so the `player` property was removed.
+- `PlayerAchievementProgress` now inherits from `AchievementProgress` and so the
+  `achievement` property was removed.
+- `PlayerCompetitionStanding` now inherits from `PlayerParticipation` and so the
+  `participation` property was removed.
+- `GroupMembership` and `PlayerMembership` now inherit from `Membership` and so the
+  `membership` property was removed.
+- `PlayerArchive` now inherits from `Archive` and so the `archive` property was removed.
+- Renamed `RecordService.get_global_record_leaderboards` to `get_global_leaderboards`.
+- `RecordLeaderboardEntry` now inherits from `Record` and so the `record` property
+  was removed.
+- Removed `DeniedNameChangeReviewContext`, and `SkippedNameChangeReviewContext`,
+  their properties now live on `NameChangeReviewContext`.
+- `CompetitionParticipationDetail` now inherits from `CompetitionParticipation`
+  and so the `participation` property was removed.
+- `CompetitionDetail` now inherits from `Competition` and so the `competition`
+  property was removed.
+- `CompetitionService.edit_competition` now returns a `Competition`.
+- All methods in the `Serializer` prefixed with `deserialize_` were removed.
+- `GroupDetail` now inherits from `Group` and so the `group` property was removed.
+- The `verification_code` property on `GroupDetail` was removed.
+- Converted the `Skills`, `Activities`, `Bosses`, and `ComputedMetrics` enums
+  into `frozenset`s.
+- `CompetitionWithParticipations` was renamed to `CreatedCompetitionDetail` because the
+  `participations` property was removed and added to `Competition` and the name was no
+  longer an accurate representation of the object.
+- `EfficiencyService.get_global_leaderboard` was renamed to `get_global_leaderboards`
+  to be in line with the other leaderboard method names.
+- The `from_str` and `from_str_maybe` methods were removed from the `Metric` enum.
+
+## Additions
+
+- Added `CreatedGroupDetail` model which always has the verification code present.
+- Added `previous_role` property to `GroupActivity`.
+- Added `CompetitionService.get_details_csv` method.
+- Added `MetricLeader` class for the different flavors of leader to derive from.
+- Added `CompetitionCSVTableType` enum for the competition details csv endpoint.
+
+## Changes
+
+- `Record.value` is now a `float` instead of an `int`.
+- `ComputedMetricLeader.value` is now a `float` instead of an `int`.
+- The `Metric` enum now includes all variants of the old `Skills`, `Activities`,
+  `Bosses`, and `ComputedMetrics` enums.
+- `GroupService.create_group` now returns a `CreatedGroupDetail` model.
+
+---
+
 # v0.9.5 (Mar 2024)
 
 ## Additions

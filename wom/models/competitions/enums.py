@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from wom.enums import BaseEnum
 
-__all__ = ("CompetitionStatus", "CompetitionType")
+__all__ = ("CompetitionCSVTableType", "CompetitionStatus", "CompetitionType")
 
 
 class CompetitionType(BaseEnum):
@@ -41,3 +41,11 @@ class CompetitionStatus(BaseEnum):
     Upcoming = "upcoming"
     Ongoing = "ongoing"
     Finished = "finished"
+
+
+class CompetitionCSVTableType(BaseEnum):
+    """Table types used to return competition CSV details."""
+
+    Participants = "participants"
+    Team = "team"
+    Teams = "teams"

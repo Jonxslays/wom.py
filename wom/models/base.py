@@ -25,11 +25,10 @@ from __future__ import annotations
 
 import typing as t
 
-import attrs
+import msgspec
 
 
-@attrs.define(weakref_slot=False)
-class BaseModel:
+class BaseModel(msgspec.Struct, rename="camel"):
     """The base model all library models inherit from."""
 
     def to_dict(self) -> t.Dict[str, t.Any]:
@@ -38,4 +37,4 @@ class BaseModel:
         Returns:
             The requested dictionary.
         """
-        return attrs.asdict(self)
+        return msgspec.structs.asdict(self)

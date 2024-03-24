@@ -31,8 +31,8 @@ from . import BaseService
 
 __all__ = ("NameChangeService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class NameChangeService(BaseService):
@@ -82,12 +82,8 @@ class NameChangeService(BaseService):
         """
         params = self._generate_map(username=username, status=status, limit=limit, offset=offset)
         route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok([self._serializer.deserialize_name_change(c) for c in data])
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, t.List[models.NameChange])
 
     async def submit_name_change(self, old_name: str, new_name: str) -> ResultT[models.NameChange]:
         """Submits a new name change.
@@ -116,9 +112,5 @@ class NameChangeService(BaseService):
         """
         payload = self._generate_map(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()
-        data = await self._http.fetch(route, self._dict, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok(self._serializer.deserialize_name_change(data))
+        data = await self._http.fetch(route, payload=payload)
+        return self._ok_or_err(data, models.NameChange)

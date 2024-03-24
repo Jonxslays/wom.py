@@ -56,8 +56,9 @@ from __future__ import annotations
 import abc
 import typing as t
 
+import msgspec
+
 from wom import errors
-from wom.models import BaseModel
 
 __all__ = ("Err", "Ok", "Result")
 
@@ -176,28 +177,7 @@ class Ok(Result[T, E]):
         Returns:
             The requested dictionary.
         """
-        value: t.Any
-        actual = self._value.__class__.__name__
-
-        if isinstance(self._value, BaseModel):
-            value = self._value.to_dict()
-        elif isinstance(self._value, list):
-            if self._value:
-                if isinstance(self._value[0], BaseModel):
-                    value = [v.to_dict() for v in self._value]  # pyright: ignore
-                elif isinstance(self._value[0], (dict, int, str, bool)):
-                    value = self._value
-                else:
-                    raise RuntimeError(
-                        f"Cant convert Result(Ok) to dict, please report this: {actual!r}"
-                    )
-            else:
-                value = []
-        elif isinstance(self._value, (dict, int, str, bool)):
-            value = self._value
-        else:
-            raise RuntimeError(f"Cant convert Result(Ok) to dict, please report this: {actual!r}")
-
+        value = msgspec.to_builtins(self._value)
         return {"value": value, "error": None}
 
 
@@ -250,29 +230,5 @@ class Err(Result[T, E]):
         Returns:
             The requested dictionary.
         """
-        error: t.Any
-
-        if isinstance(self._error, BaseModel):
-            error = self._error.to_dict()
-        elif isinstance(self._error, (dict, int, str, bool)):
-            error = self._error
-        elif isinstance(self._error, Exception):
-            error = str(self._error)
-        elif isinstance(self._error, list):
-            if self._error:
-                if isinstance(self._error[0], BaseModel):
-                    error = [e.to_dict() for e in self._error]  # pyright: ignore
-                elif isinstance(self._error[0], (dict, int, str, bool)):
-                    error = self._error
-                else:
-                    raise RuntimeError(
-                        f"Cant convert Result(Err) to dict, please report this: {self._error}"
-                    )
-            else:
-                error = []
-        else:
-            raise RuntimeError(
-                f"Cant convert Result(Err) to dict, please report this: {self._error}"
-            )
-
+        error = msgspec.to_builtins(self._error)
         return {"value": None, "error": error}

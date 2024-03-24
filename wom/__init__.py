@@ -32,7 +32,7 @@ from __future__ import annotations
 from typing import Final
 
 __packagename__: Final[str] = "wom.py"
-__version__: Final[str] = "0.9.5"
+__version__: Final[str] = "1.0.0-rc.1"
 __author__: Final[str] = "Jonxslays"
 __copyright__: Final[str] = "2023-present Jonxslays"
 __description__: Final[str] = "An asynchronous wrapper for the Wise Old Man API."
@@ -82,12 +82,13 @@ __all__ = (
     "BaseModel",
     "BaseService",
     "Boss",
+    "Bosses",
     "BossGains",
     "BossLeader",
-    "Bosses",
     "Client",
     "Country",
     "Competition",
+    "CompetitionCSVTableType",
     "CompetitionDetail",
     "CompetitionHistoryDataPoint",
     "CompetitionParticipationDetail",
@@ -96,18 +97,17 @@ __all__ = (
     "CompetitionService",
     "CompetitionStatus",
     "CompetitionType",
-    "CompetitionWithParticipations",
     "CompiledRoute",
     "ComputedGains",
     "ComputedMetric",
     "ComputedMetricLeader",
     "ComputedMetrics",
+    "CreatedCompetitionDetail",
+    "CreatedGroupDetail",
     "DeltaLeaderboardEntry",
     "DeltaService",
-    "DeniedNameChangeReviewContext",
     "EfficiencyService",
     "Err",
-    "FailedToDeserialize",
     "Gains",
     "Group",
     "GroupActivity",
@@ -129,6 +129,7 @@ __all__ = (
     "HttpSuccessResponse",
     "Membership",
     "Metric",
+    "MetricLeader",
     "MetricLeaders",
     "NameChange",
     "NameChangeReviewContext",
@@ -161,7 +162,6 @@ __all__ = (
     "SkillGains",
     "SkillLeader",
     "Skills",
-    "SkippedNameChangeReviewContext",
     "SnapshotData",
     "Snapshot",
     "SnapshotTimelineEntry",

@@ -33,8 +33,8 @@ from . import BaseService
 
 __all__ = ("CompetitionService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class CompetitionService(BaseService):
@@ -105,12 +105,8 @@ class CompetitionService(BaseService):
         )
 
         route = routes.SEARCH_COMPETITIONS.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok([self._serializer.deserialize_competition(c) for c in data])
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, t.List[models.Competition])
 
     async def get_details(
         self, id: int, *, metric: t.Optional[enums.Metric] = None
@@ -140,18 +136,14 @@ class CompetitionService(BaseService):
             result = await client.competitions.get_details(123)
 
             result2 = await client.competitions.get_details(
-                123, wom.Skills.Attack
+                123, wom.Metric.Attack
             )
             ```
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
-        data = await self._http.fetch(route, self._dict)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok(self._serializer.deserialize_competition_details(data))
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, models.CompetitionDetail)
 
     async def get_top_participant_history(
         self, id: int, *, metric: t.Optional[enums.Metric] = None
@@ -181,18 +173,14 @@ class CompetitionService(BaseService):
             result = await client.competitions.get_competition_details(123)
 
             result2 = await client.competitions.get_competition_details(
-                123, wom.Skills.Attack
+                123, wom.Metric.Attack
             )
             ```
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
-        data = await self._http.fetch(route, self._list)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok([self._serializer.deserialize_top5_progress_result(r) for r in data])
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, t.List[models.Top5ProgressResult])
 
     async def create_competition(
         self,
@@ -205,7 +193,7 @@ class CompetitionService(BaseService):
         group_verification_code: t.Optional[str] = None,
         teams: t.Optional[t.List[models.Team]] = None,
         participants: t.Optional[t.List[str]] = None,
-    ) -> ResultT[models.CompetitionWithParticipations]:
+    ) -> ResultT[models.CreatedCompetitionDetail]:
         """Creates a new competition.
 
         Args:
@@ -234,7 +222,7 @@ class CompetitionService(BaseService):
 
         Returns:
             A [`Result`][wom.Result] containing the newly created
-                competition with participations.
+                competition detail.
 
         !!! info
 
@@ -263,12 +251,12 @@ class CompetitionService(BaseService):
             client = wom.Client(...)
 
             result = await client.competitions.create_competition(
-                "Slayer weekend",
-                wom.Skills.Slayer,
-                starts_at: datetime.now() + timedelta(days=7),
-                ends_at: datetime.now() + timedelta(days=14),
-                group_verification_code: "111-111-111",
-                group_id: 123,
+                "Slayer week",
+                wom.Metric.Slayer,
+                starts_at=datetime.now() + timedelta(days=7),
+                ends_at=datetime.now() + timedelta(days=14),
+                group_verification_code="111-111-111",
+                group_id=123,
             )
             ```
         """
@@ -284,17 +272,8 @@ class CompetitionService(BaseService):
         )
 
         route = routes.CREATE_COMPETITION.compile()
-        data = await self._http.fetch(route, self._dict, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        competition = self._serializer.deserialize_competition_with_participation(
-            data["competition"]
-        )
-
-        competition.verification_code = data["verificationCode"]
-        return result.Ok(competition)
+        data = await self._http.fetch(route, payload=payload)
+        return self._ok_or_err(data, models.CreatedCompetitionDetail)
 
     async def edit_competition(
         self,
@@ -307,7 +286,7 @@ class CompetitionService(BaseService):
         ends_at: t.Optional[datetime] = None,
         teams: t.Optional[t.List[models.Team]] = None,
         participants: t.Optional[t.List[str]] = None,
-    ) -> ResultT[models.CompetitionWithParticipations]:
+    ) -> ResultT[models.Competition]:
         """Edits an existing competition.
 
         Args:
@@ -371,12 +350,8 @@ class CompetitionService(BaseService):
         )
 
         route = routes.EDIT_COMPETITION.compile(id)
-        data = await self._http.fetch(route, self._dict, payload=payload)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok(self._serializer.deserialize_competition_with_participation(data))
+        data = await self._http.fetch(route, payload=payload)
+        return self._ok_or_err(data, models.Competition)
 
     async def delete_competition(
         self, id: int, verification_code: str
@@ -411,20 +386,28 @@ class CompetitionService(BaseService):
             )
             ```
         """
-        payload = self._generate_map(verificationCode=verification_code)
         route = routes.DELETE_COMPETITION.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
-
-        if not data.message.startswith("Success"):
-            return result.Err(data)
-
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        payload = self._generate_map(verificationCode=verification_code)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        return self._success_or_err(data)
 
     async def add_participants(
         self, id: int, verification_code: str, *participants: str
     ) -> ResultT[models.HttpSuccessResponse]:
         """Adds participants to a competition. Only adds valid
         participants, and ignores duplicates.
+
+        Args:
+            id: The ID of the competition.
+
+            verification_code: The verification code for the
+                competition.
+
+            *participants: The participants you would like to add.
+
+        Returns:
+            A [`Result`][wom.Result] containing the success response
+                message.
 
         ??? example
 
@@ -439,6 +422,17 @@ class CompetitionService(BaseService):
                 123, "111-111-111", "Jonxslays", "Zezima"
             )
             ```
+        """
+        route = routes.ADD_PARTICIPANTS.compile(id)
+        payload = self._generate_map(verificationCode=verification_code, participants=participants)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        return self._success_or_err(data)
+
+    async def remove_participants(
+        self, id: int, verification_code: str, *participants: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        """Removes participants from a competition. Ignores usernames
+        that are not competing.
 
         Args:
             id: The ID of the competition.
@@ -446,26 +440,11 @@ class CompetitionService(BaseService):
             verification_code: The verification code for the
                 competition.
 
-            *participants: The participants you would like to add.
+            *participants: The participants you would like to remove.
 
         Returns:
             A [`Result`][wom.Result] containing the success response
                 message.
-        """
-        payload = self._generate_map(verificationCode=verification_code, participants=participants)
-        route = routes.ADD_PARTICIPANTS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
-
-        if not data.message.startswith("Success"):
-            return result.Err(data)
-
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
-
-    async def remove_participants(
-        self, id: int, verification_code: str, *participants: str
-    ) -> ResultT[models.HttpSuccessResponse]:
-        """Removes participants from a competition. Ignores usernames
-        that are not competing.
 
         ??? example
 
@@ -481,31 +460,28 @@ class CompetitionService(BaseService):
             )
             ```
 
+        """
+        route = routes.REMOVE_PARTICIPANTS.compile(id)
+        payload = self._generate_map(verificationCode=verification_code, participants=participants)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        return self._success_or_err(data)
+
+    async def add_teams(
+        self, id: int, verification_code: str, *teams: models.Team
+    ) -> ResultT[models.HttpSuccessResponse]:
+        """Adds teams to a competition. Ignores duplicates.
+
         Args:
             id: The ID of the competition.
 
             verification_code: The verification code for the
                 competition.
 
-            *participants: The participants you would like to remove.
+            *teams: The teams you would like to add.
 
         Returns:
             A [`Result`][wom.Result] containing the success response
                 message.
-        """
-        payload = self._generate_map(verificationCode=verification_code, participants=participants)
-        route = routes.REMOVE_PARTICIPANTS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
-
-        if not data.message.startswith("Success"):
-            return result.Err(data)
-
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
-
-    async def add_teams(
-        self, id: int, verification_code: str, *teams: models.Team
-    ) -> ResultT[models.HttpSuccessResponse]:
-        """Adds teams to a competition. Ignores duplicates.
 
         ??? example
 
@@ -519,10 +495,21 @@ class CompetitionService(BaseService):
             result = await client.competitions.add_teams(
                 123,
                 "111-111-111",
-                wom.Team("Team 1", ["Jonxslays", "Zezima"]),
-                wom.Team("Team 2", ["lilyuffie88", "the old nite"]),
+                wom.Team("Team 1", ["Jonxslays", "lilyuffie88"]),
+                wom.Team("Team 2", ["Zezima", "the old nite"]),
             )
             ```
+        """
+        route = routes.ADD_TEAMS.compile(id)
+        payload = self._generate_map(verificationCode=verification_code, teams=teams)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        return self._success_or_err(data)
+
+    async def remove_teams(
+        self, id: int, verification_code: str, *teams: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        """Removes teams from a competition. Ignores teams that don't
+        exist.
 
         Args:
             id: The ID of the competition.
@@ -530,28 +517,11 @@ class CompetitionService(BaseService):
             verification_code: The verification code for the
                 competition.
 
-            *teams: The teams you would like to add.
+            *teams: The team names you would like to remove.
 
         Returns:
             A [`Result`][wom.Result] containing the success response
                 message.
-        """
-        payload = self._generate_map(
-            verificationCode=verification_code, teams=[t.to_dict() for t in teams]
-        )
-        route = routes.ADD_TEAMS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
-
-        if not data.message.startswith("Success"):
-            return result.Err(data)
-
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
-
-    async def remove_teams(
-        self, id: int, verification_code: str, *teams: str
-    ) -> ResultT[models.HttpSuccessResponse]:
-        """Removes teams from a competition. Ignores teams that don't
-        exist.
 
         ??? example
 
@@ -566,6 +536,16 @@ class CompetitionService(BaseService):
                 123, "111-111-111", "Team 1", "Team 2"
             )
             ```
+        """
+        route = routes.REMOVE_TEAMS.compile(id)
+        payload = self._generate_map(verificationCode=verification_code, teamNames=teams)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        return self._success_or_err(data)
+
+    async def update_outdated_participants(
+        self, id: int, verification_code: str
+    ) -> ResultT[models.HttpSuccessResponse]:
+        """Attempts to update all outdated competition participants.
 
         Args:
             id: The ID of the competition.
@@ -573,25 +553,9 @@ class CompetitionService(BaseService):
             verification_code: The verification code for the
                 competition.
 
-            *teams: The team names you would like to remove.
-
         Returns:
             A [`Result`][wom.Result] containing the success response
                 message.
-        """
-        payload = self._generate_map(verificationCode=verification_code, teamNames=teams)
-        route = routes.REMOVE_TEAMS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
-
-        if not data.message.startswith("Success"):
-            return result.Err(data)
-
-        return result.Ok(models.HttpSuccessResponse(data.status, data.message))
-
-    async def update_outdated_participants(
-        self, id: int, verification_code: str
-    ) -> ResultT[models.HttpSuccessResponse]:
-        """Attempts to update all outdated competition participants.
 
         !!! info
 
@@ -628,22 +592,58 @@ class CompetitionService(BaseService):
                 123, "111-111-111"
             )
             ```
+        """
+        route = routes.UPDATE_OUTDATED_PARTICIPANTS.compile(id)
+        payload = self._generate_map(verificationCode=verification_code)
+        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        return self._success_or_err(data, predicate=lambda m: "players are being updated" in m)
+
+    async def get_details_csv(
+        self,
+        id: int,
+        *,
+        metric: t.Optional[enums.Metric] = None,
+        team_name: t.Optional[str] = None,
+        table_type: t.Optional[models.CompetitionCSVTableType] = None,
+    ) -> ResultT[str]:
+        """Gets details about the competition in CSV format.
 
         Args:
             id: The ID of the competition.
 
-            verification_code: The verification code for the
-                competition.
+        Keyword Args:
+            metric: The optional [`Metric`][wom.Metric] to view the
+                competition progress in. As if this competition was
+                actually for that metric. Defaults to `None`.
+
+            team_name: The optional team name you would like to get details
+                for. Defaults to `None`.
+
+            table_type: The optional table type formatting to apply.
+                Defaults to `Participants`.
 
         Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
+            A [`Result`][wom.Result] containing the CSV string.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.competitions.get_details_csv(
+                123, team_name="Cool team"
+            )
+            ```
         """
-        payload = self._generate_map(verificationCode=verification_code)
-        route = routes.UPDATE_OUTDATED_PARTICIPANTS.compile(id)
-        data = await self._http.fetch(route, models.HttpErrorResponse, payload=payload)
+        params = self._generate_map(metric=metric, teamName=team_name, table=table_type)
+        route = routes.COMPETITION_DETAILS_CSV.compile(id).with_params(params)
+        data = await self._http.fetch(route)
 
-        if "players are being updated" in data.message:
-            return result.Ok(models.HttpSuccessResponse(data.status, data.message))
+        if isinstance(data, models.HttpErrorResponse):
+            return result.Err(data)
 
-        return result.Err(data)
+        return result.Ok(data.decode())

@@ -24,8 +24,6 @@ from __future__ import annotations
 import typing as t
 from datetime import datetime
 
-import attrs
-
 from wom import enums
 
 from ..base import BaseModel
@@ -61,12 +59,11 @@ __all__ = (
 )
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Skill(BaseModel):
     """Details regarding a particular skill."""
 
-    metric: enums.Skills
-    """The [`Skills`][wom.Skills] being measured."""
+    metric: enums.Metric
+    """The skill being measured."""
 
     rank: int
     """The players rank in the skill."""
@@ -81,12 +78,11 @@ class Skill(BaseModel):
     """The players efficient hours played for the skill."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Boss(BaseModel):
     """Details regarding a particular boss."""
 
-    metric: enums.Bosses
-    """The [`Bosses`][wom.Bosses] being measured."""
+    metric: enums.Metric
+    """The boss being measured."""
 
     rank: int
     """The players rank in killing the boss."""
@@ -98,12 +94,11 @@ class Boss(BaseModel):
     """The players efficient hours bossed for the boss."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Activity(BaseModel):
     """Details regarding a particular activity."""
 
-    metric: enums.Activities
-    """The [`Activities`][wom.Activities] being measured."""
+    metric: enums.Metric
+    """The activity being measured."""
 
     rank: int
     """The players rank in the activity."""
@@ -112,14 +107,11 @@ class Activity(BaseModel):
     """The players score in the activity."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class ComputedMetric(BaseModel):
     """Details regarding a computed metric."""
 
-    metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.ComputedMetrics] being
-    measured.
-    """
+    metric: enums.Metric
+    """The computed metric being measured."""
 
     rank: int
     """The players rank in the computed metric."""
@@ -128,32 +120,24 @@ class ComputedMetric(BaseModel):
     """The value of the computed metric."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class SnapshotData(BaseModel):
     """The data associated with this snapshot."""
 
-    skills: t.Dict[enums.Skills, Skill]
-    """A mapping of [`Skills`][wom.Skills] keys to [`Skill`][wom.Skill] values
-    from this snapshot.
-    """
+    skills: t.Dict[enums.Metric, Skill]
+    """A mapping of skill keys to skill values from this snapshot."""
 
-    bosses: t.Dict[enums.Bosses, Boss]
-    """A mapping of [`Bosses`][wom.Bosses] keys to [`Boss`][wom.Boss] values
-    from this snapshot.
-    """
+    bosses: t.Dict[enums.Metric, Boss]
+    """A mapping of boss keys to boss values from this snapshot."""
 
-    activities: t.Dict[enums.Activities, Activity]
-    """A mapping of [`Activities`][wom.Activities] keys to [`Activity`]
-    [wom.Activity] values from this snapshot.
-    """
+    activities: t.Dict[enums.Metric, Activity]
+    """A mapping of activity keys to activity values from this snapshot."""
 
-    computed: t.Dict[enums.ComputedMetrics, ComputedMetric]
-    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
-    [`ComputedMetric`][wom.ComputedMetric] values from this snapshot.
+    computed: t.Dict[enums.Metric, ComputedMetric]
+    """A mapping of computed metric keys to computed metric values from
+    this snapshot.
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Snapshot(BaseModel):
     """Represents a player snapshot."""
 
@@ -173,7 +157,6 @@ class Snapshot(BaseModel):
     """The date the snapshot was created."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Player(BaseModel):
     """Represents a player on WOM."""
 
@@ -228,12 +211,8 @@ class Player(BaseModel):
     """The date of the last player history import."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class PlayerDetail(BaseModel):
+class PlayerDetail(Player):
     """Represents details about a player."""
-
-    player: Player
-    """The [Player][wom.Player]."""
 
     combat_level: int
     """The players combat level."""
@@ -241,11 +220,10 @@ class PlayerDetail(BaseModel):
     latest_snapshot: t.Optional[Snapshot]
     """The latest snapshot for the player, if there is one."""
 
-    archive: t.Optional[Archive]
+    archive: t.Optional[Archive] = None
     """The players archive information, if any."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class AssertPlayerType(BaseModel):
     """Represents a player type that has been asserted."""
 
@@ -256,7 +234,6 @@ class AssertPlayerType(BaseModel):
     """Whether or not the player type changed."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Achievement(BaseModel):
     """Represents an achievement made by a player."""
 
@@ -291,7 +268,6 @@ class Achievement(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class AchievementProgress(BaseModel):
     """Represents progress made toward an achievement."""
 
@@ -328,12 +304,8 @@ class AchievementProgress(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
-class PlayerAchievementProgress(BaseModel):
+class PlayerAchievementProgress(AchievementProgress):
     """Represents a players progress toward an achievement."""
-
-    achievement: AchievementProgress
-    """The [AchievementProgress][wom.AchievementProgress] made."""
 
     current_value: int
     """The current value for the achievement's metric."""
@@ -352,7 +324,6 @@ class PlayerAchievementProgress(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Gains(BaseModel):
     """Represents gains made by a player."""
 
@@ -366,12 +337,11 @@ class Gains(BaseModel):
     """The ending amount."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class SkillGains(BaseModel):
     """Represents skill gains made by a player."""
 
-    metric: enums.Skills
-    """The [`Skills`][wom.Skills] being measured."""
+    metric: enums.Metric
+    """The skill being measured."""
 
     experience: Gains
     """The experience [`Gains`][wom.Gains]."""
@@ -386,12 +356,11 @@ class SkillGains(BaseModel):
     """The level [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class BossGains(BaseModel):
     """Represents boss gains made by a player."""
 
-    metric: enums.Bosses
-    """The [`Bosses`][wom.Bosses] being measured."""
+    metric: enums.Metric
+    """The boss being measured."""
 
     ehb: Gains
     """The efficient hours bossed [`Gains`][wom.Gains]."""
@@ -403,12 +372,11 @@ class BossGains(BaseModel):
     """The boss kill [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class ActivityGains(BaseModel):
     """Represents activity gains made by a player."""
 
-    metric: enums.Activities
-    """The [`Activities`][wom.Activities] being measured."""
+    metric: enums.Metric
+    """The activity being measured."""
 
     rank: Gains
     """The rank [`Gains`][wom.Gains]."""
@@ -417,12 +385,11 @@ class ActivityGains(BaseModel):
     """The score [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class ComputedGains(BaseModel):
     """Represents computed gains made by a player."""
 
-    metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.ComputedMetrics] being measured."""
+    metric: enums.Metric
+    """The computed metric being measured."""
 
     rank: Gains
     """The rank [`Gains`][wom.Gains]."""
@@ -431,32 +398,26 @@ class ComputedGains(BaseModel):
     """The value [`Gains`][wom.Gains]."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class PlayerGainsData(BaseModel):
     """Contains all the player gains data."""
 
-    skills: t.Dict[enums.Skills, SkillGains]
-    """A mapping of [`Skills`][wom.Skills] keys to [`SkillGains`]
-    [wom.SkillGains] values.
+    skills: t.Dict[enums.Metric, SkillGains]
+    """A mapping of skill keys to [`SkillGains`] [wom.SkillGains] values."""
+
+    bosses: t.Dict[enums.Metric, BossGains]
+    """A mapping of boss keys to [`BossGains`][wom.BossGains] values."""
+
+    activities: t.Dict[enums.Metric, ActivityGains]
+    """A mapping of activity keys to [`ActivityGains`][wom.ActivityGains]
+    values.
     """
 
-    bosses: t.Dict[enums.Bosses, BossGains]
-    """A mapping of [`Bosses`][wom.Bosses] keys to [`BossGains`]
-    [wom.BossGains] values.
-    """
-
-    activities: t.Dict[enums.Activities, ActivityGains]
-    """A mapping of [`Activities`][wom.Activities] keys to [`ActivityGains`]
-    [wom.ActivityGains] values.
-    """
-
-    computed: t.Dict[enums.ComputedMetrics, ComputedGains]
-    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
-    [`ComputedGains`] [wom.ComputedGains] values.
+    computed: t.Dict[enums.Metric, ComputedGains]
+    """A mapping of computed metric keys to [`ComputedGains`]
+    [wom.ComputedGains] values.
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class PlayerGains(BaseModel):
     """Gains made by a player."""
 
@@ -470,7 +431,6 @@ class PlayerGains(BaseModel):
     """The [`PlayerGainsData`][wom.PlayerGainsData] for the player."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class SnapshotTimelineEntry(BaseModel):
     """An entry representing a point in time of a players gains."""
 
@@ -486,7 +446,6 @@ class SnapshotTimelineEntry(BaseModel):
     """The date this timeline entry was recorded."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Archive(BaseModel):
     """Information detailing a player that has been archived."""
 
@@ -510,13 +469,9 @@ class Archive(BaseModel):
     """The date the player was restored, if they have been."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class PlayerArchive(BaseModel):
+class PlayerArchive(Archive):
     """Information detailing a player that has been archived, including the
     [`Player`][wom.Player] object."""
-
-    archive: Archive
-    """The archive information."""
 
     player: Player
     """The player information."""

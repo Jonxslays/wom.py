@@ -32,8 +32,8 @@ from . import BaseService
 
 __all__ = ("RecordService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class RecordService(BaseService):
@@ -41,7 +41,7 @@ class RecordService(BaseService):
 
     __slots__ = ()
 
-    async def get_global_record_leaderboards(
+    async def get_global_leaderboards(
         self,
         metric: enums.Metric,
         period: enums.Period,
@@ -80,8 +80,8 @@ class RecordService(BaseService):
 
             await client.start()
 
-            result = await client.records.get_global_record_leaderboards(
-                wom.Skills.Attack,
+            result = await client.records.get_global_leaderboards(
+                wom.Metric.Attack,
                 wom.Period.Day,
                 country=wom.Country.Us,
             )
@@ -95,10 +95,6 @@ class RecordService(BaseService):
             country=country.value if country else None,
         )
 
-        route = routes.GLOBAL_RECORD_LEADERS.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok([self._serializer.deserialize_record_leaderboard_entry(r) for r in data])
+        route = routes.GLOBAL_RECORD_LEADERS.compile()
+        data = await self._http.fetch(route.with_params(params))
+        return self._ok_or_err(data, t.List[models.RecordLeaderboardEntry])

@@ -67,6 +67,11 @@ def test_unwrap_err_fails_for_ok(mock_ok: Ok[str, int]) -> None:
     assert "Called unwrap error on a non error value of type 'str'" in e.exconly()
 
 
+def test_ok_to_dict(mock_ok: Ok[str, int]) -> None:
+    data = mock_ok.to_dict()
+    assert data == {"value": "OK!", "error": None}
+
+
 def test_err_is_err(mock_err: Err[int, str]) -> None:
     assert mock_err.is_err == True
     assert mock_err.unwrap_err() == "ERR!"
@@ -82,3 +87,8 @@ def test_unwrap_fails_for_err(mock_err: Err[int, str]) -> None:
         mock_err.unwrap()
 
     assert "Called unwrap on an error value - ERR!" in e.exconly()
+
+
+def test_err_to_dict(mock_err: Err[str, int]) -> None:
+    data = mock_err.to_dict()
+    assert data == {"value": None, "error": "ERR!"}

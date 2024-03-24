@@ -53,7 +53,7 @@ from wom import services
 
 __all__ = ("Client",)
 
-ServiceT = t.TypeVar("ServiceT")
+ServiceT = t.TypeVar("ServiceT", bound=services.BaseService)
 
 
 class Client:
@@ -173,7 +173,7 @@ class Client:
         if not issubclass(service, services.BaseService):
             raise TypeError(f"{service.__name__!r} can not be initialized as a service.")
 
-        return service(self._http, self._serializer)  # type: ignore[return-value]
+        return service(self._http, self._serializer)
 
     def __init_core_services(self) -> None:
         self._deltas = self.__init_service(services.DeltaService)

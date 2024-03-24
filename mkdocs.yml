@@ -5,7 +5,7 @@ plugins:
   - autorefs
   - include-markdown
   - mkdocstrings:
-      custom_templates: docs/templates
+      # custom_templates: docs/templates
       handlers:
         python:
           options:
@@ -86,17 +86,19 @@ site_url: https://jonxslays.github.io/wom.py/
 
 nav:
   - "index.md"
+  - "Modules":
+      - "reference/client.md"
+      - "reference/enums.md"
+      - "reference/errors.md"
+      - "reference/models.md"
+      - "reference/result.md"
+      - "reference/routes.md"
+      - "reference/serializer.md"
+      - "reference/services.md"
   - "Getting started":
       - "getting-started/installation.md"
       - "getting-started/client.md"
       - "getting-started/services.md"
       - "getting-started/result.md"
-  - "Modules":
-    - "reference/client.md"
-    - "reference/enums.md"
-    - "reference/errors.md"
-    - "reference/models.md"
-    - "reference/result.md"
-    - "reference/routes.md"
-    - "reference/serializer.md"
-    - "reference/services.md"
+  - "Migration guides":
+      - "migrating/v1.md"

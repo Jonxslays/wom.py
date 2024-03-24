@@ -46,39 +46,17 @@ class BaseEnum(Enum):
     def __str__(self) -> str:
         return self.value  # type: ignore[no-any-return]
 
-    @classmethod
-    def from_str(cls: t.Type[T], value: str) -> T:
-        """Generate this enum from the given value.
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, BaseEnum):
+            return self.value == other.value  # type: ignore[no-any-return]
 
-        Args:
-            value: The value to generate from.
+        if isinstance(other, str):
+            return self.value == other  # type: ignore[no-any-return]
 
-        Returns:
-            The generated enum.
-        """
-        try:
-            return cls(value)
-        except ValueError as e:
-            raise ValueError(
-                f"{e} variant. Please report this issue on github at "
-                "https://github.com/Jonxslays/wom.py/issues/new"
-            ) from None
+        return super().__eq__(other)
 
-    @classmethod
-    def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
-        """Attempt to generate this enum from the given value.
-
-        Args:
-            value: The value to generate from.
-
-        Returns:
-            The generated enum or `None` if the value was not a valid
-                enum variant.
-        """
-        try:
-            return cls(value)
-        except ValueError:
-            return None
+    def __hash__(self) -> int:
+        return hash(self.value)
 
     @classmethod
     def at_random(cls: t.Type[T]) -> T:
@@ -88,50 +66,6 @@ class BaseEnum(Enum):
             The randomly generated enum.
         """
         return random.choice(tuple(cls))
-
-
-class Metric(BaseEnum):
-    """Represents a metric, this enum has no attributes itself.
-
-    !!! tip
-
-        Will always be one of [`Activities`][wom.Activities],
-        [`Bosses`][wom.Bosses], [`ComputedMetrics`][wom.ComputedMetrics],
-        or [`Skills`][wom.Skills].
-    """
-
-    @classmethod
-    def from_str(cls: t.Type[T], value: str) -> T:
-        if cls is not Metric:
-            return super().from_str(value)
-
-        children = {Skills, Activities, Bosses, ComputedMetrics}
-
-        for child in children:
-            try:
-                return child(value)  # type: ignore
-            except ValueError:
-                continue
-
-        raise ValueError(
-            f"{value!r} is not a valid {cls.__name__} variant. "
-            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new"
-        )
-
-    @classmethod
-    def from_str_maybe(cls: t.Type[T], value: str) -> t.Optional[T]:
-        if cls is not Metric:
-            return super().from_str_maybe(value)  # pyright: ignore
-
-        children = {Skills, Activities, Bosses, ComputedMetrics}
-
-        for child in children:
-            try:
-                return child(value)  # type: ignore
-            except ValueError:
-                continue
-
-        return None
 
 
 class Period(BaseEnum):
@@ -144,9 +78,12 @@ class Period(BaseEnum):
     Year = "year"
 
 
-class Skills(Metric):
-    """Skills from OSRS."""
+class Metric(BaseEnum):
+    """Represents all metrics including skills, bosses, activities, and
+    computed metrics.
+    """
 
+    # Skills
     Overall = "overall"
     Attack = "attack"
     Defence = "defence"
@@ -172,30 +109,24 @@ class Skills(Metric):
     Hunter = "hunter"
     Construction = "construction"
 
-
-class Activities(Metric):
-    """Activities from OSRS."""
-
+    # Activities
+    LeaguePoints = "league_points"
     BountyHunterHunter = "bounty_hunter_hunter"
     BountyHunterRogue = "bounty_hunter_rogue"
     ClueScrollsAll = "clue_scrolls_all"
     ClueScrollsBeginner = "clue_scrolls_beginner"
     ClueScrollsEasy = "clue_scrolls_easy"
-    ClueScrollsElite = "clue_scrolls_elite"
-    ClueScrollsHard = "clue_scrolls_hard"
-    ClueScrollsMaster = "clue_scrolls_master"
     ClueScrollsMedium = "clue_scrolls_medium"
+    ClueScrollsHard = "clue_scrolls_hard"
+    ClueScrollsElite = "clue_scrolls_elite"
+    ClueScrollsMaster = "clue_scrolls_master"
     ColosseumGlory = "colosseum_glory"
-    GuardiansOfTheRift = "guardians_of_the_rift"
     LastManStanding = "last_man_standing"
-    LeaguePoints = "league_points"
     PvpArena = "pvp_arena"
     SoulWarsZeal = "soul_wars_zeal"
+    GuardiansOfTheRift = "guardians_of_the_rift"
 
-
-class Bosses(Metric):
-    """Bosses from OSRS."""
-
+    # Bosses
     AbyssalSire = "abyssal_sire"
     AlchemicalHydra = "alchemical_hydra"
     Artio = "artio"
@@ -258,11 +189,128 @@ class Bosses(Metric):
     Zalcano = "zalcano"
     Zulrah = "zulrah"
 
-
-class ComputedMetrics(Metric):
-    """A metric that is computed, i.e. efficient hours played and
-    bossed.
-    """
-
+    # Computed Metrics
     Ehp = "ehp"
     Ehb = "ehb"
+
+
+ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb})
+"""Set containing all the types of computed metrics."""
+
+Skills: t.FrozenSet[Metric] = frozenset(
+    {
+        Metric.Overall,
+        Metric.Attack,
+        Metric.Defence,
+        Metric.Strength,
+        Metric.Hitpoints,
+        Metric.Ranged,
+        Metric.Prayer,
+        Metric.Magic,
+        Metric.Cooking,
+        Metric.Woodcutting,
+        Metric.Fletching,
+        Metric.Fishing,
+        Metric.Firemaking,
+        Metric.Crafting,
+        Metric.Smithing,
+        Metric.Mining,
+        Metric.Herblore,
+        Metric.Agility,
+        Metric.Thieving,
+        Metric.Slayer,
+        Metric.Farming,
+        Metric.Runecrafting,
+        Metric.Hunter,
+        Metric.Construction,
+    }
+)
+"""Set containing skills."""
+
+Activities: t.FrozenSet[Metric] = frozenset(
+    {
+        Metric.LeaguePoints,
+        Metric.BountyHunterHunter,
+        Metric.BountyHunterRogue,
+        Metric.ClueScrollsAll,
+        Metric.ClueScrollsBeginner,
+        Metric.ClueScrollsEasy,
+        Metric.ClueScrollsMedium,
+        Metric.ClueScrollsHard,
+        Metric.ClueScrollsElite,
+        Metric.ClueScrollsMaster,
+        Metric.ColosseumGlory,
+        Metric.LastManStanding,
+        Metric.PvpArena,
+        Metric.SoulWarsZeal,
+        Metric.GuardiansOfTheRift,
+    }
+)
+"""Set containing activities."""
+
+Bosses: t.FrozenSet[Metric] = frozenset(
+    {
+        Metric.AbyssalSire,
+        Metric.AlchemicalHydra,
+        Metric.Artio,
+        Metric.BarrowsChests,
+        Metric.Bryophyta,
+        Metric.Callisto,
+        Metric.Calvarion,
+        Metric.Cerberus,
+        Metric.ChambersOfXeric,
+        Metric.ChambersOfXericChallenge,
+        Metric.ChaosElemental,
+        Metric.ChaosFanatic,
+        Metric.CommanderZilyana,
+        Metric.CorporealBeast,
+        Metric.CrazyArchaeologist,
+        Metric.DagannothPrime,
+        Metric.DagannothRex,
+        Metric.DagannothSupreme,
+        Metric.DerangedArchaeologist,
+        Metric.DukeSucellus,
+        Metric.GeneralGraardor,
+        Metric.GiantMole,
+        Metric.GrotesqueGuardians,
+        Metric.Hespori,
+        Metric.KalphiteQueen,
+        Metric.KingBlackDragon,
+        Metric.Kraken,
+        Metric.Kreearra,
+        Metric.KrilTsutsaroth,
+        Metric.LunarChests,
+        Metric.Mimic,
+        Metric.Nex,
+        Metric.Nightmare,
+        Metric.PhosanisNightmare,
+        Metric.Obor,
+        Metric.PhantomMuspah,
+        Metric.Sarachnis,
+        Metric.Scorpia,
+        Metric.Scurrius,
+        Metric.Skotizo,
+        Metric.SolHeredit,
+        Metric.Spindel,
+        Metric.Tempoross,
+        Metric.TheGauntlet,
+        Metric.TheCorruptedGauntlet,
+        Metric.TheLeviathan,
+        Metric.TheWhisperer,
+        Metric.TheatreOfBlood,
+        Metric.TheatreOfBloodHard,
+        Metric.ThermonuclearSmokeDevil,
+        Metric.TombsOfAmascut,
+        Metric.TombsOfAmascutExpert,
+        Metric.TzKalZuk,
+        Metric.TzTokJad,
+        Metric.Vardorvis,
+        Metric.Venenatis,
+        Metric.Vetion,
+        Metric.Vorkath,
+        Metric.Wintertodt,
+        Metric.Zalcano,
+        Metric.Zulrah,
+    }
+)
+"""Set containing bosses."""

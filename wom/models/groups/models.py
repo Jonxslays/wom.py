@@ -24,8 +24,6 @@ from __future__ import annotations
 import typing as t
 from datetime import datetime
 
-import attrs
-
 from wom import enums
 
 from ..base import BaseModel
@@ -39,6 +37,7 @@ __all__ = (
     "ActivityLeader",
     "BossLeader",
     "ComputedMetricLeader",
+    "CreatedGroupDetail",
     "Group",
     "GroupActivity",
     "GroupDetail",
@@ -52,6 +51,7 @@ __all__ = (
     "GroupMembership",
     "GroupStatistics",
     "Membership",
+    "MetricLeader",
     "MetricLeaders",
     "PlayerMembership",
     "SkillLeader",
@@ -59,7 +59,6 @@ __all__ = (
 )
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Group(BaseModel):
     """Represents a group of players on WOM."""
 
@@ -103,12 +102,8 @@ class Group(BaseModel):
     """The number of members in the group."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupDetail(BaseModel):
+class GroupDetail(Group):
     """Represents details about a group."""
-
-    group: Group
-    """The [`Group`][wom.Group] itself."""
 
     memberships: t.List[GroupMembership]
     """A list of [`GroupMemberships`][wom.GroupMembership]."""
@@ -116,50 +111,41 @@ class GroupDetail(BaseModel):
     social_links: SocialLinks
     """The social links for this group."""
 
-    verification_code: t.Optional[str]
-    """The optional verification code for the group.
+
+class CreatedGroupDetail(BaseModel):
+    """Represents a newly created group."""
+
+    group: GroupDetail
+    """The details about the group."""
+
+    verification_code: str
+    """The verification code for the group.
 
     !!! note
 
-        This will only be present on group creation.
+        This should be kept safe and only shared trusted clan members.
     """
 
 
-@attrs.define(weakref_slot=False)
 class SocialLinks(BaseModel):
     """A groups social links."""
 
-    def __init__(
-        self,
-        website: t.Optional[str] = None,
-        discord: t.Optional[str] = None,
-        twitter: t.Optional[str] = None,
-        youtube: t.Optional[str] = None,
-        twitch: t.Optional[str] = None,
-    ) -> None:
-        self.website = website
-        self.discord = discord
-        self.twitter = twitter
-        self.youtube = youtube
-        self.twitch = twitch
-
-    website: t.Optional[str]
+    website: t.Optional[str] = None
     """The groups website url."""
 
-    discord: t.Optional[str]
+    discord: t.Optional[str] = None
     """The groups discord invite url."""
 
-    twitter: t.Optional[str]
+    twitter: t.Optional[str] = None
     """The groups twitter url."""
 
-    youtube: t.Optional[str]
+    youtube: t.Optional[str] = None
     """The groups youtube url."""
 
-    twitch: t.Optional[str]
+    twitch: t.Optional[str] = None
     """The groups twitch url."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Membership(BaseModel):
     """Represents a membership in a group."""
 
@@ -179,37 +165,22 @@ class Membership(BaseModel):
     """The date this membership was updated."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupMembership(BaseModel):
+class GroupMembership(Membership):
     """Represents a group membership."""
 
     player: Player
     """The [`Player`][wom.Player] that is a member."""
 
-    membership: Membership
-    """The [`Membership`][wom.Membership] itself."""
 
-
-@attrs.define(init=False, weakref_slot=False)
-class PlayerMembership(BaseModel):
+class PlayerMembership(Membership):
     """Represents a player membership."""
 
     group: Group
     """The [`Group`][wom.Group] the player is a member of."""
 
-    membership: Membership
-    """The [`Membership`][wom.Membership] itself."""
 
-
-@attrs.define(weakref_slot=False)
 class GroupMemberFragment(BaseModel):
     """Represents a condensed group member.
-
-    Args:
-        username: The username of the group member.
-
-        role: The optional [`GroupRole`][wom.models.GroupRole] to
-            give the member.
 
     !!! tip
 
@@ -217,19 +188,14 @@ class GroupMemberFragment(BaseModel):
         data to some endpoints.
     """
 
-    def __init__(self, username: str, role: t.Optional[GroupRole] = None) -> None:
-        self.username = username
-        self.role = role
-
     username: str
     """The group members username."""
 
-    role: t.Optional[GroupRole]
+    role: t.Optional[GroupRole] = None
     """The optional [`GroupRole`][wom.GroupRole] for the member.
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupHiscoresEntry(BaseModel):
     """Represents a group hiscores entry."""
 
@@ -245,8 +211,7 @@ class GroupHiscoresEntry(BaseModel):
     """The data for this hiscores entry."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupHiscoresSkillItem(BaseModel):
+class GroupHiscoresSkillItem(BaseModel, tag="skill"):
     """Represents a group hiscores item for skills."""
 
     rank: int
@@ -259,8 +224,7 @@ class GroupHiscoresSkillItem(BaseModel):
     """The experience in the skill."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupHiscoresBossItem(BaseModel):
+class GroupHiscoresBossItem(BaseModel, tag="boss"):
     """Represents a group hiscores item for bosses."""
 
     rank: int
@@ -270,8 +234,7 @@ class GroupHiscoresBossItem(BaseModel):
     """The number of boss kills."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupHiscoresActivityItem(BaseModel):
+class GroupHiscoresActivityItem(BaseModel, tag="activity"):
     """Represents a group hiscores item for activities."""
 
     rank: int
@@ -281,8 +244,7 @@ class GroupHiscoresActivityItem(BaseModel):
     """The activity score."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupHiscoresComputedMetricItem(BaseModel):
+class GroupHiscoresComputedMetricItem(BaseModel, tag="computed"):
     """Represents a group hiscores item for computed metrics."""
 
     rank: int
@@ -292,15 +254,21 @@ class GroupHiscoresComputedMetricItem(BaseModel):
     """The value of the computed metric."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class SkillLeader(BaseModel):
-    """Represents a leader in a particular skill."""
+class MetricLeader(BaseModel):
+    """Base class used to derive leaders in different metrics."""
 
-    metric: enums.Skills
-    """The [`Skills`][wom.Skills] being measured."""
+    metric: enums.Metric
+    """The metric being measured."""
 
     rank: int
-    """The players rank in the skill."""
+    """The players rank in the metric."""
+
+    player: t.Optional[Player]
+    """The player leading in this metric, or `None` if none do."""
+
+
+class SkillLeader(MetricLeader):
+    """Represents a leader in a particular skill."""
 
     level: int
     """The players level in the skill."""
@@ -308,90 +276,58 @@ class SkillLeader(BaseModel):
     experience: int
     """The players experience in the skill."""
 
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
-
-@attrs.define(init=False, weakref_slot=False)
-class BossLeader(BaseModel):
+class BossLeader(MetricLeader):
     """Represents a leader in a particular boss."""
-
-    metric: enums.Bosses
-    """The [`Bosses`][wom.Bosses] being measured."""
-
-    rank: int
-    """The players rank in killing the boss."""
 
     kills: int
     """The number of kills the player has."""
 
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
-
-@attrs.define(init=False, weakref_slot=False)
-class ActivityLeader(BaseModel):
+class ActivityLeader(MetricLeader):
     """Represents a leader in a particular activity."""
-
-    metric: enums.Activities
-    """The [`Activities`][wom.Activities] being measured."""
-
-    rank: int
-    """The players rank in the activity."""
 
     score: int
     """The players score in the activity."""
 
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
-
-@attrs.define(init=False, weakref_slot=False)
-class ComputedMetricLeader(BaseModel):
+class ComputedMetricLeader(MetricLeader):
     """Represents a leader in a particular computed metric."""
 
-    metric: enums.ComputedMetrics
-    """The [`ComputedMetrics`][wom.ComputedMetrics] being
-    measured.
-    """
-
-    rank: int
-    """The players rank in the computed metric."""
-
-    value: int
+    value: float
     """The value of the computed metric."""
 
-    player: t.Optional[Player]
-    """The player leading in this metric, or `None` if none do."""
 
-
-@attrs.define(init=False, weakref_slot=False)
 class MetricLeaders(BaseModel):
     """The leaders for each metric in a group."""
 
-    skills: t.Dict[enums.Skills, SkillLeader]
-    """A mapping of [`Skills`][wom.Skills] keys to [`SkillLeader`]
-    [wom.SkillLeader] values.
-    """
+    skills: t.Dict[enums.Metric, SkillLeader]
+    """A mapping of skill keys to [`SkillLeader`][wom.SkillLeader] values."""
 
-    bosses: t.Dict[enums.Bosses, BossLeader]
-    """A mapping of [`Bosses`][wom.Bosses] keys to [`BossLeader`]
-    [wom.BossLeader] values.
-    """
+    bosses: t.Dict[enums.Metric, BossLeader]
+    """A mapping of boss keys to [`BossLeader`][wom.BossLeader] values."""
 
-    activities: t.Dict[enums.Activities, ActivityLeader]
-    """A mapping of [`Activities`][wom.Activities] keys to [`ActivityLeader`]
+    activities: t.Dict[enums.Metric, ActivityLeader]
+    """A mapping of activity keys to [`ActivityLeader`]
     [wom.ActivityLeader] values.
     """
 
-    computed: t.Dict[enums.ComputedMetrics, ComputedMetricLeader]
-    """A mapping of [`ComputedMetrics`][wom.ComputedMetrics] keys to
+    computed: t.Dict[enums.Metric, ComputedMetricLeader]
+    """A mapping of computed metric keys to
     [`ComputedMetricLeader`][wom.ComputedMetricLeader] values.
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
-class GroupStatistics(BaseModel):
+class GroupStatistics(
+    BaseModel,
+    rename={
+        "maxed_combat_count": "maxedCombatCount",
+        "maxed_total_count": "maxedTotalCount",
+        "maxed_200ms_count": "maxed200msCount",
+        "average_stats": "averageStats",
+        "metric_leaders": "metricLeaders",
+    },
+):
     """Represents accumulated group statistics."""
 
     maxed_combat_count: int
@@ -412,7 +348,6 @@ class GroupStatistics(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupMemberGains(BaseModel):
     """Represents a leaderboard entry over the given delta."""
 
@@ -429,7 +364,6 @@ class GroupMemberGains(BaseModel):
     """The [`Gains`][wom.Gains] for this group member."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class GroupActivity(BaseModel):
     """An activity that occurred in a group."""
 
@@ -444,6 +378,9 @@ class GroupActivity(BaseModel):
 
     role: t.Optional[GroupRole]
     """The players role in the group, if they have one."""
+
+    previous_role: t.Optional[GroupRole]
+    """The players previous role in the group, if they had one."""
 
     created_at: datetime
     """The datetime indicating when this activity occurred."""

@@ -32,8 +32,8 @@ from . import BaseService
 
 __all__ = ("EfficiencyService",)
 
-ValueT = t.TypeVar("ValueT")
-ResultT = result.Result[ValueT, models.HttpErrorResponse]
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
 
 
 class EfficiencyService(BaseService):
@@ -41,9 +41,9 @@ class EfficiencyService(BaseService):
 
     __slots__ = ()
 
-    async def get_global_leaderboard(
+    async def get_global_leaderboards(
         self,
-        metric: enums.ComputedMetrics = enums.ComputedMetrics.Ehp,
+        metric: enums.Metric = enums.Metric.Ehp,
         *,
         player_type: t.Optional[models.PlayerType] = None,
         player_build: t.Optional[models.PlayerBuild] = None,
@@ -53,8 +53,8 @@ class EfficiencyService(BaseService):
         """Gets the top global efficiency leaderboard.
 
         Args:
-            metric: The computed metric to filter on. Defaults to [`Ehp`]
-                [wom.ComputedMetrics].
+            metric: The computed metric to filter on. Defaults to `Ehp`,
+                must be one of `Ehp` or `Ehb` if supplied.
 
         Keyword Args:
             player_type: The optional player type to filter on. Defaults
@@ -67,7 +67,7 @@ class EfficiencyService(BaseService):
                 `None`.
 
             both: If `True`, request both ehp and ehb computed metric
-                leaderboards. This will override the `metric`, if it was
+                leaderboards. This will override the `metric` if it was
                 provided. Defaults to `False`.
 
         Returns:
@@ -83,22 +83,22 @@ class EfficiencyService(BaseService):
 
             await client.start()
 
-            result = await client.efficiency.get_global_leaderboard(
+            result = await client.efficiency.get_global_leaderboards(
                 player_type=wom.PlayerType.Ironman,
             )
             ```
         """
         params = self._generate_map(
-            metric=metric.value if not both else "+".join(m.value for m in enums.ComputedMetrics),
             playerType=player_type.value if player_type else None,
             playerBuild=player_build.value if player_build else None,
             country=country.value if country else None,
+            metric=(
+                metric.value
+                if not both
+                else "+".join(sorted((m.value for m in enums.ComputedMetrics), reverse=True))
+            ),
         )
 
-        route = routes.GLOBAL_EFFICIENCY_LEADERS.compile().with_params(params)
-        data = await self._http.fetch(route, self._list)
-
-        if isinstance(data, models.HttpErrorResponse):
-            return result.Err(data)
-
-        return result.Ok([self._serializer.deserialize_player(p) for p in data])
+        route = routes.GLOBAL_EFFICIENCY_LEADERS.compile()
+        data = await self._http.fetch(route.with_params(params))
+        return self._ok_or_err(data, t.List[models.Player])

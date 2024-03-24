@@ -26,8 +26,6 @@ from __future__ import annotations
 import typing as t
 from datetime import datetime
 
-import attrs
-
 from wom import enums
 
 from ..base import BaseModel
@@ -42,7 +40,7 @@ __all__ = (
     "CompetitionParticipationDetail",
     "CompetitionParticipation",
     "CompetitionProgress",
-    "CompetitionWithParticipations",
+    "CreatedCompetitionDetail",
     "Participation",
     "PlayerCompetitionStanding",
     "PlayerParticipation",
@@ -51,7 +49,6 @@ __all__ = (
 )
 
 
-@attrs.define(init=False, weakref_slot=False)
 class CompetitionProgress(BaseModel):
     """Represents progress in a competition."""
 
@@ -65,7 +62,6 @@ class CompetitionProgress(BaseModel):
     """The amount of progress gained in the metric."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Competition(BaseModel):
     """Represents a competition."""
 
@@ -102,13 +98,17 @@ class Competition(BaseModel):
     participant_count: int
     """The number of players participating."""
 
-    group: t.Optional[Group]
+    group: t.Optional[Group] = None
     """The [`Group`][wom.Group] associated with the competition, if
     there is one.
     """
 
+    participations: t.List[CompetitionParticipation] = []
+    """A list containing the [`CompetitionParticipations`]
+    [wom.CompetitionParticipation].
+    """
 
-@attrs.define(init=False, weakref_slot=False)
+
 class Participation(BaseModel):
     """Represents participation in a competition."""
 
@@ -128,25 +128,15 @@ class Participation(BaseModel):
     """The date this participation was updated."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class CompetitionParticipation(BaseModel):
+class CompetitionParticipation(Participation):
     """Represents a competition participation."""
-
-    data: Participation
-    """The [`Participation`][wom.models.Participation] achieved in this
-    competition.
-    """
 
     player: Player
     """The [`Player`][wom.Player] that participated in this competition."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class PlayerParticipation(BaseModel):
+class PlayerParticipation(Participation):
     """Represents a players participation in a competition."""
-
-    data: Participation
-    """The [`Participation`][wom.Participation] the player achieved."""
 
     competition: Competition
     """The [`Competition`][wom.Competition] that the player participated
@@ -154,32 +144,25 @@ class PlayerParticipation(BaseModel):
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
-class PlayerCompetitionStanding(BaseModel):
+class PlayerCompetitionStanding(PlayerParticipation):
     """Represents a players standing in a competition."""
-
-    participation: PlayerParticipation
-    """The [`PlayerParticipation`][wom.PlayerParticipation] achieved by
-    the player.
-    """
 
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
     made.
     """
 
+    levels: CompetitionProgress
+    """The [`CompetitionProgress`][wom.CompetitionProgress] that was
+    made. Only contains useful information for skilling competitions.
+    """
+
     rank: int
     """The rank in the competition standings."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class CompetitionParticipationDetail(BaseModel):
+class CompetitionParticipationDetail(CompetitionParticipation):
     """Represents competition participation details."""
-
-    participation: CompetitionParticipation
-    """The [`CompetitionParticipation`][wom.CompetitionParticipation]
-    in these details.
-    """
 
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
@@ -192,21 +175,16 @@ class CompetitionParticipationDetail(BaseModel):
     competitions."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class CompetitionDetail(BaseModel):
+class CompetitionDetail(Competition):
     """Represents competition details."""
 
-    competition: Competition
-    """The [`Competition`][wom.Competition] that is being detailed."""
-
-    participations: t.List[CompetitionParticipationDetail]
+    participations: t.List[CompetitionParticipationDetail] = []  # type: ignore[assignment]
     """A list of [`CompetitionParticipationDetail`]
     [wom.CompetitionParticipationDetail] participations for this
     competition.
     """
 
 
-@attrs.define(init=False, weakref_slot=False)
 class CompetitionHistoryDataPoint(BaseModel):
     """A competition history data point."""
 
@@ -217,7 +195,6 @@ class CompetitionHistoryDataPoint(BaseModel):
     """The value of the data point."""
 
 
-@attrs.define(init=False, weakref_slot=False)
 class Top5ProgressResult(BaseModel):
     """A top 5 progress result for a competition."""
 
@@ -231,25 +208,14 @@ class Top5ProgressResult(BaseModel):
     """
 
 
-@attrs.define(weakref_slot=False)
 class Team(BaseModel):
     """Represents a competition team.
-
-    Args:
-        name: The name of the team.
-
-        participants: A list of usernames to include in the
-            team.
 
     !!! tip
 
         This is a model class that you will create in order to send
         data to some endpoints.
     """
-
-    def __init__(self, name: str, participants: t.List[str]) -> None:
-        self.name = name
-        self.participants = participants
 
     name: str
     """The name of the team."""
@@ -258,23 +224,11 @@ class Team(BaseModel):
     """A list of participant usernames on the team."""
 
 
-@attrs.define(init=False, weakref_slot=False)
-class CompetitionWithParticipations(BaseModel):
-    """Represents a competition with participations."""
+class CreatedCompetitionDetail(BaseModel):
+    """Represents a competition that was just created."""
 
     competition: Competition
     """The [`Competition`][wom.Competition] itself."""
 
-    participations: t.List[CompetitionParticipation]
-    """A list containing the [`CompetitionParticipations`]
-    [wom.CompetitionParticipation].
-    """
-
-    verification_code: t.Optional[str]
-    """The verification code for the competition.
-
-    !!! note
-
-        Only returned when a competition is created and will be
-        `None` otherwise.
-    """
+    verification_code: str
+    """The verification code for the competition."""

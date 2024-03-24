@@ -23,7 +23,33 @@
 
 from __future__ import annotations
 
-from wom import _cli
+import platform
+from pathlib import Path
+
+from wom import __git_sha__
+from wom import __version__
+
+
+def _main() -> None:
+    """Prints system info and exits."""
+    location = Path(__file__).parent.absolute()
+    interpreter = platform.python_implementation()
+    version = platform.python_version()
+    compiler = platform.python_compiler()
+    uname = platform.uname()
+
+    metadata = (
+        f"Package:     wom.py v{__version__} @ {__git_sha__}",
+        f"Location:    {location}",
+        f"Interpreter: {interpreter} {version}",
+        f"Compiler:    {compiler}",
+        f"OS/Arch:     {uname.system} {uname.release} / {uname.machine}",
+    )
+
+    separator = "-" * max(len(line) for line in metadata)
+    lines = ("\n".join((line, separator)) for line in metadata)
+    print("\n".join((separator, *lines)))
+
 
 if __name__ == "__main__":
-    _cli.info()
+    _main()

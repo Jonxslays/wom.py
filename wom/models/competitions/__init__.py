@@ -25,6 +25,7 @@ from __future__ import annotations
 
 __all__ = (
     "Competition",
+    "CompetitionCSVTableType",
     "CompetitionDetail",
     "CompetitionHistoryDataPoint",
     "CompetitionParticipationDetail",
@@ -32,7 +33,7 @@ __all__ = (
     "CompetitionProgress",
     "CompetitionStatus",
     "CompetitionType",
-    "CompetitionWithParticipations",
+    "CreatedCompetitionDetail",
     "Participation",
     "PlayerCompetitionStanding",
     "PlayerParticipation",
