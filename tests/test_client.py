@@ -38,7 +38,6 @@ async def test_all_services_exist() -> None:
     assert isinstance(client.names, services.NameChangeService)
     assert isinstance(client.players, services.PlayerService)
     assert isinstance(client.records, services.RecordService)
-    await client.close()
 
 
 @mock.patch("wom.client.serializer.Serializer")
@@ -85,11 +84,18 @@ async def test_set_api_base_url(set_base_url: mock.MagicMock) -> None:
     set_base_url.assert_called_once_with("https://localhost:6969")
 
 
+@mock.patch("wom.client.services.HttpService.start")
+async def test_start(start: mock.AsyncMock) -> None:
+    client = Client()
+    await client.start()
+    start.assert_awaited_once()
+
+
 @mock.patch("wom.client.services.HttpService.close")
-async def test_close(close: mock.MagicMock) -> None:
+async def test_close(close: mock.AsyncMock) -> None:
     client = Client()
     await client.close()
-    close.assert_called_once()
+    close.assert_awaited_once()
 
 
 @mock.patch("wom.client.Client._Client__init_service")
@@ -115,4 +121,3 @@ async def test_init_service_fails() -> None:
         client._Client__init_service(int)  # type: ignore
 
     assert e.exconly() == "TypeError: 'int' can not be initialized as a service."
-    await client.close()

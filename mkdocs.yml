@@ -86,11 +86,6 @@ site_url: https://jonxslays.github.io/wom.py/
 
 nav:
   - "index.md"
-  - "Getting started":
-      - "getting-started/installation.md"
-      - "getting-started/client.md"
-      - "getting-started/services.md"
-      - "getting-started/result.md"
   - "Modules":
       - "reference/client.md"
       - "reference/enums.md"
@@ -100,5 +95,10 @@ nav:
       - "reference/routes.md"
       - "reference/serializer.md"
       - "reference/services.md"
+  - "Getting started":
+      - "getting-started/installation.md"
+      - "getting-started/client.md"
+      - "getting-started/services.md"
+      - "getting-started/result.md"
   - "Migration guides":
       - "migrating/v1.md"
