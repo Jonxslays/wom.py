@@ -45,6 +45,7 @@ Stable Release Candidate 1
 - Added `previous_role` property to `GroupActivity`.
 - Added `CompetitionService.get_details_csv` method.
 - Added `MetricLeader` class for the different flavors of leader to derive from.
+- Added `CompetitionCSVTableType` enum for the competition details csv endpoint.
 
 ## Changes
 
