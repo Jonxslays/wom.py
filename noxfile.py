@@ -27,17 +27,20 @@ from typing import Callable
 from pathlib import Path
 
 import nox
-import toml
+import msgspec
 
 SessionT = Callable[[nox.Session], None]
 InjectorT = Callable[[SessionT], SessionT]
 
 
 def parse_dependencies() -> t.Dict[str, str]:
-    data = toml.load("pyproject.toml")["tool"]["poetry"]
+    with open("pyproject.toml", "rb") as f:
+        data = msgspec.toml.decode(f.read())
+
+    poetry = data["tool"]["poetry"]
     deps: t.Dict[str, t.Union[str, t.Dict[str, str]]] = {
-        **data["dependencies"],
-        **data["group"]["dev"]["dependencies"],
+        **poetry["dependencies"],
+        **poetry["group"]["dev"]["dependencies"],
     }
 
     for k, v in deps.items():
