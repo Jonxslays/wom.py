@@ -24,6 +24,8 @@ from __future__ import annotations
 import typing as t
 from datetime import datetime
 
+import msgspec
+
 from wom import enums
 
 from ..base import BaseModel
@@ -318,16 +320,7 @@ class MetricLeaders(BaseModel):
     """
 
 
-class GroupStatistics(
-    BaseModel,
-    rename={
-        "maxed_combat_count": "maxedCombatCount",
-        "maxed_total_count": "maxedTotalCount",
-        "maxed_200ms_count": "maxed200msCount",
-        "average_stats": "averageStats",
-        "metric_leaders": "metricLeaders",
-    },
-):
+class GroupStatistics(BaseModel):
     """Represents accumulated group statistics."""
 
     maxed_combat_count: int
@@ -336,7 +329,7 @@ class GroupStatistics(
     maxed_total_count: int
     """The number of maxed total level players in the group."""
 
-    maxed_200ms_count: int
+    maxed_200ms_count: int = msgspec.field(name="maxed200msCount")
     """The number of maxed 200M xp players in the group."""
 
     average_stats: Snapshot
