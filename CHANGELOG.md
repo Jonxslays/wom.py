@@ -1,4 +1,4 @@
-# v1.0.0-rc.1 (Unreleased)
+# v1.0.0-rc.1 (Aug 2024)
 
 Stable Release Candidate 1
 
