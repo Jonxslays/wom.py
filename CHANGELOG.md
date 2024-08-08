@@ -241,7 +241,7 @@ Stable Release Candidate 1
 
 ## Breaking Changes
 
-- Add a new _required_ async `Client.start` method to fix deprecation warning emitted
+- Add a new *required* async `Client.start` method to fix deprecation warning emitted
   by creating a `ClientSession` in a non-async function.
 
 ---
