@@ -2,7 +2,7 @@
 
 Stable Release Candidate 1
 
-10x performance increase when serializing models!
+10x performance increase when serializing/deserializing models!
 
 ## Breaking changes
 
@@ -46,6 +46,7 @@ Stable Release Candidate 1
 - Added `CompetitionService.get_details_csv` method.
 - Added `MetricLeader` class for the different flavors of leader to derive from.
 - Added `CompetitionCSVTableType` enum for the competition details csv endpoint.
+- Added pagination to `PlayerService.get_snapshots`.
 
 ## Changes
 
@@ -55,7 +56,7 @@ Stable Release Candidate 1
   `Bosses`, and `ComputedMetrics` enums.
 - `GroupService.create_group` now returns a `CreatedGroupDetail` model.
 - Updated docstrings for group classes.
-- Fixed broken poetry install link in contriubuting guide. 
+- Fixed broken poetry install link in contributing guide.
 
 ---
 
