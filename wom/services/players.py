@@ -52,9 +52,9 @@ class PlayerService(BaseService):
 
         Keyword Args:
             limit: The maximum number of paginated items to receive.
-                Defaults to `None` (I think thats 20 items?).
+                Defaults to `None`.
 
-            offset: The page offset for requesting multiple pages.
+            offset: The page offset for requesting the next page.
                 Defaults to `None`.
 
         Returns:
@@ -466,6 +466,8 @@ class PlayerService(BaseService):
         period: t.Optional[enums.Period] = None,
         start_date: t.Optional[datetime] = None,
         end_date: t.Optional[datetime] = None,
+        limit: t.Optional[int] = None,
+        offset: t.Optional[int] = None,
     ) -> ResultT[t.List[models.Snapshot]]:
         """Gets the snapshots for the player.
 
@@ -480,6 +482,12 @@ class PlayerService(BaseService):
                 Defaults to `None`.
 
             end_date: The maximum date to get the snapshots from.
+                Defaults to `None`.
+
+            limit: The maximum number of paginated items to receive.
+                Defaults to `None`.
+
+            offset: The page offset for requesting the next page.
                 Defaults to `None`.
 
         Returns:
@@ -500,7 +508,7 @@ class PlayerService(BaseService):
             await client.start()
 
             result = await client.players.get_snapshots(
-                "Jonxslays", period=wom.Period.Week
+                "Jonxslays", period=wom.Period.Week, limit=3
             )
             ```
         """
@@ -508,6 +516,8 @@ class PlayerService(BaseService):
             period=period.value if period else None,
             startDate=start_date.isoformat() if start_date else None,
             endDate=end_date.isoformat() if end_date else None,
+            limit=limit if limit else None,
+            offset=offset if offset else None,
         )
 
         route = routes.PLAYER_SNAPSHOTS.compile(username)
