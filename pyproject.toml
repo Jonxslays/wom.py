@@ -38,6 +38,7 @@ msgspec = ">=0.18.5"
 black = "==23.12.1"
 coverage = "==7.4.0"
 flake8 = { version = "==7.0.0", python = ">=3.8.1" }
+griffe = "==0.47.0"
 isort = "==5.13.2"
 len8 = { version = "==0.7.3.post0", python = "<3.12" }
 mike = "==2.0.0"
