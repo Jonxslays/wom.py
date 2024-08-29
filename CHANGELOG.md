@@ -1,3 +1,9 @@
+# v1.0.0-rc.2 (Aug 2024)
+
+- Added Araxxor to the `Bosses` enum.
+
+---
+
 # v1.0.0-rc.1 (Aug 2024)
 
 Stable Release Candidate 1

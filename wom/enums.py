@@ -129,6 +129,7 @@ class Metric(BaseEnum):
     # Bosses
     AbyssalSire = "abyssal_sire"
     AlchemicalHydra = "alchemical_hydra"
+    Araxxor = "araxxor"
     Artio = "artio"
     BarrowsChests = "barrows_chests"
     Bryophyta = "bryophyta"
@@ -252,6 +253,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
     {
         Metric.AbyssalSire,
         Metric.AlchemicalHydra,
+        Metric.Araxxor,
         Metric.Artio,
         Metric.BarrowsChests,
         Metric.Bryophyta,
