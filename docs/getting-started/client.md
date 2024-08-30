@@ -21,7 +21,7 @@ import wom
 client = wom.Client(
     "api_abc123",  # The wom api key to use.
     user_agent="@jonxslays",
-    api_base_url="http://localhost:5000",
+    api_base_url="https://api.wiseoldman.net/v2",
 )
 ```
 
