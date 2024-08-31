@@ -21,7 +21,7 @@ import wom
 client = wom.Client(
     "api_abc123",  # The wom api key to use.
     user_agent="@jonxslays",
-    api_base_url="http://localhost:5000",
+    api_base_url="https://api.wiseoldman.net/v2",
 )
 ```
 
@@ -73,7 +73,7 @@ async def main() -> None:
     await client.start()
 
     # You can also alter some client properties after instantiation
-    client.set_api_base_url("http://localhost:5000")
+    client.set_api_base_url("https://api.wiseoldman.net/v2")
     client.set_api_key("my-new-api-key")
     client.set_user_agent("@jonxslays")
 
