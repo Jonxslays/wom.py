@@ -70,8 +70,8 @@ class Group(BaseModel):
     name: str
     """The groups name."""
 
-    clan_chat: str
-    """The clan chat for this group."""
+    clan_chat: t.Optional[str]
+    """The groups optional clan chat."""
 
     description: t.Optional[str]
     """The groups optional description."""
