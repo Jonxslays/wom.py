@@ -42,6 +42,7 @@ jobs:
           path: .coverage.${{ matrix.os }}.${{ matrix.python-version }}
           retention-days: 1
           if-no-files-found: error
+          include-hidden-files: true
 
   lint-and-format:
     name: Lint
