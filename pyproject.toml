@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wom.py"
-version = "1.0.0-rc.2"
+version = "1.0.0"
 description = "An asynchronous wrapper for the Wise Old Man API."
 authors = ["Jonxslays"]
 license = "MIT"
