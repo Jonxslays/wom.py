@@ -1,4 +1,20 @@
+# v1.0.0 (Sep 2024)
+
+Stable!
+
+## Changes
+
+- `Group.clan_chat` is now optional.
+
+## Bugfixes
+
+- Fix bug where old groups with no clan chat would fail to deserialize.
+
+---
+
 # v1.0.0-rc.2 (Aug 2024)
+
+## Additions
 
 - Added Araxxor to the `Bosses` enum.
 
@@ -247,7 +263,7 @@ Stable Release Candidate 1
 
 ## Breaking Changes
 
-- Add a new *required* async `Client.start` method to fix deprecation warning emitted
+- Add a new _required_ async `Client.start` method to fix deprecation warning emitted
   by creating a `ClientSession` in a non-async function.
 
 ---
