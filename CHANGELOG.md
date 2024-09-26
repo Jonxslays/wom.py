@@ -1,3 +1,11 @@
+# v1.0.1 (Sep 2024)
+
+## Additions
+
+- Added two new boss metrics `Amoxliatl` and `Hueycoatl`.
+
+---
+
 # v1.0.0 (Sep 2024)
 
 Stable!

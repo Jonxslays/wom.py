@@ -129,6 +129,7 @@ class Metric(BaseEnum):
     # Bosses
     AbyssalSire = "abyssal_sire"
     AlchemicalHydra = "alchemical_hydra"
+    Amoxliatl = "amoxliatl"
     Araxxor = "araxxor"
     Artio = "artio"
     BarrowsChests = "barrows_chests"
@@ -152,6 +153,7 @@ class Metric(BaseEnum):
     GiantMole = "giant_mole"
     GrotesqueGuardians = "grotesque_guardians"
     Hespori = "hespori"
+    Hueycoatl = "the_hueycoatl"
     KalphiteQueen = "kalphite_queen"
     KingBlackDragon = "king_black_dragon"
     Kraken = "kraken"
@@ -253,6 +255,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
     {
         Metric.AbyssalSire,
         Metric.AlchemicalHydra,
+        Metric.Amoxliatl,
         Metric.Araxxor,
         Metric.Artio,
         Metric.BarrowsChests,
@@ -276,6 +279,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.GiantMole,
         Metric.GrotesqueGuardians,
         Metric.Hespori,
+        Metric.Hueycoatl,
         Metric.KalphiteQueen,
         Metric.KingBlackDragon,
         Metric.Kraken,
