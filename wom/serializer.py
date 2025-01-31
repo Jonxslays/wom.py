@@ -68,6 +68,8 @@ class Serializer:
             The requested decoder.
         """
         if not (decoder := self._decoders.get(model_type)):
-            decoder = self._decoders[model_type] = Decoder(model_type)
+            decoder = self._decoders[model_type] = Decoder(  # pyright: ignore[reportArgumentType]
+                model_type
+            )
 
         return decoder  # type: ignore[return-value]

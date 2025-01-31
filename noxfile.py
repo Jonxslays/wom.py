@@ -68,10 +68,15 @@ def install(*packages: str) -> InjectorT:
     return inner
 
 
+def run(session: nox.Session, *args: str) -> None:
+    session.run(*args, external=True)
+
+
 @nox.session(reuse_venv=True)
 @install("pytest", "pytest-asyncio", "pytest-testdox", "coverage", "aiohttp", "msgspec")
 def tests(session: nox.Session) -> None:
-    session.run(
+    run(
+        session,
         "coverage",
         "run",
         "--omit",
@@ -89,28 +94,28 @@ def coverage(session: nox.Session) -> None:
     if not Path(".coverage").exists():
         session.skip("Skipping coverage")
 
-    session.run("coverage", "report", "-m")
+    run(session, "coverage", "report", "-m")
 
 
 @nox.session(reuse_venv=True)
 @install("pyright", "mypy", "aiohttp", "msgspec")
 def types(session: nox.Session) -> None:
-    session.run("mypy")
-    session.run("pyright")
+    run(session, "mypy")
+    run(session, "pyright")
 
 
 @nox.session(reuse_venv=True)
-@install("black", "len8")
+@install("black")
 def formatting(session: nox.Session) -> None:
-    session.run("black", ".", "--check")
-    session.run("len8")
+    run(session, "black", ".", "--check")
 
 
 @nox.session(reuse_venv=True)
 @install("flake8", "isort")
 def imports(session: nox.Session) -> None:
-    session.run("isort", "wom", "tests", "-cq")
-    session.run(
+    run(session, "isort", "wom", "tests", "-cq")
+    run(
+        session,
         "flake8",
         "wom",
         "tests",
@@ -150,4 +155,4 @@ def licensing(session: nox.Session) -> None:
 @nox.session(reuse_venv=True)
 def alls(session: nox.Session) -> None:
     session.install(".")
-    session.run("python", "scripts/alls.py")
+    run(session, "python", "scripts/alls.py")

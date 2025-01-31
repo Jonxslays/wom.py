@@ -120,6 +120,7 @@ class Metric(BaseEnum):
     ClueScrollsHard = "clue_scrolls_hard"
     ClueScrollsElite = "clue_scrolls_elite"
     ClueScrollsMaster = "clue_scrolls_master"
+    CollectionsLogged = "collections_logged"
     ColosseumGlory = "colosseum_glory"
     LastManStanding = "last_man_standing"
     PvpArena = "pvp_arena"
@@ -242,6 +243,7 @@ Activities: t.FrozenSet[Metric] = frozenset(
         Metric.ClueScrollsHard,
         Metric.ClueScrollsElite,
         Metric.ClueScrollsMaster,
+        Metric.CollectionsLogged,
         Metric.ColosseumGlory,
         Metric.LastManStanding,
         Metric.PvpArena,

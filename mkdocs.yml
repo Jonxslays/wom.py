@@ -102,3 +102,4 @@ nav:
       - "getting-started/result.md"
   - "Migration guides":
       - "migrating/v1.md"
+      - "migrating/v2.md"
