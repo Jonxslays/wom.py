@@ -170,7 +170,7 @@ class Client:
         return self._records
 
     def __init_service(self, service: t.Type[ServiceT]) -> ServiceT:
-        if not issubclass(service, services.BaseService):
+        if not issubclass(service, services.BaseService):  # pyright: ignore[reportUnnecessaryIsInstance]
             raise TypeError(f"{service.__name__!r} can not be initialized as a service.")
 
         return service(self._http, self._serializer)

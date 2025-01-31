@@ -109,7 +109,7 @@ class HttpService:
         if not hasattr(self, "_method_mapping"):
             raise RuntimeError("HttpService.start was never called, aborting...")
 
-        return self._method_mapping[method]  # type: ignore[return-value]
+        return self._method_mapping[method]
 
     async def _init_session(self) -> None:
         self._session = aiohttp.ClientSession(

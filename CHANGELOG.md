@@ -1,3 +1,17 @@
+# v2.0 (Jan 2025)
+
+# Breaking
+
+- Drop support for Python 3.8.
+- Minimum msgspec version is now `0.19.0`.
+
+## Additions
+
+- Add `CollectionsLogged` metric.
+- Add support for Python 3.13.
+
+---
+
 # v1.0.1 (Sep 2024)
 
 ## Additions
