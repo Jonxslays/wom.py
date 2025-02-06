@@ -1,3 +1,6 @@
+# v.2.0.1 (Feb 2025)
+- Add new boss metric `Royal Titans` `(the_royal_titans)`
+
 # v2.0 (Jan 2025)
 
 # Breaking
