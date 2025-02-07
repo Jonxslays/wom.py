@@ -178,6 +178,7 @@ class Metric(BaseEnum):
     TheCorruptedGauntlet = "the_corrupted_gauntlet"
     TheLeviathan = "the_leviathan"
     TheWhisperer = "the_whisperer"
+    TheRoyalTitans = "the_royal_titans"
     TheatreOfBlood = "theatre_of_blood"
     TheatreOfBloodHard = "theatre_of_blood_hard_mode"
     ThermonuclearSmokeDevil = "thermonuclear_smoke_devil"
@@ -305,6 +306,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.TheCorruptedGauntlet,
         Metric.TheLeviathan,
         Metric.TheWhisperer,
+        Metric.TheRoyalTitans,
         Metric.TheatreOfBlood,
         Metric.TheatreOfBloodHard,
         Metric.ThermonuclearSmokeDevil,
