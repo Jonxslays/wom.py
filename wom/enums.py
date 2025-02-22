@@ -24,8 +24,10 @@
 from __future__ import annotations
 
 import random
+import sys
 import typing as t
 from enum import Enum
+from enum import EnumMeta
 
 T = t.TypeVar("T", bound="BaseEnum")
 
@@ -40,7 +42,20 @@ __all__ = (
 )
 
 
-class BaseEnum(Enum):
+class MetaEnum(EnumMeta):
+    def __getitem__(cls: MetaEnum, name: str) -> t.Any:
+        try:
+            return super().__getitem__(name)
+        except KeyError:
+            print(
+                f"{name!r} is not a valid {cls.__name__} variant. "
+                "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
+                file=sys.stderr,
+            )
+            return cls.__getitem__("Unknown")
+
+
+class BaseEnum(Enum, metaclass=MetaEnum):
     """The base enum all library enums inherit from."""
 
     def __str__(self) -> str:
@@ -76,6 +91,9 @@ class Period(BaseEnum):
     Week = "week"
     Month = "month"
     Year = "year"
+
+    # Unknown metric
+    Unknown = "unknown"
 
 
 class Metric(BaseEnum):
@@ -198,6 +216,9 @@ class Metric(BaseEnum):
     Ehp = "ehp"
     Ehb = "ehb"
 
+    # Unknown Metric
+    Unknown = "unknown"
+
 
 ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb})
 """Set containing all the types of computed metrics."""
@@ -228,6 +249,7 @@ Skills: t.FrozenSet[Metric] = frozenset(
         Metric.Runecrafting,
         Metric.Hunter,
         Metric.Construction,
+        Metric.Unknown,
     }
 )
 """Set containing skills."""
@@ -250,6 +272,7 @@ Activities: t.FrozenSet[Metric] = frozenset(
         Metric.PvpArena,
         Metric.SoulWarsZeal,
         Metric.GuardiansOfTheRift,
+        Metric.Unknown,
     }
 )
 """Set containing activities."""
@@ -321,6 +344,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Wintertodt,
         Metric.Zalcano,
         Metric.Zulrah,
+        Metric.Unknown,
     }
 )
 """Set containing bosses."""
