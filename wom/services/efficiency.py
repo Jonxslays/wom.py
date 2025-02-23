@@ -92,11 +92,7 @@ class EfficiencyService(BaseService):
             playerType=player_type.value if player_type else None,
             playerBuild=player_build.value if player_build else None,
             country=country.value if country else None,
-            metric=(
-                metric.value
-                if not both
-                else "+".join(sorted((m.value for m in enums.ComputedMetrics), reverse=True))
-            ),
+            metric=(metric.value if not both else "ehp+ehb"),
         )
 
         route = routes.GLOBAL_EFFICIENCY_LEADERS.compile()
