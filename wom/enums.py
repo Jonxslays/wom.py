@@ -60,6 +60,15 @@ class BaseEnum(Enum):
         return hash(self.value)
 
     @classmethod
+    def _missing_(cls, value: object) -> BaseEnum:
+        print(
+            f"{value!r} is not a valid {cls.__name__} variant. "
+            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
+            file=sys.stderr,
+        )
+        return cls.Unknown  # type: ignore
+
+    @classmethod
     def at_random(cls: t.Type[T]) -> T:
         """Generates a random variant of this enum.
 
@@ -67,15 +76,6 @@ class BaseEnum(Enum):
             The randomly generated enum.
         """
         return random.choice(tuple(cls))
-
-    @classmethod
-    def _missing_(cls: t.Type[T], value: object) -> t.Optional[T]:
-        print(
-            f"{value!r} is not a valid {cls.__name__} variant. "
-            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
-            file=sys.stderr,
-        )
-        return cls.__getitem__("Unknown")
 
 
 class Period(BaseEnum):
@@ -215,7 +215,7 @@ class Metric(BaseEnum):
     Unknown = "unknown"
 
 
-ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb})
+ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb, Metric.Unknown})
 """Set containing all the types of computed metrics."""
 
 Skills: t.FrozenSet[Metric] = frozenset(

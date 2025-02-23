@@ -32,6 +32,7 @@ class GroupActivityType(BaseEnum):
     ChangedRole = "changed_role"
     Joined = "joined"
     Left = "left"
+    Unknown = "unknown"
 
 
 class GroupRole(BaseEnum):
@@ -306,3 +307,4 @@ class GroupRole(BaseEnum):
     Zarosian = "zarosian"
     Zealot = "zealot"
     Zenyte = "zenyte"
+    Unknown = "unknown"
