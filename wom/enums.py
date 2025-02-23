@@ -27,7 +27,6 @@ import random
 import sys
 import typing as t
 from enum import Enum
-from enum import EnumMeta
 
 T = t.TypeVar("T", bound="BaseEnum")
 
@@ -42,20 +41,7 @@ __all__ = (
 )
 
 
-class MetaEnum(EnumMeta):
-    def __getitem__(cls: MetaEnum, name: str) -> t.Any:
-        try:
-            return super().__getitem__(name)
-        except KeyError:
-            print(
-                f"{name!r} is not a valid {cls.__name__} variant. "
-                "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
-                file=sys.stderr,
-            )
-            return cls.__getitem__("Unknown")
-
-
-class BaseEnum(Enum, metaclass=MetaEnum):
+class BaseEnum(Enum):
     """The base enum all library enums inherit from."""
 
     def __str__(self) -> str:
@@ -81,6 +67,15 @@ class BaseEnum(Enum, metaclass=MetaEnum):
             The randomly generated enum.
         """
         return random.choice(tuple(cls))
+
+    @classmethod
+    def _missing_(cls: t.Type[T], value: object) -> t.Optional[T]:
+        print(
+            f"{value!r} is not a valid {cls.__name__} variant. "
+            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
+            file=sys.stderr,
+        )
+        return cls.__getitem__("Unknown")
 
 
 class Period(BaseEnum):
