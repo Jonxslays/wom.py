@@ -153,6 +153,6 @@ def licensing(session: nox.Session) -> None:
 
 
 @nox.session(reuse_venv=True)
-def alls(session: nox.Session) -> None:
+def checks(session: nox.Session) -> None:
     session.install(".")
-    run(session, "python", "scripts/alls.py")
+    run(session, "python", "scripts/checks.py")

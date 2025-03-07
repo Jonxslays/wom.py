@@ -27,6 +27,7 @@ import random
 import sys
 import typing as t
 from enum import Enum
+from enum import EnumMeta
 
 T = t.TypeVar("T", bound="BaseEnum")
 
@@ -41,7 +42,15 @@ __all__ = (
 )
 
 
-class BaseEnum(Enum):
+class BaseEnumMeta(EnumMeta):
+    """Metaclass for the base enum."""
+
+    def __iter__(self) -> t.Iterator[t.Never]:
+        """Iterates over the enum and skips "unknown"."""
+        return (v for v in self.__members__.values() if v.value != "unknown")  # type: ignore
+
+
+class BaseEnum(Enum, metaclass=BaseEnumMeta):
     """The base enum all library enums inherit from."""
 
     def __str__(self) -> str:
@@ -86,8 +95,6 @@ class Period(BaseEnum):
     Week = "week"
     Month = "month"
     Year = "year"
-
-    # Unknown metric
     Unknown = "unknown"
 
 
@@ -211,11 +218,11 @@ class Metric(BaseEnum):
     Ehp = "ehp"
     Ehb = "ehb"
 
-    # Unknown Metric
+    # Unknown
     Unknown = "unknown"
 
 
-ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb, Metric.Unknown})
+ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb})
 """Set containing all the types of computed metrics."""
 
 Skills: t.FrozenSet[Metric] = frozenset(
@@ -244,7 +251,6 @@ Skills: t.FrozenSet[Metric] = frozenset(
         Metric.Runecrafting,
         Metric.Hunter,
         Metric.Construction,
-        Metric.Unknown,
     }
 )
 """Set containing skills."""
@@ -267,7 +273,6 @@ Activities: t.FrozenSet[Metric] = frozenset(
         Metric.PvpArena,
         Metric.SoulWarsZeal,
         Metric.GuardiansOfTheRift,
-        Metric.Unknown,
     }
 )
 """Set containing activities."""
@@ -339,7 +344,6 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Wintertodt,
         Metric.Zalcano,
         Metric.Zulrah,
-        Metric.Unknown,
     }
 )
 """Set containing bosses."""

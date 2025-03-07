@@ -35,12 +35,12 @@ __all__ = (
 class PlayerType(BaseEnum):
     """Different types of players."""
 
-    Unknown = "unknown"
     Regular = "regular"
     Ironman = "ironman"
     Hardcore = "hardcore"
     Ultimate = "ultimate"
     FreshStart = "fresh_start"
+    Unknown = "unknown"
 
 
 class PlayerBuild(BaseEnum):

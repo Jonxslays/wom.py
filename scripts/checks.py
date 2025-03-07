@@ -20,7 +20,7 @@ def get_alls() -> t.Tuple[t.Set[str], t.Set[str]]:
     )
 
 
-def validate_alls() -> None:
+def validate_alls() -> bool:
     modules, lib = get_alls()
     err = None
 
@@ -33,8 +33,39 @@ def validate_alls() -> None:
         print(err, file=sys.stderr)
 
     if err:
-        sys.exit(1)
+        return False
+
+    return True
+
+
+def validate_enums() -> bool:
+    classes, _ = get_alls()
+    missing: list[str] = []
+
+    for c in classes:
+        obj = wom.__dict__[c]
+
+        try:
+            skip = obj == wom.BaseEnum
+            is_subclass = issubclass(obj, wom.BaseEnum)
+            has_unknown = hasattr(obj, "Unknown")
+
+            if not skip and is_subclass and not has_unknown:
+                missing.append(c)
+        except Exception:
+            pass
+
+    if missing:
+        err = "Enums missing 'Unknown' variant:\n" + "\n".join(f" - {c}" for c in missing)
+        print(err, file=sys.stderr)
+        return False
+
+    return True
 
 
 if __name__ == "__main__":
-    validate_alls()
+    alls = validate_alls()
+    enums = validate_enums()
+
+    if not alls or not enums:
+        sys.exit(1)
