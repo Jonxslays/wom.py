@@ -33,6 +33,7 @@ class CompetitionType(BaseEnum):
 
     Classic = "classic"
     Team = "team"
+    Unknown = "unknown"
 
 
 class CompetitionStatus(BaseEnum):
@@ -41,6 +42,7 @@ class CompetitionStatus(BaseEnum):
     Upcoming = "upcoming"
     Ongoing = "ongoing"
     Finished = "finished"
+    Unknown = "unknown"
 
 
 class CompetitionCSVTableType(BaseEnum):
@@ -49,3 +51,4 @@ class CompetitionCSVTableType(BaseEnum):
     Participants = "participants"
     Team = "team"
     Teams = "teams"
+    Unknown = "unknown"
