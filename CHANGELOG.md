@@ -1,4 +1,8 @@
-# v.2.0.1 (Feb 2025)
+# v.2.0.2 (May 2025)
+- Add new boss metric `Yama` `(yama)`
+
+
+# v.2.0.2 (Feb 2025)
 - Add new boss metric `Royal Titans` `(the_royal_titans)`
 
 # v2.0 (Jan 2025)

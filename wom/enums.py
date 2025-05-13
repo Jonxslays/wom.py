@@ -191,6 +191,7 @@ class Metric(BaseEnum):
     Vetion = "vetion"
     Vorkath = "vorkath"
     Wintertodt = "wintertodt"
+    Yama = "yama"
     Zalcano = "zalcano"
     Zulrah = "zulrah"
 
@@ -319,6 +320,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Vetion,
         Metric.Vorkath,
         Metric.Wintertodt,
+        Metric.Yama,
         Metric.Zalcano,
         Metric.Zulrah,
     }
