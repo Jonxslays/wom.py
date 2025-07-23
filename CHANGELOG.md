@@ -1,3 +1,6 @@
+# v.2.0.3 (July 2025)
+- Add new boss metric `Doom of Mokhaiotl` `(doom_of_mokhaiotl)`
+
 # v.2.0.2 (May 2025)
 - Add new boss metric `Yama` `(yama)`
 
