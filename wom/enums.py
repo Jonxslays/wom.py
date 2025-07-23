@@ -149,6 +149,7 @@ class Metric(BaseEnum):
     DagannothRex = "dagannoth_rex"
     DagannothSupreme = "dagannoth_supreme"
     DerangedArchaeologist = "deranged_archaeologist"
+    DoomOfMokhaiotl = "doom_of_mokhaiotl"
     DukeSucellus = "duke_sucellus"
     GeneralGraardor = "general_graardor"
     GiantMole = "giant_mole"
@@ -278,6 +279,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.DagannothRex,
         Metric.DagannothSupreme,
         Metric.DerangedArchaeologist,
+        Metric.DoomOfMokhaiotl,
         Metric.DukeSucellus,
         Metric.GeneralGraardor,
         Metric.GiantMole,
