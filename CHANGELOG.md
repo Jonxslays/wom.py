@@ -1,3 +1,9 @@
+# v2.0.4 (September 2025)
+
+- Added missing `Country` enum values.
+
+---
+
 # v2.0.3 (July 2025)
 
 - Add new boss metric `Doom of Mokhaiotl` `(doom_of_mokhaiotl)`
