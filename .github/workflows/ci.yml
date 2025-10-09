@@ -70,38 +70,38 @@ jobs:
           poetry install -q
           poetry run nox -s ${{ matrix.session }}
 
-  upload-coverage:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-    name: Upload coverage
-    needs: test
-    runs-on: ubuntu-latest
+  # upload-coverage:
+  #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+  #   name: Upload coverage
+  #   needs: test
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v3
+  #       with:
+  #         python-version: "3.10"
 
-      - name: Install dependencies
-        run: python -m pip install coverage
+  #     - name: Install dependencies
+  #       run: python -m pip install coverage
 
-      - name: Download coverage
-        uses: actions/download-artifact@v4
-        with:
-          pattern: coverage-*
-          merge-multiple: true
+  #     - name: Download coverage
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         pattern: coverage-*
+  #         merge-multiple: true
 
-      - name: Combine coverage
-        run: |
-          coverage combine
-          coverage xml -i
+  #     - name: Combine coverage
+  #       run: |
+  #         coverage combine
+  #         coverage xml -i
 
-      - name: Upload coverage to Code Climate
-        uses: paambaati/codeclimate-action@v3.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.COV_TOKEN }}
-        with:
-          coverageLocations: .coverage.xml:coverage.py
+  #     - name: Upload coverage to Code Climate
+  #       uses: paambaati/codeclimate-action@v3.0.0
+  #       env:
+  #         CC_TEST_REPORTER_ID: ${{ secrets.COV_TOKEN }}
+  #       with:
+  #         coverageLocations: .coverage.xml:coverage.py
