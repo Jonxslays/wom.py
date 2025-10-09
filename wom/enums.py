@@ -24,6 +24,7 @@
 from __future__ import annotations
 
 import random
+import sys
 import typing as t
 from enum import Enum
 
@@ -59,6 +60,15 @@ class BaseEnum(Enum):
         return hash(self.value)
 
     @classmethod
+    def _missing_(cls, value: object) -> BaseEnum:
+        print(
+            f"{value!r} is not a valid {cls.__name__} variant. "
+            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
+            file=sys.stderr,
+        )
+        return cls.Unknown  # type: ignore
+
+    @classmethod
     def at_random(cls: t.Type[T]) -> T:
         """Generates a random variant of this enum.
 
@@ -76,6 +86,9 @@ class Period(BaseEnum):
     Week = "week"
     Month = "month"
     Year = "year"
+
+    # Unknown metric
+    Unknown = "unknown"
 
 
 class Metric(BaseEnum):
@@ -200,8 +213,11 @@ class Metric(BaseEnum):
     Ehp = "ehp"
     Ehb = "ehb"
 
+    # Unknown Metric
+    Unknown = "unknown"
 
-ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb})
+
+ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb, Metric.Unknown})
 """Set containing all the types of computed metrics."""
 
 Skills: t.FrozenSet[Metric] = frozenset(
@@ -230,6 +246,7 @@ Skills: t.FrozenSet[Metric] = frozenset(
         Metric.Runecrafting,
         Metric.Hunter,
         Metric.Construction,
+        Metric.Unknown,
     }
 )
 """Set containing skills."""
@@ -252,6 +269,7 @@ Activities: t.FrozenSet[Metric] = frozenset(
         Metric.PvpArena,
         Metric.SoulWarsZeal,
         Metric.GuardiansOfTheRift,
+        Metric.Unknown,
     }
 )
 """Set containing activities."""
@@ -325,6 +343,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Yama,
         Metric.Zalcano,
         Metric.Zulrah,
+        Metric.Unknown,
     }
 )
 """Set containing bosses."""

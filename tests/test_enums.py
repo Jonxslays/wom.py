@@ -53,3 +53,12 @@ def test_hash() -> None:
 def test_at_random(choice: mock.MagicMock) -> None:
     _ = wom.Metric.at_random()
     choice.assert_called_once_with(tuple(wom.Metric))
+
+
+def test_base_enum_missing() -> None:
+    """A test for the BaseEnum.__missing__ method."""
+    assert wom.Metric("new_fake_metric") == wom.Metric.Unknown
+    assert wom.Metric("another_fake_metric") == wom.Metric.Unknown
+    assert wom.Metric.Unknown.value == "unknown"
+    assert wom.Metric.Unknown != wom.Metric.Vardorvis
+    assert wom.Metric.Attack.value == "attack"

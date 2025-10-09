@@ -53,6 +53,7 @@ class PlayerBuild(BaseEnum):
     Def1 = "def1"
     Hp10 = "hp10"
     F2pLvl3 = "f2p_lvl3"
+    Unknown = "unknown"
 
 
 class PlayerStatus(BaseEnum):
@@ -63,6 +64,7 @@ class PlayerStatus(BaseEnum):
     Flagged = "flagged"
     Archived = "archived"
     Banned = "banned"
+    Unknown = "unknown"
 
 
 class AchievementMeasure(BaseEnum):
@@ -73,6 +75,7 @@ class AchievementMeasure(BaseEnum):
     Kills = "kills"
     Score = "score"
     Value = "value"
+    Unknown = "unknown"
 
 
 class Country(BaseEnum):
@@ -330,3 +333,4 @@ class Country(BaseEnum):
     Za = "ZA"
     Zm = "ZM"
     Zw = "ZW"
+    Unknown = "unknown"

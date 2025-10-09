@@ -32,6 +32,7 @@ class NameChangeStatus(BaseEnum):
     Pending = "pending"
     Approved = "approved"
     Denied = "denied"
+    Unknown = "unknown"
 
 
 class NameChangeReviewReason(BaseEnum):
@@ -42,3 +43,4 @@ class NameChangeReviewReason(BaseEnum):
     TransitionTooLong = "transition_period_too_long"
     ExcessiveGains = "excessive_gains"
     TotalLevelTooLow = "total_level_too_low"
+    Unknown = "unknown"
