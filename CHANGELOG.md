@@ -1,6 +1,12 @@
+# v2.0.6 (November 2025)
+
+- Add sailing metric.
+
+---
+
 # v2.0.5 (November 2025)
 
-- Added new boss metric `Shellbane Gryphon` `(shellbane_gryphon)`
+- Added new boss metric `Shellbane Gryphon` `(shellbane_gryphon)`.
 
 ---
 
@@ -12,19 +18,19 @@
 
 # v2.0.3 (July 2025)
 
-- Add new boss metric `Doom of Mokhaiotl` `(doom_of_mokhaiotl)`
+- Add new boss metric `Doom of Mokhaiotl` `(doom_of_mokhaiotl)`.
 
 ---
 
 # v2.0.2 (May 2025)
 
-- Add new boss metric `Yama` `(yama)`
+- Add new boss metric `Yama` `(yama)`.
 
 ---
 
 # v2.0.1 (Feb 2025)
 
-- Add new boss metric `Royal Titans` `(the_royal_titans)`
+- Add new boss metric `Royal Titans` `(the_royal_titans)`.
 
 ---
 

@@ -108,6 +108,7 @@ class Metric(BaseEnum):
     Runecrafting = "runecrafting"
     Hunter = "hunter"
     Construction = "construction"
+    Sailing = "sailing"
 
     # Activities
     LeaguePoints = "league_points"
@@ -231,6 +232,7 @@ Skills: t.FrozenSet[Metric] = frozenset(
         Metric.Runecrafting,
         Metric.Hunter,
         Metric.Construction,
+        Metric.Sailing,
     }
 )
 """Set containing skills."""
