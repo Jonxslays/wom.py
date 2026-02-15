@@ -175,7 +175,7 @@ class CompetitionParticipationDetail(CompetitionParticipation):
     competitions."""
 
 
-class CompetitionDetail(Competition):  # type: ignore[override]
+class CompetitionDetail(Competition):
     """Represents competition details."""
 
     participations: t.List[CompetitionParticipationDetail] = []  # type: ignore[assignment]

@@ -1,4 +1,19 @@
+# v3.0.0 (February 2026)
+
+## Breaking Changes
+
+- Remove `id` property from `Snapshot` model.
+- Remove support for Python 3.9.
+
+## Additions
+
+- Add support for Python 3.14.
+
+---
+
 # v2.0.6 (November 2025)
+
+## Additions
 
 - Add sailing metric.
 
@@ -6,11 +21,15 @@
 
 # v2.0.5 (November 2025)
 
+## Additions
+
 - Added new boss metric `Shellbane Gryphon` `(shellbane_gryphon)`.
 
 ---
 
 # v2.0.4 (September 2025)
+
+## Additions
 
 - Added missing `Country` enum values.
 
@@ -18,17 +37,23 @@
 
 # v2.0.3 (July 2025)
 
+## Additions
+
 - Add new boss metric `Doom of Mokhaiotl` `(doom_of_mokhaiotl)`.
 
 ---
 
 # v2.0.2 (May 2025)
 
+## Additions
+
 - Add new boss metric `Yama` `(yama)`.
 
 ---
 
 # v2.0.1 (Feb 2025)
+
+## Additions
 
 - Add new boss metric `Royal Titans` `(the_royal_titans)`.
 
