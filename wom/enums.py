@@ -135,6 +135,7 @@ class Metric(BaseEnum):
     Araxxor = "araxxor"
     Artio = "artio"
     BarrowsChests = "barrows_chests"
+    Brutus = "brutus"
     Bryophyta = "bryophyta"
     Callisto = "callisto"
     Calvarion = "calvarion"
@@ -267,6 +268,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Araxxor,
         Metric.Artio,
         Metric.BarrowsChests,
+        Metric.Brutus,
         Metric.Bryophyta,
         Metric.Callisto,
         Metric.Calvarion,

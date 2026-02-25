@@ -141,9 +141,6 @@ class SnapshotData(BaseModel):
 class Snapshot(BaseModel):
     """Represents a player snapshot."""
 
-    id: int
-    """The unique ID of the snapshot."""
-
     player_id: int
     """The unique ID of the player for this snapshot."""
 

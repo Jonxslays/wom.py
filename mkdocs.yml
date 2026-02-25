@@ -103,3 +103,4 @@ nav:
   - "Migration guides":
       - "migrating/v1.md"
       - "migrating/v2.md"
+      - "migrating/v3.md"
