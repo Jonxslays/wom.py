@@ -8,6 +8,7 @@
 ## Additions
 
 - Add support for Python 3.14.
+- Add support for `Brutus` boss.
 
 ---
 
