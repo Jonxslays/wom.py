@@ -1,3 +1,11 @@
+# v3.0.1 (May 2026)
+
+## Additions
+
+- Added new 'GB_ENG' country enum value.
+
+---
+
 # v3.0.0 (February 2026)
 
 ## Breaking Changes

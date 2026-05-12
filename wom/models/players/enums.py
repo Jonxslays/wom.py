@@ -155,6 +155,7 @@ class Country(BaseEnum):
     Fr = "FR"
     Ga = "GA"
     Gb = "GB"
+    Gb_Eng = "GB_ENG"
     Gb_Nir = "GB_NIR"
     Gb_Sct = "GB_SCT"
     Gb_Wls = "GB_WLS"
