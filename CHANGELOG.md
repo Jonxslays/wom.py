@@ -1,3 +1,9 @@
+# v3.0.2 (June 2026)
+
+- Add new boss metric `Maggot King` `(maggot_king)`
+
+---
+
 # v3.0.1 (May 2026)
 
 ## Additions
