@@ -33,6 +33,7 @@ __all__ = (
     "AssertPlayerType",
     "BossGains",
     "Boss",
+    "BulkGains",
     "Country",
     "ComputedGains",
     "ComputedMetric",

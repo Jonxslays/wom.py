@@ -1,6 +1,28 @@
+# v3.1.0 (July 2026)
+
+## Additions
+
+- Add `PlayerService.get_bulk_gains(...)`.
+- Add supporting models:
+  - `BaseGains`
+  - `BulkGains`
+  - `BulkGroupMemberGains`
+- Add `PlayerService.get_bulk_hiscores(...)`.
+    - `BulkGroupHiscoresActivityItem`
+    - `BulkGroupHiscoresBossItem`
+    - `BulkGroupHiscoresComputedMetricItem`
+    - `BulkGroupHiscoresData`
+    - `BulkGroupHiscoresEntry`
+    - `BulkGroupHiscoresMetrics`
+    - `BulkGroupHiscoresSkillItem`
+
+---
+
 # v3.0.2 (June 2026)
 
-- Add new boss metric `Maggot King` `(maggot_king)`
+## Additions
+
+- Add new boss metric `Maggot King` `(maggot_king)`.
 
 ---
 

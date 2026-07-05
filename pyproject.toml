@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wom.py"
-version = "3.0.2"
+version = "3.1.0"
 description = "An asynchronous wrapper for the Wise Old Man API."
 authors = ["Jonxslays"]
 license = "MIT"
@@ -44,7 +44,7 @@ mike = "==2.0.0"
 mkdocs-include-markdown-plugin = "==6.2.2"
 mkdocs-material = "==9.5.50"
 mkdocstrings = { version = "==0.27.0", extras = ["python"] }
-mypy = "==1.14.1"
+mypy = "==2.1.0"
 nox = "==2024.10.9"
 pyright = "==1.1.393"
 pytest = "==8.3.4"
