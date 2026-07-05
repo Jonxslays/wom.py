@@ -42,6 +42,7 @@ __all__ = (
     "AssertPlayerType",
     "BossGains",
     "Boss",
+    "BulkGains",
     "ComputedGains",
     "ComputedMetric",
     "Gains",
@@ -332,6 +333,13 @@ class Gains(BaseModel):
 
     end: float
     """The ending amount."""
+
+
+class BulkGains(Gains):
+    """Represents bulk gains made by a player."""
+
+    metric: enums.Metric
+    """The skill being measured."""
 
 
 class SkillGains(BaseModel):

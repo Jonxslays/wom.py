@@ -556,8 +556,7 @@ class GroupService(BaseService):
             offset: The optional pagination offset. Defaults to `None`.
 
         Returns:
-            A [`Result`][wom.Result] containing the list of delta
-                leaderboard entries.
+            A [`Result`][wom.Result] containing the list of group gains.
 
         !!! info
 
@@ -574,7 +573,7 @@ class GroupService(BaseService):
             await client.start()
 
             await client.groups.get_gains(
-                123, wom.Metric.Zulrah, limit=10
+                123, wom.Metric.Zulrah, period=wom.Period.Week, limit=10
             )
             ```
         """
@@ -590,6 +589,61 @@ class GroupService(BaseService):
         route = routes.GROUP_GAINS.compile(id).with_params(params)
         data = await self._http.fetch(route)
         return self._ok_or_err(data, t.List[models.GroupMemberGains])
+
+    async def get_bulk_gains(
+        self,
+        id: int,
+        *,
+        period: t.Optional[enums.Period] = None,
+        start_date: t.Optional[datetime] = None,
+        end_date: t.Optional[datetime] = None,
+    ) -> ResultT[t.List[models.BulkGroupMemberGains]]:
+        """Gets the bulk gains of all metrics for a group over a particular time frame.
+
+        Args:
+            id: The ID of the group.
+
+        Keyword Args:
+            period: The optional period of time to get gains for.
+                Defaults to `None`.
+
+            start_date: The minimum date to get the gains from. Defaults
+                to `None`.
+
+            end_date: The maximum date to get the gains from. Defaults
+                to `None`.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of bulk group gains.
+
+        !!! info
+
+            You must pass one of (`period`) or (`start_date` +
+            `end_date`), but not both.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            await client.groups.get_bulk_gains(
+                123, period=wom.Period.Week
+            )
+            ```
+        """
+        params = self._generate_map(
+            period=period.value if period else None,
+            endDate=end_date.isoformat() if end_date else None,
+            startDate=start_date.isoformat() if start_date else None,
+        )
+
+        route = routes.GROUP_BULK_GAINS.compile(id).with_params(params)
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, t.List[models.BulkGroupMemberGains])
 
     async def get_achievements(
         self,
@@ -722,6 +776,32 @@ class GroupService(BaseService):
         route = routes.GROUP_HISCORES.compile(id).with_params(params)
         data = await self._http.fetch(route)
         return self._ok_or_err(data, t.List[models.GroupHiscoresEntry])
+
+    async def get_bulk_hiscores(self, id: int) -> ResultT[t.List[models.BulkGroupHiscoresEntry]]:
+        """Gets the bulk hiscores for the group.
+
+        Args:
+            id: The ID of the group.
+
+        Returns:
+            A [`Result`][wom.Result] containing the list of bulk
+                hiscores entries.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            await client.groups.get_bulk_hiscores(123)
+            ```
+        """
+        route = routes.GROUP_BULK_HISCORES.compile(id)
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, t.List[models.BulkGroupHiscoresEntry])
 
     async def get_name_changes(
         self, id: int, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None

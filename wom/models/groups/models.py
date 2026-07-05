@@ -27,6 +27,7 @@ from datetime import datetime
 import msgspec
 
 from wom import enums
+from wom.models.players.models import BulkGains
 
 from ..base import BaseModel
 from ..players import Gains
@@ -38,6 +39,14 @@ from .enums import GroupRole
 __all__ = (
     "ActivityLeader",
     "BossLeader",
+    "BulkGroupHiscoresActivityItem",
+    "BulkGroupHiscoresBossItem",
+    "BulkGroupHiscoresComputedMetricItem",
+    "BulkGroupHiscoresData",
+    "BulkGroupHiscoresEntry",
+    "BulkGroupHiscoresMetrics",
+    "BulkGroupHiscoresSkillItem",
+    "BulkGroupMemberGains",
     "ComputedMetricLeader",
     "CreatedGroupDetail",
     "Group",
@@ -198,6 +207,64 @@ class GroupMemberFragment(BaseModel):
     """
 
 
+class BulkGroupHiscoresMetrics(BaseModel):
+    """Represents bulk group hiscores metrics."""
+
+    skills: t.Dict[enums.Metric, BulkGroupHiscoresSkillItem]
+    """A mapping of skill keys to
+    [`BulkGroupHiscoresSkillItem`][wom.BulkGroupHiscoresSkillItem]
+    values.
+    """
+
+    bosses: t.Dict[enums.Metric, BulkGroupHiscoresBossItem]
+    """A mapping of boss keys to
+    [`BulkGroupHiscoresBossItem`][wom.BulkGroupHiscoresBossItem]
+    values.
+    """
+
+    activities: t.Dict[enums.Metric, BulkGroupHiscoresActivityItem]
+    """A mapping of activity keys to
+    [`BulkGroupHiscoresActivityItem`][wom.BulkGroupHiscoresActivityItem]
+    values.
+    """
+
+    computed: t.Dict[enums.Metric, BulkGroupHiscoresComputedMetricItem]
+    """A mapping of computed metric keys to
+    [`BulkGroupHiscoresComputedMetricItem`][wom.BulkGroupHiscoresComputedMetricItem]
+    values.
+    """
+
+
+class BulkGroupHiscoresData(BaseModel):
+    """Represents bulk group hiscores data."""
+
+    player_id: int
+    """The ID of the player associated with this hiscores data."""
+
+    created_at: datetime
+    """The date this hiscores data was created."""
+
+    imported_at: t.Optional[datetime]
+    """The date this hiscores data was imported."""
+
+    data: BulkGroupHiscoresMetrics
+    """The [`BulkGroupHiscoresMetrics`][wom.BulkGroupHiscoresMetrics]
+    for this hiscores data.
+    """
+
+
+class BulkGroupHiscoresEntry(BaseModel):
+    """Represents a bulk group hiscores entry."""
+
+    player: Player
+    """The [`Player`][wom.Player] responsible for the entry."""
+
+    data: BulkGroupHiscoresData
+    """The [`BulkGroupHiscoresData`][wom.BulkGroupHiscoresData]
+    for this hiscores entry.
+    """
+
+
 class GroupHiscoresEntry(BaseModel):
     """Represents a group hiscores entry."""
 
@@ -213,8 +280,8 @@ class GroupHiscoresEntry(BaseModel):
     """The data for this hiscores entry."""
 
 
-class GroupHiscoresSkillItem(BaseModel, tag="skill"):
-    """Represents a group hiscores item for skills."""
+class BaseGroupHiscoresSkillItem(BaseModel):
+    """Base class used to derive group hiscores items for different metrics."""
 
     rank: int
     """The rank of the hiscore."""
@@ -226,8 +293,19 @@ class GroupHiscoresSkillItem(BaseModel, tag="skill"):
     """The experience in the skill."""
 
 
-class GroupHiscoresBossItem(BaseModel, tag="boss"):
-    """Represents a group hiscores item for bosses."""
+class GroupHiscoresSkillItem(BaseGroupHiscoresSkillItem, tag="skill"):
+    """Represents a group hiscores item for skills."""
+
+
+class BulkGroupHiscoresSkillItem(BaseGroupHiscoresSkillItem):
+    """Represents a bulk group hiscores item for skills."""
+
+    metric: enums.Metric
+    """The metric being measured."""
+
+
+class BaseGroupHiscoresBossItem(BaseModel):
+    """Base class used to derive group hiscores items for different metrics."""
 
     rank: int
     """The rank of the hiscore."""
@@ -236,8 +314,19 @@ class GroupHiscoresBossItem(BaseModel, tag="boss"):
     """The number of boss kills."""
 
 
-class GroupHiscoresActivityItem(BaseModel, tag="activity"):
-    """Represents a group hiscores item for activities."""
+class GroupHiscoresBossItem(BaseGroupHiscoresBossItem, tag="boss"):
+    """Represents a group hiscores item for bosses."""
+
+
+class BulkGroupHiscoresBossItem(BaseGroupHiscoresBossItem):
+    """Represents a bulk group hiscores item for bosses."""
+
+    metric: enums.Metric
+    """The metric being measured."""
+
+
+class BaseGroupHiscoresActivityItem(BaseModel):
+    """Base class used to derive group hiscores items for different metrics."""
 
     rank: int
     """The rank of the hiscore."""
@@ -246,14 +335,36 @@ class GroupHiscoresActivityItem(BaseModel, tag="activity"):
     """The activity score."""
 
 
-class GroupHiscoresComputedMetricItem(BaseModel, tag="computed"):
-    """Represents a group hiscores item for computed metrics."""
+class GroupHiscoresActivityItem(BaseGroupHiscoresActivityItem, tag="activity"):
+    """Represents a group hiscores item for activities."""
+
+
+class BulkGroupHiscoresActivityItem(BaseGroupHiscoresActivityItem):
+    """Represents a bulk group hiscores item for activities."""
+
+    metric: enums.Metric
+    """The metric being measured."""
+
+
+class BaseGroupHiscoresComputedMetricItem(BaseModel):
+    """Base class used to derive group hiscores items for different metrics."""
 
     rank: int
     """The rank of the hiscore."""
 
-    value: int
+    value: float
     """The value of the computed metric."""
+
+
+class GroupHiscoresComputedMetricItem(BaseGroupHiscoresComputedMetricItem, tag="computed"):
+    """Represents a group hiscores item for computed metrics."""
+
+
+class BulkGroupHiscoresComputedMetricItem(BaseGroupHiscoresComputedMetricItem):
+    """Represents a bulk group hiscores item for computed metrics."""
+
+    metric: enums.Metric
+    """The metric being measured."""
 
 
 class MetricLeader(BaseModel):
@@ -341,8 +452,8 @@ class GroupStatistics(BaseModel):
     """
 
 
-class GroupMemberGains(BaseModel):
-    """Represents a leaderboard entry over the given delta."""
+class BaseGains(BaseModel):
+    """Base class used to derive gains in different metrics."""
 
     start_date: datetime
     """The start date of the gains."""
@@ -353,8 +464,19 @@ class GroupMemberGains(BaseModel):
     player: Player
     """The [`Player`][wom.Player] that attained these gains."""
 
+
+class GroupMemberGains(BaseGains):
+    """Represents a group members gains."""
+
     data: Gains
     """The [`Gains`][wom.Gains] for this group member."""
+
+
+class BulkGroupMemberGains(BaseGains):
+    """Represents bulk gains made by a group member."""
+
+    data: t.List[BulkGains]
+    """The [`BulkGains`][wom.BulkGains] for this group member."""
 
 
 class GroupActivity(BaseModel):
