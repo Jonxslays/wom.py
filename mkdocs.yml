@@ -10,7 +10,7 @@ plugins:
         python:
           options:
             members_order: alphabetical
-            docstring_style: google
+            docstring_style: numpy
             show_signature_annotations: true
             separate_signature: true
 

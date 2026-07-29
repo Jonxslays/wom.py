@@ -65,17 +65,6 @@ class GroupService(BaseService):
         """Searches for groups that at least partially match the given
         name.
 
-        Args:
-            name: The group name to search for.
-
-            limit: The pagination limit.
-
-            offset: The pagination offset.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of matching
-                groups.
-
         ??? example
 
             ```py
@@ -87,6 +76,21 @@ class GroupService(BaseService):
 
             await client.groups.search_groups("Some group", limit=3)
             ```
+
+        Parameters
+        ----------
+        name : str, optional
+            The group name to search for.
+        limit : int, optional
+            The pagination limit.
+        offset : int, optional
+            The pagination offset.
+
+        Returns
+        -------
+        Result
+            A result containing the list of matching
+            groups.
         """
         params = self._generate_map(name=name, limit=limit, offset=offset)
         route = routes.SEARCH_GROUPS.compile().with_params(params)
@@ -95,12 +99,6 @@ class GroupService(BaseService):
 
     async def get_details(self, id: int) -> ResultT[models.GroupDetail]:
         """Gets the details for the given group id.
-
-        Args:
-            id: The group ID to get details for.
-
-        Returns:
-            A [`Result`][wom.Result] containing the group details.
 
         ??? example
 
@@ -113,6 +111,16 @@ class GroupService(BaseService):
 
             await client.groups.get_details(1234)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The group ID to get details for.
+
+        Returns
+        -------
+        Result
+            A result containing the group details.
         """
         route = routes.GROUP_DETAILS.compile(id)
         data = await self._http.fetch(route)
@@ -127,24 +135,6 @@ class GroupService(BaseService):
         homeworld: t.Optional[int] = None,
     ) -> ResultT[models.CreatedGroupDetail]:
         """Creates a new group.
-
-        Args:
-            name: The name for the group.
-
-            *members: The optional members to add to the group.
-
-        Keyword Args:
-            clan_chat: The optional clan chat for the group. Defaults to
-                `None`.
-
-            description: The optional group description. Defaults to
-                `None`.
-
-            homeworld: The optional homeworld for the group. Defaults to
-                `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the created group details.
 
         !!! note
 
@@ -170,6 +160,27 @@ class GroupService(BaseService):
                 description="The most epic group."
             )
             ```
+
+        Parameters
+        ----------
+        name : str
+            The name for the group.
+        *members : str or GroupMemberFragment
+            The optional members to add to the group.
+        clan_chat : str, optional
+            The optional clan chat for the group. Defaults to
+            `None`.
+        description : str, optional
+            The optional group description. Defaults to
+            `None`.
+        homeworld : int, optional
+            The optional homeworld for the group. Defaults to
+            `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the created group details.
         """
         payload = self._generate_map(
             name=name,
@@ -196,33 +207,6 @@ class GroupService(BaseService):
         social_links: t.Optional[models.SocialLinks] = None,
     ) -> ResultT[models.GroupDetail]:
         """Edits an existing group.
-
-        Args:
-            id: The ID of the group.
-
-            verification_code: The group verification code.
-
-        Keyword Args:
-            name: The optional new name for the group. Defaults to
-                `None`.
-
-            members: The optional iterable of members to replace the
-                existing group members with. Defaults to `None`.
-
-            clan_chat: The optional new clan chat for the group.
-                Defaults to `None`.
-
-            description: The optional new group description. Defaults to
-                `None`.
-
-            homeworld: The optional new homeworld for the group.
-                Defaults to `None`.
-
-            social_links: The optional new social links for the group.
-                Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the group details.
 
         !!! warning
 
@@ -256,6 +240,36 @@ class GroupService(BaseService):
                 description="Some new description."
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        verification_code : str
+            The group verification code.
+        name : str, optional
+            The optional new name for the group. Defaults to
+            `None`.
+        members : Iterable[str or GroupMemberFragment], optional
+            The optional iterable of members to replace the
+            existing group members with. Defaults to `None`.
+        clan_chat : str, optional
+            The optional new clan chat for the group.
+            Defaults to `None`.
+        description : str, optional
+            The optional new group description. Defaults to
+            `None`.
+        homeworld : int, optional
+            The optional new homeworld for the group.
+            Defaults to `None`.
+        social_links : SocialLinks, optional
+            The optional new social links for the group.
+            Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the group details.
         """
         payload = self._generate_map(
             name=name,
@@ -276,15 +290,6 @@ class GroupService(BaseService):
     ) -> ResultT[models.HttpSuccessResponse]:
         """Deletes an existing group.
 
-        Args:
-            id: The ID of the group.
-
-            verification_code: The group verification code.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
-
         !!! warning
 
             This action is irreversible.
@@ -300,6 +305,19 @@ class GroupService(BaseService):
 
             await client.groups.delete_group(123, "111-111-111")
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        verification_code : str
+            The group verification code.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.DELETE_GROUP.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
@@ -310,17 +328,6 @@ class GroupService(BaseService):
         self, id: int, verification_code: str, *members: t.Union[str, models.GroupMemberFragment]
     ) -> ResultT[models.HttpSuccessResponse]:
         """Adds members to an existing group.
-
-        Args:
-            id: The ID of the group.
-
-            verification_code: The group verification code.
-
-            *members: The members to add to the group.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         !!! note
 
@@ -347,6 +354,21 @@ class GroupService(BaseService):
                 "Psikoi",
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        verification_code : str
+            The group verification code.
+        *members : str or GroupMemberFragment
+            The members to add to the group.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         payload = self._generate_map(
             verificationCode=verification_code,
@@ -361,17 +383,6 @@ class GroupService(BaseService):
         self, id: int, verification_code: str, *members: str
     ) -> ResultT[models.HttpSuccessResponse]:
         """Removes members from an existing group.
-
-        Args:
-            id: The ID of the group.
-
-            verification_code: The group verification code.
-
-            *members: The usernames of members to remove from the group.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         ??? example
 
@@ -389,6 +400,21 @@ class GroupService(BaseService):
                 "Zezima",
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        verification_code : str
+            The group verification code.
+        *members : str
+            The usernames of members to remove from the group.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.REMOVE_MEMBERS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, members=members)
@@ -399,19 +425,6 @@ class GroupService(BaseService):
         self, id: int, verification_code: str, username: str, role: models.GroupRole
     ) -> ResultT[models.GroupMembership]:
         """Changes the role for a member in an existing group.
-
-        Args:
-            id: The ID of the group.
-
-            verification_code: The group verification code.
-
-            username: The username of the player to update.
-
-            role: The players new group role.
-
-        Returns:
-            A [`Result`][wom.Result] containing the players group
-                membership.
 
         ??? example
 
@@ -429,6 +442,23 @@ class GroupService(BaseService):
                 wom.GroupRole.Admiral
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        verification_code : str
+            The group verification code.
+        username : str
+            The username of the player to update.
+        role : GroupRole
+            The players new group role.
+
+        Returns
+        -------
+        Result
+            A result containing the players group
+            membership.
         """
         payload = self._generate_map(
             verificationCode=verification_code, username=username, role=role.value
@@ -442,15 +472,6 @@ class GroupService(BaseService):
         self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
         """Attempts to update all outdated group members.
-
-        Args:
-            id: The ID of the group.
-
-            verification_code: The verification code for the group.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         !!! info
 
@@ -483,6 +504,19 @@ class GroupService(BaseService):
                 123, "111-111-111"
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        verification_code : str
+            The verification code for the group.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.UPDATE_OUTDATED_MEMBERS.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
@@ -493,18 +527,6 @@ class GroupService(BaseService):
         self, id: int, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
     ) -> ResultT[t.List[models.Competition]]:
         """Gets competitions for a given group.
-
-        Args:
-            id: The ID of the group.
-
-        Keyword Args:
-            limit: The optional pagination limit. Defaults to `None`.
-
-            offset: The optional pagination offset. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of
-                competitions.
 
         ??? example
 
@@ -517,6 +539,21 @@ class GroupService(BaseService):
 
             await client.groups.get_competitions(123, limit=10)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        limit : int, optional
+            The optional pagination limit. Defaults to `None`.
+        offset : int, optional
+            The optional pagination offset. Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of
+            competitions.
         """
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_COMPETITIONS.compile(id).with_params(params)
@@ -536,28 +573,6 @@ class GroupService(BaseService):
     ) -> ResultT[t.List[models.GroupMemberGains]]:
         """Gets the gains for a group over a particular time frame.
 
-        Args:
-            id: The ID of the group.
-
-            metric: The metric to filter on.
-
-        Keyword Args:
-            period: The optional period of time to get gains for.
-                Defaults to `None`.
-
-            start_date: The minimum date to get the gains from. Defaults
-                to `None`.
-
-            end_date: The maximum date to get the gains from. Defaults
-                to `None`.
-
-            limit: The optional pagination limit. Defaults to `None`.
-
-            offset: The optional pagination offset. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of group gains.
-
         !!! info
 
             You must pass one of (`period`) or (`start_date` +
@@ -576,6 +591,31 @@ class GroupService(BaseService):
                 123, wom.Metric.Zulrah, period=wom.Period.Week, limit=10
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        metric : Metric
+            The metric to filter on.
+        period : Period, optional
+            The optional period of time to get gains for.
+            Defaults to `None`.
+        start_date : datetime, optional
+            The minimum date to get the gains from. Defaults
+            to `None`.
+        end_date : datetime, optional
+            The maximum date to get the gains from. Defaults
+            to `None`.
+        limit : int, optional
+            The optional pagination limit. Defaults to `None`.
+        offset : int, optional
+            The optional pagination offset. Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of group gains.
         """
         params = self._generate_map(
             limit=limit,
@@ -600,22 +640,6 @@ class GroupService(BaseService):
     ) -> ResultT[t.List[models.BulkGroupMemberGains]]:
         """Gets the bulk gains of all metrics for a group over a particular time frame.
 
-        Args:
-            id: The ID of the group.
-
-        Keyword Args:
-            period: The optional period of time to get gains for.
-                Defaults to `None`.
-
-            start_date: The minimum date to get the gains from. Defaults
-                to `None`.
-
-            end_date: The maximum date to get the gains from. Defaults
-                to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of bulk group gains.
-
         !!! info
 
             You must pass one of (`period`) or (`start_date` +
@@ -634,6 +658,25 @@ class GroupService(BaseService):
                 123, period=wom.Period.Week
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        period : Period, optional
+            The optional period of time to get gains for.
+            Defaults to `None`.
+        start_date : datetime, optional
+            The minimum date to get the gains from. Defaults
+            to `None`.
+        end_date : datetime, optional
+            The maximum date to get the gains from. Defaults
+            to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of bulk group gains.
         """
         params = self._generate_map(
             period=period.value if period else None,
@@ -654,17 +697,6 @@ class GroupService(BaseService):
     ) -> ResultT[t.List[models.Achievement]]:
         """Gets the achievements for the group.
 
-        Args:
-            id: The ID of the group.
-
-        Keyword Args:
-            limit: The optional pagination limit. Defaults to `None`.
-
-            offset: The optional pagination offset. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of achievements.
-
         ??? example
 
             ```py
@@ -676,6 +708,20 @@ class GroupService(BaseService):
 
             await client.groups.get_achievements(123, limit=10)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        limit : int, optional
+            The optional pagination limit. Defaults to `None`.
+        offset : int, optional
+            The optional pagination offset. Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of achievements.
         """
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_ACHIEVEMENTS.compile(id).with_params(params)
@@ -693,22 +739,6 @@ class GroupService(BaseService):
     ) -> ResultT[t.List[models.RecordLeaderboardEntry]]:
         """Gets the records held by players in the group.
 
-        Args:
-            id: The ID of the group.
-
-            metric: The metric to filter on.
-
-            period: The period of time to get records for.
-
-        Keyword Args:
-            limit: The optional pagination limit. Defaults to `None`.
-
-            offset: The optional pagination offset. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of record
-                leaderboard entries.
-
         ??? example
 
             ```py
@@ -722,6 +752,25 @@ class GroupService(BaseService):
                 123, wom.Metric.Zulrah, wom.Period.Day, limit=3
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        metric : Metric
+            The metric to filter on.
+        period : Period
+            The period of time to get records for.
+        limit : int, optional
+            The optional pagination limit. Defaults to `None`.
+        offset : int, optional
+            The optional pagination offset. Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of record
+            leaderboard entries.
         """
         params = self._generate_map(
             limit=limit,
@@ -744,20 +793,6 @@ class GroupService(BaseService):
     ) -> ResultT[t.List[models.GroupHiscoresEntry]]:
         """Gets the hiscores for the group.
 
-        Args:
-            id: The ID of the group.
-
-            metric: The metric to filter on.
-
-        Keyword Args:
-            limit: The optional pagination limit. Defaults to `None`.
-
-            offset: The optional pagination offset. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of hiscores
-                entries.
-
         ??? example
 
             ```py
@@ -771,6 +806,23 @@ class GroupService(BaseService):
                 123, wom.Metric.Runecrafting, limit=10
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        metric : Metric
+            The metric to filter on.
+        limit : int, optional
+            The optional pagination limit. Defaults to `None`.
+        offset : int, optional
+            The optional pagination offset. Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of hiscores
+            entries.
         """
         params = self._generate_map(limit=limit, offset=offset, metric=metric.value)
         route = routes.GROUP_HISCORES.compile(id).with_params(params)
@@ -779,13 +831,6 @@ class GroupService(BaseService):
 
     async def get_bulk_hiscores(self, id: int) -> ResultT[t.List[models.BulkGroupHiscoresEntry]]:
         """Gets the bulk hiscores for the group.
-
-        Args:
-            id: The ID of the group.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of bulk
-                hiscores entries.
 
         ??? example
 
@@ -798,6 +843,17 @@ class GroupService(BaseService):
 
             await client.groups.get_bulk_hiscores(123)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+
+        Returns
+        -------
+        Result
+            A result containing the list of bulk
+            hiscores entries.
         """
         route = routes.GROUP_BULK_HISCORES.compile(id)
         data = await self._http.fetch(route)
@@ -807,17 +863,6 @@ class GroupService(BaseService):
         self, id: int, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None
     ) -> ResultT[t.List[models.NameChange]]:
         """Gets the past name changes for the group.
-
-        Args:
-            id: The ID of the group.
-
-        Keyword Args:
-            limit: The optional pagination limit. Defaults to `None`.
-
-            offset: The optional pagination offset. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list name changes.
 
         ??? example
 
@@ -830,6 +875,20 @@ class GroupService(BaseService):
 
             await client.groups.get_name_changes(123, limit=10)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+        limit : int, optional
+            The optional pagination limit. Defaults to `None`.
+        offset : int, optional
+            The optional pagination offset. Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list name changes.
         """
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_NAME_CHANGES.compile(id).with_params(params)
@@ -838,12 +897,6 @@ class GroupService(BaseService):
 
     async def get_statistics(self, id: int) -> ResultT[models.GroupStatistics]:
         """Gets the statistics for the group.
-
-        Args:
-            id: The ID of the group.
-
-        Returns:
-            A [`Result`][wom.Result] containing the statistics.
 
         ??? example
 
@@ -856,6 +909,16 @@ class GroupService(BaseService):
 
             await client.groups.get_statistics(123)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+
+        Returns
+        -------
+        Result
+            A result containing the statistics.
         """
         route = routes.GROUP_STATISTICS.compile(id)
         data = await self._http.fetch(route)
@@ -870,17 +933,6 @@ class GroupService(BaseService):
     ) -> ResultT[t.List[models.GroupActivity]]:
         """Gets the activity for the group. This is a paginated endpoint.
 
-        Args:
-            id: The ID of the group to fetch activity for.
-
-        Keyword Args:
-            limit: The pagination limit.
-
-            offset: The pagination offset.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of activities.
-
         ??? example
 
             ```py
@@ -892,6 +944,20 @@ class GroupService(BaseService):
 
             await client.groups.get_activity(69, limit=5)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group to fetch activity for.
+        limit : int, optional
+            The pagination limit.
+        offset : int, optional
+            The pagination offset.
+
+        Returns
+        -------
+        Result
+            A result containing the list of activities.
         """
         params = self._generate_map(limit=limit, offset=offset)
         route = routes.GROUP_ACTIVITY.compile(id).with_params(params)
@@ -900,12 +966,6 @@ class GroupService(BaseService):
 
     async def get_members_csv(self, id: int) -> ResultT[str]:
         """Gets members in this group in CSV format.
-
-        Args:
-            id: The ID of the group.
-
-        Returns:
-            A [`Result`][wom.Result] containing the CSV string.
 
         ??? example
 
@@ -918,6 +978,16 @@ class GroupService(BaseService):
 
             result = await client.groups.get_members_csv(123)
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the group.
+
+        Returns
+        -------
+        Result
+            A result containing the CSV string.
         """
         route = routes.GROUP_MEMBERS_CSV.compile(id)
         data = await self._http.fetch(route)

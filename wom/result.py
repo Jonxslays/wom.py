@@ -94,24 +94,32 @@ class Result(t.Generic[T, E], abc.ABC):
     def unwrap(self) -> T:
         """Unwraps the result to produce the value.
 
-        Returns:
+        Returns
+        -------
+        T
             The unwrapped value.
 
-        Raises:
-            UnwrapError: If the result was an [`Err`][wom.Err] and not
-                [`Ok`][wom.Ok].
+        Raises
+        ------
+        UnwrapError
+            If the result was an [`Err`][wom.Err] and not
+            [`Ok`][wom.Ok].
         """
 
     @abc.abstractmethod
     def unwrap_err(self) -> E:
         """Unwraps the result to produce the error.
 
-        Returns:
+        Returns
+        -------
+        E
             The unwrapped error.
 
-        Raises:
-            UnwrapError: If the result was [`Ok`][wom.Ok] and not an
-                [`Err`][wom.Err].
+        Raises
+        ------
+        UnwrapError
+            If the result was [`Ok`][wom.Ok] and not an
+            [`Err`][wom.Err].
         """
 
     @abc.abstractmethod
@@ -122,7 +130,9 @@ class Result(t.Generic[T, E], abc.ABC):
 
         If this result is [`Err`][wom.Err], the "error" property will be set.
 
-        Returns:
+        Returns
+        -------
+        dict[str, Any]
             The requested dictionary.
         """
 
@@ -156,7 +166,9 @@ class Ok(Result[T, E]):
     def unwrap(self) -> T:
         """Unwraps the result to produce the value.
 
-        Returns:
+        Returns
+        -------
+        T
             The unwrapped value.
         """
         return self._value
@@ -164,9 +176,11 @@ class Ok(Result[T, E]):
     def unwrap_err(self) -> E:
         """Always throws an exception for the [`Ok`][wom.Ok] variant.
 
-        Raises:
-            UnwrapError: Because the result was an [`Ok`][wom.Ok]
-                variant.
+        Raises
+        ------
+        UnwrapError
+            Because the result was an [`Ok`][wom.Ok]
+            variant.
         """
         actual = self._value.__class__.__name__
         raise errors.UnwrapError(f"Called unwrap error on a non error value of type {actual!r}")
@@ -174,7 +188,9 @@ class Ok(Result[T, E]):
     def to_dict(self) -> t.Dict[str, t.Any]:
         """Converts the result into a dictionary.
 
-        Returns:
+        Returns
+        -------
+        dict[str, Any]
             The requested dictionary.
         """
         value = msgspec.to_builtins(self._value)
@@ -210,16 +226,20 @@ class Err(Result[T, E]):
     def unwrap(self) -> T:
         """Always throws an exception for the [`Err`][wom.Err] variant.
 
-        Raises:
-            UnwrapError: Because the result was an [`Err`][wom.Err]
-                variant.
+        Raises
+        ------
+        UnwrapError
+            Because the result was an [`Err`][wom.Err]
+            variant.
         """
         raise errors.UnwrapError(f"Called unwrap on an error value - {self._error}")
 
     def unwrap_err(self) -> E:
         """Unwraps the result to produce the error.
 
-        Returns:
+        Returns
+        -------
+        E
             The unwrapped error.
         """
         return self._error
@@ -227,7 +247,9 @@ class Err(Result[T, E]):
     def to_dict(self) -> t.Dict[str, t.Any]:
         """Converts the result into a dictionary.
 
-        Returns:
+        Returns
+        -------
+        dict[str, Any]
             The requested dictionary.
         """
         error = msgspec.to_builtins(self._error)

@@ -36,8 +36,10 @@ class UnwrapError(WomError):
     """Raised when calling [`unwrap()`][wom.Result.unwrap] or
     [`unwrap_err()`][wom.Result.unwrap_err] incorrectly.
 
-    Args:
-        message: The error message.
+    Parameters
+    ----------
+    message : str
+        The error message.
     """
 
     __slots__ = ()

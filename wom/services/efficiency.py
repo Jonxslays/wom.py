@@ -52,28 +52,6 @@ class EfficiencyService(BaseService):
     ) -> ResultT[t.List[models.Player]]:
         """Gets the top global efficiency leaderboard.
 
-        Args:
-            metric: The computed metric to filter on. Defaults to `Ehp`,
-                must be one of `Ehp` or `Ehb` if supplied.
-
-        Keyword Args:
-            player_type: The optional player type to filter on. Defaults
-                to `None`.
-
-            player_build: The optional player build to filter on.
-                Defaults to `None`.
-
-            country: The optional country to filter on. Defaults to
-                `None`.
-
-            both: If `True`, request both ehp and ehb computed metric
-                leaderboards. This will override the `metric` if it was
-                provided. Defaults to `False`.
-
-        Returns:
-            A [`Result`][wom.Result] containing a list of the top
-                players.
-
         ??? example
 
             ```py
@@ -87,6 +65,31 @@ class EfficiencyService(BaseService):
                 player_type=wom.PlayerType.Ironman,
             )
             ```
+
+        Parameters
+        ----------
+        metric : Metric
+            The computed metric to filter on. Defaults to `Ehp`,
+            must be one of `Ehp` or `Ehb` if supplied.
+        player_type : PlayerType, optional
+            The optional player type to filter on. Defaults
+            to `None`.
+        player_build : PlayerBuild, optional
+            The optional player build to filter on.
+            Defaults to `None`.
+        country : Country, optional
+            The optional country to filter on. Defaults to
+            `None`.
+        both : bool
+            If `True`, request both ehp and ehb computed metric
+            leaderboards. This will override the `metric` if it was
+            provided. Defaults to `False`.
+
+        Returns
+        -------
+        Result
+            A result containing a list of the top
+            players.
         """
         params = self._generate_map(
             playerType=player_type.value if player_type else None,

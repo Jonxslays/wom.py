@@ -50,22 +50,6 @@ class NameChangeService(BaseService):
     ) -> ResultT[t.List[models.NameChange]]:
         """Searches for name changes.
 
-        Args:
-            username: The optional username to search for.
-
-        Keyword Args:
-            status: The optional name change status to filter on.
-                Defaults to `None`.
-
-            limit: The optional maximum items to return on this page
-                from the API. Defaults to `None`.
-
-            offset: The optional page offset. Defaults to
-                `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing a list of name changes.
-
         ??? example
 
             ```py
@@ -79,6 +63,25 @@ class NameChangeService(BaseService):
                 "Jonxslays", limit=1
             )
             ```
+
+        Parameters
+        ----------
+        username : str, optional
+            The optional username to search for.
+        status : NameChangeStatus, optional
+            The optional name change status to filter on.
+            Defaults to `None`.
+        limit : int, optional
+            The optional maximum items to return on this page
+            from the API. Defaults to `None`.
+        offset : int, optional
+            The optional page offset. Defaults to
+            `None`.
+
+        Returns
+        -------
+        Result
+            A result containing a list of name changes.
         """
         params = self._generate_map(username=username, status=status, limit=limit, offset=offset)
         route = routes.SEARCH_NAME_CHANGES.compile().with_params(params)
@@ -87,14 +90,6 @@ class NameChangeService(BaseService):
 
     async def submit_name_change(self, old_name: str, new_name: str) -> ResultT[models.NameChange]:
         """Submits a new name change.
-
-        Args:
-            old_name: The old name for the player.
-
-            new_name: The new name for the player.
-
-        Returns:
-            A [`Result`][wom.Result] containing the name change.
 
         ??? example
 
@@ -109,6 +104,18 @@ class NameChangeService(BaseService):
                 "Jonxslays", "I Mahatma I"
             )
             ```
+
+        Parameters
+        ----------
+        old_name : str
+            The old name for the player.
+        new_name : str
+            The new name for the player.
+
+        Returns
+        -------
+        Result
+            A result containing the name change.
         """
         payload = self._generate_map(oldName=old_name, newName=new_name)
         route = routes.SUBMIT_NAME_CHANGE.compile()

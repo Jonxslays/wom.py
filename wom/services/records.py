@@ -52,25 +52,6 @@ class RecordService(BaseService):
     ) -> ResultT[t.List[models.RecordLeaderboardEntry]]:
         """Gets the global record leaderboards.
 
-        Args:
-            metric: The metric to filter on.
-
-            period: The period of time to filter on.
-
-        Keyword Args:
-            player_type: The optional player type to filter on. Defaults
-                to `None`.
-
-            player_build: The optional player build to filter on.
-                Defaults to `None`.
-
-            country: The optional country to filter on. Defaults to
-                `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing a list of record
-                leaderboard entries.
-
         ??? example
 
             ```py
@@ -86,6 +67,28 @@ class RecordService(BaseService):
                 country=wom.Country.Us,
             )
             ```
+
+        Parameters
+        ----------
+        metric : Metric
+            The metric to filter on.
+        period : Period
+            The period of time to filter on.
+        player_type : PlayerType, optional
+            The optional player type to filter on. Defaults
+            to `None`.
+        player_build : PlayerBuild, optional
+            The optional player build to filter on.
+            Defaults to `None`.
+        country : Country, optional
+            The optional country to filter on. Defaults to
+            `None`.
+
+        Returns
+        -------
+        Result
+            A result containing a list of record
+            leaderboard entries.
         """
         params = self._generate_map(
             metric=metric.value,

@@ -62,7 +62,9 @@ class BaseEnum(Enum):
     def at_random(cls: t.Type[T]) -> T:
         """Generates a random variant of this enum.
 
-        Returns:
+        Returns
+        -------
+        T
             The randomly generated enum.
         """
         return random.choice(tuple(cls))
