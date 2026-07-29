@@ -1054,7 +1054,15 @@ that is used to parse incoming network data into Python classes.</p>
 <span class="normal"><a href="#__codelineno-0-72">72</a></span>
 <span class="normal"><a href="#__codelineno-0-73">73</a></span>
 <span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span><span class="w"> </span><span class="nc">Serializer</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#__codelineno-0-81">81</a></span>
+<span class="normal"><a href="#__codelineno-0-82">82</a></span>
+<span class="normal"><a href="#__codelineno-0-83">83</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span><span class="w"> </span><span class="nc">Serializer</span><span class="p">:</span>
 <a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Deserializes raw bytes into wom.py model classes.&quot;&quot;&quot;</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a>
 <a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_decoders&quot;</span><span class="p">,)</span>
@@ -1065,31 +1073,39 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-48" name="__codelineno-0-48"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Decodes the data into the given model type.</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">            data: The JSON payload as bytes.</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">            model_type: The type of model to decode into.</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">            The requested model.</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_decoder</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Decoder</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Lazily initializes decoders as they are requested and caches them.</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">            model_type: The model type this decoder will target.</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">            The requested decoder.</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">decoder</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model_type</span><span class="p">)):</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>            <span class="n">decoder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="p">[</span><span class="n">model_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a>                <span class="n">model_type</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>            <span class="p">)</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>        <span class="k">return</span> <span class="n">decoder</span>  <span class="c1"># type: ignore[return-value]</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        Parameters</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">        ----------</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">        data : bytes</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">            The JSON payload as bytes.</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        model_type : Type[T]</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            The type of model to decode into.</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        Returns</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        -------</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        T</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">            The requested model.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_decoder</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Decoder</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Lazily initializes decoders as they are requested and caches them.</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">        Parameters</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        ----------</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">        model_type : Type[T]</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">            The model type this decoder will target.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">        Returns</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        -------</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">        Decoder[T]</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">            The requested decoder.</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">decoder</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model_type</span><span class="p">)):</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>            <span class="n">decoder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="p">[</span><span class="n">model_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>                <span class="n">model_type</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>            <span class="p">)</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>        <span class="k">return</span> <span class="n">decoder</span>  <span class="c1"># type: ignore[return-value]</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1149,7 +1165,7 @@ that is used to parse incoming network data into Python classes.</p>
           <tr class="doc-section-item">
             <td><code>model_type</code></td>
             <td>
-                  <code><span title="typing.Type">Type</span>[<span title="wom.serializer.T">T</span>]</code>
+                  <code>Type[<span title="wom.serializer.T">T</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1199,18 +1215,26 @@ that is used to parse incoming network data into Python classes.</p>
 <span class="normal"><a href="#__codelineno-0-56">56</a></span>
 <span class="normal"><a href="#__codelineno-0-57">57</a></span>
 <span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decodes the data into the given model type.</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">        data: The JSON payload as bytes.</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        model_type: The type of model to decode into.</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        The requested model.</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_decoder</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    Parameters</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">    ----------</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">    data : bytes</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        The JSON payload as bytes.</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    model_type : Type[T]</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        The type of model to decode into.</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    Returns</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    -------</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    T</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        The requested model.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_decoder</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1247,7 +1271,7 @@ that is used to parse incoming network data into Python classes.</p>
           <tr class="doc-section-item">
             <td><code>model_type</code></td>
             <td>
-                  <code><span title="typing.Type">Type</span>[<span title="wom.serializer.T">T</span>]</code>
+                  <code>Type[<span title="wom.serializer.T">T</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1286,11 +1310,7 @@ that is used to parse incoming network data into Python classes.</p>
 
             <details class="quote">
               <summary>Source code in <code>wom/serializer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
 <span class="normal"><a href="#__codelineno-0-67">67</a></span>
 <span class="normal"><a href="#__codelineno-0-68">68</a></span>
@@ -1300,21 +1320,33 @@ that is used to parse incoming network data into Python classes.</p>
 <span class="normal"><a href="#__codelineno-0-72">72</a></span>
 <span class="normal"><a href="#__codelineno-0-73">73</a></span>
 <span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Decoder</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Lazily initializes decoders as they are requested and caches them.</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">        model_type: The model type this decoder will target.</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">        The requested decoder.</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">decoder</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model_type</span><span class="p">)):</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>        <span class="n">decoder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="p">[</span><span class="n">model_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a>            <span class="n">model_type</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="p">)</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="k">return</span> <span class="n">decoder</span>  <span class="c1"># type: ignore[return-value]</span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#__codelineno-0-81">81</a></span>
+<span class="normal"><a href="#__codelineno-0-82">82</a></span>
+<span class="normal"><a href="#__codelineno-0-83">83</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Decoder</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Lazily initializes decoders as they are requested and caches them.</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    Parameters</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    ----------</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    model_type : Type[T]</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">        The model type this decoder will target.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    Returns</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    -------</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    Decoder[T]</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">        The requested decoder.</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">decoder</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model_type</span><span class="p">)):</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>        <span class="n">decoder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="p">[</span><span class="n">model_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>            <span class="n">model_type</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>        <span class="p">)</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="k">return</span> <span class="n">decoder</span>  <span class="c1"># type: ignore[return-value]</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
