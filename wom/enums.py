@@ -62,7 +62,9 @@ class BaseEnum(Enum):
     def at_random(cls: t.Type[T]) -> T:
         """Generates a random variant of this enum.
 
-        Returns:
+        Returns
+        -------
+        T
             The randomly generated enum.
         """
         return random.choice(tuple(cls))
@@ -164,6 +166,7 @@ class Metric(BaseEnum):
     Kreearra = "kreearra"
     KrilTsutsaroth = "kril_tsutsaroth"
     LunarChests = "lunar_chests"
+    MadAngel = "mad_angel"
     MaggotKing = "maggot_king"
     Mimic = "mimic"
     Nex = "nex"
@@ -298,6 +301,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Kreearra,
         Metric.KrilTsutsaroth,
         Metric.LunarChests,
+        Metric.MadAngel,
         Metric.MaggotKing,
         Metric.Mimic,
         Metric.Nex,

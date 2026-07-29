@@ -48,12 +48,16 @@ class Serializer:
     def decode(self, data: bytes, model_type: t.Type[T]) -> T:
         """Decodes the data into the given model type.
 
-        Args:
-            data: The JSON payload as bytes.
+        Parameters
+        ----------
+        data : bytes
+            The JSON payload as bytes.
+        model_type : Type[T]
+            The type of model to decode into.
 
-            model_type: The type of model to decode into.
-
-        Returns:
+        Returns
+        -------
+        T
             The requested model.
         """
         return self.get_decoder(model_type).decode(data)
@@ -61,10 +65,14 @@ class Serializer:
     def get_decoder(self, model_type: t.Type[T]) -> Decoder[T]:
         """Lazily initializes decoders as they are requested and caches them.
 
-        Args:
-            model_type: The model type this decoder will target.
+        Parameters
+        ----------
+        model_type : Type[T]
+            The model type this decoder will target.
 
-        Returns:
+        Returns
+        -------
+        Decoder[T]
             The requested decoder.
         """
         if not (decoder := self._decoders.get(model_type)):

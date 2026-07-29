@@ -40,11 +40,13 @@ __all__ = ("BaseService",)
 class BaseService(abc.ABC):
     """The base service all API services inherit from.
 
-    Args:
-        http_service: The http service to use for requests.
-
-        serializer: The serializer to use for handling incoming
-            JSON data from the API.
+    Parameters
+    ----------
+    http_service : HttpService
+        The http service to use for requests.
+    serializer : Serializer
+        The serializer to use for handling incoming
+        JSON data from the API.
     """
 
     __slots__ = ("_http", "_serializer")

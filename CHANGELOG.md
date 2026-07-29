@@ -1,3 +1,15 @@
+# v3.2.0 (July 2026)
+
+## Additions
+
+- Add support for `Mad Angel` boss.
+
+## Changes
+
+- Convert to numpy style docstrings.
+
+---
+
 # v3.1.0 (July 2026)
 
 ## Additions

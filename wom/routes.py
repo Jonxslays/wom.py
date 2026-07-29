@@ -33,8 +33,10 @@ __all__ = ("CompiledRoute", "Route")
 class CompiledRoute:
     """A route that has been compiled to include uri variables.
 
-    Args:
-        route: The route to compile.
+    Parameters
+    ----------
+    route : Route
+        The route to compile.
     """
 
     __slots__ = ("_route", "_uri", "_params")
@@ -71,10 +73,14 @@ class CompiledRoute:
     def with_params(self, params: t.Dict[str, t.Any]) -> CompiledRoute:
         """Adds additional query params to this compiled route.
 
-        Args:
-            params: The query params to compile.
+        Parameters
+        ----------
+        params : dict[str, Any]
+            The query params to compile.
 
-        Returns:
+        Returns
+        -------
+        CompiledRoute
             The compiled route for chained calls.
         """
         if params:
@@ -95,10 +101,14 @@ class Route:
     def compile(self, *args: t.Union[str, int]) -> CompiledRoute:
         """Turn this route into a compiled route.
 
-        Args:
-            *args: The arguments to insert into the uri.
+        Parameters
+        ----------
+        *args : str or int
+            The arguments to insert into the uri.
 
-        Returns:
+        Returns
+        -------
+        CompiledRoute
             The compiled route.
         """
         compiled = CompiledRoute(self, self.uri)

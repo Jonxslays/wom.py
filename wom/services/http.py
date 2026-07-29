@@ -40,12 +40,14 @@ T = t.TypeVar("T")
 class HttpService:
     """The HTTP service used to make requests to the WOM API.
 
-    Args:
-        api_key: The optional api key to use.
-
-        user_agent: The optional user agent to use.
-
-        api_base_url: The optional api base url to use.
+    Parameters
+    ----------
+    api_key : str, optional
+        The optional api key to use.
+    user_agent : str, optional
+        The optional user agent to use.
+    api_base_url : str, optional
+        The optional api base url to use.
     """
 
     __slots__ = ("_base_url", "_decoder", "_encoder", "_headers", "_method_mapping", "_session")
@@ -127,8 +129,10 @@ class HttpService:
     def set_api_key(self, api_key: str) -> None:
         """Sets the api key used by the http service.
 
-        Args:
-            api_key: The new api key to use.
+        Parameters
+        ----------
+        api_key : str
+            The new api key to use.
         """
         self._headers["x-api-key"] = api_key
 
@@ -140,8 +144,10 @@ class HttpService:
     def set_user_agent(self, user_agent: str) -> None:
         """Sets the user agent used by the http service.
 
-        Args:
-            user_agent: The new user agent to use.
+        Parameters
+        ----------
+        user_agent : str
+            The new user agent to use.
         """
         self._headers["x-user-agent"] = user_agent
         self._headers["User-Agent"] = user_agent
@@ -149,8 +155,10 @@ class HttpService:
     def set_base_url(self, base_url: str) -> None:
         """Sets the api base url used by the http service.
 
-        Args:
-            base_url: The new base url to use.
+        Parameters
+        ----------
+        base_url : str
+            The new base url to use.
         """
         self._base_url = base_url
 
@@ -173,16 +181,20 @@ class HttpService:
     ) -> bytes | models.HttpErrorResponse:
         """Fetches the given route.
 
-        Args:
-            route: The route to make the request to.
+        Parameters
+        ----------
+        route : routes.CompiledRoute
+            The route to make the request to.
+        payload : dict[str, Any], optional
+            The optional payload to send in the request
+            body.
+        allow_http_success : bool
+            Whether or not the caller is planning
+            to return http success.
 
-            payload: The optional payload to send in the request
-                body.
-
-            allow_http_success: Whether or not the caller is planning
-                to return http success.
-
-        Returns:
+        Returns
+        -------
+        bytes | HttpErrorResponse
             The requested bytes or the error response.
         """
         return await self._request(

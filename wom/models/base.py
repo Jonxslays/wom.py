@@ -34,7 +34,9 @@ class BaseModel(msgspec.Struct, rename="camel"):
     def to_dict(self) -> t.Dict[str, t.Any]:
         """Converts this class into a dictionary.
 
-        Returns:
+        Returns
+        -------
+        dict[str, Any]
             The requested dictionary.
         """
         return msgspec.structs.asdict(self)

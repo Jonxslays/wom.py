@@ -54,29 +54,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[t.List[models.Competition]]:
         """Searches for competitions with the given criteria.
 
-        Keyword Args:
-            title: The optional title of the competition. Defaults to
-                `None`.
-
-            type: The optional [`CompetitionType`][wom.CompetitionType]
-                filter. Defaults to `None`
-
-            status: The optional [`CompetitionStatus`]
-                [wom.CompetitionStatus] filter. Defaults to `None`.
-
-            metric: The optional [`Metric`][wom.Metric] filter. Defaults
-                to `None`.
-
-            limit: The maximum number of paginated items to receive.
-                Defaults to `None` (I think thats 20 items?).
-
-            offset: The page offset for requesting multiple pages.
-                Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of competitions
-                or an error.
-
         ??? example
 
             ```py
@@ -94,6 +71,30 @@ class CompetitionService(BaseService):
                 offset=1
             )
             ```
+
+        Parameters
+        ----------
+        title : str, optional
+            The optional title of the competition. Defaults to
+            `None`.
+        type : CompetitionType, optional
+            The optional competition type filter. Defaults to `None`
+        status : CompetitionStatus, optional
+            The optional competition status filter. Defaults to `None`.
+        metric : Metric, optional
+            The optional metric filter. Defaults to `None`.
+        limit : int, optional
+            The maximum number of paginated items to receive.
+            Defaults to `None` (I think thats 20 items?).
+        offset : int, optional
+            The page offset for requesting multiple pages.
+            Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of competitions
+            or an error.
         """
         params = self._generate_map(
             title=title,
@@ -113,17 +114,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.CompetitionDetail]:
         """Gets details for the given competition.
 
-        Args:
-            id: The ID of the competition.
-
-        Keyword Args:
-            metric: The optional [`Metric`][wom.Metric] to view the
-                competition progress in. As if this competition was
-                actually for that metric. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the competition details.
-
         ??? example
 
             ```py
@@ -139,6 +129,20 @@ class CompetitionService(BaseService):
                 123, wom.Metric.Attack
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        metric : Metric, optional
+            The optional metric to view the competition progress in.
+            As if this competition was actually for that metric.
+            Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the competition details.
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
@@ -150,18 +154,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[t.List[models.Top5ProgressResult]]:
         """Gets details for the players with the top 5 progress in the
         competition.
-
-        Args:
-            id: The ID of the competition.
-
-        Keyword Args:
-            metric: The optional [`Metric`][wom.Metric] to view the
-                competition progress in. As if this competition was
-                actually for that metric. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the list of top 5
-                progress players.
 
         ??? example
 
@@ -176,6 +168,21 @@ class CompetitionService(BaseService):
                 123, wom.Metric.Attack
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        metric : Metric, optional
+            The optional metric to view the competition progress in.
+            As if this competition was actually for that metric.
+            Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the list of top 5
+            progress players.
         """
         params = self._generate_map(metric=metric.value if metric else None)
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
@@ -195,34 +202,6 @@ class CompetitionService(BaseService):
         participants: t.Optional[t.List[str]] = None,
     ) -> ResultT[models.CreatedCompetitionDetail]:
         """Creates a new competition.
-
-        Args:
-            title: The title of the competition.
-
-            metric: The [`Metric`][wom.Metric] the competition should
-                measure.
-
-            starts_at: The start date for the competition.
-
-            ends_at: The end date for the competition.
-
-        Keyword Args:
-            group_id: The optional group id to tie to this competition.
-                Defaults to `None`.
-
-            group_verification_code: The optional group verification
-                code. Required if group_id is supplied. Defaults to
-                `None`.
-
-            participants: The optional list of participants to include
-                in the competition. Defaults to `None`.
-
-            teams: The optional teams to include in the competition.
-                Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the newly created
-                competition detail.
 
         !!! info
 
@@ -259,6 +238,36 @@ class CompetitionService(BaseService):
                 group_id=123,
             )
             ```
+
+        Parameters
+        ----------
+        title : str
+            The title of the competition.
+        metric : Metric
+            The metric the competition should measure.
+        starts_at : datetime
+            The start date for the competition.
+        ends_at : datetime
+            The end date for the competition.
+        group_id : int, optional
+            The optional group id to tie to this competition.
+            Defaults to `None`.
+        group_verification_code : str, optional
+            The optional group verification
+            code. Required if group_id is supplied. Defaults to
+            `None`.
+        participants : list[str], optional
+            The optional list of participants to include
+            in the competition. Defaults to `None`.
+        teams : list[Team], optional
+            The optional teams to include in the competition.
+            Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the newly created
+            competition detail.
         """
         payload = self._generate_map(
             title=title,
@@ -289,35 +298,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.Competition]:
         """Edits an existing competition.
 
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-        Keyword Args:
-            title: The optional updated title of the competition.
-                Defaults to `None`.
-
-            metric: The optional new [`Metric`][wom.Metric] the
-                competition should measure. Defaults to `None`.
-
-            starts_at: The optional new start date for the competition.
-                Defaults to `None`.
-
-            ends_at: The optional new end date for the competition.
-                Defaults to `None`.
-
-            participants: The optional list of participants to replace
-                the existing participants with. Defaults to `None`.
-
-            teams: The optional list of teams to replace the existing
-                participants with. Defaults to `None`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the edited competition
-                with participations.
-
         !!! warning
 
             The teams/participants parameters will completely
@@ -338,6 +318,38 @@ class CompetitionService(BaseService):
                 123, "111-111-111", title="New title"
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        verification_code : str
+            The verification code for the
+            competition.
+        title : str, optional
+            The optional updated title of the competition.
+            Defaults to `None`.
+        metric : Metric, optional
+            The optional new metric the competition should measure.
+            Defaults to `None`.
+        starts_at : datetime, optional
+            The optional new start date for the competition.
+            Defaults to `None`.
+        ends_at : datetime, optional
+            The optional new end date for the competition.
+            Defaults to `None`.
+        participants : list[str], optional
+            The optional list of participants to replace
+            the existing participants with. Defaults to `None`.
+        teams : list[Team], optional
+            The optional list of teams to replace the existing
+            participants with. Defaults to `None`.
+
+        Returns
+        -------
+        Result
+            A result containing the edited competition
+            with participations.
         """
         payload = self._generate_map(
             title=title,
@@ -358,16 +370,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.HttpSuccessResponse]:
         """Deletes a competition.
 
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
-
         !!! warning
 
             This action can not be reversed.
@@ -385,6 +387,20 @@ class CompetitionService(BaseService):
                 123, "111-111-111"
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        verification_code : str
+            The verification code for the
+            competition.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.DELETE_COMPETITION.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
@@ -396,18 +412,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.HttpSuccessResponse]:
         """Adds participants to a competition. Only adds valid
         participants, and ignores duplicates.
-
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-            *participants: The participants you would like to add.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         ??? example
 
@@ -422,6 +426,22 @@ class CompetitionService(BaseService):
                 123, "111-111-111", "Jonxslays", "Zezima"
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        verification_code : str
+            The verification code for the
+            competition.
+        *participants : str
+            The participants you would like to add.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.ADD_PARTICIPANTS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
@@ -433,18 +453,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.HttpSuccessResponse]:
         """Removes participants from a competition. Ignores usernames
         that are not competing.
-
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-            *participants: The participants you would like to remove.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         ??? example
 
@@ -460,6 +468,21 @@ class CompetitionService(BaseService):
             )
             ```
 
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        verification_code : str
+            The verification code for the
+            competition.
+        *participants : str
+            The participants you would like to remove.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.REMOVE_PARTICIPANTS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
@@ -470,18 +493,6 @@ class CompetitionService(BaseService):
         self, id: int, verification_code: str, *teams: models.Team
     ) -> ResultT[models.HttpSuccessResponse]:
         """Adds teams to a competition. Ignores duplicates.
-
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-            *teams: The teams you would like to add.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         ??? example
 
@@ -499,6 +510,22 @@ class CompetitionService(BaseService):
                 wom.Team("Team 2", ["Zezima", "the old nite"]),
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        verification_code : str
+            The verification code for the
+            competition.
+        *teams : Team
+            The teams you would like to add.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.ADD_TEAMS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, teams=teams)
@@ -510,18 +537,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[models.HttpSuccessResponse]:
         """Removes teams from a competition. Ignores teams that don't
         exist.
-
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-            *teams: The team names you would like to remove.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         ??? example
 
@@ -536,6 +551,22 @@ class CompetitionService(BaseService):
                 123, "111-111-111", "Team 1", "Team 2"
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        verification_code : str
+            The verification code for the
+            competition.
+        *teams : str
+            The team names you would like to remove.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.REMOVE_TEAMS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, teamNames=teams)
@@ -546,16 +577,6 @@ class CompetitionService(BaseService):
         self, id: int, verification_code: str
     ) -> ResultT[models.HttpSuccessResponse]:
         """Attempts to update all outdated competition participants.
-
-        Args:
-            id: The ID of the competition.
-
-            verification_code: The verification code for the
-                competition.
-
-        Returns:
-            A [`Result`][wom.Result] containing the success response
-                message.
 
         !!! info
 
@@ -592,6 +613,20 @@ class CompetitionService(BaseService):
                 123, "111-111-111"
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        verification_code : str
+            The verification code for the
+            competition.
+
+        Returns
+        -------
+        Result
+            A result containing the success response
+            message.
         """
         route = routes.UPDATE_OUTDATED_PARTICIPANTS.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
@@ -608,23 +643,6 @@ class CompetitionService(BaseService):
     ) -> ResultT[str]:
         """Gets details about the competition in CSV format.
 
-        Args:
-            id: The ID of the competition.
-
-        Keyword Args:
-            metric: The optional [`Metric`][wom.Metric] to view the
-                competition progress in. As if this competition was
-                actually for that metric. Defaults to `None`.
-
-            team_name: The optional team name you would like to get details
-                for. Defaults to `None`.
-
-            table_type: The optional table type formatting to apply.
-                Defaults to `Participants`.
-
-        Returns:
-            A [`Result`][wom.Result] containing the CSV string.
-
         ??? example
 
             ```py
@@ -638,6 +656,26 @@ class CompetitionService(BaseService):
                 123, team_name="Cool team"
             )
             ```
+
+        Parameters
+        ----------
+        id : int
+            The ID of the competition.
+        metric : Metric, optional
+            The optional metric to view the competition progress in.
+            As if this competition was actually for that metric.
+            Defaults to `None`.
+        team_name : str, optional
+            The optional team name you would like to get details
+            for. Defaults to `None`.
+        table_type : CompetitionCSVTableType, optional
+            The optional table type formatting to apply.
+            Defaults to `Participants`.
+
+        Returns
+        -------
+        Result
+            A result containing the CSV string.
         """
         params = self._generate_map(metric=metric, teamName=team_name, table=table_type)
         route = routes.COMPETITION_DETAILS_CSV.compile(id).with_params(params)

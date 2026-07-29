@@ -60,17 +60,6 @@ class Client:
     """An asynchronous client used for interacting with the
     Wise Old Man API.
 
-    Args:
-        api_key: The optional WOM api key to use with requests.
-
-    Keyword Args:
-        user_agent: The optional user agent to use with requests. If none is
-            provided a library default will be used. Defaults to `None`.
-
-        api_base_url: The optional alternate api base url to use for requests.
-            Useful for development against a local version of the WOM api.
-            Defaults to `None`.
-
     !!! note
 
         None of the arguments are required, although user agent is highly
@@ -95,6 +84,18 @@ class Client:
 
         await client.close()  # Close the client
         ```
+
+    Parameters
+    ----------
+    api_key : str, optional
+        The optional WOM api key to use with requests.
+    user_agent : str, optional
+        The optional user agent to use with requests. If none is
+        provided a library default will be used. Defaults to `None`.
+    api_base_url : str, optional
+        The optional alternate api base url to use for requests.
+        Useful for development against a local version of the WOM api.
+        Defaults to `None`.
     """
 
     __slots__ = (
@@ -189,9 +190,6 @@ class Client:
     def set_api_key(self, api_key: str) -> None:
         """Sets the api key used by the http service.
 
-        Args:
-            api_key: The new api key to use.
-
         ??? example
 
             ```py
@@ -201,6 +199,11 @@ class Client:
 
             client.set_api_key("abc123")
             ```
+
+        Parameters
+        ----------
+        api_key : str
+            The new api key to use.
         """
         self._http.set_api_key(api_key)
 
@@ -222,9 +225,6 @@ class Client:
     def set_user_agent(self, user_agent: str) -> None:
         """Sets the user agent used by the http service.
 
-        Args:
-            user_agent: The new user agent to use.
-
         !!! note
 
             To remove a previously set user agent, call this method
@@ -239,14 +239,16 @@ class Client:
 
             client.set_user_agent("@Hi#0000")
             ```
+
+        Parameters
+        ----------
+        user_agent : str
+            The new user agent to use.
         """
         self._http.set_user_agent(user_agent)
 
     def set_api_base_url(self, base_url: str) -> None:
         """Sets the api base url used by the http service.
-
-        Args:
-            base_url: The new base url to use.
 
         ??? example
 
@@ -257,6 +259,11 @@ class Client:
 
             client.set_api_base_url("https://api.wiseoldman.net/v2")
             ```
+
+        Parameters
+        ----------
+        base_url : str
+            The new base url to use.
         """
         self._http.set_base_url(base_url)
 
