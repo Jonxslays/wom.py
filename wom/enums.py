@@ -166,6 +166,7 @@ class Metric(BaseEnum):
     Kreearra = "kreearra"
     KrilTsutsaroth = "kril_tsutsaroth"
     LunarChests = "lunar_chests"
+    MadAngel = "mad_angel"
     MaggotKing = "maggot_king"
     Mimic = "mimic"
     Nex = "nex"
@@ -300,6 +301,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Kreearra,
         Metric.KrilTsutsaroth,
         Metric.LunarChests,
+        Metric.MadAngel,
         Metric.MaggotKing,
         Metric.Mimic,
         Metric.Nex,
