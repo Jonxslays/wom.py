@@ -88,7 +88,7 @@ class DeltaService(BaseService):
         Returns
         -------
         Result
-            A result containing a list of delta 
+            A result containing a list of delta
             leaderboard entries.
         """
         params = self._generate_map(
