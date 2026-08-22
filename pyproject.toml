@@ -1,14 +1,12 @@
-[tool.poetry]
+[project]
 name = "wom.py"
-version = "3.2.0"
+version = "3.2.1"
 description = "An asynchronous wrapper for the Wise Old Man API."
-authors = ["Jonxslays"]
-license = "MIT"
+authors = [{ name = "Jonxslays" }]
+license = { text = "MIT" }
 readme = "README.md"
-homepage = "https://github.com/Jonxslays/wom.py"
-repository = "https://github.com/Jonxslays/wom.py"
-documentation = "https://jonxslays.github.io/wom.py"
-packages = [{ include = "wom" }, { include = "wom/py.typed" }]
+requires-python = ">=3.10"
+dependencies = ["aiohttp>3.8.1", "msgspec>=0.20.0"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO",
@@ -26,30 +24,38 @@ classifiers = [
     "Typing :: Typed",
 ]
 
-[tool.poetry.scripts]
+[project.urls]
+Homepage = "https://github.com/Jonxslays/wom.py"
+Repository = "https://github.com/Jonxslays/wom.py"
+Documentation = "https://jonxslays.github.io/wom.py"
+
+[project.scripts]
 wom = "wom.__main__:_main"
 
-[tool.poetry.dependencies]
-python = ">=3.10"
-aiohttp = ">3.8.1"
-msgspec = ">=0.20.0"
+[dependency-groups]
+dev = [
+    "black==25.1.0",
+    "coverage==7.6.10",
+    "flake8==7.1.1",
+    "griffe==0.47.0",
+    "isort==6.0.0",
+    "mike==2.0.0",
+    "mkdocs-include-markdown-plugin==6.2.2",
+    "mkdocs-material==9.5.50",
+    "mkdocstrings[python]==0.27.0",
+    "mypy==2.1.0",
+    "nox==2024.10.9",
+    "pyright==1.1.393",
+    "pytest==8.3.4",
+    "pytest-asyncio==0.25.3",
+    "pytest-testdox==3.1.0",
+]
 
-[tool.poetry.group.dev.dependencies]
-black = "==25.1.0"
-coverage = "==7.6.10"
-flake8 = "==7.1.1"
-griffe = "==0.47.0"
-isort = "==6.0.0"
-mike = "==2.0.0"
-mkdocs-include-markdown-plugin = "==6.2.2"
-mkdocs-material = "==9.5.50"
-mkdocstrings = { version = "==0.27.0", extras = ["python"] }
-mypy = "==2.1.0"
-nox = "==2024.10.9"
-pyright = "==1.1.393"
-pytest = "==8.3.4"
-pytest-asyncio = "==0.25.3"
-pytest-testdox = "==3.1.0"
+[tool.hatch.build.targets.wheel]
+packages = ["wom"]
+
+[tool.hatch.build.targets.sdist]
+include = ["wom", "README.md", "LICENSE", "CHANGELOG.md"]
 
 [tool.black]
 line-length = 99
@@ -74,5 +80,5 @@ asyncio_mode = "auto"
 ignore = ["F405", "F403"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

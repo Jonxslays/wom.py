@@ -23,6 +23,8 @@
 
 from __future__ import annotations
 
+import typing as t
+
 from .base import BaseModel
 
 __all__ = ("HttpErrorResponse", "HttpSuccessResponse")
@@ -36,6 +38,15 @@ class HttpErrorResponse(BaseModel):
 
     status: int = -1
     """The HTTP status code."""
+
+    code: t.Optional[str] = None
+    """The machine-readable error code returned by the API, if any.
+
+    !!! note
+
+        Not all error responses include a code (for example some rate
+        limit errors), in which case this will be `None`.
+    """
 
 
 class HttpSuccessResponse(BaseModel):

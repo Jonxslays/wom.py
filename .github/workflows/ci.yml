@@ -20,19 +20,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Install python ${{ matrix.python-version }}
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - name: Install uv
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Install poetry
-        uses: Gr1N/setup-poetry@48b0f77c8c1b1b19cb962f0f00dff7b4be8f81ec # v9
+          enable-cache: true
 
       - name: Run tests
         run: |
-          pip install --upgrade pip
-          poetry install -q
-          poetry run nox -s tests
+          uv sync
+          uv run nox -s tests
           mv .coverage .coverage.${{ matrix.os }}.${{ matrix.python-version }}
 
       - name: Upload coverage to action
@@ -56,19 +53,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Install python 3.13
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+      - name: Install uv
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
         with:
           python-version: "3.13"
-
-      - name: Install poetry
-        uses: Gr1N/setup-poetry@48b0f77c8c1b1b19cb962f0f00dff7b4be8f81ec # v9
+          enable-cache: true
 
       - name: Lint and format
         run: |
-          pip install --upgrade pip
-          poetry install -q
-          poetry run nox -s ${{ matrix.session }}
+          uv sync
+          uv run nox -s ${{ matrix.session }}
 
   # upload-coverage:
   #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
@@ -78,7 +72,7 @@ jobs:
 
   #   steps:
   #     - name: Checkout code
-  #       uses: actions/checkout@v3
+  #       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
   #     - name: Set up Python
   #       uses: actions/setup-python@v3

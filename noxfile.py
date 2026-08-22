@@ -22,6 +22,7 @@
 from __future__ import annotations
 
 import functools
+import re
 import typing as t
 from typing import Callable
 from pathlib import Path
@@ -37,17 +38,23 @@ def parse_dependencies() -> t.Dict[str, str]:
     with open("pyproject.toml", "rb") as f:
         data = msgspec.toml.decode(f.read())
 
-    poetry = data["tool"]["poetry"]
-    deps: t.Dict[str, t.Union[str, t.Dict[str, str]]] = {
-        **poetry["dependencies"],
-        **poetry["group"]["dev"]["dependencies"],
-    }
+    project = data["project"]
+    groups = data.get("dependency-groups", {})
 
-    for k, v in deps.items():
-        if isinstance(v, dict):
-            deps[k] = v["version"]
+    requirements: t.List[str] = [
+        *project.get("dependencies", []),
+        *groups.get("dev", []),
+    ]
 
-    return {k.lower(): f"{k}{v}" for k, v in deps.items()}
+    deps: t.Dict[str, str] = {}
+    for requirement in requirements:
+        match = re.match(r"[A-Za-z0-9._-]+", requirement)
+        if match is None:
+            continue
+
+        deps[match.group(0).lower()] = requirement
+
+    return deps
 
 
 DEPS = parse_dependencies()

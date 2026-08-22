@@ -11,25 +11,27 @@ Thanks for your interest in wom.py! Here are some tips for contributing.
 - Code should be [PEP 8](https://www.python.org/dev/peps/pep-0008/) compliant.
 - Use informative commit messages.
 
-## Installing poetry
+## Installing uv
 
-wom.py uses [Poetry](https://python-poetry.org/) for dependency management.
+wom.py uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
-Check out poetry's full
-[installation guide](https://python-poetry.org/docs/#installation)
+Check out uv's full
+[installation guide](https://docs.astral.sh/uv/getting-started/installation/)
 for detailed instructions if you aren't familiar with it.
 
 ## Installing dependencies
 
 1. Create a fork of wom.py, and clone the fork to your local machine.
 2. Change directory into the project dir.
-3. Run `poetry shell` to create a new virtual environment, and activate it.
-4. Run `poetry install` to install dependencies (this includes dev deps).
+3. Run `uv sync` to create a virtual environment and install dependencies
+   (this includes dev deps).
+4. Prefix commands with `uv run` (e.g. `uv run nox`) to run them inside the
+   managed environment, or activate `.venv` directly.
 
 ## Writing code
 
 1. Check out a new branch to commit your work to, e.g. `git checkout -b bugfix/typing-errors`.
-2. Make your changes, then run `nox` and address any issues that arise.
+2. Make your changes, then run `uv run nox` and address any issues that arise.
 3. Commit your work, using an informative commit message.
 4. Open a pull request into the master branch of this repository.
 
