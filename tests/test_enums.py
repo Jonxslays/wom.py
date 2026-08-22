@@ -21,9 +21,20 @@
 
 from __future__ import annotations
 
+import typing as t
 from unittest import mock
 
+import pytest
+
 import wom
+
+
+def _base_enum_subclasses() -> t.List[t.Type[wom.BaseEnum]]:
+    return [
+        obj
+        for obj in (getattr(wom, name) for name in wom.__all__)
+        if isinstance(obj, type) and issubclass(obj, wom.BaseEnum) and obj is not wom.BaseEnum
+    ]
 
 
 def test_str() -> None:
@@ -53,3 +64,25 @@ def test_hash() -> None:
 def test_at_random(choice: mock.MagicMock) -> None:
     _ = wom.Metric.at_random()
     choice.assert_called_once_with(tuple(wom.Metric))
+
+
+def test_all_enums_have_unknown() -> None:
+    for enum in _base_enum_subclasses():
+        assert hasattr(enum, "Unknown"), f"{enum.__name__} is missing an Unknown variant"
+        assert enum.Unknown.value == "unknown"
+
+
+def test_iter_excludes_unknown() -> None:
+    for enum in _base_enum_subclasses():
+        assert enum.Unknown not in tuple(enum)
+
+
+def test_missing_returns_unknown(capsys: pytest.CaptureFixture[str]) -> None:
+    assert wom.Metric("new_fake_metric") is wom.Metric.Unknown
+    assert wom.Period("fake") is wom.Period.Unknown
+    assert wom.Metric.Attack.value == "attack"
+    assert wom.Metric.Unknown != wom.Metric.Zulrah
+
+    captured = capsys.readouterr()
+    assert "not a valid Metric variant" in captured.err
+    assert "not a valid Period variant" in captured.err
