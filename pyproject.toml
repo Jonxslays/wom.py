@@ -1,12 +1,12 @@
 [project]
 name = "wom.py"
-version = "3.2.1"
+version = "3.3.0"
 description = "An asynchronous wrapper for the Wise Old Man API."
 authors = [{ name = "Jonxslays" }]
 license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["aiohttp>3.8.1", "msgspec>=0.20.0"]
+dependencies = ["aiohttp>3.8.1", "msgspec>=0.21.0"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO",

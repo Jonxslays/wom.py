@@ -24,8 +24,10 @@
 from __future__ import annotations
 
 import random
+import sys
 import typing as t
 from enum import Enum
+from enum import EnumMeta
 
 T = t.TypeVar("T", bound="BaseEnum")
 
@@ -40,7 +42,16 @@ __all__ = (
 )
 
 
-class BaseEnum(Enum):
+class BaseEnumMeta(EnumMeta):
+    """Metaclass for [`BaseEnum`][wom.BaseEnum]."""
+
+    def __iter__(cls) -> t.Iterator[t.Any]:
+        """Iterates over the enum's members, skipping the `Unknown` variant."""
+        members: t.Iterable[t.Any] = super().__iter__()
+        return (member for member in members if member.value != "unknown")
+
+
+class BaseEnum(Enum, metaclass=BaseEnumMeta):
     """The base enum all library enums inherit from."""
 
     def __str__(self) -> str:
@@ -59,6 +70,15 @@ class BaseEnum(Enum):
         return hash(self.value)
 
     @classmethod
+    def _missing_(cls, value: object) -> BaseEnum:
+        print(
+            f"{value!r} is not a valid {cls.__name__} variant. "
+            "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
+            file=sys.stderr,
+        )
+        return cls.Unknown  # type: ignore[attr-defined,no-any-return]
+
+    @classmethod
     def at_random(cls: t.Type[T]) -> T:
         """Generates a random variant of this enum.
 
@@ -67,7 +87,7 @@ class BaseEnum(Enum):
         T
             The randomly generated enum.
         """
-        return random.choice(tuple(cls))
+        return t.cast(T, random.choice(tuple(cls)))
 
 
 class Period(BaseEnum):
@@ -78,6 +98,7 @@ class Period(BaseEnum):
     Week = "week"
     Month = "month"
     Year = "year"
+    Unknown = "unknown"
 
 
 class Metric(BaseEnum):
@@ -206,6 +227,9 @@ class Metric(BaseEnum):
     # Computed Metrics
     Ehp = "ehp"
     Ehb = "ehb"
+
+    # Unknown
+    Unknown = "unknown"
 
 
 ComputedMetrics: t.FrozenSet[Metric] = frozenset({Metric.Ehp, Metric.Ehb})

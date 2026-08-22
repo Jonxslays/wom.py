@@ -1,12 +1,18 @@
-# v3.2.1 (Unreleased)
+# v3.3.0 (Unreleased)
 
 ## Additions
 
 - Add optional `HttpErrorResponse.code` field capturing the machine-readable
   error code returned by the WOM API (defaults to `None` when absent).
+- Every `BaseEnum` subclass now defines an `Unknown` variant. Unrecognized
+  values received from the API decode to `Unknown` (via `BaseEnum._missing_`)
+  instead of raising, and a warning is emitted to `stderr`. `Unknown` is skipped
+  when iterating an enum (via `BaseEnumMeta`), so `at_random()` never returns it.
 
 ## Changes
 
+- Bump the minimum `msgspec` version to `>=0.21.0`, which is required to decode
+  enums that use a custom metaclass.
 - Migrate the build and dependency management from Poetry to
   [uv](https://docs.astral.sh/uv/) (`pyproject.toml` moved to PEP 621 with the
   hatchling backend, and CI/release workflows now use uv). No changes to the
