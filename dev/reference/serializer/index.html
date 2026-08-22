@@ -1063,15 +1063,15 @@ that is used to parse incoming network data into Python classes.</p>
 <span class="normal"><a href="#__codelineno-0-81">81</a></span>
 <span class="normal"><a href="#__codelineno-0-82">82</a></span>
 <span class="normal"><a href="#__codelineno-0-83">83</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="k">class</span><span class="w"> </span><span class="nc">Serializer</span><span class="p">:</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Deserializes raw bytes into wom.py model classes.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="w">    </span><span class="sd">"""Deserializes raw bytes into wom.py model classes."""</span>
 <a id="__codelineno-0-42" name="__codelineno-0-42"></a>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_decoders&quot;</span><span class="p">,)</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"_decoders"</span><span class="p">,)</span>
 <a id="__codelineno-0-44" name="__codelineno-0-44"></a>
 <a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="p">:</span> <span class="n">DecodersT</span> <span class="o">=</span> <span class="p">{}</span>
 <a id="__codelineno-0-47" name="__codelineno-0-47"></a>
 <a id="__codelineno-0-48" name="__codelineno-0-48"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Decodes the data into the given model type.</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">        </span><span class="sd">"""Decodes the data into the given model type.</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>
 <a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        Parameters</span>
 <a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">        ----------</span>
@@ -1084,11 +1084,11 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        -------</span>
 <a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        T</span>
 <a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">            The requested model.</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">        """</span>
 <a id="__codelineno-0-63" name="__codelineno-0-63"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_decoder</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <a id="__codelineno-0-64" name="__codelineno-0-64"></a>
 <a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Decoder</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Lazily initializes decoders as they are requested and caches them.</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">        </span><span class="sd">"""Lazily initializes decoders as they are requested and caches them.</span>
 <a id="__codelineno-0-67" name="__codelineno-0-67"></a>
 <a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">        Parameters</span>
 <a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">        ----------</span>
@@ -1099,7 +1099,7 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        -------</span>
 <a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">        Decoder[T]</span>
 <a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">            The requested decoder.</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        """</span>
 <a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">decoder</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model_type</span><span class="p">)):</span>
 <a id="__codelineno-0-79" name="__codelineno-0-79"></a>            <span class="n">decoder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="p">[</span><span class="n">model_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
 <a id="__codelineno-0-80" name="__codelineno-0-80"></a>                <span class="n">model_type</span>
@@ -1220,7 +1220,7 @@ that is used to parse incoming network data into Python classes.</p>
 <span class="normal"><a href="#__codelineno-0-61">61</a></span>
 <span class="normal"><a href="#__codelineno-0-62">62</a></span>
 <span class="normal"><a href="#__codelineno-0-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decodes the data into the given model type.</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="w">    </span><span class="sd">"""Decodes the data into the given model type.</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>
 <a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    Parameters</span>
 <a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">    ----------</span>
@@ -1233,7 +1233,7 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    -------</span>
 <a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    T</span>
 <a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">        The requested model.</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">    """</span>
 <a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_decoder</span><span class="p">(</span><span class="n">model_type</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1329,7 +1329,7 @@ that is used to parse incoming network data into Python classes.</p>
 <span class="normal"><a href="#__codelineno-0-81">81</a></span>
 <span class="normal"><a href="#__codelineno-0-82">82</a></span>
 <span class="normal"><a href="#__codelineno-0-83">83</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_decoder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Decoder</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Lazily initializes decoders as they are requested and caches them.</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">    </span><span class="sd">"""Lazily initializes decoders as they are requested and caches them.</span>
 <a id="__codelineno-0-67" name="__codelineno-0-67"></a>
 <a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    Parameters</span>
 <a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    ----------</span>
@@ -1340,7 +1340,7 @@ that is used to parse incoming network data into Python classes.</p>
 <a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    -------</span>
 <a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    Decoder[T]</span>
 <a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">        The requested decoder.</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    """</span>
 <a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">decoder</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">model_type</span><span class="p">)):</span>
 <a id="__codelineno-0-79" name="__codelineno-0-79"></a>        <span class="n">decoder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decoders</span><span class="p">[</span><span class="n">model_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">Decoder</span><span class="p">(</span>  <span class="c1"># pyright: ignore[reportArgumentType]</span>
 <a id="__codelineno-0-80" name="__codelineno-0-80"></a>            <span class="n">model_type</span>

@@ -1289,7 +1289,7 @@ all <a class="autorefs autorefs-internal" href="../client/#wom.client.Client"><c
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">update_player</span><span class="p">(</span><span class="s2">&quot;Jonxslays&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">update_player</span><span class="p">(</span><span class="s2">"Jonxslays"</span><span class="p">)</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">:</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">unwrap</span><span class="p">())</span>
@@ -1303,7 +1303,7 @@ all <a class="autorefs autorefs-internal" href="../client/#wom.client.Client"><c
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">update_player</span><span class="p">(</span><span class="s2">&quot;eeeeeeeeeeeee&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">update_player</span><span class="p">(</span><span class="s2">"eeeeeeeeeeeee"</span><span class="p">)</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">unwrap</span><span class="p">())</span> <span class="c1"># &lt;-- Exception raised</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Raises UnwrapError because the username was too long</span>
@@ -1405,14 +1405,14 @@ instantiate it yourself.</p>
 <span class="normal"><a href="#__codelineno-0-255">255</a></span>
 <span class="normal"><a href="#__codelineno-0-256">256</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-200" name="__codelineno-0-200"></a><span class="nd">@t</span><span class="o">.</span><span class="n">final</span>
 <a id="__codelineno-0-201" name="__codelineno-0-201"></a><span class="k">class</span><span class="w"> </span><span class="nc">Err</span><span class="p">(</span><span class="n">Result</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">]):</span>
-<a id="__codelineno-0-202" name="__codelineno-0-202"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Err`][wom.Err] variant of a [`Result`][wom.Result].</span>
+<a id="__codelineno-0-202" name="__codelineno-0-202"></a><span class="w">    </span><span class="sd">"""The [`Err`][wom.Err] variant of a [`Result`][wom.Result].</span>
 <a id="__codelineno-0-203" name="__codelineno-0-203"></a>
 <a id="__codelineno-0-204" name="__codelineno-0-204"></a><span class="sd">    !!! info</span>
 <a id="__codelineno-0-205" name="__codelineno-0-205"></a>
 <a id="__codelineno-0-206" name="__codelineno-0-206"></a><span class="sd">        You will receive instances of this class as a result of</span>
 <a id="__codelineno-0-207" name="__codelineno-0-207"></a><span class="sd">        calling [`Client`][wom.Client] methods, and should not have to</span>
 <a id="__codelineno-0-208" name="__codelineno-0-208"></a><span class="sd">        instantiate it yourself.</span>
-<a id="__codelineno-0-209" name="__codelineno-0-209"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-209" name="__codelineno-0-209"></a><span class="sd">    """</span>
 <a id="__codelineno-0-210" name="__codelineno-0-210"></a>
 <a id="__codelineno-0-211" name="__codelineno-0-211"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 <a id="__codelineno-0-212" name="__codelineno-0-212"></a>
@@ -1421,45 +1421,45 @@ instantiate it yourself.</p>
 <a id="__codelineno-0-215" name="__codelineno-0-215"></a>
 <a id="__codelineno-0-216" name="__codelineno-0-216"></a>    <span class="nd">@property</span>
 <a id="__codelineno-0-217" name="__codelineno-0-217"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Always returns `False` for the [`Err`][wom.Err] variant.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="w">        </span><span class="sd">"""Always returns `False` for the [`Err`][wom.Err] variant."""</span>
 <a id="__codelineno-0-219" name="__codelineno-0-219"></a>        <span class="k">return</span> <span class="kc">False</span>
 <a id="__codelineno-0-220" name="__codelineno-0-220"></a>
 <a id="__codelineno-0-221" name="__codelineno-0-221"></a>    <span class="nd">@property</span>
 <a id="__codelineno-0-222" name="__codelineno-0-222"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-223" name="__codelineno-0-223"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Always returns `True` for the [`Err`][wom.Err] variant.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-223" name="__codelineno-0-223"></a><span class="w">        </span><span class="sd">"""Always returns `True` for the [`Err`][wom.Err] variant."""</span>
 <a id="__codelineno-0-224" name="__codelineno-0-224"></a>        <span class="k">return</span> <span class="kc">True</span>
 <a id="__codelineno-0-225" name="__codelineno-0-225"></a>
 <a id="__codelineno-0-226" name="__codelineno-0-226"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unwrap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-227" name="__codelineno-0-227"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Always throws an exception for the [`Err`][wom.Err] variant.</span>
+<a id="__codelineno-0-227" name="__codelineno-0-227"></a><span class="w">        </span><span class="sd">"""Always throws an exception for the [`Err`][wom.Err] variant.</span>
 <a id="__codelineno-0-228" name="__codelineno-0-228"></a>
 <a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">        Raises</span>
 <a id="__codelineno-0-230" name="__codelineno-0-230"></a><span class="sd">        ------</span>
 <a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">        UnwrapError</span>
 <a id="__codelineno-0-232" name="__codelineno-0-232"></a><span class="sd">            Because the result was an [`Err`][wom.Err]</span>
 <a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">            variant.</span>
-<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-235" name="__codelineno-0-235"></a>        <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Called unwrap on an error value - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">        """</span>
+<a id="__codelineno-0-235" name="__codelineno-0-235"></a>        <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Called unwrap on an error value - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-0-236" name="__codelineno-0-236"></a>
 <a id="__codelineno-0-237" name="__codelineno-0-237"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unwrap_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span><span class="p">:</span>
-<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the error.</span>
+<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="w">        </span><span class="sd">"""Unwraps the result to produce the error.</span>
 <a id="__codelineno-0-239" name="__codelineno-0-239"></a>
 <a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">        Returns</span>
 <a id="__codelineno-0-241" name="__codelineno-0-241"></a><span class="sd">        -------</span>
 <a id="__codelineno-0-242" name="__codelineno-0-242"></a><span class="sd">        E</span>
 <a id="__codelineno-0-243" name="__codelineno-0-243"></a><span class="sd">            The unwrapped error.</span>
-<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">        """</span>
 <a id="__codelineno-0-245" name="__codelineno-0-245"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span>
 <a id="__codelineno-0-246" name="__codelineno-0-246"></a>
 <a id="__codelineno-0-247" name="__codelineno-0-247"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
-<a id="__codelineno-0-248" name="__codelineno-0-248"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Converts the result into a dictionary.</span>
+<a id="__codelineno-0-248" name="__codelineno-0-248"></a><span class="w">        </span><span class="sd">"""Converts the result into a dictionary.</span>
 <a id="__codelineno-0-249" name="__codelineno-0-249"></a>
 <a id="__codelineno-0-250" name="__codelineno-0-250"></a><span class="sd">        Returns</span>
 <a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">        -------</span>
 <a id="__codelineno-0-252" name="__codelineno-0-252"></a><span class="sd">        dict[str, Any]</span>
 <a id="__codelineno-0-253" name="__codelineno-0-253"></a><span class="sd">            The requested dictionary.</span>
-<a id="__codelineno-0-254" name="__codelineno-0-254"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-254" name="__codelineno-0-254"></a><span class="sd">        """</span>
 <a id="__codelineno-0-255" name="__codelineno-0-255"></a>        <span class="n">error</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">to_builtins</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="p">)</span>
-<a id="__codelineno-0-256" name="__codelineno-0-256"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="n">error</span><span class="p">}</span>
+<a id="__codelineno-0-256" name="__codelineno-0-256"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="n">error</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1571,15 +1571,15 @@ instantiate it yourself.</p>
 <span class="normal"><a href="#__codelineno-0-254">254</a></span>
 <span class="normal"><a href="#__codelineno-0-255">255</a></span>
 <span class="normal"><a href="#__codelineno-0-256">256</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-247" name="__codelineno-0-247"></a><span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
-<a id="__codelineno-0-248" name="__codelineno-0-248"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts the result into a dictionary.</span>
+<a id="__codelineno-0-248" name="__codelineno-0-248"></a><span class="w">    </span><span class="sd">"""Converts the result into a dictionary.</span>
 <a id="__codelineno-0-249" name="__codelineno-0-249"></a>
 <a id="__codelineno-0-250" name="__codelineno-0-250"></a><span class="sd">    Returns</span>
 <a id="__codelineno-0-251" name="__codelineno-0-251"></a><span class="sd">    -------</span>
 <a id="__codelineno-0-252" name="__codelineno-0-252"></a><span class="sd">    dict[str, Any]</span>
 <a id="__codelineno-0-253" name="__codelineno-0-253"></a><span class="sd">        The requested dictionary.</span>
-<a id="__codelineno-0-254" name="__codelineno-0-254"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-254" name="__codelineno-0-254"></a><span class="sd">    """</span>
 <a id="__codelineno-0-255" name="__codelineno-0-255"></a>    <span class="n">error</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">to_builtins</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="p">)</span>
-<a id="__codelineno-0-256" name="__codelineno-0-256"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="n">error</span><span class="p">}</span>
+<a id="__codelineno-0-256" name="__codelineno-0-256"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="n">error</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1637,15 +1637,15 @@ variant.</p>
 <span class="normal"><a href="#__codelineno-0-233">233</a></span>
 <span class="normal"><a href="#__codelineno-0-234">234</a></span>
 <span class="normal"><a href="#__codelineno-0-235">235</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="k">def</span><span class="w"> </span><span class="nf">unwrap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-227" name="__codelineno-0-227"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Always throws an exception for the [`Err`][wom.Err] variant.</span>
+<a id="__codelineno-0-227" name="__codelineno-0-227"></a><span class="w">    </span><span class="sd">"""Always throws an exception for the [`Err`][wom.Err] variant.</span>
 <a id="__codelineno-0-228" name="__codelineno-0-228"></a>
 <a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">    Raises</span>
 <a id="__codelineno-0-230" name="__codelineno-0-230"></a><span class="sd">    ------</span>
 <a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">    UnwrapError</span>
 <a id="__codelineno-0-232" name="__codelineno-0-232"></a><span class="sd">        Because the result was an [`Err`][wom.Err]</span>
 <a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="sd">        variant.</span>
-<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-235" name="__codelineno-0-235"></a>    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Called unwrap on an error value - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="sd">    """</span>
+<a id="__codelineno-0-235" name="__codelineno-0-235"></a>    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Called unwrap on an error value - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1701,13 +1701,13 @@ variant.</p>
 <span class="normal"><a href="#__codelineno-0-243">243</a></span>
 <span class="normal"><a href="#__codelineno-0-244">244</a></span>
 <span class="normal"><a href="#__codelineno-0-245">245</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-237" name="__codelineno-0-237"></a><span class="k">def</span><span class="w"> </span><span class="nf">unwrap_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span><span class="p">:</span>
-<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the error.</span>
+<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="w">    </span><span class="sd">"""Unwraps the result to produce the error.</span>
 <a id="__codelineno-0-239" name="__codelineno-0-239"></a>
 <a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">    Returns</span>
 <a id="__codelineno-0-241" name="__codelineno-0-241"></a><span class="sd">    -------</span>
 <a id="__codelineno-0-242" name="__codelineno-0-242"></a><span class="sd">    E</span>
 <a id="__codelineno-0-243" name="__codelineno-0-243"></a><span class="sd">        The unwrapped error.</span>
-<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244"></a><span class="sd">    """</span>
 <a id="__codelineno-0-245" name="__codelineno-0-245"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1808,14 +1808,14 @@ instantiate it yourself.</p>
 <span class="normal"><a href="#__codelineno-0-196">196</a></span>
 <span class="normal"><a href="#__codelineno-0-197">197</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-140" name="__codelineno-0-140"></a><span class="nd">@t</span><span class="o">.</span><span class="n">final</span>
 <a id="__codelineno-0-141" name="__codelineno-0-141"></a><span class="k">class</span><span class="w"> </span><span class="nc">Ok</span><span class="p">(</span><span class="n">Result</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">]):</span>
-<a id="__codelineno-0-142" name="__codelineno-0-142"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;The [`Ok`][wom.Ok] variant of a [`Result`][wom.Result].</span>
+<a id="__codelineno-0-142" name="__codelineno-0-142"></a><span class="w">    </span><span class="sd">"""The [`Ok`][wom.Ok] variant of a [`Result`][wom.Result].</span>
 <a id="__codelineno-0-143" name="__codelineno-0-143"></a>
 <a id="__codelineno-0-144" name="__codelineno-0-144"></a><span class="sd">    !!! info</span>
 <a id="__codelineno-0-145" name="__codelineno-0-145"></a>
 <a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="sd">        You will receive instances of this class as a result of</span>
 <a id="__codelineno-0-147" name="__codelineno-0-147"></a><span class="sd">        calling [`Client`][wom.Client] methods, and should not have to</span>
 <a id="__codelineno-0-148" name="__codelineno-0-148"></a><span class="sd">        instantiate it yourself.</span>
-<a id="__codelineno-0-149" name="__codelineno-0-149"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-149" name="__codelineno-0-149"></a><span class="sd">    """</span>
 <a id="__codelineno-0-150" name="__codelineno-0-150"></a>
 <a id="__codelineno-0-151" name="__codelineno-0-151"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">()</span>
 <a id="__codelineno-0-152" name="__codelineno-0-152"></a>
@@ -1824,46 +1824,46 @@ instantiate it yourself.</p>
 <a id="__codelineno-0-155" name="__codelineno-0-155"></a>
 <a id="__codelineno-0-156" name="__codelineno-0-156"></a>    <span class="nd">@property</span>
 <a id="__codelineno-0-157" name="__codelineno-0-157"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-158" name="__codelineno-0-158"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Always returns `True` for the [`Ok`][wom.Ok] variant.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-158" name="__codelineno-0-158"></a><span class="w">        </span><span class="sd">"""Always returns `True` for the [`Ok`][wom.Ok] variant."""</span>
 <a id="__codelineno-0-159" name="__codelineno-0-159"></a>        <span class="k">return</span> <span class="kc">True</span>
 <a id="__codelineno-0-160" name="__codelineno-0-160"></a>
 <a id="__codelineno-0-161" name="__codelineno-0-161"></a>    <span class="nd">@property</span>
 <a id="__codelineno-0-162" name="__codelineno-0-162"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-163" name="__codelineno-0-163"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Always returns `False` for the [`Ok`][wom.Ok] variant.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-163" name="__codelineno-0-163"></a><span class="w">        </span><span class="sd">"""Always returns `False` for the [`Ok`][wom.Ok] variant."""</span>
 <a id="__codelineno-0-164" name="__codelineno-0-164"></a>        <span class="k">return</span> <span class="kc">False</span>
 <a id="__codelineno-0-165" name="__codelineno-0-165"></a>
 <a id="__codelineno-0-166" name="__codelineno-0-166"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unwrap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-167" name="__codelineno-0-167"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the value.</span>
+<a id="__codelineno-0-167" name="__codelineno-0-167"></a><span class="w">        </span><span class="sd">"""Unwraps the result to produce the value.</span>
 <a id="__codelineno-0-168" name="__codelineno-0-168"></a>
 <a id="__codelineno-0-169" name="__codelineno-0-169"></a><span class="sd">        Returns</span>
 <a id="__codelineno-0-170" name="__codelineno-0-170"></a><span class="sd">        -------</span>
 <a id="__codelineno-0-171" name="__codelineno-0-171"></a><span class="sd">        T</span>
 <a id="__codelineno-0-172" name="__codelineno-0-172"></a><span class="sd">            The unwrapped value.</span>
-<a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="sd">        """</span>
 <a id="__codelineno-0-174" name="__codelineno-0-174"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
 <a id="__codelineno-0-175" name="__codelineno-0-175"></a>
 <a id="__codelineno-0-176" name="__codelineno-0-176"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unwrap_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span><span class="p">:</span>
-<a id="__codelineno-0-177" name="__codelineno-0-177"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Always throws an exception for the [`Ok`][wom.Ok] variant.</span>
+<a id="__codelineno-0-177" name="__codelineno-0-177"></a><span class="w">        </span><span class="sd">"""Always throws an exception for the [`Ok`][wom.Ok] variant.</span>
 <a id="__codelineno-0-178" name="__codelineno-0-178"></a>
 <a id="__codelineno-0-179" name="__codelineno-0-179"></a><span class="sd">        Raises</span>
 <a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="sd">        ------</span>
 <a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="sd">        UnwrapError</span>
 <a id="__codelineno-0-182" name="__codelineno-0-182"></a><span class="sd">            Because the result was an [`Ok`][wom.Ok]</span>
 <a id="__codelineno-0-183" name="__codelineno-0-183"></a><span class="sd">            variant.</span>
-<a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="sd">        """</span>
 <a id="__codelineno-0-185" name="__codelineno-0-185"></a>        <span class="n">actual</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-<a id="__codelineno-0-186" name="__codelineno-0-186"></a>        <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Called unwrap error on a non error value of type </span><span class="si">{</span><span class="n">actual</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a>        <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Called unwrap error on a non error value of type </span><span class="si">{</span><span class="n">actual</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-0-187" name="__codelineno-0-187"></a>
 <a id="__codelineno-0-188" name="__codelineno-0-188"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
-<a id="__codelineno-0-189" name="__codelineno-0-189"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Converts the result into a dictionary.</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a><span class="w">        </span><span class="sd">"""Converts the result into a dictionary.</span>
 <a id="__codelineno-0-190" name="__codelineno-0-190"></a>
 <a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="sd">        Returns</span>
 <a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="sd">        -------</span>
 <a id="__codelineno-0-193" name="__codelineno-0-193"></a><span class="sd">        dict[str, Any]</span>
 <a id="__codelineno-0-194" name="__codelineno-0-194"></a><span class="sd">            The requested dictionary.</span>
-<a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="sd">        """</span>
 <a id="__codelineno-0-196" name="__codelineno-0-196"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">to_builtins</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">)</span>
-<a id="__codelineno-0-197" name="__codelineno-0-197"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<a id="__codelineno-0-197" name="__codelineno-0-197"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1975,15 +1975,15 @@ instantiate it yourself.</p>
 <span class="normal"><a href="#__codelineno-0-195">195</a></span>
 <span class="normal"><a href="#__codelineno-0-196">196</a></span>
 <span class="normal"><a href="#__codelineno-0-197">197</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-188" name="__codelineno-0-188"></a><span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
-<a id="__codelineno-0-189" name="__codelineno-0-189"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts the result into a dictionary.</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a><span class="w">    </span><span class="sd">"""Converts the result into a dictionary.</span>
 <a id="__codelineno-0-190" name="__codelineno-0-190"></a>
 <a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="sd">    Returns</span>
 <a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="sd">    -------</span>
 <a id="__codelineno-0-193" name="__codelineno-0-193"></a><span class="sd">    dict[str, Any]</span>
 <a id="__codelineno-0-194" name="__codelineno-0-194"></a><span class="sd">        The requested dictionary.</span>
-<a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="sd">    """</span>
 <a id="__codelineno-0-196" name="__codelineno-0-196"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">msgspec</span><span class="o">.</span><span class="n">to_builtins</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="p">)</span>
-<a id="__codelineno-0-197" name="__codelineno-0-197"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<a id="__codelineno-0-197" name="__codelineno-0-197"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> <span class="s2">"error"</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2039,13 +2039,13 @@ instantiate it yourself.</p>
 <span class="normal"><a href="#__codelineno-0-172">172</a></span>
 <span class="normal"><a href="#__codelineno-0-173">173</a></span>
 <span class="normal"><a href="#__codelineno-0-174">174</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-166" name="__codelineno-0-166"></a><span class="k">def</span><span class="w"> </span><span class="nf">unwrap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-167" name="__codelineno-0-167"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the value.</span>
+<a id="__codelineno-0-167" name="__codelineno-0-167"></a><span class="w">    </span><span class="sd">"""Unwraps the result to produce the value.</span>
 <a id="__codelineno-0-168" name="__codelineno-0-168"></a>
 <a id="__codelineno-0-169" name="__codelineno-0-169"></a><span class="sd">    Returns</span>
 <a id="__codelineno-0-170" name="__codelineno-0-170"></a><span class="sd">    -------</span>
 <a id="__codelineno-0-171" name="__codelineno-0-171"></a><span class="sd">    T</span>
 <a id="__codelineno-0-172" name="__codelineno-0-172"></a><span class="sd">        The unwrapped value.</span>
-<a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="sd">    """</span>
 <a id="__codelineno-0-174" name="__codelineno-0-174"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -2105,16 +2105,16 @@ variant.</p>
 <span class="normal"><a href="#__codelineno-0-184">184</a></span>
 <span class="normal"><a href="#__codelineno-0-185">185</a></span>
 <span class="normal"><a href="#__codelineno-0-186">186</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-176" name="__codelineno-0-176"></a><span class="k">def</span><span class="w"> </span><span class="nf">unwrap_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span><span class="p">:</span>
-<a id="__codelineno-0-177" name="__codelineno-0-177"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Always throws an exception for the [`Ok`][wom.Ok] variant.</span>
+<a id="__codelineno-0-177" name="__codelineno-0-177"></a><span class="w">    </span><span class="sd">"""Always throws an exception for the [`Ok`][wom.Ok] variant.</span>
 <a id="__codelineno-0-178" name="__codelineno-0-178"></a>
 <a id="__codelineno-0-179" name="__codelineno-0-179"></a><span class="sd">    Raises</span>
 <a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="sd">    ------</span>
 <a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="sd">    UnwrapError</span>
 <a id="__codelineno-0-182" name="__codelineno-0-182"></a><span class="sd">        Because the result was an [`Ok`][wom.Ok]</span>
 <a id="__codelineno-0-183" name="__codelineno-0-183"></a><span class="sd">        variant.</span>
-<a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="sd">    """</span>
 <a id="__codelineno-0-185" name="__codelineno-0-185"></a>    <span class="n">actual</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-<a id="__codelineno-0-186" name="__codelineno-0-186"></a>    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Called unwrap error on a non error value of type </span><span class="si">{</span><span class="n">actual</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a>    <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnwrapError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Called unwrap error on a non error value of type </span><span class="si">{</span><span class="n">actual</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2222,32 +2222,32 @@ variant.</p>
 <span class="normal"><a href="#__codelineno-0-135">135</a></span>
 <span class="normal"><a href="#__codelineno-0-136">136</a></span>
 <span class="normal"><a href="#__codelineno-0-137">137</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="k">class</span><span class="w"> </span><span class="nc">Result</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">Generic</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="p">],</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a potential [`Ok`][wom.Ok] or [`Err`][wom.Err] result.</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="w">    </span><span class="sd">"""Represents a potential [`Ok`][wom.Ok] or [`Err`][wom.Err] result.</span>
 <a id="__codelineno-0-71" name="__codelineno-0-71"></a>
 <a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    !!! note</span>
 <a id="__codelineno-0-73" name="__codelineno-0-73"></a>
 <a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        This class cannot be instantiated, only its variants can be.</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    """</span>
 <a id="__codelineno-0-76" name="__codelineno-0-76"></a>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;_error&quot;</span><span class="p">,</span> <span class="s2">&quot;_value&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"_error"</span><span class="p">,</span> <span class="s2">"_value"</span><span class="p">)</span>
 <a id="__codelineno-0-78" name="__codelineno-0-78"></a>
 <a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <a id="__codelineno-0-80" name="__codelineno-0-80"></a>        <span class="n">inner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_ok</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span>  <span class="c1"># type: ignore [attr-defined]</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">inner</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">inner</span><span class="si">}</span><span class="s2">)"</span>
 <a id="__codelineno-0-82" name="__codelineno-0-82"></a>
 <a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="nd">@property</span>
 <a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_ok</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;`True` if this result is the [`Ok`][wom.Ok] variant.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">        </span><span class="sd">"""`True` if this result is the [`Ok`][wom.Ok] variant."""</span>
 <a id="__codelineno-0-87" name="__codelineno-0-87"></a>
 <a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="nd">@property</span>
 <a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;`True` if this result is the [`Err`][wom.Err] variant.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="w">        </span><span class="sd">"""`True` if this result is the [`Err`][wom.Err] variant."""</span>
 <a id="__codelineno-0-92" name="__codelineno-0-92"></a>
 <a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unwrap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the value.</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="w">        </span><span class="sd">"""Unwraps the result to produce the value.</span>
 <a id="__codelineno-0-96" name="__codelineno-0-96"></a>
 <a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">        Returns</span>
 <a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">        -------</span>
@@ -2259,11 +2259,11 @@ variant.</p>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">        UnwrapError</span>
 <a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">            If the result was an [`Err`][wom.Err] and not</span>
 <a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">            [`Ok`][wom.Ok].</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">        """</span>
 <a id="__codelineno-0-108" name="__codelineno-0-108"></a>
 <a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-110" name="__codelineno-0-110"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">unwrap_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span><span class="p">:</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the error.</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="w">        </span><span class="sd">"""Unwraps the result to produce the error.</span>
 <a id="__codelineno-0-112" name="__codelineno-0-112"></a>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">        Returns</span>
 <a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">        -------</span>
@@ -2275,21 +2275,21 @@ variant.</p>
 <a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="sd">        UnwrapError</span>
 <a id="__codelineno-0-121" name="__codelineno-0-121"></a><span class="sd">            If the result was [`Ok`][wom.Ok] and not an</span>
 <a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="sd">            [`Err`][wom.Err].</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="sd">        """</span>
 <a id="__codelineno-0-124" name="__codelineno-0-124"></a>
 <a id="__codelineno-0-125" name="__codelineno-0-125"></a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-126" name="__codelineno-0-126"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Converts the result into a dictionary.</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">        </span><span class="sd">"""Converts the result into a dictionary.</span>
 <a id="__codelineno-0-128" name="__codelineno-0-128"></a>
-<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">        If this result is [`Ok`][wom.Ok], the &quot;value&quot; property will be set.</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">        If this result is [`Ok`][wom.Ok], the "value" property will be set.</span>
 <a id="__codelineno-0-130" name="__codelineno-0-130"></a>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="sd">        If this result is [`Err`][wom.Err], the &quot;error&quot; property will be set.</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="sd">        If this result is [`Err`][wom.Err], the "error" property will be set.</span>
 <a id="__codelineno-0-132" name="__codelineno-0-132"></a>
 <a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="sd">        Returns</span>
 <a id="__codelineno-0-134" name="__codelineno-0-134"></a><span class="sd">        -------</span>
 <a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="sd">        dict[str, Any]</span>
 <a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="sd">            The requested dictionary.</span>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">        """</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -2413,17 +2413,17 @@ variant.</p>
 <span class="normal"><a href="#__codelineno-0-136">136</a></span>
 <span class="normal"><a href="#__codelineno-0-137">137</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-125" name="__codelineno-0-125"></a><span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">Any</span><span class="p">]:</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts the result into a dictionary.</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">    </span><span class="sd">"""Converts the result into a dictionary.</span>
 <a id="__codelineno-0-128" name="__codelineno-0-128"></a>
-<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">    If this result is [`Ok`][wom.Ok], the &quot;value&quot; property will be set.</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">    If this result is [`Ok`][wom.Ok], the "value" property will be set.</span>
 <a id="__codelineno-0-130" name="__codelineno-0-130"></a>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="sd">    If this result is [`Err`][wom.Err], the &quot;error&quot; property will be set.</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="sd">    If this result is [`Err`][wom.Err], the "error" property will be set.</span>
 <a id="__codelineno-0-132" name="__codelineno-0-132"></a>
 <a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="sd">    Returns</span>
 <a id="__codelineno-0-134" name="__codelineno-0-134"></a><span class="sd">    -------</span>
 <a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="sd">    dict[str, Any]</span>
 <a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="sd">        The requested dictionary.</span>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">    """</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2514,7 +2514,7 @@ variant.</p>
 <span class="normal"><a href="#__codelineno-0-106">106</a></span>
 <span class="normal"><a href="#__codelineno-0-107">107</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="k">def</span><span class="w"> </span><span class="nf">unwrap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the value.</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="w">    </span><span class="sd">"""Unwraps the result to produce the value.</span>
 <a id="__codelineno-0-96" name="__codelineno-0-96"></a>
 <a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">    Returns</span>
 <a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">    -------</span>
@@ -2526,7 +2526,7 @@ variant.</p>
 <a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">    UnwrapError</span>
 <a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">        If the result was an [`Err`][wom.Err] and not</span>
 <a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">        [`Ok`][wom.Ok].</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">    """</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2617,7 +2617,7 @@ variant.</p>
 <span class="normal"><a href="#__codelineno-0-122">122</a></span>
 <span class="normal"><a href="#__codelineno-0-123">123</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
 <a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="k">def</span><span class="w"> </span><span class="nf">unwrap_err</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span><span class="p">:</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unwraps the result to produce the error.</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="w">    </span><span class="sd">"""Unwraps the result to produce the error.</span>
 <a id="__codelineno-0-112" name="__codelineno-0-112"></a>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">    Returns</span>
 <a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">    -------</span>
@@ -2629,7 +2629,7 @@ variant.</p>
 <a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="sd">    UnwrapError</span>
 <a id="__codelineno-0-121" name="__codelineno-0-121"></a><span class="sd">        If the result was [`Ok`][wom.Ok] and not an</span>
 <a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="sd">        [`Err`][wom.Err].</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="sd">    """</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
