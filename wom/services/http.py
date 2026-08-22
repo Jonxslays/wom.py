@@ -103,6 +103,7 @@ class HttpService:
             return models.HttpErrorResponse(
                 error.get("message", "An unexpected error occurred while making the request."),
                 response.status,
+                error.get("code"),
             )
 
         return content

@@ -1,3 +1,21 @@
+# v3.2.1 (Unreleased)
+
+## Additions
+
+- Add optional `HttpErrorResponse.code` field capturing the machine-readable
+  error code returned by the WOM API (defaults to `None` when absent).
+
+## Changes
+
+- Migrate the build and dependency management from Poetry to
+  [uv](https://docs.astral.sh/uv/) (`pyproject.toml` moved to PEP 621 with the
+  hatchling backend, and CI/release workflows now use uv). No changes to the
+  published package or its runtime dependencies.
+- Expand the test suite with full coverage for the players, groups, and
+  competitions services and the HTTP service, bringing overall coverage to 100%.
+
+---
+
 # v3.2.0 (July 2026)
 
 ## Additions
