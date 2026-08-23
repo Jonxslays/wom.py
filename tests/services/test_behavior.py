@@ -293,6 +293,63 @@ async def test_get_name_change_details_decodes_nested_data() -> None:
     assert route.uri == "/names/7"
 
 
+async def test_snapshot_decodes_without_imported_at_key() -> None:
+    # A live (never-imported) snapshot omits ``importedAt`` entirely rather than
+    # sending it as null; ``imported_at`` must default to None, not raise.
+    snapshot_no_imported = """{
+        "id": -1,
+        "playerId": 42,
+        "createdAt": "2024-01-01T00:00:00.000Z",
+        "data": {
+            "skills": {},
+            "bosses": {},
+            "activities": {},
+            "computed": {}
+        }
+    }"""
+    body = (
+        """{
+        "nameChange": {
+            "id": 10,
+            "playerId": 42,
+            "oldName": "old guy",
+            "newName": "new guy",
+            "status": "pending",
+            "reviewContext": null,
+            "resolvedAt": null,
+            "updatedAt": "2024-01-02T03:04:05.000Z",
+            "createdAt": "2024-01-01T00:00:00.000Z"
+        },
+        "data": {
+            "isNewOnHiscores": true,
+            "isOldOnHiscores": false,
+            "isNewTracked": false,
+            "hasNegativeGains": false,
+            "negativeGains": null,
+            "timeDiff": 3600000,
+            "hoursDiff": 1.5,
+            "ehpDiff": 2.5,
+            "ehbDiff": 0.0,
+            "oldStats": """
+        + _SNAPSHOT_JSON
+        + ""","newStats": """
+        + snapshot_no_imported
+        + """}
+    }"""
+    ).encode()
+    service, _ = _service(wom.NameChangeService, body)
+
+    result = await service.get_name_change_details(10)
+
+    assert result.is_ok
+    detail = result.unwrap()
+    assert detail.data is not None
+    # Present-but-null on the old snapshot, absent on the new one: both None.
+    assert detail.data.old_stats.imported_at is None
+    assert detail.data.new_stats is not None
+    assert detail.data.new_stats.imported_at is None
+
+
 async def test_get_name_change_details_omits_data_when_absent() -> None:
     # An already-resolved change comes back with just ``{ nameChange }`` and no
     # ``data`` key; the optional field must default to None, not raise.

@@ -43,6 +43,11 @@
   `get_name_change_details` to raise a `msgspec.ValidationError` when the API
   returned a fractional `hoursDiff` (e.g. on a denied
   `transition_period_too_long` change).
+- `Snapshot.imported_at` now defaults to `None`, so a live (never-imported)
+  snapshot that omits the `importedAt` key entirely decodes instead of raising a
+  `msgspec.ValidationError`. This previously broke `get_name_change_details`
+  (and any snapshot-returning endpoint) whenever the API returned a fresh
+  hiscores snapshot.
 
 ## Changes
 
