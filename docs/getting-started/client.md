@@ -8,8 +8,9 @@ Services available on the client include:
 - [`CompetitionService`][wom.CompetitionService] via `Client.competitions`
 - [`DeltaService`][wom.DeltaService] via `Client.deltas`
 - [`EfficiencyService`][wom.EfficiencyService] via `Client.efficiency`
+- [`GeneralService`][wom.GeneralService] via `Client.general`
 - [`GroupService`][wom.GroupService] via `Client.groups`
-- [`NameChangeService`][wom.NameChangeService] via `Client.name_changes`
+- [`NameChangeService`][wom.NameChangeService] via `Client.names`
 - [`PlayerService`][wom.PlayerService] via `Client.players`
 - [`RecordService`][wom.RecordService] via `Client.records`
 

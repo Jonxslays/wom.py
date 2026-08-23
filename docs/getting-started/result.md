@@ -6,11 +6,26 @@ that go out over the network via the [`Client`][wom.Client] come back to you in
 the form of a [`Result`][wom.Result]. The result can be one of two things:
 an [`Ok`][wom.Ok] or an [`Err`][wom.Err].
 
-Calling [`unwrap()`][wom.Result.unwrap] on an [`Err`][wom.Err] will raise an
-exception.
+!!! info
 
-Calling [`unwrap_err()`][wom.Result.unwrap_err] on an [`Ok`][wom.Ok] will raise
-an exception.
+    Service methods **never raise** on an API error. A failed request comes back
+    as an [`Err`][wom.Err] wrapping an
+    [`HttpErrorResponse`][wom.HttpErrorResponse], so you branch on the result
+    instead of wrapping calls in `try`/`except`.
+
+## The API
+
+- [`is_ok`][wom.Result.is_ok] / [`is_err`][wom.Result.is_err] - booleans
+  identifying the variant.
+- [`unwrap()`][wom.Result.unwrap] - returns the value on an [`Ok`][wom.Ok];
+  raises [`UnwrapError`][wom.UnwrapError] on an [`Err`][wom.Err].
+- [`unwrap_err()`][wom.Result.unwrap_err] - returns the error on an
+  [`Err`][wom.Err]; raises [`UnwrapError`][wom.UnwrapError] on an [`Ok`][wom.Ok].
+- [`to_dict()`][wom.Result.to_dict] - `{"value": ..., "error": None}` for an
+  [`Ok`][wom.Ok], and the mirror for an [`Err`][wom.Err].
+
+Always check [`is_ok`][wom.Result.is_ok] (or [`is_err`][wom.Result.is_err])
+before unwrapping, so you unwrap the variant you actually have.
 
 ## Correct usage
 

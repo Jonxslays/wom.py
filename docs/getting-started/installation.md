@@ -1,6 +1,6 @@
 # Installation
 
-Python version 3.9 or greater is required to use wom.py.
+Python version 3.10 or greater is required to use wom.py.
 
 ## Stable
 
