@@ -176,3 +176,41 @@ async def test_get_global_leaderboards_w_both(
 
     http.fetch.assert_awaited_once_with(123)
     ok_or_err.assert_called_once_with(b"[]", t.List[wom.Player])
+
+
+@mock.patch("wom.services.efficiency.routes.CompiledRoute.with_params")
+@mock.patch("wom.services.base.BaseService._generate_map")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_get_rates_ehp(
+    ok_or_err: mock.Mock, generate_map: mock.Mock, with_params: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"[]"
+    with_params.return_value = 123
+    service = EfficiencyService(http, mock.Mock())
+
+    await service.get_rates(wom.EfficiencyAlgorithmType.Main)
+
+    generate_map.assert_called_once_with(type="main", metric="ehp")
+    http.fetch.assert_awaited_once_with(123)
+    ok_or_err.assert_called_once_with(b"[]", t.List[wom.SkillMetaConfig])
+
+
+@mock.patch("wom.services.efficiency.routes.CompiledRoute.with_params")
+@mock.patch("wom.services.base.BaseService._generate_map")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_get_rates_ehb(
+    ok_or_err: mock.Mock, generate_map: mock.Mock, with_params: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"[]"
+    with_params.return_value = 123
+    service = EfficiencyService(http, mock.Mock())
+
+    await service.get_rates(wom.EfficiencyAlgorithmType.Ironman, wom.Metric.Ehb)
+
+    generate_map.assert_called_once_with(type="ironman", metric="ehb")
+    http.fetch.assert_awaited_once_with(123)
+    ok_or_err.assert_called_once_with(b"[]", t.List[wom.BossMetaConfig])

@@ -118,6 +118,69 @@ async def test_delete_group_success_message_is_wrapped_in_ok() -> None:
     assert http.fetch.call_args.kwargs["message_response"] is True
 
 
+async def test_get_rates_ehp_decodes_skill_configs() -> None:
+    body = b"""[
+        {
+            "skill": "woodcutting",
+            "methods": [
+                {"rate": 100000, "startExp": 0, "description": "Trees"},
+                {
+                    "rate": 250000.5, "realRate": 260000.0,
+                    "startExp": 500000, "description": "Teaks"
+                }
+            ],
+            "bonuses": [
+                {
+                    "originSkill": "woodcutting", "bonusSkill": "firemaking",
+                    "startExp": 0, "endExp": 200000000, "end": false, "ratio": 0.5
+                }
+            ]
+        }
+    ]"""
+    service, http = _service(wom.EfficiencyService, body)
+
+    result = await service.get_rates(wom.EfficiencyAlgorithmType.Main, wom.Metric.Ehp)
+
+    assert result.is_ok
+    configs = result.unwrap()
+    config = configs[0]
+    assert isinstance(config, wom.SkillMetaConfig)
+    assert config.skill is wom.Metric.Woodcutting
+
+    # An omitted realRate defaults to None; a present one decodes as a float.
+    assert config.methods[0].rate == 100000.0
+    assert config.methods[0].real_rate is None
+    assert config.methods[1].real_rate == 260000.0
+
+    bonus = config.bonuses[0]
+    assert bonus.origin_skill is wom.Metric.Woodcutting
+    assert bonus.bonus_skill is wom.Metric.Firemaking
+    assert bonus.end is False
+    assert bonus.max_bonus is None
+
+    route = http.fetch.call_args.args[0]
+    assert route.uri == "/efficiency/rates"
+    assert route.params == {"type": "main", "metric": "ehp"}
+
+
+async def test_get_rates_ehb_decodes_boss_configs() -> None:
+    body = b'[{"boss": "zulrah", "rate": 35.5}, {"boss": "vorkath", "rate": 32}]'
+    service, http = _service(wom.EfficiencyService, body)
+
+    result = await service.get_rates(wom.EfficiencyAlgorithmType.Ironman, wom.Metric.Ehb)
+
+    assert result.is_ok
+    configs = result.unwrap()
+    assert isinstance(configs[0], wom.BossMetaConfig)
+    assert configs[0].boss is wom.Metric.Zulrah
+    assert configs[0].rate == 35.5
+    # An integer rate decodes into the float field.
+    assert configs[1].rate == 32.0
+
+    route = http.fetch.call_args.args[0]
+    assert route.params == {"type": "ironman", "metric": "ehb"}
+
+
 async def test_get_stats_decodes_real_model() -> None:
     # The counts are Postgres reltuples estimates, so integer JSON values must
     # decode into the float fields just as fractional ones do.

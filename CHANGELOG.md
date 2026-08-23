@@ -22,6 +22,11 @@
 - Add `Client.general`, a new `GeneralService` for endpoints that aren't
   specific to a domain, with `get_stats()` wrapping the `GET /stats`
   endpoint and returning a new `Stats` model.
+- Add `Client.efficiency.get_rates`, wrapping the `GET /efficiency/rates`
+  endpoint. Returns a list of `SkillMetaConfig` for the `Ehp` metric or a
+  list of `BossMetaConfig` for `Ehb`. Adds the supporting
+  `EfficiencyAlgorithmType` enum and the `SkillMetaMethod`, `SkillMetaBonus`,
+  `SkillMetaConfig`, and `BossMetaConfig` models.
 
 ## Bugfixes
 

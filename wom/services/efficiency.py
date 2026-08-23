@@ -35,6 +35,10 @@ __all__ = ("EfficiencyService",)
 T = t.TypeVar("T")
 ResultT = result.Result[T, models.HttpErrorResponse]
 
+# The rates endpoint returns skill configs for ehp and boss configs for ehb,
+# so its result is a union over the two possible element types.
+RatesResultT = ResultT[t.Union[t.List[models.SkillMetaConfig], t.List[models.BossMetaConfig]]]
+
 
 class EfficiencyService(BaseService):
     """Handles endpoints related to efficiency."""
@@ -105,3 +109,76 @@ class EfficiencyService(BaseService):
         route = routes.GLOBAL_EFFICIENCY_LEADERS.compile()
         data = await self._http.fetch(route.with_params(params))
         return self._ok_or_err(data, t.List[models.Player])
+
+    @t.overload
+    async def get_rates(
+        self,
+        algorithm_type: models.EfficiencyAlgorithmType,
+        metric: t.Literal[enums.Metric.Ehb],
+    ) -> ResultT[t.List[models.BossMetaConfig]]: ...
+
+    @t.overload
+    async def get_rates(
+        self,
+        algorithm_type: models.EfficiencyAlgorithmType,
+        metric: t.Literal[enums.Metric.Ehp] = ...,
+    ) -> ResultT[t.List[models.SkillMetaConfig]]: ...
+
+    @t.overload
+    async def get_rates(
+        self,
+        algorithm_type: models.EfficiencyAlgorithmType,
+        metric: enums.Metric,
+    ) -> RatesResultT: ...
+
+    async def get_rates(
+        self,
+        algorithm_type: models.EfficiencyAlgorithmType,
+        metric: enums.Metric = enums.Metric.Ehp,
+    ) -> t.Any:
+        """Gets the efficiency rates for the given algorithm type and metric.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.efficiency.get_rates(
+                wom.EfficiencyAlgorithmType.Main, wom.Metric.Ehp
+            )
+            ```
+
+        Parameters
+        ----------
+        algorithm_type : EfficiencyAlgorithmType
+            The efficiency algorithm variant to get rates for.
+        metric : Metric
+            The computed metric to get rates for. Defaults to `Ehp`,
+            must be one of `Ehp` or `Ehb`.
+
+        Returns
+        -------
+        Result
+            A result containing a list of the rate configs. When `metric`
+            is statically known, the return type is narrowed by overloads:
+            `Ehb` yields a list of
+            [`BossMetaConfig`][wom.BossMetaConfig] and any other metric
+            (i.e. `Ehp`) yields a list of
+            [`SkillMetaConfig`][wom.SkillMetaConfig]. A dynamically typed
+            `metric` yields a union of the two.
+        """
+        params = self._generate_map(type=algorithm_type.value, metric=metric.value)
+        route = routes.GLOBAL_EFFICIENCY_RATES.compile().with_params(params)
+        data = await self._http.fetch(route)
+
+        # The precise per-metric return types are declared by the overloads
+        # above; the implementation is typed loosely because ``Result`` is
+        # invariant and cannot unify the two element types under one alias.
+        if metric is enums.Metric.Ehb:
+            return self._ok_or_err(data, t.List[models.BossMetaConfig])
+
+        return self._ok_or_err(data, t.List[models.SkillMetaConfig])

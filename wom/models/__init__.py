@@ -44,6 +44,7 @@ __all__ = (
     "Boss",
     "BossGains",
     "BossLeader",
+    "BossMetaConfig",
     "BulkGains",
     "BulkGroupHiscoresActivityItem",
     "BulkGroupHiscoresBossItem",
@@ -69,6 +70,7 @@ __all__ = (
     "CreatedCompetitionDetail",
     "CreatedGroupDetail",
     "DeltaLeaderboardEntry",
+    "EfficiencyAlgorithmType",
     "Gains",
     "GroupDetail",
     "Group",
@@ -114,6 +116,9 @@ __all__ = (
     "Skill",
     "SkillGains",
     "SkillLeader",
+    "SkillMetaBonus",
+    "SkillMetaConfig",
+    "SkillMetaMethod",
     "SnapshotData",
     "Snapshot",
     "SnapshotTimelineEntry",
@@ -126,6 +131,7 @@ __all__ = (
 from .base import *
 from .competitions import *
 from .deltas import *
+from .efficiency import *
 from .general import *
 from .groups import *
 from .http import *
