@@ -37,6 +37,11 @@
   that service methods never raise on API errors. A bare-message endpoint that
   returns a 2xx without the expected `{"message": ...}` envelope is likewise
   reported as success rather than raising.
+- `Snapshot.imported_at` now defaults to `None`, so a live (never-imported)
+  snapshot that omits the `importedAt` key entirely decodes instead of raising a
+  `msgspec.ValidationError`. This previously broke `get_name_change_details`
+  (and any snapshot-returning endpoint) whenever the API returned a fresh
+  hiscores snapshot.
 
 ## Changes
 
