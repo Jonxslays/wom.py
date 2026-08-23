@@ -170,3 +170,41 @@ async def test_submit_name_change(
     generate_map.assert_called_once_with(oldName="old", newName="new")
     http.fetch.assert_awaited_once_with(123, payload=generate_map())
     ok_or_err.assert_called_once_with(b"[]", wom.NameChange)
+
+
+@mock.patch("wom.services.names.routes.Route.compile")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_bulk_submit_name_changes(ok_or_err: mock.Mock, _compile: mock.Mock) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"{}"
+    _compile.return_value = 123
+    service = NameChangeService(http, mock.Mock())
+
+    await service.bulk_submit_name_changes([("old1", "new1"), ("old2", "new2")])
+
+    _compile.assert_called_once_with()
+    http.fetch.assert_awaited_once_with(
+        123,
+        payload=[
+            {"oldName": "old1", "newName": "new1"},
+            {"oldName": "old2", "newName": "new2"},
+        ],
+    )
+    ok_or_err.assert_called_once_with(b"{}", wom.NameChangeBulkResult)
+
+
+@mock.patch("wom.services.names.routes.Route.compile")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_get_name_change_details(ok_or_err: mock.Mock, _compile: mock.Mock) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"{}"
+    _compile.return_value = 123
+    service = NameChangeService(http, mock.Mock())
+
+    await service.get_name_change_details(69)
+
+    _compile.assert_called_once_with(69)
+    http.fetch.assert_awaited_once_with(123)
+    ok_or_err.assert_called_once_with(b"{}", wom.NameChangeDetail)

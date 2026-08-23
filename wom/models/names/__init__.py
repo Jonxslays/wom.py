@@ -25,6 +25,9 @@ from __future__ import annotations
 
 __all__ = (
     "NameChange",
+    "NameChangeBulkResult",
+    "NameChangeData",
+    "NameChangeDetail",
     "NameChangeReviewContext",
     "NameChangeReviewReason",
     "NameChangeStatus",
