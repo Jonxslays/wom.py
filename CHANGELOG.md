@@ -1,3 +1,9 @@
+# Unreleased
+
+## Changes
+
+- Enable next/back navigation buttons on all documentation pages.
+
 # v3.3.0 (Aug 2026)
 
 ## Additions
