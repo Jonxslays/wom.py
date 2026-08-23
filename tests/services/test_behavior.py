@@ -319,6 +319,39 @@ async def test_get_name_change_details_omits_data_when_absent() -> None:
     assert detail.data is None
 
 
+async def test_get_name_change_details_decodes_fractional_review_context() -> None:
+    # A denied ``transition_period_too_long`` change carries a review context
+    # whose ``hoursDiff`` is fractional; it must decode as a float, not raise.
+    body = b"""{
+        "nameChange": {
+            "id": 9,
+            "playerId": 42,
+            "oldName": "old guy",
+            "newName": "new guy",
+            "status": "denied",
+            "reviewContext": {
+                "reason": "transition_period_too_long",
+                "hoursDiff": 12.5,
+                "maxHoursDiff": 72
+            },
+            "resolvedAt": "2024-02-02T00:00:00.000Z",
+            "updatedAt": "2024-02-02T00:00:00.000Z",
+            "createdAt": "2024-01-01T00:00:00.000Z"
+        }
+    }"""
+    service, _ = _service(wom.NameChangeService, body)
+
+    result = await service.get_name_change_details(9)
+
+    assert result.is_ok
+    detail = result.unwrap()
+    context = detail.name_change.review_context
+    assert context is not None
+    assert context.reason is wom.NameChangeReviewReason.TransitionTooLong
+    assert context.hours_diff == 12.5
+    assert context.max_hours_diff == 72
+
+
 async def test_bulk_submit_name_changes_decodes_result_and_posts_array() -> None:
     body = b'{"nameChangesSubmitted": 2, "message": "Successfully submitted 2/2 name changes."}'
     service, http = _service(wom.NameChangeService, body)
