@@ -1,4 +1,4 @@
-# v3.3.0 (Unreleased)
+# v3.3.0 (Aug 2026)
 
 ## Additions
 
