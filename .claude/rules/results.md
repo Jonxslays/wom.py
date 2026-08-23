@@ -37,8 +37,11 @@ helpers, which return the right variant for you:
 
 - `self._ok_or_err(data, ModelType)` → `Ok(decoded)` when `data` is bytes,
   `Err(data)` when it is already an `HttpErrorResponse`.
-- `self._success_or_err(data, predicate=...)` → for bare-success endpoints,
-  returns `Ok(HttpSuccessResponse)` or `Err(HttpErrorResponse)`.
+- `self._success_or_err(data)` → for bare-message endpoints, returns
+  `Ok(HttpSuccessResponse)` when `data` is an `HttpSuccessResponse` (built by
+  the http service from a 2xx) or `Err(HttpErrorResponse)` when it is an
+  `HttpErrorResponse`. Success is classified by HTTP status in the http layer,
+  not by inspecting the message text.
 
 `Ok`/`Err` are library-produced only; consumers receive them and should never
 need to instantiate them.

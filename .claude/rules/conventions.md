@@ -30,10 +30,14 @@ verbatim from any existing file when creating a new one.
 
 ## Formatting and imports
 
-- **black**, line length **99** (`nox -s formatting`, run as `black --check`).
-- **isort** with `force_single_line = true` — one import per line, no grouped
-  `from x import (a, b)`. Checked by `nox -s imports`, alongside flake8 limited
-  to `F4` (unused / star-import checks).
+- **ruff format**, line length **99** (`nox -s formatting`, run as
+  `ruff format --check`).
+- **ruff check** (`nox -s imports`) enforces import sorting (`I`, with
+  `force-single-line = true` — one import per line, no grouped
+  `from x import (a, b)`) and the pyflakes import rules (`F4`, unused /
+  star-import checks). `F403`/`F405` are ignored for the intentional
+  star-imports, and `__init__.py` is exempt from `F401`. Config lives under
+  `[tool.ruff]` in `pyproject.toml`.
 - Docs prose wraps at **80** columns.
 
 ## Docstrings

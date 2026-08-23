@@ -18,8 +18,8 @@ nox                 # run all sessions (tests, types, formatting, imports, licen
 nox -s tests        # pytest with coverage + testdox output
 nox -s coverage     # print coverage report (requires a prior tests run producing .coverage)
 nox -s types        # mypy + pyright, both in strict mode
-nox -s formatting   # black --check (line length 99)
-nox -s imports      # isort check + flake8 (unused/star-import checks only, F4)
+nox -s formatting   # ruff format --check (line length 99)
+nox -s imports      # ruff check (import sorting + unused/star-import checks, F4/I)
 nox -s licensing    # verify every .py file has the MIT license header
 nox -s alls         # runs scripts/alls.py to verify __all__ exports are consistent
 ```
@@ -53,5 +53,5 @@ Detailed, dedicated rules for how code is written in this repo live in
   `from __future__ import annotations`, `import typing as t`, and `ResultT`
   return types.
 - **[conventions.md](.claude/rules/conventions.md)** — `__all__` discipline and
-  flat top-level re-export, the MIT license header, black/isort style,
+  flat top-level re-export, the MIT license header, ruff format/lint style,
   Google-style docstrings, and version-bump syncing.

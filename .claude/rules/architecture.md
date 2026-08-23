@@ -32,12 +32,17 @@ Each layer owns exactly one job:
 
 - **`HttpService`** (`wom/services/http.py`) — owns the aiohttp session, builds
   headers (user agent + optional api key), and performs the request. Turns
-  non-OK responses into `models.HttpErrorResponse`. Uses msgspec for
-  encode/decode.
+  non-OK responses into `models.HttpErrorResponse`; for bare-message endpoints
+  (`message_response=True`) it turns OK responses into
+  `models.HttpSuccessResponse`, otherwise it returns the raw bytes. Delegates
+  all msgspec encode/decode to the shared `Serializer` (injected by the
+  `Client`).
 
-- **`Serializer`** (`wom/serializer.py`) — lazily builds and caches one msgspec
-  `Decoder` per model type in a dict, keyed on the model type. `decode(data,
-  model_type)` fetches/creates the decoder and decodes the bytes.
+- **`Serializer`** (`wom/serializer.py`) — the single owner of msgspec
+  encode/decode. Lazily builds and caches one `Decoder` per model type in a
+  dict, keyed on the model type; `decode(data, model_type)` fetches/creates the
+  decoder and decodes the bytes, and `encode(obj)` encodes to JSON bytes (used
+  by the http service for request bodies).
 
 - **Models** (`wom/models/<domain>/models.py`) — msgspec `Struct`s inheriting
   `BaseModel`. See `models.md`.

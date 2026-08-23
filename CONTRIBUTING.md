@@ -7,7 +7,8 @@ Thanks for your interest in wom.py! Here are some tips for contributing.
 - If you have an idea, but are unsure on the proper implementation - open an issue.
 - Implementations should be well tested before opening a pull request.
 - Max code line length of 99, max docs line length of 80.
-- Code should be written in [black](https://github.com/psf/black)'s code style.
+- Code should be formatted with [ruff](https://docs.astral.sh/ruff/) (`ruff format`);
+  imports and lint checks are also enforced by `ruff check`.
 - Code should be [PEP 8](https://www.python.org/dev/peps/pep-0008/) compliant.
 - Use informative commit messages.
 

@@ -39,14 +39,17 @@ Steps, in order:
    `.with_params(params)` if there are query params. `.compile()` /
    `.with_params()` may be chained either inline or across two statements — both
    styles exist in the codebase.
-4. **Fetch**: `data = await self._http.fetch(route)`.
+4. **Fetch**: `data = await self._http.fetch(route)`. For bare-message
+   endpoints (those returning `{"message": ...}` instead of a model) pass
+   `message_response=True`, so the http service returns an `HttpSuccessResponse`
+   on a 2xx (or an `HttpErrorResponse` on failure).
 5. **Wrap the result**:
    - `self._ok_or_err(data, ModelType)` for endpoints returning a model. Pass a
      parameterized type for lists: `self._ok_or_err(data, t.List[models.X])`.
-   - `self._success_or_err(data)` for endpoints that return a bare success
-     message (`HttpSuccessResponse`) instead of a model. Accepts an optional
-     `predicate` callable to decide success from the message string; the default
-     predicate checks `message.startswith("Success")`.
+   - `self._success_or_err(data)` for bare-message endpoints (paired with
+     `message_response=True` above). It maps the `HttpSuccessResponse` to `Ok`
+     and the `HttpErrorResponse` to `Err` — success is decided by HTTP status in
+     the http layer, not by inspecting the message text.
 
 `BaseService` helpers you build on: `_generate_map`, `_ok`, `_ok_or_err`,
 `_success_or_err`. Do not call `self._http` or the serializer with raw error
