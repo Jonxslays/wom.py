@@ -3984,6 +3984,57 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#wom.models.Stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.competitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      competitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.players" class="md-nav__link">
+    <span class="md-ellipsis">
+      players
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      snapshots
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#wom.models.Team" class="md-nav__link">
     <span class="md-ellipsis">
       Team
@@ -7873,6 +7924,57 @@
   <a href="#wom.models.SocialLinks.youtube" class="md-nav__link">
     <span class="md-ellipsis">
       youtube
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wom.models.Stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.competitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      competitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      groups
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.players" class="md-nav__link">
+    <span class="md-ellipsis">
+      players
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wom.models.Stats.snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      snapshots
     </span>
   </a>
   
@@ -20748,6 +20850,185 @@ time.</p>
     <div class="doc doc-contents ">
 
       <p>The groups youtube url.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="wom.models.Stats" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">Stats</span>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="wom.models.base.BaseModel" href="#wom.models.BaseModel">BaseModel</a></code></p>
+
+
+      <p>Global statistics about the data tracked by WOM.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These counts are database row-count estimates, so they are
+approximate and returned as floats rather than exact integers.</p>
+</div>
+
+              <details class="quote">
+                <summary>Source code in <code>wom/models/general/models.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span>
+<span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span>
+<span class="normal"><a href="#__codelineno-0-44">44</a></span>
+<span class="normal"><a href="#__codelineno-0-45">45</a></span>
+<span class="normal"><a href="#__codelineno-0-46">46</a></span>
+<span class="normal"><a href="#__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="k">class</span><span class="w"> </span><span class="nc">Stats</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="sd">"""Global statistics about the data tracked by WOM.</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="sd">    !!! note</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        These counts are database row-count estimates, so they are</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        approximate and returned as floats rather than exact integers.</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">    """</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>    <span class="n">players</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">    </span><span class="sd">"""The approximate number of tracked players."""</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="n">snapshots</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">    </span><span class="sd">"""The approximate number of stored snapshots."""</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="n">groups</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="w">    </span><span class="sd">"""The approximate number of groups."""</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="n">competitions</span><span class="p">:</span> <span class="nb">float</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">    </span><span class="sd">"""The approximate number of competitions."""</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="wom.models.Stats.competitions" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">competitions</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">competitions</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>The approximate number of competitions.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="wom.models.Stats.groups" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">groups</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">groups</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>The approximate number of groups.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="wom.models.Stats.players" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">players</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">players</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>The approximate number of tracked players.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="wom.models.Stats.snapshots" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">snapshots</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">snapshots</span><span class="p">:</span> <span class="nb">float</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>The approximate number of stored snapshots.</p>
     </div>
 
 </div>
