@@ -72,3 +72,19 @@ def test_route_compiles_w_params(mock_get: Route) -> None:
     assert compiled.method == "GET"
     assert len(compiled.params) == 1
     assert compiled.params["test"] == 1
+
+
+def test_route_compile_fails_w_too_few_args(mock_post: Route) -> None:
+    with pytest.raises(ValueError) as e:
+        mock_post.compile(1)
+
+    assert e.exconly() == (
+        "ValueError: Route '/69420/{}/hi/{}' expected 2 uri argument(s), got 1."
+    )
+
+
+def test_route_compile_fails_w_too_many_args(mock_get: Route) -> None:
+    with pytest.raises(ValueError) as e:
+        mock_get.compile(1)
+
+    assert e.exconly() == "ValueError: Route '/69420' expected 0 uri argument(s), got 1."

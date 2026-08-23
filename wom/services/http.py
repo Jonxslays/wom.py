@@ -26,6 +26,7 @@ from __future__ import annotations
 import typing as t
 
 import aiohttp
+import msgspec
 
 from wom import constants
 from wom import models
@@ -102,23 +103,40 @@ class HttpService:
             return content
 
         if not response.ok:
-            error = self._serializer.decode(content, t.Dict[str, t.Any])
-
-            return models.HttpErrorResponse(
-                error.get("message", "An unexpected error occurred while making the request."),
-                response.status,
-                error.get("code"),
-            )
+            return self._parse_error(content, response.status)
 
         if message_response:
             # These endpoints return a bare ``{"message": ...}`` envelope
             # instead of a model. WOM signals failure via the HTTP status, so
             # any 2xx here is a success (see docs.wiseoldman.net).
-            success = self._serializer.decode(content, models.HttpSuccessResponse)
-            success.status = response.status
-            return success
+            return self._parse_success(content, response.status)
 
         return content
+
+    def _parse_error(self, content: bytes, status: int) -> models.HttpErrorResponse:
+        default = "An unexpected error occurred while making the request."
+
+        try:
+            error = self._serializer.decode(content, t.Dict[str, t.Any])
+        except msgspec.DecodeError:
+            # The body wasn't the JSON object we expected (e.g. an HTML error
+            # page from a gateway, or an empty body). Preserve the status so
+            # the caller still gets a well-formed Err instead of an exception,
+            # keeping the "service methods never raise on API errors" contract.
+            return models.HttpErrorResponse(default, status)
+
+        return models.HttpErrorResponse(error.get("message", default), status, error.get("code"))
+
+    def _parse_success(self, content: bytes, status: int) -> models.HttpSuccessResponse:
+        try:
+            success = self._serializer.decode(content, models.HttpSuccessResponse)
+        except msgspec.DecodeError:
+            # A 2xx without the expected ``{"message": ...}`` body still counts
+            # as success; synthesize an empty message rather than raising.
+            success = models.HttpSuccessResponse("")
+
+        success.status = status
+        return success
 
     def _get_request_func(self, method: str) -> t.Callable[..., t.Awaitable[t.Any]]:
         if not hasattr(self, "_method_mapping"):

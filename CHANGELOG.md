@@ -13,8 +13,21 @@
   `wom.UnknownEnumWarning`) so unrecognized-enum warnings can be filtered or
   silenced with `warnings.filterwarnings`.
 
+## Bugfixes
+
+- Failed requests whose body isn't the expected JSON object (e.g. an HTML error
+  page from a gateway, an empty body, or a non-object JSON payload) no longer
+  raise while being decoded. They are now returned as a well-formed
+  `Err(HttpErrorResponse)` carrying the HTTP status, preserving the guarantee
+  that service methods never raise on API errors. A bare-message endpoint that
+  returns a 2xx without the expected `{"message": ...}` envelope is likewise
+  reported as success rather than raising.
+
 ## Changes
 
+- `Route.compile` now raises `ValueError` when the number of arguments does not
+  match the number of `{}` placeholders in the route uri, instead of silently
+  leaving unfilled placeholders in the request path.
 - Unrecognized enum values now emit an `UnknownEnumWarning` through the `warnings`
   module instead of printing to `stderr`, so consumers can filter, capture, or
   escalate them like any other warning.

@@ -116,7 +116,19 @@ class Route:
         -------
         CompiledRoute
             The compiled route.
+
+        Raises
+        ------
+        ValueError
+            If the number of args does not match the number of `{}`
+            placeholders in the uri.
         """
+        expected = self.uri.count(r"{}")
+        if len(args) != expected:
+            raise ValueError(
+                f"Route {self.uri!r} expected {expected} uri argument(s), got {len(args)}."
+            )
+
         compiled = CompiledRoute(self, self.uri)
 
         for arg in args:
