@@ -37,6 +37,17 @@
   that service methods never raise on API errors. A bare-message endpoint that
   returns a 2xx without the expected `{"message": ...}` envelope is likewise
   reported as success rather than raising.
+- `NameChangeReviewContext` now types its fractional diff fields as floats:
+  `hours_diff`, `ehp_diff`, and `ehb_diff` are `Optional[float]`, and
+  `negative_gains` values are `float`. Previously these were `int`, causing
+  `get_name_change_details` to raise a `msgspec.ValidationError` when the API
+  returned a fractional `hoursDiff` (e.g. on a denied
+  `transition_period_too_long` change).
+- `Snapshot.imported_at` now defaults to `None`, so a live (never-imported)
+  snapshot that omits the `importedAt` key entirely decodes instead of raising a
+  `msgspec.ValidationError`. This previously broke `get_name_change_details`
+  (and any snapshot-returning endpoint) whenever the API returned a fresh
+  hiscores snapshot.
 
 ## Changes
 

@@ -51,7 +51,7 @@ class NameChangeReviewContext(BaseModel):
     # public on the name change endpoints and if we do
     # determine how to handle it in a cleaner way.
 
-    negative_gains: t.Optional[t.Dict[enums.Metric, int]] = None
+    negative_gains: t.Optional[t.Dict[enums.Metric, float]] = None
     """The negative gains that were observed, if there were any. Only populated
     when the reason is `NegativeGains`.
     """
@@ -61,17 +61,17 @@ class NameChangeReviewContext(BaseModel):
     reason is `TransitionTooLong`.
     """
 
-    hours_diff: t.Optional[int] = None
+    hours_diff: t.Optional[float] = None
     """The actual number of hours in the transition period. Only populated when
     reason is `TransitionTooLong` or `ExcessiveGains`.
     """
 
-    ehp_diff: t.Optional[int] = None
+    ehp_diff: t.Optional[float] = None
     """The number difference between the old and new names ehp. Only populated
     when the reason is `ExcessiveGains`.
     """
 
-    ehb_diff: t.Optional[int] = None
+    ehb_diff: t.Optional[float] = None
     """The number difference between the old and new names ehb. Only populated
     when the reason is `ExcessiveGains`.
     """

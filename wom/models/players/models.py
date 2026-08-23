@@ -145,14 +145,16 @@ class Snapshot(BaseModel):
     player_id: int
     """The unique ID of the player for this snapshot."""
 
-    imported_at: t.Optional[datetime]
-    """The date the snapshot was imported, if it was."""
-
     data: SnapshotData
     """The [`SnapshotData`][wom.SnapshotData] for the snapshot."""
 
     created_at: datetime
     """The date the snapshot was created."""
+
+    imported_at: t.Optional[datetime] = None
+    """The date the snapshot was imported, if it was. `None` when the key is
+    absent (a live snapshot) as well as when it is present but null.
+    """
 
 
 class Player(BaseModel):
