@@ -19,32 +19,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""This module contains the services used to interact with different
-portions of the WOM API.
-"""
-
 from __future__ import annotations
 
-__all__ = (
-    "BaseService",
-    "CompetitionService",
-    "DeltaService",
-    "EfficiencyService",
-    "GeneralService",
-    "GroupService",
-    "HttpService",
-    "NameChangeService",
-    "PlayerService",
-    "RecordService",
-)
+from ..base import BaseModel
 
-from .base import *
-from .competitions import *
-from .deltas import *
-from .efficiency import *
-from .general import *
-from .groups import *
-from .http import *
-from .names import *
-from .players import *
-from .records import *
+__all__ = ("Stats",)
+
+
+class Stats(BaseModel):
+    """Global statistics about the data tracked by WOM.
+
+    !!! note
+
+        These counts are database row-count estimates, so they are
+        approximate and returned as floats rather than exact integers.
+    """
+
+    players: float
+    """The approximate number of tracked players."""
+
+    snapshots: float
+    """The approximate number of stored snapshots."""
+
+    groups: float
+    """The approximate number of groups."""
+
+    competitions: float
+    """The approximate number of competitions."""

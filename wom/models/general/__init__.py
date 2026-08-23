@@ -19,32 +19,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""This module contains the services used to interact with different
-portions of the WOM API.
-"""
+"""The general models."""
 
 from __future__ import annotations
 
-__all__ = (
-    "BaseService",
-    "CompetitionService",
-    "DeltaService",
-    "EfficiencyService",
-    "GeneralService",
-    "GroupService",
-    "HttpService",
-    "NameChangeService",
-    "PlayerService",
-    "RecordService",
-)
+__all__ = ("Stats",)
 
-from .base import *
-from .competitions import *
-from .deltas import *
-from .efficiency import *
-from .general import *
-from .groups import *
-from .http import *
-from .names import *
-from .players import *
-from .records import *
+from .models import *

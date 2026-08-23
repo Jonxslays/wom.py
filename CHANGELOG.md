@@ -12,6 +12,9 @@
 - Add the `UnknownEnumWarning` warning category (exported as
   `wom.UnknownEnumWarning`) so unrecognized-enum warnings can be filtered or
   silenced with `warnings.filterwarnings`.
+- Add `Client.general`, a new `GeneralService` for endpoints that aren't
+  specific to a domain, with `get_stats()` wrapping the `GET /stats`
+  endpoint and returning a new `Stats` model.
 
 ## Bugfixes
 
