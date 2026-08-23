@@ -177,6 +177,66 @@ def test_error_response_positional_construction_unchanged() -> None:
 
 
 @mock.patch("wom.services.http.aiohttp.ClientResponse")
+async def test_request_error_with_non_json_body_does_not_raise(
+    client_response: mock.MagicMock,
+) -> None:
+    # A gateway can return a non-JSON body (e.g. an HTML 502 page). Decoding
+    # it must not raise - the service contract promises an Err, never an
+    # exception, on failed requests.
+    service = HttpService(None, None, None)
+    client_response.ok = False
+    client_response.status = 502
+    client_response.content.read = mock.AsyncMock(return_value=b"<html>Bad Gateway</html>")
+    req = mock.AsyncMock(return_value=client_response)
+
+    result = await service._request(req, "https://wut")  # type: ignore
+
+    assert isinstance(result, HttpErrorResponse)
+    assert result.status == 502
+    assert result.message == "An unexpected error occurred while making the request."
+    assert result.code is None
+
+
+@mock.patch("wom.services.http.aiohttp.ClientResponse")
+async def test_request_error_with_non_object_json_does_not_raise(
+    client_response: mock.MagicMock,
+) -> None:
+    # Valid JSON that isn't an object (e.g. an array) must also be handled
+    # gracefully rather than raising while calling ``.get`` on it.
+    service = HttpService(None, None, None)
+    client_response.ok = False
+    client_response.status = 500
+    client_response.content.read = mock.AsyncMock(return_value=b"[]")
+    req = mock.AsyncMock(return_value=client_response)
+
+    result = await service._request(req, "https://wut")  # type: ignore
+
+    assert isinstance(result, HttpErrorResponse)
+    assert result.status == 500
+    assert result.message == "An unexpected error occurred while making the request."
+    assert result.code is None
+
+
+@mock.patch("wom.services.http.aiohttp.ClientResponse")
+async def test_request_message_response_with_non_json_body_does_not_raise(
+    client_response: mock.MagicMock,
+) -> None:
+    # A 2xx on a bare-message endpoint without the expected envelope is still
+    # a success; it should synthesize an empty message, not raise.
+    service = HttpService(None, None, None)
+    client_response.ok = True
+    client_response.status = 200
+    client_response.content.read = mock.AsyncMock(return_value=b"not json")
+    req = mock.AsyncMock(return_value=client_response)
+
+    result = await service._request(req, "https://wut", message_response=True)  # type: ignore
+
+    assert isinstance(result, HttpSuccessResponse)
+    assert result.status == 200
+    assert result.message == ""
+
+
+@mock.patch("wom.services.http.aiohttp.ClientResponse")
 async def test_request_returns_content_on_success(client_response: mock.MagicMock) -> None:
     service = HttpService(None, None, None)
     client_response.ok = True

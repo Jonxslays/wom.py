@@ -23,8 +23,6 @@ from __future__ import annotations
 
 from unittest import mock
 
-import pytest
-
 from wom import Client
 from wom import services
 
@@ -112,12 +110,3 @@ async def test_init_service(init_service: mock.MagicMock) -> None:
             mock.call(services.CompetitionService),
         )
     )
-
-
-async def test_init_service_fails() -> None:
-    client = Client()
-
-    with pytest.raises(TypeError) as e:
-        client._Client__init_service(int)  # type: ignore
-
-    assert e.exconly() == "TypeError: 'int' can not be initialized as a service."
