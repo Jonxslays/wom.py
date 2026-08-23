@@ -32,6 +32,7 @@ async def test_all_services_exist() -> None:
     assert isinstance(client.competitions, services.CompetitionService)
     assert isinstance(client.deltas, services.DeltaService)
     assert isinstance(client.efficiency, services.EfficiencyService)
+    assert isinstance(client.general, services.GeneralService)
     assert isinstance(client.groups, services.GroupService)
     assert isinstance(client.names, services.NameChangeService)
     assert isinstance(client.players, services.PlayerService)
@@ -108,5 +109,6 @@ async def test_init_service(init_service: mock.MagicMock) -> None:
             mock.call(services.NameChangeService),
             mock.call(services.EfficiencyService),
             mock.call(services.CompetitionService),
+            mock.call(services.GeneralService),
         )
     )

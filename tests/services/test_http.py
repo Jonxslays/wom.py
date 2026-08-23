@@ -434,5 +434,59 @@ async def test_fetch_w_payload_and_message_response(
     )
 
 
-# TODO: Add more http tests here with mocks for:
-#   - _init_session
+@mock.patch("wom.services.http.aiohttp.ClientSession")
+async def test_init_session_builds_method_mapping(session: mock.MagicMock) -> None:
+    service = HttpService(None, None, None)
+
+    await service._init_session()  # type: ignore
+
+    created = session.return_value
+    assert service._session is created  # type: ignore
+    # Every HTTP verb the client uses must resolve to the matching session
+    # method; _get_request_func indexes straight into this mapping.
+    assert service._method_mapping == {  # type: ignore
+        "GET": created.get,
+        "POST": created.post,
+        "PUT": created.put,
+        "PATCH": created.patch,
+        "DELETE": created.delete,
+    }
+
+
+@mock.patch("wom.services.http.aiohttp.ClientSession")
+async def test_init_session_json_serialize_delegates_to_serializer(
+    session: mock.MagicMock,
+) -> None:
+    service = HttpService(None, None, None)
+
+    await service._init_session()  # type: ignore
+
+    # aiohttp is handed a json_serialize callable for encoding request bodies.
+    # It must route through our shared Serializer and hand back str (aiohttp
+    # wants str, not bytes). This exercises the lambda body itself, which is
+    # otherwise only created, never called, by the rest of the suite.
+    _, kwargs = session.call_args
+    json_serialize = kwargs["json_serialize"]
+    result = json_serialize({"name": "Jonxslays"})
+
+    assert isinstance(result, str)
+    assert result == msgspec.json.encode({"name": "Jonxslays"}).decode()
+
+
+@mock.patch("wom.services.http.aiohttp.ClientSession")
+async def test_init_session_json_serialize_uses_injected_serializer(
+    session: mock.MagicMock,
+) -> None:
+    # When the Client injects its shared Serializer, the session's encoder must
+    # be wired to that instance and not a fresh one built inside the service.
+    serializer = mock.Mock()
+    serializer.encode.return_value = b'{"wired": true}'
+    service = HttpService(None, None, None, serializer=serializer)
+
+    await service._init_session()  # type: ignore
+
+    _, kwargs = session.call_args
+    result = kwargs["json_serialize"]({"anything": 1})
+
+    serializer.encode.assert_called_once_with({"anything": 1})
+    assert result == '{"wired": true}'

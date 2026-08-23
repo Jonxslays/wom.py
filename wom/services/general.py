@@ -19,32 +19,47 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""This module contains the services used to interact with different
-portions of the WOM API.
-"""
-
 from __future__ import annotations
 
-__all__ = (
-    "BaseService",
-    "CompetitionService",
-    "DeltaService",
-    "EfficiencyService",
-    "GeneralService",
-    "GroupService",
-    "HttpService",
-    "NameChangeService",
-    "PlayerService",
-    "RecordService",
-)
+import typing as t
 
-from .base import *
-from .competitions import *
-from .deltas import *
-from .efficiency import *
-from .general import *
-from .groups import *
-from .http import *
-from .names import *
-from .players import *
-from .records import *
+from wom import models
+from wom import result
+from wom import routes
+
+from . import BaseService
+
+__all__ = ("GeneralService",)
+
+T = t.TypeVar("T")
+ResultT = result.Result[T, models.HttpErrorResponse]
+
+
+class GeneralService(BaseService):
+    """Handles general endpoints that aren't specific to a domain."""
+
+    __slots__ = ()
+
+    async def get_stats(self) -> ResultT[models.Stats]:
+        """Gets global statistics about the data tracked by WOM.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.general.get_stats()
+            ```
+
+        Returns
+        -------
+        Result
+            A result containing the global stats.
+        """
+        route = routes.GLOBAL_STATS.compile()
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, models.Stats)

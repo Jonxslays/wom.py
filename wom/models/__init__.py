@@ -92,6 +92,9 @@ __all__ = (
     "MetricLeader",
     "MetricLeaders",
     "NameChange",
+    "NameChangeBulkResult",
+    "NameChangeData",
+    "NameChangeDetail",
     "NameChangeReviewContext",
     "NameChangeReviewReason",
     "NameChangeStatus",
@@ -120,6 +123,7 @@ __all__ = (
     "Snapshot",
     "SnapshotTimelineEntry",
     "SocialLinks",
+    "Stats",
     "Team",
     "Top5ProgressResult",
 )
@@ -128,6 +132,7 @@ from .base import *
 from .competitions import *
 from .deltas import *
 from .efficiency import *
+from .general import *
 from .groups import *
 from .http import *
 from .names import *

@@ -121,3 +121,72 @@ class NameChangeService(BaseService):
         route = routes.SUBMIT_NAME_CHANGE.compile()
         data = await self._http.fetch(route, payload=payload)
         return self._ok_or_err(data, models.NameChange)
+
+    async def bulk_submit_name_changes(
+        self, name_changes: t.Sequence[t.Tuple[str, str]]
+    ) -> ResultT[models.NameChangeBulkResult]:
+        """Submits multiple name changes at once.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.names.bulk_submit_name_changes(
+                [("Jonxslays", "I Mahatma I"), ("Zezimas", "Zezima")]
+            )
+            ```
+
+        Parameters
+        ----------
+        name_changes : Sequence[tuple[str, str]]
+            The name changes to submit, as a sequence of
+            `(old_name, new_name)` tuples. Must not be empty.
+
+        Returns
+        -------
+        Result
+            A result containing the bulk name change result.
+        """
+        payload: t.List[t.Any] = [
+            {"oldName": old_name, "newName": new_name} for old_name, new_name in name_changes
+        ]
+        route = routes.BULK_SUBMIT_NAME_CHANGES.compile()
+        data = await self._http.fetch(route, payload=payload)
+        return self._ok_or_err(data, models.NameChangeBulkResult)
+
+    async def get_name_change_details(
+        self, name_change_id: int
+    ) -> ResultT[models.NameChangeDetail]:
+        """Gets the details of a name change, including the data used to
+        review it.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.names.get_name_change_details(123)
+            ```
+
+        Parameters
+        ----------
+        name_change_id : int
+            The ID of the name change to get details for.
+
+        Returns
+        -------
+        Result
+            A result containing the name change detail.
+        """
+        route = routes.NAME_CHANGE_DETAILS.compile(name_change_id)
+        data = await self._http.fetch(route)
+        return self._ok_or_err(data, models.NameChangeDetail)

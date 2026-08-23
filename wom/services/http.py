@@ -37,6 +37,10 @@ __all__ = ("HttpService",)
 
 T = t.TypeVar("T")
 
+# A request body is either a JSON object (the common case) or a bare JSON
+# array (e.g. the bulk name-change endpoint, which posts a top-level array).
+Payload = t.Union[t.Dict[str, t.Any], t.List[t.Any]]
+
 
 class HttpService:
     """The HTTP service used to make requests to the WOM API.
@@ -208,7 +212,7 @@ class HttpService:
         self,
         route: routes.CompiledRoute,
         *,
-        payload: t.Optional[t.Dict[str, t.Any]] = ...,
+        payload: t.Optional[Payload] = ...,
     ) -> t.Union[bytes, models.HttpErrorResponse]: ...
 
     @t.overload
@@ -216,7 +220,7 @@ class HttpService:
         self,
         route: routes.CompiledRoute,
         *,
-        payload: t.Optional[t.Dict[str, t.Any]] = ...,
+        payload: t.Optional[Payload] = ...,
         message_response: t.Literal[True],
     ) -> t.Union[models.HttpSuccessResponse, models.HttpErrorResponse]: ...
 
@@ -224,7 +228,7 @@ class HttpService:
         self,
         route: routes.CompiledRoute,
         *,
-        payload: t.Optional[t.Dict[str, t.Any]] = None,
+        payload: t.Optional[Payload] = None,
         message_response: bool = False,
     ) -> t.Union[bytes, models.HttpErrorResponse, models.HttpSuccessResponse]:
         """Fetches the given route.
@@ -233,9 +237,9 @@ class HttpService:
         ----------
         route : routes.CompiledRoute
             The route to make the request to.
-        payload : dict[str, Any], optional
+        payload : dict[str, Any] | list[Any], optional
             The optional payload to send in the request
-            body.
+            body. May be a JSON object or a bare JSON array.
         message_response : bool
             Whether the endpoint returns a bare message envelope
             (`HttpSuccessResponse`) rather than a model. Defaults to
