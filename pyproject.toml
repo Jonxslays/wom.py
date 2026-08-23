@@ -45,6 +45,7 @@ dev = [
     "pyright==1.1.393",
     "pytest==8.3.4",
     "pytest-asyncio==0.25.3",
+    "pytest-cov==6.0.0",
     "pytest-testdox==3.1.0",
     "ruff==0.14.4",
 ]
@@ -66,6 +67,9 @@ reportImportCycles = false
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+
+[tool.coverage.run]
+omit = ["tests/*"]
 
 [tool.ruff]
 line-length = 99

@@ -80,16 +80,16 @@ def run(session: nox.Session, *args: str) -> None:
 
 
 @nox.session(reuse_venv=True)
-@install("pytest", "pytest-asyncio", "pytest-testdox", "coverage", "aiohttp", "msgspec")
+@install(
+    "pytest", "pytest-asyncio", "pytest-cov", "pytest-testdox", "coverage", "aiohttp", "msgspec"
+)
 def tests(session: nox.Session) -> None:
     run(
         session,
-        "coverage",
-        "run",
-        "--omit",
-        "tests/*",
-        "-m",
         "pytest",
+        "--cov",
+        "--cov-branch",
+        "--cov-report=xml",
         "--testdox",
         "--log-level=INFO",
     )
