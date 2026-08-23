@@ -35,6 +35,12 @@ def test_init() -> None:
     assert s._decoders == {}  # type: ignore[private-usage]
 
 
+def test_encode() -> None:
+    s = wom.Serializer()
+
+    assert s.encode([1, 2, 3]) == b"[1,2,3]"
+
+
 @mock.patch("wom.serializer.Decoder")
 def test_get_decoder(decoder: mock.MagicMock) -> None:
     s = wom.Serializer()

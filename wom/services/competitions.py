@@ -404,7 +404,7 @@ class CompetitionService(BaseService):
         """
         route = routes.DELETE_COMPETITION.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def add_participants(
@@ -445,7 +445,7 @@ class CompetitionService(BaseService):
         """
         route = routes.ADD_PARTICIPANTS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def remove_participants(
@@ -486,7 +486,7 @@ class CompetitionService(BaseService):
         """
         route = routes.REMOVE_PARTICIPANTS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, participants=participants)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def add_teams(
@@ -529,7 +529,7 @@ class CompetitionService(BaseService):
         """
         route = routes.ADD_TEAMS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, teams=teams)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def remove_teams(
@@ -570,7 +570,7 @@ class CompetitionService(BaseService):
         """
         route = routes.REMOVE_TEAMS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, teamNames=teams)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def update_outdated_participants(
@@ -630,8 +630,8 @@ class CompetitionService(BaseService):
         """
         route = routes.UPDATE_OUTDATED_PARTICIPANTS.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
-        return self._success_or_err(data, predicate=lambda m: "players are being updated" in m)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
+        return self._success_or_err(data)
 
     async def get_details_csv(
         self,

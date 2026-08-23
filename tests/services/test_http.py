@@ -28,6 +28,7 @@ import pytest
 
 from wom import HttpErrorResponse
 from wom import HttpService
+from wom import HttpSuccessResponse
 from wom import constants
 
 
@@ -202,7 +203,7 @@ async def test_request_returns_error_on_read_failure(client_response: mock.Magic
 
 
 @mock.patch("wom.services.http.aiohttp.ClientResponse")
-async def test_request_allow_http_success(client_response: mock.MagicMock) -> None:
+async def test_request_message_response_success(client_response: mock.MagicMock) -> None:
     service = HttpService(None, None, None)
     client_response.ok = True
     client_response.status = 200
@@ -211,11 +212,29 @@ async def test_request_allow_http_success(client_response: mock.MagicMock) -> No
     )
     req = mock.AsyncMock(return_value=client_response)
 
-    result = await service._request(req, "https://wut", allow_http_success=True)  # type: ignore
+    result = await service._request(req, "https://wut", message_response=True)  # type: ignore
 
-    assert isinstance(result, HttpErrorResponse)
+    assert isinstance(result, HttpSuccessResponse)
     assert result.status == 200
     assert result.message == "Success!"
+
+
+@mock.patch("wom.services.http.aiohttp.ClientResponse")
+async def test_request_message_response_error(client_response: mock.MagicMock) -> None:
+    service = HttpService(None, None, None)
+    client_response.ok = False
+    client_response.status = 400
+    client_response.content.read = mock.AsyncMock(
+        return_value=msgspec.json.encode({"message": "Nope.", "code": "BAD_REQUEST"})
+    )
+    req = mock.AsyncMock(return_value=client_response)
+
+    result = await service._request(req, "https://wut", message_response=True)  # type: ignore
+
+    assert isinstance(result, HttpErrorResponse)
+    assert result.status == 400
+    assert result.message == "Nope."
+    assert result.code == "BAD_REQUEST"
 
 
 def test_set_api_key() -> None:
@@ -330,7 +349,7 @@ async def test_fetch(request: mock.AsyncMock, get_request_func: mock.Mock) -> No
 
 @mock.patch.object(HttpService, "_get_request_func")
 @mock.patch.object(HttpService, "_request", new_callable=mock.AsyncMock)
-async def test_fetch_w_payload_and_allow_http_success(
+async def test_fetch_w_payload_and_message_response(
     request: mock.AsyncMock, get_request_func: mock.Mock
 ) -> None:
     service = HttpService(None, None, None)
@@ -342,7 +361,7 @@ async def test_fetch_w_payload_and_allow_http_success(
     route.uri = "/groups"
     route.params = {}
 
-    result = await service.fetch(route, payload={"name": "x"}, allow_http_success=True)
+    result = await service.fetch(route, payload={"name": "x"}, message_response=True)
 
     assert result == b"{}"
     request.assert_awaited_once_with(

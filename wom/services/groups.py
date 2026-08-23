@@ -321,7 +321,7 @@ class GroupService(BaseService):
         """
         route = routes.DELETE_GROUP.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def add_members(
@@ -376,7 +376,7 @@ class GroupService(BaseService):
         )
 
         route = routes.ADD_MEMBERS.compile(id)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def remove_members(
@@ -418,7 +418,7 @@ class GroupService(BaseService):
         """
         route = routes.REMOVE_MEMBERS.compile(id)
         payload = self._generate_map(verificationCode=verification_code, members=members)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
         return self._success_or_err(data)
 
     async def change_member_role(
@@ -520,8 +520,8 @@ class GroupService(BaseService):
         """
         route = routes.UPDATE_OUTDATED_MEMBERS.compile(id)
         payload = self._generate_map(verificationCode=verification_code)
-        data = await self._http.fetch(route, payload=payload, allow_http_success=True)
-        return self._success_or_err(data, predicate=lambda m: "players are being updated" in m)
+        data = await self._http.fetch(route, payload=payload, message_response=True)
+        return self._success_or_err(data)
 
     async def get_competitions(
         self, id: int, *, limit: t.Optional[int] = None, offset: t.Optional[int] = None

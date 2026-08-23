@@ -21,7 +21,13 @@
 - Drop the direct import of `attrs` (it was never a declared dependency and was
   only satisfied transitively via `aiohttp`); the internal `Route` type is now a
   plain slotted class, leaving `aiohttp` and `msgspec` as the only runtime deps.
-
+- Bare-message endpoints (delete/add/remove members and participants/teams,
+  and the update-all endpoints) now classify success purely by HTTP status
+  instead of matching the response message text. Any successful (2xx) response
+  is returned as `Ok(HttpSuccessResponse)` regardless of the message wording;
+  failures come back as `Err(HttpErrorResponse)` with the API's `code`. This
+  also fixes success messages that don't begin with `"Success"` being
+  misreported as errors.
 - Bump the minimum `msgspec` version to `>=0.21.0`, which is required to decode
   enums that use a custom metaclass.
 - Migrate the build and dependency management from Poetry to

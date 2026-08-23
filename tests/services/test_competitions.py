@@ -227,7 +227,7 @@ async def test_delete_competition(
 
     generate_map.assert_called_once_with(verificationCode="111-111-111")
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -249,7 +249,7 @@ async def test_add_participants(
         verificationCode="111-111-111", participants=("Jonxslays", "Zezima")
     )
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -271,7 +271,7 @@ async def test_remove_participants(
         verificationCode="111-111-111", participants=("Jonxslays",)
     )
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -295,7 +295,7 @@ async def test_add_teams(
         verificationCode="111-111-111", teams=(team_one, team_two)
     )
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -317,7 +317,7 @@ async def test_remove_teams(
         verificationCode="111-111-111", teamNames=("Team 1", "Team 2")
     )
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -337,8 +337,8 @@ async def test_update_outdated_participants(
 
     generate_map.assert_called_once_with(verificationCode="111-111-111")
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
-    success_or_err.assert_called_once_with(b"{}", predicate=mock.ANY)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
+    success_or_err.assert_called_once_with(b"{}")
 
 
 @mock.patch("wom.services.competitions.routes.CompiledRoute.with_params")

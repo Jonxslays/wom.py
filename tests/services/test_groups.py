@@ -192,7 +192,7 @@ async def test_delete_group(
 
     generate_map.assert_called_once_with(verificationCode="111-111-111")
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -216,7 +216,7 @@ async def test_add_members(
         members=({"username": "Jonxslays", "role": "administrator"}, {"username": "Zezima"}),
     )
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -238,7 +238,7 @@ async def test_remove_members(
         verificationCode="111-111-111", members=("Jonxslays", "Zezima")
     )
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
     success_or_err.assert_called_once_with(b"{}")
 
 
@@ -280,8 +280,8 @@ async def test_update_outdated_members(
 
     generate_map.assert_called_once_with(verificationCode="111-111-111")
     compile.assert_called_once_with(123)
-    http.fetch.assert_awaited_once_with(123, payload=generate_map(), allow_http_success=True)
-    success_or_err.assert_called_once_with(b"{}", predicate=mock.ANY)
+    http.fetch.assert_awaited_once_with(123, payload=generate_map(), message_response=True)
+    success_or_err.assert_called_once_with(b"{}")
 
 
 @mock.patch("wom.services.groups.routes.CompiledRoute.with_params")

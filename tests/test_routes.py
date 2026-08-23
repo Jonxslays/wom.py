@@ -42,6 +42,10 @@ def test_route_instantiation(mock_get: Route) -> None:
     assert mock_get.uri == "/69420"
 
 
+def test_route_repr(mock_get: Route) -> None:
+    assert repr(mock_get) == "Route(method='GET', uri='/69420')"
+
+
 def test_route_compiles(mock_get: Route) -> None:
     compiled = mock_get.compile()
     assert isinstance(compiled, CompiledRoute)

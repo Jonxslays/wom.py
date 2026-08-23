@@ -86,75 +86,26 @@ def test_ok_or_err_err(_ok: mock.Mock) -> None:
     assert result.unwrap_err().status == 69
 
 
-@mock.patch("wom.services.base.serializer.Serializer.decode")
-def test_success_or_err_bytes_err(decode: mock.Mock) -> None:
-    decode.return_value = None
-    service = BaseService(mock.Mock(), wom.Serializer())
-
-    result = service._success_or_err(b"")  # pyright: ignore[reportPrivateUsage]
-
-    decode.assert_called_once_with(b"", wom.HttpErrorResponse)
-    assert isinstance(result, wom.Err)
-    assert result.unwrap_err() == None
-
-
-@mock.patch("wom.services.base.serializer.Serializer.decode")
-def test_success_or_err_predicate_err(decode: mock.Mock) -> None:
-    service = BaseService(mock.Mock(), wom.Serializer())
-    data = wom.HttpErrorResponse("FAILED", 100)
+def test_success_or_err_ok() -> None:
+    service = BaseService(mock.Mock(), mock.Mock())
+    data = wom.HttpSuccessResponse("Successfully deleted group: The Guys", 200)
 
     result = service._success_or_err(data)  # pyright: ignore[reportPrivateUsage]
 
-    decode.assert_not_called()
+    assert isinstance(result, wom.Ok)
+    assert result.unwrap() is data
+    assert result.unwrap().message == "Successfully deleted group: The Guys"
+    assert result.unwrap().status == 200
+
+
+def test_success_or_err_err() -> None:
+    service = BaseService(mock.Mock(), mock.Mock())
+    data = wom.HttpErrorResponse("FAILED", 400, "BAD_REQUEST")
+
+    result = service._success_or_err(data)  # pyright: ignore[reportPrivateUsage]
+
     assert isinstance(result, wom.Err)
+    assert result.unwrap_err() is data
     assert result.unwrap_err().message == "FAILED"
-    assert result.unwrap_err().status == 100
-
-
-@mock.patch("wom.services.base.serializer.Serializer.decode")
-def test_success_or_err_predicate_ok(decode: mock.Mock) -> None:
-    service = BaseService(mock.Mock(), wom.Serializer())
-    data = wom.HttpErrorResponse("Success", 10)
-
-    result = service._success_or_err(data)  # pyright: ignore[reportPrivateUsage]
-
-    decode.assert_not_called()
-    assert isinstance(result, wom.Ok)
-    assert result.unwrap().message == "Success"
-    assert result.unwrap().status == 10
-
-
-@mock.patch("wom.services.base.serializer.Serializer.decode")
-def test_success_or_err_custom_predicate_ok(decode: mock.Mock) -> None:
-    service = BaseService(mock.Mock(), wom.Serializer())
-    predicate = mock.Mock()
-    predicate.return_value = True
-    data = wom.HttpErrorResponse("Success", 10)
-
-    result = service._success_or_err(  # pyright: ignore[reportPrivateUsage]
-        data, predicate=predicate
-    )
-
-    decode.assert_not_called()
-    predicate.assert_called_once_with("Success")
-    assert isinstance(result, wom.Ok)
-    assert result.unwrap().message == "Success"
-    assert result.unwrap().status == 10
-
-
-@mock.patch("wom.services.base.serializer.Serializer.decode")
-def test_success_or_err_custom_predicate_err(decode: mock.Mock) -> None:
-    service = BaseService(mock.Mock(), wom.Serializer())
-    predicate = mock.Mock()
-    predicate.return_value = False
-    data = wom.HttpErrorResponse("lol", 99)
-
-    result = service._success_or_err(  # pyright: ignore[reportPrivateUsage]
-        data, predicate=predicate
-    )
-
-    decode.assert_not_called()
-    predicate.assert_called_once_with("lol")
-    assert isinstance(result, wom.Err)
-    assert result.unwrap_err().message == "lol"
-    assert result.unwrap_err().status == 99
+    assert result.unwrap_err().status == 400
+    assert result.unwrap_err().code == "BAD_REQUEST"

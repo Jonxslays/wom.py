@@ -92,16 +92,16 @@ class HttpService:
         self,
         req: t.Callable[..., t.Awaitable[t.Any]],
         url: str,
-        allow_http_success: bool = False,
+        message_response: bool = False,
         **kwargs: t.Any,
-    ) -> t.Union[bytes, models.HttpErrorResponse]:
+    ) -> t.Union[bytes, models.HttpErrorResponse, models.HttpSuccessResponse]:
         response = await req(url, **kwargs)
         content = await self._read_content(response)
 
         if isinstance(content, models.HttpErrorResponse):
             return content
 
-        if not response.ok or allow_http_success:
+        if not response.ok:
             error = self._serializer.decode(content, t.Dict[str, t.Any])
 
             return models.HttpErrorResponse(
@@ -109,6 +109,14 @@ class HttpService:
                 response.status,
                 error.get("code"),
             )
+
+        if message_response:
+            # These endpoints return a bare ``{"message": ...}`` envelope
+            # instead of a model. WOM signals failure via the HTTP status, so
+            # any 2xx here is a success (see docs.wiseoldman.net).
+            success = self._serializer.decode(content, models.HttpSuccessResponse)
+            success.status = response.status
+            return success
 
         return content
 
@@ -177,13 +185,30 @@ class HttpService:
         if hasattr(self, "_session") and not self._session.closed:
             await self._session.close()
 
+    @t.overload
+    async def fetch(
+        self,
+        route: routes.CompiledRoute,
+        *,
+        payload: t.Optional[t.Dict[str, t.Any]] = ...,
+    ) -> t.Union[bytes, models.HttpErrorResponse]: ...
+
+    @t.overload
+    async def fetch(
+        self,
+        route: routes.CompiledRoute,
+        *,
+        payload: t.Optional[t.Dict[str, t.Any]] = ...,
+        message_response: t.Literal[True],
+    ) -> t.Union[models.HttpSuccessResponse, models.HttpErrorResponse]: ...
+
     async def fetch(
         self,
         route: routes.CompiledRoute,
         *,
         payload: t.Optional[t.Dict[str, t.Any]] = None,
-        allow_http_success: bool = False,
-    ) -> bytes | models.HttpErrorResponse:
+        message_response: bool = False,
+    ) -> t.Union[bytes, models.HttpErrorResponse, models.HttpSuccessResponse]:
         """Fetches the given route.
 
         Parameters
@@ -193,19 +218,22 @@ class HttpService:
         payload : dict[str, Any], optional
             The optional payload to send in the request
             body.
-        allow_http_success : bool
-            Whether or not the caller is planning
-            to return http success.
+        message_response : bool
+            Whether the endpoint returns a bare message envelope
+            (`HttpSuccessResponse`) rather than a model. Defaults to
+            `False`.
 
         Returns
         -------
-        bytes | HttpErrorResponse
-            The requested bytes or the error response.
+        bytes | HttpSuccessResponse | HttpErrorResponse
+            The raw bytes (or `HttpSuccessResponse` when
+            `message_response` is set) on success, or the
+            `HttpErrorResponse` on failure.
         """
         return await self._request(
             self._get_request_func(route.method),
             self._base_url + route.uri,
-            allow_http_success,
+            message_response,
             headers=self._headers,
             params=route.params,
             json=payload or None,

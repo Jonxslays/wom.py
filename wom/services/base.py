@@ -71,17 +71,9 @@ class BaseService(abc.ABC):
 
     def _success_or_err(
         self,
-        data: t.Union[bytes, models.HttpErrorResponse],
-        *,
-        predicate: t.Optional[t.Callable[[str], bool]] = None,
+        data: t.Union[models.HttpSuccessResponse, models.HttpErrorResponse],
     ) -> ResultT[models.HttpSuccessResponse]:
-        if isinstance(data, bytes):
-            err = self._serializer.decode(data, models.HttpErrorResponse)
-            return result.Err(err)
-
-        predicate = predicate or (lambda m: m.startswith("Success"))
-
-        if not predicate(data.message):
+        if isinstance(data, models.HttpErrorResponse):
             return result.Err(data)
 
-        return result.Ok(models.HttpSuccessResponse(data.message, data.status))
+        return result.Ok(data)
