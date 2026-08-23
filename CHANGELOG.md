@@ -12,6 +12,11 @@
 - Add the `UnknownEnumWarning` warning category (exported as
   `wom.UnknownEnumWarning`) so unrecognized-enum warnings can be filtered or
   silenced with `warnings.filterwarnings`.
+- Add `Client.efficiency.get_rates`, wrapping the `GET /efficiency/rates`
+  endpoint. Returns a list of `SkillMetaConfig` for the `Ehp` metric or a
+  list of `BossMetaConfig` for `Ehb`. Adds the supporting
+  `EfficiencyAlgorithmType` enum and the `SkillMetaMethod`, `SkillMetaBonus`,
+  `SkillMetaConfig`, and `BossMetaConfig` models.
 
 ## Bugfixes
 

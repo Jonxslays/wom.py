@@ -35,6 +35,10 @@ __all__ = ("EfficiencyService",)
 T = t.TypeVar("T")
 ResultT = result.Result[T, models.HttpErrorResponse]
 
+# The rates endpoint returns skill configs for ehp and boss configs for ehb,
+# so its result is a union over the two possible element types.
+RatesResultT = ResultT[t.Union[t.List[models.SkillMetaConfig], t.List[models.BossMetaConfig]]]
+
 
 class EfficiencyService(BaseService):
     """Handles endpoints related to efficiency."""
@@ -105,3 +109,50 @@ class EfficiencyService(BaseService):
         route = routes.GLOBAL_EFFICIENCY_LEADERS.compile()
         data = await self._http.fetch(route.with_params(params))
         return self._ok_or_err(data, t.List[models.Player])
+
+    async def get_rates(
+        self,
+        algorithm_type: models.EfficiencyAlgorithmType,
+        metric: enums.Metric = enums.Metric.Ehp,
+    ) -> RatesResultT:
+        """Gets the efficiency rates for the given algorithm type and metric.
+
+        ??? example
+
+            ```py
+            import wom
+
+            client = wom.Client(...)
+
+            await client.start()
+
+            result = await client.efficiency.get_rates(
+                wom.EfficiencyAlgorithmType.Main, wom.Metric.Ehp
+            )
+            ```
+
+        Parameters
+        ----------
+        algorithm_type : EfficiencyAlgorithmType
+            The efficiency algorithm variant to get rates for.
+        metric : Metric
+            The computed metric to get rates for. Defaults to `Ehp`,
+            must be one of `Ehp` or `Ehb`.
+
+        Returns
+        -------
+        Result
+            A result containing a list of the rate configs. `Ehp` returns
+            a list of [`SkillMetaConfig`][wom.SkillMetaConfig], and `Ehb`
+            returns a list of [`BossMetaConfig`][wom.BossMetaConfig].
+        """
+        params = self._generate_map(type=algorithm_type.value, metric=metric.value)
+        route = routes.GLOBAL_EFFICIENCY_RATES.compile().with_params(params)
+        data = await self._http.fetch(route)
+
+        # The element type is decided by the metric; ``Result`` is invariant,
+        # so the specific list result is cast to the declared union.
+        if metric is enums.Metric.Ehb:
+            return t.cast(RatesResultT, self._ok_or_err(data, t.List[models.BossMetaConfig]))
+
+        return t.cast(RatesResultT, self._ok_or_err(data, t.List[models.SkillMetaConfig]))
