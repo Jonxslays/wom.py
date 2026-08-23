@@ -2,8 +2,9 @@
     <h1>wom.py</h1>
     <a href="https://pypi.org/project/wom.py"><img height="20" alt="Stable version" src="https://img.shields.io/pypi/v/wom.py?label=stable&logo=pypi"></a>
     <a href="https://github.com/Jonxslays/wom.py/blob/master/LICENSE"><img height="20" alt="License" src="https://img.shields.io/pypi/l/wom-py?label=license"></a>
-    <a href="https://python.org"><img height="20" alt="Python versions" src="https://img.shields.io/pypi/pyversions/wom-py?label=python&logo=python"></a>
     <a href="https://codecov.io/gh/Jonxslays/wom.py"><img src="https://codecov.io/gh/Jonxslays/wom.py/graph/badge.svg?token=I0WKWO5EC5"></a>
+    <br />
+    <a href="https://python.org"><img height="20" alt="Python versions" src="https://img.shields.io/pypi/pyversions/wom-py?label=python&logo=python"></a>
 </div>
 
 An asynchronous wrapper for the [Wise Old Man API](https://docs.wiseoldman.net/).
