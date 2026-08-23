@@ -12,6 +12,13 @@
 - Add the `UnknownEnumWarning` warning category (exported as
   `wom.UnknownEnumWarning`) so unrecognized-enum warnings can be filtered or
   silenced with `warnings.filterwarnings`.
+- Add `Client.names.get_name_change_details`, wrapping the
+  `GET /names/{id}` endpoint. Returns a new `NameChangeDetail` model
+  (with a nested `NameChangeData` carrying the old/new `Snapshot`s used to
+  review the change; `data` is `None` for already-resolved changes).
+- Add `Client.names.bulk_submit_name_changes`, wrapping the
+  `POST /names/bulk` endpoint. Accepts a sequence of `(old_name, new_name)`
+  tuples and returns a new `NameChangeBulkResult` model.
 - Add `Client.general`, a new `GeneralService` for endpoints that aren't
   specific to a domain, with `get_stats()` wrapping the `GET /stats`
   endpoint and returning a new `Stats` model.

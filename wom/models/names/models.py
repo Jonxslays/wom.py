@@ -27,11 +27,15 @@ from datetime import datetime
 from wom import enums
 
 from ..base import BaseModel
+from ..players import Snapshot
 from .enums import NameChangeReviewReason
 from .enums import NameChangeStatus
 
 __all__ = (
     "NameChange",
+    "NameChangeBulkResult",
+    "NameChangeData",
+    "NameChangeDetail",
     "NameChangeReviewContext",
 )
 
@@ -114,3 +118,73 @@ class NameChange(BaseModel):
 
     created_at: datetime
     """The date the name change was created."""
+
+
+class NameChangeData(BaseModel):
+    """The data used to review a pending name change.
+
+    !!! note
+
+        This is only populated on
+        [`NameChangeDetail`][wom.NameChangeDetail] when the old name is
+        tracked and the name change is still pending.
+    """
+
+    is_new_on_hiscores: bool
+    """Whether the new name is currently on the hiscores."""
+
+    is_old_on_hiscores: bool
+    """Whether the old name is currently on the hiscores."""
+
+    is_new_tracked: bool
+    """Whether the new name is already tracked on WOM."""
+
+    has_negative_gains: bool
+    """Whether negative gains were observed between the old and new name."""
+
+    negative_gains: t.Optional[t.Dict[enums.Metric, float]]
+    """The negative gains that were observed, if there were any. `None`
+    when the new name could not be found.
+    """
+
+    time_diff: int
+    """The difference in milliseconds between the old and new snapshots."""
+
+    hours_diff: float
+    """The difference in hours between the old and new snapshots."""
+
+    ehp_diff: float
+    """The difference in ehp between the old and new snapshots."""
+
+    ehb_diff: float
+    """The difference in ehb between the old and new snapshots."""
+
+    old_stats: Snapshot
+    """The [`Snapshot`][wom.Snapshot] for the old name."""
+
+    new_stats: t.Optional[Snapshot]
+    """The [`Snapshot`][wom.Snapshot] for the new name, if it could be
+    found.
+    """
+
+
+class NameChangeDetail(BaseModel):
+    """Represents the details of a particular name change."""
+
+    name_change: NameChange
+    """The [`NameChange`][wom.NameChange] being detailed."""
+
+    data: t.Optional[NameChangeData] = None
+    """The [`NameChangeData`][wom.NameChangeData] used to review the name
+    change, if it is available.
+    """
+
+
+class NameChangeBulkResult(BaseModel):
+    """The result of a bulk name change submission."""
+
+    name_changes_submitted: int
+    """The number of name changes that were successfully submitted."""
+
+    message: str
+    """A message describing the outcome of the submission."""

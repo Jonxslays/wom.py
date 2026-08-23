@@ -136,3 +136,142 @@ async def test_get_stats_decodes_real_model() -> None:
 
     route = http.fetch.call_args.args[0]
     assert route.uri == "/stats"
+
+
+# A snapshot as WOM sends it over the wire, including the legacy top-level
+# ``id: -1`` field the API injects for backwards compatibility (which must be
+# ignored, not rejected, by the Snapshot model).
+_SNAPSHOT_JSON = """{
+    "id": -1,
+    "playerId": 42,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "importedAt": null,
+    "data": {
+        "skills": {
+            "attack": {
+                "metric": "attack", "rank": 1, "level": 99,
+                "experience": 200000000, "ehp": 12.3
+            }
+        },
+        "bosses": {
+            "zulrah": {"metric": "zulrah", "rank": 5, "kills": 1000, "ehb": 20.0}
+        },
+        "activities": {
+            "last_man_standing": {
+                "metric": "last_man_standing", "rank": 3, "score": 500
+            }
+        },
+        "computed": {
+            "ehp": {"metric": "ehp", "rank": 2, "value": 1234.5}
+        }
+    }
+}"""
+
+
+NAME_CHANGE_DETAIL_JSON = (
+    """{
+    "nameChange": {
+        "id": 7,
+        "playerId": 42,
+        "oldName": "old guy",
+        "newName": "new guy",
+        "status": "pending",
+        "reviewContext": null,
+        "resolvedAt": null,
+        "updatedAt": "2024-01-02T03:04:05.000Z",
+        "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    "data": {
+        "isNewOnHiscores": true,
+        "isOldOnHiscores": false,
+        "isNewTracked": false,
+        "hasNegativeGains": true,
+        "negativeGains": {"attack": -1000.0, "ehp": -0.5},
+        "timeDiff": 3600000,
+        "hoursDiff": 1.5,
+        "ehpDiff": 2.5,
+        "ehbDiff": 0.0,
+        "oldStats": """
+    + _SNAPSHOT_JSON
+    + ""","newStats": """
+    + _SNAPSHOT_JSON
+    + """}
+}"""
+).encode()
+
+
+async def test_get_name_change_details_decodes_nested_data() -> None:
+    service, http = _service(wom.NameChangeService, NAME_CHANGE_DETAIL_JSON)
+
+    result = await service.get_name_change_details(7)
+
+    assert result.is_ok
+    detail = result.unwrap()
+    assert isinstance(detail, wom.NameChangeDetail)
+    assert detail.name_change.id == 7
+    assert detail.name_change.status is wom.NameChangeStatus.Pending
+
+    data = detail.data
+    assert data is not None
+    # Fractional diffs decode as floats, not truncated ints.
+    assert data.hours_diff == 1.5
+    assert data.ehp_diff == 2.5
+    assert data.has_negative_gains is True
+    assert data.negative_gains == {wom.Metric.Attack: -1000.0, wom.Metric.Ehp: -0.5}
+
+    # The nested snapshots decode fully, and the legacy ``id: -1`` field is
+    # ignored rather than causing a decode error.
+    assert isinstance(data.old_stats, wom.Snapshot)
+    assert data.old_stats.data.skills[wom.Metric.Attack].level == 99
+    assert data.new_stats is not None
+    assert data.new_stats.data.bosses[wom.Metric.Zulrah].kills == 1000
+
+    route = http.fetch.call_args.args[0]
+    assert route.uri == "/names/7"
+
+
+async def test_get_name_change_details_omits_data_when_absent() -> None:
+    # An already-resolved change comes back with just ``{ nameChange }`` and no
+    # ``data`` key; the optional field must default to None, not raise.
+    body = b"""{
+        "nameChange": {
+            "id": 8,
+            "playerId": 42,
+            "oldName": "old guy",
+            "newName": "new guy",
+            "status": "approved",
+            "reviewContext": null,
+            "resolvedAt": "2024-02-02T00:00:00.000Z",
+            "updatedAt": "2024-02-02T00:00:00.000Z",
+            "createdAt": "2024-01-01T00:00:00.000Z"
+        }
+    }"""
+    service, _ = _service(wom.NameChangeService, body)
+
+    result = await service.get_name_change_details(8)
+
+    assert result.is_ok
+    detail = result.unwrap()
+    assert detail.name_change.id == 8
+    assert detail.data is None
+
+
+async def test_bulk_submit_name_changes_decodes_result_and_posts_array() -> None:
+    body = b'{"nameChangesSubmitted": 2, "message": "Successfully submitted 2/2 name changes."}'
+    service, http = _service(wom.NameChangeService, body)
+
+    result = await service.bulk_submit_name_changes([("old1", "new1"), ("old2", "new2")])
+
+    assert result.is_ok
+    bulk = result.unwrap()
+    assert isinstance(bulk, wom.NameChangeBulkResult)
+    assert bulk.name_changes_submitted == 2
+    assert bulk.message == "Successfully submitted 2/2 name changes."
+
+    # The body is posted as a bare JSON array of {oldName, newName} objects.
+    route = http.fetch.call_args.args[0]
+    assert route.uri == "/names/bulk"
+    assert http.fetch.call_args.kwargs["payload"] == [
+        {"oldName": "old1", "newName": "new1"},
+        {"oldName": "old2", "newName": "new2"},
+    ]
