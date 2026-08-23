@@ -29,6 +29,7 @@ import typing as t
 
 from msgspec import Struct
 from msgspec.json import Decoder
+from msgspec.json import Encoder
 
 __all__ = ("Serializer",)
 
@@ -38,12 +39,28 @@ if t.TYPE_CHECKING:  # pragma: no cover
 
 
 class Serializer:
-    """Deserializes raw bytes into wom.py model classes."""
+    """Serializes wom.py model classes to and from raw bytes."""
 
-    __slots__ = ("_decoders",)
+    __slots__ = ("_decoders", "_encoder")
 
     def __init__(self) -> None:
         self._decoders: DecodersT = {}
+        self._encoder = Encoder()
+
+    def encode(self, obj: t.Any) -> bytes:
+        """Encodes the object into JSON bytes.
+
+        Parameters
+        ----------
+        obj : Any
+            The object to encode.
+
+        Returns
+        -------
+        bytes
+            The encoded JSON payload.
+        """
+        return self._encoder.encode(obj)
 
     def decode(self, data: bytes, model_type: t.Type[T]) -> T:
         """Decodes the data into the given model type.

@@ -112,27 +112,15 @@ def types(session: nox.Session) -> None:
 
 
 @nox.session(reuse_venv=True)
-@install("black")
+@install("ruff")
 def formatting(session: nox.Session) -> None:
-    run(session, "black", ".", "--check")
+    run(session, "ruff", "format", ".", "--check")
 
 
 @nox.session(reuse_venv=True)
-@install("flake8", "isort")
+@install("ruff")
 def imports(session: nox.Session) -> None:
-    run(session, "isort", "wom", "tests", "-cq")
-    run(
-        session,
-        "flake8",
-        "wom",
-        "tests",
-        "--select",
-        "F4",
-        "--extend-ignore",
-        "E,F",
-        "--extend-exclude",
-        "__init__.py",
-    )
+    run(session, "ruff", "check", "wom", "tests")
 
 
 @nox.session(reuse_venv=True)

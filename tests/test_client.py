@@ -44,7 +44,7 @@ async def test_all_services_exist() -> None:
 @mock.patch("wom.client.services.HttpService")
 async def test_basic_init(http: mock.MagicMock, serializer: mock.MagicMock) -> None:
     _ = Client()
-    http.assert_called_once_with(None, None, None)
+    http.assert_called_once_with(None, None, None, serializer.return_value)
     serializer.assert_called_once()
 
 
@@ -52,7 +52,7 @@ async def test_basic_init(http: mock.MagicMock, serializer: mock.MagicMock) -> N
 @mock.patch("wom.client.services.HttpService")
 async def test_full_init(http: mock.MagicMock, serializer: mock.MagicMock) -> None:
     _ = Client("abc", user_agent="ennui", api_base_url="fake")
-    http.assert_called_once_with("abc", "ennui", "fake")
+    http.assert_called_once_with("abc", "ennui", "fake", serializer.return_value)
     serializer.assert_called_once()
 
 

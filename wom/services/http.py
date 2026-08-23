@@ -26,11 +26,11 @@ from __future__ import annotations
 import typing as t
 
 import aiohttp
-import msgspec
 
 from wom import constants
 from wom import models
 from wom import routes
+from wom.serializer import Serializer
 
 __all__ = ("HttpService",)
 
@@ -48,15 +48,20 @@ class HttpService:
         The optional user agent to use.
     api_base_url : str, optional
         The optional api base url to use.
+    serializer : Serializer, optional
+        The optional serializer to use for encoding and decoding.
+        If not provided a new one is created; the [`Client`][wom.Client]
+        injects its shared serializer so decoding happens in one place.
     """
 
-    __slots__ = ("_base_url", "_decoder", "_encoder", "_headers", "_method_mapping", "_session")
+    __slots__ = ("_base_url", "_headers", "_method_mapping", "_serializer", "_session")
 
     def __init__(
         self,
         api_key: t.Optional[str],
         user_agent: t.Optional[str],
         api_base_url: t.Optional[str],
+        serializer: t.Optional[Serializer] = None,
     ) -> None:
         user_agent = (
             f"{constants.USER_AGENT_BASE} {user_agent}"
@@ -73,8 +78,7 @@ class HttpService:
             self._headers["x-api-key"] = api_key
 
         self._base_url = api_base_url or constants.WOM_BASE_URL
-        self._decoder = msgspec.json.Decoder()
-        self._encoder = msgspec.json.Encoder()
+        self._serializer = serializer or Serializer()
 
     async def _read_content(
         self, response: aiohttp.ClientResponse
@@ -98,7 +102,7 @@ class HttpService:
             return content
 
         if not response.ok or allow_http_success:
-            error = self._decoder.decode(content)
+            error = self._serializer.decode(content, t.Dict[str, t.Any])
 
             return models.HttpErrorResponse(
                 error.get("message", "An unexpected error occurred while making the request."),
@@ -116,7 +120,7 @@ class HttpService:
 
     async def _init_session(self) -> None:
         self._session = aiohttp.ClientSession(
-            json_serialize=lambda o: self._encoder.encode(o).decode()
+            json_serialize=lambda o: self._serializer.encode(o).decode()
         )
 
         self._method_mapping = {

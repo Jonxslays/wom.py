@@ -24,8 +24,8 @@
 from __future__ import annotations
 
 import random
-import sys
 import typing as t
+import warnings
 from enum import Enum
 from enum import EnumMeta
 
@@ -39,7 +39,17 @@ __all__ = (
     "Metric",
     "Period",
     "Skills",
+    "UnknownEnumWarning",
 )
+
+
+class UnknownEnumWarning(UserWarning):
+    """Warns that the API returned an enum value the library does not
+    recognize, which was coerced to the `Unknown` variant.
+
+    Filter or silence it like any other warning, e.g.
+    `warnings.filterwarnings("ignore", category=wom.UnknownEnumWarning)`.
+    """
 
 
 class BaseEnumMeta(EnumMeta):
@@ -71,10 +81,11 @@ class BaseEnum(Enum, metaclass=BaseEnumMeta):
 
     @classmethod
     def _missing_(cls, value: object) -> BaseEnum:
-        print(
+        warnings.warn(
             f"{value!r} is not a valid {cls.__name__} variant. "
             "Please report this issue on github at https://github.com/Jonxslays/wom.py/issues/new",
-            file=sys.stderr,
+            UnknownEnumWarning,
+            stacklevel=2,
         )
         return cls.Unknown  # type: ignore[attr-defined,no-any-return]
 

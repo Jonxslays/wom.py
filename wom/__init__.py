@@ -177,6 +177,7 @@ __all__ = (
     "SocialLinks",
     "Team",
     "Top5ProgressResult",
+    "UnknownEnumWarning",
     "UnwrapError",
     "WomError",
 )

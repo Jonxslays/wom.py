@@ -118,7 +118,7 @@ class Client:
         api_base_url: t.Optional[str] = None,
     ) -> None:
         self._serializer = serializer.Serializer()
-        self._http = services.HttpService(api_key, user_agent, api_base_url)
+        self._http = services.HttpService(api_key, user_agent, api_base_url, self._serializer)
         self.__init_core_services()
 
     @property
@@ -171,9 +171,7 @@ class Client:
         return self._records
 
     def __init_service(self, service: t.Type[ServiceT]) -> ServiceT:
-        if not issubclass(
-            service, services.BaseService
-        ):  # pyright: ignore[reportUnnecessaryIsInstance]
+        if not issubclass(service, services.BaseService):  # pyright: ignore[reportUnnecessaryIsInstance]
             raise TypeError(f"{service.__name__!r} can not be initialized as a service.")
 
         return service(self._http, self._serializer)

@@ -77,12 +77,12 @@ def test_iter_excludes_unknown() -> None:
         assert enum.Unknown not in tuple(enum)
 
 
-def test_missing_returns_unknown(capsys: pytest.CaptureFixture[str]) -> None:
-    assert wom.Metric("new_fake_metric") is wom.Metric.Unknown
-    assert wom.Period("fake") is wom.Period.Unknown
+def test_missing_returns_unknown() -> None:
+    with pytest.warns(wom.UnknownEnumWarning, match="not a valid Metric variant"):
+        assert wom.Metric("new_fake_metric") is wom.Metric.Unknown
+
+    with pytest.warns(wom.UnknownEnumWarning, match="not a valid Period variant"):
+        assert wom.Period("fake") is wom.Period.Unknown
+
     assert wom.Metric.Attack.value == "attack"
     assert wom.Metric.Unknown != wom.Metric.Zulrah
-
-    captured = capsys.readouterr()
-    assert "not a valid Metric variant" in captured.err
-    assert "not a valid Period variant" in captured.err

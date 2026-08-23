@@ -25,8 +25,6 @@ from __future__ import annotations
 
 import typing as t
 
-import attrs
-
 __all__ = ("CompiledRoute", "Route")
 
 
@@ -89,14 +87,22 @@ class CompiledRoute:
         return self
 
 
-@attrs.define(weakref_slot=False)
 class Route:
     """A route that has not been compiled yet."""
+
+    __slots__ = ("method", "uri")
 
     method: str
     """The request method to use."""
     uri: str
     """The request uri."""
+
+    def __init__(self, method: str, uri: str) -> None:
+        self.method = method
+        self.uri = uri
+
+    def __repr__(self) -> str:
+        return f"Route(method={self.method!r}, uri={self.uri!r})"
 
     def compile(self, *args: t.Union[str, int]) -> CompiledRoute:
         """Turn this route into a compiled route.

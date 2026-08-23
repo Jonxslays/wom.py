@@ -6,10 +6,21 @@
   error code returned by the WOM API (defaults to `None` when absent).
 - Every `BaseEnum` subclass now defines an `Unknown` variant. Unrecognized
   values received from the API decode to `Unknown` (via `BaseEnum._missing_`)
-  instead of raising, and a warning is emitted to `stderr`. `Unknown` is skipped
-  when iterating an enum (via `BaseEnumMeta`), so `at_random()` never returns it.
+  instead of raising, and an `UnknownEnumWarning` is emitted via `warnings.warn`.
+  `Unknown` is skipped when iterating an enum (via `BaseEnumMeta`), so
+  `at_random()` never returns it.
+- Add the `UnknownEnumWarning` warning category (exported as
+  `wom.UnknownEnumWarning`) so unrecognized-enum warnings can be filtered or
+  silenced with `warnings.filterwarnings`.
 
 ## Changes
+
+- Unrecognized enum values now emit an `UnknownEnumWarning` through the `warnings`
+  module instead of printing to `stderr`, so consumers can filter, capture, or
+  escalate them like any other warning.
+- Drop the direct import of `attrs` (it was never a declared dependency and was
+  only satisfied transitively via `aiohttp`); the internal `Route` type is now a
+  plain slotted class, leaving `aiohttp` and `msgspec` as the only runtime deps.
 
 - Bump the minimum `msgspec` version to `>=0.21.0`, which is required to decode
   enums that use a custom metaclass.
