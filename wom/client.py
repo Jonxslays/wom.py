@@ -102,6 +102,7 @@ class Client:
         "_competitions",
         "_deltas",
         "_efficiency",
+        "_general",
         "_groups",
         "_http",
         "_names",
@@ -143,6 +144,13 @@ class Client:
         return self._efficiency
 
     @property
+    def general(self) -> services.GeneralService:
+        """The [`GeneralService`][wom.GeneralService] used to make
+        general requests that aren't specific to a domain.
+        """
+        return self._general
+
+    @property
     def groups(self) -> services.GroupService:
         """The [`GroupService`][wom.GroupService] used to make group
         related requests.
@@ -181,6 +189,7 @@ class Client:
         self._names = self.__init_service(services.NameChangeService)
         self._efficiency = self.__init_service(services.EfficiencyService)
         self._competitions = self.__init_service(services.CompetitionService)
+        self._general = self.__init_service(services.GeneralService)
 
     def set_api_key(self, api_key: str) -> None:
         """Sets the api key used by the http service.

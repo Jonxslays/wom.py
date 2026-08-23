@@ -118,6 +118,7 @@ __all__ = (
     "Snapshot",
     "SnapshotTimelineEntry",
     "SocialLinks",
+    "Stats",
     "Team",
     "Top5ProgressResult",
 )
@@ -125,6 +126,7 @@ __all__ = (
 from .base import *
 from .competitions import *
 from .deltas import *
+from .general import *
 from .groups import *
 from .http import *
 from .names import *

@@ -118,6 +118,26 @@ async def test_delete_group_success_message_is_wrapped_in_ok() -> None:
     assert http.fetch.call_args.kwargs["message_response"] is True
 
 
+async def test_get_stats_decodes_real_model() -> None:
+    # The counts are Postgres reltuples estimates, so integer JSON values must
+    # decode into the float fields just as fractional ones do.
+    body = b'{"players": 1234.5, "snapshots": 99999, "groups": 50, "competitions": 12}'
+    service, http = _service(wom.GeneralService, body)
+
+    result = await service.get_stats()
+
+    assert result.is_ok
+    stats = result.unwrap()
+    assert isinstance(stats, wom.Stats)
+    assert stats.players == 1234.5
+    assert stats.snapshots == 99999.0
+    assert stats.groups == 50.0
+    assert stats.competitions == 12.0
+
+    route = http.fetch.call_args.args[0]
+    assert route.uri == "/stats"
+
+
 # A snapshot as WOM sends it over the wire, including the legacy top-level
 # ``id: -1`` field the API injects for backwards compatibility (which must be
 # ignored, not rejected, by the Snapshot model).

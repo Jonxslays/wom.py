@@ -19,32 +19,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""This module contains the services used to interact with different
-portions of the WOM API.
-"""
-
 from __future__ import annotations
 
-__all__ = (
-    "BaseService",
-    "CompetitionService",
-    "DeltaService",
-    "EfficiencyService",
-    "GeneralService",
-    "GroupService",
-    "HttpService",
-    "NameChangeService",
-    "PlayerService",
-    "RecordService",
-)
+from unittest import mock
 
-from .base import *
-from .competitions import *
-from .deltas import *
-from .efficiency import *
-from .general import *
-from .groups import *
-from .http import *
-from .names import *
-from .players import *
-from .records import *
+import wom
+from wom import GeneralService
+
+
+@mock.patch("wom.services.general.routes.Route.compile")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_get_stats(ok_or_err: mock.Mock, _compile: mock.Mock) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"{}"
+    _compile.return_value = 123
+    service = GeneralService(http, mock.Mock())
+
+    await service.get_stats()
+
+    _compile.assert_called_once_with()
+    http.fetch.assert_awaited_once_with(123)
+    ok_or_err.assert_called_once_with(b"{}", wom.Stats)

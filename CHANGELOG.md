@@ -19,6 +19,9 @@
 - Add `Client.names.bulk_submit_name_changes`, wrapping the
   `POST /names/bulk` endpoint. Accepts a sequence of `(old_name, new_name)`
   tuples and returns a new `NameChangeBulkResult` model.
+- Add `Client.general`, a new `GeneralService` for endpoints that aren't
+  specific to a domain, with `get_stats()` wrapping the `GET /stats`
+  endpoint and returning a new `Stats` model.
 
 ## Bugfixes
 
