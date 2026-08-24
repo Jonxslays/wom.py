@@ -42,7 +42,9 @@ verbatim from any existing file when creating a new one.
 
 ## Docstrings
 
-Google-style docstrings on public classes and methods. They frequently include:
+NumPy-style docstrings on public classes and methods (a summary line, then
+`Parameters` / `Returns` sections under `----------` underlines; this matches
+`docstring_style: numpy` in `mkdocs.yml`). They frequently include:
 
 - mkdocs admonitions: `!!! note`, `!!! warning`, `!!! info`, `!!! tip`,
   `??? example` (collapsible), `!!! success` / `!!! failure`.

@@ -3,6 +3,17 @@
 ## Changes
 
 - Enable next/back navigation buttons on all documentation pages.
+- Add a "Supported endpoints" docs page listing every service method, and
+  document the `general` service in the getting-started guides.
+- Order the getting-started section ahead of the module reference in the docs
+  navigation, and add short intros to the reference pages.
+
+## Documentation fixes
+
+- Correct the name-change service accessor in the docs from `Client.name_changes`
+  to `Client.names`.
+- Correct the stated minimum Python version in the installation guide from 3.9
+  to 3.10.
 
 # v3.3.0 (Aug 2026)
 

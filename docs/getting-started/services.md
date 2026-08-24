@@ -10,6 +10,7 @@ to those endpoints.
 - [`CompetitionService`][wom.CompetitionService] for requests related to competitions.
 - [`DeltaService`][wom.DeltaService] for requests related to deltas.
 - [`EfficiencyService`][wom.EfficiencyService] for requests related to efficiency.
+- [`GeneralService`][wom.GeneralService] for general requests not specific to a domain.
 - [`GroupService`][wom.GroupService] for requests related to groups.
 - [`NameChangeService`][wom.NameChangeService] for requests related to name changes.
 - [`PlayerService`][wom.PlayerService] for requests related to players.
@@ -28,7 +29,7 @@ client = wom.Client()
 await client.start()
 
 # Use the name change service to submit a name change
-result = await client.name_changes.submit_name_change("old name", "new name")
+result = await client.names.submit_name_change("old name", "new name")
 
 # ... Do something with the result here
 
