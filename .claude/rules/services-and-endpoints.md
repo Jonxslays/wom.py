@@ -10,7 +10,7 @@ The canonical shape (from `wom/services/players.py`):
 
 ```py
 async def get_details(self, username: str) -> ResultT[models.PlayerDetail]:
-    """<Google-style docstring with an ??? example block and Parameters.>"""
+    """<NumPy-style docstring with an ??? example block and Parameters.>"""
     route = routes.PLAYER_DETAILS.compile(username)
     data = await self._http.fetch(route)
     return self._ok_or_err(data, models.PlayerDetail)
