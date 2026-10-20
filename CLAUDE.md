@@ -54,7 +54,7 @@ Detailed, dedicated rules for how code is written in this repo live in
   return types.
 - **[conventions.md](.claude/rules/conventions.md)** — `__all__` discipline and
   flat top-level re-export, the MIT license header, ruff format/lint style,
-  Google-style docstrings, and version-bump syncing.
+  NumPy-style docstrings, and version-bump syncing.
 - **[git.md](.claude/rules/git.md)** — the branch-and-PR workflow: every change
   lands on a branch and goes through a pull request; never commit directly to
   `master`.
