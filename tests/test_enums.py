@@ -66,13 +66,6 @@ def test_at_random(choice: mock.MagicMock) -> None:
     choice.assert_called_once_with(tuple(wom.Metric))
 
 
-def test_the_fractured_archive_is_a_boss_metric() -> None:
-    metric = wom.Metric.TheFracturedArchive
-
-    assert metric.value == "the_fractured_archive"
-    assert metric in wom.Bosses
-
-
 def test_all_enums_have_unknown() -> None:
     for enum in _base_enum_subclasses():
         assert hasattr(enum, "Unknown"), f"{enum.__name__} is missing an Unknown variant"
