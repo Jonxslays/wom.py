@@ -1,5 +1,9 @@
 # Unreleased
 
+## Additions
+
+- Add support for the Fractured Archive boss metric.
+
 ## Changes
 
 - Enable next/back navigation buttons on all documentation pages.

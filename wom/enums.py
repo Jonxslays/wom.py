@@ -216,6 +216,7 @@ class Metric(BaseEnum):
     Tempoross = "tempoross"
     TheGauntlet = "the_gauntlet"
     TheCorruptedGauntlet = "the_corrupted_gauntlet"
+    TheFracturedArchive = "the_fractured_archive"
     TheLeviathan = "the_leviathan"
     TheWhisperer = "the_whisperer"
     TheRoyalTitans = "the_royal_titans"
@@ -354,6 +355,7 @@ Bosses: t.FrozenSet[Metric] = frozenset(
         Metric.Tempoross,
         Metric.TheGauntlet,
         Metric.TheCorruptedGauntlet,
+        Metric.TheFracturedArchive,
         Metric.TheLeviathan,
         Metric.TheWhisperer,
         Metric.TheRoyalTitans,
