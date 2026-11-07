@@ -72,6 +72,11 @@ asyncio_mode = "auto"
 [tool.coverage.run]
 omit = ["tests/*"]
 
+[tool.coverage.report]
+# Overload stubs are type-checker only and never run, so excluding the
+# decorator line excludes the whole stub.
+exclude_also = ["@t\\.overload"]
+
 [tool.ruff]
 line-length = 99
 

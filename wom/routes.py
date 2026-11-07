@@ -42,7 +42,7 @@ class CompiledRoute:
     def __init__(self, route: Route, uri: str) -> None:
         self._uri = uri
         self._route = route
-        self._params: t.Dict[str, t.Union[str, int]] = {}
+        self._params: t.Dict[str, t.Union[str, int, t.List[str]]] = {}
 
     @property
     def route(self) -> Route:
@@ -64,8 +64,13 @@ class CompiledRoute:
         return self.route.method
 
     @property
-    def params(self) -> t.Dict[str, t.Union[str, int]]:
-        """The query params for the route."""
+    def params(self) -> t.Dict[str, t.Union[str, int, t.List[str]]]:
+        """The query params for the route.
+
+        A list value is sent as a repeated query key, for example
+        `{"metrics": ["zulrah", "vorkath"]}` becomes
+        `?metrics=zulrah&metrics=vorkath`.
+        """
         return self._params
 
     def with_params(self, params: t.Dict[str, t.Any]) -> CompiledRoute:
@@ -74,7 +79,8 @@ class CompiledRoute:
         Parameters
         ----------
         params : dict[str, Any]
-            The query params to compile.
+            The query params to compile. A list value is sent as a
+            repeated query key.
 
         Returns
         -------

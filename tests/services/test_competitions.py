@@ -25,6 +25,8 @@ import typing as t
 from datetime import datetime
 from unittest import mock
 
+import pytest
+
 import wom
 from wom import CompetitionService
 
@@ -56,7 +58,7 @@ async def test_search_competitions(
         offset=1,
         type="classic",
         status="ongoing",
-        metric="attack",
+        metrics=["attack"],
     )
     http.fetch.assert_awaited_once_with(123)
     ok_or_err.assert_called_once_with(b"[]", t.List[wom.Competition])
@@ -82,7 +84,7 @@ async def test_search_competitions_defaults(
         offset=None,
         type=None,
         status=None,
-        metric=None,
+        metrics=None,
     )
     http.fetch.assert_awaited_once_with(123)
     ok_or_err.assert_called_once_with(b"[]", t.List[wom.Competition])
@@ -102,7 +104,7 @@ async def test_get_details(
 
     await service.get_details(123, metric=wom.Metric.Attack)
 
-    generate_map.assert_called_once_with(metric="attack")
+    generate_map.assert_called_once_with(metrics=["attack"])
     http.fetch.assert_awaited_once_with(123)
     ok_or_err.assert_called_once_with(b"{}", wom.CompetitionDetail)
 
@@ -121,7 +123,7 @@ async def test_get_details_no_metric(
 
     await service.get_details(123)
 
-    generate_map.assert_called_once_with(metric=None)
+    generate_map.assert_called_once_with(metrics=None)
     http.fetch.assert_awaited_once_with(123)
     ok_or_err.assert_called_once_with(b"{}", wom.CompetitionDetail)
 
@@ -140,7 +142,7 @@ async def test_get_top_participant_history(
 
     await service.get_top_participant_history(123, metric=wom.Metric.Ranged)
 
-    generate_map.assert_called_once_with(metric="ranged")
+    generate_map.assert_called_once_with(metrics=["ranged"])
     http.fetch.assert_awaited_once_with(123)
     ok_or_err.assert_called_once_with(b"[]", t.List[wom.Top5ProgressResult])
 
@@ -175,7 +177,7 @@ async def test_create_competition(
         participants=None,
         endsAt=ends.isoformat(),
         startsAt=starts.isoformat(),
-        metric="slayer",
+        metrics=["slayer"],
         groupVerificationCode="111-111-111",
     )
     compile.assert_called_once_with()
@@ -203,7 +205,7 @@ async def test_edit_competition(
         participants=None,
         startsAt=None,
         endsAt=None,
-        metric=None,
+        metrics=None,
         verificationCode="111-111-111",
     )
     compile.assert_called_once_with(123)
@@ -352,7 +354,7 @@ async def test_get_details_csv(generate_map: mock.Mock, with_params: mock.Mock) 
 
     res = await service.get_details_csv(123, team_name="Cool team")
 
-    generate_map.assert_called_once_with(metric=None, teamName="Cool team", table=None)
+    generate_map.assert_called_once_with(metrics=None, teamName="Cool team", table=None)
     http.fetch.assert_awaited_once_with(123)
     assert res.is_ok
     assert res.unwrap() == "player,gained\nJonxslays,1000"
@@ -372,3 +374,165 @@ async def test_get_details_csv_error(generate_map: mock.Mock, with_params: mock.
 
     assert res.is_err
     assert res.unwrap_err() is error
+
+
+@mock.patch("wom.services.competitions.routes.CompiledRoute.with_params")
+@mock.patch("wom.services.base.BaseService._generate_map")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_search_competitions_merges_metric_and_metrics(
+    ok_or_err: mock.Mock, generate_map: mock.Mock, with_params: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"[]"
+    with_params.return_value = 123
+    service = CompetitionService(http, mock.Mock())
+
+    await service.search_competitions(
+        metric=wom.Metric.Zulrah, metrics=[wom.Metric.Vorkath, wom.Metric.Zulrah]
+    )
+
+    generate_map.assert_called_once_with(
+        title=None,
+        limit=None,
+        offset=None,
+        type=None,
+        status=None,
+        metrics=["zulrah", "vorkath"],
+    )
+
+
+@mock.patch("wom.services.competitions.routes.CompiledRoute.with_params")
+@mock.patch("wom.services.base.BaseService._generate_map")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_get_details_metrics(
+    ok_or_err: mock.Mock, generate_map: mock.Mock, with_params: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"{}"
+    with_params.return_value = 123
+    service = CompetitionService(http, mock.Mock())
+
+    await service.get_details(123, metrics=[wom.Metric.Attack, wom.Metric.Strength])
+
+    generate_map.assert_called_once_with(metrics=["attack", "strength"])
+    ok_or_err.assert_called_once_with(b"{}", wom.CompetitionDetail)
+
+
+@mock.patch("wom.services.competitions.routes.CompiledRoute.with_params")
+@mock.patch("wom.services.base.BaseService._generate_map")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_get_top_participant_history_metrics(
+    ok_or_err: mock.Mock, generate_map: mock.Mock, with_params: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"[]"
+    with_params.return_value = 123
+    service = CompetitionService(http, mock.Mock())
+
+    await service.get_top_participant_history(123, metrics=[wom.Metric.Zulrah])
+
+    generate_map.assert_called_once_with(metrics=["zulrah"])
+    ok_or_err.assert_called_once_with(b"[]", t.List[wom.Top5ProgressResult])
+
+
+@mock.patch("wom.services.competitions.routes.Route.compile")
+@mock.patch("wom.services.base.BaseService._generate_map")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_create_competition_metrics(
+    ok_or_err: mock.Mock, generate_map: mock.Mock, compile: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"{}"
+    compile.return_value = 123
+    service = CompetitionService(http, mock.Mock())
+
+    starts = datetime(2024, 1, 1)
+    ends = datetime(2024, 1, 8)
+    await service.create_competition(
+        "Boss week",
+        metrics=[wom.Metric.Zulrah, wom.Metric.Vorkath],
+        starts_at=starts,
+        ends_at=ends,
+        participants=["Jonxslays"],
+    )
+
+    generate_map.assert_called_once_with(
+        title="Boss week",
+        teams=None,
+        groupId=None,
+        participants=["Jonxslays"],
+        endsAt=ends.isoformat(),
+        startsAt=starts.isoformat(),
+        metrics=["zulrah", "vorkath"],
+        groupVerificationCode=None,
+    )
+    http.fetch.assert_awaited_once_with(123, payload=generate_map())
+    ok_or_err.assert_called_once_with(b"{}", wom.CreatedCompetitionDetail)
+
+
+async def test_create_competition_missing_dates_raises() -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    service = CompetitionService(http, mock.Mock())
+
+    with pytest.raises(TypeError):
+        await service.create_competition(  # type: ignore[call-overload]
+            "Boss week", metrics=[wom.Metric.Zulrah]
+        )
+
+    http.fetch.assert_not_awaited()
+
+
+@mock.patch("wom.services.competitions.routes.Route.compile")
+@mock.patch("wom.services.base.BaseService._generate_map")
+@mock.patch("wom.services.base.BaseService._ok_or_err")
+async def test_edit_competition_metrics(
+    ok_or_err: mock.Mock, generate_map: mock.Mock, compile: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"{}"
+    compile.return_value = 123
+    service = CompetitionService(http, mock.Mock())
+
+    await service.edit_competition(
+        123, "111-111-111", metric=wom.Metric.Zulrah, metrics=[wom.Metric.Vorkath]
+    )
+
+    generate_map.assert_called_once_with(
+        title=None,
+        teams=None,
+        participants=None,
+        startsAt=None,
+        endsAt=None,
+        metrics=["zulrah", "vorkath"],
+        verificationCode="111-111-111",
+    )
+    ok_or_err.assert_called_once_with(b"{}", wom.Competition)
+
+
+@mock.patch("wom.services.competitions.routes.CompiledRoute.with_params")
+@mock.patch("wom.services.base.BaseService._generate_map")
+async def test_get_details_csv_sends_enum_values(
+    generate_map: mock.Mock, with_params: mock.Mock
+) -> None:
+    http = mock.Mock()
+    http.fetch = mock.AsyncMock()
+    http.fetch.return_value = b"player,gained"
+    with_params.return_value = 123
+    service = CompetitionService(http, mock.Mock())
+
+    await service.get_details_csv(
+        123,
+        metric=wom.Metric.Attack,
+        metrics=[wom.Metric.Strength],
+        table_type=wom.CompetitionCSVTableType.Teams,
+    )
+
+    generate_map.assert_called_once_with(
+        metrics=["attack", "strength"], teamName=None, table="teams"
+    )

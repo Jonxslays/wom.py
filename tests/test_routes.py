@@ -74,6 +74,11 @@ def test_route_compiles_w_params(mock_get: Route) -> None:
     assert compiled.params["test"] == 1
 
 
+def test_route_compiles_w_list_params(mock_get: Route) -> None:
+    compiled = mock_get.compile().with_params({"metrics": ["zulrah", "vorkath"], "limit": 2})
+    assert compiled.params == {"metrics": ["zulrah", "vorkath"], "limit": 2}
+
+
 def test_route_compile_fails_w_too_few_args(mock_post: Route) -> None:
     with pytest.raises(ValueError) as e:
         mock_post.compile(1)
