@@ -17,6 +17,7 @@
     `create_competition(title, metrics=[...], starts_at=..., ends_at=...)`.
 - `CompiledRoute` query params now accept list values, which are sent as
   repeated query keys.
+- Add support for Python 3.15.
 
 ## Deprecations
 
