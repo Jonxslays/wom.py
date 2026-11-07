@@ -1,3 +1,9 @@
+# Unreleased
+
+## Additions
+
+- Add support for Python 3.15.
+
 # v3.3.1 (Oct 2026)
 
 ## Additions
