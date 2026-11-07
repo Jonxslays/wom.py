@@ -37,6 +37,8 @@ __all__ = (
     "Competition",
     "CompetitionDetail",
     "CompetitionHistoryDataPoint",
+    "CompetitionMetric",
+    "CompetitionMetricDelta",
     "CompetitionParticipationDetail",
     "CompetitionParticipation",
     "CompetitionProgress",
@@ -62,6 +64,83 @@ class CompetitionProgress(BaseModel):
     """The amount of progress gained in the metric."""
 
 
+class CompetitionMetric(BaseModel):
+    """A metric tracked by a competition."""
+
+    metric: enums.Metric
+    """The metric being measured."""
+
+    weight: float
+    """The weight of this metric in the competition's combined total.
+    The API currently always reports `1`."""
+
+    created_at: datetime
+    """The date this metric was added to the competition."""
+
+
+class CompetitionMetricDelta(BaseModel):
+    """A participant's progress in one of a competition's metrics, or
+    their combined progress across all of them.
+
+    !!! info
+
+        The API identifies the combined entry with the string
+        `"total"`, which is not a [`Metric`][wom.Metric]. For that
+        reason `metric` is the raw string value sent by the API. Use
+        [`is_total`][wom.CompetitionMetricDelta.is_total] and
+        [`as_metric()`][wom.CompetitionMetricDelta.as_metric] to work
+        with it.
+
+    ??? example
+
+        ```py
+        for delta in participation.deltas:
+            if delta.is_total:
+                print("Combined:", delta.values.gained)
+            else:
+                print(delta.as_metric(), delta.values.gained)
+        ```
+    """
+
+    metric: str
+    """The raw metric value, either a [`Metric`][wom.Metric] value
+    (for example `"zulrah"`) or `"total"` for the combined progress
+    across all of the competition's metrics.
+    """
+
+    values: CompetitionProgress
+    """The [`CompetitionProgress`][wom.CompetitionProgress] that was
+    made.
+    """
+
+    levels: CompetitionProgress
+    """The [`CompetitionProgress`][wom.CompetitionProgress] as it relates
+    to the number of levels gained. Only contains useful information for
+    skilling competitions.
+    """
+
+    @property
+    def is_total(self) -> bool:
+        """Whether this delta is the combined progress across all of the
+        competition's metrics.
+        """
+        return self.metric == "total"
+
+    def as_metric(self) -> t.Optional[enums.Metric]:
+        """Gets the [`Metric`][wom.Metric] this delta is for.
+
+        Returns
+        -------
+        Metric | None
+            The metric, or `None` if this is the combined `"total"`
+            delta.
+        """
+        if self.is_total:
+            return None
+
+        return enums.Metric(self.metric)
+
+
 class Competition(BaseModel):
     """Represents a competition."""
 
@@ -72,7 +151,14 @@ class Competition(BaseModel):
     """The title of the competition."""
 
     metric: enums.Metric
-    """The metric being measured."""
+    """The metric being measured.
+
+    !!! warning "Deprecated"
+
+        Competitions can now track multiple metrics. This is the first
+        metric in [`metrics`][wom.Competition.metrics], and will be
+        removed in a future release. Use `metrics` instead.
+    """
 
     type: CompetitionType
     """The [CompetitionType][wom.CompetitionType]."""
@@ -97,6 +183,12 @@ class Competition(BaseModel):
 
     participant_count: int
     """The number of players participating."""
+
+    metrics: t.List[CompetitionMetric] = []
+    """The [`CompetitionMetrics`][wom.CompetitionMetric] being
+    measured, in the order they were added. Always contains at least
+    one metric when returned by the API.
+    """
 
     group: t.Optional[Group] = None
     """The [`Group`][wom.Group] associated with the competition, if
@@ -149,12 +241,13 @@ class PlayerCompetitionStanding(PlayerParticipation):
 
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
-    made.
+    made, combined across all of the competition's metrics.
     """
 
     levels: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
-    made. Only contains useful information for skilling competitions.
+    made, combined across all of the competition's metrics. Only
+    contains useful information for skilling competitions.
     """
 
     rank: int
@@ -166,13 +259,32 @@ class CompetitionParticipationDetail(CompetitionParticipation):
 
     progress: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] that was
-    made.
+    made in the competition's first metric.
+
+    !!! warning "Deprecated"
+
+        This only reflects the first metric of the competition, and
+        will be removed in a future release. Use
+        [`deltas`][wom.CompetitionParticipationDetail.deltas] instead.
     """
 
     levels: CompetitionProgress
     """The [`CompetitionProgress`][wom.CompetitionProgress] as it relates to
-    the number of levels gained. Only contains useful information for skilling
-    competitions."""
+    the number of levels gained in the competition's first metric. Only
+    contains useful information for skilling competitions.
+
+    !!! warning "Deprecated"
+
+        This only reflects the first metric of the competition, and
+        will be removed in a future release. Use
+        [`deltas`][wom.CompetitionParticipationDetail.deltas] instead.
+    """
+
+    deltas: t.List[CompetitionMetricDelta] = []
+    """The [`CompetitionMetricDeltas`][wom.CompetitionMetricDelta] for
+    each of the competition's metrics. Multi-metric competitions also
+    include a combined `"total"` delta.
+    """
 
 
 class CompetitionDetail(Competition):

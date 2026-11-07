@@ -59,6 +59,8 @@ __all__ = (
     "CompetitionCSVTableType",
     "CompetitionDetail",
     "CompetitionHistoryDataPoint",
+    "CompetitionMetric",
+    "CompetitionMetricDelta",
     "CompetitionParticipationDetail",
     "CompetitionParticipation",
     "CompetitionProgress",

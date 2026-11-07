@@ -42,6 +42,18 @@ class CompetitionService(BaseService):
 
     __slots__ = ()
 
+    def _merge_metrics(
+        self, metric: t.Optional[enums.Metric], metrics: t.Optional[t.Sequence[enums.Metric]]
+    ) -> t.Optional[t.List[str]]:
+        merged: t.List[str] = []
+        combined = ([metric] if metric is not None else []) + list(metrics or ())
+
+        for item in combined:
+            if item.value not in merged:
+                merged.append(item.value)
+
+        return merged or None
+
     async def search_competitions(
         self,
         *,
@@ -49,6 +61,7 @@ class CompetitionService(BaseService):
         type: t.Optional[models.CompetitionType] = None,
         status: t.Optional[models.CompetitionStatus] = None,
         metric: t.Optional[enums.Metric] = None,
+        metrics: t.Optional[t.List[enums.Metric]] = None,
         limit: t.Optional[int] = None,
         offset: t.Optional[int] = None,
     ) -> ResultT[t.List[models.Competition]]:
@@ -67,6 +80,7 @@ class CompetitionService(BaseService):
                 title="Sick Competition",
                 type=wom.CompetitionType.Classic,
                 status=wom.CompetitionStatus.Ongoing,
+                metrics=[wom.Metric.Zulrah, wom.Metric.Vorkath],
                 limit=3,
                 offset=1
             )
@@ -83,6 +97,14 @@ class CompetitionService(BaseService):
             The optional competition status filter. Defaults to `None`.
         metric : Metric, optional
             The optional metric filter. Defaults to `None`.
+
+            !!! warning "Deprecated"
+
+                Use `metrics` instead. If both are passed, they are
+                combined.
+        metrics : list[Metric], optional
+            The optional metrics filter. Matches competitions that track
+            any of these metrics. Defaults to `None`.
         limit : int, optional
             The maximum number of paginated items to receive.
             Defaults to `None` (I think thats 20 items?).
@@ -102,7 +124,7 @@ class CompetitionService(BaseService):
             offset=offset,
             type=type.value if type else None,
             status=status.value if status else None,
-            metric=metric.value if metric else None,
+            metrics=self._merge_metrics(metric, metrics),
         )
 
         route = routes.SEARCH_COMPETITIONS.compile().with_params(params)
@@ -110,7 +132,11 @@ class CompetitionService(BaseService):
         return self._ok_or_err(data, t.List[models.Competition])
 
     async def get_details(
-        self, id: int, *, metric: t.Optional[enums.Metric] = None
+        self,
+        id: int,
+        *,
+        metric: t.Optional[enums.Metric] = None,
+        metrics: t.Optional[t.List[enums.Metric]] = None,
     ) -> ResultT[models.CompetitionDetail]:
         """Gets details for the given competition.
 
@@ -126,7 +152,7 @@ class CompetitionService(BaseService):
             result = await client.competitions.get_details(123)
 
             result2 = await client.competitions.get_details(
-                123, wom.Metric.Attack
+                123, metrics=[wom.Metric.Attack, wom.Metric.Strength]
             )
             ```
 
@@ -139,18 +165,31 @@ class CompetitionService(BaseService):
             As if this competition was actually for that metric.
             Defaults to `None`.
 
+            !!! warning "Deprecated"
+
+                Use `metrics` instead. If both are passed, they are
+                combined.
+        metrics : list[Metric], optional
+            The optional metrics to view the competition progress in.
+            As if this competition was actually for those metrics.
+            Defaults to `None`.
+
         Returns
         -------
         Result
             A result containing the competition details.
         """
-        params = self._generate_map(metric=metric.value if metric else None)
+        params = self._generate_map(metrics=self._merge_metrics(metric, metrics))
         route = routes.COMPETITION_DETAILS.compile(id).with_params(params)
         data = await self._http.fetch(route)
         return self._ok_or_err(data, models.CompetitionDetail)
 
     async def get_top_participant_history(
-        self, id: int, *, metric: t.Optional[enums.Metric] = None
+        self,
+        id: int,
+        *,
+        metric: t.Optional[enums.Metric] = None,
+        metrics: t.Optional[t.List[enums.Metric]] = None,
     ) -> ResultT[t.List[models.Top5ProgressResult]]:
         """Gets details for the players with the top 5 progress in the
         competition.
@@ -162,10 +201,12 @@ class CompetitionService(BaseService):
 
             client = wom.Client(...)
 
-            result = await client.competitions.get_competition_details(123)
+            await client.start()
 
-            result2 = await client.competitions.get_competition_details(
-                123, wom.Metric.Attack
+            result = await client.competitions.get_top_participant_history(123)
+
+            result2 = await client.competitions.get_top_participant_history(
+                123, metrics=[wom.Metric.Attack]
             )
             ```
 
@@ -178,17 +219,27 @@ class CompetitionService(BaseService):
             As if this competition was actually for that metric.
             Defaults to `None`.
 
+            !!! warning "Deprecated"
+
+                Use `metrics` instead. If both are passed, they are
+                combined.
+        metrics : list[Metric], optional
+            The optional metrics to view the competition progress in.
+            As if this competition was actually for those metrics.
+            Defaults to `None`.
+
         Returns
         -------
         Result
             A result containing the list of top 5
             progress players.
         """
-        params = self._generate_map(metric=metric.value if metric else None)
+        params = self._generate_map(metrics=self._merge_metrics(metric, metrics))
         route = routes.TOP_PARTICIPANT_HISTORY.compile(id).with_params(params)
         data = await self._http.fetch(route)
         return self._ok_or_err(data, t.List[models.Top5ProgressResult])
 
+    @t.overload
     async def create_competition(
         self,
         title: str,
@@ -196,6 +247,35 @@ class CompetitionService(BaseService):
         starts_at: datetime,
         ends_at: datetime,
         *,
+        metrics: t.Optional[t.List[enums.Metric]] = ...,
+        group_id: t.Optional[int] = ...,
+        group_verification_code: t.Optional[str] = ...,
+        teams: t.Optional[t.List[models.Team]] = ...,
+        participants: t.Optional[t.List[str]] = ...,
+    ) -> ResultT[models.CreatedCompetitionDetail]: ...
+
+    @t.overload
+    async def create_competition(
+        self,
+        title: str,
+        *,
+        metrics: t.List[enums.Metric],
+        starts_at: datetime,
+        ends_at: datetime,
+        group_id: t.Optional[int] = ...,
+        group_verification_code: t.Optional[str] = ...,
+        teams: t.Optional[t.List[models.Team]] = ...,
+        participants: t.Optional[t.List[str]] = ...,
+    ) -> ResultT[models.CreatedCompetitionDetail]: ...
+
+    async def create_competition(
+        self,
+        title: str,
+        metric: t.Optional[enums.Metric] = None,
+        starts_at: t.Optional[datetime] = None,
+        ends_at: t.Optional[datetime] = None,
+        *,
+        metrics: t.Optional[t.List[enums.Metric]] = None,
         group_id: t.Optional[int] = None,
         group_verification_code: t.Optional[str] = None,
         teams: t.Optional[t.List[models.Team]] = None,
@@ -237,6 +317,16 @@ class CompetitionService(BaseService):
                 group_verification_code="111-111-111",
                 group_id=123,
             )
+
+            # Multi-metric competitions pass `metrics` instead. All
+            # metrics must be of the same type (all skills, all
+            # bosses, etc).
+            result = await client.competitions.create_competition(
+                "Boss week",
+                metrics=[wom.Metric.Zulrah, wom.Metric.Vorkath],
+                starts_at=datetime.now() + timedelta(days=7),
+                ends_at=datetime.now() + timedelta(days=14),
+            )
             ```
 
         Parameters
@@ -244,11 +334,21 @@ class CompetitionService(BaseService):
         title : str
             The title of the competition.
         metric : Metric
-            The metric the competition should measure.
+            The metric the competition should measure. Required unless
+            `metrics` is passed.
+
+            !!! warning "Deprecated"
+
+                Use `metrics` instead. If both are passed, they are
+                combined.
         starts_at : datetime
             The start date for the competition.
         ends_at : datetime
             The end date for the competition.
+        metrics : list[Metric], optional
+            The metrics the competition should measure. They must all be
+            of the same type, otherwise the API returns an error.
+            Required unless `metric` is passed.
         group_id : int, optional
             The optional group id to tie to this competition.
             Defaults to `None`.
@@ -268,7 +368,15 @@ class CompetitionService(BaseService):
         Result
             A result containing the newly created
             competition detail.
+
+        Raises
+        ------
+        TypeError
+            If `starts_at` or `ends_at` is not passed.
         """
+        if starts_at is None or ends_at is None:
+            raise TypeError("create_competition() requires both 'starts_at' and 'ends_at'.")
+
         payload = self._generate_map(
             title=title,
             teams=teams,
@@ -276,7 +384,7 @@ class CompetitionService(BaseService):
             participants=participants,
             endsAt=ends_at.isoformat(),
             startsAt=starts_at.isoformat(),
-            metric=metric.value if metric else None,
+            metrics=self._merge_metrics(metric, metrics),
             groupVerificationCode=group_verification_code,
         )
 
@@ -291,6 +399,7 @@ class CompetitionService(BaseService):
         *,
         title: t.Optional[str] = None,
         metric: t.Optional[enums.Metric] = None,
+        metrics: t.Optional[t.List[enums.Metric]] = None,
         starts_at: t.Optional[datetime] = None,
         ends_at: t.Optional[datetime] = None,
         teams: t.Optional[t.List[models.Team]] = None,
@@ -332,6 +441,15 @@ class CompetitionService(BaseService):
         metric : Metric, optional
             The optional new metric the competition should measure.
             Defaults to `None`.
+
+            !!! warning "Deprecated"
+
+                Use `metrics` instead. If both are passed, they are
+                combined.
+        metrics : list[Metric], optional
+            The optional new metrics the competition should measure,
+            replacing the existing ones. They must all be of the same
+            type, otherwise the API returns an error. Defaults to `None`.
         starts_at : datetime, optional
             The optional new start date for the competition.
             Defaults to `None`.
@@ -357,7 +475,7 @@ class CompetitionService(BaseService):
             participants=participants,
             startsAt=starts_at.isoformat() if starts_at else None,
             endsAt=ends_at.isoformat() if ends_at else None,
-            metric=metric.value if metric else None,
+            metrics=self._merge_metrics(metric, metrics),
             verificationCode=verification_code,
         )
 
@@ -638,6 +756,7 @@ class CompetitionService(BaseService):
         id: int,
         *,
         metric: t.Optional[enums.Metric] = None,
+        metrics: t.Optional[t.List[enums.Metric]] = None,
         team_name: t.Optional[str] = None,
         table_type: t.Optional[models.CompetitionCSVTableType] = None,
     ) -> ResultT[str]:
@@ -665,6 +784,15 @@ class CompetitionService(BaseService):
             The optional metric to view the competition progress in.
             As if this competition was actually for that metric.
             Defaults to `None`.
+
+            !!! warning "Deprecated"
+
+                Use `metrics` instead. If both are passed, they are
+                combined.
+        metrics : list[Metric], optional
+            The optional metrics to view the competition progress in.
+            As if this competition was actually for those metrics.
+            Defaults to `None`.
         team_name : str, optional
             The optional team name you would like to get details
             for. Defaults to `None`.
@@ -677,7 +805,11 @@ class CompetitionService(BaseService):
         Result
             A result containing the CSV string.
         """
-        params = self._generate_map(metric=metric, teamName=team_name, table=table_type)
+        params = self._generate_map(
+            metrics=self._merge_metrics(metric, metrics),
+            teamName=team_name,
+            table=table_type.value if table_type else None,
+        )
         route = routes.COMPETITION_DETAILS_CSV.compile(id).with_params(params)
         data = await self._http.fetch(route)
 

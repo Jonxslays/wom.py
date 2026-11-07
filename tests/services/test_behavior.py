@@ -32,9 +32,12 @@ decoded models, camelCase -> snake_case mapping, param generation, and the
 from __future__ import annotations
 
 import typing as t
+import warnings
 from datetime import datetime
 from datetime import timezone
 from unittest import mock
+
+import yarl
 
 import wom
 
@@ -428,3 +431,181 @@ async def test_bulk_submit_name_changes_decodes_result_and_posts_array() -> None
         {"oldName": "old1", "newName": "new1"},
         {"oldName": "old2", "newName": "new2"},
     ]
+
+
+_COMPETITION_FIELDS = """
+    "id": 99,
+    "title": "Boss week",
+    "metric": "zulrah",
+    "metrics": [
+        {"weight": 1, "metric": "zulrah", "createdAt": "2026-10-01T00:00:00.000Z"},
+        {"weight": 1, "metric": "vorkath", "createdAt": "2026-10-01T00:00:01.000Z"}
+    ],
+    "type": "classic",
+    "startsAt": "2026-10-02T00:00:00.000Z",
+    "endsAt": "2026-10-09T00:00:00.000Z",
+    "groupId": null,
+    "score": 0,
+    "visible": true,
+    "createdAt": "2026-10-01T00:00:00.000Z",
+    "updatedAt": "2026-10-01T00:00:00.000Z",
+    "participantCount": 1
+"""
+
+_PLAYER_JSON = """{
+    "id": 42,
+    "username": "jonxslays",
+    "displayName": "Jonxslays",
+    "type": "regular",
+    "build": "main",
+    "country": null,
+    "status": "active",
+    "exp": 1000,
+    "ehp": 1.5,
+    "ehb": 2.5,
+    "ttm": 100.0,
+    "tt200m": 1000.0,
+    "registeredAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z",
+    "lastChangedAt": null,
+    "lastImportedAt": null
+}"""
+
+COMPETITION_DETAIL_JSON = (
+    "{"
+    + _COMPETITION_FIELDS
+    + """,
+    "participations": [
+        {
+            "playerId": 42,
+            "competitionId": 99,
+            "teamName": null,
+            "createdAt": "2026-10-01T00:00:00.000Z",
+            "updatedAt": "2026-10-01T00:00:00.000Z",
+            "player": """
+    + _PLAYER_JSON
+    + """,
+            "deltas": [
+                {
+                    "metric": "zulrah",
+                    "values": {"start": 10, "end": 15, "gained": 5},
+                    "levels": {"start": 0, "end": 0, "gained": 0}
+                },
+                {
+                    "metric": "vorkath",
+                    "values": {"start": 20, "end": 22, "gained": 2},
+                    "levels": {"start": 0, "end": 0, "gained": 0}
+                },
+                {
+                    "metric": "total",
+                    "values": {"start": 30, "end": 37, "gained": 7},
+                    "levels": {"start": 0, "end": 0, "gained": 0}
+                }
+            ],
+            "progress": {"start": 10, "end": 15, "gained": 5},
+            "levels": {"start": 0, "end": 0, "gained": 0}
+        }
+    ]
+}"""
+).encode()
+
+
+async def test_get_details_decodes_multi_metric_competition() -> None:
+    service, http = _service(wom.CompetitionService, COMPETITION_DETAIL_JSON)
+
+    with warnings.catch_warnings():
+        # "total" must never be coerced through the Metric enum.
+        warnings.simplefilter("error", wom.UnknownEnumWarning)
+        result = await service.get_details(99, metrics=[wom.Metric.Zulrah, wom.Metric.Vorkath])
+
+        assert result.is_ok
+        detail = result.unwrap()
+        assert isinstance(detail, wom.CompetitionDetail)
+
+        # The deprecated single metric is still populated.
+        assert detail.metric is wom.Metric.Zulrah
+        assert [m.metric for m in detail.metrics] == [wom.Metric.Zulrah, wom.Metric.Vorkath]
+        assert all(isinstance(m, wom.CompetitionMetric) for m in detail.metrics)
+        assert detail.metrics[0].weight == 1.0
+        assert detail.metrics[1].created_at == datetime(2026, 10, 1, 0, 0, 1, tzinfo=timezone.utc)
+
+        participation = detail.participations[0]
+        assert participation.progress.gained == 5
+        assert len(participation.deltas) == 3
+
+        zulrah, vorkath, total = participation.deltas
+        assert isinstance(total, wom.CompetitionMetricDelta)
+        assert not zulrah.is_total
+        assert zulrah.as_metric() is wom.Metric.Zulrah
+        assert vorkath.as_metric() is wom.Metric.Vorkath
+        assert vorkath.values.gained == 2
+        assert total.is_total
+        assert total.metric == "total"
+        assert total.as_metric() is None
+        assert total.values.gained == 7
+
+    route = http.fetch.call_args.args[0]
+    assert route.uri == "/competitions/99"
+    assert route.params == {"metrics": ["zulrah", "vorkath"]}
+
+
+async def test_competition_without_metrics_key_defaults_to_empty() -> None:
+    body = ("[{" + _COMPETITION_FIELDS.replace('"metrics": [', '"unused": [') + "}]").encode()
+    service, _ = _service(wom.CompetitionService, body)
+
+    result = await service.search_competitions()
+
+    assert result.is_ok
+    competition = result.unwrap()[0]
+    assert competition.metric is wom.Metric.Zulrah
+    assert competition.metrics == []
+
+
+async def test_search_competitions_sends_metrics_as_repeated_query_keys() -> None:
+    service, http = _service(wom.CompetitionService, b"[]")
+
+    result = await service.search_competitions(
+        metric=wom.Metric.Zulrah, metrics=[wom.Metric.Vorkath], limit=5
+    )
+
+    assert result.is_ok
+    route = http.fetch.call_args.args[0]
+    assert route.uri == "/competitions"
+    assert route.params == {"limit": 5, "metrics": ["zulrah", "vorkath"]}
+
+    # aiohttp hands the params to yarl, which expands list values into
+    # repeated keys, which is the format the WOM API expects.
+    url = yarl.URL("https://api.wiseoldman.net/v2/competitions").extend_query(route.params)
+    assert url.query_string == "limit=5&metrics=zulrah&metrics=vorkath"
+
+
+async def test_create_competition_single_metric_sends_metrics_body() -> None:
+    service, http = _service(wom.CompetitionService, wom.HttpErrorResponse("nope", 400))
+    starts = datetime(2026, 12, 1, tzinfo=timezone.utc)
+    ends = datetime(2026, 12, 8, tzinfo=timezone.utc)
+
+    result = await service.create_competition("Slayer week", wom.Metric.Slayer, starts, ends)
+
+    assert result.is_err
+    payload = http.fetch.call_args.kwargs["payload"]
+    assert payload["metrics"] == ["slayer"]
+    assert "metric" not in payload
+    assert payload["startsAt"] == starts.isoformat()
+
+
+async def test_create_competition_metrics_only_sends_metrics_body() -> None:
+    service, http = _service(wom.CompetitionService, wom.HttpErrorResponse("nope", 400))
+    starts = datetime(2026, 12, 1, tzinfo=timezone.utc)
+    ends = datetime(2026, 12, 8, tzinfo=timezone.utc)
+
+    result = await service.create_competition(
+        "Boss week",
+        metrics=[wom.Metric.Zulrah, wom.Metric.Vorkath],
+        starts_at=starts,
+        ends_at=ends,
+    )
+
+    assert result.is_err
+    payload = http.fetch.call_args.kwargs["payload"]
+    assert payload["metrics"] == ["zulrah", "vorkath"]
+    assert payload["endsAt"] == ends.isoformat()

@@ -1,3 +1,48 @@
+# Unreleased
+
+## Additions
+
+- Add support for multi-metric competitions, where one competition tracks
+  several metrics of the same type.
+  - Add `Competition.metrics`, a list of the new `CompetitionMetric` model
+    (`metric`, `weight`, `created_at`).
+  - Add `CompetitionParticipationDetail.deltas`, a list of the new
+    `CompetitionMetricDelta` model with per-metric progress plus a combined
+    `"total"` entry. Because `"total"` is not a `Metric`, the delta's `metric`
+    field is the raw string; use `CompetitionMetricDelta.is_total` and
+    `CompetitionMetricDelta.as_metric()` to work with it.
+  - Add a `metrics` parameter to `search_competitions`, `get_details`,
+    `get_top_participant_history`, `get_details_csv`, `create_competition`,
+    and `edit_competition`. `create_competition` can now be called as
+    `create_competition(title, metrics=[...], starts_at=..., ends_at=...)`.
+- `CompiledRoute` query params now accept list values, which are sent as
+  repeated query keys.
+
+## Deprecations
+
+- The single `metric` parameter on the competition service methods listed
+  above is deprecated in favor of `metrics`. It still works; if both are
+  passed, they are combined (duplicates removed, `metric` first).
+- `Competition.metric` and the `progress` / `levels` fields on
+  `CompetitionParticipationDetail` are deprecated. They only reflect the
+  competition's first metric. Use `Competition.metrics` and
+  `CompetitionParticipationDetail.deltas` instead.
+
+## Changes
+
+- Competition service methods now send `metrics` to the API instead of
+  `metric`.
+- `PlayerCompetitionStanding.progress` / `levels` are now documented as being
+  combined across all of a competition's metrics, matching the API.
+
+## Bug fixes
+
+- Fix `get_details_csv` raising a `TypeError` when `metric` or `table_type` was
+  passed, because the enum was sent as a query param instead of its value.
+- Fix the docstring examples for `get_details` and
+  `get_top_participant_history`, which passed `metric` positionally or called a
+  method that doesn't exist.
+
 # v3.3.1 (Oct 2026)
 
 ## Additions
