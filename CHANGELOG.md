@@ -1,4 +1,4 @@
-# Unreleased
+# v3.4.0 (Nov 2026)
 
 ## Additions
 
