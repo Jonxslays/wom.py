@@ -25,7 +25,9 @@ an [`Ok`][wom.Ok] or an [`Err`][wom.Err].
   [`Ok`][wom.Ok], and the mirror for an [`Err`][wom.Err].
 
 Always check [`is_ok`][wom.Result.is_ok] (or [`is_err`][wom.Result.is_err])
-before unwrapping, so you unwrap the variant you actually have.
+before unwrapping, so you unwrap the variant you actually have. The
+[handling errors](../guides/errors.md) guide covers what's inside an error and
+how to branch on it.
 
 ## Correct usage
 
@@ -58,3 +60,13 @@ print(result.unwrap()) # <-- Exception raised
 
 # .. Remember to close the client!
 ```
+
+## Next steps
+
+That's everything you need to start making requests. The guides go deeper:
+
+- [Handling errors](../guides/errors.md)
+- [Metrics and enums](../guides/metrics.md)
+- [Requests and rate limits](../guides/requests.md)
+- [Competitions](../guides/competitions.md)
+- [Long-running applications](../guides/long-running.md)

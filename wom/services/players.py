@@ -291,7 +291,7 @@ class PlayerService(BaseService):
             The username to get the participations for.
         limit : int, optional
             The maximum number of paginated items to receive.
-            Defaults to `None` (I think thats 20 items?).
+            Defaults to `None`, which the API treats as 20.
         offset : int, optional
             The page offset for requesting multiple pages.
             Defaults to `None`.
@@ -379,7 +379,7 @@ class PlayerService(BaseService):
             The username to get the memberships for.
         limit : int, optional
             The maximum number of paginated items to receive.
-            Defaults to `None` (I think thats 20 items?).
+            Defaults to `None`, which the API treats as 20.
         offset : int, optional
             The page offset for requesting multiple pages.
             Defaults to `None`.

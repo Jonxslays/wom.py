@@ -1,0 +1,10 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Wise Old Man API issues
+    url: https://wiseoldman.net/discord
+    about: |
+      Problems with the API itself (wrong data, downtime, API keys) belong in
+      the Wise Old Man Discord, not here.
+  - name: Documentation
+    url: https://jonxslays.github.io/wom.py/
+    about: Check the docs and guides for usage help.

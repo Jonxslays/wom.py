@@ -22,21 +22,28 @@ For more information on using `pip`, check out the
 You can verify your install succeeded with the `wom` command:
 
 ```bash
-$ wom
+wom
 ```
 
-The output should look similar to this:
+It prints the installed version along with details about your environment,
+which are also useful to include when
+[reporting a bug](https://github.com/Jonxslays/wom.py/issues/new/choose). The
+output should look similar to this (your paths and versions will differ):
 
 ```
 -------------------------------------------------------------------------
-Package:     wom.py v1.0.0-rc.1 @ [HEAD]
+Package:     wom.py v3.4.0 @ [HEAD]
 -------------------------------------------------------------------------
-Location:    /home/projects/tester/.venv/lib/python3.11/site-packages/wom
+Location:    /home/me/projects/my-app/.venv/lib/python3.13/site-packages/wom
 -------------------------------------------------------------------------
-Interpreter: CPython 3.11.8
+Interpreter: CPython 3.13.5
 -------------------------------------------------------------------------
-Compiler:    GCC 13.2.1 20230801
+Compiler:    GCC 14.2.1 20250207
 -------------------------------------------------------------------------
-OS/Arch:     Linux 6.6.22-1-lts / x86_64
+OS/Arch:     Linux 6.12.10-arch1-1 / x86_64
 -------------------------------------------------------------------------
 ```
+
+## Next steps
+
+Head over to the [client guide](client.md) to make your first request.

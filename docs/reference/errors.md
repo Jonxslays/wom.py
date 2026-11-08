@@ -1,4 +1,4 @@
-# errors
+# Errors
 
 Exception types raised by the library. Note that API errors do **not** raise -
 they come back as an [`Err`][wom.Err]; these exceptions cover misuse such as
