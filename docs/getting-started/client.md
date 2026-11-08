@@ -1,7 +1,7 @@
 # Using the client
 
 The [`Client`][wom.Client] class is used to interact with the WOM API. You use
-the client to make requests via its difference service properties.
+the client to make requests via its service properties.
 
 Services available on the client include:
 
@@ -20,7 +20,7 @@ Services available on the client include:
 import wom
 
 client = wom.Client(
-    "api_abc123",  # The wom api key to use.
+    "api_abc123",  # The optional wom api key to use.
     user_agent="@jonxslays",
     api_base_url="https://api.wiseoldman.net/v2",
 )
@@ -37,7 +37,9 @@ your instance.
     If you feel like you need multiple `Client` instances you should reconsider
     the architecture of your application, and how you can reuse your existing
     `Client` resource. Some niche scenarios could warrant more than one
-    `Client`, but these use cases aren't common for most users.
+    `Client`, but these use cases aren't common for most users. See
+    [long-running applications](../guides/long-running.md) for how to share
+    one client across a bot or web app.
 
 ## Handling client resources
 
@@ -55,8 +57,24 @@ await client.start()
 await client.close()
 ```
 
-You will receive errors/warnings if you do not properly start the client
-before using it, or close it before your program terminates.
+!!! warning
+
+    Making a request before calling [`Client.start`][wom.Client.start] raises
+    a `RuntimeError`. Forgetting to call [`Client.close`][wom.Client.close]
+    leaves the session open, and `aiohttp` will log an "Unclosed client
+    session" error when your program exits.
+
+Wrapping your usage in `try`/`finally` guarantees the client is closed even if
+something goes wrong in between:
+
+```py
+await client.start()
+
+try:
+    ...  # Make requests here
+finally:
+    await client.close()
+```
 
 ## Example client usage
 

@@ -36,11 +36,13 @@ wom = "wom.__main__:_main"
 [dependency-groups]
 dev = [
     "coverage==7.6.10",
-    "griffe==0.47.0",
+    "griffe==2.3.0",
     "mike==2.0.0",
+    "mkdocs-autorefs==1.2.0",
     "mkdocs-include-markdown-plugin==6.2.2",
     "mkdocs-material==9.5.50",
-    "mkdocstrings[python]==0.27.0",
+    "mkdocstrings==0.27.0",
+    "mkdocstrings-python==1.13.0",
     "mypy==2.1.0",
     "nox==2024.10.9",
     "pyright==1.1.393",

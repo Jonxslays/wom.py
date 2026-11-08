@@ -1,4 +1,4 @@
-# result
+# Result
 
 The [`Result`][wom.Result] type returned by every service method, along with its
 [`Ok`][wom.Ok] and [`Err`][wom.Err] variants. See the

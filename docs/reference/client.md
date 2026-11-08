@@ -1,4 +1,4 @@
-# client
+# Client
 
 The [`Client`][wom.Client] is the entry point to the library. It owns the HTTP
 session and exposes one service per API domain. See the

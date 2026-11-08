@@ -151,3 +151,19 @@ def licensing(session: nox.Session) -> None:
 def alls(session: nox.Session) -> None:
     session.install(".")
     run(session, "python", "scripts/alls.py")
+
+
+@nox.session(reuse_venv=True)
+@install(
+    "mkdocs-material",
+    "mkdocs-include-markdown-plugin",
+    "mkdocs-autorefs",
+    "mkdocstrings",
+    "mkdocstrings-python",
+    "griffe",
+    "ruff",
+    "aiohttp",
+    "msgspec",
+)
+def docs(session: nox.Session) -> None:
+    run(session, "mkdocs", "build", "--strict", "--site-dir", session.create_tmp())

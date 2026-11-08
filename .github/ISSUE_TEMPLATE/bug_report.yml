@@ -1,0 +1,49 @@
+name: Bug report
+description: Report something in wom.py that isn't working as expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please search the
+        [existing issues](https://github.com/Jonxslays/wom.py/issues) first
+        to make sure it hasn't already been reported.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, and what you expected to happen instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: |
+        A minimal code example that reproduces the problem. Remove any API
+        keys or verification codes before posting.
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Error output
+      description: |
+        The full traceback, or the `HttpErrorResponse` you received
+        (`result.unwrap_err()`), if any.
+      render: text
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        Paste the output of running the `wom` command in the environment
+        where wom.py is installed.
+      render: text
+    validations:
+      required: true

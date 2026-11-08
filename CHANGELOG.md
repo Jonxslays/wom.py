@@ -1,3 +1,20 @@
+# Unreleased
+
+## Changes
+
+- Add documentation guides for handling errors, metrics and enums, requests and
+  rate limits (including pagination and API keys), competitions (including
+  multi-metric competitions), and long-running applications.
+- Split the services and models reference pages into one page per API domain,
+  and move `HttpService`, `BaseService`, routes, and the serializer to a new
+  "Internals" section.
+- Add a quickstart example and install instructions to the README.
+- Expand the contributing guide with the full list of checks, code style rules,
+  and checklists for adding endpoints and metrics.
+- Fix outdated `wom` command output in the installation guide, and clarify what
+  happens when the client isn't started or closed.
+- Document the API's default `limit` of 20 on paginated service methods.
+
 # v3.4.0 (Nov 2026)
 
 ## Additions

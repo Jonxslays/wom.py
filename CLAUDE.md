@@ -14,7 +14,7 @@ Dependencies are managed with uv (`uv sync` installs dev deps too). Tasks run th
 [nox](noxfile.py) — each session installs its own pinned deps into a reused venv:
 
 ```bash
-nox                 # run all sessions (tests, types, formatting, imports, licensing, alls)
+nox                 # run all sessions (tests, types, formatting, imports, licensing, alls, docs)
 nox -s tests        # pytest with coverage + testdox output
 nox -s coverage     # print coverage report (requires a prior tests run producing .coverage)
 nox -s types        # mypy + pyright, both in strict mode
@@ -22,6 +22,7 @@ nox -s formatting   # ruff format --check (line length 99)
 nox -s imports      # ruff check (import sorting + unused/star-import checks, F4/I)
 nox -s licensing    # verify every .py file has the MIT license header
 nox -s alls         # runs scripts/alls.py to verify __all__ exports are consistent
+nox -s docs         # mkdocs build --strict (fails on broken cross-references)
 ```
 
 Run a single test with pytest directly (asyncio_mode is `auto`, so no decorator needed):
